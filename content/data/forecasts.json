@@ -1,0 +1,20 @@
+{
+  "updated": "2026-05-29",
+  "forecasts": [
+    {
+      "asset": "BTC",
+      "thesis": { "en": "Bullish · target $112k by Q3", "fa": "صعودی · هدف ۱۱۲هزار دلار تا فصل سوم", "ar": "صعودي · الهدف ١١٢ ألف دولار بحلول الربع الثالث", "tr": "Yükseliş · 3Ç'ye kadar 112k$ hedefi" },
+      "bias": "bullish", "confidence": 84
+    },
+    {
+      "asset": "ETH",
+      "thesis": { "en": "Bullish · ETF inflows accelerating", "fa": "صعودی · شتاب ورود نقدینگی ETF", "ar": "صعودي · تسارع تدفّقات ETF", "tr": "Yükseliş · ETF girişleri hızlanıyor" },
+      "bias": "bullish", "confidence": 76
+    },
+    {
+      "asset": "EUR/USD",
+      "thesis": { "en": "Neutral-bearish · ECB cut priced in", "fa": "خنثی-نزولی · کاهش نرخ ECB قیمت‌گذاری شده", "ar": "محايد-هبوطي · خفض ECB مُسعَّر", "tr": "Nötr-düşüş · ECB indirimi fiyatlandı" },
+      "bias": "neutral", "confidence": 61
+    }
+  ]
+}

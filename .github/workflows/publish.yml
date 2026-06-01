@@ -1,0 +1,60 @@
+name: Publish (agents)
+
+# Runs every morning at 07:00 Tehran time (03:30 UTC).
+# Can also be triggered manually from the Actions tab.
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 07:00 Tehran (UTC+3:30) every day
+  workflow_dispatch:
+    inputs:
+      articles:
+        description: "How many articles to publish this run"
+        default: "2"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install agent deps
+        working-directory: agents
+        run: npm install
+
+      - name: Run agent pipeline
+        working-directory: agents
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+          NEWS_FEEDS: ${{ vars.NEWS_FEEDS }}
+        run: npm run agents -- all ${{ github.event.inputs.articles || '2' }}
+
+      - name: Build static site
+        working-directory: agents
+        env:
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+        run: npm run build
+
+      - name: Commit & push
+        run: |
+          git config user.name "maxgazine-agents"
+          git config user.email "agents@maxgazine.com"
+          git add content/ en/ fa/ ar/ tr/ sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes to publish."
+          else
+            git commit -m "agents: publish $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

@@ -1,0 +1,13 @@
+# environment
+agents/.env
+.env
+
+# macOS
+.DS_Store
+
+# Node
+agents/node_modules/
+node_modules/
+
+# build cache
+*.tsbuildinfo

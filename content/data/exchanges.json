@@ -1,0 +1,36 @@
+{
+  "kind": "exchange",
+  "updated": "2026-05-29",
+  "entries": [
+    {
+      "name": "Binance",
+      "blurb": { "en": "Global leader · 350+ coins", "fa": "پیشتاز جهانی · +۳۵۰ ارز", "ar": "الرائدة عالميًا · +٣٥٠ عملة", "tr": "Küresel lider · 350+ coin" },
+      "score": 9.6, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+    },
+    {
+      "name": "Coinbase",
+      "blurb": { "en": "US-regulated · beginner-friendly", "fa": "تحت نظارت آمریکا · مناسب مبتدی", "ar": "منظَّمة أمريكيًا · سهلة للمبتدئين", "tr": "ABD düzenlemeli · yeni başlayana uygun" },
+      "score": 9.3, "metric": "0.40% / 0.60%", "url": "#", "sponsored": false
+    },
+    {
+      "name": "Kraken",
+      "blurb": { "en": "Security-first · deep liquidity", "fa": "امنیت‌محور · نقدشوندگی بالا", "ar": "الأمان أولًا · سيولة عميقة", "tr": "Güvenlik öncelikli · derin likidite" },
+      "score": 9.1, "metric": "0.16% / 0.26%", "url": "#", "sponsored": false
+    },
+    {
+      "name": "OKX",
+      "blurb": { "en": "Derivatives · Web3 wallet", "fa": "مشتقات · کیف‌پول وب۳", "ar": "مشتقات · محفظة ويب٣", "tr": "Türevler · Web3 cüzdan" },
+      "score": 8.9, "metric": "0.08% / 0.10%", "url": "#", "sponsored": false
+    },
+    {
+      "name": "Bybit",
+      "blurb": { "en": "Fast futures · copy trading", "fa": "فیوچرز سریع · کپی‌تریدینگ", "ar": "عقود سريعة · نسخ التداول", "tr": "Hızlı vadeli · kopya işlem" },
+      "score": 8.7, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+    },
+    {
+      "name": "KuCoin",
+      "blurb": { "en": "Altcoin variety · low fees", "fa": "تنوع آلت‌کوین · کارمزد پایین", "ar": "تنوّع العملات · رسوم منخفضة", "tr": "Altcoin çeşitliliği · düşük ücret" },
+      "score": 8.5, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+    }
+  ]
+}
