@@ -5,13 +5,16 @@ export type Localized = Record<Lang, string>;
 
 export type Category =
   | "markets"
+  | "crypto"
   | "forex"
   | "defi"
   | "policy"
   | "mining"
   | "analysis"
   | "tech"
-  | "cars";
+  | "cars"
+  | "staff"
+  | "reportage";
 
 /** A topic the Scout agent surfaced as worth covering. */
 export interface Lead {
@@ -71,6 +74,19 @@ export interface Article {
   body: Localized;
   seo: SeoMeta;
   sources: SourceRef[];
+  /** Free-form tags shown on the article and used as extra keywords. */
+  tags?: string[];
+  /** "draft" articles are skipped by the build. Default: "published". */
+  status?: "draft" | "published";
+  /** ISO datetime; the build skips the article until this time has passed. */
+  publishAt?: string;
+  /** Banner image path/URL rendered above the article body. */
+  banner?: string;
+  /**
+   * Rich-text HTML body per language (written via the MasterWriter panel).
+   * When set for a language it takes precedence over the Markdown `body`.
+   */
+  bodyHtml?: Partial<Localized>;
 }
 
 /** A ranked exchange or broker row (revenue pages). */

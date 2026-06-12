@@ -1,0 +1,34 @@
+{
+  "slug": "sample-panel-article-with-banner",
+  "category": "reportage",
+  "date": "2026-06-12",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Sample panel story: how bannered articles look",
+    "fa": "نمونه مطلب پنل: مقاله بنردار این شکلی دیده می‌شود"
+  },
+  "dek": {
+    "en": "A MasterWriter-panel article with a banner image, sitting next to imageless agent stories.",
+    "fa": "مقاله‌ای از پنل MasterWriter با تصویر بنر، در کنار مطالب بدون تصویر ایجنت‌ها."
+  },
+  "body": { "en": "", "fa": "" },
+  "bodyHtml": {
+    "en": "<p>This is a sample article written the way the MasterWriter panel writes: rich HTML body, a banner image, and tags. Delete it before launch.</p><h2>Why it exists</h2><p>It demonstrates that bannered and imageless stories share the same grid cleanly.</p>",
+    "fa": "<p>این یک مقاله نمونه است به همان شکلی که پنل MasterWriter می‌نویسد: بدنه HTML، تصویر بنر و تگ. قبل از لانچ حذفش کنید.</p><h2>چرا وجود دارد</h2><p>نشان می‌دهد مطالب بنردار و بدون تصویر در یک گرید کنار هم تمیز می‌نشینند.</p>"
+  },
+  "seo": {
+    "title": {
+      "en": "Sample panel story — MAXGAZINE",
+      "fa": "نمونه مطلب پنل — مکس‌گزین"
+    },
+    "description": {
+      "en": "Sample bannered article from the MasterWriter panel.",
+      "fa": "مقاله نمونه بنردار از پنل MasterWriter."
+    },
+    "keywords": { "en": ["sample"], "fa": ["نمونه"] }
+  },
+  "sources": [],
+  "tags": ["sample", "panel"],
+  "status": "published",
+  "banner": "assets/uploads/sample-banner.svg"
+}

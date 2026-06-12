@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterWriter — MAXGAZINE Panel</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section id="view-login" class="login-wrap">
+  <div class="login-box">
+    <div class="wordmark">MasterWriter<span class="dot">.</span></div>
+    <p class="mono sub">MAXGAZINE PUBLISHING PANEL</p>
+    <label>GitHub access token
+      <input type="password" id="login-token" placeholder="github_pat_… / ghp_…" autocomplete="current-password">
+    </label>
+    <details class="adv">
+      <summary class="mono">Repository settings</summary>
+      <label>Owner <input id="login-owner" value="amirHafeziV"></label>
+      <label>Repo <input id="login-repo" value="MAXGAZINE"></label>
+      <label>Branch <input id="login-branch" value="main"></label>
+      <label>Site origin <input id="login-origin" value="https://maxgazine.com"></label>
+    </details>
+    <button class="btn" id="login-btn">Sign in →</button>
+    <p class="err mono" id="login-err"></p>
+    <p class="hint">The panel commits straight to the site repository. Use a fine-grained
+    token with <b>Contents: read &amp; write</b> and <b>Actions: read &amp; write</b> on the
+    MAXGAZINE repo only.</p>
+  </div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app" hidden>
+<header class="topbar">
+  <div class="brand">MasterWriter<span class="dot">.</span> <span class="mono tag">MAXGAZINE</span></div>
+  <nav class="mainnav mono">
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="articles">Articles</button>
+    <button data-view="editor">New article</button>
+    <button data-view="ads">Ads</button>
+  </nav>
+  <div class="top-actions">
+    <button class="mono ghost" id="btn-build" title="Run the site build on GitHub Actions">⟳ Deploy site</button>
+    <span class="mono user" id="who"></span>
+    <button class="mono ghost" id="btn-logout">Logout</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="view-dashboard" class="view">
+  <h1>Dashboard</h1>
+  <div class="stats" id="stats"></div>
+  <div class="cols">
+    <div>
+      <h2 class="mono">SCHEDULED</h2>
+      <div id="scheduled-list" class="rows"></div>
+    </div>
+    <div>
+      <h2 class="mono">BY CATEGORY</h2>
+      <div id="cat-list" class="rows"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTICLES ============ -->
+<section id="view-articles" class="view" hidden>
+  <div class="head-row">
+    <h1>Articles</h1>
+    <button class="btn" data-view="editor" id="btn-new">+ New article</button>
+  </div>
+  <div id="articles-list" class="rows"></div>
+</section>
+
+<!-- ============ EDITOR ============ -->
+<section id="view-editor" class="view" hidden>
+  <div class="head-row">
+    <h1 id="editor-title">New article</h1>
+    <span class="mono" id="editor-status-pill"></span>
+  </div>
+
+  <div class="editor-grid">
+    <div class="editor-main">
+      <div class="lang-tabs mono" id="lang-tabs">
+        <button data-elang="en" class="active">EN</button>
+        <button data-elang="fa">فارسی</button>
+        <button data-elang="ar">العربية</button>
+        <button data-elang="tr">TR</button>
+      </div>
+
+      <input id="f-headline" class="f-headline" placeholder="Headline…">
+      <textarea id="f-dek" class="f-dek" rows="2" placeholder="Dek — one-sentence summary…"></textarea>
+
+      <div class="banner-box" id="banner-box">
+        <img id="banner-img" alt="" hidden>
+        <div class="banner-actions">
+          <button class="mono ghost" id="btn-banner">＋ Banner image</button>
+          <button class="mono ghost" id="btn-banner-remove" hidden>✕ Remove</button>
+        </div>
+      </div>
+
+      <div class="toolbar mono" id="toolbar">
+        <button data-cmd="formatBlock" data-val="p" title="Paragraph">¶</button>
+        <button data-cmd="formatBlock" data-val="h2" title="Heading">H2</button>
+        <button data-cmd="formatBlock" data-val="h3" title="Sub-heading">H3</button>
+        <span class="sep"></span>
+        <button data-cmd="bold" title="Bold"><b>B</b></button>
+        <button data-cmd="italic" title="Italic"><i>I</i></button>
+        <span class="sep"></span>
+        <button id="btn-font-up" title="Bigger text">A＋</button>
+        <button id="btn-font-down" title="Smaller text">A−</button>
+        <span class="sep"></span>
+        <button id="btn-link" title="Link on selected text">🔗 Link</button>
+        <button data-cmd="insertUnorderedList" title="List">• List</button>
+        <button id="btn-img" title="Insert image">🖼 Image</button>
+        <span class="sep"></span>
+        <button data-cmd="removeFormat" title="Clear formatting">⌫ Clear</button>
+      </div>
+      <div id="f-body" class="f-body" contenteditable="true" data-placeholder="Write the story…"></div>
+    </div>
+
+    <aside class="editor-side">
+      <div class="panel">
+        <h3 class="mono">PUBLISH</h3>
+        <label class="mono">Status
+          <select id="f-status">
+            <option value="published">Publish now</option>
+            <option value="scheduled">Schedule</option>
+            <option value="draft">Draft</option>
+          </select>
+        </label>
+        <label class="mono" id="schedule-row" hidden>Publish at
+          <input type="datetime-local" id="f-publish-at">
+        </label>
+        <label class="mono">Author <input id="f-author" value="MAXGAZINE Desk"></label>
+        <label class="mono">Slug <input id="f-slug" placeholder="auto from headline"></label>
+        <button class="btn" id="btn-save">Save article</button>
+        <button class="mono ghost danger" id="btn-delete" hidden>Delete article</button>
+        <p class="mono note" id="save-msg"></p>
+      </div>
+
+      <div class="panel">
+        <h3 class="mono">TAGS &amp; CATEGORY</h3>
+        <label class="mono">Category
+          <select id="f-category">
+            <option value="crypto">Crypto</option>
+            <option value="forex">Forex</option>
+            <option value="markets">Markets</option>
+            <option value="defi">DeFi</option>
+            <option value="policy">Policy</option>
+            <option value="analysis">Analysis</option>
+            <option value="tech">Tech</option>
+            <option value="cars">Cars</option>
+            <option value="staff">Staff</option>
+            <option value="reportage">Reportage</option>
+          </select>
+        </label>
+        <label class="mono">Tags (comma separated)
+          <input id="f-tags" placeholder="bitcoin, etf, …">
+        </label>
+      </div>
+
+      <div class="panel">
+        <h3 class="mono">SEO <button class="mono ghost mini" id="btn-seo-auto">auto-fill</button></h3>
+        <label class="mono">Meta title <input id="f-seo-title"></label>
+        <label class="mono">Meta description <textarea id="f-seo-desc" rows="3"></textarea></label>
+        <label class="mono">Keywords <input id="f-seo-keywords" placeholder="comma separated"></label>
+        <p class="mono note">Per-language. Fill for each language tab you write in.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ ADS ============ -->
+<section id="view-ads" class="view" hidden>
+  <div class="head-row">
+    <h1>Ads</h1>
+    <button class="btn" id="btn-ads-save">Save all placements</button>
+  </div>
+  <p class="mono note">Banner image or GIF + destination link per placement. Saving commits
+  <code>content/data/ads.json</code> — the live site picks it up immediately after deploy.</p>
+  <div id="ads-list" class="ads-grid"></div>
+  <p class="mono note" id="ads-msg"></p>
+</section>
+
+</main>
+</div>
+
+<input type="file" id="file-input" accept="image/*,.gif" hidden>
+<script src="admin.js"></script>
+</body>
+</html>
