@@ -205,7 +205,7 @@ function mCryptoRow(coin, i, lang, prefix){
         <div><b>${esc(d.ath)}</b><span>${fmtPrice(coin.ath||0)}</span></div>
         <div><b>${esc(d.supply)}</b><span>${fmtSupply(coin.circulating_supply)} ${esc(sym)}</span></div>
       </div>
-      <a class="btn" href="${_coinPages[coin.id] ? prefix+_coinPages[coin.id] : prefix+'exchanges.html'}">${esc(d.trade)}</a>
+      <a class="btn" href="${_coinPages[coin.id] ? prefix+_coinPages[coin.id]+'.html' : prefix+'exchanges.html'}">${esc(d.trade)}</a>
     </div></div>
   </div>`;
 }
@@ -425,6 +425,16 @@ function initMarketAccordion(container){
     const open = row.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(open));
     body.style.maxHeight = open ? body.scrollHeight+'px' : '';
+    if(open){
+      container.querySelectorAll('.m-row.open').forEach(other=>{
+        if(other === row) return;
+        other.classList.remove('open');
+        const otherBody = other.querySelector('.m-detail');
+        const otherBtn = other.querySelector('.m-main');
+        if(otherBody) otherBody.style.maxHeight = '';
+        if(otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+    }
   };
   container.addEventListener('click', e=>{
     const btn = e.target.closest('.m-main');

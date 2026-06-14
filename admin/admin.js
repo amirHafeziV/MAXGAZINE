@@ -18,6 +18,7 @@ const state = {
   ads: null, adsSha: null,
   editing: null,        // {path, sha} when editing an existing article
   lang: 'en',
+  articlesPage: 0,
   // per-language editor buffers: {en:{headline,dek,bodyHtml,seoTitle,seoDesc,seoKeywords}, ...}
   buf: {},
   banner: '',           // committed path/URL, or dataURL pending upload
@@ -98,13 +99,13 @@ function enterApp(){
 async function loadArticles(){
   const list = await gh(`${repoPath('content/articles')}?ref=${state.cfg.branch}`) || [];
   const files = list.filter(f=>f.name.endsWith('.json'));
-  const out = [];
-  for(const f of files){
+  const fetched = await Promise.all(files.map(async f=>{
     try{
       const got = await getFile(`content/articles/${f.name}`);
-      out.push({ path:`content/articles/${f.name}`, sha: got.sha, data: JSON.parse(got.text) });
-    }catch(e){ console.warn('bad article json', f.name, e); }
-  }
+      return { path:`content/articles/${f.name}`, sha: got.sha, data: JSON.parse(got.text) };
+    }catch(e){ console.warn('bad article json', f.name, e); return null; }
+  }));
+  const out = fetched.filter(Boolean);
   out.sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
   state.articles = out;
 }
@@ -143,6 +144,11 @@ function pickImage(){
     };
     inp.click();
   });
+}
+/** Resolve a possibly-relative repo path (legacy articles) to an absolute, browser-loadable URL. */
+function resolveAssetUrl(src){
+  if(!src || src.startsWith('data:') || /^https?:\/\//i.test(src)) return src;
+  return `${state.cfg.origin}/${src.replace(/^\/+/,'')}`;
 }
 /** Upload a data: URL image to assets/uploads/, return the absolute site URL. */
 async function uploadDataUrl(dataUrl, nameHint){
@@ -187,19 +193,37 @@ function renderDashboard(){
 }
 
 /* ----- articles list ----- */
+const ARTICLES_PAGE_SIZE = 20;
 function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function renderArticles(){
-  $('#articles-list').innerHTML = state.articles.map((a,i)=>{
+  const total = state.articles.length;
+  const pages = Math.max(1, Math.ceil(total / ARTICLES_PAGE_SIZE));
+  state.articlesPage = Math.min(state.articlesPage || 0, pages - 1);
+  const start = state.articlesPage * ARTICLES_PAGE_SIZE;
+  const pageItems = state.articles.slice(start, start + ARTICLES_PAGE_SIZE);
+  $('#articles-list').innerHTML = pageItems.map((a)=>{
+    const i = state.articles.indexOf(a);
     const st = articleStatus(a.data);
+    const noBanner = st !== 'draft' && !a.data.banner
+      ? '<span class="pill nobanner">No Banner</span>' : '';
     return `<div class="row">
       <div><div class="t">${esc(pickL(a.data.headline))}</div>
         <div class="m">${esc(a.data.category)} · ${esc(a.data.date)} · ${esc(a.data.author||'')}</div></div>
       <div class="actions">
         <span class="pill ${st}">${st}</span>
+        ${noBanner}
         <button class="ghost mono" data-edit="${i}">Edit</button>
       </div></div>`;
   }).join('') || '<div class="row"><span class="m">No articles yet — write the first one.</span></div>';
   $$('#articles-list [data-edit]').forEach(b=>b.addEventListener('click',()=>openEditor(state.articles[+b.dataset.edit])));
+
+  $('#articles-pager').innerHTML = pages > 1 ? `
+    <button class="ghost" id="pager-prev" ${state.articlesPage===0?'disabled':''}>&larr; Prev</button>
+    <span class="m">Page ${state.articlesPage+1} of ${pages}</span>
+    <button class="ghost" id="pager-next" ${state.articlesPage>=pages-1?'disabled':''}>Next &rarr;</button>` : '';
+  const prev = $('#pager-prev'), next = $('#pager-next');
+  if(prev) prev.addEventListener('click', ()=>{ state.articlesPage--; renderArticles(); });
+  if(next) next.addEventListener('click', ()=>{ state.articlesPage++; renderArticles(); });
 }
 
 /* ----- editor ----- */
@@ -208,7 +232,7 @@ function emptyBuf(){ return { headline:'', dek:'', bodyHtml:'', seoTitle:'', seo
 function mdToHtml(src){
   // mirror of build/templates.ts md() — used when editing agent-written articles
   const lines = String(src||'').replace(/\r\n/g,'\n').split('\n');
-  const out = []; let inList = false;
+  const out = []; let inList = false, inGallery = false;
   const inline = t => esc(t)
     .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
     .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
@@ -217,12 +241,21 @@ function mdToHtml(src){
   for(const raw of lines){
     const line = raw.trim();
     if(!line){ closeList(); continue; }
-    if(line.startsWith('### ')){ closeList(); out.push(`<h3>${inline(line.slice(4))}</h3>`); }
+    const img = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
+    if(line === ':::gallery'){ closeList(); out.push('<div class="article-gallery">'); inGallery = true; }
+    else if(line === ':::' && inGallery){ out.push('</div>'); inGallery = false; }
+    else if(img){
+      closeList();
+      const tag = `<img src="${esc(resolveAssetUrl(img[2]))}" alt="${esc(img[1])}">`;
+      out.push(inGallery ? `<figure>${tag}</figure>` : `<figure class="article-figure">${tag}</figure>`);
+    }
+    else if(line.startsWith('### ')){ closeList(); out.push(`<h3>${inline(line.slice(4))}</h3>`); }
     else if(line.startsWith('## ')){ closeList(); out.push(`<h2>${inline(line.slice(3))}</h2>`); }
     else if(line.startsWith('- ')){ if(!inList){ out.push('<ul>'); inList=true; } out.push(`<li>${inline(line.slice(2))}</li>`); }
     else { closeList(); out.push(`<p>${inline(line)}</p>`); }
   }
   closeList();
+  if(inGallery) out.push('</div>');
   return out.join('\n');
 }
 
@@ -292,6 +325,10 @@ function saveCurrentLangToBuf(){
   b.seoDesc = $('#f-seo-desc').value;
   b.seoKeywords = $('#f-seo-keywords').value;
 }
+function autoGrow(el){
+  el.style.height = 'auto';
+  el.style.height = `${el.scrollHeight}px`;
+}
 function setLang(lang, skipSave){
   if(!skipSave) saveCurrentLangToBuf();
   state.lang = lang;
@@ -304,6 +341,8 @@ function setLang(lang, skipSave){
   $('#f-seo-keywords').value = b.seoKeywords;
   const rtl = RTL.includes(lang);
   ['#f-headline','#f-dek','#f-body','#f-seo-title','#f-seo-desc'].forEach(s=>$(s).setAttribute('dir', rtl?'rtl':'ltr'));
+  ['#f-headline','#f-dek','#f-body'].forEach(s=>$(s).classList.toggle('lang-fa', lang==='fa'));
+  autoGrow($('#f-headline'));
   $$('#lang-tabs button').forEach(t=>{
     t.classList.toggle('active', t.dataset.elang===lang);
     t.classList.toggle('has-content', !!(state.buf[t.dataset.elang]?.headline));
@@ -311,7 +350,7 @@ function setLang(lang, skipSave){
 }
 function setBanner(src){
   const img = $('#banner-img');
-  if(src){ img.src = src; img.hidden = false; $('#btn-banner-remove').hidden = false; $('#btn-banner').textContent = '⇄ Replace banner'; }
+  if(src){ img.src = resolveAssetUrl(src); img.hidden = false; $('#btn-banner-remove').hidden = false; $('#btn-banner').textContent = '⇄ Replace banner'; }
   else { img.removeAttribute('src'); img.hidden = true; $('#btn-banner-remove').hidden = true; $('#btn-banner').textContent = '＋ Banner image'; }
 }
 
@@ -526,6 +565,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     $('#schedule-row').hidden = $('#f-status').value !== 'scheduled';
   });
   $('#f-headline').addEventListener('input', ()=>{
+    autoGrow($('#f-headline'));
     if(!state.editing && !$('#f-slug').value && state.lang==='en')
       $('#f-slug').placeholder = slugify($('#f-headline').value)||'auto from headline';
   });

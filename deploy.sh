@@ -36,7 +36,10 @@ mirror -R --verbose ar ar
 mirror -R --verbose tr tr
 mirror -R --verbose --exclude-glob .DS_Store content content
 
-put -O . index.html about.html brokers.html chart.html contact.html exchanges.html future.html prices.html stories.html sitemap.xml
+set cmd:trace yes
+mput -O . *.html
+mput -O . sitemap.xml .htaccess favicon.ico favicon.svg apple-touch-icon.png
+set cmd:trace no
 
 bye
 EOF

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -55,6 +55,7 @@
     <button class="btn" data-view="editor" id="btn-new">+ New article</button>
   </div>
   <div id="articles-list" class="rows"></div>
+  <div id="articles-pager" class="pager mono"></div>
 </section>
 
 <!-- ============ EDITOR ============ -->
@@ -73,7 +74,7 @@
         <button data-elang="tr">TR</button>
       </div>
 
-      <input id="f-headline" class="f-headline" placeholder="Headline…">
+      <textarea id="f-headline" class="f-headline" rows="1" placeholder="Headline…"></textarea>
       <textarea id="f-dek" class="f-dek" rows="2" placeholder="Dek — one-sentence summary…"></textarea>
 
       <div class="banner-box" id="banner-box">

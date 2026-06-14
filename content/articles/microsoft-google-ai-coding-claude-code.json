@@ -1,0 +1,102 @@
+{
+  "slug": "microsoft-google-ai-coding-claude-code",
+  "category": "tech",
+  "date": "2026-06-14",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Microsoft and Google Enter the AI Coding Wars to Take On Claude Code and OpenAI Codex",
+    "fa": "مایکروسافت و گوگل وارد جنگ کدنویسی هوش مصنوعی شدند",
+    "ar": "مايكروسوفت وجوجل يدخلان حرب البرمجة بالذكاء الاصطناعي لمواجهة Claude Code وCodex",
+    "tr": "Microsoft ve Google, Claude Code ve OpenAI Codex'e Meydan Okumak İçin AI Kodlama Savaşına Katıldı"
+  },
+  "dek": {
+    "en": "Microsoft and Google launched new AI coding tools in June 2026 to compete with Anthropic's Claude Code and OpenAI's Codex in the fast-growing enterprise developer market.",
+    "fa": "مایکروسافت و گوگل در ژوئن ۲۰۲۶ ابزارهای کدنویسی هوش مصنوعی خود را عرضه کردند تا با Claude Code آنتروپیک و Codex اوپن‌ای رقابت کنند.",
+    "ar": "أطلقت مايكروسوفت وجوجل أدوات برمجة ذكاء اصطناعي في يونيو 2026 لمنافسة Claude Code من أنثروبيك وCodex من OpenAI في سوق المطورين المؤسسي.",
+    "tr": "Microsoft ve Google, Haziran 2026'da Anthropic'in Claude Code'una ve OpenAI'nin Codex'ine rakip olmak için kendi AI kodlama araçlarını piyasaya sürdü."
+  },
+  "body": {
+    "en": "",
+    "fa": "",
+    "ar": "",
+    "tr": ""
+  },
+  "bodyHtml": {
+    "en": "<h2>Four Giants, One Battlefield</h2>\n<p>The AI coding market — which analysts estimate could be worth tens of billions of dollars annually by the end of the decade — now has four major players: Anthropic with Claude Code, OpenAI with Codex, and as of June 2026, Microsoft and Google with their own newly launched AI coding products. The entrance of the two legacy tech giants into this space signals that enterprise AI coding assistance has moved from an experimental feature into a critical revenue battleground.</p>\n<p>Microsoft, which maintains a significant equity stake in OpenAI, nonetheless decided to develop competing AI coding tools under its own brand — a move that surprised some industry observers and underscored the degree to which even the closest AI partnerships can fracture under competitive pressure. Google, meanwhile, is leveraging its Gemini model family to power its new coding assistant, which is being positioned as a deeply integrated alternative that works natively across Google Cloud infrastructure.</p>\n<h2>What Each Player Is Offering</h2>\n<p>Claude Code, currently the market leader among AI coding tools by enterprise adoption, allows developers to delegate complex, multi-step coding tasks directly from their terminal. Its deep integration with existing developer workflows and strong performance on reasoning-heavy tasks has made it the tool of choice for major financial institutions and software companies. OpenAI's Codex enterprise product targets similar use cases but has struggled to match Claude Code's performance on longer, more complex tasks.</p>\n<p>Microsoft's new offering is expected to leverage its GitHub Copilot infrastructure, expanding beyond autocomplete into full agentic coding capabilities. Google's tool is being positioned as the choice for teams already embedded in the Google Cloud ecosystem, with deep integration with tools like BigQuery, Vertex AI, and Cloud Run. Both products are launching as the overall AI model market accelerates: more than 316 model releases were tracked across major organizations in 2026 alone.</p>\n<h2>The Stakes for Developers</h2>\n<p>For software developers, the competitive landscape means more options, potentially lower prices, and faster improvement cycles. The rapid proliferation of AI coding tools is already changing how software teams are structured, with some organizations reporting 30–40% productivity gains when AI coding assistants are fully integrated into their workflows. The enterprise AI coding market is expected to consolidate around two or three dominant platforms over the next two to three years, and the battle to claim those positions has now fully begun.</p>",
+    "fa": "<h2>چهار غول، یک میدان نبرد</h2>\n<p>بازار کدنویسی هوش مصنوعی اکنون چهار بازیگر اصلی دارد: آنتروپیک با Claude Code، اوپن‌ای با Codex، و از ژوئن ۲۰۲۶ مایکروسافت و گوگل با ابزارهای کدنویسی جدیدشان. ورود دو غول سنتی فناوری به این فضا نشان می‌دهد که کمک کدنویسی هوش مصنوعی سازمانی از یک ویژگی آزمایشی به یک میدان نبرد درآمدی حیاتی تبدیل شده است.</p>\n<p>مایکروسافت با وجود سهامداری قابل توجه در اوپن‌ای، تصمیم گرفت ابزارهای رقیب را زیر برند خود توسعه دهد. گوگل هم از خانواده مدل Gemini برای ساخت دستیار کدنویسی جدیدش بهره می‌برد که با زیرساخت Google Cloud یکپارچه شده است.</p>\n<h2>پیشنهاد هر بازیگر</h2>\n<p>Claude Code که رهبر بازار است، به توسعه‌دهندگان اجازه می‌دهد وظایف کدنویسی پیچیده را مستقیم از ترمینالشان واگذار کنند. Codex اوپن‌ای موارد استفاده مشابه را هدف می‌گیرد. ابزار مایکروسافت قرار است زیرساخت GitHub Copilot را گسترش دهد. ابزار گوگل برای تیم‌های مستقر در اکوسیستم Google Cloud طراحی شده است.</p>\n<h2>اهمیت برای توسعه‌دهندگان</h2>\n<p>برای توسعه‌دهندگان نرم‌افزار این رقابت به معنای گزینه‌های بیشتر و قیمت‌های بالقوه پایین‌تر است. برخی سازمان‌ها افزایش بهره‌وری ۳۰ تا ۴۰ درصدی را گزارش می‌دهند. انتظار می‌رود بازار طی دو تا سه سال آینده به دور و سه پلتفرم غالب متمرکز شود.</p>",
+    "ar": "<h2>أربعة عمالقة في ساحة واحدة</h2>\n<p>بات سوق برمجة الذكاء الاصطناعي يضم أربعة لاعبين رئيسيين: أنثروبيك مع Claude Code، وOpenAI مع Codex، ومنذ يونيو 2026 مايكروسوفت وجوجل مع أدوات البرمجة المدعومة بالذكاء الاصطناعي التي أطلقتاها حديثًا. يُشير دخول عملاقَي التكنولوجيا التقليديَّين إلى هذا الفضاء إلى أن المساعدة المؤسسية في البرمجة انتقلت من خانة الميزات التجريبية إلى ساحة معركة إيرادية حاسمة.</p>\n<p>اختارت مايكروسوفت، رغم حيازتها حصة في رأسمال OpenAI، تطوير أدوات منافسة تحت علامتها التجارية. في المقابل، توظّف جوجل عائلة نماذج Gemini لتشغيل مساعدها الجديد للبرمجة، مُدمجًا بعمق في بنية Google Cloud التحتية.</p>\n<h2>ما يقدّمه كل لاعب</h2>\n<p>يقود Claude Code السوق حاليًا من حيث الاعتماد المؤسسي، إذ يتيح للمطوّرين تفويض مهام البرمجة المعقدة متعددة الخطوات مباشرةً من الطرفية. ويستهدف Codex من OpenAI حالات استخدام مشابهة. ويُرجَّح أن تستعين أداة مايكروسوفت ببنية GitHub Copilot. أما أداة جوجل فمُوجَّهة للفرق المنغرسة في نظام Google Cloud البيئي.</p>\n<h2>ما يعنيه ذلك للمطوّرين</h2>\n<p>تعني هذه المنافسة للمطوّرين مزيدًا من الخيارات وأسعارًا أقل محتملًا. بعض المؤسسات تُبلّغ عن مكاسب إنتاجية تتراوح بين 30% و40%. ومن المتوقع أن يتمحور السوق حول منصتين أو ثلاث خلال السنتين إلى الثلاث سنوات القادمة.</p>",
+    "tr": "<h2>Dört Dev, Bir Savaş Alanı</h2>\n<p>AI kodlama piyasasında artık dört büyük oyuncu var: Anthropic'in Claude Code'u, OpenAI'nin Codex'i ve Haziran 2026'dan itibaren Microsoft ve Google'ın kendi yeni AI kodlama ürünleri. İki teknoloji devinin bu alana girmesi, kurumsal AI kodlama asistanlığının deneysel bir özellikten kritik bir gelir savaş alanına evrildiğini gösteriyor.</p>\n<p>OpenAI'de önemli bir hissesi olmasına karşın Microsoft, kendi markası altında rakip araçlar geliştirmeyi tercih etti. Google ise yeni kodlama asistanını Gemini model ailesiyle güçlendirdi ve Google Cloud altyapısına derinden entegre etti.</p>\n<h2>Her Oyuncunun Sunduğu</h2>\n<p>Kurumsal benimsenme açısından pazar lideri olan Claude Code, geliştiricilere doğrudan terminallerinden karmaşık çok adımlı görevleri yetkilendirme imkânı sunuyor. OpenAI'nin Codex'i benzer kullanım senaryolarını hedefliyor. Microsoft'un çözümü GitHub Copilot altyapısını genişletiyor; Google'ın aracı ise Google Cloud ekosistemiyle derin entegrasyon vaat ediyor.</p>\n<h2>Geliştiriciler İçin Ne Anlama Geliyor?</h2>\n<p>Bu rekabet, geliştiriciler için daha fazla seçenek ve potansiyel olarak daha düşük fiyatlar demek. Bazı kuruluşlar AI kodlama araçlarının iş akışlarına tam entegre edilmesiyle yüzde 30-40 verimlilik artışı bildiriyor. Piyasanın önümüzdeki iki ila üç yılda iki ya da üç baskın platforma konsolide olması bekleniyor.</p>"
+  },
+  "seo": {
+    "title": {
+      "en": "Microsoft and Google Enter the AI Coding Wars to Take On Claude Code and OpenAI Codex — MAXGAZINE",
+      "fa": "مایکروسافت و گوگل وارد جنگ کدنویسی هوش مصنوعی شدند تا با Claude Code رقابت کنند — MAXGAZINE",
+      "ar": "مايكروسوفت وجوجل يخوضان حرب البرمجة بالذكاء الاصطناعي لمواجهة Claude Code وOpenAI Codex — MAXGAZINE",
+      "tr": "Microsoft ve Google, Claude Code ile OpenAI Codex'e Rakip Olmak İçin AI Kodlama Savaşına Girdi — MAXGAZINE"
+    },
+    "description": {
+      "en": "Microsoft and Google launched new AI coding tools in June 2026 to compete with Anthropic's Claude Code and OpenAI's Codex in the fast-growing enterprise developer market.",
+      "fa": "مایکروسافت و گوگل در ژوئن ۲۰۲۶ ابزارهای کدنویسی هوش مصنوعی خود را عرضه کردند تا با Claude Code آنتروپیک و Codex اوپن‌ای رقابت کنند.",
+      "ar": "أطلقت مايكروسوفت وجوجل أدوات برمجة ذكاء اصطناعي في يونيو 2026 لمنافسة Claude Code من أنثروبيك وCodex من OpenAI في سوق المطورين المؤسسي.",
+      "tr": "Microsoft ve Google, Haziran 2026'da Anthropic'in Claude Code'una ve OpenAI'nin Codex'ine rakip olmak için kendi AI kodlama araçlarını piyasaya sürdü."
+    },
+    "keywords": {
+      "en": [
+        "AI coding",
+        "Claude Code",
+        "Microsoft",
+        "Google",
+        "OpenAI",
+        "enterprise AI"
+      ],
+      "fa": [
+        "AI coding",
+        "Claude Code",
+        "Microsoft",
+        "Google",
+        "OpenAI",
+        "enterprise AI"
+      ],
+      "ar": [
+        "AI coding",
+        "Claude Code",
+        "Microsoft",
+        "Google",
+        "OpenAI",
+        "enterprise AI"
+      ],
+      "tr": [
+        "AI coding",
+        "Claude Code",
+        "Microsoft",
+        "Google",
+        "OpenAI",
+        "enterprise AI"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "title": "Microsoft and Google take on Anthropic and OpenAI in AI coding models",
+      "url": "https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html"
+    },
+    {
+      "title": "June 2026 AI Launch Wave: A Builder's Decision Map",
+      "url": "https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/"
+    },
+    {
+      "title": "AI Updates Today (June 2026) — Latest AI Model Releases",
+      "url": "https://llm-stats.com/llm-updates"
+    }
+  ],
+  "tags": [
+    "AI coding",
+    "Claude Code",
+    "Microsoft",
+    "Google",
+    "OpenAI",
+    "enterprise AI"
+  ],
+  "status": "published",
+  "featured": false
+}

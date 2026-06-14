@@ -2,6 +2,7 @@
    MAXGAZINE — shared design system
    Brutalist editorial magazine · crypto & forex
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,640&display=swap');
 :root{
   --ink:#0a0a0a;
   --paper:#f4f3ee;
@@ -74,6 +75,10 @@ body[dir="rtl"] .card h3,body[dir="rtl"] .list-row h3{letter-spacing:normal}
 html[lang="fa"] .nav-group>a,html[lang="fa"] .sub a,html[lang="fa"] .lang button,
 html[lang="fa"] .menu-lang button,html[lang="fa"] .menu-close{font-family:var(--font-body)}
 
+/* The "فارسی" label in the language switcher always renders in Estedad,
+   even on pages whose own language isn't Persian. */
+.lang button[lang="fa"],.menu-lang button[lang="fa"]{font-family:'Estedad',sans-serif}
+
 /* ===== TICKER ===== */
 .ticker{background:var(--ink);color:var(--paper);border-block:2px solid var(--ink);
   overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:8px 0}
@@ -95,12 +100,13 @@ body[dir="rtl"] .ticker-track{animation:scrollRtl 60s linear infinite}
   .topbar .wrap>.logo{position:absolute;inset-inline-start:var(--gut);top:50%;transform:translateY(-50%);z-index:2}
   .topbar .nav{flex:0 1 auto;justify-content:center}
 }
-.logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;font-size:21px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap}
+.logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap}
 .logo-mark .dot{width:14px;height:14px}
 .logo .dot{width:11px;height:11px;background:var(--accent);border-radius:50%;animation:pulse 2.4s ease-in-out infinite}
 /* wordmark slides into the sticky header on scroll */
-.logo-word{display:inline-block;max-width:0;overflow:hidden;white-space:nowrap;opacity:0;
+.logo-word{display:inline-block;max-width:0;overflow:hidden;white-space:nowrap;opacity:0;text-transform:lowercase;
   transform:translateX(-8px);transition:max-width .4s cubic-bezier(.2,.7,.2,1),opacity .35s ease,transform .4s cubic-bezier(.2,.7,.2,1)}
+.logo-word::first-letter{text-transform:uppercase}
 body.scrolled .logo-word{max-width:340px;opacity:1;transform:none}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
 .nav{display:flex;align-items:center;gap:32px;flex:1;justify-content:flex-end}
@@ -152,10 +158,12 @@ html[lang="fa"] .nav-links>a{font-family:var(--font-body)}
 body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 
 /* ===== GIANT MASTHEAD ===== */
-.masthead{border-bottom:2px solid var(--line);padding-block:14px;overflow:hidden}
+.masthead{border-bottom:2px solid var(--line);padding-block:10px 24px;overflow:hidden}
 .masthead .wrap{max-width:none;padding-inline:var(--gut)}
-.giant{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;text-transform:uppercase;
-  font-size:clamp(38px,12.2vw,208px);line-height:.9;letter-spacing:-.02em;text-align:center;white-space:nowrap}
+.giant{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;text-transform:lowercase;
+  font-size:clamp(28px,7vw,120px);line-height:.95;letter-spacing:-.02em;text-align:center;white-space:nowrap}
+.giant::first-letter{text-transform:uppercase}
+.giant::after{content:'.';color:var(--accent)}
 
 /* ===== HERO / FEATURE — cover-story plate =====
    Full-bleed photo at a fixed aspect ratio (so a headline of any length can't
@@ -175,9 +183,11 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
    that scrolls down with the articles to the "All stories" link. */
 .content-layout{display:grid;grid-template-columns:1.7fr 1fr;gap:26px 40px;
   grid-template-areas:"hero editors" "ticker ticker" "latest ads";
-  padding-block:24px 36px;border-bottom:2px solid var(--line)}
+  padding-block:24px 36px;position:relative}
+.content-layout::after{content:'';position:absolute;left:50%;bottom:0;width:100vw;
+  margin-left:-50vw;border-bottom:2px solid var(--line)}
 .content-layout .hero{grid-area:hero;border-bottom:none;padding-block:0}
-.content-layout>.ticker{grid-area:ticker;margin-inline:calc(-1*var(--gut))}
+.content-layout>.ticker{grid-area:ticker;width:100vw;margin-inline:calc(50% - 50vw)}
 /* The hero column is narrower than full-bleed now, so make the feature photo
    taller (4:3 instead of 16:9) to keep its on-screen size close to before. */
 @media(min-width:981px){
@@ -297,14 +307,16 @@ html[lang="fa"] .list-row h3{font-size:clamp(19px,2.2vw,25px);line-height:1.45}
 
 /* ===== LATEST — vertical editorial stack (large image + text rows) ===== */
 .feed-stack{display:flex;flex-direction:column;border-bottom:2px solid var(--line)}
-.feed-stack .list-row{grid-template-columns:340px 1fr;gap:40px;padding-block:34px;align-items:center}
+.feed-stack .list-row{grid-template-columns:340px 1fr;gap:40px;padding-block:24px;align-items:center}
 .feed-stack .list-row:last-child{border-bottom:none}
 .feed-stack .thumb{aspect-ratio:16/10;overflow:hidden}
-.feed-stack .list-row h3{font-size:clamp(24px,2.9vw,36px);margin-bottom:14px}
+.feed-stack .list-row h3{font-size:clamp(24px,2.9vw,36px);margin-bottom:10px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .feed-stack .list-row h3 a{transition:color .15s}
 .feed-stack .list-row:hover h3 a{color:var(--accent)}
-.feed-stack .list-body .cat{margin-bottom:16px}
-.feed-stack .list-row .byline{margin-top:16px;display:flex;gap:16px;color:#888;font-size:12px;letter-spacing:.04em}
+.feed-stack .list-body .cat{margin-bottom:12px}
+.feed-stack .list-row p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.feed-stack .list-row .byline{margin-top:10px;display:flex;gap:16px;color:#888;font-size:12px;letter-spacing:.04em}
 
 /* No-image rows: a solid accent tile fills the image slot with the category
    and date in display type, keeping the same two-column rhythm as photo
@@ -616,7 +628,11 @@ html[lang="fa"] .side-news-item h4{font-size:14px;line-height:1.5}
 /* ===== FOOTER ===== */
 footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:46px;border-bottom:1px solid var(--hair-dark)}
-.foot-logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;font-size:42px;letter-spacing:-.01em}
+/* RTL: keep the brand block on the start edge, same as the English footer —
+   don't let flex mirror this row. */
+body[dir="rtl"] .foot-top{flex-direction:row-reverse}
+.foot-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;font-size:42px;letter-spacing:-.02em;direction:ltr;text-transform:lowercase}
+.foot-logo::first-letter{text-transform:uppercase}
 .foot-logo .dot{color:var(--accent)}
 .foot-brand{display:flex;flex-direction:column;gap:20px}
 .foot-desc{max-width:340px;font-size:14px;line-height:1.6;color:#999}
@@ -651,6 +667,21 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 @media(max-width:980px){
   .content-layout{grid-template-columns:1fr;grid-template-areas:"hero" "editors" "ticker" "latest" "ads";gap:20px;padding-block:16px 28px}
   .content-ads{display:none}
+
+  /* Editor's Pick below the hero: a horizontal scroll-snap carousel of
+     thumb-on-top cards, instead of a cramped vertical list where the last
+     item gets squeezed out of view. */
+  .editors-pick{border-inline-width:0}
+  .editors-head{padding-inline:var(--gut)}
+  .editors-list{flex-direction:row;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:16px var(--gut) 18px}
+  .editors-list::-webkit-scrollbar{display:none}
+  .ep-row{flex:0 0 78%;max-width:320px;scroll-snap-align:start;grid-template-columns:none;
+    display:flex;flex-direction:column;gap:0;padding:0;border:1px solid var(--hair-dark)}
+  .ep-thumb{width:100%;height:170px;flex:none}
+  .ep-body{padding:14px 16px 18px}
+  .ep-title{font-size:16px;-webkit-line-clamp:3}
+  html[lang="fa"] .ep-title,html[lang="ar"] .ep-title{font-size:15px}
   .hero-cover{max-width:none}
   .article-gallery{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr 1fr}
@@ -682,6 +713,9 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
      scrolls away — so the separate giant-wordmark band underneath is redundant. */
   .masthead{display:none}
   .topbar .wrap{padding-block:16px}
+  /* RTL: keep the logo on the start edge and the burger on the end edge,
+     identical to the English layout — don't let flex mirror the header. */
+  body[dir="rtl"] .topbar .wrap{flex-direction:row-reverse}
   .logo{font-size:clamp(26px,9vw,40px);gap:12px}
   .logo-mark .dot{width:14px;height:14px}
   .logo-word{max-width:none;opacity:1;transform:none;overflow:visible}
@@ -702,8 +736,9 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 
   .menu-head{display:flex;align-items:center;justify-content:center;
     padding-block:18px;border-bottom:2px solid var(--line);margin-bottom:4px}
-  .menu-logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;font-size:21px;letter-spacing:-.01em;
-    text-decoration:none;color:var(--ink)}
+  .menu-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;font-size:21px;letter-spacing:-.02em;
+    text-decoration:none;color:var(--ink);text-transform:lowercase}
+  .menu-logo::first-letter{text-transform:uppercase}
   .menu-logo .dot{color:var(--accent)}
 
   .nav-group{display:block;position:relative;border-bottom:1px solid rgba(10,10,10,.12)}
@@ -758,9 +793,18 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
   .grid{grid-template-columns:1fr}
   .grid .card{border-inline-end:none}
   .list-row{grid-template-columns:84px 1fr;gap:16px}
-  /* Latest stack: image goes full-width on top of the text on phones */
-  .feed-stack .list-row{grid-template-columns:1fr;gap:16px;align-items:start}
-  .feed-stack .thumb,.feed-stack .dispatch-mark{aspect-ratio:16/9}
+  /* Latest stack: compact side-thumb rows on phones, but keep the headline AND
+     a one-line excerpt readable — a news feed needs both. */
+  .feed-stack .list-row{grid-template-columns:108px 1fr;gap:14px;padding-block:18px;align-items:start}
+  .feed-stack .thumb,.feed-stack .dispatch-mark{aspect-ratio:1/1}
+  .feed-stack .dispatch-mark{padding:8px}
+  .feed-stack .dispatch-mark .cat{font-size:12px;line-height:1.2}
+  .feed-stack .dispatch-mark .post-date{display:none}
+  .feed-stack .list-row h3{font-size:17px;line-height:1.3;margin-bottom:6px;-webkit-line-clamp:2}
+  .feed-stack .list-body .cat{margin-bottom:6px}
+  .feed-stack .list-row p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+    overflow:hidden;font-size:13px;line-height:1.45;color:#666}
+  .feed-stack .list-row .byline{display:none}
   .ad-grid{grid-template-columns:1fr 1fr}
   .forecast{grid-template-columns:1fr auto;gap:12px}
   .forecast .bar{grid-column:1/-1}
