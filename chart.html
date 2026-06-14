@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Fraunces:opsz,wght@9..144,500..900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="nav-group has-sub">
-        <a href="exchanges.html" data-i="nav_topmarkets">Top Markets</a>
+        <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
         <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
         <div class="sub">
           <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
@@ -67,9 +67,9 @@
         </div>
       </div>
       <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-      <div class="nav-group"><a href="future.html" data-i="nav_future">Future</a></div>
+      <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
       <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact Us</a></div>
+      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
       <div class="lang menu-lang" role="group" aria-label="Select language">
         <button data-lang="en" class="active" lang="en">EN</button>
         <button data-lang="fa" lang="fa">فارسی</button>
@@ -82,13 +82,6 @@
       </div>
     </div>
     <div class="topbar-right">
-      <div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      <div class="lang" role="group" aria-label="Select language">
-        <button data-lang="en" class="active" lang="en" aria-label="English">EN</button>
-        <button data-lang="fa" lang="fa" aria-label="فارسی">فا</button>
-        <button data-lang="ar" lang="ar" aria-label="العربية">ع</button>
-        <button data-lang="tr" lang="tr" aria-label="Türkçe">TR</button>
-      </div>
       <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
   </nav>
@@ -124,9 +117,13 @@
 
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+    <div class="foot-brand">
+        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <p class="foot-desc" data-i="foot_desc">MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+      </div>
     <div class="foot-cols">
-      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="future.html" data-i="f_future">Future</a><a href="prices.html" data-i="f_prices">Prices</a></div>
+      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="prices.html" data-i="f_prices">Prices</a></div>
       <div class="foot-col"><h5 data-i="foot_markets">Markets</h5><a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a><a href="brokers.html" data-i="f_brokers">Top Brokers</a></div>
       <div class="foot-col"><h5 data-i="foot_company">Company</h5><a href="about.html" data-i="f_about">About Us</a><a href="contact.html" data-i="f_contact">Contact Us</a></div>
       <div class="foot-col"><h5 data-i="foot_lang">Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
@@ -139,8 +136,8 @@
 <script>
 window.PAGE_I = {
   en:{pm_title:"Live Chart — BTC, ETH & Forex — MAXGAZINE",pm_desc:"Interactive live price chart for Bitcoin, Ethereum and major forex pairs.",ph_title:"Live Chart",ph_sub:"Full interactive charting for the markets we track — switch symbols, timeframes and indicators.",ad_label:"SPONSORED",ad_title:"Ready to trade these charts live?",cta_exch:"See top exchanges →",disclaimer:"Charts are provided by TradingView for information only and may differ slightly from exchange execution prices. Nothing here is financial advice."},
-  fa:{pm_title:"نمودار زنده — BTC، ETH و فارکس — مکس‌گزین",pm_desc:"نمودار قیمت زنده و تعاملی برای بیت‌کوین، اتریوم و جفت‌ارزهای اصلی فارکس.",ph_title:"نمودار زنده",ph_sub:"نمودارگیری کامل و تعاملی برای بازارهایی که دنبال می‌کنیم — تغییر نماد، تایم‌فریم و اندیکاتور.",ad_label:"حمایت‌شده",ad_title:"آماده‌اید این نمودارها را زنده معامله کنید؟",cta_exch:"صرافی‌های برتر ←",disclaimer:"نمودارها توسط TradingView و صرفاً برای اطلاع‌رسانی ارائه می‌شوند و ممکن است اندکی با قیمت اجرای صرافی تفاوت داشته باشند. هیچ‌چیز اینجا توصیهٔ مالی نیست."},
-  ar:{pm_title:"رسم بياني حي — BTC وETH والفوركس — ماكسغازين",pm_desc:"رسم بياني حي وتفاعلي لأسعار البيتكوين والإيثريوم وأزواج الفوركس الرئيسية.",ph_title:"رسم بياني حي",ph_sub:"رسوم بيانية تفاعلية كاملة للأسواق التي نتابعها — بدّل الرموز والأطر الزمنية والمؤشّرات.",ad_label:"برعاية",ad_title:"مستعدّ لتداول هذه الرسوم مباشرةً؟",cta_exch:"أفضل المنصّات ←",disclaimer:"الرسوم البيانية مقدَّمة من TradingView للمعلومات فقط وقد تختلف قليلًا عن أسعار التنفيذ في المنصّات. لا شيء هنا نصيحة مالية."},
+  fa:{pm_title:"نمودار زنده — BTC، ETH و فارکس — MAXGAZINE",pm_desc:"نمودار قیمت زنده و تعاملی برای بیت‌کوین، اتریوم و جفت‌ارزهای اصلی فارکس.",ph_title:"نمودار زنده",ph_sub:"نمودارگیری کامل و تعاملی برای بازارهایی که دنبال می‌کنیم — تغییر نماد، تایم‌فریم و اندیکاتور.",ad_label:"حمایت‌شده",ad_title:"آماده‌اید این نمودارها را زنده معامله کنید؟",cta_exch:"صرافی‌های برتر ←",disclaimer:"نمودارها توسط TradingView و صرفاً برای اطلاع‌رسانی ارائه می‌شوند و ممکن است اندکی با قیمت اجرای صرافی تفاوت داشته باشند. هیچ‌چیز اینجا توصیهٔ مالی نیست."},
+  ar:{pm_title:"رسم بياني حي — BTC وETH والفوركس — MAXGAZINE",pm_desc:"رسم بياني حي وتفاعلي لأسعار البيتكوين والإيثريوم وأزواج الفوركس الرئيسية.",ph_title:"رسم بياني حي",ph_sub:"رسوم بيانية تفاعلية كاملة للأسواق التي نتابعها — بدّل الرموز والأطر الزمنية والمؤشّرات.",ad_label:"برعاية",ad_title:"مستعدّ لتداول هذه الرسوم مباشرةً؟",cta_exch:"أفضل المنصّات ←",disclaimer:"الرسوم البيانية مقدَّمة من TradingView للمعلومات فقط وقد تختلف قليلًا عن أسعار التنفيذ في المنصّات. لا شيء هنا نصيحة مالية."},
   tr:{pm_title:"Canlı Grafik — BTC, ETH & Forex — MAXGAZINE",pm_desc:"Bitcoin, Ethereum ve başlıca forex pariteleri için etkileşimli canlı fiyat grafiği.",ph_title:"Canlı Grafik",ph_sub:"Takip ettiğimiz piyasalar için tam etkileşimli grafik — sembol, zaman dilimi ve gösterge değiştirin.",ad_label:"SPONSORLU",ad_title:"Bu grafikleri canlı işlem yapmaya hazır mısınız?",cta_exch:"En iyi borsalar →",disclaimer:"Grafikler yalnızca bilgi amaçlı olarak TradingView tarafından sağlanır ve borsa yürütme fiyatlarından biraz farklı olabilir. Buradaki hiçbir şey yatırım tavsiyesi değildir."}
 };
 document.querySelectorAll('.tabs .tab[data-symbol]').forEach(btn=>{

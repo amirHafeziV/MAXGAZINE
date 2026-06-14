@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Fraunces:opsz,wght@9..144,500..900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="nav-group has-sub">
-        <a href="exchanges.html" data-i="nav_topmarkets">Top Markets</a>
+        <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
         <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
         <div class="sub">
           <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
@@ -68,9 +68,9 @@
         </div>
       </div>
       <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-      <div class="nav-group"><a href="future.html" data-i="nav_future">Future</a></div>
+      <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
       <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact Us</a></div>
+      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
       <div class="lang menu-lang" role="group" aria-label="Select language">
         <button data-lang="en" class="active" lang="en">EN</button>
         <button data-lang="fa" lang="fa">فارسی</button>
@@ -83,13 +83,6 @@
       </div>
     </div>
     <div class="topbar-right">
-      <div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      <div class="lang" role="group" aria-label="Select language">
-        <button data-lang="en" class="active" lang="en" aria-label="English">EN</button>
-        <button data-lang="fa" lang="fa" aria-label="فارسی">فا</button>
-        <button data-lang="ar" lang="ar" aria-label="العربية">ع</button>
-        <button data-lang="tr" lang="tr" aria-label="Türkçe">TR</button>
-      </div>
       <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
   </nav>
@@ -169,9 +162,13 @@
 
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+    <div class="foot-brand">
+        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <p class="foot-desc" data-i="foot_desc">MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+      </div>
     <div class="foot-cols">
-      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="future.html" data-i="f_future">Future</a><a href="prices.html" data-i="f_prices">Prices</a></div>
+      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="prices.html" data-i="f_prices">Prices</a></div>
       <div class="foot-col"><h5 data-i="foot_markets">Markets</h5><a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a><a href="brokers.html" data-i="f_brokers">Top Brokers</a></div>
       <div class="foot-col"><h5 data-i="foot_company">Company</h5><a href="about.html" data-i="f_about">About Us</a><a href="contact.html" data-i="f_contact">Contact Us</a></div>
       <div class="foot-col"><h5 data-i="foot_lang">Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
@@ -184,8 +181,8 @@
 <script>
 window.PAGE_I = {
   en:{pm_title:"Future — Market Forecasts & Predictions — MAXGAZINE Premium",pm_desc:"Premium crypto and forex market forecasts: directional calls, confidence scores and scenario analysis.",kicker:"PREMIUM · MARKET FORECASTS",ph_title:"The Future Desk",ph_sub:"Forward-looking calls on crypto and forex, each scored by confidence and reviewed against live data.",st1:"Hit rate, 90-day",st2:"New forecasts",st3:"Markets covered",st4:"Refresh cadence",h_open:"This week's open calls",open_src:"UPDATED · LIVE",conf:"CONFIDENCE",fc1d:"Bullish · target $112k by Q3",fc2d:"Bullish · ETF inflows accelerating",fc3d:"Neutral-bearish · ECB cut priced in",h_deep:"Deep-dive scenarios",pw_title:"Unlock the full outlook",pw_body:"Detailed scenarios, entry/exit zones, invalidation levels and the reasoning behind every call — refreshed every four hours.",pw_per:"/month",cta_buy:"Subscribe to Premium →",disclaimer:"Forecasts are probabilistic outputs, not guarantees. Confidence scores reflect model conviction, not certainty. Nothing here is financial advice — markets can move against any call. Trade only with capital you can afford to lose."},
-  fa:{pm_title:"آینده — پیش‌بینی و تحلیل بازار — مکس‌گزین پریمیوم",pm_desc:"پیش‌بینی‌های پریمیوم کریپتو و فارکس: جهت‌گیری، امتیاز اطمینان و تحلیل سناریو.",kicker:"پریمیوم · پیش‌بینی بازار",ph_title:"میز آینده",ph_sub:"پیش‌بینی‌های آینده‌نگر روی کریپتو و فارکس، هر کدام با امتیاز اطمینان و بازبینی با دادهٔ زنده.",st1:"نرخ موفقیت، ۹۰ روزه",st2:"پیش‌بینی جدید",st3:"بازارهای پوشش‌داده‌شده",st4:"بازهٔ به‌روزرسانی",h_open:"پیش‌بینی‌های باز این هفته",open_src:"به‌روز · زنده",conf:"اطمینان",fc1d:"صعودی · هدف ۱۱۲هزار دلار تا فصل سوم",fc2d:"صعودی · شتاب ورود نقدینگی ETF",fc3d:"خنثی-نزولی · کاهش نرخ ECB قیمت‌گذاری شده",h_deep:"سناریوهای عمیق",pw_title:"چشم‌انداز کامل را باز کنید",pw_body:"سناریوهای تفصیلی، نقاط ورود/خروج، سطوح ابطال و استدلال پشت هر پیش‌بینی — هر چهار ساعت به‌روزرسانی.",pw_per:"/ماه",cta_buy:"اشتراک پریمیوم ←",disclaimer:"پیش‌بینی‌ها خروجی احتمالاتی هستند، نه تضمین. امتیاز اطمینان بازتاب قطعیت مدل است نه یقین. هیچ‌چیز اینجا توصیهٔ مالی نیست — بازار می‌تواند خلاف هر پیش‌بینی حرکت کند. فقط با سرمایه‌ای که توان از دست دادنش را دارید معامله کنید."},
-  ar:{pm_title:"المستقبل — توقّعات وتحليلات السوق — ماكسغازين بريميوم",pm_desc:"توقّعات بريميوم للكريبتو والفوركس: اتجاهات، درجات ثقة وتحليل سيناريوهات.",kicker:"بريميوم · توقّعات السوق",ph_title:"مكتب المستقبل",ph_sub:"توقّعات استشرافية للكريبتو والفوركس، كلٌّ منها بدرجة ثقة ومراجعة مقابل البيانات الحية.",st1:"معدّل الإصابة، ٩٠ يومًا",st2:"توقّعات جديدة",st3:"الأسواق المغطّاة",st4:"وتيرة التحديث",h_open:"التوقّعات المفتوحة هذا الأسبوع",open_src:"محدَّث · مباشر",conf:"الثقة",fc1d:"صعودي · الهدف ١١٢ ألف دولار بحلول الربع الثالث",fc2d:"صعودي · تسارع تدفّقات ETF",fc3d:"محايد-هبوطي · خفض ECB مُسعَّر",h_deep:"سيناريوهات معمّقة",pw_title:"افتح التوقّعات الكاملة",pw_body:"سيناريوهات مفصّلة، مناطق دخول/خروج، مستويات الإبطال والمنطق خلف كل توقّع — يُحدَّث كل أربع ساعات.",pw_per:"/شهر",cta_buy:"اشترك في بريميوم ←",disclaimer:"التوقّعات مخرجات احتمالية وليست ضمانات. تعكس درجات الثقة اقتناع النموذج لا اليقين. لا شيء هنا نصيحة مالية — قد يتحرّك السوق ضد أي توقّع. تداول فقط برأس مال يمكنك تحمّل خسارته."},
+  fa:{pm_title:"آینده — پیش‌بینی و تحلیل بازار — MAXGAZINE پریمیوم",pm_desc:"پیش‌بینی‌های پریمیوم کریپتو و فارکس: جهت‌گیری، امتیاز اطمینان و تحلیل سناریو.",kicker:"پریمیوم · پیش‌بینی بازار",ph_title:"میز آینده",ph_sub:"پیش‌بینی‌های آینده‌نگر روی کریپتو و فارکس، هر کدام با امتیاز اطمینان و بازبینی با دادهٔ زنده.",st1:"نرخ موفقیت، ۹۰ روزه",st2:"پیش‌بینی جدید",st3:"بازارهای پوشش‌داده‌شده",st4:"بازهٔ به‌روزرسانی",h_open:"پیش‌بینی‌های باز این هفته",open_src:"به‌روز · زنده",conf:"اطمینان",fc1d:"صعودی · هدف ۱۱۲هزار دلار تا فصل سوم",fc2d:"صعودی · شتاب ورود نقدینگی ETF",fc3d:"خنثی-نزولی · کاهش نرخ ECB قیمت‌گذاری شده",h_deep:"سناریوهای عمیق",pw_title:"چشم‌انداز کامل را باز کنید",pw_body:"سناریوهای تفصیلی، نقاط ورود/خروج، سطوح ابطال و استدلال پشت هر پیش‌بینی — هر چهار ساعت به‌روزرسانی.",pw_per:"/ماه",cta_buy:"اشتراک پریمیوم ←",disclaimer:"پیش‌بینی‌ها خروجی احتمالاتی هستند، نه تضمین. امتیاز اطمینان بازتاب قطعیت مدل است نه یقین. هیچ‌چیز اینجا توصیهٔ مالی نیست — بازار می‌تواند خلاف هر پیش‌بینی حرکت کند. فقط با سرمایه‌ای که توان از دست دادنش را دارید معامله کنید."},
+  ar:{pm_title:"المستقبل — توقّعات وتحليلات السوق — MAXGAZINE بريميوم",pm_desc:"توقّعات بريميوم للكريبتو والفوركس: اتجاهات، درجات ثقة وتحليل سيناريوهات.",kicker:"بريميوم · توقّعات السوق",ph_title:"مكتب المستقبل",ph_sub:"توقّعات استشرافية للكريبتو والفوركس، كلٌّ منها بدرجة ثقة ومراجعة مقابل البيانات الحية.",st1:"معدّل الإصابة، ٩٠ يومًا",st2:"توقّعات جديدة",st3:"الأسواق المغطّاة",st4:"وتيرة التحديث",h_open:"التوقّعات المفتوحة هذا الأسبوع",open_src:"محدَّث · مباشر",conf:"الثقة",fc1d:"صعودي · الهدف ١١٢ ألف دولار بحلول الربع الثالث",fc2d:"صعودي · تسارع تدفّقات ETF",fc3d:"محايد-هبوطي · خفض ECB مُسعَّر",h_deep:"سيناريوهات معمّقة",pw_title:"افتح التوقّعات الكاملة",pw_body:"سيناريوهات مفصّلة، مناطق دخول/خروج، مستويات الإبطال والمنطق خلف كل توقّع — يُحدَّث كل أربع ساعات.",pw_per:"/شهر",cta_buy:"اشترك في بريميوم ←",disclaimer:"التوقّعات مخرجات احتمالية وليست ضمانات. تعكس درجات الثقة اقتناع النموذج لا اليقين. لا شيء هنا نصيحة مالية — قد يتحرّك السوق ضد أي توقّع. تداول فقط برأس مال يمكنك تحمّل خسارته."},
   tr:{pm_title:"Gelecek — Piyasa Tahminleri & Öngörüler — MAXGAZINE Premium",pm_desc:"Premium kripto ve forex piyasa tahminleri: yön çağrıları, güven puanları ve senaryo analizi.",kicker:"PREMIUM · PİYASA TAHMİNLERİ",ph_title:"Gelecek Masası",ph_sub:"Kripto ve forex üzerine ileriye dönük çağrılar; her biri güven puanıyla derecelendirilir ve canlı veriye karşı incelenir.",st1:"İsabet oranı, 90 gün",st2:"Yeni tahmin",st3:"Kapsanan piyasa",st4:"Yenileme aralığı",h_open:"Bu haftanın açık çağrıları",open_src:"GÜNCEL · CANLI",conf:"GÜVEN",fc1d:"Yükseliş · 3Ç'ye kadar 112k$ hedefi",fc2d:"Yükseliş · ETF girişleri hızlanıyor",fc3d:"Nötr-düşüş · ECB indirimi fiyatlandı",h_deep:"Derinlemesine senaryolar",pw_title:"Tam görünümü aç",pw_body:"Ayrıntılı senaryolar, giriş/çıkış bölgeleri, geçersizlik seviyeleri ve her çağrının arkasındaki mantık — her dört saatte bir yenilenir.",pw_per:"/ay",cta_buy:"Premium'a abone ol →",disclaimer:"Tahminler olasılıksal çıktılardır, garanti değildir. Güven puanları kesinliği değil model kanaatini yansıtır. Buradaki hiçbir şey yatırım tavsiyesi değildir — piyasa her çağrının aksine hareket edebilir. Yalnızca kaybetmeyi göze alabileceğiniz sermayeyle işlem yapın."}
 };
 </script>

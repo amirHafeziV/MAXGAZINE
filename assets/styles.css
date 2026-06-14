@@ -19,6 +19,13 @@
   --gut:32px;
   --maxw:1320px;
   --ease:cubic-bezier(.2,.7,.2,1);
+  /* colourful badge / avatar palette — sage, mustard, indigo, terracotta */
+  --tag-a-bg:#dde8d6;--tag-a-fg:#3f6b3a;
+  --tag-b-bg:#f6e0a8;--tag-b-fg:#8a6213;
+  --tag-c-bg:#dde3f2;--tag-c-fg:#33437a;
+  --tag-d-bg:#fbe0d6;--tag-d-fg:#b6431a;
+  --av-a:#6f8f66;--av-b:#c79a1e;--av-c:#3a4a7a;--av-d:#c1502f;
+  --up-bg:#dff5e3;--down-bg:#fde2e1;
 }
 /* Morabba — Persian display font, used for all titles (h1/h2/h3) */
 @font-face{font-family:'Morabba';font-weight:200;font-style:normal;font-display:swap;
@@ -30,8 +37,8 @@
 @font-face{font-family:'Morabba';font-weight:900;font-style:normal;font-display:swap;
   src:url('fonts/morabba/Morabba-Heavy.woff2') format('woff2'),url('fonts/morabba/Morabba-Heavy.woff') format('woff')}
 
-/* Persian → titles in Morabba, body in Estedad. Arabic → IBM Plex Sans Arabic */
-html[lang="fa"]{--font-display:'Morabba','Estedad',sans-serif;--font-head:'Morabba','Estedad',sans-serif;--font-body:'Estedad',sans-serif}
+/* Persian → page titles in Morabba; content titles, body and small text in Estedad. Arabic → IBM Plex Sans Arabic */
+html[lang="fa"]{--font-display:'Morabba','Estedad',sans-serif;--font-head:'Estedad',sans-serif;--font-body:'Estedad',sans-serif;--mono:'Estedad','IBM Plex Mono',monospace}
 html[lang="ar"]{--font-display:'IBM Plex Sans Arabic',sans-serif;--font-head:'IBM Plex Sans Arabic',sans-serif;--font-body:'IBM Plex Sans Arabic',sans-serif}
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -81,8 +88,14 @@ body[dir="rtl"] .ticker-track{animation:scrollRtl 60s linear infinite}
 
 /* ===== HEADER ===== */
 .topbar{border-bottom:2px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:100}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:18px;gap:20px}
-.logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:18px;gap:20px;position:relative}
+/* Desktop: pin the logo to the inline-start and centre the navigation. */
+@media(min-width:761px){
+  .topbar .wrap{justify-content:center}
+  .topbar .wrap>.logo{position:absolute;inset-inline-start:var(--gut);top:50%;transform:translateY(-50%);z-index:2}
+  .topbar .nav{flex:0 1 auto;justify-content:center}
+}
+.logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;font-size:21px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap}
 .logo-mark .dot{width:14px;height:14px}
 .logo .dot{width:11px;height:11px;background:var(--accent);border-radius:50%;animation:pulse 2.4s ease-in-out infinite}
 /* wordmark slides into the sticky header on scroll */
@@ -95,10 +108,20 @@ body.scrolled .logo-word{max-width:340px;opacity:1;transform:none}
 .menu-head,.menu-foot{display:none}
 .lang.menu-lang{display:none}
 .nav-group{position:relative;display:flex;align-items:center}
+/* "Future" nav item: hidden in the desktop nav, shown only in the mobile menu */
+.future-only-mobile{display:none}
+.badge-soon{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+  padding:3px 9px;border-radius:0;background:var(--accent);color:#fff;display:inline-block;vertical-align:middle}
+body[dir="rtl"] .badge-soon{letter-spacing:0}
 .nav-group>a{text-decoration:none;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;position:relative;padding-block:4px;transition:color .15s}
 .nav-group>a:active{color:var(--accent)}
 .nav-group>a::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:0;height:2px;background:var(--accent);transition:width .25s}
 .nav-group>a:hover::after,.nav-group>a.current::after{width:100%}
+/* Article/category pages: simpler nav markup (plain links, no .nav-group wrapper) */
+.nav-links>a{text-decoration:none;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;transition:color .15s}
+.nav-links>a:hover,.nav-links>a.current{color:var(--accent)}
+body[dir="rtl"] .nav-links>a{letter-spacing:normal}
+html[lang="fa"] .nav-links>a{font-family:var(--font-body)}
 .sub-toggle{display:none}
 /* desktop hover dropdown — animated */
 .sub{position:absolute;top:100%;inset-inline-start:-14px;min-width:200px;background:var(--paper);border:2px solid var(--line);
@@ -131,26 +154,132 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 /* ===== GIANT MASTHEAD ===== */
 .masthead{border-bottom:2px solid var(--line);padding-block:14px;overflow:hidden}
 .masthead .wrap{max-width:none;padding-inline:var(--gut)}
-.giant{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;text-transform:uppercase;
-  font-size:clamp(38px,12.2vw,208px);line-height:.9;letter-spacing:-.03em;text-align:center;white-space:nowrap}
+.giant{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;text-transform:uppercase;
+  font-size:clamp(38px,12.2vw,208px);line-height:.9;letter-spacing:-.02em;text-align:center;white-space:nowrap}
 
-/* ===== HERO / FEATURE ===== */
-.hero{border-bottom:2px solid var(--line);padding-block:34px}
-.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end}
+/* ===== HERO / FEATURE — cover-story plate =====
+   Full-bleed photo at a fixed aspect ratio (so a headline of any length can't
+   overflow). One bottom-anchored content block — kicker + headline + dek + meta —
+   sits on the photo over a dark scrim. A single contained block with logical
+   (inset-inline) positioning reads identically in LTR and RTL, so Arabic and
+   Persian no longer break the way per-line highlight strips did. */
 .kicker{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .kicker::before{content:"";width:38px;height:2px;background:var(--accent)}
-.hero h1{font-family:var(--font-display);font-size:clamp(40px,6vw,84px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
-.hero-sub{font-size:16px;line-height:1.6;color:#222}
-.hero-meta{margin-top:22px;display:flex;gap:26px;flex-wrap:wrap;align-items:center;
-  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#555}
-.hero-meta b{color:var(--ink)}
-.chip{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--ink);border-radius:40px;padding:6px 14px;display:inline-block}
+.hero-stage{position:relative;transition:opacity .4s ease;min-width:0}
+.hero-stage.swapping{opacity:0}
+
+/* ===== HOMEPAGE CONTENT LAYOUT — hero + Editor's Pick, then Latest + ad rail =====
+   Two-column grid with two independent row-pairs: row 1 pins the feature story
+   next to the Editor's Pick panel (same height, neither scrolls independently —
+   a single "masthead band"); row 2 runs the Latest list next to a 1:1 ad slot
+   that scrolls down with the articles to the "All stories" link. */
+.content-layout{display:grid;grid-template-columns:1.7fr 1fr;gap:26px 40px;
+  grid-template-areas:"hero editors" "ticker ticker" "latest ads";
+  padding-block:24px 36px;border-bottom:2px solid var(--line)}
+.content-layout .hero{grid-area:hero;border-bottom:none;padding-block:0}
+.content-layout>.ticker{grid-area:ticker;margin-inline:calc(-1*var(--gut))}
+/* The hero column is narrower than full-bleed now, so make the feature photo
+   taller (4:3 instead of 16:9) to keep its on-screen size close to before. */
+@media(min-width:981px){
+  .content-layout .feature-img{aspect-ratio:4/3}
+}
+.content-latest{grid-area:latest}
+.content-latest .feed-stack{border-bottom:none}
+/* Narrower main column: trim the thumbnail so headlines keep a readable measure
+   instead of stretching edge-to-edge like the old full-width rows. Scoped to the
+   two-column layout (>980px) so it doesn't fight the mobile single-column rules. */
+@media(min-width:981px){
+  .content-latest .feed-stack .list-row{grid-template-columns:280px 1fr;gap:28px}
+}
+
+/* Editor's Pick — a dark "masthead" panel that pairs with the hero photo to
+   form one fixed-height band. Grid stretch gives it the hero's row height;
+   the list fills that height evenly (no inner scroll) on wide screens. */
+.editors-pick{grid-area:editors;display:flex;flex-direction:column;min-width:0;
+  background:var(--ink);color:var(--paper);border:2px solid var(--ink)}
+.editors-head{padding:14px 18px;border-bottom:2px solid var(--hair-dark)}
+.editors-head .kicker{margin:0;color:var(--accent)}
+.editors-list{display:flex;flex-direction:column;counter-reset:ep}
+.ep-row{position:relative;counter-increment:ep;display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:center;
+  padding:14px 18px;border-bottom:1px solid var(--hair-dark);text-decoration:none;color:var(--paper);transition:background .15s,color .15s}
+.ep-row:last-child{border-bottom:none}
+.ep-row:hover{background:var(--accent);color:#fff}
+.ep-row:hover .cat{color:#fff;border-color:#fff}
+.ep-row:hover .ep-date{color:rgba(255,255,255,.78)}
+.ep-row:hover::before{background:var(--ink)}
+.ep-row::before{content:"0" counter(ep);position:absolute;top:10px;inset-inline-start:10px;z-index:2;
+  font-family:var(--font-display);font-size:10px;color:#fff;background:var(--accent);padding:3px 7px;line-height:1.3;transition:background .15s}
+.ep-thumb{width:62px;height:62px;background:#050505 center/cover no-repeat;display:block;flex:0 0 62px}
+.ep-num{display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--font-display);font-size:9px;line-height:1.25;letter-spacing:.03em;
+  text-transform:uppercase;padding:4px;color:var(--accent);
+  background:#050505;background-image:repeating-linear-gradient(45deg,#151515 0 10px,#1f1f1f 10px 20px)}
+.ep-body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ep-title{font-family:var(--font-head);font-weight:700;font-size:15px;line-height:1.2;letter-spacing:-.01em;color:var(--paper);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html[lang="fa"] .ep-title,html[lang="ar"] .ep-title{font-size:14px;line-height:1.5}
+.ep-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ep-meta .cat{margin:0;color:var(--accent);border-color:var(--accent)}
+.ep-date{font-family:var(--mono);font-size:11px;color:#888;letter-spacing:.04em}
+/* Wide layout: stretch the panel to the hero's height and let the three rows
+   share it evenly, with bigger thumbnails — an editorial "tower" beside the hero. */
+@media(min-width:981px){
+  .editors-list{flex:1}
+  .ep-row{flex:1;grid-template-columns:96px 1fr;gap:18px;padding:18px 20px}
+  .ep-thumb{width:96px;height:96px;flex:0 0 96px}
+  .ep-title{font-size:17px;-webkit-line-clamp:3}
+  .ep-row::before{font-size:11px;padding:4px 8px}
+}
+
+/* Ad rail — a single placement that sticks below the topbar once the user
+   scrolls down to it, following the Latest list to the end of the row. */
+.content-ads{grid-area:ads;display:flex;flex-direction:column;min-width:0;
+  align-self:start;position:sticky;top:84px}
+
+.feature-img{position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;
+  background:var(--ink);border:2px solid var(--ink);
+  background-image:repeating-linear-gradient(45deg,#111 0 22px,#1c1c1c 22px 44px)}
+.feature-img .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* heavy scrim at the bottom (carries the text plate) + a light wash at the top (carries the tag) */
+.feature-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(6,6,6,.88) 0%,rgba(6,6,6,.62) 24%,rgba(6,6,6,0) 56%),
+             linear-gradient(to bottom,rgba(6,6,6,.34),rgba(6,6,6,0) 22%)}
+/* BREAKING flag — sharp, anchored flush to the top inline-start edge of the plate */
+.feature-img .tag{position:absolute;top:0;inset-inline-start:0;inset-inline-end:auto;z-index:4;
+  background:var(--accent);color:#fff;font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:9px 16px;text-transform:uppercase;letter-spacing:.12em;border-radius:0}
+body[dir="rtl"] .feature-img .tag{letter-spacing:.04em}
+
+/* the cover plate — sibling of the image anchor, absolutely positioned over its lower edge */
+.hero-cover{position:absolute;z-index:3;bottom:clamp(20px,3vw,42px);
+  inset-inline-start:clamp(18px,3.2vw,44px);inset-inline-end:clamp(18px,3.2vw,44px);
+  max-width:min(760px,84%)}
+.hero-cover .kicker{margin-bottom:14px}
+.hero h1{font-family:var(--font-display);color:#fff;
+  font-size:clamp(18px,2.6vw,34px);line-height:1.15;letter-spacing:-.015em;text-transform:uppercase;
+  text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.45);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hero h1 .hl{color:#fff}
+html[lang="fa"] .hero h1{font-family:var(--font-head);font-size:clamp(16px,2.2vw,28px);line-height:1.5;letter-spacing:0;text-transform:none;-webkit-line-clamp:3}
+html[lang="ar"] .hero h1{font-size:clamp(16px,2.2vw,28px);line-height:1.55;letter-spacing:0;text-transform:none;-webkit-line-clamp:3}
+body[dir="rtl"] .hero h1{letter-spacing:0}
+.hero-sub{margin-top:14px;font-size:clamp(14px,1.05vw,16px);line-height:1.55;color:rgba(255,255,255,.84);
+  max-width:62ch;text-shadow:0 1px 10px rgba(0,0,0,.4);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-meta{margin-top:16px;display:flex;gap:10px 20px;flex-wrap:wrap;align-items:center;
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.72)}
+.hero-meta b{color:#fff}
+.chip{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--ink);border-radius:0;padding:6px 14px;display:inline-block}
 .chip.solid{background:var(--ink);color:var(--paper)}
 .chip.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hero-meta .chip{border-color:rgba(255,255,255,.55);color:#fff}
 
-.feature-img{margin-top:26px;width:100%;aspect-ratio:16/5;max-height:32vh;background:var(--ink);position:relative;overflow:hidden;
-  background-image:repeating-linear-gradient(45deg,#111 0 22px,#1c1c1c 22px 44px)}
-.feature-img .tag{position:absolute;top:0;inset-inline-start:0;background:var(--accent);color:#fff;font-family:var(--mono);font-size:11px;padding:7px 13px;text-transform:uppercase;letter-spacing:.05em}
+/* ===== ARTICLE MEDIA (single figures + galleries inside the prose) ===== */
+.article-figure{margin:30px 0}
+.article-figure img{width:100%;height:auto;display:block;border:2px solid var(--ink)}
+.article-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0}
+.article-gallery figure{margin:0}
+.article-gallery img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:2px solid var(--ink)}
 
 /* ===== SECTION HEADS ===== */
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-block:26px;border-bottom:2px solid var(--line)}
@@ -161,7 +290,30 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 .list-row{display:grid;grid-template-columns:160px 1fr;gap:28px;padding-block:30px;border-bottom:2px solid var(--line);align-items:start}
 .list-row .thumb{aspect-ratio:1/1;background:var(--ink);background-image:repeating-linear-gradient(45deg,#111 0 14px,#222 14px 28px)}
 .list-row h3{font-family:var(--font-head);font-weight:700;font-size:clamp(22px,2.6vw,30px);line-height:1.05;letter-spacing:-.02em;margin-bottom:12px}
+html[lang="fa"] .list-row h3{font-size:clamp(19px,2.2vw,25px);line-height:1.45}
 .list-row p{font-size:15px;line-height:1.55;color:#444;max-width:62ch}
+.list-body{display:flex;flex-direction:column;min-width:0}
+.list-body .cat{align-self:flex-start}
+
+/* ===== LATEST — vertical editorial stack (large image + text rows) ===== */
+.feed-stack{display:flex;flex-direction:column;border-bottom:2px solid var(--line)}
+.feed-stack .list-row{grid-template-columns:340px 1fr;gap:40px;padding-block:34px;align-items:center}
+.feed-stack .list-row:last-child{border-bottom:none}
+.feed-stack .thumb{aspect-ratio:16/10;overflow:hidden}
+.feed-stack .list-row h3{font-size:clamp(24px,2.9vw,36px);margin-bottom:14px}
+.feed-stack .list-row h3 a{transition:color .15s}
+.feed-stack .list-row:hover h3 a{color:var(--accent)}
+.feed-stack .list-body .cat{margin-bottom:16px}
+.feed-stack .list-row .byline{margin-top:16px;display:flex;gap:16px;color:#888;font-size:12px;letter-spacing:.04em}
+
+/* No-image rows: a solid accent tile fills the image slot with the category
+   and date in display type, keeping the same two-column rhythm as photo
+   rows. Once the writers' panel adds a banner, the row switches to the image
+   branch above and renders like every other story. */
+.dispatch-mark{aspect-ratio:1/1;background:var(--accent);color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:20px}
+.dispatch-mark .cat{font-family:var(--font-display);font-size:clamp(20px,2.6vw,34px);line-height:1.08;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;color:#fff;border:none;padding:0;margin:0;display:block}
+.dispatch-mark .post-date{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.feed-stack .dispatch-mark{aspect-ratio:16/10}
 .byline{margin-top:16px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#666;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 .byline b{color:var(--ink)}
 .byline .agent{color:var(--accent)}
@@ -178,6 +330,7 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 .card:hover p,.card:hover .card-meta{color:#bbb}
 .cat{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border:1px solid currentColor;padding:3px 9px;display:inline-block;margin-bottom:16px}
 .card h3{font-family:var(--font-head);font-weight:700;font-size:22px;line-height:1.12;letter-spacing:-.02em;margin-bottom:11px}
+html[lang="fa"] .card h3{font-size:18px;line-height:1.45}
 .card p{font-size:14px;line-height:1.5;color:#444;margin-bottom:18px}
 .card-meta{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:#777;letter-spacing:.04em;display:flex;justify-content:space-between}
 
@@ -197,6 +350,7 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 
 /* ===== STAT BAND (count-up) ===== */
 .ad-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line)}
+.ad-grid-3{grid-template-columns:repeat(3,1fr)}
 .ad-slot{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:190px;padding:26px 24px;
   border-inline-end:2px solid var(--line);text-decoration:none;color:var(--ink);background:
   repeating-linear-gradient(135deg,transparent,transparent 12px,rgba(10,10,10,.025) 12px,rgba(10,10,10,.025) 24px);transition:background .2s}
@@ -205,6 +359,7 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 .ad-tag{align-self:flex-start;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#888;border:1px dashed #b6b3a8;padding:4px 9px}
 .ad-slot-body{display:flex;flex-direction:column;gap:10px}
 .ad-slot h4{font-family:var(--font-head);font-weight:800;font-size:18px;line-height:1.15;margin:0}
+html[lang="fa"] .ad-slot h4{font-size:16px;line-height:1.45}
 .ad-cta{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
 
 /* ===== STATS STRIP (about) ===== */
@@ -244,6 +399,60 @@ table.data .num{font-family:var(--mono);text-align:end}
 .stars i{position:absolute;inset:0;width:var(--p);overflow:hidden;color:var(--accent)}
 .stars i::before{content:"★★★★★"}
 
+/* ===== ACCORDION RANKING LIST (prices / exchanges / brokers) ===== */
+.rank-list{border-bottom:2px solid var(--line)}
+.rank-row{border-bottom:1px solid var(--hair)}
+.rank-row:last-child{border-bottom:none}
+.rank-head{display:flex;align-items:center;gap:16px;padding:14px 0;cursor:pointer;transition:background .15s}
+.rank-head:hover{background:var(--paper2)}
+.rank-num{flex:0 0 34px;font-family:var(--font-display);font-size:18px;color:var(--accent)}
+.rank-id-wrap{flex:1;display:flex;align-items:center;gap:12px;min-width:0}
+.rank-id{flex:0 0 38px;width:38px;height:38px;border-radius:50%;overflow:hidden;display:flex;align-items:center;
+  justify-content:center;font-family:var(--font-display);font-weight:900;font-size:14px;color:#fff;background:var(--ink)}
+.rank-id img{width:100%;height:100%;object-fit:cover}
+.rank-id.av-a{background:var(--av-a)}
+.rank-id.av-b{background:var(--av-b)}
+.rank-id.av-c{background:var(--av-c)}
+.rank-id.av-d{background:var(--av-d)}
+.rank-info{display:flex;flex-direction:column;gap:2px;min-width:0;overflow:hidden}
+.rank-name{font-family:var(--font-head);font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-sub{font-family:var(--mono);font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-price{flex:0 0 auto;min-width:84px;font-family:var(--mono);font-size:14px;text-align:end}
+.rank-chg{flex:0 0 auto;font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:0;white-space:nowrap}
+.rank-chg.up{background:var(--up-bg);color:var(--up)}
+.rank-chg.down{background:var(--down-bg);color:var(--down)}
+.rank-score{flex:0 0 auto;display:flex;align-items:center;gap:10px}
+.rank-score b{font-family:var(--font-display);font-size:18px}
+.rank-chevron{flex:0 0 20px;text-align:center;color:#999;transition:transform .3s var(--ease),color .15s}
+.rank-row.open .rank-chevron{transform:rotate(180deg);color:var(--accent)}
+.rank-body{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.rank-body-inner{padding-inline-start:50px;padding-block:2px 22px;display:flex;flex-direction:column;gap:14px}
+.rank-body-inner p{font-size:14px;line-height:1.6;color:#444;max-width:62ch}
+.rank-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rank-stats div{display:flex;flex-direction:column;gap:4px}
+.rank-stats b{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#888}
+.rank-stats span{font-family:var(--mono);font-size:14px;font-weight:600}
+
+/* colourful feature-tag badges */
+.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:5px 12px;border-radius:0;display:inline-block}
+.tag-a{background:var(--tag-a-bg);color:var(--tag-a-fg)}
+.tag-b{background:var(--tag-b-bg);color:var(--tag-b-fg)}
+.tag-c{background:var(--tag-c-bg);color:var(--tag-c-fg)}
+.tag-d{background:var(--tag-d-bg);color:var(--tag-d-fg)}
+body[dir="rtl"] .tag{letter-spacing:0}
+
+@media(max-width:760px){
+  .rank-head{gap:10px;padding:12px 0}
+  .rank-num{flex-basis:26px;font-size:15px}
+  .rank-name{font-size:14px}
+  .rank-sub{display:none}
+  .rank-price{min-width:64px;font-size:13px}
+  .rank-score b{font-size:15px}
+  .rank-body-inner{padding-inline-start:0}
+  .rank-stats{grid-template-columns:1fr 1fr}
+}
+
 /* CTA buttons */
 .btn{display:inline-block;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;
   padding:12px 22px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;cursor:pointer;
@@ -253,6 +462,9 @@ table.data .num{font-family:var(--mono);text-align:end}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:var(--paper)}
 body[dir="rtl"] .btn{letter-spacing:normal}
+
+/* "Read more" button under homepage feed sections */
+.feed-more-wrap{display:flex;justify-content:center;padding-block:40px;border-top:2px solid var(--line)}
 
 /* ===== CATEGORY TABS + PAGINATION (stories) ===== */
 .tabs{display:flex;gap:10px;flex-wrap:wrap;padding-block:22px;border-bottom:2px solid var(--line)}
@@ -270,6 +482,9 @@ html[lang="fa"] .tab{font-family:var(--font-body)}
 
 /* ===== PAGE HEAD (interior pages) ===== */
 .page-head{border-bottom:2px solid var(--line);padding-block:38px}
+/* Coin pages: the hero grid right below already has its own 2px border —
+   a second divider directly above it just doubles the line. */
+.page-head--coin{border-bottom:none;padding-bottom:24px}
 .page-head h1{font-family:var(--font-display);font-size:clamp(30px,5vw,58px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase}
 .page-head p{margin-top:14px;max-width:62ch;font-size:15px;line-height:1.6;color:#333}
 
@@ -303,6 +518,96 @@ html[lang="fa"] .tab{font-family:var(--font-body)}
 .chart-box{border:2px solid var(--line);aspect-ratio:16/9;width:100%;background:#fff}
 .chart-box iframe{width:100%;height:100%;border:0;display:block}
 
+/* ===== COIN PAGE ===== */
+.coin-hero{display:grid;grid-template-columns:1fr 1.5fr;gap:2px;align-items:stretch;background:var(--line);border:2px solid var(--line)}
+.coin-hero-card,.coin-hero-chart{background:#fff;padding:28px;display:flex;flex-direction:column;gap:20px}
+.coin-hero-card.in{transition-delay:0s}
+.coin-hero-chart.in{transition-delay:.12s}
+.coin-hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.coin-hero-id{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.coin-hero-name{font-family:var(--font-display);font-weight:900;font-size:clamp(20px,2.6vw,28px);text-transform:uppercase;letter-spacing:-.01em;line-height:1.05}
+.coin-sym{font-family:var(--mono);font-size:11px;color:var(--ink);font-weight:600;border:1px solid var(--line);padding:3px 8px;letter-spacing:.06em}
+.coin-updated{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#999;white-space:nowrap}
+.coin-hero-price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.coin-price-val{font-family:var(--mono);font-size:clamp(34px,5.5vw,52px);font-weight:700;letter-spacing:-.01em}
+.coin-price-chg{font-family:var(--mono);font-size:14px;font-weight:700;padding:4px 10px;border:1px solid currentColor}
+.coin-price-chg.up{color:var(--up)}
+.coin-price-chg.down{color:var(--down)}
+.coin-hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:2px solid var(--line);margin-top:auto;padding-top:0}
+.coin-stat{background:#fff;padding:14px 4px 0;display:flex;flex-direction:column;gap:6px}
+.coin-stat b{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#999;font-weight:600}
+.coin-stat span{font-family:var(--mono);font-size:15px;font-weight:700}
+.coin-chart-head{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#999}
+.coin-chart{flex:1;min-height:260px;display:flex;align-items:stretch}
+.coin-chart-skel{flex:1;background:linear-gradient(90deg,var(--paper2) 25%,#f0eee6 50%,var(--paper2) 75%);background-size:200% 100%;animation:coin-skel 1.4s ease-in-out infinite}
+@keyframes coin-skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.coin-chart-svg{width:100%;height:100%;color:var(--up);overflow:visible}
+.coin-chart-svg.spark-down{color:var(--down)}
+.coin-chart-area{opacity:0;transition:opacity 1s ease .5s}
+.coin-chart-line{stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1px;stroke-dashoffset:1px;transition:stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1)}
+.coin-chart.is-drawn .coin-chart-line{stroke-dashoffset:0}
+.coin-chart.is-drawn .coin-chart-area{opacity:1}
+/* Candlestick chart: gridded plot + price axis + date footer, all dir-locked
+   to ltr so the timeline always reads left (oldest) to right (newest)
+   regardless of page direction. */
+.coin-chart-inner{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0;direction:ltr}
+.coin-chart-plot{flex:1;display:flex;gap:10px;min-height:0;min-width:0}
+.coin-chart-plot .coin-chart-svg{flex:1;width:auto;min-width:0}
+.coin-chart-axis{flex:none;display:flex;flex-direction:column;justify-content:space-between;width:60px;
+  font-size:10px;letter-spacing:.02em;color:#999;text-align:end;padding-block:2px}
+.coin-chart-dates{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.04em;
+  text-transform:uppercase;color:#999;border-top:1px solid var(--hair);padding-top:8px}
+.coin-chart-gridline{stroke:var(--ink);stroke-opacity:.06;stroke-width:1}
+.coin-chart-lastline{stroke:var(--accent);stroke-opacity:.55;stroke-width:1;stroke-dasharray:5 4}
+.coin-candle{opacity:0;transform:scaleY(.4);transform-box:fill-box;transform-origin:center;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);transition-delay:calc(var(--i,0) * 16ms)}
+.coin-chart.is-drawn .coin-candle{opacity:1;transform:scaleY(1)}
+.coin-candle-wick{stroke-width:1.5px}
+.coin-candle-body{stroke-width:1px}
+.coin-candle.up .coin-candle-wick,.coin-candle.up .coin-candle-body{stroke:var(--up);fill:var(--up)}
+.coin-candle.down .coin-candle-wick,.coin-candle.down .coin-candle-body{stroke:var(--down);fill:var(--down)}
+/* ===== COIN SECTIONS — two-column: prose + sidebar ===== */
+.coin-sections{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start}
+.coin-main{display:flex;flex-direction:column;gap:8px;min-width:0}
+.coin-main h2,.coin-howto h2{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);text-transform:uppercase;letter-spacing:-.02em;margin-top:28px}
+.coin-main .prose{font-size:15px;line-height:1.75;color:#333;max-width:none}
+.coin-main .prose p{margin-block:12px}
+.coin-side{display:flex;flex-direction:column;gap:32px;position:sticky;top:96px}
+.ad-square{aspect-ratio:1/1;border:2px solid var(--line);padding:24px;text-decoration:none;color:var(--ink);
+  background:var(--paper2);display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+.ad-square:hover{background:#fff;box-shadow:6px 6px 0 var(--accent);transform:translate(-3px,-3px)}
+.ad-square .ad-tag{color:#999}
+.ad-square h4{font-family:var(--font-display);font-weight:900;font-size:clamp(20px,2.4vw,28px);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:1.15;margin:0}
+.ad-square .ad-cta{color:var(--accent);font-weight:700}
+.ad-square.ad-filled{padding:0;background:none}
+.ad-square.ad-filled:hover{box-shadow:none;transform:none;background:none}
+.ad-square.ad-filled img{width:100%;height:100%;object-fit:cover;display:block}
+.coin-related h3{font-family:var(--font-display);font-size:15px;text-transform:uppercase;letter-spacing:.04em;
+  border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:4px}
+.side-news-item{display:block;padding-block:16px;border-bottom:2px solid var(--line);text-decoration:none;color:var(--ink)}
+.side-news-item:last-child{border-bottom:none}
+.side-news-item .cat{font-size:10px;color:var(--accent);border:none;padding:0;margin-bottom:6px;display:inline-block}
+.side-news-item h4{font-family:var(--font-head);font-weight:700;font-size:15px;line-height:1.35;transition:color .15s}
+html[lang="fa"] .side-news-item h4{font-size:14px;line-height:1.5}
+.side-news-item:hover h4{color:var(--accent)}
+@media (max-width:980px){
+  .coin-sections{grid-template-columns:1fr}
+  .coin-side{position:static}
+}
+.coin-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:2px solid var(--line);margin-top:20px}
+.coin-steps[hidden]{display:none}
+.coin-step{background:#fff;padding:24px;display:flex;flex-direction:column;gap:8px}
+.coin-step-num{font-size:13px;color:var(--accent);font-weight:700}
+.coin-step h3{font-family:var(--font-head);font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.coin-step p{font-size:14px;line-height:1.6;color:#444;margin:0}
+.coin-howto-cta{display:inline-flex;margin-top:24px}
+@media (max-width:760px){
+  .coin-hero{grid-template-columns:1fr}
+  .coin-steps{grid-template-columns:1fr}
+}
+
 /* ===== AD SLOT ===== */
 .ad{border-bottom:2px solid var(--line);padding:34px var(--gut);background:var(--paper2);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .ad .label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#999}
@@ -311,8 +616,13 @@ html[lang="fa"] .tab{font-family:var(--font-body)}
 /* ===== FOOTER ===== */
 footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:46px;border-bottom:1px solid var(--hair-dark)}
-.foot-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;font-size:48px;letter-spacing:-.02em}
+.foot-logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;font-size:42px;letter-spacing:-.01em}
 .foot-logo .dot{color:var(--accent)}
+.foot-brand{display:flex;flex-direction:column;gap:20px}
+.foot-desc{max-width:340px;font-size:14px;line-height:1.6;color:#999}
+.foot-socials{display:flex;gap:14px}
+.foot-socials a{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--paper);opacity:.7;transition:opacity .15s,color .15s}
+.foot-socials a:hover{opacity:1;color:var(--accent)}
 .foot-cols{display:flex;gap:60px;flex-wrap:wrap}
 .foot-col h5{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#888;margin-bottom:15px}
 .foot-col a{display:block;color:var(--paper);text-decoration:none;font-size:15px;margin-bottom:9px;transition:.15s}
@@ -333,25 +643,55 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
   .ticker-track,.logo .dot{animation:none}
   .bar i{transition:none}
   .nav-links,.sub,.logo-word,.has-sub .sub,.sub-toggle,.nav-group>a,.menu-close{transition:none}
+  .coin-chart-line,.coin-chart-area{transition:none;stroke-dashoffset:0;opacity:1}
+  .coin-candle{transition:none;opacity:1;transform:none}
 }
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .content-layout{grid-template-columns:1fr;grid-template-areas:"hero" "editors" "ticker" "latest" "ads";gap:20px;padding-block:16px 28px}
+  .content-ads{display:none}
+  .hero-cover{max-width:none}
+  .article-gallery{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr 1fr}
   .grid .card:nth-child(3n){border-inline-end:2px solid var(--line)}
   .grid .card:nth-child(2n){border-inline-end:none}
   .ad-grid{grid-template-columns:1fr 1fr}
   .ad-slot:nth-child(2n){border-inline-end:none}
   .ad-slot:nth-child(-n+2){border-bottom:2px solid var(--line)}
+  /* three-up ad row collapses to a single stacked column */
+  .ad-grid-3{grid-template-columns:1fr}
+  .ad-grid-3 .ad-slot{border-inline-end:none;border-bottom:2px solid var(--line)}
+  .ad-grid-3 .ad-slot:last-child{border-bottom:none}
 }
 @media(max-width:760px){
   /* tighter page gutter on phones (32px ate too much of a 375px screen) */
   :root{--gut:20px}
 
+  /* taller portrait crop so the cover plate has vertical room over the photo */
+  .feature-img{aspect-ratio:4/5}
+  .hero-cover{bottom:18px;inset-inline:16px}
+  .hero h1{font-size:clamp(18px,5vw,26px);-webkit-line-clamp:4}
+  .hero-sub{-webkit-line-clamp:3}
+
   /* hide desktop socials + lang switcher in topbar; show burger */
   .topbar-right .socials,.topbar-right .lang{display:none}
   .burger{display:block}
+
+  /* Masthead title moves into the sticky topbar — big, always visible, never
+     scrolls away — so the separate giant-wordmark band underneath is redundant. */
+  .masthead{display:none}
+  .topbar .wrap{padding-block:16px}
+  .logo{font-size:clamp(26px,9vw,40px);gap:12px}
+  .logo-mark .dot{width:14px;height:14px}
+  .logo-word{max-width:none;opacity:1;transform:none;overflow:visible}
+
+  /* Burger — solid square with a drawn icon (replaces the bare "☰" glyph,
+     which read as a stray outline next to the now much bigger wordmark). */
+  .burger{width:48px;height:48px;flex:0 0 48px;padding:0;background:var(--ink);
+    color:transparent;font-size:0;position:relative}
+  .burger::before{content:"";position:absolute;inset:0;margin:auto;width:22px;height:14px;
+    background-image:repeating-linear-gradient(to bottom,var(--paper) 0 2px,transparent 2px 6px)}
 
   /* full-screen LIGHT mega-menu — always present so it can ANIMATE in/out */
   .nav-links{display:flex;position:fixed;inset:0;z-index:80;background:var(--paper);
@@ -362,14 +702,17 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 
   .menu-head{display:flex;align-items:center;justify-content:center;
     padding-block:18px;border-bottom:2px solid var(--line);margin-bottom:4px}
-  .menu-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:640;direction:ltr;font-size:24px;letter-spacing:-.02em;
+  .menu-logo{font-family:'Archivo Black',Arial,sans-serif;font-weight:900;direction:ltr;font-size:21px;letter-spacing:-.01em;
     text-decoration:none;color:var(--ink)}
   .menu-logo .dot{color:var(--accent)}
 
   .nav-group{display:block;position:relative;border-bottom:1px solid rgba(10,10,10,.12)}
+  .future-only-mobile{display:block}
   .nav-group>a{display:block;font-family:var(--font-display);font-weight:900;text-transform:uppercase;
     font-size:clamp(24px,6.8vw,38px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);padding:15px 0;
     transition:color .15s,transform .15s}
+  .nav-group>a .badge-soon{font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-inline-start:10px;
+    vertical-align:middle;font-family:var(--mono)}
   body[dir="rtl"] .nav-group>a{text-transform:none;letter-spacing:0;line-height:1.5}
   body[dir="rtl"] .nav-group>a:active{transform:translateX(-4px)}
   .nav-group>a:active{color:var(--accent);transform:translateX(4px)}
@@ -415,9 +758,19 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
   .grid{grid-template-columns:1fr}
   .grid .card{border-inline-end:none}
   .list-row{grid-template-columns:84px 1fr;gap:16px}
+  /* Latest stack: image goes full-width on top of the text on phones */
+  .feed-stack .list-row{grid-template-columns:1fr;gap:16px;align-items:start}
+  .feed-stack .thumb,.feed-stack .dispatch-mark{aspect-ratio:16/9}
   .ad-grid{grid-template-columns:1fr 1fr}
   .forecast{grid-template-columns:1fr auto;gap:12px}
   .forecast .bar{grid-column:1/-1}
+
+  /* data tables: drop secondary columns and let symbol names wrap so
+     the forex table fits without horizontal scroll */
+  table.data{font-size:13px}
+  table.data th,table.data td{padding:12px 8px;white-space:normal}
+  table.data .muted{display:none}
+  table.data .btn{padding:9px 14px;font-size:12px}
 }
 
 /* ===== ADS (filled from content/data/ads.json via MasterWriter panel) ===== */
@@ -438,3 +791,120 @@ footer{background:var(--ink);color:var(--paper);padding-block:56px 36px}
 .card .card-img img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .25s ease}
 .card:hover .card-img img{transform:scale(1.04)}
 @media (max-width:640px){.card .card-img{margin:-30px -30px 16px}}
+
+/* ============================================================
+   MARKETS (prices.html) — segmented crypto/forex + data grid
+   ============================================================ */
+#markets{padding-top:30px}
+.market-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+
+/* segmented switcher */
+.seg{display:inline-flex;border:2px solid var(--ink);background:var(--paper)}
+.seg-btn{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;
+  padding:11px 26px;background:none;border:none;cursor:pointer;color:var(--ink);
+  border-inline-end:2px solid var(--ink);transition:background .15s ease,color .15s ease}
+.seg-btn:last-child{border-inline-end:none}
+.seg-btn.active{background:var(--ink);color:var(--paper)}
+.seg-btn:not(.active):hover{background:var(--paper2)}
+html[lang="fa"] .seg-btn,html[lang="ar"] .seg-btn{font-family:var(--font-body);letter-spacing:0}
+
+/* search */
+.market-search-wrap{position:relative;flex:0 1 320px;min-width:200px;display:flex;align-items:center}
+.search-ico{position:absolute;inset-inline-start:14px;font-size:17px;color:#888;pointer-events:none}
+#market-search{width:100%;font-family:var(--mono);font-size:13px;color:var(--ink);
+  background:var(--paper);border:2px solid var(--ink);padding:11px 14px 11px 38px;outline:none;transition:border-color .15s}
+body[dir="rtl"] #market-search{padding:11px 38px 11px 14px}
+#market-search::placeholder{color:#999}
+#market-search:focus{border-color:var(--accent)}
+html[lang="fa"] #market-search,html[lang="ar"] #market-search{font-family:var(--font-body)}
+
+.market-src{color:#777;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:6px 0 14px}
+
+/* column header (echoes the inline row grid) */
+.m-head,.m-main{display:grid;align-items:center;gap:12px;
+  grid-template-columns:32px minmax(120px,1fr) 104px 84px 110px 104px 60px 20px}
+/* forex row: pair (1fr) · rate · day · week · month · small trend chart at the end */
+.m-head-fx,.m-fx .m-main{grid-template-columns:32px minmax(140px,1fr) 96px 74px 74px 74px 64px}
+.m-spark-wrap{display:flex;align-items:center;justify-content:flex-end;min-width:0}
+.m-spark{width:56px;height:20px;display:block;opacity:.85}
+.m-spark polyline{stroke-width:1.25px;stroke-linejoin:round;stroke-linecap:round}
+.spark-up polyline{stroke:var(--up)}
+.spark-down polyline{stroke:var(--down)}
+.m-spark-h{color:#888;text-align:end}
+.m-head-fx .m-week,.m-fx .m-week,.m-head-fx .m-month,.m-fx .m-month{text-align:end}
+.m-head{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#888;
+  padding:0 4px 10px;border-bottom:2px solid var(--line)}
+.m-head .m-price,.m-head .m-chg,.m-head .m-cell{text-align:end}
+
+/* rows */
+.m-table{border-bottom:2px solid var(--line)}
+.m-row{border-bottom:1px solid var(--hair)}
+.m-row:last-of-type{border-bottom:none}
+.m-row[hidden]{display:none}
+.m-main{width:100%;text-align:start;font:inherit;color:inherit;background:none;border:none;
+  padding:14px 4px;cursor:pointer;transition:background .15s}
+.m-row .m-main:hover{background:var(--paper2)}
+.m-row.m-static .m-main{cursor:default}
+.m-row.m-static .m-main:hover{background:none}
+.m-rank{font-family:var(--font-display);font-size:16px;color:var(--accent)}
+html[lang="fa"] .m-rank,html[lang="ar"] .m-rank{font-family:var(--mono);font-weight:700}
+.m-coin{display:flex;align-items:center;gap:12px;min-width:0}
+.m-ico{flex:0 0 34px;width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--paper2);display:block}
+.m-fx-badge{flex:0 0 auto;font-size:11px;font-weight:600;letter-spacing:.02em;color:#fff;background:var(--ink);
+  padding:5px 9px;border-radius:0}
+.m-id{display:flex;flex-direction:column;gap:2px;min-width:0}
+.m-name{font-family:var(--font-head);font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-sym{font-family:var(--mono);font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[lang="fa"] .m-sym,html[lang="ar"] .m-sym{font-family:var(--font-body)}
+.m-price{font-family:var(--mono);font-size:14px;text-align:end;white-space:nowrap}
+.m-chg{font-family:var(--mono);font-size:12.5px;text-align:end;white-space:nowrap}
+.m-chg.up{color:var(--up)}
+.m-chg.down{color:var(--down)}
+.m-cell{font-family:var(--mono);font-size:13px;text-align:end;color:#555;white-space:nowrap}
+.m-cell .m-lbl{display:none}
+.m-chev{justify-self:center;color:#aaa;font-size:13px;transition:transform .3s var(--ease),color .15s}
+.m-row.open .m-chev{transform:rotate(180deg);color:var(--accent)}
+
+/* expandable detail */
+.m-detail{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.m-detail-in{padding:4px 4px 22px 50px;display:flex;flex-direction:column;gap:16px}
+body[dir="rtl"] .m-detail-in{padding:4px 50px 22px 4px}
+.m-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
+.m-stats div{display:flex;flex-direction:column;gap:4px}
+.m-stats b{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#888;font-weight:400}
+.m-stats span{font-family:var(--mono);font-size:14px;font-weight:600}
+html[lang="fa"] .m-stats b,html[lang="ar"] .m-stats b{font-family:var(--font-body);letter-spacing:0}
+.m-detail-in .btn{align-self:flex-start}
+.m-only{display:none}
+
+/* empty / skeleton */
+.m-empty{padding:28px 4px;color:#999;font-size:13px;text-align:center}
+.m-skel{opacity:.55}
+.m-skel .m-ico{animation:mpulse 1.2s ease-in-out infinite}
+@keyframes mpulse{0%,100%{opacity:.5}50%{opacity:1}}
+@media (prefers-reduced-motion: reduce){.m-skel .m-ico{animation:none}}
+
+/* tablet: drop the volume column */
+@media (max-width:1000px){
+  .m-head,.m-main{grid-template-columns:30px minmax(0,1fr) 110px 92px 120px 22px}
+  .m-head .m-cell + .m-cell,.m-main .m-cell + .m-cell{display:none}
+  /* forex: drop the trend chart + month, keep rate / day / week */
+  .m-head-fx,.m-fx .m-main{grid-template-columns:30px minmax(0,1fr) 100px 80px 80px}
+  .m-spark-wrap,.m-spark-h,.m-head-fx .m-month,.m-fx .m-month{display:none}
+}
+/* mobile: rank / coin / price / chg / chev only — stats move into the detail */
+@media (max-width:680px){
+  .market-bar{gap:12px}
+  .seg-btn{padding:10px 18px;flex:1}
+  .seg{flex:1 1 auto}
+  .market-search-wrap{flex:1 1 100%}
+  .m-head,.m-main{grid-template-columns:26px minmax(0,1fr) auto auto 18px;gap:10px;padding:12px 2px}
+  /* forex: rank / pair / rate / day only — drop week too */
+  .m-head-fx,.m-fx .m-main{grid-template-columns:26px minmax(0,1fr) auto auto;gap:10px}
+  .m-head-fx .m-week,.m-fx .m-week{display:none}
+  .m-head .m-cell,.m-main .m-cell{display:none}
+  .m-name{font-size:14px}
+  .m-detail-in{padding-inline-start:0;padding-inline-end:0}
+  .m-only{display:flex}
+  .m-stats{grid-template-columns:1fr 1fr}
+}

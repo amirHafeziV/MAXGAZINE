@@ -4,36 +4,118 @@
    ============================================================ */
 
 /* ---------- live data sources ---------- */
-const CG = 'https://api.coingecko.com/api/v3/simple/price';
+const CG_API = 'https://api.coingecko.com/api/v3';
 const FX_API = 'https://api.frankfurter.dev/v1';
 
 const TICKER_CRYPTO = [['BTC','bitcoin'],['ETH','ethereum'],['SOL','solana'],['BNB','binancecoin'],['XRP','ripple'],['TON','the-open-network'],['AVAX','avalanche-2'],['DOGE','dogecoin']];
-const MARKET_CRYPTO = [
-  ['BTC','bitcoin','Bitcoin'],['ETH','ethereum','Ethereum'],['BNB','binancecoin','BNB'],['SOL','solana','Solana'],
-  ['XRP','ripple','XRP'],['TON','the-open-network','Toncoin'],['ADA','cardano','Cardano'],['AVAX','avalanche-2','Avalanche'],
-  ['DOGE','dogecoin','Dogecoin'],['DOT','polkadot','Polkadot'],['LINK','chainlink','Chainlink'],['MATIC','matic-network','Polygon']
-];
-const FX_PAIRS = [
-  ['EUR/USD','Euro',r=>1/r.EUR],['GBP/USD','Pound',r=>1/r.GBP],['USD/JPY','Yen',r=>r.JPY],
-  ['USD/CHF','Franc',r=>r.CHF],['AUD/USD','Aussie',r=>1/r.AUD],['USD/CAD','Loonie',r=>r.CAD]
-];
-const FX_SYMBOLS = 'EUR,GBP,JPY,CHF,AUD,CAD';
+/* ECB / Frankfurter-supported currencies (USD base). Full names used as the
+   language-neutral sub-label on each forex row. */
+const FX_NAMES = {
+  USD:'US Dollar', EUR:'Euro', GBP:'British Pound', JPY:'Japanese Yen', AUD:'Australian Dollar',
+  NZD:'New Zealand Dollar', CAD:'Canadian Dollar', CHF:'Swiss Franc', CNY:'Chinese Yuan',
+  HKD:'Hong Kong Dollar', SGD:'Singapore Dollar', SEK:'Swedish Krona', NOK:'Norwegian Krone',
+  DKK:'Danish Krone', PLN:'Polish Zloty', CZK:'Czech Koruna', HUF:'Hungarian Forint',
+  TRY:'Turkish Lira', ZAR:'South African Rand', MXN:'Mexican Peso', BRL:'Brazilian Real',
+  INR:'Indian Rupee', KRW:'South Korean Won', IDR:'Indonesian Rupiah', MYR:'Malaysian Ringgit',
+  PHP:'Philippine Peso', THB:'Thai Baht', ILS:'Israeli Shekel', RON:'Romanian Leu',
+  BGN:'Bulgarian Lev', ISK:'Icelandic Krona'
+};
+const FX_CURRENCIES = Object.keys(FX_NAMES);
+const FX_SYMBOLS = FX_CURRENCIES.filter(c => c !== 'USD').join(',');
+// Build ~100 conventional pairs: major crosses first, then USD/EUR/GBP vs the rest.
+const FX_PAIRS = (function buildFxPairs(){
+  const majors = ['EUR','GBP','USD','JPY','AUD','NZD','CAD','CHF'];
+  const rest = FX_CURRENCIES.filter(c => !majors.includes(c));
+  const seen = new Set(), pairs = [];
+  const add = (b, q) => {
+    if(b === q) return;
+    const k = b + q, rk = q + b;
+    if(seen.has(k) || seen.has(rk)) return;
+    seen.add(k); pairs.push([b, q]);
+  };
+  for(let i = 0; i < majors.length; i++) for(let j = i + 1; j < majors.length; j++) add(majors[i], majors[j]);
+  rest.forEach(c => add('USD', c));
+  rest.forEach(c => add('EUR', c));
+  rest.forEach(c => add('GBP', c));
+  return pairs;
+})();
+// rate of BASE/QUOTE given USD-based rates (units of CUR per 1 USD; USD itself = 1)
+const fxRate = (base, quote, r) => (r[quote] || (quote === 'USD' ? 1 : NaN)) / (r[base] || (base === 'USD' ? 1 : NaN));
 
 const fmtPrice = v => v>=1000 ? '$'+v.toLocaleString('en-US',{maximumFractionDigits:0})
-  : v>=1 ? '$'+v.toFixed(2) : '$'+v.toFixed(4);
+  : v>=1 ? '$'+v.toFixed(2)
+  : v>=0.01 ? '$'+v.toFixed(4) : '$'+v.toFixed(6);
 const fmtFx = v => v>=20 ? v.toFixed(2) : v.toFixed(4);
+const truncate = (s, n) => s.length > n ? s.slice(0, n).trimEnd() + '…' : s;
+const fmtCap = v => {
+  if(!v) return '—';
+  if(v>=1e12) return '$'+(v/1e12).toFixed(2)+'T';
+  if(v>=1e9) return '$'+(v/1e9).toFixed(2)+'B';
+  if(v>=1e6) return '$'+(v/1e6).toFixed(2)+'M';
+  return '$'+(v/1e3).toFixed(2)+'K';
+};
 const isoDaysAgo = n => new Date(Date.now()-n*864e5).toISOString().slice(0,10);
 
 async function fetchCrypto(list){
   const ids = list.map(c=>c[1]).join(',');
-  const r = await fetch(`${CG}?ids=${ids}&vs_currencies=usd&include_24hr_change=true`);
+  const r = await fetch(`${CG_API}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`);
+  if(!r.ok) throw new Error('HTTP '+r.status);
   return r.json();
 }
+// keep ~N evenly-spaced points from a long series (shrinks the 7d sparkline)
+function downsample(arr, n){
+  if(!Array.isArray(arr) || arr.length <= n) return arr || [];
+  const step = (arr.length-1)/(n-1), out = [];
+  for(let i=0;i<n;i++) out.push(arr[Math.round(i*step)]);
+  return out;
+}
+let _top100Stamp = 0;   // ms timestamp of the data currently in _coins
+// CoinGecko's free tier rate-limits aggressively (HTTP 429). Cache the last good
+// response in localStorage and serve it (even if stale) when a live call fails,
+// so the table shows data immediately and never blanks on a throttled refresh.
+async function fetchTop100(){
+  const KEY = 'mg_top100', TTL = 60000, now = Date.now();
+  let cache = null;
+  try{ cache = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+  if(cache && (now - cache.t) < TTL){ _top100Stamp = cache.t; return cache.d; }
+  try{
+    const url = `${CG_API}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1`
+      + `&sparkline=true&price_change_percentage=24h,7d`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const raw = await r.json();
+    const slim = (raw||[]).map(c=>({
+      id:c.id, symbol:c.symbol, name:c.name, image:c.image,
+      current_price:c.current_price,
+      price_change_percentage_24h:c.price_change_percentage_24h,
+      price_change_percentage_7d:c.price_change_percentage_7d_in_currency,
+      market_cap:c.market_cap, total_volume:c.total_volume,
+      high_24h:c.high_24h, low_24h:c.low_24h, ath:c.ath,
+      circulating_supply:c.circulating_supply,
+      spark: downsample((c.sparkline_in_7d && c.sparkline_in_7d.price) || [], 28)
+    }));
+    try{ localStorage.setItem(KEY, JSON.stringify({t:now, d:slim})); }catch(e){}
+    _top100Stamp = now;
+    return slim;
+  }catch(e){
+    if(cache){ _top100Stamp = cache.t; return cache.d; }   // stale-but-usable
+    throw e;
+  }
+}
 async function fetchForex(){
-  const r = await fetch(`${FX_API}/${isoDaysAgo(12)}..?base=USD&symbols=${FX_SYMBOLS}`);
+  const r = await fetch(`${FX_API}/${isoDaysAgo(38)}..?base=USD&symbols=${FX_SYMBOLS}`);
   const data = await r.json();
-  const dates = Object.keys(data.rates||{}).sort();
-  return { cur:data.rates[dates[dates.length-1]], prev:data.rates[dates[dates.length-2]], date:dates[dates.length-1] };
+  const rates = data.rates || {};
+  const dates = Object.keys(rates).sort();
+  const n = dates.length;
+  return {
+    cur:   rates[dates[n-1]],
+    prev:  rates[dates[n-2]],
+    week:  rates[dates[Math.max(0, n-6)]],    // ~5 business days back ≈ one week
+    month: rates[dates[Math.max(0, n-22)]],   // ~22 business days back ≈ one month
+    date:  dates[n-1],
+    dates, rates
+  };
 }
 
 /* ---------- ticker ---------- */
@@ -48,36 +130,497 @@ async function loadTicker(){
     const [cg, fx] = await Promise.all([fetchCrypto(TICKER_CRYPTO), fetchForex()]);
     const items = [];
     TICKER_CRYPTO.forEach(([sym,id])=>{ const d=cg[id]; if(d&&typeof d.usd==='number') items.push(tickItem(sym,fmtPrice(d.usd),d.usd_24h_change||0)); });
-    if(fx.cur) FX_PAIRS.forEach(([label,,fn])=>{ const c=fn(fx.cur),p=fx.prev?fn(fx.prev):c; items.push(tickItem(label,fmtFx(c),p?(c-p)/p*100:0)); });
+    if(fx.cur) FX_PAIRS.slice(0,6).forEach(([base,quote])=>{ const c=fxRate(base,quote,fx.cur),p=fx.prev?fxRate(base,quote,fx.prev):c; if(isFinite(c)) items.push(tickItem(`${base}/${quote}`,fmtFx(c),p?(c-p)/p*100:0)); });
     if(items.length){ const half=items.join(''); el.innerHTML=half+half; }
   }catch(e){/* keep static fallback */}
 }
 
-/* ---------- markets table (prices.html) ---------- */
-function changeCell(ch){
-  const up = ch>=0;
-  return `<td class="num ${up?'up-c':'down-c'}">${up?'▲':'▼'} ${Math.abs(ch).toFixed(2)}%</td>`;
+/* ============================================================
+   markets (prices.html) — segmented crypto/forex, inline desktop
+   stats, language-aware detail, client-side search filter
+   ============================================================ */
+const PRICES_I = {
+  en:{ price:'Price', chg24:'24h', chg7:'7d', mcap:'Market Cap', vol:'Volume', high24:'24h High', low24:'24h Low',
+    ath:'All-Time High', supply:'Circ. Supply', trade:'Trade now →', pair:'Pair', rate:'Rate', day:'Day', trend:'Trend',
+    noresults:'No matches found.', search_ph:'Search by name or symbol…', updated:'Updated' },
+  fa:{ price:'قیمت', chg24:'۲۴ ساعت', chg7:'۷ روز', mcap:'ارزش بازار', vol:'حجم', high24:'سقف ۲۴ ساعته', low24:'کف ۲۴ ساعته',
+    ath:'بالاترین تاریخی', supply:'عرضه در گردش', trade:'معامله کنید ←', pair:'جفت‌ارز', rate:'نرخ', day:'روزانه', trend:'روند',
+    noresults:'موردی یافت نشد.', search_ph:'جستجو با نام یا نماد…', updated:'به‌روزرسانی' },
+  ar:{ price:'السعر', chg24:'٢٤س', chg7:'٧ أيام', mcap:'القيمة السوقية', vol:'الحجم', high24:'أعلى ٢٤س', low24:'أدنى ٢٤س',
+    ath:'أعلى سعر تاريخي', supply:'المعروض المتداول', trade:'تداول الآن ←', pair:'الزوج', rate:'السعر', day:'يومي', trend:'الاتجاه',
+    noresults:'لا توجد نتائج.', search_ph:'ابحث بالاسم أو الرمز…', updated:'آخر تحديث' },
+  tr:{ price:'Fiyat', chg24:'24s', chg7:'7g', mcap:'Piyasa Değeri', vol:'Hacim', high24:'24s Yüksek', low24:'24s Düşük',
+    ath:'Tüm Zamanlar Zirvesi', supply:'Dolaşımdaki Arz', trade:'Şimdi işlem yap →', pair:'Parite', rate:'Oran', day:'Gün', trend:'Trend',
+    noresults:'Sonuç bulunamadı.', search_ph:'İsim veya sembolle ara…', updated:'Güncellendi' }
+};
+const fmtSupply = v => {
+  if(!v) return '—';
+  if(v>=1e9) return (v/1e9).toFixed(2)+'B';
+  if(v>=1e6) return (v/1e6).toFixed(2)+'M';
+  if(v>=1e3) return (v/1e3).toFixed(2)+'K';
+  return String(Math.round(v));
+};
+const _chgClass = ch => ch>=0 ? 'up' : 'down';
+const _chgStr = ch => `${ch>=0?'▲':'▼'} ${Math.abs(ch).toFixed(2)}%`;
+
+let _coins = [];      // last fetched top-100 crypto
+let _fxData = null;   // last fetched forex snapshot
+let _coinPages = {};  // coingeckoId -> slug, for Trade-Now deep links into /<slug> SEO pages
+async function loadCoinPages(){
+  try{
+    const r = await fetch(adPrefix() + 'content/data/coin-pages.json', {cache:'no-cache'});
+    if(r.ok) _coinPages = await r.json();
+  }catch(e){/* fall back to exchanges.html for all rows */}
 }
+
+function mCryptoRow(coin, i, lang, prefix){
+  const d = PRICES_I[lang] || PRICES_I.en;
+  const chg = coin.price_change_percentage_24h || 0;
+  const chg7 = coin.price_change_percentage_7d;
+  const sym = (coin.symbol||'').toUpperCase();
+  const search = `${(coin.name||'')} ${sym}`.toLowerCase();
+  const sp = coin.spark || [];
+  const up7 = (chg7 != null) ? chg7 >= 0 : (sp.length>1 ? sp[sp.length-1] >= sp[0] : true);
+  return `<div class="m-row" data-search="${esc(search)}">
+    <button class="m-main" type="button" aria-expanded="false">
+      <span class="m-rank mono">${String(i+1).padStart(2,'0')}</span>
+      <span class="m-coin">
+        <img class="m-ico" src="${esc(coin.image||'')}" alt="" loading="lazy">
+        <span class="m-id"><span class="m-name">${esc(truncate(coin.name||'',22))}</span><span class="m-sym mono">${esc(sym)}</span></span>
+      </span>
+      <span class="m-price mono">${fmtPrice(coin.current_price||0)}</span>
+      <span class="m-chg ${_chgClass(chg)} mono">${_chgStr(chg)}</span>
+      <span class="m-cell mono"><span class="m-lbl">${esc(d.mcap)}</span>${fmtCap(coin.market_cap)}</span>
+      <span class="m-cell mono"><span class="m-lbl">${esc(d.vol)}</span>${fmtCap(coin.total_volume)}</span>
+      <span class="m-spark-wrap c-spark">${sparkline(sp, up7)}</span>
+      <span class="m-chev" aria-hidden="true">▾</span>
+    </button>
+    <div class="m-detail"><div class="m-detail-in">
+      <div class="m-stats">
+        <div class="m-only"><b>${esc(d.mcap)}</b><span>${fmtCap(coin.market_cap)}</span></div>
+        <div class="m-only"><b>${esc(d.vol)}</b><span>${fmtCap(coin.total_volume)}</span></div>
+        <div><b>${esc(d.chg7)}</b><span class="${chg7!=null?_chgClass(chg7):''}">${chg7!=null?_chgStr(chg7):'—'}</span></div>
+        <div><b>${esc(d.high24)}</b><span>${fmtPrice(coin.high_24h||0)}</span></div>
+        <div><b>${esc(d.low24)}</b><span>${fmtPrice(coin.low_24h||0)}</span></div>
+        <div><b>${esc(d.ath)}</b><span>${fmtPrice(coin.ath||0)}</span></div>
+        <div><b>${esc(d.supply)}</b><span>${fmtSupply(coin.circulating_supply)} ${esc(sym)}</span></div>
+      </div>
+      <a class="btn" href="${_coinPages[coin.id] ? prefix+_coinPages[coin.id] : prefix+'exchanges.html'}">${esc(d.trade)}</a>
+    </div></div>
+  </div>`;
+}
+
+// Inline trend line stretched across the row's free space (fills the gap).
+function sparkline(vals, up){
+  const v = (vals||[]).filter(n=>isFinite(n));
+  if(v.length < 2) return '';
+  const w=120, h=30, pad=3;
+  const min=Math.min(...v), max=Math.max(...v), range=(max-min)||1;
+  const step=(w-pad*2)/(v.length-1);
+  const pts=v.map((n,i)=>`${(pad+i*step).toFixed(1)},${(pad+(h-pad*2)*(1-(n-min)/range)).toFixed(1)}`).join(' ');
+  return `<svg class="m-spark ${up?'spark-up':'spark-down'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" vector-effect="non-scaling-stroke" fill="none"/></svg>`;
+}
+
+// Candlestick chart used on coin SEO pages (.coin-chart[data-coin-chart]).
+// ohlc: array of [time, open, high, low, close] from CoinGecko's /ohlc endpoint.
+// Renders a gridded plot with a price axis, a dashed last-price line and a
+// date range footer so the chart reads as a real trading view, not a few
+// bare candles floating on white.
+function candlestickChart(ohlc){
+  const v = (ohlc||[]).filter(c=>c && c.length>=5 && [1,2,3,4].every(i=>isFinite(c[i])));
+  if(v.length < 2) return '';
+  const w=600, h=220, pad=4;
+  const min=Math.min(...v.map(c=>c[3])), max=Math.max(...v.map(c=>c[2])), range=(max-min)||1;
+  const slot=(w-pad*2)/v.length;
+  const bw=Math.max(1.5, slot*0.62);
+  const y=p=>pad+(h-pad*2)*(1-(p-min)/range);
+
+  const GRID_STEPS = 4;
+  const grid = Array.from({length:GRID_STEPS+1},(_,i)=>{
+    const yy=(pad+(h-pad*2)*(i/GRID_STEPS)).toFixed(2);
+    return `<line x1="0" y1="${yy}" x2="${w}" y2="${yy}" class="coin-chart-gridline"/>`;
+  }).join('');
+
+  const body = v.map((c,i)=>{
+    const [,o,hi,lo,cl]=c;
+    const cx=pad+i*slot+slot/2, up=cl>=o;
+    const yO=y(o), yC=y(cl);
+    const top=Math.min(yO,yC), bh=Math.max(Math.abs(yC-yO),1.5);
+    return `<g class="coin-candle ${up?'up':'down'}" style="--i:${i}">
+      <line x1="${cx.toFixed(2)}" y1="${y(hi).toFixed(2)}" x2="${cx.toFixed(2)}" y2="${y(lo).toFixed(2)}" class="coin-candle-wick"/>
+      <rect x="${(cx-bw/2).toFixed(2)}" y="${top.toFixed(2)}" width="${bw.toFixed(2)}" height="${bh.toFixed(2)}" class="coin-candle-body"/>
+    </g>`;
+  }).join('');
+
+  const last = v[v.length-1][4];
+  const lastUp = last >= v[0][1];
+  const lastY = y(last).toFixed(2);
+  const lastLine = `<line x1="0" y1="${lastY}" x2="${w}" y2="${lastY}" class="coin-chart-lastline"/>`;
+
+  const svg = `<svg class="coin-chart-svg coin-candles ${lastUp?'spark-up':'spark-down'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <g class="coin-chart-grid">${grid}</g>
+    ${body}
+    ${lastLine}
+  </svg>`;
+
+  const axis = Array.from({length:GRID_STEPS+1},(_,i)=>
+    `<span>${fmtPrice(max - range*i/GRID_STEPS)}</span>`
+  ).join('');
+
+  const dateFmt = ts => new Date(ts).toLocaleDateString([], {month:'short', day:'numeric'});
+  return `<div class="coin-chart-inner">
+    <div class="coin-chart-plot">
+      ${svg}
+      <div class="coin-chart-axis mono">${axis}</div>
+    </div>
+    <div class="coin-chart-dates mono">
+      <span>${dateFmt(v[0][0])}</span>
+      <span>${dateFmt(v[v.length-1][0])}</span>
+    </div>
+  </div>`;
+}
+
+// Fallback area chart (used if the OHLC endpoint is unavailable).
+// Builds a smooth Catmull-Rom spline through the price points instead of a
+// jagged polyline, with a soft gradient fill under the curve.
+function bigSparkline(vals, up){
+  const v = (vals||[]).filter(n=>isFinite(n));
+  if(v.length < 2) return '';
+  const w=600, h=240, pad=10;
+  const min=Math.min(...v), max=Math.max(...v), range=(max-min)||1;
+  const step=(w-pad*2)/(v.length-1);
+  const pts=v.map((n,i)=>[pad+i*step, pad+(h-pad*2)*(1-(n-min)/range)]);
+
+  let d=`M${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)}`;
+  for(let i=0;i<pts.length-1;i++){
+    const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+    const c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+    const c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+    d+=` C${c1x.toFixed(2)},${c1y.toFixed(2)} ${c2x.toFixed(2)},${c2y.toFixed(2)} ${p2[0].toFixed(2)},${p2[1].toFixed(2)}`;
+  }
+  const firstX=pts[0][0].toFixed(2), lastX=pts[pts.length-1][0].toFixed(2), base=(h-pad).toFixed(2);
+  const areaD=`${d} L${lastX},${base} L${firstX},${base} Z`;
+  const gid='coinGrad'+Math.random().toString(36).slice(2,8);
+  return `<svg class="coin-chart-svg ${up?'spark-up':'spark-down'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="currentColor" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient></defs>
+    <path d="${areaD}" class="coin-chart-area" fill="url(#${gid})" stroke="none"/>
+    <path d="${d}" class="coin-chart-line" fill="none" pathLength="1"/>
+  </svg>`;
+}
+
+// Coin SEO pages (/<slug>.html): fill the live price card + 7-day chart from CoinGecko.
+async function loadCoinPage(){
+  const card = document.querySelector('.coin-hero-card[data-coin-id]');
+  const chartEl = document.querySelector('.coin-chart[data-coin-chart]');
+  if(!card && !chartEl) return;
+  const id = (card && card.dataset.coinId) || (chartEl && chartEl.dataset.coinChart);
+  if(!id) return;
+  try{
+    const url = `${CG_API}/coins/markets?vs_currency=usd&ids=${id}&sparkline=true&price_change_percentage=24h`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const data = await r.json();
+    const c = data && data[0];
+    if(!c) return;
+    if(card){
+      const set = (field, val) => { const el = card.querySelector(`[data-field="${field}"]`); if(el) el.textContent = val; };
+      set('price', fmtPrice(c.current_price||0));
+      const chg = c.price_change_percentage_24h || 0;
+      const chgEl = card.querySelector('[data-field="chg24"]');
+      if(chgEl){ chgEl.textContent = _chgStr(chg); chgEl.classList.remove('up','down'); chgEl.classList.add(_chgClass(chg)); }
+      set('mcap', fmtCap(c.market_cap));
+      set('vol', fmtCap(c.total_volume));
+      set('high24', fmtPrice(c.high_24h||0));
+      set('low24', fmtPrice(c.low_24h||0));
+      set('updated', ' ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+    }
+    // Draw the 7-day chart once. The price card above refreshes every 60s,
+    // but redrawing the chart on each tick risks a failed OHLC fetch
+    // (rate limits) silently downgrading a candlestick chart to the line
+    // fallback, making the chart appear to "switch" mid-session.
+    if(chartEl && !chartEl.dataset.loaded){
+      let svg = '';
+      try{
+        const ohlcR = await fetch(`${CG_API}/coins/${id}/ohlc?vs_currency=usd&days=7`);
+        if(ohlcR.ok) svg = candlestickChart(await ohlcR.json());
+      }catch(e){/* fall back to the sparkline area chart below */}
+      if(!svg){
+        const sp = downsample((c.sparkline_in_7d && c.sparkline_in_7d.price) || [], 48);
+        const up = sp.length > 1 ? sp[sp.length-1] >= sp[0] : true;
+        svg = bigSparkline(sp, up);
+      }
+      if(svg){
+        chartEl.innerHTML = svg;
+        chartEl.dataset.loaded = '1';
+        // double rAF so the browser commits the initial (undrawn) state
+        // before the class flips, letting the draw-in transition run
+        requestAnimationFrame(()=>requestAnimationFrame(()=>chartEl.classList.add('is-drawn')));
+      }
+    }
+  }catch(e){/* keep skeleton/placeholder values */}
+}
+
+function mForexRow(base, quote, rate, dayChg, weekChg, monthChg, series, i){
+  const sym = `${base}/${quote}`;
+  const name = `${FX_NAMES[base]||base} · ${FX_NAMES[quote]||quote}`;
+  const search = `${sym} ${name}`.toLowerCase();
+  return `<div class="m-row m-static" data-search="${esc(search)}">
+    <div class="m-main">
+      <span class="m-rank mono">${String(i+1).padStart(2,'0')}</span>
+      <span class="m-coin">
+        <span class="m-fx-badge mono">${esc(base)}</span>
+        <span class="m-id"><span class="m-name">${esc(sym)}</span><span class="m-sym">${esc(name)}</span></span>
+      </span>
+      <span class="m-price mono">${isFinite(rate)?fmtFx(rate):'—'}</span>
+      <span class="m-chg ${_chgClass(dayChg)} mono">${_chgStr(dayChg)}</span>
+      <span class="m-chg m-week ${_chgClass(weekChg)} mono">${_chgStr(weekChg)}</span>
+      <span class="m-chg m-month ${_chgClass(monthChg)} mono">${_chgStr(monthChg)}</span>
+      <span class="m-spark-wrap">${sparkline(series, monthChg>=0)}</span>
+    </div>
+  </div>`;
+}
+
+function renderCrypto(lang, prefix){
+  const cb = document.getElementById('crypto-rows');
+  if(!cb || !_coins.length) return;
+  cb.innerHTML = _coins.map((c,i)=>mCryptoRow(c,i,lang,prefix)).join('') + `<div class="m-empty mono" hidden>${esc((PRICES_I[lang]||PRICES_I.en).noresults)}</div>`;
+  initMarketAccordion(cb);
+  applySearch(cb);
+  const stamp = document.getElementById('cg-stamp');
+  if(stamp && _top100Stamp){
+    const t = new Date(_top100Stamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    stamp.textContent = ` · ${(PRICES_I[lang]||PRICES_I.en).updated} ${t}`;
+  }
+}
+function renderForex(lang){
+  const fb = document.getElementById('forex-rows');
+  if(!fb || !_fxData || !_fxData.cur) return;
+  const fx = _fxData;
+  const monthIdx = Math.max(0, (fx.dates||[]).length - 22);
+  const rows = FX_PAIRS.map(([base,quote],i)=>{
+    const c = fxRate(base,quote,fx.cur);
+    const p = fx.prev ? fxRate(base,quote,fx.prev) : c;
+    const wk = fx.week ? fxRate(base,quote,fx.week) : c;
+    const mo = fx.month ? fxRate(base,quote,fx.month) : c;
+    const dayChg = p ? (c-p)/p*100 : 0;
+    const weekChg = wk ? (c-wk)/wk*100 : 0;
+    const monthChg = mo ? (c-mo)/mo*100 : 0;
+    const series = (fx.dates||[]).slice(monthIdx).map(d=>fxRate(base,quote,fx.rates[d]));
+    return mForexRow(base, quote, c, dayChg, weekChg, monthChg, series, i);
+  }).join('');
+  fb.innerHTML = rows + `<div class="m-empty mono" hidden>${esc((PRICES_I[lang]||PRICES_I.en).noresults)}</div>`;
+  applySearch(fb);
+}
+
+function initMarketAccordion(container){
+  if(!container || container.dataset.accBound) return;
+  container.dataset.accBound = '1';
+  const toggle = btn => {
+    const row = btn.closest('.m-row');
+    const body = row.querySelector('.m-detail');
+    if(!body) return;
+    const open = row.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    body.style.maxHeight = open ? body.scrollHeight+'px' : '';
+  };
+  container.addEventListener('click', e=>{
+    const btn = e.target.closest('.m-main');
+    if(btn && container.contains(btn) && !btn.closest('.m-static')) toggle(btn);
+  });
+}
+
+/* client-side search: hides rows whose data-search misses the active query */
+function applySearch(container){
+  if(!container) return;
+  const q = (container.dataset.q || '').trim().toLowerCase();
+  let shown = 0;
+  container.querySelectorAll('.m-row').forEach(row=>{
+    const hit = !q || (row.dataset.search||'').includes(q);
+    row.hidden = !hit;
+    if(hit) shown++;
+    if(row.classList.contains('open')){ // recompute open height after filtering
+      const body = row.querySelector('.m-detail');
+      if(body) body.style.maxHeight = body.scrollHeight+'px';
+    }
+  });
+  const empty = container.querySelector('.m-empty');
+  if(empty) empty.hidden = shown>0;
+}
+
 async function loadMarkets(){
   const cb = document.getElementById('crypto-rows');
   const fb = document.getElementById('forex-rows');
   if(!cb && !fb) return;
-  try{
-    if(cb){
-      const cg = await fetchCrypto(MARKET_CRYPTO);
-      cb.innerHTML = MARKET_CRYPTO.map(([sym,id,name],i)=>{
-        const d=cg[id]; if(!d) return '';
-        return `<tr><td class="rank">${String(i+1).padStart(2,'0')}</td><td><span class="sym">${sym}</span> <span class="muted">${name}</span></td><td class="num">${fmtPrice(d.usd)}</td>${changeCell(d.usd_24h_change||0)}</tr>`;
-      }).join('');
+  const lang = feedLang();
+  const prefix = adPrefix();
+  // Load the two markets independently so a failure in one (e.g. a CoinGecko
+  // rate-limit) never blocks the other from rendering.
+  if(cb && !_coins.length) await loadCoinPages();
+  const jobs = [];
+  if(cb) jobs.push((async()=>{
+    // Retry with backoff so the first paint still succeeds through a transient
+    // 429. Once _coins holds data we stop retrying (interval handles refresh).
+    const delays = _coins.length ? [0] : [0, 4000, 12000];
+    for(const wait of delays){
+      if(wait) await new Promise(r=>setTimeout(r, wait));
+      try{
+        const coins = await fetchTop100();
+        if(Array.isArray(coins) && coins.length){ _coins = coins; renderCrypto(lang, prefix); return; }
+      }catch(e){/* try again after backoff */}
     }
-    if(fb){
+  })());
+  if(fb) jobs.push((async()=>{
+    try{
       const fx = await fetchForex();
+      _fxData = fx;
       const stamp = document.getElementById('fx-stamp'); if(stamp&&fx.date) stamp.textContent = fx.date;
-      fb.innerHTML = FX_PAIRS.map(([label,name,fn],i)=>{
-        if(!fx.cur) return '';
-        const c=fn(fx.cur),p=fx.prev?fn(fx.prev):c,ch=p?(c-p)/p*100:0;
-        return `<tr><td class="rank">${String(i+1).padStart(2,'0')}</td><td><span class="sym">${label}</span> <span class="muted">${name}</span></td><td class="num">${fmtFx(c)}</td>${changeCell(ch)}</tr>`;
-      }).join('');
+      renderForex(lang);
+    }catch(e){/* leave forex skeleton */}
+  })());
+  await Promise.all(jobs);
+}
+
+/* segmented crypto/forex switcher + search box (prices.html only) */
+function initPricesUI(){
+  const root = document.getElementById('markets');
+  if(!root || root.dataset.bound) return;
+  root.dataset.bound = '1';
+  const tabs = root.querySelectorAll('.seg-btn');
+  const panels = { crypto: document.getElementById('panel-crypto'), forex: document.getElementById('panel-forex') };
+  const search = document.getElementById('market-search');
+  if(search) search.placeholder = (PRICES_I[feedLang()] || PRICES_I.en).search_ph;
+  const activeContainer = () => {
+    const on = root.querySelector('.seg-btn.active');
+    const which = on ? on.dataset.market : 'crypto';
+    return document.getElementById(which==='crypto'?'crypto-rows':'forex-rows');
+  };
+  tabs.forEach(b=>b.addEventListener('click', ()=>{
+    tabs.forEach(t=>{ const on=t===b; t.classList.toggle('active',on); t.setAttribute('aria-selected',String(on)); });
+    Object.entries(panels).forEach(([k,el])=>{ if(el) el.hidden = (k !== b.dataset.market); });
+    if(search){ // re-apply current query against the now-visible list
+      const c = activeContainer(); if(c){ c.dataset.q = search.value; applySearch(c); }
+    }
+  }));
+  if(search){
+    search.addEventListener('input', ()=>{
+      const c = activeContainer(); if(!c) return;
+      c.dataset.q = search.value; applySearch(c);
+    });
+  }
+}
+
+/* ---------- ranking accordions: top-100 crypto + exchanges/brokers ---------- */
+const RANK_I = {
+  en:{ mcap:'Market Cap', vol:'24h Volume', high24:'24h High', low24:'24h Low', cta_trade:'Trade now →',
+    founded:'Founded', regulation:'Regulation', platforms:'Platforms', mindep:'Min. deposit',
+    tags:{ regulated:'Regulated', raw_spreads:'Raw Spreads', mt4_mt5:'MT4/MT5', pro_platform:'Pro Platform',
+      no_minimum:'No Minimum', islamic_accounts:'Islamic Accounts', copy_trading:'Copy Trading',
+      beginner:'Beginner Friendly', wide_assets:'Wide Assets', low_fees:'Low Fees',
+      high_liquidity:'High Liquidity', derivatives:'Derivatives', web3:'Web3 Wallet', staking:'Staking' } },
+  fa:{ mcap:'ارزش بازار', vol:'حجم ۲۴ ساعته', high24:'سقف ۲۴ ساعته', low24:'کف ۲۴ ساعته', cta_trade:'معامله کنید ←',
+    founded:'تأسیس', regulation:'رگولاتوری', platforms:'پلتفرم‌ها', mindep:'حداقل واریز',
+    tags:{ regulated:'دارای مجوز', raw_spreads:'اسپرد خام', mt4_mt5:'MT4/MT5', pro_platform:'پلتفرم حرفه‌ای',
+      no_minimum:'بدون حداقل', islamic_accounts:'حساب اسلامی', copy_trading:'کپی‌تریدینگ',
+      beginner:'مناسب مبتدی', wide_assets:'تنوع دارایی', low_fees:'کارمزد پایین',
+      high_liquidity:'نقدشوندگی بالا', derivatives:'مشتقات', web3:'کیف‌پول وب۳', staking:'استیکینگ' } },
+  ar:{ mcap:'القيمة السوقية', vol:'حجم ٢٤ ساعة', high24:'أعلى ٢٤ ساعة', low24:'أدنى ٢٤ ساعة', cta_trade:'تداول الآن ←',
+    founded:'التأسيس', regulation:'الترخيص', platforms:'المنصّات', mindep:'الحد الأدنى للإيداع',
+    tags:{ regulated:'مرخّص', raw_spreads:'فروقات خام', mt4_mt5:'MT4/MT5', pro_platform:'منصّة محترفة',
+      no_minimum:'بلا حد أدنى', islamic_accounts:'حسابات إسلامية', copy_trading:'نسخ التداول',
+      beginner:'مناسب للمبتدئين', wide_assets:'تنوّع الأصول', low_fees:'رسوم منخفضة',
+      high_liquidity:'سيولة عالية', derivatives:'مشتقات', web3:'محفظة ويب٣', staking:'تخزين' } },
+  tr:{ mcap:'Piyasa Değeri', vol:'24s Hacim', high24:'24s Yüksek', low24:'24s Düşük', cta_trade:'Şimdi işlem yap →',
+    founded:'Kuruluş', regulation:'Düzenleme', platforms:'Platformlar', mindep:'Min. yatırım',
+    tags:{ regulated:'Düzenlemeli', raw_spreads:'Ham Spread', mt4_mt5:'MT4/MT5', pro_platform:'Profesyonel Platform',
+      no_minimum:'Minimum Yok', islamic_accounts:'İslami Hesap', copy_trading:'Kopya İşlem',
+      beginner:'Yeni Başlayana Uygun', wide_assets:'Geniş Varlık Yelpazesi', low_fees:'Düşük Ücret',
+      high_liquidity:'Yüksek Likidite', derivatives:'Türevler', web3:'Web3 Cüzdan', staking:'Staking' } }
+};
+const avatarClass = i => ['av-a','av-b','av-c','av-d'][i%4];
+const tagClass = i => ['tag-a','tag-b','tag-c','tag-d'][i%4];
+
+function rankingRow(entry, i, lang){
+  const dict = RANK_I[lang] || RANK_I.en;
+  const visitLabel = esc((window.I[lang] && window.I[lang].cta_visit) || 'Visit');
+  const blurb = esc(pickLoc(entry.blurb, lang));
+  const details = esc(pickLoc(entry.details, lang));
+  const letter = esc((entry.name||'?').charAt(0).toUpperCase());
+  const info = entry.info || {};
+  const tags = (entry.tags||[]).map((t,ti)=>`<span class="tag ${tagClass(ti)}">${esc((dict.tags&&dict.tags[t])||t)}</span>`).join('');
+  return `<div class="rank-row">
+    <div class="rank-head" role="button" tabindex="0" aria-expanded="false">
+      <span class="rank-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="rank-id-wrap">
+        <span class="rank-id ${avatarClass(i)}">${letter}</span>
+        <div class="rank-info"><span class="rank-name">${esc(entry.name)}</span><span class="rank-sub">${blurb}</span></div>
+      </div>
+      <span class="rank-score"><b data-count="${entry.score}" data-decimals="1"></b><span class="stars" style="--p:${entry.score*10}%"><i></i></span></span>
+      <span class="rank-chevron">▾</span>
+    </div>
+    <div class="rank-body"><div class="rank-body-inner">
+      <p>${details}</p>
+      <div class="rank-stats">
+        <div><b>${esc(dict.founded)}</b><span>${esc(info.founded||'—')}</span></div>
+        <div><b>${esc(dict.regulation)}</b><span>${esc(info.regulation||'—')}</span></div>
+        <div><b>${esc(dict.platforms)}</b><span>${esc(info.platforms||'—')}</span></div>
+        <div><b>${esc(dict.mindep)}</b><span>${esc(info.minDeposit||'—')}</span></div>
+      </div>
+      <div class="tag-row">${tags}</div>
+      <a class="btn" href="${esc(entry.url||'#')}" rel="sponsored nofollow" target="_blank">${visitLabel}</a>
+    </div></div>
+  </div>`;
+}
+
+function initAccordion(container){
+  if(!container || container.dataset.accBound) return;
+  container.dataset.accBound = '1';
+  const toggle = head=>{
+    const row = head.closest('.rank-row');
+    const body = row.querySelector('.rank-body');
+    const open = row.classList.toggle('open');
+    head.setAttribute('aria-expanded', String(open));
+    body.style.maxHeight = open ? body.scrollHeight+'px' : '';
+  };
+  container.addEventListener('click', e=>{
+    const head = e.target.closest('.rank-head');
+    if(head && container.contains(head)) toggle(head);
+  });
+  container.addEventListener('keydown', e=>{
+    if(e.key!=='Enter' && e.key!==' ') return;
+    const head = e.target.closest('.rank-head');
+    if(!head || !container.contains(head)) return;
+    e.preventDefault();
+    toggle(head);
+  });
+}
+
+async function loadRankings(){
+  const eb = document.getElementById('exchange-rows');
+  const bb = document.getElementById('broker-rows');
+  if(!eb && !bb) return;
+  const prefix = adPrefix();
+  const lang = feedLang();
+  try{
+    if(eb){
+      const r = await fetch(prefix + 'content/data/exchanges.json', {cache:'no-cache'});
+      if(r.ok){
+        const data = await r.json();
+        eb.innerHTML = (data.entries||[]).map((e,i)=>`<div class="reveal">${rankingRow(e,i,lang)}</div>`).join('');
+        initAccordion(eb);
+        initObservers();
+      }
+    }
+    if(bb){
+      const r = await fetch(prefix + 'content/data/brokers.json', {cache:'no-cache'});
+      if(r.ok){
+        const data = await r.json();
+        bb.innerHTML = (data.entries||[]).map((e,i)=>`<div class="reveal">${rankingRow(e,i,lang)}</div>`).join('');
+        initAccordion(bb);
+        initObservers();
+      }
     }
   }catch(e){/* leave skeleton */}
 }
@@ -246,6 +789,271 @@ async function loadAds(){
   }catch(e){/* keep "book this spot" placeholders */}
 }
 
+/* ---------- feed: dynamic homepage sections + stories index ---------- */
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function feedLang(){
+  const fixed = (location.pathname.match(/\/(en|fa|ar|tr)\//)||[])[1];
+  if(fixed) return fixed;
+  const fromUrl = new URLSearchParams(location.search).get('lang');
+  if(window.I && window.I[fromUrl]) return fromUrl;
+  let stored=null; try{ stored=localStorage.getItem('mg_lang'); }catch(e){}
+  if(window.I && window.I[stored]) return stored;
+  return 'en';
+}
+function pickLoc(loc, lang){
+  if(!loc) return '';
+  return loc[lang] || loc.en || Object.values(loc).find(Boolean) || '';
+}
+function articleHref(a, lang, prefix){
+  return `${prefix}${lang}/${a.slug}.html`;
+}
+const CAT_LABELS = {
+  en:{all:'All',markets:'Markets',crypto:'Crypto',forex:'Forex',defi:'DeFi',policy:'Policy',mining:'Mining',analysis:'Analysis',tech:'Tech',cars:'Cars',staff:'Staff',reportage:'Reportage'},
+  fa:{all:'همه',markets:'بازارها',crypto:'کریپتو',forex:'فارکس',defi:'دیفای',policy:'سیاست',mining:'ماینینگ',analysis:'تحلیل',tech:'تکنولوژی',cars:'خودرو',staff:'کارکنان',reportage:'رپورتاژ'},
+  ar:{all:'الكل',markets:'الأسواق',crypto:'كريبتو',forex:'فوركس',defi:'ديفاي',policy:'سياسة',mining:'تعدين',analysis:'تحليل',tech:'تقنية',cars:'سيارات',staff:'الطاقم',reportage:'ريبورتاج'},
+  tr:{all:'Tümü',markets:'Piyasalar',crypto:'Kripto',forex:'Forex',defi:'DeFi',policy:'Politika',mining:'Madencilik',analysis:'Analiz',tech:'Teknoloji',cars:'Otomobil',staff:'Personel',reportage:'Röportaj'}
+};
+function feedCard(a, lang, prefix){
+  const href = articleHref(a, lang, prefix);
+  const cat = esc((a.category||'').toUpperCase());
+  const headline = esc(pickLoc(a.headline, lang));
+  const dek = esc(pickLoc(a.dek, lang));
+  const date = esc(a.date||'');
+  const readLabel = esc((window.I[lang]&&window.I[lang].cta_read) || 'Read →');
+  const img = a.banner ? `<div class="card-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></div>` : '';
+  return `<a class="card reveal" href="${href}">${img}<span class="cat mono">${cat}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
+}
+function listRow(a, lang, prefix, i){
+  const href = articleHref(a, lang, prefix);
+  const headline = esc(pickLoc(a.headline, lang));
+  const dek = esc(pickLoc(a.dek, lang));
+  const cat = esc((a.category||'').toUpperCase());
+  const date = esc(a.date||'');
+  if(!a.banner){
+    // No image: a solid accent tile fills the image slot with the category
+    // and date in display type, keeping the row's two-column rhythm.
+    return `<article class="list-row no-img reveal">
+    <div class="dispatch-mark"><span class="cat">${cat}</span><span class="post-date mono">${date}</span></div>
+    <div class="list-body">
+      <span class="cat mono">${cat}</span>
+      <h3><a href="${href}" style="color:inherit;text-decoration:none">${headline}</a></h3>
+      <p>${dek}</p>
+    </div>
+  </article>`;
+  }
+  const visual = `<a class="thumb" href="${href}" aria-label="Read story" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}');background-size:cover;background-position:center"></a>`;
+  return `<article class="list-row reveal">
+    ${visual}
+    <div class="list-body">
+      <span class="cat mono">${cat}</span>
+      <h3><a href="${href}" style="color:inherit;text-decoration:none">${headline}</a></h3>
+      <p>${dek}</p>
+      <div class="byline mono"><span>${date}</span></div>
+    </div>
+  </article>`;
+}
+/* Editor's Pick row — compact item in the panel beside the hero. */
+function editorRow(a, lang, prefix, i){
+  const href = articleHref(a, lang, prefix);
+  const cat = esc((a.category||'').toUpperCase());
+  const catKey = esc((a.category||'').toLowerCase());
+  const headline = esc(pickLoc(a.headline, lang));
+  const date = esc(a.date||'');
+  const thumb = a.banner
+    ? `<span class="ep-thumb" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></span>`
+    : `<span class="ep-thumb ep-num" data-cat="${catKey}">${cat}</span>`;
+  return `<a class="ep-row" href="${href}">${thumb}<span class="ep-body"><span class="ep-title">${headline}</span><span class="ep-meta"><span class="cat mono">${cat}</span><span class="ep-date mono">${date}</span></span></span></a>`;
+}
+// Featured rotation: every featured article with a banner gets a turn in the
+// hero; with 2+ of them the stage cross-fades to the next one every 10s.
+let featuredList = [];
+let featuredIdx = 0;
+let featuredTimer = null;
+let featuredLangCur = 'en';
+function applyFeatured(lang){
+  featuredLangCur = lang;
+  const a = featuredList[featuredIdx];
+  if(!a) return;
+  const prefix = adPrefix();
+  const href = articleHref(a, lang, prefix);
+  const kicker = document.getElementById('hero-kicker');
+  const titleLink = document.getElementById('hero-title-link');
+  const sub = document.getElementById('hero-sub');
+  const author = document.getElementById('hero-author');
+  const dateEl = document.getElementById('hero-date');
+  const catEl = document.getElementById('hero-cat');
+  const img = document.getElementById('hero-img');
+  if(kicker) kicker.textContent = (a.category||'').toUpperCase();
+  if(titleLink){
+    titleLink.href = href;
+    let hl = titleLink.querySelector('.hl');
+    if(!hl){ hl = document.createElement('span'); hl.className='hl'; titleLink.textContent=''; titleLink.appendChild(hl); }
+    hl.textContent = pickLoc(a.headline, lang);
+  }
+  if(sub) sub.textContent = pickLoc(a.dek, lang);
+  if(author) author.textContent = a.author || 'MAXGAZINE Desk';
+  if(dateEl) dateEl.textContent = a.date || '';
+  if(catEl) catEl.textContent = (a.category||'').toUpperCase();
+  if(img){
+    img.href = href;
+    if(a.banner){
+      img.classList.add('has-img');
+      let ph = img.querySelector('.hero-photo');
+      if(!ph){ ph = document.createElement('img'); ph.className='hero-photo'; ph.alt=''; img.appendChild(ph); }
+      ph.src = prefix + String(a.banner).replace(/^\/+/,'');
+    }
+  }
+}
+function startHeroRotation(){
+  if(featuredTimer || featuredList.length < 2) return;
+  featuredTimer = setInterval(()=>{
+    if(document.hidden) return;
+    const stage = document.querySelector('.hero-stage');
+    if(stage) stage.classList.add('swapping');
+    setTimeout(()=>{
+      featuredIdx = (featuredIdx + 1) % featuredList.length;
+      applyFeatured(featuredLangCur);
+      if(stage) stage.classList.remove('swapping');
+    }, 400);
+  }, 10000);
+}
+function renderFeedSections(feed, lang, prefix){
+  // Editor's Pick — featured stories first, then fill with recent, skipping any
+  // story shown in the hero rotation so it isn't duplicated next to itself.
+  const editors = document.querySelector('[data-feed-editors]');
+  if(editors){
+    const seen = new Set(featuredList.map(a=>a.slug));
+    const picks = [];
+    featuredList.concat(feed).forEach(a=>{
+      if(picks.length < 3 && !seen.has(a.slug)){ seen.add(a.slug); picks.push(a); }
+    });
+    editors.innerHTML = picks.map((a,i)=>editorRow(a,lang,prefix,i)).join('');
+  }
+
+  // Latest — vertical stack of the ten most recent stories.
+  const latest = document.querySelector('[data-feed-latest]');
+  if(latest) latest.innerHTML = feed.slice(0,10).map((a,i)=>listRow(a,lang,prefix,i)).join('');
+
+  // Three-card grid sits below the ad row.
+  const cards = document.querySelector('[data-feed-cards]');
+  if(cards) cards.innerHTML = feed.slice(10,13).map(a=>feedCard(a,lang,prefix)).join('');
+
+  const moreLink = document.querySelector('[data-feed-more]');
+  if(moreLink) moreLink.href = `${prefix}${lang}/stories.html`;
+
+  if(document.getElementById('stories-grid')) initStoriesPage(feed, lang, prefix);
+  initObservers();
+}
+async function loadFeed(){
+  const prefix = adPrefix();
+  let feed = [];
+  try{
+    const r = await fetch(prefix + 'content/data/feed.json', {cache:'no-cache'});
+    if(r.ok) feed = await r.json();
+  }catch(e){/* keep static fallback */}
+  if(!Array.isArray(feed) || !feed.length) return;
+  const lang = feedLang();
+
+  featuredList = feed.filter(a=>a.featured && a.banner);
+  if(featuredList.length){
+    ['hero-kicker','hero-sub'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.removeAttribute('data-i');
+    });
+    const hl = document.querySelector('#hero-title-link .hl');
+    if(hl) hl.removeAttribute('data-i');
+    applyFeatured(lang);
+    startHeroRotation();
+  }
+
+  renderFeedSections(feed, lang, prefix);
+
+  // Re-render translated feed content whenever the language is switched
+  // in place (root-level pages where switchLang calls window.setLang).
+  if(window.setLang && !window.__feedSetLangWrapped){
+    const origSetLang = window.setLang;
+    window.setLang = function(l){
+      origSetLang(l);
+      if(featuredList.length) applyFeatured(l);
+      renderFeedSections(feed, l, prefix);
+    };
+    window.__feedSetLangWrapped = true;
+  }
+}
+function initStoriesPage(feed, lang, prefix){
+  const grid = document.getElementById('stories-grid');
+  const tabsEl = document.getElementById('story-tabs');
+  const pagerEl = document.getElementById('story-pager');
+  if(!grid) return;
+
+  const PAGE_SIZE = 9;
+  const labels = CAT_LABELS[lang] || CAT_LABELS.en;
+  const cats = ['all', ...Array.from(new Set(feed.map(a=>a.category).filter(Boolean)))];
+
+  const params = new URLSearchParams(location.search);
+  let activeCat = params.get('cat') || 'all';
+  if(!cats.includes(activeCat)) activeCat = 'all';
+  let page = parseInt(params.get('page')||'1',10);
+  if(!page || page < 1) page = 1;
+
+  function updateUrl(){
+    const url = new URL(location.href);
+    if(activeCat==='all') url.searchParams.delete('cat'); else url.searchParams.set('cat', activeCat);
+    if(page<=1) url.searchParams.delete('page'); else url.searchParams.set('page', String(page));
+    history.replaceState(null,'',url);
+  }
+
+  function render(){
+    const filtered = activeCat==='all' ? feed : feed.filter(a=>a.category===activeCat);
+    const totalPages = Math.max(1, Math.ceil(filtered.length/PAGE_SIZE));
+    if(page > totalPages) page = totalPages;
+
+    if(tabsEl){
+      tabsEl.innerHTML = cats.map(c=>{
+        const label = esc(labels[c] || c);
+        const active = c===activeCat ? ' active' : '';
+        return `<a class="tab${active}" href="#" data-cat="${esc(c)}">${label}</a>`;
+      }).join('');
+      tabsEl.querySelectorAll('.tab').forEach(t=>{
+        t.addEventListener('click', e=>{
+          e.preventDefault();
+          activeCat = t.dataset.cat;
+          page = 1;
+          updateUrl();
+          render();
+        });
+      });
+    }
+
+    const pageItems = filtered.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
+    grid.innerHTML = pageItems.map(a=>feedCard(a,lang,prefix)).join('');
+
+    if(pagerEl){
+      let html = '';
+      html += page>1 ? `<a href="#" data-page="${page-1}" aria-label="Previous page">←</a>` : `<span class="disabled">←</span>`;
+      for(let p=1;p<=totalPages;p++){
+        html += p===page ? `<span class="active">${p}</span>` : `<a href="#" data-page="${p}">${p}</a>`;
+      }
+      html += page<totalPages ? `<a href="#" data-page="${page+1}" aria-label="Next page">→</a>` : `<span class="disabled">→</span>`;
+      pagerEl.innerHTML = html;
+      pagerEl.querySelectorAll('a[data-page]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          page = parseInt(a.dataset.page,10);
+          updateUrl();
+          render();
+          window.scrollTo({top: grid.offsetTop - 100, behavior:'smooth'});
+        });
+      });
+    }
+    initObservers();
+  }
+
+  render();
+}
+
 /* ---------- contact form (no backend yet) ---------- */
 function initForm(){
   const f = document.getElementById('contact-form');
@@ -265,8 +1073,26 @@ document.addEventListener('DOMContentLoaded',()=>{
   initStickyMark();
   initForm();
   loadAds();
+  loadFeed();
   loadTicker();
+  initPricesUI();
   loadMarkets();
+  loadCoinPage();
   setInterval(loadTicker,60000);
   setInterval(loadMarkets,60000);
+  setInterval(loadCoinPage,60000);
+
+  // Re-render markets in the new language when switched in place (root pages).
+  if(document.getElementById('markets') && window.setLang && !window.__marketsSetLangWrapped){
+    const orig = window.setLang;
+    window.setLang = function(l){
+      orig(l);
+      const lang = (window.I && window.I[l]) ? l : 'en';
+      renderCrypto(lang, adPrefix());
+      renderForex(lang);
+      const s = document.getElementById('market-search');
+      if(s) s.placeholder = (PRICES_I[lang] || PRICES_I.en).search_ph;
+    };
+    window.__marketsSetLangWrapped = true;
+  }
 });

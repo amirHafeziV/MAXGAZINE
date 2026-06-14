@@ -11,3 +11,9 @@ node_modules/
 
 # build cache
 *.tsbuildinfo
+
+# MasterWriter panel user database (lives only on the host)
+admin/data/
+
+# MasterWriter panel server-side GitHub token (lives only on the host)
+admin/config.php

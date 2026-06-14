@@ -1,24 +1,15 @@
 {
-  "name": "maxgazine-agents",
+  "name": "maxgazine-build",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Autonomous agent pipeline that researches, writes, translates, ranks and publishes MAXGAZINE.",
+  "description": "Static-site build: compiles content/ into per-language HTML and sitemap.xml.",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "agents": "tsx src/index.ts",
-    "publish-article": "tsx src/index.ts publish-article",
-    "update-rankings": "tsx src/index.ts update-rankings",
-    "update-forecasts": "tsx src/index.ts update-forecasts",
     "build": "tsx ../build/build.ts",
     "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.65.0",
-    "fast-xml-parser": "^4.5.0",
-    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

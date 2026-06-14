@@ -103,11 +103,15 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 .ad-card{border:2px solid var(--ink);background:#fff;padding:18px}
 .ad-card h3{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;
   display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ad-hint{font-size:11px;line-height:1.5;color:#777;background:#f4f3ee;border:1px solid #ddd;
+  padding:8px 10px;margin-bottom:12px}
 .ad-card .preview{border:2px dashed #bbb;min-height:110px;display:flex;align-items:center;justify-content:center;
   margin-bottom:12px;overflow:hidden;font-family:var(--mono);font-size:11px;color:#999}
 .ad-card .preview img{width:100%;height:auto;display:block}
 .switch{display:inline-flex;align-items:center;gap:6px;font-size:10px;text-transform:uppercase;font-family:var(--mono)}
 .switch input{width:auto}
+.switch-row{display:flex;align-items:center;gap:8px}
+.switch-row input{width:auto;margin-top:0}
 
 @media (max-width:980px){
   .editor-grid,.cols{grid-template-columns:1fr}

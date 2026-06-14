@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Fraunces:opsz,wght@9..144,500..900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"NewsArticle","headline":"Sample panel story: how bannered articles look","description":"A MasterWriter-panel article with a banner image, sitting next to imageless agent stories.","keywords":"sample, panel","image":"https://maxgazine.com/assets/uploads/sample-banner.svg","datePublished":"2026-06-12","dateModified":"2026-06-12","inLanguage":"ar","author":{"@type":"Organization","name":"MAXGAZINE","url":"https://maxgazine.com/"},"publisher":{"@type":"Organization","name":"MAXGAZINE","logo":{"@type":"ImageObject","url":"https://maxgazine.com/og-image.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://maxgazine.com/ar/sample-panel-article-with-banner.html"},"articleSection":"reportage","citation":[]}
@@ -44,12 +44,10 @@
       <a href="../prices.html?lang=ar">الأسعار</a>
       <a href="../exchanges.html?lang=ar">المنصّات</a>
       <a href="../brokers.html?lang=ar">الوسطاء</a>
-      <a href="../future.html?lang=ar">المستقبل</a>
+      <div class="nav-group future-only-mobile"><a href="../future.html?lang=ar">المستقبل</a> <span class="badge-soon">قريباً</span></div>
       <a href="../about.html?lang=ar">حول</a>
     </div>
-    <div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-    <div class="lang" role="group" aria-label="Select language"><button data-lang="en" lang="en">EN</button><button data-lang="fa" lang="fa">فا</button><button data-lang="ar" class="active" lang="ar">ع</button><button data-lang="tr" lang="tr">TR</button></div>
-    <button class="burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+<button class="burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
   </nav>
 </div></header>
 <main>
@@ -68,15 +66,18 @@
 </main>
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+    <div class="foot-brand">
+      <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+    </div>
     <div class="foot-cols">
-      <div class="foot-col"><h5>استكشف</h5><a href="../stories.html?lang=ar">المقالات</a><a href="../chart.html?lang=ar">الرسم البياني</a><a href="../future.html?lang=ar">المستقبل</a><a href="../prices.html?lang=ar">الأسعار</a></div>
+      <div class="foot-col"><h5>استكشف</h5><a href="../stories.html?lang=ar">المقالات</a><a href="../chart.html?lang=ar">الرسم البياني</a><a href="../prices.html?lang=ar">الأسعار</a></div>
       <div class="foot-col"><h5>الأسواق</h5><a href="../exchanges.html?lang=ar">أفضل المنصّات</a><a href="../brokers.html?lang=ar">أفضل الوسطاء</a></div>
       <div class="foot-col"><h5>الشركة</h5><a href="../about.html?lang=ar">حول</a><a href="../contact.html?lang=ar">تواصل معنا</a></div>
       <div class="foot-col"><h5>اللغات</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
     </div>
   </div>
-  <div class="foot-bottom mono"><span>© ٢٠٢٦ ماكسغازين — إعلام كريبتو وفوركس مدعوم بالوكلاء</span><span>منشور بواسطة وكلاء مستقلين</span></div>
+  <div class="foot-bottom mono"><span>© ٢٠٢٦ MAXGAZINE — إعلام كريبتو وفوركس مدعوم بالوكلاء</span><span>منشور بواسطة وكلاء مستقلين</span></div>
 </div></footer>
 
 <script src="../assets/i18n.js"></script>

@@ -16,39 +16,10 @@ export type Category =
   | "staff"
   | "reportage";
 
-/** A topic the Scout agent surfaced as worth covering. */
-export interface Lead {
-  title: string;
-  summary: string;
-  category: Category;
-  /** 0–100; Orchestrator publishes the highest-scoring unseen leads. */
-  importance: number;
-  sources: SourceRef[];
-}
-
 export interface SourceRef {
   title: string;
   url: string;
   publishedAt?: string;
-}
-
-/** The English draft produced by the Writer, before translation. */
-export interface Draft {
-  slug: string;
-  category: Category;
-  headline: string;
-  dek: string;
-  /** Body as Markdown (English). */
-  body: string;
-  sources: SourceRef[];
-}
-
-/** Result of the Fact-Check agent. */
-export interface FactCheck {
-  ok: boolean;
-  issues: string[];
-  /** Optional corrected body the writer should adopt if ok === false. */
-  revisedBody?: string;
 }
 
 /** SEO metadata produced for an article. */
@@ -87,40 +58,6 @@ export interface Article {
    * When set for a language it takes precedence over the Markdown `body`.
    */
   bodyHtml?: Partial<Localized>;
-}
-
-/** A ranked exchange or broker row (revenue pages). */
-export interface RankedEntity {
-  name: string;
-  /** Short positioning blurb per language. */
-  blurb: Localized;
-  /** 0–10. */
-  score: number;
-  /** Headline metric, e.g. "0.10% / 0.10%" or "0.0 pips". */
-  metric: string;
-  /** Affiliate destination. */
-  url: string;
-  sponsored: boolean;
-}
-
-export interface RankingTable {
-  kind: "exchange" | "broker";
-  updated: string;
-  entries: RankedEntity[];
-}
-
-/** A single forecast row on the Future desk. */
-export interface Forecast {
-  asset: string;
-  /** Directional thesis per language. */
-  thesis: Localized;
-  /** "bullish" | "bearish" | "neutral". */
-  bias: "bullish" | "bearish" | "neutral";
-  /** 0–100 model conviction. */
-  confidence: number;
-}
-
-export interface ForecastSet {
-  updated: string;
-  forecasts: Forecast[];
+  /** When true, this article is pinned to the site header and homepage hero. Requires a banner. */
+  featured?: boolean;
 }

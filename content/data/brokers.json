@@ -1,36 +1,86 @@
 {
   "kind": "broker",
-  "updated": "2026-05-29",
+  "updated": "2026-06-12",
   "entries": [
     {
       "name": "IC Markets",
       "blurb": { "en": "ASIC/CySEC · raw spreads", "fa": "ASIC/CySEC · اسپرد خام", "ar": "ASIC/CySEC · فروقات خام", "tr": "ASIC/CySEC · ham spread" },
-      "score": 9.5, "metric": "0.0 pips", "url": "#", "sponsored": false
+      "details": { "en": "An ECN broker popular with algo and high-volume traders, offering raw spreads from 0.0 pips across MT4, MT5 and cTrader.", "fa": "بروکر ECN محبوب میان معامله‌گران الگوریتمی و حجم‌بالا، با اسپرد خام از ۰٫۰ پیپ روی MT4، MT5 و cTrader.", "ar": "وسيط ECN شائع بين متداولي الخوارزميات وأصحاب الحجم الكبير، يقدّم فروقات خام من 0.0 نقطة عبر MT4 و MT5 وcTrader.", "tr": "Algoritmik ve yüksek hacimli yatırımcılar arasında popüler bir ECN brokerı; MT4, MT5 ve cTrader'da 0.0 pip'ten ham spread sunar." },
+      "score": 9.5, "metric": "0.0 pips", "tags": ["regulated", "raw_spreads", "mt4_mt5"],
+      "info": { "founded": "2007", "regulation": "ASIC, CySEC, FSA", "platforms": "MT4, MT5, cTrader", "minDeposit": "$200" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Pepperstone",
       "blurb": { "en": "FCA/ASIC · fast execution", "fa": "FCA/ASIC · اجرای سریع", "ar": "FCA/ASIC · تنفيذ سريع", "tr": "FCA/ASIC · hızlı yürütme" },
-      "score": 9.3, "metric": "0.1 pips", "url": "#", "sponsored": false
+      "details": { "en": "An Australian-founded broker with tier-1 regulation across four continents, fast execution and zero minimum deposit.", "fa": "بروکری با ریشهٔ استرالیایی و رگولاتوری ردهٔ یک در چهار قاره، اجرای سریع و بدون حداقل واریز.", "ar": "وسيط أسسته أستراليا برقابة من الفئة الأولى عبر أربع قارات، وتنفيذ سريع وبدون حد أدنى للإيداع.", "tr": "Avustralya merkezli, dört kıtada tier-1 düzenlemeye sahip; hızlı yürütme ve minimum yatırım şartı olmayan bir broker." },
+      "score": 9.3, "metric": "0.1 pips", "tags": ["regulated", "raw_spreads", "mt4_mt5"],
+      "info": { "founded": "2010", "regulation": "FCA, ASIC, CySEC, DFSA", "platforms": "MT4, MT5, cTrader, TradingView", "minDeposit": "$0" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Interactive Brokers",
       "blurb": { "en": "SEC/FCA · pro-grade", "fa": "SEC/FCA · حرفه‌ای", "ar": "SEC/FCA · للمحترفين", "tr": "SEC/FCA · profesyonel" },
-      "score": 9.2, "metric": "0.1 pips", "url": "#", "sponsored": false
+      "details": { "en": "A professional-grade platform giving access to stocks, options, futures and forex worldwide, with some of the lowest costs for active traders.", "fa": "پلتفرم حرفه‌ای با دسترسی به سهام، آپشن، فیوچرز و فارکس در سطح جهان، با کمترین هزینه برای معامله‌گران فعال.", "ar": "منصّة بمستوى محترف توفر الوصول إلى الأسهم والخيارات والعقود الآجلة والفوركس عالميًا، بأقل التكاليف للمتداولين النشطين.", "tr": "Dünya çapında hisse senedi, opsiyon, vadeli işlem ve forex erişimi sunan profesyonel düzeyde bir platform; aktif yatırımcılar için en düşük maliyetlerden bazılarına sahip." },
+      "score": 9.2, "metric": "0.1 pips", "tags": ["regulated", "pro_platform", "low_fees"],
+      "info": { "founded": "1978", "regulation": "SEC, FCA, FINRA", "platforms": "Trader Workstation, IBKR Mobile", "minDeposit": "$0" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "OANDA",
       "blurb": { "en": "FCA/NFA · no minimum", "fa": "FCA/NFA · بدون حداقل", "ar": "FCA/NFA · بلا حد أدنى", "tr": "FCA/NFA · minimum yok" },
-      "score": 8.9, "metric": "0.8 pips", "url": "#", "sponsored": false
+      "details": { "en": "A long-established broker with no minimum deposit, flexible position sizing and a well-documented API for automated trading.", "fa": "بروکری دیرینه بدون حداقل واریز، اندازهٔ پوزیشن انعطاف‌پذیر و API کاملاً مستند برای معاملات خودکار.", "ar": "وسيط عريق بلا حد أدنى للإيداع، وحجم مراكز مرن، وواجهة برمجة موثّقة جيدًا للتداول الآلي.", "tr": "Minimum yatırım şartı olmayan, esnek pozisyon boyutlandırma ve otomatik işlemler için iyi belgelenmiş bir API sunan köklü bir broker." },
+      "score": 8.9, "metric": "0.8 pips", "tags": ["regulated", "no_minimum", "mt4_mt5"],
+      "info": { "founded": "1996", "regulation": "FCA, NFA, ASIC", "platforms": "MT4, OANDA Trade, API", "minDeposit": "$0" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Saxo Bank",
       "blurb": { "en": "Licensed bank · 70k+ instruments", "fa": "بانک دارای مجوز · +۷۰هزار ابزار", "ar": "بنك مرخّص · +٧٠ ألف أداة", "tr": "Lisanslı banka · 70k+ enstrüman" },
-      "score": 8.8, "metric": "0.6 pips", "url": "#", "sponsored": false
+      "details": { "en": "A licensed Danish bank offering one of the widest instrument ranges — over 70,000 — through professional-grade platforms.", "fa": "بانکی دانمارکی و دارای مجوز، با یکی از گسترده‌ترین طیف‌های ابزار معاملاتی — بیش از ۷۰هزار — روی پلتفرم‌های حرفه‌ای.", "ar": "بنك دنماركي مرخّص يقدّم أحد أوسع نطاقات الأدوات — أكثر من ٧٠ ألف أداة — عبر منصّات بمستوى محترف.", "tr": "70.000'in üzerinde enstrümanla en geniş ürün yelpazelerinden birini sunan, lisanslı bir Danimarka bankası ve profesyonel platformlar." },
+      "score": 8.8, "metric": "0.6 pips", "tags": ["regulated", "pro_platform", "wide_assets"],
+      "info": { "founded": "1992", "regulation": "Danish FSA, FCA, MAS", "platforms": "SaxoTraderGO, SaxoTraderPRO", "minDeposit": "$0–$2,000" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "XM",
       "blurb": { "en": "CySEC/ASIC · low entry", "fa": "CySEC/ASIC · ورود آسان", "ar": "CySEC/ASIC · دخول منخفض", "tr": "CySEC/ASIC · düşük giriş" },
-      "score": 8.6, "metric": "0.6 pips", "url": "#", "sponsored": false
+      "details": { "en": "A high-volume CySEC/ASIC broker with a very low entry threshold, popular for its bonus programmes and educational content.", "fa": "بروکر CySEC/ASIC پرحجم با آستانهٔ ورود بسیار پایین، محبوب به‌خاطر برنامه‌های بونوس و محتوای آموزشی.", "ar": "وسيط CySEC/ASIC بحجم كبير وحد دخول منخفض جدًا، يشتهر ببرامج المكافآت والمحتوى التعليمي.", "tr": "Çok düşük giriş eşiğine sahip yüksek hacimli bir CySEC/ASIC brokerı; bonus programları ve eğitim içerikleriyle popülerdir." },
+      "score": 8.6, "metric": "0.6 pips", "tags": ["regulated", "no_minimum", "islamic_accounts"],
+      "info": { "founded": "2009", "regulation": "CySEC, ASIC, FSC", "platforms": "MT4, MT5", "minDeposit": "$5" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "eToro",
+      "blurb": { "en": "Social trading · copy portfolios", "fa": "ترید اجتماعی · کپی پورتفولیو", "ar": "تداول اجتماعي · نسخ المحافظ", "tr": "Sosyal işlem · portföy kopyalama" },
+      "details": { "en": "Pioneer of social trading — copy the portfolios of top-performing investors automatically alongside its own stock and crypto offering.", "fa": "پیشگام ترید اجتماعی — به‌صورت خودکار پورتفولیوی سرمایه‌گذاران برتر را کپی کنید، در کنار محصولات سهام و کریپتوی خودش.", "ar": "رائدة التداول الاجتماعي — انسخ محافظ أفضل المستثمرين أداءً تلقائيًا، إلى جانب عروضها الخاصة من الأسهم والكريبتو.", "tr": "Sosyal işlemin öncüsü — kendi hisse ve kripto ürünlerinin yanında en iyi performans gösteren yatırımcıların portföylerini otomatik olarak kopyalayın." },
+      "score": 8.5, "metric": "1.0 pips", "tags": ["copy_trading", "beginner", "regulated"],
+      "info": { "founded": "2007", "regulation": "FCA, CySEC, ASIC", "platforms": "eToro Web & App", "minDeposit": "$50–$100" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "AvaTrade",
+      "blurb": { "en": "Fixed spreads · global regulation", "fa": "اسپرد ثابت · رگولاتوری جهانی", "ar": "فروقات ثابتة · تنظيم عالمي", "tr": "Sabit spread · küresel düzenleme" },
+      "details": { "en": "A globally regulated broker offering fixed and floating spreads across MT4, MT5 and its own AvaTradeGO mobile app.", "fa": "بروکری با رگولاتوری جهانی که اسپرد ثابت و متغیر را روی MT4، MT5 و اپ موبایل AvaTradeGO ارائه می‌دهد.", "ar": "وسيط منظَّم عالميًا يقدّم فروقات ثابتة ومتغيرة عبر MT4 وMT5 وتطبيقه الخاص AvaTradeGO.", "tr": "MT4, MT5 ve kendi AvaTradeGO mobil uygulamasında sabit ve değişken spread sunan, küresel olarak düzenlenmiş bir broker." },
+      "score": 8.4, "metric": "0.9 pips", "tags": ["regulated", "islamic_accounts", "mt4_mt5"],
+      "info": { "founded": "2006", "regulation": "Central Bank of Ireland, ASIC, FSCA", "platforms": "MT4, MT5, AvaTradeGO", "minDeposit": "$100" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "FOREX.com",
+      "blurb": { "en": "US heritage · deep research", "fa": "میراث آمریکایی · تحقیقات عمیق", "ar": "أصول أمريكية · أبحاث معمّقة", "tr": "ABD kökenli · derin araştırma" },
+      "details": { "en": "A US-heritage broker backed by StoneX, combining deep market research with reliable MT4/MT5 and proprietary platforms.", "fa": "بروکری با ریشهٔ آمریکایی و پشتیبانی StoneX، ترکیب تحقیقات بازار عمیق با پلتفرم‌های معتبر MT4/MT5 و اختصاصی.", "ar": "وسيط ذو أصول أمريكية تدعمه StoneX، يجمع بين أبحاث سوق عميقة ومنصّات MT4/MT5 وخاصة موثوقة.", "tr": "StoneX tarafından desteklenen ABD kökenli bir broker; derin piyasa araştırmasını güvenilir MT4/MT5 ve kendi platformlarıyla birleştirir." },
+      "score": 8.3, "metric": "0.8 pips", "tags": ["regulated", "raw_spreads", "pro_platform"],
+      "info": { "founded": "2001", "regulation": "NFA, FCA, ASIC", "platforms": "MT4, MT5, Web Trader", "minDeposit": "$100" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "Plus500",
+      "blurb": { "en": "Simple CFDs · listed company", "fa": "سی‌اف‌دی ساده · شرکت بورسی", "ar": "عقود فروقات مبسطة · شركة مدرجة", "tr": "Basit CFD · halka açık şirket" },
+      "details": { "en": "A listed, multi-regulated CFD provider with a simple proprietary app covering forex, indices, shares and crypto CFDs.", "fa": "ارائه‌دهندهٔ CFD بورسی و دارای چند مجوز، با اپ اختصاصی ساده که فارکس، شاخص‌ها، سهام و CFD کریپتو را پوشش می‌دهد.", "ar": "مزود CFD مدرج ومرخّص من جهات متعددة، بتطبيق خاص بسيط يغطي الفوركس والمؤشرات والأسهم وعقود الكريبتو الفروقة.", "tr": "Forex, endeksler, hisseler ve kripto CFD'lerini kapsayan basit kendi uygulamasıyla halka açık, çok düzenlemeli bir CFD sağlayıcısı." },
+      "score": 8.2, "metric": "0.8 pips", "tags": ["regulated", "beginner", "no_minimum"],
+      "info": { "founded": "2008", "regulation": "FCA, CySEC, ASIC, MAS", "platforms": "Plus500 Web & App", "minDeposit": "$100" },
+      "url": "#", "sponsored": false
     }
   ]
 }

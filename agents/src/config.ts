@@ -30,40 +30,6 @@ export const OG_LOCALE: Record<Lang, string> = {
   tr: "tr_TR",
 };
 
-function required(name: string): string {
-  const v = process.env[name];
-  if (!v) throw new Error(`Missing required env var: ${name}`);
-  return v;
-}
-
 export const config = {
-  get anthropicApiKey() {
-    return required("ANTHROPIC_API_KEY");
-  },
   siteOrigin: (process.env.SITE_ORIGIN ?? "https://maxgazine.com").replace(/\/$/, ""),
-  models: {
-    /** Strong model for writing, editing and judgment calls. */
-    writer: process.env.MODEL_WRITER ?? "claude-opus-4-7",
-    /** Cheaper/faster model for translation, classification, extraction. */
-    fast: process.env.MODEL_FAST ?? "claude-haiku-4-5-20251001",
-  },
-  newsFeeds: (process.env.NEWS_FEEDS ?? "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean),
 } as const;
-
-/** Default RSS feeds if NEWS_FEEDS is not set. */
-export const DEFAULT_NEWS_FEEDS = [
-  // crypto / forex
-  "https://www.coindesk.com/arc/outboundfeeds/rss/",
-  "https://cointelegraph.com/rss",
-  "https://www.fxstreet.com/rss/news",
-  // tech
-  "https://techcrunch.com/feed/",
-  "https://www.theverge.com/rss/index.xml",
-  "https://arstechnica.com/feed/",
-  // cars
-  "https://www.motor1.com/rss/news/all/",
-  "https://insideevs.com/rss/news/all/",
-];

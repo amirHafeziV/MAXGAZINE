@@ -1,36 +1,86 @@
 {
   "kind": "exchange",
-  "updated": "2026-05-29",
+  "updated": "2026-06-12",
   "entries": [
     {
       "name": "Binance",
       "blurb": { "en": "Global leader · 350+ coins", "fa": "پیشتاز جهانی · +۳۵۰ ارز", "ar": "الرائدة عالميًا · +٣٥٠ عملة", "tr": "Küresel lider · 350+ coin" },
-      "score": 9.6, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+      "details": { "en": "The world's largest exchange by volume, offering spot, futures, margin and an extensive Web3 wallet across 350+ supported coins.", "fa": "بزرگ‌ترین صرافی جهان از نظر حجم معاملات، با امکان معاملات اسپات، فیوچرز، مارجین و کیف‌پول وب۳ برای بیش از ۳۵۰ ارز.", "ar": "أكبر منصّة تداول في العالم من حيث الحجم، توفر التداول الفوري والعقود الآجلة والهامش ومحفظة ويب٣ تدعم أكثر من ٣٥٠ عملة.", "tr": "Hacme göre dünyanın en büyük borsası; 350'den fazla coin için spot, vadeli, marjin işlemler ve Web3 cüzdanı sunar." },
+      "score": 9.6, "metric": "0.10% / 0.10%", "tags": ["wide_assets", "high_liquidity", "derivatives"],
+      "info": { "founded": "2017", "regulation": "Multiple licences (Dubai, France, Bahrain)", "platforms": "Web, iOS, Android, API", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Coinbase",
       "blurb": { "en": "US-regulated · beginner-friendly", "fa": "تحت نظارت آمریکا · مناسب مبتدی", "ar": "منظَّمة أمريكيًا · سهلة للمبتدئين", "tr": "ABD düzenlemeli · yeni başlayana uygun" },
-      "score": 9.3, "metric": "0.40% / 0.60%", "url": "#", "sponsored": false
+      "details": { "en": "A US-listed, fully regulated exchange built for newcomers, with simple buy/sell flows, staking rewards and strong custody standards.", "fa": "صرافی ثبت‌شده در بورس آمریکا و کاملاً رگوله، مناسب تازه‌واردان با خرید و فروش ساده، پاداش استیکینگ و استانداردهای نگهداری بالا.", "ar": "منصّة مدرجة في البورصة الأمريكية ومرخّصة بالكامل، مصمّمة للمبتدئين بعمليات شراء وبيع بسيطة ومكافآت تخزين ومعايير حفظ قوية.", "tr": "ABD'de halka açık ve tam lisanslı bir borsa; yeni başlayanlar için basit alım-satım, staking ödülleri ve güçlü saklama standartları sunar." },
+      "score": 9.3, "metric": "0.40% / 0.60%", "tags": ["regulated", "beginner", "staking"],
+      "info": { "founded": "2012", "regulation": "SEC / FinCEN registered (US)", "platforms": "Web, iOS, Android", "minDeposit": "$2" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Kraken",
       "blurb": { "en": "Security-first · deep liquidity", "fa": "امنیت‌محور · نقدشوندگی بالا", "ar": "الأمان أولًا · سيولة عميقة", "tr": "Güvenlik öncelikli · derin likidite" },
-      "score": 9.1, "metric": "0.16% / 0.26%", "url": "#", "sponsored": false
+      "details": { "en": "One of the oldest US exchanges, known for rigorous security audits, deep order books and a dedicated Kraken Pro terminal for active traders.", "fa": "یکی از قدیمی‌ترین صرافی‌های آمریکا، با بازرسی‌های امنیتی دقیق، دفتر سفارش عمیق و ترمینال Kraken Pro برای معامله‌گران فعال.", "ar": "من أقدم المنصّات الأمريكية، تشتهر بمراجعات أمان صارمة وعمق كبير في دفاتر الأوامر ومحطة Kraken Pro للمتداولين النشطين.", "tr": "Sıkı güvenlik denetimleri, derin emir defterleri ve aktif yatırımcılar için Kraken Pro terminaliyle bilinen en eski ABD borsalarından biri." },
+      "score": 9.1, "metric": "0.16% / 0.26%", "tags": ["regulated", "high_liquidity", "staking"],
+      "info": { "founded": "2011", "regulation": "FinCEN (US), FCA-registered (UK)", "platforms": "Web, iOS, Android, Pro", "minDeposit": "$10" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "OKX",
       "blurb": { "en": "Derivatives · Web3 wallet", "fa": "مشتقات · کیف‌پول وب۳", "ar": "مشتقات · محفظة ويب٣", "tr": "Türevler · Web3 cüzdan" },
-      "score": 8.9, "metric": "0.08% / 0.10%", "url": "#", "sponsored": false
+      "details": { "en": "A derivatives powerhouse with deep futures liquidity, plus a built-in Web3 wallet for DeFi, NFTs and on-chain trading.", "fa": "قدرتمند در بازار مشتقات با نقدشوندگی بالا در فیوچرز، به همراه کیف‌پول وب۳ داخلی برای دیفای، NFT و معاملات آن‌چین.", "ar": "قوة في عقود المشتقات بسيولة عميقة في الآجلة، مع محفظة ويب٣ مدمجة للتمويل اللامركزي وNFT والتداول على السلسلة.", "tr": "Vadeli işlemlerde derin likiditeye sahip bir türev devi; DeFi, NFT ve zincir üstü işlemler için yerleşik Web3 cüzdanı sunar." },
+      "score": 8.9, "metric": "0.08% / 0.10%", "tags": ["derivatives", "web3", "high_liquidity"],
+      "info": { "founded": "2017", "regulation": "Licensed in Dubai, Bahamas", "platforms": "Web, iOS, Android, Wallet", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "Bybit",
       "blurb": { "en": "Fast futures · copy trading", "fa": "فیوچرز سریع · کپی‌تریدینگ", "ar": "عقود سريعة · نسخ التداول", "tr": "Hızlı vadeli · kopya işlem" },
-      "score": 8.7, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+      "details": { "en": "Fast-growing derivatives exchange with deep futures markets, a popular copy-trading marketplace and a clean mobile-first interface.", "fa": "صرافی مشتقات با رشد سریع، بازار فیوچرز عمیق، مارکت‌پلیس کپی‌تریدینگ پرطرفدار و رابط کاربری موبایل‌محور تمیز.", "ar": "منصّة مشتقات سريعة النمو بأسواق آجلة عميقة، وسوق نسخ تداول شهير وواجهة نظيفة تركّز على الهاتف.", "tr": "Hızla büyüyen bir türev borsası; derin vadeli piyasalar, popüler bir kopya işlem pazarı ve sade mobil odaklı arayüz sunar." },
+      "score": 8.7, "metric": "0.10% / 0.10%", "tags": ["derivatives", "copy_trading", "low_fees"],
+      "info": { "founded": "2018", "regulation": "Licensed in Dubai, Kazakhstan", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
     },
     {
       "name": "KuCoin",
       "blurb": { "en": "Altcoin variety · low fees", "fa": "تنوع آلت‌کوین · کارمزد پایین", "ar": "تنوّع العملات · رسوم منخفضة", "tr": "Altcoin çeşitliliği · düşük ücret" },
-      "score": 8.5, "metric": "0.10% / 0.10%", "url": "#", "sponsored": false
+      "details": { "en": "Famous for listing new and niche altcoins early, with low trading fees and built-in staking and savings products.", "fa": "معروف به لیست زودهنگام آلت‌کوین‌های جدید و کمتر شناخته‌شده، با کارمزد پایین و محصولات استیکینگ و سیوینگ داخلی.", "ar": "معروفة بإدراج العملات البديلة الجديدة والمتخصصة بسرعة، برسوم تداول منخفضة ومنتجات تخزين وادخار مدمجة.", "tr": "Yeni ve niş altcoinleri erken listelemesiyle tanınır; düşük işlem ücretleri ile yerleşik staking ve tasarruf ürünleri sunar." },
+      "score": 8.5, "metric": "0.10% / 0.10%", "tags": ["wide_assets", "low_fees", "staking"],
+      "info": { "founded": "2017", "regulation": "Registered in Seychelles", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "Bitget",
+      "blurb": { "en": "Copy trading hub · derivatives", "fa": "مرکز کپی‌تریدینگ · مشتقات", "ar": "مركز نسخ التداول · مشتقات", "tr": "Kopya işlem merkezi · türevler" },
+      "details": { "en": "Built its reputation on copy trading, letting users mirror top futures traders, alongside a broad derivatives and spot offering.", "fa": "شهرت خود را بر پایه کپی‌تریدینگ ساخته و امکان دنبال‌کردن معامله‌گران برتر فیوچرز را می‌دهد، در کنار طیف وسیعی از مشتقات و اسپات.", "ar": "بنت شهرتها على نسخ التداول، مما يتيح للمستخدمين تقليد كبار متداولي العقود الآجلة، إلى جانب عروض واسعة للمشتقات والتداول الفوري.", "tr": "Kopya işlem üzerine kurulan ünüyle kullanıcıların en iyi vadeli işlem yatırımcılarını taklit etmesine olanak verir; geniş türev ve spot ürünleri sunar." },
+      "score": 8.4, "metric": "0.10% / 0.10%", "tags": ["copy_trading", "derivatives", "low_fees"],
+      "info": { "founded": "2018", "regulation": "Licensed in Seychelles, Lithuania", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "MEXC",
+      "blurb": { "en": "Ultra-low fees · huge listings", "fa": "کارمزد فوق‌پایین · لیست گسترده", "ar": "رسوم منخفضة جدًا · قوائم ضخمة", "tr": "Ultra düşük ücret · geniş liste" },
+      "details": { "en": "Known for some of the lowest spot fees in the industry and one of the widest selections of newly-listed tokens.", "fa": "شناخته‌شده برای داشتن یکی از پایین‌ترین کارمزدهای اسپات صنعت و گسترده‌ترین انتخاب توکن‌های تازه‌لیست‌شده.", "ar": "تُعرف بامتلاكها بعض أدنى رسوم التداول الفوري في الصناعة وأحد أوسع تشكيلات الرموز المُدرجة حديثًا.", "tr": "Sektördeki en düşük spot ücretlerden bazılarına ve yeni listelenen token'lar için en geniş seçeneklerden birine sahip olmasıyla bilinir." },
+      "score": 8.3, "metric": "0.00% / 0.05%", "tags": ["low_fees", "wide_assets", "high_liquidity"],
+      "info": { "founded": "2018", "regulation": "Registered in Seychelles", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "Gate.io",
+      "blurb": { "en": "Veteran exchange · early listings", "fa": "صرافی باسابقه · لیست‌های زودهنگام", "ar": "منصّة عريقة · قوائم مبكرة", "tr": "Köklü borsa · erken listelemeler" },
+      "details": { "en": "A veteran exchange running since 2013, valued for early access to new tokens and a large catalogue of staking and earn products.", "fa": "صرافی باسابقه که از سال ۲۰۱۳ فعال است و به‌خاطر دسترسی زودهنگام به توکن‌های جدید و فهرست بزرگ محصولات استیکینگ و کسب درآمد ارزشمند است.", "ar": "منصّة عريقة تعمل منذ ٢٠١٣، تُقدَّر للوصول المبكر إلى الرموز الجديدة وكتالوج كبير من منتجات التخزين والربح.", "tr": "2013'ten beri faaliyette olan köklü bir borsa; yeni token'lara erken erişim ve büyük bir staking/kazanç ürünleri kataloğuyla değer kazanır." },
+      "score": 8.2, "metric": "0.10% / 0.20%", "tags": ["wide_assets", "staking", "derivatives"],
+      "info": { "founded": "2013", "regulation": "Licensed in Lithuania, Dubai", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
+    },
+    {
+      "name": "Crypto.com",
+      "blurb": { "en": "App-first · card rewards", "fa": "اپ‌محور · پاداش کارت", "ar": "تركيز على التطبيق · مكافآت البطاقة", "tr": "Uygulama odaklı · kart ödülleri" },
+      "details": { "en": "Best known for its app and Visa card ecosystem, pairing an exchange with rewards, payments and a large mobile user base.", "fa": "بیشتر به‌خاطر اکوسیستم اپ و کارت ویزای خود شناخته می‌شود که صرافی را با پاداش، پرداخت و کاربران موبایل گسترده ترکیب می‌کند.", "ar": "تُعرف غالبًا بنظام تطبيقها وبطاقة Visa، حيث تجمع بين منصّة تداول والمكافآت والمدفوعات وقاعدة مستخدمين كبيرة على الهاتف.", "tr": "Daha çok uygulaması ve Visa kart ekosistemiyle bilinir; bir borsayı ödüller, ödemeler ve büyük bir mobil kullanıcı tabanıyla birleştirir." },
+      "score": 8.6, "metric": "0.075% / 0.075%", "tags": ["regulated", "beginner", "staking"],
+      "info": { "founded": "2016", "regulation": "Licensed in Malta, Singapore, US", "platforms": "Web, iOS, Android", "minDeposit": "No minimum" },
+      "url": "#", "sponsored": false
     }
   ]
 }

@@ -1,0 +1,8 @@
+# Clean URLs for coin pages: /bitcoin-btc -> /bitcoin-btc.html (no redirect,
+# canonical stays extension-less). Only applies to single-segment paths that
+# aren't real files/directories (so /admin, /assets, /en/... etc. are untouched).
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([a-z0-9-]+)$ $1.html [L]

@@ -1,19 +1,19 @@
 /* ============================================================
    MasterWriter — MAXGAZINE publishing panel
-   Static panel that talks straight to the GitHub Contents API:
-   articles -> content/articles/*.json, ads -> content/data/ads.json,
-   images -> assets/uploads/. The site build (GitHub Actions) turns
-   content into static HTML, releasing scheduled articles hourly.
+   Talks to the GitHub Contents API through api.php, which holds the
+   repo token server-side: articles -> content/articles/*.json,
+   ads -> content/data/ads.json, images -> assets/uploads/. The site
+   build (GitHub Actions) turns content into static HTML, releasing
+   scheduled articles hourly.
    ============================================================ */
 
 const LANGS = ['en','fa','ar','tr'];
 const RTL = ['fa','ar'];
-const API = 'https://api.github.com';
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>[...document.querySelectorAll(s)];
 
 const state = {
-  cfg: null,            // {token, owner, repo, branch, origin}
+  cfg: null,            // {owner, repo, branch, origin, user} from api.php?action=config
   articles: [],         // [{path, sha, data}]
   ads: null, adsSha: null,
   editing: null,        // {path, sha} when editing an existing article
@@ -23,20 +23,18 @@ const state = {
   banner: '',           // committed path/URL, or dataURL pending upload
 };
 
-/* ---------------- GitHub API ---------------- */
+/* ---------------- GitHub API (proxied through api.php) ---------------- */
 async function gh(path, opts={}){
-  const r = await fetch(`${API}${path}`, {
-    ...opts,
-    headers: {
-      'Authorization': `Bearer ${state.cfg.token}`,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(opts.headers||{}),
-    },
+  const r = await fetch('api.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ method: opts.method || 'GET', path, body: opts.body ?? null }),
   });
-  if(r.status === 404) return null;
-  if(!r.ok) throw new Error(`GitHub ${r.status}: ${(await r.text()).slice(0,200)}`);
-  return r.status === 204 ? true : r.json();
+  if(!r.ok) throw new Error(`Panel API ${r.status}`);
+  const j = await r.json();
+  if(j.status === 404) return null;
+  if(j.status >= 400) throw new Error(`GitHub ${j.status}: ${JSON.stringify(j.body).slice(0,200)}`);
+  return j.status === 204 ? true : j.body;
 }
 const repoPath = (p)=>`/repos/${state.cfg.owner}/${state.cfg.repo}/contents/${p}`;
 
@@ -52,55 +50,46 @@ async function putFile(path, text, message, sha){
     content: btoa(unescape(encodeURIComponent(text))),
   };
   if(sha) body.sha = sha;
-  return gh(repoPath(path), { method:'PUT', body: JSON.stringify(body) });
+  return gh(repoPath(path), { method:'PUT', body });
 }
 async function putBinary(path, base64, message){
-  return gh(repoPath(path), { method:'PUT', body: JSON.stringify({
+  return gh(repoPath(path), { method:'PUT', body: {
     message, branch: state.cfg.branch, content: base64,
-  })});
+  }});
 }
 async function deleteFile(path, sha, message){
-  return gh(repoPath(path), { method:'DELETE', body: JSON.stringify({
+  return gh(repoPath(path), { method:'DELETE', body: {
     message, branch: state.cfg.branch, sha,
-  })});
+  }});
 }
 async function triggerBuild(){
   try{
     await gh(`/repos/${state.cfg.owner}/${state.cfg.repo}/actions/workflows/build.yml/dispatches`,
-      { method:'POST', body: JSON.stringify({ ref: state.cfg.branch }) });
+      { method:'POST', body: { ref: state.cfg.branch } });
     return true;
   }catch(e){ console.warn('build dispatch failed', e); return false; }
 }
 
 /* ---------------- auth ---------------- */
-async function login(){
-  const cfg = {
-    token: $('#login-token').value.trim(),
-    owner: $('#login-owner').value.trim(),
-    repo: $('#login-repo').value.trim(),
-    branch: $('#login-branch').value.trim() || 'main',
-    origin: ($('#login-origin').value.trim() || 'https://maxgazine.com').replace(/\/$/,''),
-  };
-  if(!cfg.token){ $('#login-err').textContent = 'Token required.'; return; }
-  state.cfg = cfg;
-  $('#login-err').textContent = '';
+// The PHP session (lib.php/guard.php) already gates access to this page —
+// just load the repo config and enter the panel.
+async function boot(){
   try{
-    const me = await gh('/user');
-    await gh(`/repos/${cfg.owner}/${cfg.repo}`);
-    localStorage.setItem('mw_cfg', JSON.stringify(cfg));
-    $('#who').textContent = me.login;
+    const r = await fetch('api.php?action=config');
+    if(!r.ok) throw new Error(`config ${r.status}`);
+    state.cfg = await r.json();
+    $('#who').textContent = state.cfg.user;
     enterApp();
   }catch(e){
-    state.cfg = null;
-    $('#login-err').textContent = 'Login failed — check token & repo access.';
+    document.body.innerHTML = '<p style="padding:2rem;font-family:monospace">'
+      + 'Failed to load panel config — is admin/config.php set up? '
+      + '<a href="logout.php">Log out</a> and try again.</p>';
   }
 }
 function logout(){
-  localStorage.removeItem('mw_cfg');
-  location.reload();
+  location.href = 'logout.php';
 }
 function enterApp(){
-  $('#view-login').hidden = true;
   $('#app').hidden = false;
   refreshAll();
 }
@@ -250,6 +239,7 @@ function newArticle(){
   $('#f-slug').value = '';
   $('#f-category').value = 'crypto';
   $('#f-tags').value = '';
+  $('#f-featured').checked = false;
   $('#btn-delete').hidden = true;
   $('#save-msg').textContent = '';
   setBanner('');
@@ -281,6 +271,7 @@ function openEditor(entry){
   $('#f-slug').value = d.slug || '';
   $('#f-category').value = d.category || 'crypto';
   $('#f-tags').value = (d.tags||[]).join(', ');
+  $('#f-featured').checked = !!d.featured;
   $('#btn-delete').hidden = false;
   $('#save-msg').textContent = '';
   setBanner(state.banner);
@@ -329,6 +320,7 @@ async function saveArticle(){
   const msg = $('#save-msg');
   const filled = LANGS.filter(l=>state.buf[l].headline.trim());
   if(!filled.length){ msg.textContent = 'Write a headline in at least one language.'; return; }
+  if($('#f-featured').checked && !state.banner){ msg.textContent = 'Featured articles need a banner image — add one above.'; return; }
   msg.textContent = 'Saving…';
   $('#btn-save').disabled = true;
   try{
@@ -370,6 +362,7 @@ async function saveArticle(){
       status: statusSel === 'draft' ? 'draft' : 'published',
       ...(statusSel === 'scheduled' && publishAtLocal ? { publishAt: new Date(publishAtLocal).toISOString() } : {}),
       ...(banner ? { banner } : {}),
+      featured: $('#f-featured').checked,
     };
     if(state.editing){
       const existing = state.articles.find(a=>a.path===state.editing.path);
@@ -414,13 +407,29 @@ const SLOT_LABELS = {
   sponsored:   'Sponsored story slot',
   newsletter:  'Newsletter banner',
   sidebar:     'Sidebar unit',
+  sidebar1:    'Homepage sidebar — square 1',
+  sidebar2:    'Homepage sidebar — square 2',
   advertorial: 'Advertorial strip (homepage)',
+};
+// Recommended creative size per slot, shown to the writer so they don't upload a
+// stretched or cropped image. Slots not listed fall back to no hint.
+const SLOT_HINTS = {
+  leaderboard: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
+  sponsored:   'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
+  newsletter:  'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
+  sidebar:     'Recommended image size: 600 × 600px (square). JPG, PNG or WEBP.',
+  sidebar1:    'Square box next to the homepage "Latest" feed. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
+  sidebar2:    'Square box next to the homepage "Latest" feed, below slot 1. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
+  advertorial: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
+  popup:       'Recommended image size: 600 × 800px (3:4, portrait). JPG, PNG or WEBP.',
 };
 function adCard(key, ad, isPopup){
   const label = isPopup ? 'Popup (overlay on visit)' : (SLOT_LABELS[key] || key);
+  const hint = SLOT_HINTS[key];
   return `<div class="ad-card" data-slot="${key}" data-popup="${isPopup?1:0}">
     <h3>${esc(label)}
       <span class="switch"><input type="checkbox" class="a-enabled" ${ad.enabled?'checked':''}> live</span></h3>
+    ${hint?`<p class="mono ad-hint">${esc(hint)}</p>`:''}
     <div class="preview">${ad.image?`<img src="${esc(ad.image)}" alt="">`:'NO CREATIVE'}</div>
     <label class="mono">Image / GIF URL <input class="a-image" value="${esc(ad.image||'')}"></label>
     <button class="ghost mono a-upload">⬆ Upload image / GIF</button>
@@ -434,7 +443,7 @@ function adCard(key, ad, isPopup){
 function renderAds(){
   if(!state.ads) return;
   const slots = state.ads.slots || {};
-  const keys = ['leaderboard','sponsored','newsletter','sidebar','advertorial'];
+  const keys = ['leaderboard','sponsored','newsletter','sidebar','sidebar1','sidebar2','advertorial'];
   $('#ads-list').innerHTML =
     keys.map(k=>adCard(k, slots[k]||{}, false)).join('') +
     adCard('popup', state.ads.popup||{}, true);
@@ -507,8 +516,6 @@ function initToolbar(){
 
 /* ---------------- wire-up ---------------- */
 document.addEventListener('DOMContentLoaded', ()=>{
-  $('#login-btn').addEventListener('click', login);
-  $('#login-token').addEventListener('keydown', e=>{ if(e.key==='Enter') login(); });
   $('#btn-logout').addEventListener('click', logout);
   $$('.mainnav button, #btn-new').forEach(b=>b.addEventListener('click', ()=>{
     const v = b.dataset.view;
@@ -542,14 +549,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
     setTimeout(()=>$('#btn-build').textContent='⟳ Deploy site', 4000);
   });
   initToolbar();
-
-  // auto-login from saved config
-  const saved = localStorage.getItem('mw_cfg');
-  if(saved){
-    try{
-      state.cfg = JSON.parse(saved);
-      gh('/user').then(me=>{ $('#who').textContent = me.login; enterApp(); })
-        .catch(()=>{ state.cfg=null; localStorage.removeItem('mw_cfg'); });
-    }catch(e){ localStorage.removeItem('mw_cfg'); }
-  }
+  boot();
 });

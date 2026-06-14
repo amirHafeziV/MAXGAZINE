@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Fraunces:opsz,wght@9..144,500..900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="nav-group has-sub">
-        <a href="exchanges.html" data-i="nav_topmarkets">Top Markets</a>
+        <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
         <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
         <div class="sub">
           <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
@@ -67,9 +67,9 @@
         </div>
       </div>
       <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-      <div class="nav-group"><a href="future.html" data-i="nav_future">Future</a></div>
+      <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
       <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact Us</a></div>
+      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
       <div class="lang menu-lang" role="group" aria-label="Select language">
         <button data-lang="en" class="active" lang="en">EN</button>
         <button data-lang="fa" lang="fa">فارسی</button>
@@ -82,13 +82,6 @@
       </div>
     </div>
     <div class="topbar-right">
-      <div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      <div class="lang" role="group" aria-label="Select language">
-        <button data-lang="en" class="active" lang="en" aria-label="English">EN</button>
-        <button data-lang="fa" lang="fa" aria-label="فارسی">فا</button>
-        <button data-lang="ar" lang="ar" aria-label="العربية">ع</button>
-        <button data-lang="tr" lang="tr" aria-label="Türkçe">TR</button>
-      </div>
       <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
   </nav>
@@ -142,9 +135,13 @@
 
 <footer><div class="wrap">
   <div class="foot-top">
-    <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+    <div class="foot-brand">
+        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <p class="foot-desc" data-i="foot_desc">MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+      </div>
     <div class="foot-cols">
-      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="future.html" data-i="f_future">Future</a><a href="prices.html" data-i="f_prices">Prices</a></div>
+      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="prices.html" data-i="f_prices">Prices</a></div>
       <div class="foot-col"><h5 data-i="foot_markets">Markets</h5><a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a><a href="brokers.html" data-i="f_brokers">Top Brokers</a></div>
       <div class="foot-col"><h5 data-i="foot_company">Company</h5><a href="about.html" data-i="f_about">About Us</a><a href="contact.html" data-i="f_contact">Contact Us</a></div>
       <div class="foot-col"><h5 data-i="foot_lang">Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
@@ -157,8 +154,8 @@
 <script>
 window.PAGE_I = {
   en:{pm_title:"Contact & Advertise — MAXGAZINE",pm_desc:"Contact MAXGAZINE for advertising, partnerships, press or feedback.",ph_title:"Contact & Advertise",ph_sub:"Partnerships, sponsored placements, press or feedback — tell us what you need and our team will reply.",h_form:"Send a message",l_name:"Name",l_email:"Email",l_topic:"Topic",opt_ad:"Advertising / sponsorship",opt_listing:"Exchange / broker listing",opt_press:"Press",opt_other:"Other",l_msg:"Message",cta_send:"Send message →",form_ok:"Thanks — your message has been received. We'll reply by email.",h_reach:"Reach us",r1b:"Advertising",r2b:"Listings",r3b:"Press",r4b:"General",reply_note:"We triage messages continuously; a human reviews partnership and press enquiries within two business days."},
-  fa:{pm_title:"تماس و تبلیغات — مکس‌گزین",pm_desc:"برای تبلیغات، همکاری، رسانه یا بازخورد با مکس‌گزین تماس بگیرید.",ph_title:"تماس و تبلیغات",ph_sub:"همکاری، جایگاه حمایت‌شده، رسانه یا بازخورد — به ما بگویید چه می‌خواهید و تیم ما پاسخ می‌دهد.",h_form:"ارسال پیام",l_name:"نام",l_email:"ایمیل",l_topic:"موضوع",opt_ad:"تبلیغات / حمایت مالی",opt_listing:"ثبت صرافی / بروکر",opt_press:"رسانه",opt_other:"سایر",l_msg:"پیام",cta_send:"ارسال پیام ←",form_ok:"ممنون — پیام شما دریافت شد. از طریق ایمیل پاسخ می‌دهیم.",h_reach:"راه‌های ارتباط",r1b:"تبلیغات",r2b:"ثبت",r3b:"رسانه",r4b:"عمومی",reply_note:"پیام‌ها پیوسته دسته‌بندی می‌شوند؛ یک انسان درخواست‌های همکاری و رسانه را ظرف دو روز کاری بررسی می‌کند."},
-  ar:{pm_title:"اتصل وأعلن — ماكسغازين",pm_desc:"تواصل مع ماكسغازين للإعلان والشراكات والصحافة أو الملاحظات.",ph_title:"اتصل وأعلن",ph_sub:"شراكات، مواضع مدفوعة، صحافة أو ملاحظات — أخبرنا بما تحتاجه وسيردّ فريقنا.",h_form:"أرسل رسالة",l_name:"الاسم",l_email:"البريد الإلكتروني",l_topic:"الموضوع",opt_ad:"إعلان / رعاية",opt_listing:"إدراج منصّة / وسيط",opt_press:"صحافة",opt_other:"أخرى",l_msg:"الرسالة",cta_send:"إرسال الرسالة ←",form_ok:"شكرًا — تمّ استلام رسالتك. سنردّ عبر البريد الإلكتروني.",h_reach:"تواصل معنا",r1b:"الإعلان",r2b:"الإدراج",r3b:"الصحافة",r4b:"عام",reply_note:"تُفرز الرسائل باستمرار؛ ويراجع شخص بشري طلبات الشراكة والصحافة خلال يومَي عمل."},
+  fa:{pm_title:"تماس و تبلیغات — MAXGAZINE",pm_desc:"برای تبلیغات، همکاری، رسانه یا بازخورد با MAXGAZINE تماس بگیرید.",ph_title:"تماس و تبلیغات",ph_sub:"همکاری، جایگاه حمایت‌شده، رسانه یا بازخورد — به ما بگویید چه می‌خواهید و تیم ما پاسخ می‌دهد.",h_form:"ارسال پیام",l_name:"نام",l_email:"ایمیل",l_topic:"موضوع",opt_ad:"تبلیغات / حمایت مالی",opt_listing:"ثبت صرافی / بروکر",opt_press:"رسانه",opt_other:"سایر",l_msg:"پیام",cta_send:"ارسال پیام ←",form_ok:"ممنون — پیام شما دریافت شد. از طریق ایمیل پاسخ می‌دهیم.",h_reach:"راه‌های ارتباط",r1b:"تبلیغات",r2b:"ثبت",r3b:"رسانه",r4b:"عمومی",reply_note:"پیام‌ها پیوسته دسته‌بندی می‌شوند؛ یک انسان درخواست‌های همکاری و رسانه را ظرف دو روز کاری بررسی می‌کند."},
+  ar:{pm_title:"اتصل وأعلن — MAXGAZINE",pm_desc:"تواصل مع MAXGAZINE للإعلان والشراكات والصحافة أو الملاحظات.",ph_title:"اتصل وأعلن",ph_sub:"شراكات، مواضع مدفوعة، صحافة أو ملاحظات — أخبرنا بما تحتاجه وسيردّ فريقنا.",h_form:"أرسل رسالة",l_name:"الاسم",l_email:"البريد الإلكتروني",l_topic:"الموضوع",opt_ad:"إعلان / رعاية",opt_listing:"إدراج منصّة / وسيط",opt_press:"صحافة",opt_other:"أخرى",l_msg:"الرسالة",cta_send:"إرسال الرسالة ←",form_ok:"شكرًا — تمّ استلام رسالتك. سنردّ عبر البريد الإلكتروني.",h_reach:"تواصل معنا",r1b:"الإعلان",r2b:"الإدراج",r3b:"الصحافة",r4b:"عام",reply_note:"تُفرز الرسائل باستمرار؛ ويراجع شخص بشري طلبات الشراكة والصحافة خلال يومَي عمل."},
   tr:{pm_title:"İletişim & Reklam — MAXGAZINE",pm_desc:"Reklam, ortaklık, basın veya geri bildirim için MAXGAZINE ile iletişime geçin.",ph_title:"İletişim & Reklam",ph_sub:"Ortaklıklar, sponsorlu yerleşimler, basın veya geri bildirim — ne istediğinizi söyleyin, ekibimiz yanıtlasın.",h_form:"Mesaj gönder",l_name:"Ad",l_email:"E-posta",l_topic:"Konu",opt_ad:"Reklam / sponsorluk",opt_listing:"Borsa / broker listeleme",opt_press:"Basın",opt_other:"Diğer",l_msg:"Mesaj",cta_send:"Mesaj gönder →",form_ok:"Teşekkürler — mesajınız alındı. E-posta ile yanıtlayacağız.",h_reach:"Bize ulaşın",r1b:"Reklam",r2b:"Listeleme",r3b:"Basın",r4b:"Genel",reply_note:"Mesajlar sürekli ayıklanır; bir insan, ortaklık ve basın taleplerini iki iş günü içinde inceler."}
 };
 </script>

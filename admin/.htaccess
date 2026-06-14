@@ -1,0 +1,15 @@
+DirectoryIndex index.php
+Options -Indexes
+
+# The panel HTML must only be served through index.php (session check).
+<Files "app.html">
+  Require all denied
+</Files>
+
+# Never serve the user database or helper includes directly.
+<FilesMatch "\.(sqlite|sqlite-journal)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^(lib|guard|users|config|config\.example)\.php$">
+  Require all denied
+</FilesMatch>

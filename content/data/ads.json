@@ -5,6 +5,8 @@
     "sponsored":   { "enabled": false, "image": "", "link": "", "alt": "" },
     "newsletter":  { "enabled": false, "image": "", "link": "", "alt": "" },
     "sidebar":     { "enabled": false, "image": "", "link": "", "alt": "" },
+    "sidebar1":    { "enabled": false, "image": "", "link": "", "alt": "" },
+    "sidebar2":    { "enabled": false, "image": "", "link": "", "alt": "" },
     "advertorial": { "enabled": false, "image": "", "link": "", "alt": "" }
   },
   "popup": {
