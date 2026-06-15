@@ -329,6 +329,16 @@ function autoGrow(el){
   el.style.height = 'auto';
   el.style.height = `${el.scrollHeight}px`;
 }
+// Re-measure across layout/font settling: the first pass can run before the
+// display font has loaded (giving a too-short height that clips a long,
+// multi-line headline), so grow again next frame and once fonts are ready.
+function growHeadline(){
+  const el = $('#f-headline');
+  if(!el) return;
+  autoGrow(el);
+  requestAnimationFrame(()=>autoGrow(el));
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>autoGrow(el));
+}
 function setLang(lang, skipSave){
   if(!skipSave) saveCurrentLangToBuf();
   state.lang = lang;
@@ -342,7 +352,7 @@ function setLang(lang, skipSave){
   const rtl = RTL.includes(lang);
   ['#f-headline','#f-dek','#f-body','#f-seo-title','#f-seo-desc'].forEach(s=>$(s).setAttribute('dir', rtl?'rtl':'ltr'));
   ['#f-headline','#f-dek','#f-body'].forEach(s=>$(s).classList.toggle('lang-fa', lang==='fa'));
-  autoGrow($('#f-headline'));
+  growHeadline();
   $$('#lang-tabs button').forEach(t=>{
     t.classList.toggle('active', t.dataset.elang===lang);
     t.classList.toggle('has-content', !!(state.buf[t.dataset.elang]?.headline));

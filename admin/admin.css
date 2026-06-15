@@ -84,7 +84,10 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 .lang-tabs button.has-content::after{content:'•';color:var(--accent);margin-inline-start:6px}
 .f-headline{font-family:var(--head);font-weight:900;font-size:30px;letter-spacing:-.02em;border:none;
   border-bottom:2px solid var(--ink);background:none;padding:8px 0;margin-bottom:10px;
-  resize:none;overflow:hidden;display:block;line-height:1.2}
+  resize:none;overflow:hidden;display:block;line-height:1.2;
+  /* floor of ~2 lines so a long headline is never clipped to a sliver even if
+     JS autoGrow under-measures (e.g. before the display font has loaded). */
+  min-height:calc(2.4em + 18px)}
 .f-headline.lang-fa,.f-dek.lang-fa,.f-body.lang-fa{font-family:'Estedad',sans-serif}
 .f-dek{font-size:17px;border:none;border-bottom:2px dashed #bbb;background:none;padding:8px 0;resize:vertical;margin-bottom:16px}
 .banner-box{border:2px dashed #aaa;margin-bottom:16px;padding:12px;display:flex;flex-direction:column;gap:10px}
