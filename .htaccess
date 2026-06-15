@@ -6,3 +6,18 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([a-z0-9-]+)$ $1.html [L]
+
+# Cache policy. The site ships no content-hashed filenames, so HTML, the feed/
+# data JSON, and app.js/css must always be revalidated — otherwise browsers
+# heuristically cache them and newly published articles appear "missing" until
+# the visitor manually clears their cache. "no-cache" still allows efficient
+# 304s (download only when actually changed). Images/fonts are immutable enough
+# to cache for a week.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|json|js|css|xml)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|gif|svg|ico|woff2?|ttf)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
