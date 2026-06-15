@@ -46,7 +46,13 @@ jobs:
         run: |
           git config user.name "maxgazine-build"
           git config user.email "build@maxgazine.com"
-          git add en/ fa/ ar/ tr/ sitemap.xml content/data/
+          # Stage every generated file. The build also writes root-level coin
+          # pages (e.g. bitcoin-btc.html) and content/data/coin-pages.json on
+          # top of en|fa|ar|tr + sitemap.xml; staging only a subset left those
+          # as unstaged changes, which made the later `git pull --rebase` abort
+          # with "cannot pull with rebase: You have unstaged changes" and failed
+          # every build. node_modules/ and the panel's data/config are gitignored.
+          git add -A
           if git diff --staged --quiet; then
             echo "Nothing new to publish."
           else
