@@ -276,8 +276,8 @@ function newArticle(){
   $('#btn-delete').hidden = true;
   $('#save-msg').textContent = '';
   setBanner('');
-  setLang('en', true);
   show('editor');
+  setLang('en', true);
 }
 function openEditor(entry){
   const d = entry.data;
@@ -308,8 +308,8 @@ function openEditor(entry){
   $('#btn-delete').hidden = false;
   $('#save-msg').textContent = '';
   setBanner(state.banner);
-  setLang('en', true);
   show('editor');
+  setLang('en', true);
 }
 function toLocalInput(iso){
   const d = new Date(iso); if(isNaN(d)) return '';

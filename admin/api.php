@@ -70,12 +70,10 @@ curl_setopt_array($ch, $opts);
 $resp = curl_exec($ch);
 if ($resp === false) {
   $err = curl_error($ch);
-  curl_close($ch);
   http_response_code(502);
   echo json_encode(['error' => $err]);
   exit;
 }
 $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
 
 echo json_encode(['status' => $status, 'body' => json_decode($resp, true)]);

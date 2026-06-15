@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "serve", "-l", "8742", "."],
       "port": 8742
+    },
+    {
+      "name": "admin-panel",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "localhost:8743", "-t", "admin"],
+      "port": 8743
     }
   ]
 }
