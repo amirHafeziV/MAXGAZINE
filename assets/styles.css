@@ -668,18 +668,16 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
   .content-layout{grid-template-columns:1fr;grid-template-areas:"hero" "editors" "ticker" "latest" "ads";gap:20px;padding-block:16px 28px}
   .content-ads{display:none}
 
-  /* Editor's Pick below the hero: a horizontal scroll-snap carousel of
-     thumb-on-top cards, instead of a cramped vertical list where the last
-     item gets squeezed out of view. */
+  /* Editor's Pick below the hero: a plain vertical stack of three rows (thumb +
+     headline), the way a mobile news app lists picks. No sideways scroll. */
   .editors-pick{border-inline-width:0}
   .editors-head{padding-inline:var(--gut)}
-  .editors-list{flex-direction:row;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:16px var(--gut) 18px}
-  .editors-list::-webkit-scrollbar{display:none}
-  .ep-row{flex:0 0 78%;max-width:320px;scroll-snap-align:start;grid-template-columns:none;
-    display:flex;flex-direction:column;gap:0;padding:0;border:1px solid var(--hair-dark)}
-  .ep-thumb{width:100%;height:170px;flex:none}
-  .ep-body{padding:14px 16px 18px}
+  .editors-list{flex-direction:column;gap:0;overflow:visible}
+  .ep-row{flex:none;max-width:none;grid-template-columns:72px 1fr;gap:14px;
+    align-items:center;padding:14px var(--gut);border-bottom:1px solid var(--hair-dark)}
+  .ep-row:last-child{border-bottom:none}
+  .ep-thumb{width:72px;height:72px;flex:0 0 72px}
+  .ep-body{padding:0}
   .ep-title{font-size:16px;-webkit-line-clamp:3}
   html[lang="fa"] .ep-title,html[lang="ar"] .ep-title{font-size:15px}
   .hero-cover{max-width:none}
@@ -699,11 +697,13 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
   /* tighter page gutter on phones (32px ate too much of a 375px screen) */
   :root{--gut:20px}
 
-  /* taller portrait crop so the cover plate has vertical room over the photo */
-  .feature-img{aspect-ratio:4/5}
+  /* Landscape crop so the hero reads like a news lead, not a full-bleed poster
+     that eats the whole screen before any headline list is visible. */
+  .feature-img{aspect-ratio:3/2}
   .hero-cover{bottom:18px;inset-inline:16px}
-  .hero h1{font-size:clamp(18px,5vw,26px);-webkit-line-clamp:4}
-  .hero-sub{-webkit-line-clamp:3}
+  .hero h1{font-size:clamp(18px,5vw,25px);-webkit-line-clamp:3}
+  /* Dek is redundant over a tight mobile hero; the headline + meta carry it. */
+  .hero-sub{display:none}
 
   /* hide desktop socials + lang switcher in topbar; show burger */
   .topbar-right .socials,.topbar-right .lang{display:none}
@@ -713,12 +713,16 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
      scrolls away — so the separate giant-wordmark band underneath is redundant. */
   .masthead{display:none}
   .topbar .wrap{padding-block:16px}
-  /* RTL: keep the logo on the start edge and the burger on the end edge,
-     identical to the English layout — don't let flex mirror the header. */
-  body[dir="rtl"] .topbar .wrap{flex-direction:row-reverse}
-  .logo{font-size:clamp(26px,9vw,40px);gap:12px}
-  .logo-mark .dot{width:14px;height:14px}
+  /* Header mirrors cleanly per language: space-between pins the wordmark to the
+     reading-start edge and the burger to the end edge in both LTR and RTL. The
+     old RTL row-reverse override fought the RTL flow and left the burger
+     floating mid-row with dead space on the end edge. */
+  .logo{font-size:clamp(20px,6vw,27px);gap:0}
+  /* Mobile wordmark: drop the leading pulse-circle and use a trailing accent
+     dot, matching the desktop "maxgazine." logotype. */
+  .logo-mark .dot{display:none}
   .logo-word{max-width:none;opacity:1;transform:none;overflow:visible}
+  .logo-mark .logo-word::after{content:".";color:var(--accent)}
 
   /* Burger — solid square with a drawn icon (replaces the bare "☰" glyph,
      which read as a stray outline next to the now much bigger wordmark). */
