@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name "maxgazine-build"
           git config user.email "build@maxgazine.com"
-          git add en/ fa/ ar/ tr/ sitemap.xml
+          git add en/ fa/ ar/ tr/ sitemap.xml content/data/
           if git diff --staged --quiet; then
             echo "Nothing new to publish."
           else
@@ -54,3 +54,30 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+
+  deploy:
+    needs: build
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.FTP_REMOTE_DIR || '/public_html/' }}
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+            agents/**
+            admin/**
+            .github/**
+            .claude/**
