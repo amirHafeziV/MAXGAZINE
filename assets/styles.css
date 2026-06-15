@@ -109,6 +109,14 @@ body[dir="rtl"] .ticker-track{animation:scrollRtl 60s linear infinite}
 .logo-word::first-letter{text-transform:uppercase}
 body.scrolled .logo-word{max-width:340px;opacity:1;transform:none}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+/* Playful trailing logo dot: long rest, then a quick hop up onto the final "e"
+   and a tumble back. Amplitudes are in em so they track the wordmark size. */
+@keyframes logoDot{
+  0%,70%,100%{transform:translate(0,0) scale(1)}
+  78%{transform:translate(-.16em,-.55em) scale(1.06)}
+  85%{transform:translate(-.27em,-.47em) scale(.95)}
+  93%{transform:translate(-.05em,-.14em) scale(1.03)}
+}
 .nav{display:flex;align-items:center;gap:32px;flex:1;justify-content:flex-end}
 .nav-links{display:flex;gap:24px;align-items:center}
 .menu-head,.menu-foot{display:none}
@@ -656,7 +664,7 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .ticker-track,.logo .dot{animation:none}
+  .ticker-track,.logo .dot,.logo-mark .logo-word::after{animation:none}
   .bar i{transition:none}
   .nav-links,.sub,.logo-word,.has-sub .sub,.sub-toggle,.nav-group>a,.menu-close{transition:none}
   .coin-chart-line,.coin-chart-area{transition:none;stroke-dashoffset:0;opacity:1}
@@ -712,17 +720,28 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
   /* Masthead title moves into the sticky topbar — big, always visible, never
      scrolls away — so the separate giant-wordmark band underneath is redundant. */
   .masthead{display:none}
-  .topbar .wrap{padding-block:16px}
-  /* Header mirrors cleanly per language: space-between pins the wordmark to the
-     reading-start edge and the burger to the end edge in both LTR and RTL. The
-     old RTL row-reverse override fought the RTL flow and left the burger
-     floating mid-row with dead space on the end edge. */
+  /* The header bar keeps ONE layout in every language: wordmark on the left,
+     burger on the right. Forcing the bar itself to LTR stops the two from
+     swapping places when the reader switches to Persian/Arabic. The open menu's
+     own content is restored to the page's reading direction just below, so only
+     the bar layout is pinned, not the menu text. */
+  .topbar .wrap{padding-block:16px;direction:ltr}
+  /* Restore RTL on the open menu's content only (not on .nav itself, whose
+     flex-end alignment must stay LTR so the burger keeps hugging the end edge). */
+  body[dir="rtl"] .topbar .nav-links{direction:rtl}
+  /* Language chips keep a fixed EN / FA / AR / TR order in every language. */
+  .menu-lang{direction:ltr}
+
   .logo{font-size:clamp(20px,6vw,27px);gap:0}
   /* Mobile wordmark: drop the leading pulse-circle and use a trailing accent
      dot, matching the desktop "maxgazine." logotype. */
   .logo-mark .dot{display:none}
   .logo-word{max-width:none;opacity:1;transform:none;overflow:visible}
-  .logo-mark .logo-word::after{content:".";color:var(--accent)}
+  /* The dot has a little personality: it rests most of the cycle, then hops up
+     toward the final "e" and tumbles back to its spot. Pure brand delight, so
+     it's switched off entirely under prefers-reduced-motion (below). */
+  .logo-mark .logo-word::after{content:".";color:var(--accent);display:inline-block;
+    transform-origin:center bottom;animation:logoDot 9s cubic-bezier(.34,1.4,.5,1) infinite}
 
   /* Burger — solid square with a drawn icon (replaces the bare "☰" glyph,
      which read as a stray outline next to the now much bigger wordmark). */
