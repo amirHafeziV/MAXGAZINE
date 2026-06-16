@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Rivian is betting on its R2 EV to turn the automaker into a household name like Tesla",
-      "url": "https://www.cnbc.com/amp/2026/06/09/rivian-r2-suv-tesla-competition.html"
-    },
-    {
-      "title": "Rivian readies R2 SUV, a Tesla Model Y rival",
-      "url": "https://www.autonews.com/rivian/an-rivian-r2-make-or-break-for-ev-brand-0123/"
-    },
-    {
-      "title": "2026 Rivian R2 Performance vs. 2026 Tesla Model Y",
-      "url": "https://www.autoblog.com/features/2026-rivian-r2-performance-vs-2026-tesla-model-y-which-crossover-ev-should-you-choose"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Rivian",
     "R2",
@@ -98,5 +85,6 @@
     "electric SUV"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781624347256-banner.jpg",
   "featured": false
 }
