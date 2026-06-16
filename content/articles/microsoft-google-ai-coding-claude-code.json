@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Microsoft and Google take on Anthropic and OpenAI in AI coding models",
-      "url": "https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html"
-    },
-    {
-      "title": "June 2026 AI Launch Wave: A Builder's Decision Map",
-      "url": "https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/"
-    },
-    {
-      "title": "AI Updates Today (June 2026) — Latest AI Model Releases",
-      "url": "https://llm-stats.com/llm-updates"
-    }
-  ],
+  "sources": [],
   "tags": [
     "AI coding",
     "Claude Code",
@@ -98,5 +85,6 @@
     "enterprise AI"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781625814142-banner.webp",
   "featured": false
 }
