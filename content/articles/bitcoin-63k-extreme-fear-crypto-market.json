@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Bitcoin (BTC) Daily Market Analysis 04 June 2026",
-      "url": "https://coinstats.app/ai/a/latest-news-for-bitcoin"
-    },
-    {
-      "title": "Bitcoin and Ethereum Prices Today, June 5 2026",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-june-5-2026-prices-continue-their-descent---5-reasons-why-113631165.html"
-    },
-    {
-      "title": "Crypto Bull Run Outlook 2026: Key Signals",
-      "url": "https://coindcx.com/blog/crypto-deep-dives/crypto-bull-run/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "bitcoin",
     "crypto fear index",
@@ -98,5 +85,6 @@
     "macro"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781623915395-banner.png",
   "featured": false
 }
