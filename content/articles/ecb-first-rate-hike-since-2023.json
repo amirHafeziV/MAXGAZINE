@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Euro Forecast 2026: EUR/USD Outlook & ECB Decision",
-      "url": "https://cambridgecurrencies.com/euro-forecast/"
-    },
-    {
-      "title": "European Central Bank 2026 Monetary Policy Outlook",
-      "url": "https://www.tradingkey.com/analysis/forex/jpy/251427083-eur-ecb-rates-tradingkey"
-    },
-    {
-      "title": "NBC Economics and Strategy: Forex June 2026",
-      "url": "https://www.nbc.ca/content/dam/bnc/taux-analyses/analyse-eco/mensuel/forex.pdf"
-    }
-  ],
+  "sources": [],
   "tags": [
     "ECB",
     "interest rates",
@@ -98,5 +85,6 @@
     "Iran"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781626092817-banner.jpg",
   "featured": false
 }
