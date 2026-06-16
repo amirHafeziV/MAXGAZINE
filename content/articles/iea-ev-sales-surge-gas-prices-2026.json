@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "IEA Global EV Outlook 2026",
-      "url": "https://www.iea.org/reports/global-ev-outlook-2026"
-    },
-    {
-      "title": "IEA EV Trends",
-      "url": "https://www.iea.org/reports/global-ev-outlook-2026/trends-in-electric-cars"
-    },
-    {
-      "title": "CBT News",
-      "url": "https://www.cbtnews.com/u-s-news-announces-the-2026-best-hybrid-and-electric-cars/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "EV",
     "Electric Vehicle",
@@ -98,5 +85,6 @@
     "Global"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781643311903-banner.jpg",
   "featured": false
 }
