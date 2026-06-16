@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Cambridge Currencies",
-      "url": "https://cambridgecurrencies.com/euro-forecast/"
-    },
-    {
-      "title": "ECB",
-      "url": "https://www.ecb.europa.eu/press/other-publications/ire/html/ecb.ire202606.en.html"
-    },
-    {
-      "title": "Trading Economics",
-      "url": "https://tradingeconomics.com/euro-area/interest-rate"
-    }
-  ],
+  "sources": [],
   "tags": [
     "ECB",
     "Interest Rates",
@@ -98,5 +85,6 @@
     "Forex"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781643449486-banner.jpg",
   "featured": false
 }
