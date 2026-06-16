@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Fed Interest Rate Decision 2026: Powell Is Out, Warsh Is In",
-      "url": "https://www.mitrade.com/au/insights/others/cfd-trading/fed-interest-rate-decision-2026"
-    },
-    {
-      "title": "USD Dollar Trend Forecast: Dollar Index Falls Below 97.0",
-      "url": "https://www.tradingkey.com/analysis/forex/usd/261532251-usd-dollar-fed-2026-index-forecast-tradingkey"
-    },
-    {
-      "title": "US Dollar Forecast June 2026",
-      "url": "https://www.mtfxgroup.com/fx-monthly-us/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "US dollar",
     "Fed",
@@ -98,5 +85,6 @@
     "interest rates"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781643183686-banner.jpg",
   "featured": false
 }
