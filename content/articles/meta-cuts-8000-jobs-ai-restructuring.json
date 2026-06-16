@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Mean CEO Blog",
-      "url": "https://blog.mean.ceo/ai-news-june-2026/"
-    },
-    {
-      "title": "Crescendo AI News",
-      "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates"
-    },
-    {
-      "title": "AI Funding Tracker",
-      "url": "https://aifundingtracker.com/top-50-ai-startups/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Meta",
     "Layoffs",
@@ -98,5 +85,6 @@
     "Snap"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781639829013-banner.png",
   "featured": false
 }
