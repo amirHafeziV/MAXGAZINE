@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Mexico's Sheinbaum Unveils EV Prototype Backed by Government",
-      "url": "https://www.ttnews.com/articles/mexico-sheinbaum-ev"
-    },
-    {
-      "title": "Sheinbaum Unveils Olinia Uno, Mexico's Affordable EV Prototype",
-      "url": "https://www.bloomberg.com/news/articles/2026-06-07/sheinbaum-unveils-affordable-ev-prototype-backed-by-government"
-    },
-    {
-      "title": "This $9,000 EV is about to take Mexico by storm: Meet Olinia",
-      "url": "https://electrek.co/2026/06/08/9000-ev-mexico-olinia/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Olinia",
     "Mexico EV",
@@ -98,5 +85,6 @@
     "auto"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781624572998-banner.webp",
   "featured": false
 }
