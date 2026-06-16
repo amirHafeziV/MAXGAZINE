@@ -6,8 +6,10 @@ const CHROME: Record<Lang, Record<string, string>> = {
   en: {
     nav_stories: "Stories", nav_prices: "Prices", nav_exchanges: "Exchanges",
     nav_brokers: "Brokers", nav_future: "Future", nav_soon: "Coming Soon", nav_about: "About",
+    nav_crypto: "Crypto", nav_forex: "Forex", nav_tech: "Tech", nav_cars: "Cars",
+    nav_analysis: "Market Analysis", nav_topmarkets: "Markets", nav_contact: "Contact", m_close: "Close",
     foot_explore: "Explore", foot_markets: "Markets", foot_company: "Company", foot_lang: "Languages",
-    foot_desc: "MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.",
+    foot_desc: "Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.",
     f_stories: "Stories", f_chart: "Chart", f_prices: "Prices",
     f_exchanges: "Top Exchanges", f_brokers: "Top Brokers", f_about: "About Us", f_contact: "Contact Us",
     f_copy: "© 2026 MAXGAZINE — AI-AGENT CRYPTO & FOREX MEDIA", f_built: "PUBLISHED BY AUTONOMOUS AGENTS",
@@ -17,8 +19,10 @@ const CHROME: Record<Lang, Record<string, string>> = {
   fa: {
     nav_stories: "مطالب", nav_prices: "قیمت‌ها", nav_exchanges: "صرافی‌ها",
     nav_brokers: "بروکرها", nav_future: "آینده", nav_soon: "به زودی", nav_about: "درباره",
+    nav_crypto: "کریپتو", nav_forex: "فارکس", nav_tech: "تکنولوژی", nav_cars: "خودرو",
+    nav_analysis: "تحلیل بازار", nav_topmarkets: "بازارها", nav_contact: "تماس", m_close: "بستن",
     foot_explore: "کاوش", foot_markets: "بازارها", foot_company: "شرکت", foot_lang: "زبان‌ها",
-    foot_desc: "MAXGAZINE رسانه‌ای چندزبانه در حوزه بازار است که اخبار کریپتو، فارکس، تکنولوژی و خودرو را سریع، خام و بدون شلوغی پوشش می‌دهد.",
+    foot_desc: "Maxgazine رسانه‌ای چندزبانه در حوزه بازار است که اخبار کریپتو، فارکس، تکنولوژی و خودرو را سریع، خام و بدون شلوغی پوشش می‌دهد.",
     f_stories: "مطالب", f_chart: "نمودار", f_prices: "قیمت‌ها",
     f_exchanges: "برترین صرافی‌ها", f_brokers: "برترین بروکرها", f_about: "درباره ما", f_contact: "تماس با ما",
     f_copy: "© ۲۰۲۶ MAXGAZINE — رسانه کریپتو و فارکس مبتنی بر ایجنت", f_built: "منتشرشده توسط ایجنت‌های خودمختار",
@@ -28,8 +32,10 @@ const CHROME: Record<Lang, Record<string, string>> = {
   ar: {
     nav_stories: "المقالات", nav_prices: "الأسعار", nav_exchanges: "المنصّات",
     nav_brokers: "الوسطاء", nav_future: "المستقبل", nav_soon: "قريباً", nav_about: "حول",
+    nav_crypto: "كريبتو", nav_forex: "فوركس", nav_tech: "تقنية", nav_cars: "سيارات",
+    nav_analysis: "تحليل السوق", nav_topmarkets: "الأسواق", nav_contact: "تواصل", m_close: "إغلاق",
     foot_explore: "استكشف", foot_markets: "الأسواق", foot_company: "الشركة", foot_lang: "اللغات",
-    foot_desc: "MAXGAZINE منصة إعلامية متعددة اللغات تغطي أسواق الكريبتو والفوركس والتقنية والسيارات بسرعة وبصدق وبلا ضجيج.",
+    foot_desc: "Maxgazine منصة إعلامية متعددة اللغات تغطي أسواق الكريبتو والفوركس والتقنية والسيارات بسرعة وبصدق وبلا ضجيج.",
     f_stories: "المقالات", f_chart: "الرسم البياني", f_prices: "الأسعار",
     f_exchanges: "أفضل المنصّات", f_brokers: "أفضل الوسطاء", f_about: "حول", f_contact: "تواصل معنا",
     f_copy: "© ٢٠٢٦ MAXGAZINE — إعلام كريبتو وفوركس مدعوم بالوكلاء", f_built: "منشور بواسطة وكلاء مستقلين",
@@ -39,8 +45,10 @@ const CHROME: Record<Lang, Record<string, string>> = {
   tr: {
     nav_stories: "Haberler", nav_prices: "Fiyatlar", nav_exchanges: "Borsalar",
     nav_brokers: "Aracılar", nav_future: "Gelecek", nav_soon: "Yakında", nav_about: "Hakkında",
+    nav_crypto: "Kripto", nav_forex: "Forex", nav_tech: "Teknoloji", nav_cars: "Otomobil",
+    nav_analysis: "Piyasa Analizi", nav_topmarkets: "Piyasalar", nav_contact: "İletişim", m_close: "Kapat",
     foot_explore: "Keşfet", foot_markets: "Piyasalar", foot_company: "Şirket", foot_lang: "Diller",
-    foot_desc: "MAXGAZINE; kripto, forex, teknoloji ve otomobil haberlerini hızlı, sade ve gürültüsüz biçimde sunan çok dilli bir piyasa medyasıdır.",
+    foot_desc: "Maxgazine; kripto, forex, teknoloji ve otomobil haberlerini hızlı, sade ve gürültüsüz biçimde sunan çok dilli bir piyasa medyasıdır.",
     f_stories: "Haberler", f_chart: "Grafik", f_prices: "Fiyatlar",
     f_exchanges: "En İyi Borsalar", f_brokers: "En İyi Aracılar", f_about: "Hakkımızda", f_contact: "İletişim",
     f_copy: "© 2026 MAXGAZINE — YZ AJANI KRİPTO & FOREX MEDYASI", f_built: "OTONOM AJANLAR TARAFINDAN YAYINLANDI",
@@ -172,14 +180,7 @@ ${JSON.stringify(o.jsonLd)}
 function chromeHeader(lang: Lang, prefix: string): string {
   const c = CHROME[lang];
   const s = langSuffix(lang);
-  const nav = [
-    ...[
-      ["stories.html", c.nav_stories], ["prices.html", c.nav_prices],
-      ["exchanges.html", c.nav_exchanges], ["brokers.html", c.nav_brokers],
-    ].map(([href, label]) => `<a href="${prefix}${href}${s}">${esc(label!)}</a>`),
-    `<div class="nav-group future-only-mobile"><a href="${prefix}future.html${s}">${esc(c.nav_future!)}</a> <span class="badge-soon">${esc(c.nav_soon!)}</span></div>`,
-    `<a href="${prefix}about.html${s}">${esc(c.nav_about!)}</a>`,
-  ].join("\n      ");
+  const p = (href: string) => `${prefix}${href}${s}`;
   return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}">
 
 <div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
@@ -188,12 +189,49 @@ function chromeHeader(lang: Lang, prefix: string): string {
 </div></div>
 
 <header class="topbar"><div class="wrap">
-  <a class="logo" href="${prefix}index.html${s}"><span class="dot"></span>MAXGAZINE</a>
+  <a class="logo logo-mark" href="${p("index.html")}" aria-label="MAXGAZINE — home"><span class="dot"></span><span class="logo-word">MAXGAZINE</span></a>
   <nav class="nav" aria-label="Primary">
-    <div class="nav-links">
-      ${nav}
+    <div class="nav-links" id="nav-links">
+      <div class="menu-head">
+        <a class="menu-logo" href="${p("index.html")}">MAXGAZINE<span class="dot">.</span></a>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${p("stories.html")}">${esc(c.nav_stories!)}</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
+        <div class="sub">
+          <a href="${p("stories.html")}?cat=crypto">${esc(c.nav_crypto!)}</a>
+          <a href="${p("stories.html")}?cat=forex">${esc(c.nav_forex!)}</a>
+          <a href="${p("stories.html")}?cat=tech">${esc(c.nav_tech!)}</a>
+          <a href="${p("stories.html")}?cat=cars">${esc(c.nav_cars!)}</a>
+          <a href="${p("stories.html")}?cat=analysis">${esc(c.nav_analysis!)}</a>
+        </div>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${p("exchanges.html")}">${esc(c.nav_topmarkets!)}</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Markets">+</button>
+        <div class="sub">
+          <a href="${p("exchanges.html")}">${esc(c.nav_exchanges!)}</a>
+          <a href="${p("brokers.html")}">${esc(c.nav_brokers!)}</a>
+        </div>
+      </div>
+      <div class="nav-group"><a href="${p("prices.html")}">${esc(c.nav_prices!)}</a></div>
+      <div class="nav-group future-only-mobile"><a href="${p("future.html")}">${esc(c.nav_future!)}</a> <span class="badge-soon">${esc(c.nav_soon!)}</span></div>
+      <div class="nav-group"><a href="${p("about.html")}">${esc(c.nav_about!)}</a></div>
+      <div class="nav-group"><a href="${p("contact.html")}">${esc(c.nav_contact!)}</a></div>
+      <div class="lang menu-lang" role="group" aria-label="Select language">
+        <button data-lang="en"${lang === "en" ? ' class="active"' : ""} lang="en">EN</button>
+        <button data-lang="fa"${lang === "fa" ? ' class="active"' : ""} lang="fa">فارسی</button>
+        <button data-lang="ar"${lang === "ar" ? ' class="active"' : ""} lang="ar">العربية</button>
+        <button data-lang="tr"${lang === "tr" ? ' class="active"' : ""} lang="tr">Türkçe</button>
+      </div>
+      <div class="menu-foot">
+        <button class="menu-close" type="button" aria-label="Close menu">✕ <span>${esc(c.m_close!)}</span></button>
+        <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+      </div>
     </div>
-    <button class="burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="topbar-right">
+      <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
   </nav>
 </div></header>`;
 }
@@ -495,7 +533,7 @@ function rootFooter(): string {
   <div class="foot-top">
     <div class="foot-brand">
         <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
-      <p class="foot-desc" data-i="foot_desc">MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+      <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
         <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
       </div>
     <div class="foot-cols">

@@ -2,6 +2,17 @@
 # canonical stays extension-less). Only applies to single-segment paths that
 # aren't real files/directories (so /admin, /assets, /en/... etc. are untouched).
 RewriteEngine On
+
+# Canonical home: the homepage is always served at "/" — never /index.html or
+# /index. Redirect those explicit requests (e.g. a logo link or a bookmark) to
+# the bare root so the address bar stays clean. Matches the literal request line
+# so the internal DirectoryIndex mapping of "/" -> index.html never loops.
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^index(\.html)?$ / [R=301,L]
+
+# Clean URLs for coin pages: /bitcoin-btc -> /bitcoin-btc.html (no redirect,
+# canonical stays extension-less). Only applies to single-segment paths that
+# aren't real files/directories (so /admin, /assets, /en/... etc. are untouched).
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
