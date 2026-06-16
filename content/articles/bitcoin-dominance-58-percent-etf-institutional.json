@@ -71,20 +71,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "The Block",
-      "url": "https://www.theblock.co/"
-    },
-    {
-      "title": "CoinDCX Blog",
-      "url": "https://coindcx.com/blog/crypto-deep-dives/crypto-bull-run/"
-    },
-    {
-      "title": "eciks.org",
-      "url": "https://eciks.org/8117-61802-cryptocurrency-trading-correction-bitcoin-ethereum-2026"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Bitcoin Dominance",
     "ETF",
@@ -93,5 +80,6 @@
     "Market Share"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781643713014-banner.jpg",
   "featured": false
 }
