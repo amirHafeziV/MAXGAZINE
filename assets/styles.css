@@ -111,6 +111,7 @@ body[dir="rtl"] .ticker-track{animation:scrollRtl 60s linear infinite}
   transform:translateX(8px);transition:max-width .4s cubic-bezier(.2,.7,.2,1),opacity .35s ease,transform .4s cubic-bezier(.2,.7,.2,1)}
 .logo-word::first-letter{text-transform:uppercase}
 body.scrolled .logo-word{max-width:340px;opacity:1;transform:none}
+body.scrolled .logo .dot{animation:logoDot 9.5s linear infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
 /* Playful trailing logo dot — a tiny physics gag. It rests, then: (1) drifts
    away to wind up, (2) whips back accelerating into the final "e", (3) squashes
