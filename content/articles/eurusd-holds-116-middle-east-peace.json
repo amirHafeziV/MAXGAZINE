@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Cambridge Currencies",
-      "url": "https://cambridgecurrencies.com/euro-forecast/"
-    },
-    {
-      "title": "Trading Economics",
-      "url": "https://tradingeconomics.com/euro-area/currency"
-    },
-    {
-      "title": "FX Street",
-      "url": "https://www.fxstreet.com/amp/news/eur-usd-gathers-strength-above-11750-as-fed-rate-cut-prospects-pressure-us-dollar-202512282346"
-    }
-  ],
+  "sources": [],
   "tags": [
     "EUR/USD",
     "Forex",
@@ -98,5 +85,6 @@
     "Currency"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781641490227-banner.png",
   "featured": false
 }
