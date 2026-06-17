@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Anthropic Hits $965B Valuation, Files Confidentially for IPO",
-      "url": "https://medium.com/@davidakpovi/ai-news-week-of-june-1-to-june-7-2026-7957940c805a"
-    },
-    {
-      "title": "Latest AI News and Breakthroughs June 2026",
-      "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates"
-    },
-    {
-      "title": "50 Top AI Funded Startups June 2026",
-      "url": "https://aifundingtracker.com/top-50-ai-startups/"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Anthropic",
     "IPO",
@@ -98,5 +85,6 @@
     "tech"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781730142522-banner.png",
   "featured": false
 }
