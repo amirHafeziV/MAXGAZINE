@@ -1,19 +1,19 @@
 {
-  "slug": "meta-ai-restructuring-8000-layoffs",
-  "category": "tech",
+  "slug": "us-crypto-perpetual-futures-trading-launch",
+  "category": "forex",
   "date": "2026-06-05",
   "author": "MAXGAZINE Desk",
   "headline": {
-    "en": "Meta Lays Off 8,000 Employees; Realigns 7,000 to AI-Focused Teams",
-    "fa": "Meta ۸ هزار کارمند را اخراج کرد؛ ۷ هزار را به تیم‌های متمرکز بر AI تنظیم کرد",
-    "ar": "قامت Meta بطرد 8000 موظف؛ إعادة توجيه 7000 إلى فرق تركز على الذكاء الاصطناعي",
-    "tr": "Meta, 8.000 Çalışanı İşten Çıkardı; 7.000'i AI-Odaklı Takımlara Yeniden Yönelik"
+    "en": "US Opens Regulated Crypto Perpetual Futures to Retail Traders; CFTC Milestone Reached",
+    "fa": "ایالات متحده معاملات آتی‌های دائمی کریپتو منظم را برای معاملگران خردهفروش باز کرد؛ نقطه‌ی عطف CFTC به دست آمد",
+    "ar": "تفتح الولايات المتحدة العقود الآجلة الدائمة للعملات المشفرة المنظمة أمام متداولي التجزئة؛ تم الوصول إلى معلم CFTC",
+    "tr": "ABD, Düzenlenmiş Kripto Kalıcı Vadeli İşlemlerini Perakende Tüccarlar İçin Açıyor; CFTC Dönüm Noktasına Ulaşıldı"
   },
   "dek": {
-    "en": "Meta's latest workforce restructuring cuts 8,000 positions (~10% of headcount) while redirecting 7,000 employees to artificial intelligence development, signaling the company's bet-the-farm AI strategy.",
-    "fa": "بازسازی نیروی کار Meta تازه ۸ هزار موضع (~۱۰ درصد از تعداد کارکنان) را قطع می‌کند درحالی‌که ۷ هزار کارمند را برای توسعه هوش‌مصنوعی تجدید تمرکز می‌کند، نشانه‌ی استراتژی AI «شرط‌کردن مزرعه» شرکت.",
-    "ar": "يقطع إعادة تنظيم القوى العاملة الأخيرة في Meta 8000 منصب (~10٪ من عدد الموظفين) بينما يعيد توجيه 7000 موظف لتطوير الذكاء الاصطناعي.",
-    "tr": "Meta'nın son işgücü yeniden yapılandırması 8.000 pozisyonu keserken (~çalışan sayısının %10) 7.000 çalışanı yapay zeka geliştirmeye yeniden yönlendiriyor."
+    "en": "Regulatory approval of crypto perpetual futures marks a sea change in US digital asset regulation, permitting retail traders direct access to leveraged crypto derivatives under CFTC oversight.",
+    "fa": "تصویب تنظیمی معاملات آتی‌های دائمی کریپتو تغییر دریایی در تنظیم دارایی دیجیتال آمریکا است، اجازه‌ی دسترسی مستقیم معاملگران خردهفروش به مشتقات کریپتو اهرم‌شده تحت نظارت CFTC را می‌دهد.",
+    "ar": "يشير الموافقة التنظيمية على العقود الآجلة الدائمة للعملات المشفرة إلى تحول جذري في تنظيم الأصول الرقمية الأمريكية، مما يسمح للمتداولين بالتجزئة بالوصول المباشر إلى مشتقات العملات المشفرة الممولة تحت رقابة لجنة تجارة السلع الآجلة.",
+    "tr": "Kripto kalıcı vadeli işlemlerinin düzenleyici onaylanması, ABD dijital varlık düzenlemesinde köklü bir değişim işaret ediyor; perakende tüccarların CFTC gözetimi altında kaldıraçlı kripto türevlere doğrudan erişim sağlıyor."
   },
   "body": {
     "en": "",
@@ -22,65 +22,64 @@
     "tr": ""
   },
   "bodyHtml": {
-    "en": "<p>Meta announced in early June 2026 that it is implementing a significant workforce restructuring centered on artificial intelligence. The reorganization includes the layoff of approximately 8,000 employees (roughly 10% of Meta's current workforce) while simultaneously reassigning 7,000 employees to AI-focused product and research teams.</p>\n<p>The move reflects Meta's commitment to compete with OpenAI, Google, and Microsoft in frontier AI development. CEO Mark Zuckerberg has positioned the company's future entirely around large language models, generative video, and conversational AI interfaces replacing traditional feed-based social media.</p>\n<h2>Strategic Rationale</h2>\n<p>Meta's consumer engagement metrics have stagnated, with Instagram and Facebook facing mature market saturation in developed countries. The company's advertising business, while profitable, is facing structural headwinds from privacy regulations (Apple's App Tracking Transparency) and competition from TikTok. Rather than optimize the declining business, Meta is betting AI capabilities will attract younger users and open new revenue channels through enterprise AI services.</p>\n<p>The 7,000 reassignments represent a concentration of talent. These employees move from legacy platforms (Facebook, Instagram feeds) and support functions into teams building Meta's LLM (a GPT-4 competitor), video generation models, and multimodal interfaces. The 8,000 layoffs target middle-management layers, redundant backend infrastructure, and support roles no longer needed in an AI-first organization.</p>\n<h2>Market Implications</h2>\n<p>The announcement signals aggressive AI competition ahead. Meta's budget for AI compute infrastructure is expected to exceed $40 billion through 2027, rivaling Microsoft and Google's infrastructure investments. This spending will accelerate Meta's model training and enable real-time deployment of cutting-edge AI features across its 3+ billion user platform.</p>\n<p>The restructuring also poses a retention risk: displaced managers and infrastructure engineers may defect to competitors, taking institutional knowledge with them. However, employees redirected to AI teams gain prestige and career upside, potentially offsetting attrition.</p>",
-    "fa": "<p>Meta در اوایل ژوئن ۲۰۲۶ اعلام کرد که بازسازی نیروی کار قابل‌توجهی متمرکز بر هوش‌مصنوعی را اجرا می‌کند. بازسازی شامل اخراج تقریباً ۸ هزار کارمند (~۱۰ درصد از نیروی کار فعلی Meta) درحالی‌که به‌طور همزمان ۷ هزار کارمند را به تیم‌های محصول و تحقیق متمرکز بر AI تعیین مجدد می‌کند.</p>\n<p>این حرکت تعهد Meta برای رقابت با OpenAI، گوگل و مایکروسافت در توسعه‌ی frontier AI را منعکس می‌کند. مدیرعامل Mark Zuckerberg آینده‌ی شرکت را کاملاً دور مدل‌های زبان بزرگ، فیلم‌های تولیدی و رابط‌های گفتگویی AI جایگزین فید سنتی‌های رسانه‌ای اجتماعی قرار داده است.</p>\n<h2>دلیل استراتژیک</h2>\n<p>معیارهای تعامل مصرف‌کننده Meta متوقف‌شده‌اند، با Instagram و Facebook در مواجهه با اشباع بازار بالغ در کشورهای توسعه‌یافته. تجارت تبلیغات شرکت، اگرچه سودآور است، روبرو مشقت ساختاری از مقررات حریم‌خصوصی (App Tracking Transparency اپل) و رقابت از TikTok. بجای بهینه‌سازی کسب‌و‌کار کاهش‌یافته، Meta شرط می‌کند توانایی‌های AI صارف‌های جوان‌تر را جذب کند و کانال‌های درآمد نو از طریق خدمات AI کسب‌و‌کار را باز کند.</p>\n<p>۷ هزار تعیین مجدد نشانه‌ی تمرکز استعداد است. این کارمندان از سکوهای میراثی (فید Facebook، Instagram) و عملکرد پشتیبانی به تیم‌های ساخت Meta's LLM (رقیب GPT-4)، مدل‌های تولید ویدیو و رابط‌های چندوجهی حرکت می‌کنند. ۸ هزار اخراج لایه‌های مدیریت‌درمیانی، زیرساخت‌های backend افزونه و نقش‌های پشتیبانی دیگر نیازی در سازمان AI-اول را هدف می‌کنند.</p>\n<h2>معنی‌های بازار</h2>\n<p>اعلام رقابت AI تهاجمی جلویی را نشان می‌دهد. بودجه Meta برای زیرساخت محاسباتی AI تا ۲۰۲۷ انتظار می‌رود بیشتر از ۴۰ میلیارد دلار باشد، رقابت با سرمایه‌گذاری‌های زیرساخت مایکروسافت و گوگل را داشته باشد. این هزینه‌ها آموزش مدل Meta را تسریع و امکان‌پذیری استقرار بلادرنگ ویژگی‌های AI طراز‌کنندگی را در سکوی ۳+ میلیاردی کاربر خود فعال می‌کنند.</p>\n<p>بازسازی همچنین خطر نگاهداری را ایجاد می‌کند: مدیران جابه‌جاشده و مهندسین زیرساخت ممکن است به رقابت‌کنندگان دو‌رو شوند، دانش نهادی با خود بردند. اما کارمندان تجدید‌مسیر‌یافته به تیم‌های AI افتخار و پیشرفت شغلی را به دست می‌آورند، بطور بالقوه ریزش را جبران می‌کنند.</p>",
-    "ar": "<p>أعلنت Meta في أوائل يونيو 2026 أنها تنفذ إعادة تنظيم كبيرة للقوى العاملة تركز على الذكاء الاصطناعي. تتضمن إعادة التنظيم طرد حوالي 8000 موظف (~10٪ من القوى العاملة الحالية لـ Meta) بينما يتم إعادة تعيين 7000 موظف في نفس الوقت إلى فريق المنتج والبحث التي تركز على الذكاء الاصطناعي.</p>\n<p>تعكس الخطوة التزام Meta بالتنافس مع OpenAI و Google و Microsoft في تطوير الذكاء الاصطناعي الحدودي. وضع الرئيس التنفيذي مارك زوكربيرج مستقبل الشركة بالكامل حول نماذج اللغات الكبيرة والفيديو التوليدي وواجهات الذكاء الاصطناعي الحوارية التي تحل محل وسائل الإعلام الاجتماعية القائمة على الفيديو التقليدية.</p>\n<h2>الأساس المنطقي الاستراتيجي</h2>\n<p>توقفت مقاييس المشاركة الاستهلاكية في Meta، مع تواجه Instagram و Facebook اشباع السوق الناضج في الدول المتقدمة. يواجه نشاط الإعلانات في الشركة، بينما مربحة، رياح هيكلية معاكسة من أنظمة الخصوصية (تطبيق Apple Tracking Transparency) والمنافسة من TikTok. بدلاً من تحسين الأعمال المتراجعة، تراهن Meta على أن قدرات الذكاء الاصطناعي ستجذب المستخدمين الأصغر سناً وتفتح قنوات إيرادات جديدة من خلال خدمات الذكاء الاصطناعي للمؤسسات.</p>\n<p>تمثل عمليات إعادة التعيين 7000 تركيز المواهب. ينتقل هؤلاء الموظفون من المنصات القديمة (تغذيات Facebook و Instagram) والعمليات الداعمة إلى فرق بناء LLM الخاص بـ Meta (منافس GPT-4) ونماذج توليد الفيديو والواجهات المتعددة الأوجه. تستهدف عمليات الطرد البالغ عددها 8000 طبقات الإدارة الوسطى والبنية التحتية الخلفية الزائدة والأدوار الداعمة التي لم تعد مطلوبة في منظمة تركز على الذكاء الاصطناعي.</p>\n<h2>آثار السوق</h2>\n<p>يشير الإعلان إلى رقابة الذكاء الاصطناعي العدوانية قادمة. يتوقع أن تتجاوز ميزانية Meta لبنية التحتية الحاسوبية الذكاء الاصطناعي 40 مليار دولار حتى عام 2027، مما يضاهي استثمارات البنية التحتية التابعة لـ Microsoft و Google. سيؤدي هذا الإنفاق إلى تسريع تدريب نموذج Meta وتمكين النشر في الوقت الفعلي لميزات الذكاء الاصطناعي المتقدمة عبر منصة Meta التي تضم أكثر من 3 مليارات مستخدم.</p>\n<p>كما تشكل إعادة التنظيم خطر احتفاظ: قد يهرب المديرون والمهندسون ملغاة إلى المنافسين، مما يأخذ المعرفة المؤسسية معهم. ومع ذلك، يكتسب الموظفون الموجهون إلى فرق الذكاء الاصطناعي سمعة وتقدماً في الحياة المهنية، مما قد يعوض الخسارة.</p>",
-    "tr": "<p>Meta Haziran 2026 başında, yapay zekanın etrafında merkezlenmiş önemli bir işgücü yeniden yapılandırması uyguladığını duyurdu. Yeniden yapılandırma, Meta'nın mevcut işgücünün yaklaşık %10'u olan (~8.000 çalışanı) işten çıkarmayı içeriyor; aynı zamanda 7.000 çalışanı yapay zeka odaklı ürün ve araştırma ekiplerine yeniden atıyor.</p>\n<p>Hamle, Meta'nın OpenAI, Google ve Microsoft ile sınır yapay zeka geliştirmede rekabet etme taahhüdünü yansıtır. CEO Mark Zuckerberg şirketin geleceğini tamamen büyük dil modelleri, üretken video ve geleneksel sosyal medya beslemelerine alternatif olan konuşmacı yapay zeka arayüzleri etrafında konumlandırmıştır.</p>\n<h2>Stratejik Sebep</h2>\n<p>Meta'nın tüketici katılım metrikleri durmuş; Instagram ve Facebook gelişmiş ülkelerde olgun pazar doygunluğu ile karşı karşıya. Şirketin reklam işi, karlı olsa da, gizlilik düzenlemeleri (Apple'ın Uygulama Takibi Saydamlığı) ve TikTok'un rekabeti nedeniyle yapısal hayrısallıkla karşı karşıya. Düşüşte olan işi optimize etmek yerine Meta, yapay zeka yeteneklerinin daha genç kullanıcıları çekecek ve kurumsal yapay zeka hizmetleri aracılığıyla yeni gelir kanalları açacağına bahis yapıyor.</p>\n<p>7000 yeniden atamalar, yetenek yoğunlaştırmasını temsil ediyor. Bu çalışanlar eski platformlardan (Facebook, Instagram beslemesi) ve destek işlevlerinden Meta'nın LLM (GPT-4 rakibi) oluşturan takımlara, video üretme modelleri ve çok yönlü arayüzlere geçiyor. 8000 işten çıkarmalar orta yönetim katmanlarını, fazla arka plan altyapısını ve yapay zeka odaklı bir kuruluşta artık gerekli olmayan destek rollerini hedefler.</p>\n<h2>Pazar Çıkarımları</h2>\n<p>Duyuru, ileriye doğru agresif yapay zeka rekabetini gösteriyor. Meta'nın yapay zeka bilişim altyapısı bütçesi 2027'ye kadar 40 milyar doları aşması bekleniyor; Microsoft ve Google'ın altyapı yatırımlarıyla rekabet ediyor. Bu harcama Meta'nın model eğitimini hızlandıracak ve 3+ milyar kullanıcı platformu arasında son teknoloji yapay zeka özelliklerinin gerçek zamanlı dağıtımını sağlayacaktır.</p>\n<p>Yeniden yapılandırma ayrıca saklama riski oluşturuyor: yer değiştirilen yöneticiler ve altyapı mühendisleri rakiplere kaçabilir; kurumsal bilgi ile yanlarında götürür. Ancak yapay zeka takımlarına yönlendirilen çalışanlar prestij ve kariyer ilerlemeleri kazanırlar; potansiyel olarak çıkışı telafi ederler.</p>"
+    "en": "<p>On June 1, 2026, the US Commodity Futures Trading Commission (CFTC) formally approved the offering of cryptocurrency perpetual futures contracts to retail traders on designated exchange venues, marking a watershed regulatory approval after years of debate.</p>\n<p>Perpetual futures—contracts that trade without expiration dates, allowing traders to maintain leveraged positions indefinitely—have been a staple of unregulated offshore crypto exchanges like Binance and Bybit. The CFTC approval brings this product class under strict US regulatory oversight, requiring clearing houses, margin standards, and bankruptcy-safe segregation of retail customer funds.</p>\n<h2>What This Means for Retail Traders</h2>\n<p>Retail traders in the US now have legal, transparent access to perpetual futures on major cryptocurrencies (Bitcoin, Ethereum, major altcoins) through registered brokers and exchanges. The products operate under CFTC Rule 166(a), permitting up to 20:1 leverage on some contracts, though brokers must provide detailed risk disclosures and enforce strict position limits.</p>\n<p>This development is significant because previously, retail traders seeking leverage on crypto were forced to use unregulated platforms based offshore—exposing them to counterparty risk, market manipulation, and lack of customer asset protection. Regulated US-based perpetual futures eliminate these risks.</p>\n<h2>Market Implications</h2>\n<p>The approval is expected to catalyze significant trading volume migration from offshore, unregulated platforms toward regulated US venues. Established crypto exchanges including Kraken, Coinbase, and established forex brokers like FXCM are expected to launch regulated perpetual futures offerings within Q3 2026.</p>\n<p>Price impact from the shift may be mixed. While institutional inflows into regulated venues could support prices, the commoditization of leverage through mainstream platforms historically increases volatility and liquidation risk.</p>\n<h2>Compliance Requirements</h2>\n<p>Brokers offering regulated perpetuals must maintain segregated customer accounts, hold minimum capital reserves, and provide automated risk management (position limits, forced liquidations at pre-set levels). These safeguards mean retail traders, while gaining leverage access, also face circuit-breaker-style protections unavailable on offshore exchanges.</p>",
+    "fa": "<p>در ۱ ژوئن ۲۰۲۶، کمیسیون تجارت آتی‌های کالاها (CFTC) آمریکا به‌طور رسمی ارائه‌ی معاملات آتی‌های دائمی ارز دیجیتال را برای معاملگران خردهفروش در سکوهای تبادل تعیین‌شده تصویب کرد، نشانه‌ی تصویب تنظیمی آبشاری پس از سال‌های بحث.</p>\n<p>معاملات آتی دائمی—معاملاتی که بدون تاریخ انقضا معامله می‌شوند، اجازه‌ی معاملگران برای نگهداری موضع‌های اهرم‌شده‌ی نامحدود را می‌دهند—قطعه‌ی اصلی از صرافی‌های ارز دیجیتال آفشور منظم‌نشده‌ی نظیر Binance و Bybit بوده‌اند. تصویب CFTC این دسته‌ی محصول را تحت نظارت تنظیمی سخت آمریکایی می‌آورد، ایجاب معیارهای حق‌الزحمه شفاف، معیارهای حاشیه و جدایش ایمن‌تر دارایی‌های مشتری خردهفروش را می‌کند.</p>\n<h2>برای معاملگران خردهفروش این چه معنا دارد</h2>\n<p>معاملگران خردهفروش در آمریکا اکنون دسترسی قانونی و شفاف به معاملات آتی دائمی در ارز‌های دیجیتال بزرگ (بیت‌کوین، اتر، کوین‌های جایگزین بزرگ) از طریق بروکرها و صرافی‌های ثبت‌شده دارند. محصولات تحت CFTC Rule 166(a) عمل می‌کنند، اجازه‌ی تا ۲۰:۱ اهرم برای برخی معاملات را می‌دهد، اگرچه بروکرها افشای ریسک تفصیلی و اجرای محدودیت‌های موضع سخت را باید فراهم کنند.</p>\n<p>این تکاپو قابل‌توجه است چرا که قبلاً معاملگران خردهفروشی که اهرم برای کریپتو می‌خواستند مجبور به استفاده از سکوهای آفشور نامنظم بودند—آن‌ها را به خطر‌های طرف‌مقابل، دستکاری بازار و فقدان حمایت دارایی مشتری نمایش می‌دادند. معاملات آتی دائمی منظم آمریکایی این خطرات را حذف می‌کنند.</p>\n<h2>معنی برای بازار</h2>\n<p>تصویب انتظار می‌رود حجم معامله‌ای قابل‌توجهی را از سکوهای نامنظم آفشور به سمت سکوهای منظم آمریکایی حرکت دهد. صرافی‌های کریپتو ایجاد‌شده شامل Kraken، Coinbase و بروکرهای فارکس ایجاد‌شده نظیر FXCM انتظار می‌رود ارائه‌ی آتی‌های دائمی منظم در Q3 ۲۰۲۶ را شروع کنند.</p>\n<p>تأثیر قیمت از تغییر ممکن است مختلط باشد. درحالی‌که ورود نهادی به سکوهای منظم می‌تواند قیمت‌ها را پشتیبانی کند، کالایی‌سازی اهرم از طریق سکوهای اصلی به‌طور تاریخی نوسان و خطر تصفیه را افزایش می‌دهد.</p>\n<h2>الزامات تطبیق</h2>\n<p>بروکرهای ارائه‌دهنده‌ی معاملات آتی منظم باید حسابات جدایش‌شده‌ی مشتری، ذخایر سرمایه‌ی حداقل و مدیریت ریسک خودکار (محدودیت‌های موضع، تصفیه‌های اجباری در سطح از پیش تعیین‌شده) را نگاه دارند. این محافظت‌ها معاملگران خردهفروش را درحالی‌که دسترسی اهرم به دست می‌آورند، به محافظت‌های سبک مدار قطع نیز رویاروی می‌کنند آن‌هایی که در صرافی‌های آفشور دسترس‌نیست.</p>",
+    "ar": "<p>في 1 يونيو 2026، وافقت لجنة تجارة السلع الآجلة (CFTC) الأمريكية بشكل رسمي على عرض عقود العملات المشفرة الدائمة للتجزئة على بورصات التبادل المعينة، مما يشير إلى موافقة تنظيمية فاصلة بعد سنوات من النقاش.</p>\n<p>تعتبر العقود الآجلة الدائمة—العقود التي يتم تداولها بدون تواريخ انتهاء، مما يسمح للمتداولين بالحفاظ على المراكز الممولة بشكل غير محدود—حجر الزاوية في بورصات العملات المشفرة غير المنظمة في الخارج مثل Binance و Bybit. تجلب موافقة CFTC فئة المنتج هذه تحت إشراف تنظيمي صارم في الولايات المتحدة، مما يتطلب غرف التقاصة ومعايير الهامش وفصل آمن للإفلاس لأموال العملاء بالتجزئة.</p>\n<h2>ماذا يعني هذا للمتداولين بالتجزئة</h2>\n<p>يتمتع متداولو التجزئة في الولايات المتحدة الآن بوصول قانوني وشفاف إلى العقود الآجلة الدائمة على العملات المشفرة الرئيسية (البيتكوين والإيثر والعملات البديلة الرئيسية) من خلال وسطاء وبورصات مسجلة. تعمل المنتجات بموجب CFTC Rule 166(a)، مما يسمح بنسبة تمويل تصل إلى 20:1 على بعض العقود، على الرغم من أن الوسطاء يجب أن يوفروا إفصاحات مفصلة عن المخاطر وفرض حدود موضع صارمة.</p>\n<p>هذا التطور مهم لأنه في السابق، كان المتداولون بالتجزئة الذين يسعون للحصول على الرافعة المالية على العملات المشفرة مجبرين على استخدام منصات غير منظمة مقرها بالخارج—مما يعرضهم لمخاطر الطرف المقابل والتلاعب بالسوق والافتقار إلى حماية أصول العملاء. تلغي العقود الآجلة الدائمة المنظمة في الولايات المتحدة هذه المخاطر.</p>\n<h2>آثار السوق</h2>\n<p>من المتوقع أن تؤدي الموافقة إلى تحفيز حجم تداول كبير الهجرة من المنصات غير المنظمة في الخارج نحو الأماكن الأمريكية المنظمة. من المتوقع أن تطلق بورصات العملات المشفرة الراسخة بما فيها Kraken و Coinbase ووسطاء الفوركس المعروفين مثل FXCM عروض العقود الآجلة الدائمة المنظمة في الربع الثالث من عام 2026.</p>\n<p>قد يكون التأثير على السعر من التحول مختلطاً. بينما قد تدعم التدفقات المؤسسية إلى المنصات المنظمة الأسعار، فإن تسليع الرافعة المالية من خلال المنصات الرئيسية تاريخياً يزيد من التقلبات وخطر التصفية.</p>\n<h2>متطلبات الامتثال</h2>\n<p>يجب على الوسطاء الذين يقدمون العقود الآجلة المنظمة الحفاظ على حسابات العملاء المنفصلة والاحتفاظ باحتياطيات رأس مال الحد الأدنى وإدارة المخاطر الآلية (حدود المركز والتصفيات القسرية عند المستويات المحددة مسبقاً). تعني هذه الحماية أن متداولي التجزئة، بينما يكتسبون الوصول إلى الرافعة المالية، يواجهون أيضاً حماية نمط قاطع الدائرة غير متاحة في بورصات الخارج.</p>",
+    "tr": "<p>1 Haziran 2026'de ABD Mal Vadeli İşlemleri Ticaret Komisyonu (CFTC) resmi olarak kripto para kalıcı vadeli işlem sözleşmelerinin belirlenmiş borsa mekanlarında perakende tüccarlar için sunulmasını onayladı; yıllarca tartışmanın ardından dönüm noktası niteliğinde düzenleyici onay.</p>\n<p>Kalıcı vadeli işlemler—son kullanma tarihleri olmadan işlem gören sözleşmeler, tüccarların kaldıraçlı pozisyonları süresiz olarak korumalarına izin veren—Binance ve Bybit gibi düzensiz denizaşırı kripto borsalarının temel taşıdır. CFTC onayı bu ürün kategorisini katı ABD düzenleyici denetimi altına getirir; takas odaları, marj standartları ve perakende müşteri fonlarının iflas güvenli ayrılması gerektirir.</p>\n<h2>Perakende Tüccarlar İçin Bu Ne Anlama Geliyor</h2>\n<p>ABD'deki perakende tüccarlar artık kayıtlı broker'lar ve borsalar aracılığıyla büyük kripto para birimleri (Bitcoin, Ethereum, büyük altcoin'ler) üzerinde kalıcı vadeli işlemlere yasal ve şeffaf erişim sağlıyor. Ürünler CFTC Rule 166(a) kapsamında faaliyet gösteriyor; bazı sözleşmelerde 20:1'e kadar kaldıraç sağlıyor, ancak broker'lar detaylı risk açıklamalarını ve kesin pozisyon limitlerini sağlamak zorundadır.</p>\n<p>Bu gelişme önem taşıyor çünkü daha önce kripto üzerinde kaldıraç arayan perakende tüccarlar denizaşırı merkezli düzensiz platformları kullanmaya mecbur kaldı—onları karşı taraf riski, pazar manipülasyonu ve müşteri varlık koruma eksikliğine maruz bırakarak. Düzenlü ABD merkezli kalıcı vadeli işlemler bu riskleri ortadan kaldırıyor.</p>\n<h2>Pazar Çıkarımları</h2>\n<p>Onay, denizaşırı düzensiz platformlardan düzenlü ABD mekanlarına önemli ticaret hacmi göçünü katalize etmesi bekleniyor. Kraken, Coinbase gibi kuruluş kripto borsaları ve FXCM gibi kuruluş forex broker'ları 2026 Q3'de düzenlü kalıcı vadeli işlem sunumlarını başlatması bekleniyor.</p>\n<p>Hareketten kaynaklanan fiyat etkisi karışık olabilir. Düzenlü mekanizmalara kurumsal girişler fiyatları destekleyebilirken, ana platformlar aracılığıyla kaldıracın emtia hale gelmesi tarihsel olarak oynaklığı ve tasfiye riskini artırmıştır.</p>\n<h2>Uyum Gereksinimleri</h2>\n<p>Düzenlü perpetualler sunan broker'lar ayrılmış müşteri hesaplarını, minimum sermaye rezervlerini ve otomatik risk yönetimini (pozisyon sınırları, önceden belirlenmiş seviyelerde zorunlu tasfiyeler) korumalı. Bu güvenlikler perakende tüccarların kaldıraç erişimi kazanırken, denizaşırı borsalarda bulunmayan devre kesici tarzı korumalara maruz kalmalarını sağlıyor.</p>"
   },
   "seo": {
     "title": {
-      "en": "Meta Lays Off 8,000; Redirects 7,000 to AI Teams — MAXGAZINE",
-      "fa": "Meta ۸ هزار را اخراج کرد؛ ۷ هزار را به تیم‌های AI تجدید کرد — MAXGAZINE",
-      "ar": "قامت Meta بطرد 8000 وإعادة توجيه 7000 إلى فرق الذكاء الاصطناعي — MAXGAZINE",
-      "tr": "Meta, 8.000'i İşten Çıkardı; 7.000'i AI Takımlarına Yöneltti — MAXGAZINE"
+      "en": "US Crypto Perpetual Futures Approved for Retail; CFTC Regulatory Milestone — MAXGAZINE",
+      "fa": "معاملات آتی‌های دائمی کریپتو آمریکا تصویب شد؛ نقطه‌ی عطف CFTC — MAXGAZINE",
+      "ar": "تم الموافقة على العقود الآجلة الدائمة للعملات المشفرة الأمريكية للتجزئة — MAXGAZINE",
+      "tr": "ABD Kripto Kalıcı Vadeli İşlemleri Perakende Tüccarlar İçin Onaylandı — MAXGAZINE"
     },
     "description": {
-      "en": "Meta announces 8,000 layoffs while reassigning 7,000 employees to AI-focused teams; $40B+ AI infrastructure budget through 2027.",
-      "fa": "Meta ۸ هزار اخراج اعلام کرد درحالی که ۷ هزار کارمند را برای تیم‌های AI تجدید می‌کند.",
-      "ar": "تعلن Meta عن طرد 8000 موظف مع إعادة توجيه 7000 إلى فرق تركز على الذكاء الاصطناعي.",
-      "tr": "Meta, 8.000 işten çıkarmayı duyururken 7.000 çalışanı AI takımlarına yeniden yönlendiriyor."
+      "en": "CFTC approves regulated crypto perpetual futures for US retail traders on June 1, 2026. Leverage trading moves from offshore to regulated venues.",
+      "fa": "CFTC معاملات آتی‌های دائمی منظم کریپتو برای معاملگران خردهفروش آمریکایی تصویب کرد.",
+      "ar": "تصادق CFTC على العقود الآجلة الدائمة للعملات المشفرة المنظمة للمتداولين بالتجزئة الأمريكيين في 1 يونيو 2026.",
+      "tr": "CFTC, 1 Haziran 2026'de ABD perakende tüccarları için düzenlü kripto kalıcı vadeli işlemleri onayladı."
     },
     "keywords": {
       "en": [
-        "Meta",
-        "layoffs",
-        "AI",
-        "restructuring",
-        "workforce",
-        "Zuckerberg"
+        "crypto perpetual futures",
+        "CFTC",
+        "leverage trading",
+        "retail traders",
+        "regulation"
       ],
       "fa": [
-        "Meta",
-        "اخراج",
-        "AI",
-        "بازسازی",
-        "نیروی کار"
+        "آتی‌های دائمی کریپتو",
+        "CFTC",
+        "معاملات اهرم",
+        "معاملگران خردهفروش",
+        "تنظیم"
       ],
       "ar": [
-        "Meta",
-        "الفصل",
-        "الذكاء الاصطناعي",
-        "إعادة التنظيم",
-        "القوى العاملة"
+        "العقود الآجلة الدائمة للعملات المشفرة",
+        "CFTC",
+        "تداول الرافعة المالية",
+        "متداولو التجزئة",
+        "التنظيم"
       ],
       "tr": [
-        "Meta",
-        "işten çıkarmalar",
-        "yapay zeka",
-        "yeniden yapılandırma",
-        "işgücü"
+        "kripto kalıcı vadeli işlemler",
+        "CFTC",
+        "kaldıraç ticareti",
+        "perakende tüccarlar",
+        "düzenleme"
       ]
     }
   },
   "sources": [],
   "tags": [
-    "Meta",
-    "AI",
-    "layoffs",
-    "restructuring",
-    "tech"
+    "CFTC",
+    "crypto",
+    "perpetual futures",
+    "leverage",
+    "regulation"
   ],
   "status": "published",
-  "banner": "https://maxgazine.com/assets/uploads/1781722339342-banner.webp",
+  "banner": "https://maxgazine.com/assets/uploads/1781723397582-banner.png",
   "featured": false
 }
