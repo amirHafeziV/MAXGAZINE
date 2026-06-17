@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Why Is Crypto Crashing? Bitcoin Falls Below $70K After Strategy's First BTC Sale",
-      "url": "https://bitcoinfoundation.org/news/bitcoin/why-is-crypto-crashing-bitcoin-falls-below-70k-after-strategys-first-btc-sale/"
-    },
-    {
-      "title": "Crypto ETFs Lost $4.4B, 13 Days of Outflows",
-      "url": "https://bitcoinfoundation.org/news/crypto-etfs-news/etf-outflows-june/"
-    },
-    {
-      "title": "Bitcoin Falls as Record ETF Outflows and Strategy Sale Hit Sentiment",
-      "url": "https://www.investing.com/analysis/bitcoin-falls-as-record-etf-outflows-and-strategy-sale-hit-sentiment-200681446"
-    }
-  ],
+  "sources": [],
   "tags": [
     "bitcoin",
     "ETF",
@@ -98,5 +85,6 @@
     "Strategy"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781709558870-banner.jpg",
   "featured": false
 }
