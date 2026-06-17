@@ -75,20 +75,7 @@
       ]
     }
   },
-  "sources": [
-    {
-      "title": "Mean CEO Blog",
-      "url": "https://blog.mean.ceo/ai-news-june-2026/"
-    },
-    {
-      "title": "AI Funding Tracker",
-      "url": "https://aifundingtracker.com/top-50-ai-startups/"
-    },
-    {
-      "title": "Crescendo AI News",
-      "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates"
-    }
-  ],
+  "sources": [],
   "tags": [
     "Anthropic",
     "OpenAI",
@@ -98,5 +85,6 @@
     "Tech"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1781731167131-banner.png",
   "featured": false
 }
