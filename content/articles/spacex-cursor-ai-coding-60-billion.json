@@ -84,5 +84,6 @@
     "tech acquisitions"
   ],
   "status": "published",
-  "featured": false
+  "banner": "https://maxgazine.com/assets/uploads/1781768362346-banner.jpg",
+  "featured": true
 }
