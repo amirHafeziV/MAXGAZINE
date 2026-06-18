@@ -22,6 +22,9 @@ const state = {
   // per-language editor buffers: {en:{headline,dek,bodyHtml,seoTitle,seoDesc,seoKeywords}, ...}
   buf: {},
   banner: '',           // committed path/URL, or dataURL pending upload
+  filters: { status: 'all', banner: 'all', category: 'all', type: 'all', sort: 'newest' },
+  articlesLoaded: false,
+  saving: false,
 };
 
 /* ---------------- GitHub API (proxied through api.php) ---------------- */
@@ -97,6 +100,8 @@ function enterApp(){
 
 /* ---------------- data load ---------------- */
 async function loadArticles(){
+  const listEl = $('#articles-list');
+  if(listEl) listEl.innerHTML = '<div class="row"><span class="m">Loading articles…</span></div>';
   const list = await gh(`${repoPath('content/articles')}?ref=${state.cfg.branch}`) || [];
   const files = list.filter(f=>f.name.endsWith('.json'));
   const fetched = await Promise.all(files.map(async f=>{
@@ -108,6 +113,7 @@ async function loadArticles(){
   const out = fetched.filter(Boolean);
   out.sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
   state.articles = out;
+  state.articlesLoaded = true;
 }
 async function loadAds(){
   const got = await getFile('content/data/ads.json');
@@ -196,11 +202,26 @@ function renderDashboard(){
 const ARTICLES_PAGE_SIZE = 20;
 function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function renderArticles(){
-  const total = state.articles.length;
+  // Apply active filters
+  const f = state.filters;
+  let items = state.articles.slice();
+  if(f.status !== 'all') items = items.filter(a => articleStatus(a.data) === f.status);
+  if(f.banner === 'has') items = items.filter(a => !!a.data.banner);
+  if(f.banner === 'no') items = items.filter(a => !a.data.banner);
+  if(f.category !== 'all') items = items.filter(a => a.data.category === f.category);
+  if(f.type === 'featured') items = items.filter(a => !!a.data.featured);
+  if(f.sort === 'oldest') items.sort((a,b) => a.data.date > b.data.date ? 1 : -1);
+
+  const countEl = $('#filter-count');
+  if(countEl) countEl.textContent = items.length < state.articles.length
+    ? `${items.length} / ${state.articles.length} articles`
+    : `${state.articles.length} articles`;
+
+  const total = items.length;
   const pages = Math.max(1, Math.ceil(total / ARTICLES_PAGE_SIZE));
   state.articlesPage = Math.min(state.articlesPage || 0, pages - 1);
   const start = state.articlesPage * ARTICLES_PAGE_SIZE;
-  const pageItems = state.articles.slice(start, start + ARTICLES_PAGE_SIZE);
+  const pageItems = items.slice(start, start + ARTICLES_PAGE_SIZE);
   $('#articles-list').innerHTML = pageItems.map((a)=>{
     const i = state.articles.indexOf(a);
     const st = articleStatus(a.data);
@@ -214,7 +235,7 @@ function renderArticles(){
         ${noBanner}
         <button class="ghost mono" data-edit="${i}">Edit</button>
       </div></div>`;
-  }).join('') || '<div class="row"><span class="m">No articles yet — write the first one.</span></div>';
+  }).join('') || '<div class="row"><span class="m">No articles match this filter.</span></div>';
   $$('#articles-list [data-edit]').forEach(b=>b.addEventListener('click',()=>openEditor(state.articles[+b.dataset.edit])));
 
   $('#articles-pager').innerHTML = pages > 1 ? `
@@ -365,6 +386,7 @@ function setBanner(src){
 }
 
 async function saveArticle(){
+  if(state.saving) return;
   saveCurrentLangToBuf();
   const msg = $('#save-msg');
   const filled = LANGS.filter(l=>state.buf[l].headline.trim());
@@ -372,6 +394,7 @@ async function saveArticle(){
   if($('#f-featured').checked && !state.banner){ msg.textContent = 'Featured articles need a banner image — add one above.'; return; }
   msg.textContent = 'Saving…';
   $('#btn-save').disabled = true;
+  state.saving = true;
   try{
     // 1) upload any pasted/inserted images that are still data: URLs
     for(const l of filled){
@@ -420,8 +443,24 @@ async function saveArticle(){
 
     // 3) commit
     const path = state.editing?.path || `content/articles/${slug}.json`;
-    await putFile(path, JSON.stringify(article, null, 2), `panel: ${state.editing?'update':'create'} ${slug}`, state.editing?.sha);
+
+    // Guard against duplicate slugs when creating a new article
+    if(!state.editing && state.articles.some(a => a.path === path)){
+      msg.textContent = `Slug "${slug}" already exists — change the slug field or open the existing article to edit it.`;
+      $('#btn-save').disabled = false;
+      state.saving = false;
+      return;
+    }
+
+    const result = await putFile(path, JSON.stringify(article, null, 2), `panel: ${state.editing?'update':'create'} ${slug}`, state.editing?.sha);
     state.banner = banner;
+
+    // Pin editing state from the API response immediately — don't rely on
+    // loadArticles() finding the file (GitHub has a short propagation delay that
+    // can make a just-committed file temporarily invisible, causing the next
+    // save to create a duplicate instead of updating).
+    const newSha = result?.content?.sha;
+    state.editing = { path, sha: newSha || state.editing?.sha };
 
     // 4) kick the site build (unless it's a draft or scheduled for later)
     const willGoLive = statusSel === 'published' || (statusSel==='scheduled' && publishAtLocal && Date.parse(publishAtLocal) <= Date.now());
@@ -430,12 +469,15 @@ async function saveArticle(){
       statusSel==='scheduled' ? `Scheduled — goes live ${publishAtLocal.replace('T',' ')}.` :
       'Saved & deploying — live in ~2 minutes.';
     await loadArticles(); renderDashboard(); renderArticles();
+    // Refresh editing SHA from the reloaded list if available (keeps SHA in sync
+    // for subsequent saves without needing a manual refresh)
     const saved = state.articles.find(a=>a.path===path);
     if(saved) state.editing = { path, sha: saved.sha };
   }catch(e){
     msg.textContent = `Save failed: ${e.message}`;
   }finally{
     $('#btn-save').disabled = false;
+    state.saving = false;
   }
 }
 
@@ -569,8 +611,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
   $$('.mainnav button, #btn-new').forEach(b=>b.addEventListener('click', ()=>{
     const v = b.dataset.view;
     if(v === 'editor') newArticle();
-    else { show(v); if(v==='dashboard'||v==='articles') refreshAll(); }
+    else {
+      show(v);
+      if(v==='dashboard'||v==='articles'){
+        // Only fetch from GitHub on first load — use cached state for subsequent
+        // navigation. User can force a refresh with the ⟳ Refresh button.
+        if(!state.articlesLoaded) refreshAll();
+        else { renderDashboard(); renderArticles(); }
+      }
+    }
   }));
+
+  // Filter bar
+  const filterMap = { 'filter-status':'status', 'filter-banner':'banner',
+    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
+  Object.entries(filterMap).forEach(([id, key])=>{
+    const el = $('#'+id); if(!el) return;
+    el.addEventListener('change', ()=>{
+      state.filters[key] = el.value;
+      state.articlesPage = 0;
+      renderArticles();
+    });
+  });
+  $('#btn-refresh').addEventListener('click', refreshAll);
   $('#f-status').addEventListener('change', ()=>{
     $('#schedule-row').hidden = $('#f-status').value !== 'scheduled';
   });

@@ -54,6 +54,42 @@
     <h1>Articles</h1>
     <button class="btn" data-view="editor" id="btn-new">+ New article</button>
   </div>
+  <div class="filter-bar mono" id="filter-bar">
+    <select id="filter-status">
+      <option value="all">All statuses</option>
+      <option value="published">Published</option>
+      <option value="draft">Draft</option>
+      <option value="scheduled">Scheduled</option>
+    </select>
+    <select id="filter-banner">
+      <option value="all">Banner: All</option>
+      <option value="has">Has banner</option>
+      <option value="no">No banner</option>
+    </select>
+    <select id="filter-category">
+      <option value="all">All categories</option>
+      <option value="crypto">Crypto</option>
+      <option value="forex">Forex</option>
+      <option value="markets">Markets</option>
+      <option value="defi">DeFi</option>
+      <option value="policy">Policy</option>
+      <option value="analysis">Analysis</option>
+      <option value="tech">Tech</option>
+      <option value="cars">Cars</option>
+      <option value="staff">Staff</option>
+      <option value="reportage">Reportage</option>
+    </select>
+    <select id="filter-type">
+      <option value="all">All types</option>
+      <option value="featured">Hero / Featured</option>
+    </select>
+    <select id="filter-sort">
+      <option value="newest">Newest first</option>
+      <option value="oldest">Oldest first</option>
+    </select>
+    <button class="mono ghost" id="btn-refresh">&#x21bb; Refresh</button>
+    <span id="filter-count" class="mono note"></span>
+  </div>
   <div id="articles-list" class="rows"></div>
   <div id="articles-pager" class="pager mono"></div>
 </section>
