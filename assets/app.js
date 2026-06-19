@@ -776,26 +776,35 @@ function adMediaHTML(ad, prefix, fit){
   return `<img src="${adResolve(ad.image, prefix)}" alt="${esc(ad.alt||'Advertisement')}"`
     + ` loading="lazy" style="width:100%;height:100%;${objfit}display:block">`;
 }
-// Inject markup AND run any <script> tags it carries (innerHTML alone leaves
-// scripts inert) — needed for real ad-network embeds. The markup comes from the
-// authenticated panel admin's own ads.json, so it's owner-trusted content.
-function adInjectHTML(el, html){
-  el.innerHTML = html;
-  el.querySelectorAll('script').forEach(old=>{
-    const s = document.createElement('script');
-    for(const a of old.attributes) s.setAttribute(a.name, a.value);
-    s.textContent = old.textContent;
-    old.replaceWith(s);
-  });
+// Script/embed ads run inside a sandboxed <iframe srcdoc> scoped to the slot
+// box. This is mandatory: real ad-network tags — and especially self-unpacking
+// "bundler" embeds — ship a FULL HTML document that calls replaceWith on the
+// document root and styles itself position:fixed/inset:0/100vh. Injected inline
+// that escapes the slot and takes over the whole page; inside an iframe it can
+// only ever fill its own box. The markup comes from the authenticated panel
+// admin's own ads.json (owner-trusted), so scripts are allowed to run.
+function adInjectFrame(el, code){
+  const frame = document.createElement('iframe');
+  frame.className = 'ad-frame';
+  frame.setAttribute('scrolling', 'no');
+  frame.setAttribute('loading', 'lazy');
+  frame.setAttribute('title', 'Advertisement');
+  // allow-scripts: embed needs JS. allow-same-origin is intentionally omitted so
+  // the frame is opaque-origin and can't reach the parent page/cookies.
+  frame.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox');
+  frame.style.cssText = 'width:100%;height:100%;border:0;display:block;background:transparent';
+  frame.srcdoc = code;
+  el.replaceChildren(frame);
 }
 function fillAdSlot(el, ad, prefix){
   if(!ad || !ad.enabled || !adHasContent(ad)) return;
   const t = ad.type || 'image';
   if(t === 'script'){
-    // Raw embed: drop any placeholder link, inject markup, execute its scripts.
+    // Raw embed: drop any placeholder link, render the markup inside a sandboxed
+    // iframe so it stays inside this slot box instead of taking over the page.
     if(el.tagName === 'A'){ el.removeAttribute('href'); el.removeAttribute('target'); }
-    adInjectHTML(el, ad.code);
-    el.classList.add('ad-filled');
+    adInjectFrame(el, ad.code);
+    el.classList.add('ad-filled', 'ad-filled-frame');
     return;
   }
   const media = adMediaHTML(ad, prefix, 'cover');
@@ -824,7 +833,14 @@ function showAdPopup(p, prefix){
     body.setAttribute('role', 'dialog');
     body.setAttribute('aria-label', 'Advertisement');
     if(t === 'script'){
-      adInjectHTML(body, '<button class="ad-popup-close" aria-label="Close">✕</button>' + p.code);
+      body.classList.add('ad-popup-frame');
+      body.innerHTML = '<button class="ad-popup-close" aria-label="Close">✕</button>';
+      // Frame the embed in a wrapper that fills the popup, so adInjectFrame's
+      // replaceChildren doesn't wipe the close button on the body itself.
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'width:100%;height:100%;display:block';
+      body.appendChild(wrap);
+      adInjectFrame(wrap, p.code);
     }else{
       const media = adMediaHTML(p, prefix, 'contain');
       body.innerHTML = '<button class="ad-popup-close" aria-label="Close">✕</button>'

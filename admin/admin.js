@@ -12,6 +12,26 @@ const RTL = ['fa','ar'];
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>[...document.querySelectorAll(s)];
 
+/* Visible button feedback: while an async action runs, mark the button busy
+   (spinner + label) and disable it, then restore it. Without this the panel
+   buttons looked dead — you couldn't tell a save/upload was in flight. */
+function btnBusy(btn, label){
+  if(!btn) return ()=>{};
+  if(btn.dataset.busy) return ()=>{};       // already busy — ignore re-entry
+  btn.dataset.busy = '1';
+  btn.dataset.label = btn.innerHTML;
+  btn.disabled = true;
+  btn.classList.add('is-busy');
+  if(label) btn.innerHTML = `<span class="spin" aria-hidden="true"></span>${label}`;
+  return ()=>{                                // call to restore
+    if(!btn.dataset.busy) return;
+    btn.innerHTML = btn.dataset.label;
+    btn.classList.remove('is-busy');
+    btn.disabled = false;
+    delete btn.dataset.busy; delete btn.dataset.label;
+  };
+}
+
 const state = {
   cfg: null,            // {owner, repo, branch, origin, user} from api.php?action=config
   articles: [],         // [{path, sha, data}]
@@ -422,7 +442,7 @@ async function saveArticle(){
   if(!filled.length){ msg.textContent = 'Write a headline in at least one language.'; return; }
   if($('#f-featured').checked && !state.banner){ msg.textContent = 'Featured articles need a banner image — add one above.'; return; }
   msg.textContent = 'Saving…';
-  $('#btn-save').disabled = true;
+  const restoreSave = btnBusy($('#btn-save'), 'Saving…');
   state.saving = true;
   try{
     // 1) upload any pasted/inserted images that are still data: URLs
@@ -476,7 +496,7 @@ async function saveArticle(){
     // Guard against duplicate slugs when creating a new article
     if(!state.editing && state.articles.some(a => a.path === path)){
       msg.textContent = `Slug "${slug}" already exists — change the slug field or open the existing article to edit it.`;
-      $('#btn-save').disabled = false;
+      restoreSave();
       state.saving = false;
       return;
     }
@@ -505,7 +525,7 @@ async function saveArticle(){
   }catch(e){
     msg.textContent = `Save failed: ${e.message}`;
   }finally{
-    $('#btn-save').disabled = false;
+    restoreSave();
     state.saving = false;
   }
 }
@@ -606,12 +626,15 @@ function renderAds(){
     card.querySelector('.preview').innerHTML = type === 'video'
       ? `<video src="${picked.dataUrl}" muted autoplay loop playsinline></video>`
       : `<img src="${picked.dataUrl}" alt="">`;
+    // Confirm the file is queued — it's only sent to GitHub on "Save all placements".
+    b.classList.add('is-picked');
+    b.textContent = '✓ File ready — Save to upload';
   }));
 }
 async function saveAds(){
   const msg = $('#ads-msg');
   msg.textContent = 'Saving…';
-  $('#btn-ads-save').disabled = true;
+  const restore = btnBusy($('#btn-ads-save'), 'Saving…');
   try{
     const ads = { updated: new Date().toISOString(), slots: {}, popup: {} };
     for(const card of $$('#ads-list .ad-card')){
@@ -626,7 +649,10 @@ async function saveAds(){
         entry.code = card.querySelector('.a-code').value;
       }else{
         let media = card.querySelector('.a-image').value.trim();
-        if(media.startsWith('data:')) media = await uploadMediaDataUrl(media, `ad-${card.dataset.slot}`);
+        if(media.startsWith('data:')){
+          msg.textContent = `Uploading ${card.dataset.slot} creative…`;
+          media = await uploadMediaDataUrl(media, `ad-${card.dataset.slot}`);
+        }
         if(type === 'video') entry.video = media; else entry.image = media;
       }
       if(card.dataset.popup === '1'){
@@ -643,7 +669,7 @@ async function saveAds(){
   }catch(e){
     msg.textContent = `Save failed: ${e.message}`;
   }finally{
-    $('#btn-ads-save').disabled = false;
+    restore();
   }
 }
 

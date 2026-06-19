@@ -22,6 +22,14 @@ label input,label textarea,label select{margin-top:5px;text-transform:none;lette
 .ghost{background:none;border:2px solid var(--ink);padding:7px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
 .ghost:hover{background:var(--ink);color:var(--paper)}
 .ghost.danger{border-color:var(--accent);color:var(--accent)}
+
+/* ---- button feedback (busy / done) ---- */
+button:disabled{cursor:default}
+button.is-busy{opacity:.85;cursor:progress;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid currentColor;border-right-color:transparent;
+  border-radius:50%;animation:spin .6s linear infinite;vertical-align:-1px;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.a-upload.is-picked{border-color:var(--accent);color:var(--accent)}
 .ghost.danger:hover{background:var(--accent);color:#fff}
 .ghost.mini{padding:2px 8px;font-size:10px}
 .dot{color:var(--accent)}
