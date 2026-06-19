@@ -751,34 +751,85 @@ function adPrefix(){
   // generated article pages live one level down (/en/, /fa/, /ar/, /tr/)
   return /\/(en|fa|ar|tr)\//.test(location.pathname) ? '../' : '';
 }
+// An ad creative can be an image/GIF (<img>), an MP4 (<video>), or a raw
+// HTML/JS embed (script). The media URL lives in `image` for image/gif and in
+// `video` for mp4 (falling back to `image` for older data); script ads carry
+// their markup in `code`. Type defaults to 'image' so existing ads keep working.
+function adResolve(url, prefix){
+  return /^https?:/.test(url) ? url : prefix + String(url).replace(/^\/+/,'');
+}
+function adHasContent(ad){
+  const t = ad.type || 'image';
+  if(t === 'script') return !!(ad.code && ad.code.trim());
+  if(t === 'video')  return !!(ad.video || ad.image);
+  return !!ad.image;
+}
+function adMediaHTML(ad, prefix, fit){
+  const t = ad.type || 'image';
+  const objfit = `object-fit:${fit||'cover'};`;
+  if(t === 'video'){
+    const v = ad.video || ad.image;
+    return `<video src="${adResolve(v, prefix)}" autoplay muted loop playsinline preload="metadata"`
+      + ` aria-label="${esc(ad.alt||'Advertisement')}"`
+      + ` style="width:100%;height:100%;${objfit}display:block"></video>`;
+  }
+  return `<img src="${adResolve(ad.image, prefix)}" alt="${esc(ad.alt||'Advertisement')}"`
+    + ` loading="lazy" style="width:100%;height:100%;${objfit}display:block">`;
+}
+// Inject markup AND run any <script> tags it carries (innerHTML alone leaves
+// scripts inert) — needed for real ad-network embeds. The markup comes from the
+// authenticated panel admin's own ads.json, so it's owner-trusted content.
+function adInjectHTML(el, html){
+  el.innerHTML = html;
+  el.querySelectorAll('script').forEach(old=>{
+    const s = document.createElement('script');
+    for(const a of old.attributes) s.setAttribute(a.name, a.value);
+    s.textContent = old.textContent;
+    old.replaceWith(s);
+  });
+}
 function fillAdSlot(el, ad, prefix){
-  if(!ad || !ad.enabled || !ad.image) return;
-  const src = /^https?:/.test(ad.image) ? ad.image : prefix + ad.image.replace(/^\/+/,'');
-  const img = `<img src="${src}" alt="${ad.alt||'Advertisement'}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">`;
+  if(!ad || !ad.enabled || !adHasContent(ad)) return;
+  const t = ad.type || 'image';
+  if(t === 'script'){
+    // Raw embed: drop any placeholder link, inject markup, execute its scripts.
+    if(el.tagName === 'A'){ el.removeAttribute('href'); el.removeAttribute('target'); }
+    adInjectHTML(el, ad.code);
+    el.classList.add('ad-filled');
+    return;
+  }
+  const media = adMediaHTML(ad, prefix, 'cover');
   if(el.tagName === 'A'){
-    el.innerHTML = img;
+    el.innerHTML = media;
     if(ad.link){ el.href = ad.link; el.target = '_blank'; el.rel = 'noopener sponsored'; }
   }else{
     el.innerHTML = ad.link
-      ? `<a href="${ad.link}" target="_blank" rel="noopener sponsored" style="display:block">${img}</a>`
-      : img;
+      ? `<a href="${ad.link}" target="_blank" rel="noopener sponsored" style="display:block">${media}</a>`
+      : media;
   }
   el.classList.add('ad-filled');
 }
 function showAdPopup(p, prefix){
-  if(!p || !p.enabled || !p.image) return;
+  if(!p || !p.enabled || !adHasContent(p)) return;
   const KEY = 'mx_popup_last';
   const hours = Number(p.frequencyHours) || 24;
   const last = Number(localStorage.getItem(KEY) || 0);
   if(Date.now() - last < hours * 36e5) return;
-  const src = /^https?:/.test(p.image) ? p.image : prefix + p.image.replace(/^\/+/,'');
+  const t = p.type || 'image';
   setTimeout(()=>{
     const ov = document.createElement('div');
     ov.className = 'ad-popup-overlay';
-    ov.innerHTML = `<div class="ad-popup" role="dialog" aria-label="Advertisement">
-      <button class="ad-popup-close" aria-label="Close">✕</button>
-      ${p.link?`<a href="${p.link}" target="_blank" rel="noopener sponsored">`:''}<img src="${src}" alt="${p.alt||'Advertisement'}">${p.link?'</a>':''}
-    </div>`;
+    const body = ov.appendChild(document.createElement('div'));
+    body.className = 'ad-popup';
+    body.setAttribute('role', 'dialog');
+    body.setAttribute('aria-label', 'Advertisement');
+    if(t === 'script'){
+      adInjectHTML(body, '<button class="ad-popup-close" aria-label="Close">✕</button>' + p.code);
+    }else{
+      const media = adMediaHTML(p, prefix, 'contain');
+      body.innerHTML = '<button class="ad-popup-close" aria-label="Close">✕</button>'
+        + (p.link?`<a href="${p.link}" target="_blank" rel="noopener sponsored">`:'') + media + (p.link?'</a>':'');
+    }
     document.body.appendChild(ov);
     localStorage.setItem(KEY, String(Date.now()));
     const close = ()=>ov.remove();

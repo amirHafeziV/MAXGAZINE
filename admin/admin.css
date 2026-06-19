@@ -113,10 +113,27 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 #editor-status-pill{font-size:11px;text-transform:uppercase;color:#888}
 
 /* ===== filter bar ===== */
-.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px;padding:12px 14px;border:2px solid var(--ink);background:#fff}
-.filter-bar select{width:auto;min-width:130px;padding:6px 10px;font-size:12px;border:1px solid var(--ink);background:var(--paper)}
-.filter-bar .ghost{padding:6px 12px}
-#filter-count{font-size:11px;color:#888;margin-left:auto;white-space:nowrap}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px;margin-bottom:16px;
+  padding:14px 16px;border:2px solid var(--ink);background:#fff}
+.filt{display:flex;flex-direction:column;gap:5px}
+.filt-l{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#999}
+.filter-bar select{width:auto;min-width:108px;padding:7px 28px 7px 10px;font-size:12px;
+  border:2px solid var(--ink);background:var(--paper);
+  /* compact, content-sized controls instead of long stretched buttons */
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230a0a0a' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center}
+/* a filter that is narrowing the list gets the accent so it's obvious it's active */
+.filter-bar select.is-active{border-color:var(--accent);color:var(--accent);background-color:#fff}
+.filter-right{margin-inline-start:auto;display:flex;align-items:center;gap:10px}
+.filter-right .ghost{padding:7px 12px}
+#filter-count{font-size:11px;color:#888;white-space:nowrap}
+@media(max-width:720px){
+  .filt{flex:1 1 calc(50% - 12px)}
+  .filter-bar select{width:100%}
+  .filter-right{flex:1 1 100%;margin-inline-start:0;justify-content:space-between;
+    padding-top:10px;border-top:2px solid var(--paper2)}
+}
 
 /* ===== ads ===== */
 .ads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px;margin-top:22px}
@@ -127,7 +144,14 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
   padding:8px 10px;margin-bottom:12px}
 .ad-card .preview{border:2px dashed #bbb;min-height:110px;display:flex;align-items:center;justify-content:center;
   margin-bottom:12px;overflow:hidden;font-family:var(--mono);font-size:11px;color:#999}
-.ad-card .preview img{width:100%;height:auto;display:block}
+.ad-card .preview img,.ad-card .preview video{width:100%;height:auto;display:block}
+.ad-card .a-type{margin-top:5px;cursor:pointer}
+.ad-card .a-upload{margin-top:8px}
+/* type selector flips which input the card shows; script ads have no preview */
+.ad-card .ad-f-code{display:none}
+.ad-card[data-type="script"] .ad-f-media,.ad-card[data-type="script"] .preview{display:none}
+.ad-card[data-type="script"] .ad-f-code{display:block}
+.ad-card .a-code{margin-top:5px;font-family:var(--mono);font-size:12px;line-height:1.5;resize:vertical;white-space:pre}
 .switch{display:inline-flex;align-items:center;gap:6px;font-size:10px;text-transform:uppercase;font-family:var(--mono)}
 .switch input{width:auto}
 .switch-row{display:flex;align-items:center;gap:8px}

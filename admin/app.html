@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="admin.css?v=20260619">
 </head>
 <body>
 
@@ -55,40 +55,58 @@
     <button class="btn" data-view="editor" id="btn-new">+ New article</button>
   </div>
   <div class="filter-bar mono" id="filter-bar">
-    <select id="filter-status">
-      <option value="all">All statuses</option>
-      <option value="published">Published</option>
-      <option value="draft">Draft</option>
-      <option value="scheduled">Scheduled</option>
-    </select>
-    <select id="filter-banner">
-      <option value="all">Banner: All</option>
-      <option value="has">Has banner</option>
-      <option value="no">No banner</option>
-    </select>
-    <select id="filter-category">
-      <option value="all">All categories</option>
-      <option value="crypto">Crypto</option>
-      <option value="forex">Forex</option>
-      <option value="markets">Markets</option>
-      <option value="defi">DeFi</option>
-      <option value="policy">Policy</option>
-      <option value="analysis">Analysis</option>
-      <option value="tech">Tech</option>
-      <option value="cars">Cars</option>
-      <option value="staff">Staff</option>
-      <option value="reportage">Reportage</option>
-    </select>
-    <select id="filter-type">
-      <option value="all">All types</option>
-      <option value="featured">Hero / Featured</option>
-    </select>
-    <select id="filter-sort">
-      <option value="newest">Newest first</option>
-      <option value="oldest">Oldest first</option>
-    </select>
-    <button class="mono ghost" id="btn-refresh">&#x21bb; Refresh</button>
-    <span id="filter-count" class="mono note"></span>
+    <div class="filt">
+      <span class="filt-l">Status</span>
+      <select id="filter-status">
+        <option value="all">All</option>
+        <option value="published">Published</option>
+        <option value="draft">Draft</option>
+        <option value="scheduled">Scheduled</option>
+      </select>
+    </div>
+    <div class="filt">
+      <span class="filt-l">Category</span>
+      <select id="filter-category">
+        <option value="all">All</option>
+        <option value="crypto">Crypto</option>
+        <option value="forex">Forex</option>
+        <option value="markets">Markets</option>
+        <option value="defi">DeFi</option>
+        <option value="policy">Policy</option>
+        <option value="analysis">Analysis</option>
+        <option value="tech">Tech</option>
+        <option value="cars">Cars</option>
+        <option value="staff">Staff</option>
+        <option value="reportage">Reportage</option>
+      </select>
+    </div>
+    <div class="filt">
+      <span class="filt-l">Banner</span>
+      <select id="filter-banner">
+        <option value="all">All</option>
+        <option value="has">Has banner</option>
+        <option value="no">No banner</option>
+      </select>
+    </div>
+    <div class="filt">
+      <span class="filt-l">Type</span>
+      <select id="filter-type">
+        <option value="all">All</option>
+        <option value="featured">Featured</option>
+      </select>
+    </div>
+    <div class="filt">
+      <span class="filt-l">Sort</span>
+      <select id="filter-sort">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+      </select>
+    </div>
+    <div class="filter-right">
+      <span id="filter-count" class="note"></span>
+      <button class="ghost" id="btn-filter-reset" hidden>✕ Reset</button>
+      <button class="ghost" id="btn-refresh">&#x21bb; Refresh</button>
+    </div>
   </div>
   <div id="articles-list" class="rows"></div>
   <div id="articles-pager" class="pager mono"></div>
@@ -201,8 +219,9 @@
     <h1>Ads</h1>
     <button class="btn" id="btn-ads-save">Save all placements</button>
   </div>
-  <p class="mono note">Banner image or GIF + destination link per placement. Each card shows the
-  recommended image size for that spot — match it so the ad isn't stretched or cropped. Saving commits
+  <p class="mono note">Each placement can be an image, an animated GIF, an MP4 video, or a
+  script / embed code (e.g. an ad-network tag) — pick the creative type per card. Match the
+  recommended size so the ad isn't stretched or cropped. Saving commits
   <code>content/data/ads.json</code> — the live site picks it up immediately after deploy.</p>
   <div id="ads-list" class="ads-grid"></div>
   <p class="mono note" id="ads-msg"></p>
@@ -211,7 +230,7 @@
 </main>
 </div>
 
-<input type="file" id="file-input" accept="image/*,.gif" hidden>
-<script src="admin.js"></script>
+<input type="file" id="file-input" accept="image/*,video/mp4,.gif,.mp4" hidden>
+<script src="admin.js?v=20260619"></script>
 </body>
 </html>

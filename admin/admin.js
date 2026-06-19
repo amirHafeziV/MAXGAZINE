@@ -140,10 +140,11 @@ function pickL(loc){ if(!loc) return ''; return loc.en || Object.values(loc).fin
 function readFileAsDataURL(file){
   return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); });
 }
-function pickImage(){
+function pickImage(accept){
   return new Promise((res)=>{
     const inp = $('#file-input');
     inp.value = '';
+    inp.setAttribute('accept', accept || 'image/*,.gif');
     inp.onchange = async ()=>{
       if(!inp.files[0]) return res(null);
       res({ file: inp.files[0], dataUrl: await readFileAsDataURL(inp.files[0]) });
@@ -164,6 +165,17 @@ async function uploadDataUrl(dataUrl, nameHint){
   const name = `${Date.now()}-${slugify(nameHint||'img').slice(0,40)}.${ext}`;
   const path = `assets/uploads/${name}`;
   await putBinary(path, m[2], `panel: upload ${name}`);
+  return `${state.cfg.origin}/${path}`;
+}
+/** Like uploadDataUrl but also accepts video (MP4) — used for ad creatives. */
+async function uploadMediaDataUrl(dataUrl, nameHint){
+  const m = dataUrl.match(/^data:(image|video)\/([a-z0-9.+-]+);base64,(.+)$/is);
+  if(!m) throw new Error('unsupported media — upload an image, GIF or MP4');
+  const sub = m[2].toLowerCase();
+  const ext = sub === 'jpeg' ? 'jpg' : sub === 'quicktime' ? 'mov' : sub.replace('svg+xml','svg');
+  const name = `${Date.now()}-${slugify(nameHint||'ad').slice(0,40)}.${ext}`;
+  const path = `assets/uploads/${name}`;
+  await putBinary(path, m[3], `panel: upload ${name}`);
   return `${state.cfg.origin}/${path}`;
 }
 
@@ -200,7 +212,23 @@ function renderDashboard(){
 
 /* ----- articles list ----- */
 const ARTICLES_PAGE_SIZE = 20;
+const FILTER_DEFAULTS = { status:'all', banner:'all', category:'all', type:'all', sort:'newest' };
 function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+// Light up any filter that differs from its default and reveal the Reset button,
+// so it's always visually clear which filters are narrowing the list.
+function syncFilterChrome(){
+  const map = { 'filter-status':'status', 'filter-banner':'banner',
+    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
+  let anyActive = false;
+  Object.entries(map).forEach(([id, key])=>{
+    const el = $('#'+id); if(!el) return;
+    const active = state.filters[key] !== FILTER_DEFAULTS[key];
+    el.classList.toggle('is-active', active);
+    if(active) anyActive = true;
+  });
+  const reset = $('#btn-filter-reset');
+  if(reset) reset.hidden = !anyActive;
+}
 function renderArticles(){
   // Apply active filters
   const f = state.filters;
@@ -212,6 +240,7 @@ function renderArticles(){
   if(f.type === 'featured') items = items.filter(a => !!a.data.featured);
   if(f.sort === 'oldest') items.sort((a,b) => a.data.date > b.data.date ? 1 : -1);
 
+  syncFilterChrome();
   const countEl = $('#filter-count');
   if(countEl) countEl.textContent = items.length < state.articles.length
     ? `${items.length} / ${state.articles.length} articles`
@@ -514,16 +543,40 @@ const SLOT_HINTS = {
   advertorial: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
   popup:       'Recommended image size: 600 × 800px (3:4, portrait). JPG, PNG or WEBP.',
 };
+function adTypeOf(ad){ return ad.type || 'image'; }
+function adPreviewHTML(ad){
+  const t = adTypeOf(ad);
+  if(t === 'video'){ const v = ad.video || ad.image; return v ? `<video src="${esc(v)}" muted autoplay loop playsinline></video>` : 'NO CREATIVE'; }
+  return ad.image ? `<img src="${esc(ad.image)}" alt="">` : 'NO CREATIVE';
+}
 function adCard(key, ad, isPopup){
   const label = isPopup ? 'Popup (overlay on visit)' : (SLOT_LABELS[key] || key);
   const hint = SLOT_HINTS[key];
-  return `<div class="ad-card" data-slot="${key}" data-popup="${isPopup?1:0}">
+  const t = adTypeOf(ad);
+  const mediaUrl = t === 'video' ? (ad.video || ad.image || '') : (ad.image || '');
+  return `<div class="ad-card" data-slot="${key}" data-popup="${isPopup?1:0}" data-type="${t}">
     <h3>${esc(label)}
       <span class="switch"><input type="checkbox" class="a-enabled" ${ad.enabled?'checked':''}> live</span></h3>
     ${hint?`<p class="mono ad-hint">${esc(hint)}</p>`:''}
-    <div class="preview">${ad.image?`<img src="${esc(ad.image)}" alt="">`:'NO CREATIVE'}</div>
-    <label class="mono">Image / GIF URL <input class="a-image" value="${esc(ad.image||'')}"></label>
-    <button class="ghost mono a-upload">⬆ Upload image / GIF</button>
+    <label class="mono">Creative type
+      <select class="a-type">
+        <option value="image"${t==='image'?' selected':''}>Image — JPG / PNG / WEBP</option>
+        <option value="gif"${t==='gif'?' selected':''}>GIF — animated</option>
+        <option value="video"${t==='video'?' selected':''}>Video — MP4</option>
+        <option value="script"${t==='script'?' selected':''}>Script / embed code</option>
+      </select>
+    </label>
+    <div class="preview">${adPreviewHTML(ad)}</div>
+    <div class="ad-f-media">
+      <label class="mono">Media URL <input class="a-image" value="${esc(mediaUrl)}" placeholder="https://… or upload below"></label>
+      <button class="ghost mono a-upload" type="button">⬆ Upload file</button>
+    </div>
+    <div class="ad-f-code">
+      <label class="mono">Embed / script code
+        <textarea class="a-code" rows="6" spellcheck="false" placeholder="Paste any HTML/JS embed, e.g. an ad-network tag or a &lt;script&gt;…&lt;/script&gt; snippet">${esc(ad.code||'')}</textarea>
+      </label>
+      <p class="mono note">Runs as-is on the live site. Paste only code from sources you trust.</p>
+    </div>
     <label class="mono" style="margin-top:12px">Destination link <input class="a-link" value="${esc(ad.link||'')}" placeholder="https://…"></label>
     <label class="mono">Alt text <input class="a-alt" value="${esc(ad.alt||'')}"></label>
     ${isPopup?`
@@ -538,11 +591,21 @@ function renderAds(){
   $('#ads-list').innerHTML =
     keys.map(k=>adCard(k, slots[k]||{}, false)).join('') +
     adCard('popup', state.ads.popup||{}, true);
+  // Switching creative type just flips which fields the card shows (CSS keys off
+  // data-type); nothing is saved until "Save all placements".
+  $$('#ads-list .a-type').forEach(sel=>sel.addEventListener('change', ()=>{
+    sel.closest('.ad-card').dataset.type = sel.value;
+  }));
   $$('#ads-list .a-upload').forEach(b=>b.addEventListener('click', async ()=>{
-    const picked = await pickImage(); if(!picked) return;
     const card = b.closest('.ad-card');
-    card.querySelector('.preview').innerHTML = `<img src="${picked.dataUrl}" alt="">`;
+    const type = card.dataset.type;
+    const accept = type === 'video' ? 'video/mp4,.mp4'
+      : type === 'gif' ? 'image/gif,.gif' : 'image/*,.gif';
+    const picked = await pickImage(accept); if(!picked) return;
     card.querySelector('.a-image').value = picked.dataUrl;  // uploaded on save
+    card.querySelector('.preview').innerHTML = type === 'video'
+      ? `<video src="${picked.dataUrl}" muted autoplay loop playsinline></video>`
+      : `<img src="${picked.dataUrl}" alt="">`;
   }));
 }
 async function saveAds(){
@@ -552,14 +615,20 @@ async function saveAds(){
   try{
     const ads = { updated: new Date().toISOString(), slots: {}, popup: {} };
     for(const card of $$('#ads-list .ad-card')){
-      let image = card.querySelector('.a-image').value.trim();
-      if(image.startsWith('data:')) image = await uploadDataUrl(image, `ad-${card.dataset.slot}`);
+      const type = card.dataset.type || 'image';
       const entry = {
         enabled: card.querySelector('.a-enabled').checked,
-        image,
+        type,
         link: card.querySelector('.a-link').value.trim(),
         alt: card.querySelector('.a-alt').value.trim(),
       };
+      if(type === 'script'){
+        entry.code = card.querySelector('.a-code').value;
+      }else{
+        let media = card.querySelector('.a-image').value.trim();
+        if(media.startsWith('data:')) media = await uploadMediaDataUrl(media, `ad-${card.dataset.slot}`);
+        if(type === 'video') entry.video = media; else entry.image = media;
+      }
       if(card.dataset.popup === '1'){
         entry.frequencyHours = Number(card.querySelector('.a-freq').value)||24;
         entry.delaySeconds = Number(card.querySelector('.a-delay').value)||0;
@@ -632,6 +701,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
       state.articlesPage = 0;
       renderArticles();
     });
+  });
+  $('#btn-filter-reset').addEventListener('click', ()=>{
+    state.filters = { ...FILTER_DEFAULTS };
+    $('#filter-status').value = 'all'; $('#filter-banner').value = 'all';
+    $('#filter-category').value = 'all'; $('#filter-type').value = 'all';
+    $('#filter-sort').value = 'newest';
+    state.articlesPage = 0;
+    renderArticles();
   });
   $('#btn-refresh').addEventListener('click', refreshAll);
   $('#f-status').addEventListener('change', ()=>{
