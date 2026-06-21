@@ -783,6 +783,20 @@ function adMediaHTML(ad, prefix, fit){
 // that escapes the slot and takes over the whole page; inside an iframe it can
 // only ever fill its own box. The markup comes from the authenticated panel
 // admin's own ads.json (owner-trusted), so scripts are allowed to run.
+// Derive the creative's native aspect ratio so the slot box matches it exactly
+// (no letterboxing, and the SAME shape on every screen — the advertiser ships a
+// fixed-size banner, so we never reshape it on mobile). Prefer explicit
+// width/height from the panel, else read the bundle's <svg viewBox> or a
+// width×height pair from its markup.
+function adAspectRatio(ad){
+  if(ad.width && ad.height) return `${ad.width} / ${ad.height}`;
+  const code = ad.code || '';
+  const vb = /viewBox=["']?\s*[\d.+-]+\s+[\d.+-]+\s+([\d.]+)\s+([\d.]+)/i.exec(code);
+  if(vb && +vb[1] && +vb[2]) return `${vb[1]} / ${vb[2]}`;
+  const wh = /\b(?:width)=["']?(\d{2,4})[^>]*\bheight=["']?(\d{2,4})/i.exec(code);
+  if(wh && +wh[1] && +wh[2]) return `${wh[1]} / ${wh[2]}`;
+  return '';
+}
 function adInjectFrame(el, code){
   const frame = document.createElement('iframe');
   frame.className = 'ad-frame';
@@ -793,8 +807,22 @@ function adInjectFrame(el, code){
   // the frame is opaque-origin and can't reach the parent page/cookies.
   frame.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox');
   frame.style.cssText = 'width:100%;height:100%;border:0;display:block;background:transparent';
-  frame.srcdoc = code;
+  frame.srcdoc = adShim() + code;
   el.replaceChildren(frame);
+}
+// A banner ad is a loop, not a player. Many "bundled page" creatives drop a
+// runtime <video> with native controls that won't autoplay inside a sandbox.
+// This shim (injected ahead of the creative) forces every video to play muted,
+// loop forever and hide its controls/scrubber — so the ad behaves like a banner.
+function adShim(){
+  return `<style>video{controls:none!important;pointer-events:none!important}video::-webkit-media-controls{display:none!important}`
+    + `video::-webkit-media-controls-enclosure{display:none!important}</style>`
+    + `<script>(function(){function fix(){document.querySelectorAll('video').forEach(function(v){`
+    + `v.controls=false;v.removeAttribute('controls');v.loop=true;v.muted=true;v.defaultMuted=true;`
+    + `v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');`
+    + `var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});});}`
+    + `try{new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['controls']});}catch(e){}`
+    + `document.addEventListener('DOMContentLoaded',fix);setInterval(fix,400);fix();})();<\/script>`;
 }
 function fillAdSlot(el, ad, prefix){
   if(!ad || !ad.enabled || !adHasContent(ad)) return;
@@ -805,6 +833,8 @@ function fillAdSlot(el, ad, prefix){
     if(el.tagName === 'A'){ el.removeAttribute('href'); el.removeAttribute('target'); }
     adInjectFrame(el, ad.code);
     el.classList.add('ad-filled', 'ad-filled-frame');
+    const ar = adAspectRatio(ad);
+    if(ar){ el.style.aspectRatio = ar; el.style.minHeight = '0'; el.style.height = 'auto'; }
     return;
   }
   const media = adMediaHTML(ad, prefix, 'cover');

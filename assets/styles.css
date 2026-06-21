@@ -1379,12 +1379,40 @@ html[lang="fa"] .bs-menu>a,html[lang="ar"] .bs-menu>a{text-transform:none}
 /* ============================================================
    FIX-UPS (round 4) — feedback pass
    ============================================================ */
-/* item 4 — vertically centre the ticker prices (arrows + numbers) in their bar */
+/* item 4 — vertically centre the ticker prices (arrows + numbers) in their bar.
+   flex-centre the track, and drop the single-sided border on the hero-band ticker
+   that pushed the text ~2px above centre. */
+.ticker{display:flex;align-items:center}
 .ticker-track{display:inline-flex;align-items:center}
 .ticker-track > span{display:inline-flex;align-items:center}
+.bs-hero-band .ticker{border-block:0}
 
 /* item 7 — mobile menu: clean logotype, no stray line under "Maxgazine.",
    playful orange period to match the header */
 .nav-links .menu-head{border-bottom:0;padding-block:22px 10px}
 .nav-links .menu-logo{font-size:26px}
 .nav-links .menu-logo .dot{color:var(--accent-orange)}
+
+/* ============================================================
+   FIX-UPS (round 5) — ad sizing + ticker + mobile menu
+   ============================================================ */
+/* script/embed ads: render at the creative's NATIVE aspect ratio (set inline by
+   app.js from the bundle's viewBox), identical shape on every screen. Never let
+   the grid stretch it or a min-height distort it. */
+.ad-slot.ad-filled-frame,.ad-banner.ad-filled-frame{min-height:0;padding:0;align-self:start;overflow:hidden}
+.ad-slot.ad-filled-frame .ad-frame,.ad-banner.ad-filled-frame .ad-frame{min-height:0;height:100%}
+.ad-square.ad-filled-frame{align-self:start}
+
+/* item 3 — mobile menu fixes:
+   (a) hide the sticky mini-bar while the menu is open — its wordmark was showing
+       through above the menu (z-index 200 > menu 80): the "ghost logotype". */
+body.menu-open .bs-mini{opacity:0;pointer-events:none}
+/* (b) lock the mini-bar to LTR so switching language never swaps the logo/burger
+       sides or shifts the header (logo always start, burger always end). */
+.bs-mini{direction:ltr}
+/* (c) the menu's own logotype is centred and always reads "Maxgazine." LTR,
+       independent of page language. */
+.nav-links .menu-head{justify-content:center}
+.nav-links .menu-logo{direction:ltr}
+/* keep the in-menu language chips in a fixed EN·FA·AR·TR order regardless of dir */
+.nav-links .menu-lang{direction:ltr}
