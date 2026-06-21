@@ -1416,3 +1416,26 @@ body.menu-open .bs-mini{opacity:0;pointer-events:none}
 .nav-links .menu-logo{direction:ltr}
 /* keep the in-menu language chips in a fixed EN·FA·AR·TR order regardless of dir */
 .nav-links .menu-lang{direction:ltr}
+
+/* ============================================================
+   FIX-UPS (round 6) — motion/alignment, mini-nav box
+   ============================================================ */
+/* item 1 — kill the scroll-reveal that left below-fold cards invisible and
+   shifted (translateY), which read as "broken alignment" when not scrolling.
+   Content is now always in place and aligned; also drop the hover image-zoom
+   so nothing grows under the cursor. */
+.reveal{opacity:1!important;transform:none!important}
+.card:hover .card-img img{transform:none}
+
+/* item 3 — sticky mini-header: put the nav links in a bordered box like the
+   full masthead nav (cells divided by hairlines), not loose floating links. */
+.bs-mini-nav{gap:0;border:2px solid var(--ink)}
+.bs-mini-nav a{padding:8px 16px;border-inline-start:1px solid var(--hair)}
+.bs-mini-nav a:first-child{border-inline-start:0}
+
+/* item 2 — the coin hero was a heavy dark (near-black) box wrapping the price
+   card + chart in a thick dark frame — unprofessional against the cream broadsheet.
+   Make it two clean bordered panels on the page, no dark fill. */
+.bs-page .coin-hero{background:transparent;border:0;padding-block:24px;gap:0 24px}
+.bs-page .coin-hero-card,.bs-page .coin-hero-chart{border:2px solid var(--ink)}
+@media(max-width:760px){.bs-page .coin-hero{gap:24px 0}}
