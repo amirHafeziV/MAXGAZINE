@@ -12,7 +12,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
     foot_desc: "Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.",
     f_stories: "Stories", f_chart: "Chart", f_prices: "Prices",
     f_exchanges: "Top Exchanges", f_brokers: "Top Brokers", f_about: "About Us", f_contact: "Contact Us",
-    f_copy: "© 2026 MAXGAZINE — AI-AGENT CRYPTO & FOREX MEDIA", f_built: "PUBLISHED BY AUTONOMOUS AGENTS",
+    f_copy: "© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS", f_built: "MULTILINGUAL MARKET MEDIA",
     stories_title: "Stories", read_more: "Read →", sources: "Sources", published: "Published",
     related: "Related Stories",
   },
@@ -25,7 +25,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
     foot_desc: "Maxgazine رسانه‌ای چندزبانه در حوزه بازار است که اخبار کریپتو، فارکس، تکنولوژی و خودرو را سریع، خام و بدون شلوغی پوشش می‌دهد.",
     f_stories: "مطالب", f_chart: "نمودار", f_prices: "قیمت‌ها",
     f_exchanges: "برترین صرافی‌ها", f_brokers: "برترین بروکرها", f_about: "درباره ما", f_contact: "تماس با ما",
-    f_copy: "© ۲۰۲۶ MAXGAZINE — رسانه کریپتو و فارکس مبتنی بر ایجنت", f_built: "منتشرشده توسط ایجنت‌های خودمختار",
+    f_copy: "© ۲۰۲۶ MAXGAZINE — کریپتو · فارکس · تکنولوژی · خودرو", f_built: "رسانه چندزبانه بازار",
     stories_title: "مطالب", read_more: "خواندن ←", sources: "منابع", published: "انتشار",
     related: "مطالب مرتبط",
   },
@@ -38,7 +38,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
     foot_desc: "Maxgazine منصة إعلامية متعددة اللغات تغطي أسواق الكريبتو والفوركس والتقنية والسيارات بسرعة وبصدق وبلا ضجيج.",
     f_stories: "المقالات", f_chart: "الرسم البياني", f_prices: "الأسعار",
     f_exchanges: "أفضل المنصّات", f_brokers: "أفضل الوسطاء", f_about: "حول", f_contact: "تواصل معنا",
-    f_copy: "© ٢٠٢٦ MAXGAZINE — إعلام كريبتو وفوركس مدعوم بالوكلاء", f_built: "منشور بواسطة وكلاء مستقلين",
+    f_copy: "© ٢٠٢٦ MAXGAZINE — كريبتو · فوركس · تقنية · سيارات", f_built: "إعلام أسواق متعدد اللغات",
     stories_title: "المقالات", read_more: "اقرأ ←", sources: "المصادر", published: "نُشر",
     related: "مقالات ذات صلة",
   },
@@ -51,7 +51,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
     foot_desc: "Maxgazine; kripto, forex, teknoloji ve otomobil haberlerini hızlı, sade ve gürültüsüz biçimde sunan çok dilli bir piyasa medyasıdır.",
     f_stories: "Haberler", f_chart: "Grafik", f_prices: "Fiyatlar",
     f_exchanges: "En İyi Borsalar", f_brokers: "En İyi Aracılar", f_about: "Hakkımızda", f_contact: "İletişim",
-    f_copy: "© 2026 MAXGAZINE — YZ AJANI KRİPTO & FOREX MEDYASI", f_built: "OTONOM AJANLAR TARAFINDAN YAYINLANDI",
+    f_copy: "© 2026 MAXGAZINE — KRİPTO · FOREX · TEKNOLOJİ · OTOMOBİL", f_built: "ÇOK DİLLİ PİYASA MEDYASI",
     stories_title: "Haberler", read_more: "Oku →", sources: "Kaynaklar", published: "Yayımlandı",
     related: "İlgili Haberler",
   },
@@ -141,6 +141,9 @@ interface PageOpts {
   bodyHtml: string;
   /** Absolute og:image URL; falls back to the site default. */
   ogImage?: string;
+  /** Pagination rel links (absolute URLs) for paginated indexes. */
+  relPrev?: string;
+  relNext?: string;
 }
 
 function head(o: PageOpts): string {
@@ -157,6 +160,8 @@ function head(o: PageOpts): string {
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="${o.canonical}">
+${o.relPrev ? `<link rel="prev" href="${o.relPrev}">` : ""}
+${o.relNext ? `<link rel="next" href="${o.relNext}">` : ""}
 ${alts}
 <link rel="alternate" hreflang="x-default" href="${o.alternates.en}">
 <meta property="og:type" content="article">
@@ -373,21 +378,28 @@ export function renderStoriesIndex(
   articles: Article[],
   lang: Lang,
   origin: string,
+  page = 1,
+  perPage = 12,
 ): string {
   const c = CHROME[lang];
   const prefix = "../";
+  const totalPages = Math.max(1, Math.ceil(articles.length / perPage));
+  const cur = Math.min(Math.max(1, page), totalPages);
+  const pageFile = (n: number) => (n <= 1 ? "stories.html" : `stories-${n}.html`);
+  const pageUrl = (n: number) => `${origin}/${lang}/${pageFile(n)}`;
   const alternates = Object.fromEntries(
-    LANGS.map((l) => [l, `${origin}/${l}/stories.html`]),
+    LANGS.map((l) => [l, `${origin}/${l}/${pageFile(cur)}`]),
   ) as Record<Lang, string>;
-  const canonical = alternates[lang];
+  const canonical = pageUrl(cur);
+  const slice = articles.slice((cur - 1) * perPage, cur * perPage);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: c.stories_title,
+    name: `${c.stories_title}${cur > 1 ? ` — ${cur}` : ""}`,
     url: canonical,
     inLanguage: lang,
-    hasPart: articles.map((a) => ({
+    hasPart: slice.map((a) => ({
       "@type": "NewsArticle",
       headline: pick(a.headline, lang),
       url: `${origin}/${lang}/${a.slug}.html`,
@@ -395,25 +407,41 @@ export function renderStoriesIndex(
     })),
   };
 
-  const cards = articles.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n");
+  const cards = slice.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n");
+
+  let pager = "";
+  if (totalPages > 1) {
+    const link = (n: number, label: string, cls = "") =>
+      `<a href="${prefix}${lang}/${pageFile(n)}"${cls ? ` class="${cls}"` : ""}>${label}</a>`;
+    const span = (label: string, cls: string) => `<span class="${cls}">${label}</span>`;
+    const parts: string[] = [];
+    parts.push(cur > 1 ? link(cur - 1, "←") : span("←", "disabled"));
+    for (let n = 1; n <= totalPages; n++) {
+      parts.push(n === cur ? span(String(n), "active") : link(n, String(n)));
+    }
+    parts.push(cur < totalPages ? link(cur + 1, "→") : span("→", "disabled"));
+    pager = `\n<nav class="pager" aria-label="Pagination">${parts.join("")}</nav>`;
+  }
 
   const body = `<main>
 <div class="bs-pagehead"><h1>${esc(c.stories_title!)}</h1></div>
 <div class="feed-grid bs-grid">
 ${cards || `    <p style="padding:34px 28px">No stories yet.</p>`}
-</div>
+</div>${pager}
 </main>`;
 
   return [
     head({
       lang,
-      title: `${c.stories_title} — MAXGAZINE`,
-      description: "Latest crypto and forex stories from MAXGAZINE agents.",
+      title: `${c.stories_title}${cur > 1 ? ` — ${cur}` : ""} — MAXGAZINE`,
+      description: "Latest crypto, forex, tech and cars stories from MAXGAZINE.",
       canonical,
       alternates,
       jsonLd,
       prefix,
       bodyHtml: body,
+      relPrev: cur > 1 ? pageUrl(cur - 1) : undefined,
+      relNext: cur < totalPages ? pageUrl(cur + 1) : undefined,
     }),
     chromeHeader(lang, prefix),
     body,

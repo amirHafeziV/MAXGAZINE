@@ -5,7 +5,7 @@
  *
  * Run: tsx build/build.ts   (from agents/: npm run build)
  */
-import { mkdir, writeFile, readFile, readdir } from "node:fs/promises";
+import { mkdir, writeFile, readFile, readdir, unlink } from "node:fs/promises";
 import { join } from "node:path";
 import { LANGS, REPO_ROOT, ARTICLES_DIR, DATA_DIR, CONTENT_DIR, config } from "../agents/src/config.js";
 import type { Article } from "../agents/src/types.js";
@@ -110,9 +110,23 @@ async function main() {
       urls.push({ loc: `${ORIGIN}/${lang}/${article.slug}.html`, lastmod: article.date });
     }
 
-    const index = renderStoriesIndex(articles, lang, ORIGIN);
-    await writeFile(join(dir, "stories.html"), index, "utf8");
-    urls.push({ loc: `${ORIGIN}/${lang}/stories.html` });
+    const PER_PAGE = 12;
+    const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
+    for (let pg = 1; pg <= totalPages; pg++) {
+      const html = renderStoriesIndex(articles, lang, ORIGIN, pg, PER_PAGE);
+      const file = pg <= 1 ? "stories.html" : `stories-${pg}.html`;
+      await writeFile(join(dir, file), html, "utf8");
+      urls.push({ loc: `${ORIGIN}/${lang}/${file}` });
+    }
+
+    // prune stale pages (renamed or now-draft slugs) so they never linger live
+    const valid = new Set<string>([
+      ...articles.map((a) => `${a.slug}.html`),
+      ...Array.from({ length: totalPages }, (_, i) => (i === 0 ? "stories.html" : `stories-${i + 1}.html`)),
+    ]);
+    for (const f of await readdir(dir)) {
+      if (f.endsWith(".html") && !valid.has(f)) await unlink(join(dir, f));
+    }
   }
 
   const coins = await loadCoins();

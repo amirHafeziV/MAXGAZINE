@@ -1173,48 +1173,71 @@ function initBroadsheetDate(){
 }
 
 /* Broadsheet chrome: a slim sticky header that slides in on scroll (wordmark in
-   the corner + playful orange dot) and carries the mobile menu button. Built once
-   from the page's own .bs-nav/.bs-lang so it works on every page without markup. */
+   the corner + playful orange dot) and carries the mobile menu trigger. It injects
+   the ORIGINAL full-screen mega-menu (.burger + .nav-links) so the existing initNav
+   + menu styles drive it — same menu design as before the broadsheet masthead. */
 function initBroadsheetChrome(){
   const nav = document.querySelector('.bs-nav');
   const logo = document.querySelector('.bs-logo');
   if(!nav || !logo || document.querySelector('.bs-mini')) return;
   const homeHref = logo.getAttribute('href') || 'index.html';
-  const fixedLang = (location.pathname.match(/\/(en|fa|ar|tr)\//)||[])[1];
-  const switchLang = l=>{
-    if(fixedLang){ location.href = `../${l}/${location.pathname.split('/').pop()}`; }
-    else if(window.setLang){ window.setLang(l); }
-  };
-  const cloneLinks = target => nav.querySelectorAll('a').forEach(a=>{
-    const c = a.cloneNode(true); c.removeAttribute('class'); target.appendChild(c);
-  });
+  const prefix = homeHref.replace(/index\.html.*$/,'');           // '' or '../'
+  const sample = nav.querySelector('a') ? nav.querySelector('a').getAttribute('href') : '';
+  const sfx = (sample.match(/\?lang=\w+/)||[''])[0];               // '' or '?lang=fa'
+  const lang = document.documentElement.getAttribute('lang') || 'en';
+  const langName = {en:'EN',fa:'فارسی',ar:'العربية',tr:'Türkçe'};
+  const p = h => `${prefix}${h}${sfx}`;
 
-  // sticky mini bar
+  // sticky mini bar: wordmark (to the corner on scroll) + desktop nav + mobile burger
   const mini = document.createElement('div'); mini.className = 'bs-mini';
-  mini.innerHTML = `<a class="bs-mini-logo" href="${homeHref}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot"></span></a>`;
-  const mnav = document.createElement('nav'); mnav.className = 'bs-mini-nav'; cloneLinks(mnav);
-  const burger = document.createElement('button'); burger.className = 'bs-mini-burger'; burger.type='button'; burger.setAttribute('aria-label','Open menu');
+  mini.innerHTML = `<a class="bs-mini-logo" href="${homeHref}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a>`;
+  const mnav = document.createElement('nav'); mnav.className = 'bs-mini-nav';
+  nav.querySelectorAll('a').forEach(a=>{ const c=a.cloneNode(true); c.removeAttribute('class'); mnav.appendChild(c); });
+  const burger = document.createElement('button'); burger.className='burger'; burger.type='button';
+  burger.setAttribute('aria-label','Toggle menu'); burger.setAttribute('aria-expanded','false'); burger.textContent='☰';
   mini.append(mnav, burger);
 
-  // full-screen menu
-  const menu = document.createElement('div'); menu.className = 'bs-menu';
-  menu.innerHTML = `<div class="bs-menu-head"><a class="bs-mini-logo" href="${homeHref}">MAXGAZINE<span class="dot"></span></a><button class="bs-menu-close" type="button" aria-label="Close menu">✕</button></div>`;
-  cloneLinks(menu);
-  const srcLang = document.querySelector('.bs-lang');
-  if(srcLang){
-    const lc = srcLang.cloneNode(true); lc.className = 'bs-menu-lang';
-    lc.querySelectorAll('button').forEach(b=> b.addEventListener('click',()=>switchLang(b.dataset.lang)));
-    menu.appendChild(lc);
-  }
+  // original full-screen mega-menu (data-i localised below via setLang)
+  const langBtns = ['en','fa','ar','tr'].map(l=>`<button data-lang="${l}"${l===lang?' class="active"':''} lang="${l}">${langName[l]}</button>`).join('');
+  const menu = document.createElement('div'); menu.className='nav-links'; menu.id='nav-links';
+  menu.innerHTML = `
+    <div class="menu-head"><a class="menu-logo" href="${homeHref}">MAXGAZINE<span class="dot">.</span></a></div>
+    <div class="nav-group has-sub">
+      <a href="${p('stories.html')}" data-i="nav_stories">Stories</a>
+      <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
+      <div class="sub">
+        <a href="${prefix}stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
+        <a href="${prefix}stories.html?cat=forex" data-i="nav_forex">Forex</a>
+        <a href="${prefix}stories.html?cat=tech" data-i="nav_tech">Tech</a>
+        <a href="${prefix}stories.html?cat=cars" data-i="nav_cars">Cars</a>
+        <a href="${prefix}stories.html?cat=analysis" data-i="nav_analysis">Market Analysis</a>
+      </div>
+    </div>
+    <div class="nav-group has-sub">
+      <a href="${p('exchanges.html')}" data-i="nav_topmarkets">Markets</a>
+      <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Markets">+</button>
+      <div class="sub">
+        <a href="${p('exchanges.html')}" data-i="nav_exchanges">Crypto Exchanges</a>
+        <a href="${p('brokers.html')}" data-i="nav_brokers">Brokers</a>
+      </div>
+    </div>
+    <div class="nav-group"><a href="${p('prices.html')}" data-i="nav_prices">Prices</a></div>
+    <div class="nav-group"><a href="${p('about.html')}" data-i="nav_about">About</a></div>
+    <div class="nav-group"><a href="${p('contact.html')}" data-i="nav_contact">Contact</a></div>
+    <div class="lang menu-lang" role="group" aria-label="Select language">${langBtns}</div>
+    <div class="menu-foot">
+      <button class="menu-close" type="button" aria-label="Close menu">✕ <span data-i="m_close">Close</span></button>
+      <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+    </div>`;
   document.body.append(mini, menu);
 
-  const open = ()=>{ menu.classList.add('open'); document.body.classList.add('menu-open'); };
-  const close = ()=>{ menu.classList.remove('open'); document.body.classList.remove('menu-open'); };
-  burger.addEventListener('click',open);
-  menu.querySelector('.bs-menu-close').addEventListener('click',close);
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
-  addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+  // localise the injected data-i strings to the active language
+  if(window.I){
+    const dict = Object.assign({}, window.I[lang]||window.I.en, (window.PAGE_I&&window.PAGE_I[lang])||{});
+    menu.querySelectorAll('[data-i]').forEach(el=>{ const k=el.getAttribute('data-i'); if(dict[k]!=null) el.textContent=dict[k]; });
+  }
 
+  // reveal the sticky bar on scroll (wordmark to the corner + playful dot)
   const onScroll = ()=> document.body.classList.toggle('scrolled', window.scrollY > 220);
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 }

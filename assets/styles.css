@@ -1290,7 +1290,8 @@ body.scrolled .bs-mini{transform:none}
   font-size:23px;letter-spacing:-.02em;text-transform:lowercase;text-decoration:none;color:var(--ink);
   direction:ltr;display:inline-flex;align-items:baseline;gap:3px;white-space:nowrap}
 .bs-mini-logo::first-letter{text-transform:uppercase}
-.bs-mini-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-orange);display:inline-block;
+/* the dot IS the period ending "Maxgazine." — orange + playful, not a stray circle */
+.bs-mini-logo .dot{color:var(--accent-orange);display:inline-block;
   animation:logoDot 9.5s linear infinite}
 @media(prefers-reduced-motion:reduce){.bs-mini-logo .dot{animation:none}}
 .bs-mini-nav{display:flex;gap:28px;align-items:center}
@@ -1327,16 +1328,22 @@ html[lang="fa"] .bs-menu>a,html[lang="ar"] .bs-menu>a{text-transform:none}
   .bs-mini-burger{display:block}
   body.bs-page{padding-top:58px}        /* clear the fixed header */
 
-  /* feed cards become compact rows: small square thumb + headline (Editor's-Pick style) */
-  .bs-grid.feed-grid{grid-template-columns:1fr}
-  .bs-grid .card{display:grid;grid-template-columns:82px 1fr;column-gap:14px;align-items:center;padding:14px var(--gut)}
+  /* feed cards become compact rows: a fixed square thumb (top-aligned with the
+     text) + headline — Editor's-Pick style. Works for both card builders
+     (feedCard: .card-meta · articleCard: trailing .mono "Read →"). */
+  .bs-grid.feed-grid,.grid.bs-grid{grid-template-columns:1fr}
+  .bs-grid .card{display:grid;grid-template-columns:90px 1fr;column-gap:14px;align-items:start;padding:14px var(--gut)}
   .bs-grid .card:not(:has(.card-img)){grid-template-columns:1fr}
-  .bs-grid .card .card-img{grid-column:1;grid-row:1 / -1;margin:0;border:1px solid var(--hair);align-self:center}
-  .bs-grid .card .card-img img{aspect-ratio:1/1}
-  .bs-grid .card>.cat{grid-column:2;margin:0 0 4px;font-size:10px;padding:2px 7px}
-  .bs-grid .card>h3{grid-column:2;font-size:16px;line-height:1.25;margin:0}
+  /* every non-image child goes in column 2 and never stretches vertically */
+  .bs-grid .card>*{grid-column:2;align-self:start;justify-self:start;min-width:0}
+  .bs-grid .card>.card-img{grid-column:1;grid-row:1 / 99;width:90px;height:90px;margin:0;
+    border:1px solid var(--hair);overflow:hidden;align-self:start}
+  .bs-grid .card>.card-img img{width:100%;height:100%;min-height:0;aspect-ratio:auto;object-fit:cover}
+  .bs-grid .card>.cat{width:max-content;margin:0 0 6px;font-size:10px;padding:2px 7px}
+  .bs-grid .card>h3{font-size:16px;line-height:1.28;margin:0;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .bs-grid .card>p{display:none}
-  .bs-grid .card>.card-meta{grid-column:2;margin-top:6px;font-size:10px}
+  .bs-grid .card>.card-meta,.bs-grid .card>.mono{margin-top:6px;font-size:10px}
   .bs-grid .card:not(:has(.card-img))>*{grid-column:1}
   /* crimson dispatch tile: compact single row, not a tall block */
   .bs-grid .dispatch-card{min-height:0;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:14px var(--gut)}
@@ -1350,3 +1357,34 @@ html[lang="fa"] .bs-menu>a,html[lang="ar"] .bs-menu>a{text-transform:none}
   .bs-latest{padding:18px var(--gut)}
   .article-read{padding:32px var(--gut)}
 }
+
+/* ============================================================
+   FIX-UPS (round 3) — feedback pass
+   ============================================================ */
+/* logotype rule: always "Maxgazine" (capital M). The sticky mini-bar logo was
+   inline-flex, which disables ::first-letter — make it inline-block so the M caps. */
+.bs-mini-logo{display:inline-block}
+
+/* the injected full-screen mega-menu is the mobile menu only — hide on desktop
+   (the sticky mini-bar carries the desktop nav) */
+@media(min-width:761px){ body > .nav-links{ display:none } }
+
+/* mobile: category badge + meta must hug the start, not stretch across the grid
+   cell (that was blowing out the card box) */
+@media(max-width:760px){
+  .bs-grid .card > .cat{justify-self:start;width:max-content}
+  .bs-grid .card > .card-meta{justify-self:start}
+}
+
+/* ============================================================
+   FIX-UPS (round 4) — feedback pass
+   ============================================================ */
+/* item 4 — vertically centre the ticker prices (arrows + numbers) in their bar */
+.ticker-track{display:inline-flex;align-items:center}
+.ticker-track > span{display:inline-flex;align-items:center}
+
+/* item 7 — mobile menu: clean logotype, no stray line under "Maxgazine.",
+   playful orange period to match the header */
+.nav-links .menu-head{border-bottom:0;padding-block:22px 10px}
+.nav-links .menu-logo{font-size:26px}
+.nav-links .menu-logo .dot{color:var(--accent-orange)}
