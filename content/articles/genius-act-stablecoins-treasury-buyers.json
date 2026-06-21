@@ -1,0 +1,100 @@
+{
+  "slug": "genius-act-stablecoins-treasury-buyers",
+  "category": "policy",
+  "date": "2026-06-20",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "How the GENIUS Act Turned US Stablecoin Issuers Into Captive Buyers of Government Debt",
+    "fa": "چگونه قانون GENIUS ناشران استیبل‌کوین آمریکا را به خریداران ناگزیر بدهی دولتی تبدیل کرد",
+    "ar": "كيف حوّل قانون GENIUS مُصدري العملات المستقرة في أمريكا إلى مشترين مُلزَمين للدَّين الحكومي",
+    "tr": "GENIUS Yasası ABD Stablecoin İhraççılarını Nasıl Devlet Borcunun Mecburi Alıcısına Dönüştürdü"
+  },
+  "dek": {
+    "en": "America's first federal stablecoin law requires issuers to back tokens with cash and short-term Treasuries — channeling a fast-growing market straight into US government debt ahead of a July 18 rulemaking deadline.",
+    "fa": "نخستین قانون فدرال آمریکا درباره استیبل‌کوین‌ها ناشران را موظف می‌کند توکن‌های خود را با نقد و اوراق خزانه کوتاه‌مدت پشتوانه کنند؛ سیاستی که بازاری پررشد را پیش از مهلت قانون‌گذاری ۱۸ ژوئیه مستقیم به‌سوی بدهی دولت آمریکا هدایت می‌کند.",
+    "ar": "أول قانون فيدرالي أمريكي ينظّم العملات المستقرة يُلزم المُصدرين بتغطية رموزهم بالنقد وسندات الخزانة قصيرة الأجل، ما يوجّه سوقاً سريعة النمو مباشرة نحو ديْن الحكومة الأمريكية قبل الموعد التنظيمي في 18 يوليو.",
+    "tr": "ABD'nin ilk federal stablecoin yasası, ihraççılara tokenlarını nakit ve kısa vadeli Hazine tahvilleriyle teminatlandırmayı zorunlu kılarak hızla büyüyen bir piyasayı 18 Temmuz düzenleme son tarihinden önce doğrudan ABD devlet borcuna yönlendiriyor."
+  },
+  "body": {
+    "en": "The US stablecoin market is being reshaped by a single law, and the full consequences are only now coming into focus. The GENIUS Act — the first federal law in the United States to govern payment stablecoins, enacted in 2025 — requires issuers to hold reserves backing their tokens one-to-one in cash, insured bank deposits, and short-term US Treasuries. It also bars issuers from paying interest directly to token holders. Taken together, those two rules quietly turn the stablecoin industry into a structural buyer of American government debt.\n\n## A fast-growing market pointed at Treasuries\n\nThe numbers explain why this matters. Total stablecoin supply now exceeds $240 billion, with Tether's USDT holding roughly 67% of the market and Circle's USDC near 27%. To stay compliant, that collateral increasingly sits in Treasuries. Tether alone holds about $141 billion in US government debt — more than Saudi Arabia or Brazil, ranking it near the 17th-largest holder of Treasuries in the world. As stablecoin adoption grows, so does a new and reliable source of demand for short-dated US paper.\n\n## The rulemaking clock is ticking\n\nThe framework is still being built. The Treasury Department published a proposed rule defining the GENIUS Act's reserve and disclosure principles on April 1, 2026, with the public comment period closing on June 2 and further FinCEN and OFAC comment milestones in early June. Final implementing rules are due by July 18, 2026. Foreign issuers face an extra hurdle: Tether requires a Treasury reciprocity determination to keep serving US businesses, and as of May 2026 that determination had not been issued. In response, Tether launched USAT, a US-regulated token issued through Anchorage Digital Bank, while Circle has advanced its own national trust bank charter.\n\n## Why supporters and critics disagree\n\nSupporters argue the law delivers exactly what the industry asked for: clear consumer protection, audited reserves, and the legitimacy that comes with federal oversight — plus a steady new buyer for Treasuries at a time of heavy government borrowing. Critics counter that the same design ties the crypto sector's fortunes to the Treasury market and the government's fiscal needs, and that banning yield to holders pushes savers toward tokenized money-market funds and other alternatives instead.\n\n## What to watch next\n\nThe July 18 deadline is the next real milestone, after which the practical rules of the road become clearer. Beyond that, the open questions are whether foreign issuers secure reciprocity, whether banks and large retailers launch their own stablecoins under the new regime, and how much of the next wave of stablecoin growth ultimately flows back into US government debt.",
+    "fa": "بازار استیبل‌کوین آمریکا با یک قانون واحد در حال بازآرایی است و پیامدهای کامل آن تازه روشن می‌شود. قانون GENIUS — نخستین قانون فدرال آمریکا برای تنظیم استیبل‌کوین‌های پرداختی که در سال ۲۰۲۵ تصویب شد — ناشران را موظف می‌کند ذخایر پشتوانه توکن‌هایشان را به‌صورت یک‌به‌یک در قالب نقد، سپرده‌های بانکی بیمه‌شده و اوراق خزانه کوتاه‌مدت آمریکا نگه دارند. این قانون همچنین پرداخت مستقیم سود به دارندگان توکن را ممنوع می‌کند. این دو قاعده در کنار هم، صنعت استیبل‌کوین را بی‌سروصدا به یک خریدار ساختاری بدهی دولت آمریکا بدل کرده‌اند.\n\n## بازاری پررشد که به‌سوی اوراق خزانه نشانه رفته است\n\nارقام نشان می‌دهند چرا این موضوع مهم است. مجموع عرضه استیبل‌کوین‌ها اکنون از ۲۴۰ میلیارد دلار فراتر رفته است؛ توکن USDT شرکت تتر حدود ۶۷ درصد و USDC شرکت سرکل نزدیک به ۲۷ درصد بازار را در اختیار دارند. برای رعایت قانون، این وثیقه‌ها به‌طور فزاینده در اوراق خزانه نگهداری می‌شوند. تنها تتر حدود ۱۴۱ میلیارد دلار اوراق بدهی دولت آمریکا در اختیار دارد — بیش از عربستان سعودی یا برزیل — که آن را در رتبه‌ای نزدیک به هفدهمین دارنده بزرگ اوراق خزانه در جهان قرار می‌دهد. هرچه پذیرش استیبل‌کوین بیشتر شود، منبع تازه و قابل‌اتکایی از تقاضا برای اوراق کوتاه‌مدت آمریکا نیز بزرگ‌تر می‌شود.\n\n## ساعت قانون‌گذاری در حال تیک‌تاک است\n\nچارچوب هنوز در حال شکل‌گیری است. وزارت خزانه‌داری آمریکا در اول آوریل ۲۰۲۶ پیش‌نویس مقرراتی را منتشر کرد که اصول مربوط به ذخایر و افشاگری در قانون GENIUS را تعریف می‌کند؛ دوره دریافت نظرات عمومی در ۲ ژوئن بسته شد و مهلت‌های بعدی برای نظرات نهادهای FinCEN و OFAC در اوایل ژوئن قرار گرفت. مقررات اجرایی نهایی باید تا ۱۸ ژوئیه ۲۰۲۶ نهایی شوند. ناشران خارجی با مانع بیشتری روبه‌رو هستند: تتر برای ادامه خدمت‌رسانی به کسب‌وکارهای آمریکایی به «تعیین رفتار متقابل» از سوی خزانه‌داری نیاز دارد و تا ماه مه ۲۰۲۶ این تصمیم صادر نشده بود. در واکنش، تتر توکن USAT را که زیر نظارت آمریکا و از طریق بانک Anchorage Digital منتشر می‌شود راه‌اندازی کرد، در حالی که سرکل مجوز تراست بانکی ملی خود را پیش برده است.\n\n## چرا موافقان و منتقدان اختلاف دارند\n\nموافقان می‌گویند این قانون دقیقاً همان چیزی را فراهم کرده که صنعت خواستار آن بود: حمایت روشن از مصرف‌کننده، ذخایر حسابرسی‌شده و مشروعیتی که نظارت فدرال به همراه می‌آورد — به‌علاوه خریداری تازه و پایدار برای اوراق خزانه در زمانی که دولت استقراض سنگینی دارد. منتقدان در مقابل استدلال می‌کنند که همین ساختار، سرنوشت بخش رمزارز را به بازار اوراق خزانه و نیازهای مالی دولت گره می‌زند و ممنوعیت پرداخت سود به دارندگان، پس‌اندازکنندگان را به‌سوی صندوق‌های بازار پول توکنیزه‌شده و گزینه‌های دیگر سوق می‌دهد.\n\n## آنچه باید در ادامه دنبال کرد\n\nمهلت ۱۸ ژوئیه نقطه عطف واقعی بعدی است و پس از آن قواعد عملی این بازار روشن‌تر می‌شود. فراتر از آن، پرسش‌های باز این است که آیا ناشران خارجی رفتار متقابل را به دست می‌آورند، آیا بانک‌ها و خرده‌فروشان بزرگ زیر چارچوب جدید استیبل‌کوین‌های خود را عرضه می‌کنند، و چه بخشی از موج بعدی رشد استیبل‌کوین در نهایت به بدهی دولت آمریکا بازمی‌گردد.",
+    "ar": "يُعاد تشكيل سوق العملات المستقرة في الولايات المتحدة بقانون واحد، ولم تتضح تبعاته الكاملة إلا الآن. فقانون GENIUS — أول قانون فيدرالي أمريكي ينظّم عملات الدفع المستقرة، الذي صدر عام 2025 — يُلزم المُصدرين بالاحتفاظ باحتياطيات تغطّي رموزهم بنسبة واحد إلى واحد في صورة نقد وودائع مصرفية مؤمَّنة وسندات خزانة أمريكية قصيرة الأجل. كما يمنعهم من دفع فائدة مباشرة لحاملي الرموز. وبهذين البندين معاً، يتحوّل قطاع العملات المستقرة بهدوء إلى مشترٍ بنيوي لدَيْن الحكومة الأمريكية.\n\n## سوق سريعة النمو موجَّهة نحو سندات الخزانة\n\nتشرح الأرقام أهمية ذلك. فقد تجاوز إجمالي المعروض من العملات المستقرة 240 مليار دولار، إذ يستحوذ رمز USDT التابع لشركة تيثر على نحو 67% من السوق، ويقترب USDC التابع لشركة سيركل من 27%. وللامتثال للقانون، تُحفظ هذه الضمانات بشكل متزايد في سندات الخزانة. وتمتلك تيثر وحدها نحو 141 مليار دولار من الدَّين الحكومي الأمريكي — أكثر من السعودية أو البرازيل — ما يضعها قرب المرتبة السابعة عشرة بين أكبر حائزي سندات الخزانة في العالم. وكلما اتسع تبنّي العملات المستقرة، اتسع معه مصدر جديد وموثوق للطلب على السندات الأمريكية قصيرة الأجل.\n\n## ساعة وضع اللوائح تدقّ\n\nلا يزال الإطار قيد البناء. فقد نشرت وزارة الخزانة الأمريكية في الأول من أبريل 2026 مشروع قاعدة يحدّد مبادئ الاحتياطي والإفصاح في قانون GENIUS، وأُغلقت فترة التعليقات العامة في 2 يونيو، مع مواعيد لاحقة لتعليقات هيئتي FinCEN وOFAC في مطلع يونيو. ويجب أن تُستكمل اللوائح التنفيذية النهائية بحلول 18 يوليو 2026. ويواجه المُصدرون الأجانب عقبة إضافية: فتيثر تحتاج إلى «قرار بالمعاملة بالمثل» من الخزانة لمواصلة خدمة الشركات الأمريكية، وحتى مايو 2026 لم يصدر هذا القرار. ورداً على ذلك، أطلقت تيثر رمز USAT الخاضع للتنظيم الأمريكي والصادر عبر بنك Anchorage Digital، بينما مضت سيركل في الحصول على ترخيص مصرف ائتماني وطني.\n\n## لماذا يختلف المؤيدون والمنتقدون\n\nيرى المؤيدون أن القانون يقدّم بالضبط ما طالب به القطاع: حماية واضحة للمستهلك، واحتياطيات مدقَّقة، والشرعية التي يمنحها الإشراف الفيدرالي — إضافة إلى مشترٍ جديد ثابت لسندات الخزانة في وقت تقترض فيه الحكومة بكثافة. ويردّ المنتقدون بأن التصميم نفسه يربط مصير قطاع العملات المشفّرة بسوق سندات الخزانة وباحتياجات الحكومة المالية، وأن منع دفع العوائد للحاملين يدفع المدّخرين نحو صناديق أسواق المال المرمَّزة وبدائل أخرى.\n\n## ما الذي يجب متابعته لاحقاً\n\nيمثّل موعد 18 يوليو المحطة الحقيقية التالية، وبعده تتضح القواعد العملية لهذه السوق. وفيما عدا ذلك، تبقى الأسئلة المفتوحة هي ما إذا كان المُصدرون الأجانب سيحصلون على المعاملة بالمثل، وما إذا كانت المصارف وكبار تجار التجزئة سيطلقون عملاتهم المستقرة في ظل النظام الجديد، وأي قدر من الموجة المقبلة لنمو العملات المستقرة سيتدفّق في النهاية إلى دَيْن الحكومة الأمريكية.",
+    "tr": "ABD stablecoin piyasası tek bir yasayla yeniden şekilleniyor ve sonuçların tamamı ancak şimdi netleşiyor. 2025'te yürürlüğe giren ve ödeme stablecoin'lerini düzenleyen ilk ABD federal yasası olan GENIUS Yasası, ihraççıları tokenlarını destekleyen rezervleri birebir oranda nakit, sigortalı banka mevduatı ve kısa vadeli ABD Hazine tahvilleriyle tutmaya zorunlu kılıyor. Ayrıca ihraççıların token sahiplerine doğrudan faiz ödemesini yasaklıyor. Bu iki kural birlikte, stablecoin sektörünü sessizce ABD devlet borcunun yapısal bir alıcısına dönüştürüyor.\n\n## Hazine tahvillerine yönelmiş hızla büyüyen bir piyasa\n\nRakamlar bunun neden önemli olduğunu açıklıyor. Toplam stablecoin arzı artık 240 milyar doları aşmış durumda; Tether'in USDT'si piyasanın yaklaşık %67'sini, Circle'ın USDC'si ise %27'ye yakınını elinde tutuyor. Yasaya uymak için bu teminat giderek Hazine tahvillerinde tutuluyor. Tek başına Tether, yaklaşık 141 milyar dolarlık ABD devlet borcuna sahip — Suudi Arabistan veya Brezilya'dan daha fazla — bu da onu dünyanın en büyük 17'nci Hazine tahvili sahibine yakın bir konuma yerleştiriyor. Stablecoin benimsenmesi büyüdükçe, kısa vadeli ABD kâğıtlarına yönelik yeni ve güvenilir bir talep kaynağı da büyüyor.\n\n## Düzenleme saati işliyor\n\nÇerçeve hâlâ inşa ediliyor. ABD Hazine Bakanlığı, GENIUS Yasası'nın rezerv ve açıklama ilkelerini tanımlayan taslak kuralı 1 Nisan 2026'da yayımladı; kamuoyu görüş süresi 2 Haziran'da kapandı ve FinCEN ile OFAC için ek görüş tarihleri haziran başına denk geldi. Nihai uygulama kuralları 18 Temmuz 2026'ya kadar tamamlanmalı. Yabancı ihraççılar ek bir engelle karşı karşıya: Tether, ABD'li işletmelere hizmet vermeyi sürdürmek için Hazine'den bir karşılıklılık kararına ihtiyaç duyuyor ve Mayıs 2026 itibarıyla bu karar verilmemişti. Buna yanıt olarak Tether, Anchorage Digital Bank aracılığıyla ihraç edilen ve ABD'de düzenlenen USAT tokenını başlattı; Circle ise kendi ulusal güven bankası lisansında ilerledi.\n\n## Destekçiler ile eleştirenler neden anlaşamıyor\n\nDestekçiler yasanın tam da sektörün istediğini sunduğunu savunuyor: net tüketici koruması, denetlenmiş rezervler ve federal gözetimin getirdiği meşruiyet — ayrıca hükümetin yoğun borçlandığı bir dönemde Hazine tahvilleri için istikrarlı yeni bir alıcı. Eleştirenler ise aynı tasarımın kripto sektörünün kaderini Hazine piyasasına ve hükümetin mali ihtiyaçlarına bağladığını, sahiplerine getiri ödenmesinin yasaklanmasının ise tasarruf sahiplerini tokenlaştırılmış para piyasası fonlarına ve diğer alternatiflere yönelttiğini öne sürüyor.\n\n## Bundan sonra izlenecekler\n\n18 Temmuz son tarihi bir sonraki gerçek dönüm noktası; ardından piyasanın pratik kuralları netleşecek. Bunun ötesinde açık sorular şunlar: Yabancı ihraççılar karşılıklılık elde edecek mi, bankalar ve büyük perakendeciler yeni rejim altında kendi stablecoin'lerini çıkaracak mı ve stablecoin büyümesinin bir sonraki dalgasının ne kadarı nihayetinde ABD devlet borcuna akacak."
+  },
+  "seo": {
+    "title": {
+      "en": "GENIUS Act Turns Stablecoins Into US Debt Buyers — MAXGAZINE",
+      "fa": "قانون GENIUS و استیبل‌کوین‌ها به‌مثابه خریدار بدهی آمریکا — MAXGAZINE",
+      "ar": "GENIUS يحوّل العملات المستقرة لمشتري دَيْن أمريكا — MAXGAZINE",
+      "tr": "GENIUS Yasası Stablecoin'leri ABD Borç Alıcısı Yapıyor — MAXGAZINE"
+    },
+    "description": {
+      "en": "The GENIUS Act forces US stablecoin issuers like Tether and Circle to back tokens with cash and Treasuries — making stablecoins big buyers of US debt.",
+      "fa": "قانون GENIUS ناشران استیبل‌کوین مانند تتر و سرکل را موظف می‌کند توکن‌ها را با نقد و اوراق خزانه پشتوانه کنند و آن‌ها را به خریداران بزرگ بدهی دولت آمریکا بدل می‌کند.",
+      "ar": "يُلزم قانون GENIUS مُصدري العملات المستقرة مثل تيثر وسيركل بتغطية الرموز بالنقد وسندات الخزانة، محوّلاً العملات المستقرة إلى مشترين كبار لدَيْن الحكومة الأمريكية.",
+      "tr": "GENIUS Yasası, Tether ve Circle gibi ABD stablecoin ihraççılarını tokenları nakit ve Hazine tahvilleriyle desteklemeye zorlayarak onları ABD devlet borcunun büyük alıcısı yapıyor."
+    },
+    "keywords": {
+      "en": [
+        "GENIUS Act",
+        "stablecoins",
+        "Tether",
+        "USDC",
+        "Circle",
+        "US Treasuries"
+      ],
+      "fa": [
+        "قانون GENIUS",
+        "استیبل‌کوین",
+        "تتر",
+        "USDC",
+        "سرکل",
+        "اوراق خزانه آمریکا"
+      ],
+      "ar": [
+        "قانون GENIUS",
+        "العملات المستقرة",
+        "تيثر",
+        "USDC",
+        "سيركل",
+        "سندات الخزانة الأمريكية"
+      ],
+      "tr": [
+        "GENIUS Yasası",
+        "stablecoin",
+        "Tether",
+        "USDC",
+        "Circle",
+        "ABD Hazine tahvilleri"
+      ]
+    }
+  },
+  "tags": [
+    "stablecoins",
+    "GENIUS Act",
+    "Tether",
+    "USDC",
+    "regulation",
+    "US Treasuries"
+  ],
+  "sources": [
+    {
+      "title": "Circle — GENIUS Act: U.S. Stablecoin Law & USDC Compliance",
+      "url": "https://www.circle.com/genius-act"
+    },
+    {
+      "title": "Brookings — Next steps for GENIUS payment stablecoins",
+      "url": "https://www.brookings.edu/articles/next-steps-for-genius-payment-stablecoins/"
+    },
+    {
+      "title": "CoinDesk — Tether debuts federally regulated USAT stablecoin via Anchorage Digital",
+      "url": "https://www.coindesk.com/business/2026/01/27/tether-debuts-federally-regulated-usat-stablecoin-via-anchorage-digital"
+    },
+    {
+      "title": "Chapman and Cutler LLP — GENIUS Act Rulemaking and Reporting Tracker",
+      "url": "https://www.chapman.com/publication-genius-act-rulemaking-tracker"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}
