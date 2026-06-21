@@ -1269,3 +1269,84 @@ html[lang="fa"] .bs-pagehead h1{font-family:'Morabba','Estedad',sans-serif;font-
 
 /* hide the placeholder label once a real hero photo is hydrated */
 .feature-img.has-img .fi-label{display:none}
+
+/* ============================================================
+   BROADSHEET FIXES (round 2) — feedback pass
+   ============================================================ */
+/* 1) چهارخونه only in small spots (image placeholders), NOT page-wide */
+body.bs-page{background-color:var(--paper);background-image:none}
+
+/* 2) orange, playful brand dot (was crimson) */
+:root{--accent-orange:#EA5A1B}
+.bs-logo .dot,.foot-logo .dot{color:var(--accent-orange)}
+
+/* ===== sticky mini header: wordmark slides to the corner on scroll,
+        with the playful orange dot. Also carries the mobile menu button. ===== */
+.bs-mini{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:9px var(--gut);background:var(--paper);border-bottom:2px solid var(--ink);
+  transform:translateY(-103%);transition:transform .32s var(--ease)}
+body.scrolled .bs-mini{transform:none}
+.bs-mini-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:600;
+  font-size:23px;letter-spacing:-.02em;text-transform:lowercase;text-decoration:none;color:var(--ink);
+  direction:ltr;display:inline-flex;align-items:baseline;gap:3px;white-space:nowrap}
+.bs-mini-logo::first-letter{text-transform:uppercase}
+.bs-mini-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-orange);display:inline-block;
+  animation:logoDot 9.5s linear infinite}
+@media(prefers-reduced-motion:reduce){.bs-mini-logo .dot{animation:none}}
+.bs-mini-nav{display:flex;gap:28px;align-items:center}
+.bs-mini-nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink);transition:color .15s}
+.bs-mini-nav a:hover{color:var(--accent)}
+html[lang="fa"] .bs-mini-nav a,html[lang="ar"] .bs-mini-nav a{font-family:var(--font-body);letter-spacing:0}
+.bs-mini-burger{display:none;width:42px;height:42px;flex:0 0 42px;border:2px solid var(--ink);background:var(--ink);cursor:pointer;position:relative;padding:0}
+.bs-mini-burger::before{content:"";position:absolute;inset:0;margin:auto;width:18px;height:12px;
+  background-image:repeating-linear-gradient(to bottom,var(--paper) 0 2px,transparent 2px 5px)}
+.bs-mini-burger:active{transform:scale(.94)}
+
+/* ===== full-screen mobile menu ===== */
+.bs-menu{position:fixed;inset:0;z-index:240;background:var(--paper);display:flex;flex-direction:column;
+  padding:18px var(--gut) 26px;opacity:0;visibility:hidden;transform:translateY(-10px);
+  transition:opacity .28s ease,transform .32s var(--ease),visibility .28s;overflow-y:auto}
+.bs-menu.open{opacity:1;visibility:visible;transform:none}
+.bs-menu-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.bs-menu-close{width:44px;height:44px;border:2px solid var(--ink);background:none;cursor:pointer;font-family:var(--mono);font-size:18px;color:var(--ink)}
+.bs-menu>a{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,7.5vw,38px);letter-spacing:-.02em;
+  text-transform:lowercase;text-decoration:none;color:var(--ink);padding:13px 0;border-bottom:1px solid var(--hair)}
+html[lang="fa"] .bs-menu>a,html[lang="ar"] .bs-menu>a{text-transform:none}
+.bs-menu>a:active{color:var(--accent)}
+.bs-menu-lang{display:flex;border:2px solid var(--ink);margin-top:auto}
+.bs-menu-lang button{flex:1;background:none;border:none;border-inline-end:1px solid var(--ink);padding:14px 4px;
+  font-family:var(--mono);font-size:13px;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+.bs-menu-lang button:last-child{border-inline-end:none}
+.bs-menu-lang button.active{background:var(--ink);color:var(--paper)}
+
+/* ===== MOBILE (≤760): slim fixed header + compact feed cards like Editor's Pick ===== */
+@media(max-width:760px){
+  .bsheet{display:none}                 /* big masthead is desktop-only */
+  .bs-mini{transform:none}              /* slim header always present on mobile */
+  .bs-mini-nav{display:none}
+  .bs-mini-burger{display:block}
+  body.bs-page{padding-top:58px}        /* clear the fixed header */
+
+  /* feed cards become compact rows: small square thumb + headline (Editor's-Pick style) */
+  .bs-grid.feed-grid{grid-template-columns:1fr}
+  .bs-grid .card{display:grid;grid-template-columns:82px 1fr;column-gap:14px;align-items:center;padding:14px var(--gut)}
+  .bs-grid .card:not(:has(.card-img)){grid-template-columns:1fr}
+  .bs-grid .card .card-img{grid-column:1;grid-row:1 / -1;margin:0;border:1px solid var(--hair);align-self:center}
+  .bs-grid .card .card-img img{aspect-ratio:1/1}
+  .bs-grid .card>.cat{grid-column:2;margin:0 0 4px;font-size:10px;padding:2px 7px}
+  .bs-grid .card>h3{grid-column:2;font-size:16px;line-height:1.25;margin:0}
+  .bs-grid .card>p{display:none}
+  .bs-grid .card>.card-meta{grid-column:2;margin-top:6px;font-size:10px}
+  .bs-grid .card:not(:has(.card-img))>*{grid-column:1}
+  /* crimson dispatch tile: compact single row, not a tall block */
+  .bs-grid .dispatch-card{min-height:0;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:14px var(--gut)}
+  .bs-grid .dispatch-card .dc-cat{font-size:17px}
+  .bs-grid .dispatch-card h3{font-size:14px;margin:0}
+  .bs-grid .dispatch-card .card-meta{display:none}
+
+  /* tighten oversized interior headings on phones */
+  .bs-pagehead{padding:30px var(--gut) 24px}
+  .bs-pagehead h1{font-size:clamp(30px,9vw,40px)}
+  .bs-latest{padding:18px var(--gut)}
+  .article-read{padding:32px var(--gut)}
+}

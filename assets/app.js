@@ -1172,9 +1172,57 @@ function initBroadsheetDate(){
   }catch(e){ el.textContent = new Date().toDateString(); }
 }
 
+/* Broadsheet chrome: a slim sticky header that slides in on scroll (wordmark in
+   the corner + playful orange dot) and carries the mobile menu button. Built once
+   from the page's own .bs-nav/.bs-lang so it works on every page without markup. */
+function initBroadsheetChrome(){
+  const nav = document.querySelector('.bs-nav');
+  const logo = document.querySelector('.bs-logo');
+  if(!nav || !logo || document.querySelector('.bs-mini')) return;
+  const homeHref = logo.getAttribute('href') || 'index.html';
+  const fixedLang = (location.pathname.match(/\/(en|fa|ar|tr)\//)||[])[1];
+  const switchLang = l=>{
+    if(fixedLang){ location.href = `../${l}/${location.pathname.split('/').pop()}`; }
+    else if(window.setLang){ window.setLang(l); }
+  };
+  const cloneLinks = target => nav.querySelectorAll('a').forEach(a=>{
+    const c = a.cloneNode(true); c.removeAttribute('class'); target.appendChild(c);
+  });
+
+  // sticky mini bar
+  const mini = document.createElement('div'); mini.className = 'bs-mini';
+  mini.innerHTML = `<a class="bs-mini-logo" href="${homeHref}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot"></span></a>`;
+  const mnav = document.createElement('nav'); mnav.className = 'bs-mini-nav'; cloneLinks(mnav);
+  const burger = document.createElement('button'); burger.className = 'bs-mini-burger'; burger.type='button'; burger.setAttribute('aria-label','Open menu');
+  mini.append(mnav, burger);
+
+  // full-screen menu
+  const menu = document.createElement('div'); menu.className = 'bs-menu';
+  menu.innerHTML = `<div class="bs-menu-head"><a class="bs-mini-logo" href="${homeHref}">MAXGAZINE<span class="dot"></span></a><button class="bs-menu-close" type="button" aria-label="Close menu">✕</button></div>`;
+  cloneLinks(menu);
+  const srcLang = document.querySelector('.bs-lang');
+  if(srcLang){
+    const lc = srcLang.cloneNode(true); lc.className = 'bs-menu-lang';
+    lc.querySelectorAll('button').forEach(b=> b.addEventListener('click',()=>switchLang(b.dataset.lang)));
+    menu.appendChild(lc);
+  }
+  document.body.append(mini, menu);
+
+  const open = ()=>{ menu.classList.add('open'); document.body.classList.add('menu-open'); };
+  const close = ()=>{ menu.classList.remove('open'); document.body.classList.remove('menu-open'); };
+  burger.addEventListener('click',open);
+  menu.querySelector('.bs-menu-close').addEventListener('click',close);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+  addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+
+  const onScroll = ()=> document.body.classList.toggle('scrolled', window.scrollY > 220);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   if(window.initLang) window.initLang();
   initBroadsheetDate();
+  initBroadsheetChrome();
   initNav();
   initObservers();
   initStickyMark();
