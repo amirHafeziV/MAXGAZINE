@@ -113,7 +113,7 @@ function setLang(l, persist){
   if(dict.pm_title){ document.title = dict.pm_title; _setMeta('meta[property="og:title"]',dict.pm_title); _setMeta('meta[name="twitter:title"]',dict.pm_title); }
   if(dict.pm_desc){ _setMeta('meta[name="description"]',dict.pm_desc); _setMeta('meta[property="og:description"]',dict.pm_desc); _setMeta('meta[name="twitter:description"]',dict.pm_desc); }
   _setMeta('meta[property="og:locale"]', OG_LOCALE[l]||'en_US');
-  document.querySelectorAll('.lang button').forEach(b=>{
+  document.querySelectorAll('.lang button, .bs-lang button').forEach(b=>{
     const on = b.dataset.lang===l; b.classList.toggle('active',on); b.setAttribute('aria-pressed',on);
   });
   const url = new URL(location.href);

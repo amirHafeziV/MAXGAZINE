@@ -722,7 +722,7 @@ function initNav(){
     if(fixedLang){ location.href = `../${l}/${location.pathname.split('/').pop()}`; }
     else window.setLang(l);
   };
-  document.querySelectorAll('.lang button').forEach(b=>{
+  document.querySelectorAll('.lang button, .bs-lang button').forEach(b=>{
     b.addEventListener('click',e=>{e.preventDefault(); switchLang(b.dataset.lang);});
   });
   document.querySelectorAll('[data-lang]').forEach(b=>{
