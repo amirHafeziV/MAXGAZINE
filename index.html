@@ -8,7 +8,7 @@
 <meta name="keywords" content="crypto news, forex news, bitcoin, ethereum, market analysis, crypto forecast, top exchanges, top brokers, AI financial media">
 <meta name="author" content="MAXGAZINE">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#1A1208">
 <meta name="news_keywords" content="bitcoin, ethereum, crypto, forex, ETF, stablecoin, DeFi">
 
 <!-- TODO: replace https://maxgazine.com/ with the real production domain everywhere -->
@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 
 <script type="application/ld+json">
@@ -50,232 +50,168 @@
 }
 </script>
 </head>
-<body dir="ltr">
+<body dir="ltr" class="bs-page">
 
-<!-- HEADER -->
-<header class="topbar">
-  <div class="wrap">
-    <a class="logo logo-mark" href="index.html" aria-label="MAXGAZINE — home"><span class="dot"></span><span class="logo-word">MAXGAZINE</span></a>
-    <nav class="nav" aria-label="Primary">
-      <div class="nav-links" id="nav-links">
-        <div class="menu-head">
-          <a class="menu-logo" href="index.html">MAXGAZINE<span class="dot">.</span></a>
-        </div>
-        <div class="nav-group has-sub">
-          <a href="stories.html" data-i="nav_stories">Stories</a>
-          <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
-          <div class="sub">
-            <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-            <a href="stories.html?cat=forex" data-i="nav_forex">Forex</a>
-            <a href="stories.html?cat=tech" data-i="nav_tech">Tech</a>
-            <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
-            <a href="stories.html?cat=analysis" data-i="nav_analysis">Market Analysis</a>
-          </div>
-        </div>
-        <div class="nav-group has-sub">
-          <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
-          <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
-          <div class="sub">
-            <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
-            <a href="brokers.html" data-i="nav_brokers">Brokers</a>
-          </div>
-        </div>
-        <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-        <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
-        <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-        <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
-        <div class="lang menu-lang" role="group" aria-label="Select language">
-          <button data-lang="en" class="active" lang="en">EN</button>
-          <button data-lang="fa" lang="fa">فارسی</button>
-          <button data-lang="ar" lang="ar">العربية</button>
-          <button data-lang="tr" lang="tr">Türkçe</button>
-        </div>
-        <div class="menu-foot">
-          <button class="menu-close" type="button" aria-label="Close menu">✕ <span data-i="m_close">Close</span></button>
-          <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-        </div>
+<div class="bs-frame">
+
+  <!-- ===== THREE-ROW MASTHEAD ===== -->
+  <header class="bsheet">
+    <div class="bs-top">
+      <div class="bs-date" id="bs-date"></div>
+      <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+      <div class="bs-lang" role="group" aria-label="Select language">
+        <button data-lang="en" class="active" lang="en">EN</button>
+        <button data-lang="fa" lang="fa">FA</button>
+        <button data-lang="ar" lang="ar">AR</button>
+        <button data-lang="tr" lang="tr">TR</button>
       </div>
-      <div class="topbar-right">
-        <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      </div>
+    </div>
+    <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+    <nav class="bs-nav" aria-label="Primary">
+      <a href="stories.html" data-i="nav_stories">Stories</a>
+      <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
+      <a href="prices.html" data-i="nav_prices">Prices</a>
+      <a href="about.html" data-i="nav_about">About</a>
+      <a href="contact.html" data-i="nav_contact">Contact</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<!-- GIANT MASTHEAD -->
-<section class="masthead">
-  <div class="wrap"><div class="giant" role="img" aria-label="MAXGAZINE">MAXGAZINE</div></div>
-</section>
-
-<main>
-<div class="wrap">
-<div class="content-layout">
-
-  <!-- HERO FEATURE -->
-  <section class="hero" aria-label="Featured story">
-    <div class="hero-stage">
-      <a class="feature-img reveal" id="hero-img" aria-label="Featured article illustration" href="stories.html">
-        <span class="tag mono" data-i="feat_tag">BREAKING</span>
-      </a>
-      <div class="hero-cover">
-        <div class="kicker mono" data-i="kicker" id="hero-kicker">CRYPTO · FOREX · TECH · CARS</div>
-        <h1><a id="hero-title-link" href="stories.html" style="color:inherit;text-decoration:none"><span class="hl" data-i="hero_title">Don't close your eyes to the market.</span></a></h1>
-        <p class="hero-sub" data-i="hero_sub" id="hero-sub">Market-moving crypto, forex, tech and cars stories across four languages — fast, raw, and without the noise.</p>
-        <div class="hero-meta mono">
-          <span data-i="hm_text" id="hero-author">MAXGAZINE DESK</span>
-          <span data-i="hm_date" id="hero-date">DATE · MAY 29, 2026</span>
-          <span data-i="hm_read">READ · 4 MIN</span>
-          <span class="chip" id="hero-cat" data-i="hm_cat">MARKETS</span>
-        </div>
+  <!-- ===== DARK HERO BAND — single ticker + hero attached to Editor's Pick ===== -->
+  <section class="bs-hero-band" aria-label="Featured">
+    <div class="ticker" aria-label="Live prices">
+      <div class="ticker-track" id="ticker">
+        <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span>
+        <span>ETH <span class="up">$3,180 ▲ 1.10%</span></span>
+        <span>SOL <span class="down">$142 ▼ 0.80%</span></span>
+        <span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+        <span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
+        <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span>
+        <span>ETH <span class="up">$3,180 ▲ 1.10%</span></span>
+        <span>SOL <span class="down">$142 ▼ 0.80%</span></span>
+        <span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+        <span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
       </div>
+    </div>
+
+    <div class="bs-hero-grid">
+      <!-- HERO (hydrated by app.js) -->
+      <section class="hero" aria-label="Featured story">
+        <div class="hero-stage">
+          <a class="feature-img reveal" id="hero-img" aria-label="Featured article" href="stories.html">
+            <span class="fi-label">Featured Image</span>
+          </a>
+          <div class="hero-cover">
+            <div class="kicker mono" data-i="kicker" id="hero-kicker">CRYPTO · FOREX · TECH · CARS</div>
+            <h1><a id="hero-title-link" href="stories.html" style="color:inherit;text-decoration:none"><span class="hl" data-i="hero_title">Don't close your eyes to the market.</span></a></h1>
+            <p class="hero-sub" data-i="hero_sub" id="hero-sub">Market-moving crypto, forex, tech and cars stories across four languages — fast, raw, and without the noise.</p>
+            <div class="hero-meta mono">
+              <span data-i="hm_text" id="hero-author">MAXGAZINE DESK</span>
+              <span data-i="hm_date" id="hero-date">DATE · MAY 29, 2026</span>
+              <span data-i="hm_read">READ · 4 MIN</span>
+              <span class="chip cat-gold" id="hero-cat" data-i="hm_cat">MARKETS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITOR'S PICK (hydrated by app.js) -->
+      <aside class="editors-pick bs-editors" aria-label="Editor's Pick">
+        <div class="editors-head"><span class="kicker mono" data-i="editors_kicker">Editor's Pick</span></div>
+        <div class="editors-list" id="editors-list" data-feed-editors>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="markets">MARKETS</span><span class="ep-body"><span class="ep-title">Bitcoin breaks $94K as spot ETF inflows hit a record weekly high</span><span class="ep-meta"><span class="cat mono">MARKETS</span><span class="ep-date mono">MAY 29, 2026</span></span></span></a>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="defi">DEFI</span><span class="ep-body"><span class="ep-title">The quiet rise of tokenized treasuries</span><span class="ep-meta"><span class="cat mono">DEFI</span><span class="ep-date mono">MAY 28, 2026</span></span></span></a>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="policy">POLICY</span><span class="ep-body"><span class="ep-title">Three jurisdictions racing to define crypto custody</span><span class="ep-meta"><span class="cat mono">POLICY</span><span class="ep-date mono">MAY 27, 2026</span></span></span></a>
+        </div>
+      </aside>
     </div>
   </section>
 
-  <!-- EDITOR'S PICK — paired with the hero, fills the same height, no independent scroll -->
-  <aside class="editors-pick" aria-label="Editor's Pick">
-    <div class="editors-head">
-      <span class="kicker mono" data-i="editors_kicker">Editor's Pick</span>
-    </div>
-    <div class="editors-list" id="editors-list" data-feed-editors>
-      <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="markets">MARKETS</span><span class="ep-body"><span class="ep-title">Bitcoin breaks $94K as spot ETF inflows hit a record weekly high</span><span class="ep-meta"><span class="cat mono">MARKETS</span><span class="ep-date mono">MAY 29, 2026</span></span></span></a>
-      <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="defi">DEFI</span><span class="ep-body"><span class="ep-title">The quiet rise of tokenized treasuries</span><span class="ep-meta"><span class="cat mono">DEFI</span><span class="ep-date mono">MAY 28, 2026</span></span></span></a>
-      <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="policy">POLICY</span><span class="ep-body"><span class="ep-title">Three jurisdictions racing to define crypto custody</span><span class="ep-meta"><span class="cat mono">POLICY</span><span class="ep-date mono">MAY 27, 2026</span></span></span></a>
-    </div>
-  </aside>
-
-  <!-- TICKER: moved below the hero/Editor's Pick row so the feed can breathe -->
-  <div class="ticker" aria-label="Live prices">
-    <div class="ticker-track" id="ticker">
-      <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span>
-      <span>ETH <span class="up">$3,180 ▲ 1.10%</span></span>
-      <span>SOL <span class="down">$142 ▼ 0.80%</span></span>
-      <span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-      <span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
-      <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span>
-      <span>ETH <span class="up">$3,180 ▲ 1.10%</span></span>
-      <span>SOL <span class="down">$142 ▼ 0.80%</span></span>
-      <span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-      <span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
-    </div>
+  <!-- ===== PERFORATED "LATEST" BAND ===== -->
+  <div class="bs-latest">
+    <h2 data-i="latest">Latest Dispatches</h2>
+    <a class="all" href="stories.html" data-i="cta_all">All stories →</a>
   </div>
 
-  <!-- LATEST: vertical stack of stories -->
-  <div class="content-latest">
-    <div class="section-head">
-      <h2 data-i="latest">Latest</h2>
-      <a class="all mono" href="stories.html" data-i="cta_all">All stories →</a>
-    </div>
-    <div class="feed-stack" id="latest-list" data-feed-latest>
-      <article class="list-row reveal">
-        <a class="thumb" href="stories.html" aria-label="Read story"></a>
-        <div class="list-body">
-          <span class="cat mono">MARKETS</span>
-          <h3 data-i="l1t">Bitcoin breaks $94K as spot ETF inflows hit record weekly high</h3>
-          <p data-i="l1p">Institutional demand accelerated through the week, with agents tracking $2.1B in net inflows across major funds while volatility compressed.</p>
-          <div class="byline mono"><span data-i="l1d">MAY 29, 2026</span><span>10 MIN</span></div>
-        </div>
-      </article>
-      <article class="list-row reveal">
-        <a class="thumb" href="stories.html" aria-label="Read story"></a>
-        <div class="list-body">
-          <span class="cat mono">DEFI</span>
-          <h3 data-i="l2t">The quiet rise of tokenized treasuries</h3>
-          <p data-i="l2p">Real-world assets pass $4B as traditional desks move cautiously onto the chain, reshaping how yield is sourced on-chain.</p>
-          <div class="byline mono"><span data-i="l2d">MAY 28, 2026</span><span>8 MIN</span></div>
-        </div>
-      </article>
-      <article class="list-row no-img reveal">
-        <div class="dispatch-mark"><span class="cat">POLICY</span><span class="post-date mono" data-i="l3d">MAY 27, 2026</span></div>
-        <div class="list-body">
-          <span class="cat mono">POLICY</span>
-          <h3 data-i="l3t">Three jurisdictions racing to define crypto custody</h3>
-          <p data-i="l3p">Diverging rulebooks are forcing exchanges to pick sides, and pick fast, ahead of a clearer Q3 framework.</p>
-        </div>
-      </article>
-    </div>
+  <!-- ===== LATEST FEED (hydrated by app.js) ===== -->
+  <div class="feed-grid bs-grid" id="feed-grid" data-feed-grid>
+    <a class="card reveal" href="stories.html"><span class="cat mono">ANALYSIS</span><h3 data-i="c1t">Why on-chain volume is leading price this cycle</h3><p data-i="c1p">A structural shift in how liquidity moves between L1s and L2s is rewriting the old playbook.</p><div class="card-meta mono"><span>MAY 29, 2026</span><span class="read" data-i="cta_read">Read →</span></div></a>
+    <a class="dispatch-card reveal" href="stories.html"><span class="dc-cat">FOREX</span><div class="dc-body"><h3 data-i="c2t">Dollar strength tests emerging-market pegs</h3><div class="card-meta mono"><span>MAY 28, 2026</span><span class="read" data-i="cta_read2">Read →</span></div></div></a>
+    <a class="card reveal" href="stories.html"><span class="cat mono">TECH</span><h3 data-i="c3t">Regulators signal clearer stablecoin framework</h3><p data-i="c3p">A long-awaited rulebook could arrive by Q3, and desks are already repositioning.</p><div class="card-meta mono"><span>MAY 27, 2026</span><span class="read" data-i="cta_read3">Read →</span></div></a>
   </div>
 
-  <!-- AD RAIL — sticks in place once the user reaches it, following the scroll through Latest -->
-  <aside class="content-ads" aria-label="Advertisement">
-    <a class="ad-square reveal" href="contact.html" data-ad-slot="sidebar1">
-      <span class="ad-tag mono" data-i="ad_slot_sidebar1_tag">AD SPACE</span>
-      <h4 data-i="ad_slot_sidebar1">Sidebar placement</h4>
-      <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
-    </a>
-  </aside>
+  <!-- ===== AD PLACEMENTS (wired to the panel via data-ad-slot — preserved) ===== -->
+  <div class="ad-grid ad-grid-3" aria-label="Advertising placements">
+    <a class="ad-slot" data-ad-slot="leaderboard" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot1">Leaderboard placement</h4><span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span></div></a>
+    <a class="ad-slot" data-ad-slot="sponsored" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag2">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot2">Sponsored story</h4><span class="ad-cta mono" data-i="ad_slot_cta2">Book this spot →</span></div></a>
+    <a class="ad-slot" data-ad-slot="newsletter" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag3">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot3">Newsletter banner</h4><span class="ad-cta mono" data-i="ad_slot_cta3">Book this spot →</span></div></a>
+  </div>
 
-</div>
-</div>
+  <!-- ===== MORE DISPATCHES (hydrated by app.js) ===== -->
+  <div class="feed-grid bs-grid" id="feed-grid-2" data-feed-grid-2></div>
 
-<!-- AD PLACEMENT SLOTS (three, above the three-card grid) -->
-<div class="ad-grid ad-grid-3" aria-label="Advertising placements">
-  <a class="ad-slot" data-ad-slot="leaderboard" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot1">Leaderboard placement</h4><span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span></div></a>
-  <a class="ad-slot" data-ad-slot="sponsored" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag2">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot2">Sponsored story</h4><span class="ad-cta mono" data-i="ad_slot_cta2">Book this spot →</span></div></a>
-  <a class="ad-slot" data-ad-slot="newsletter" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag3">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot3">Newsletter banner</h4><span class="ad-cta mono" data-i="ad_slot_cta3">Book this spot →</span></div></a>
-</div>
+  <!-- ===== WIDE AD BANNER ===== -->
+  <a class="ad-banner" href="contact.html" data-ad-slot="sidebar1">
+    <span class="ad-tag mono" data-i="ad_slot_sidebar1_tag">AD SPACE</span>
+    <span class="ad-banner-title" data-i="ad_slot_sidebar1">Sidebar placement</span>
+    <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
+  </a>
 
-<!-- THREE-CARD GRID -->
-<section class="grid" id="feed-grid-first" data-feed-cards aria-label="More stories">
-  <a class="card reveal" href="stories.html"><span class="cat mono">ANALYSIS</span><h3 data-i="c1t">Why on-chain volume is leading price this cycle</h3><p data-i="c1p">A structural shift in how liquidity moves between L1s and L2s is rewriting the old playbook.</p><div class="card-meta mono"><span>MAY 29, 2026</span><span class="read" data-i="cta_read">Read →</span></div></a>
-  <a class="card reveal" href="stories.html"><span class="cat mono">FOREX</span><h3 data-i="c2t">Dollar strength tests emerging-market pegs</h3><p data-i="c2p">A relentless DXY bid is squeezing carry trades and reviving talk of coordinated intervention.</p><div class="card-meta mono"><span>MAY 28, 2026</span><span class="read" data-i="cta_read2">Read →</span></div></a>
-  <a class="card reveal" href="stories.html"><span class="cat mono">POLICY</span><h3 data-i="c3t">Regulators signal clearer stablecoin framework</h3><p data-i="c3p">A long-awaited rulebook could arrive by Q3, and desks are already repositioning.</p><div class="card-meta mono"><span>MAY 27, 2026</span><span class="read" data-i="cta_read3">Read →</span></div></a>
-</section>
+  <div class="feed-more-wrap">
+    <a class="btn ghost feed-more" data-feed-more data-i="cta_more" href="stories.html">Load more</a>
+  </div>
 
-<div class="feed-more-wrap">
-  <a class="btn ghost feed-more" data-feed-more data-i="cta_more" href="stories.html">Load more</a>
-</div>
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
-      <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h5 data-i="foot_explore">Explore</h5>
-          <a href="stories.html" data-i="f_stories">Stories</a>
-          <a href="chart.html" data-i="f_chart">Chart</a>
-          <a href="prices.html" data-i="f_prices">Prices</a>
+  <!-- ===== FOOTER (inside the frame) ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+          <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+          <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
         </div>
-        <div class="foot-col">
-          <h5 data-i="foot_markets">Markets</h5>
-          <a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a>
-          <a href="brokers.html" data-i="f_brokers">Top Brokers</a>
-          <a href="prices.html" data-i="f_prices2">Prices</a>
-        </div>
-        <div class="foot-col">
-          <h5 data-i="foot_company">Company</h5>
-          <a href="about.html" data-i="f_about">About Us</a>
-          <a href="contact.html" data-i="f_contact">Contact Us</a>
-        </div>
-        <div class="foot-col">
-          <h5 data-i="foot_lang">Languages</h5>
-          <a href="#" data-lang="en">English</a>
-          <a href="#" data-lang="fa">فارسی</a>
-          <a href="#" data-lang="ar">العربية</a>
-          <a href="#" data-lang="tr">Türkçe</a>
+        <div class="foot-cols">
+          <div class="foot-col">
+            <h5 data-i="foot_explore">Explore</h5>
+            <a href="stories.html" data-i="f_stories">Stories</a>
+            <a href="chart.html" data-i="f_chart">Chart</a>
+            <a href="prices.html" data-i="f_prices">Prices</a>
+          </div>
+          <div class="foot-col">
+            <h5 data-i="foot_markets">Markets</h5>
+            <a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a>
+            <a href="brokers.html" data-i="f_brokers">Top Brokers</a>
+            <a href="prices.html" data-i="f_prices2">Prices</a>
+          </div>
+          <div class="foot-col">
+            <h5 data-i="foot_company">Company</h5>
+            <a href="about.html" data-i="f_about">About Us</a>
+            <a href="contact.html" data-i="f_contact">Contact Us</a>
+          </div>
+          <div class="foot-col">
+            <h5 data-i="foot_lang">Languages</h5>
+            <a href="#" data-lang="en">English</a>
+            <a href="#" data-lang="fa">فارسی</a>
+            <a href="#" data-lang="ar">العربية</a>
+            <a href="#" data-lang="tr">Türkçe</a>
+          </div>
         </div>
       </div>
+      <div class="foot-bottom mono">
+        <span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span>
+        <span data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
+      </div>
     </div>
-    <div class="foot-bottom mono">
-      <span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span>
-      <span data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
-    </div>
-  </div>
-</footer>
+  </footer>
+
+</div><!-- /.bs-frame -->
 
 <script src="assets/i18n.js"></script>
 <script>
 window.PAGE_I = {
-  en:{kicker:"CRYPTO · FOREX · TECH · CARS",hero_title:"Don't close your eyes to the market.",hero_sub:"Market-moving crypto, forex, tech and cars stories across four languages — fast, raw, and without the noise.",latest:"Latest",feed:"From the feed",promo_label:"PREMIUM · FORECASTS",promo_sub:"MARKET INTELLIGENCE",promo_title:"THE FUTURE",promo_seal:"FORECAST EDITION",ad_label:"SPONSORED · ADVERTORIAL",ad_title:"Your protocol, in front of four markets.",ad_slot_tag:"AD SPACE",ad_slot_tag2:"AD SPACE",ad_slot_tag3:"AD SPACE",ad_slot_tag4:"AD SPACE",ad_slot1:"Leaderboard placement",ad_slot2:"Sponsored story",ad_slot3:"Newsletter banner",ad_slot4:"Sidebar unit",ad_slot_cta:"Book this spot →",ad_slot_cta2:"Book this spot →",ad_slot_cta3:"Book this spot →",ad_slot_cta4:"Book this spot →",editors_kicker:"Editor's Pick"},
-  fa:{kicker:"کریپتو · فارکس · تکنولوژی · خودرو",hero_title:"چشم‌هایت را روی بازار نبند.",hero_sub:"خبرهای مهم کریپتو، فارکس، تکنولوژی و خودرو در چهار زبان — سریع، خام و بدون شلوغی.",latest:"تازه‌ها",feed:"از فید",promo_label:"ویژه · پیش‌بینی‌ها",promo_sub:"هوش بازار",promo_title:"آینده",promo_seal:"نسخه پیش‌بینی",ad_label:"حمایت‌شده · رپورتاژ",ad_title:"پروتکل شما، پیش روی چهار بازار.",ad_slot_tag:"جایگاه تبلیغ",ad_slot_tag2:"جایگاه تبلیغ",ad_slot_tag3:"جایگاه تبلیغ",ad_slot_tag4:"جایگاه تبلیغ",ad_slot1:"بنر بالای صفحه",ad_slot2:"رپورتاژ آگهی",ad_slot3:"بنر خبرنامه",ad_slot4:"واحد کناری",ad_slot_cta:"رزرو این جایگاه ←",ad_slot_cta2:"رزرو این جایگاه ←",ad_slot_cta3:"رزرو این جایگاه ←",ad_slot_cta4:"رزرو این جایگاه ←",editors_kicker:"انتخاب سردبیر"},
-  ar:{kicker:"كريبتو · فوركس · تقنية · سيارات",hero_title:"لا تغمض عينيك عن السوق.",hero_sub:"أخبار مؤثرة في الكريبتو والفوركس والتقنية والسيارات بأربع لغات — بسرعة ووضوح وبلا ضجيج.",latest:"الأحدث",feed:"من الموجز",promo_label:"مميّز · توقّعات",promo_sub:"ذكاء السوق",promo_title:"المستقبل",promo_seal:"إصدار التوقّعات",ad_label:"برعاية · إعلان",ad_title:"بروتوكولك، أمام أربعة أسواق.",ad_slot_tag:"مساحة إعلان",ad_slot_tag2:"مساحة إعلان",ad_slot_tag3:"مساحة إعلان",ad_slot_tag4:"مساحة إعلان",ad_slot1:"إعلان علوي",ad_slot2:"مقال برعاية",ad_slot3:"بانر النشرة",ad_slot4:"وحدة جانبية",ad_slot_cta:"احجز هذا المكان ←",ad_slot_cta2:"احجز هذا المكان ←",ad_slot_cta3:"احجز هذا المكان ←",ad_slot_cta4:"احجز هذا المكان ←",editors_kicker:"اختيار المحرر"},
-  tr:{kicker:"KRİPTO · FOREX · TEKNOLOJİ · OTOMOBİL",hero_title:"Gözünü piyasadan ayırma.",hero_sub:"Piyasayı hareketlendiren kripto, forex, teknoloji ve otomobil haberleri dört dilde — hızlı, ham ve gürültüsüz.",latest:"Son Haberler",feed:"Akıştan",promo_label:"PREMIUM · TAHMİNLER",promo_sub:"PİYASA ZEKASI",promo_title:"GELECEK",promo_seal:"TAHMİN SÜRÜMÜ",ad_label:"SPONSORLU · REKLAM",ad_title:"Protokolünüz, dört piyasanın önünde.",ad_slot_tag:"REKLAM ALANI",ad_slot_tag2:"REKLAM ALANI",ad_slot_tag3:"REKLAM ALANI",ad_slot_tag4:"REKLAM ALANI",ad_slot1:"Üst banner",ad_slot2:"Sponsorlu haber",ad_slot3:"Bülten banner",ad_slot4:"Kenar birimi",ad_slot_cta:"Bu yeri ayırt →",ad_slot_cta2:"Bu yeri ayırt →",ad_slot_cta3:"Bu yeri ayırt →",ad_slot_cta4:"Bu yeri ayırt →",editors_kicker:"Editörün Seçimi"}
+  en:{kicker:"CRYPTO · FOREX · TECH · CARS",hero_title:"Don't close your eyes to the market.",hero_sub:"Market-moving crypto, forex, tech and cars stories across four languages — fast, raw, and without the noise.",latest:"Latest Dispatches",snap_title:"Market Snapshot",snap_live:"Live",feed:"From the feed",promo_label:"PREMIUM · FORECASTS",promo_sub:"MARKET INTELLIGENCE",promo_title:"THE FUTURE",promo_seal:"FORECAST EDITION",ad_label:"SPONSORED · ADVERTORIAL",ad_title:"Your protocol, in front of four markets.",ad_slot_tag:"AD SPACE",ad_slot_tag2:"AD SPACE",ad_slot_tag3:"AD SPACE",ad_slot_tag4:"AD SPACE",ad_slot1:"Leaderboard placement",ad_slot2:"Sponsored story",ad_slot3:"Newsletter banner",ad_slot4:"Sidebar unit",ad_slot_cta:"Book this spot →",ad_slot_cta2:"Book this spot →",ad_slot_cta3:"Book this spot →",ad_slot_cta4:"Book this spot →",editors_kicker:"Editor's Pick"},
+  fa:{kicker:"کریپتو · فارکس · تکنولوژی · خودرو",hero_title:"چشم‌هایت را روی بازار نبند.",hero_sub:"خبرهای مهم کریپتو، فارکس، تکنولوژی و خودرو در چهار زبان — سریع، خام و بدون شلوغی.",latest:"آخرین مطالب",snap_title:"وضعیت بازار",snap_live:"زنده",feed:"از فید",promo_label:"ویژه · پیش‌بینی‌ها",promo_sub:"هوش بازار",promo_title:"آینده",promo_seal:"نسخه پیش‌بینی",ad_label:"حمایت‌شده · رپورتاژ",ad_title:"پروتکل شما، پیش روی چهار بازار.",ad_slot_tag:"جایگاه تبلیغ",ad_slot_tag2:"جایگاه تبلیغ",ad_slot_tag3:"جایگاه تبلیغ",ad_slot_tag4:"جایگاه تبلیغ",ad_slot1:"بنر بالای صفحه",ad_slot2:"رپورتاژ آگهی",ad_slot3:"بنر خبرنامه",ad_slot4:"واحد کناری",ad_slot_cta:"رزرو این جایگاه ←",ad_slot_cta2:"رزرو این جایگاه ←",ad_slot_cta3:"رزرو این جایگاه ←",ad_slot_cta4:"رزرو این جایگاه ←",editors_kicker:"انتخاب سردبیر"},
+  ar:{kicker:"كريبتو · فوركس · تقنية · سيارات",hero_title:"لا تغمض عينيك عن السوق.",hero_sub:"أخبار مؤثرة في الكريبتو والفوركس والتقنية والسيارات بأربع لغات — بسرعة ووضوح وبلا ضجيج.",latest:"آخر الأخبار",snap_title:"لمحة السوق",snap_live:"مباشر",feed:"من الموجز",promo_label:"مميّز · توقّعات",promo_sub:"ذكاء السوق",promo_title:"المستقبل",promo_seal:"إصدار التوقّعات",ad_label:"برعاية · إعلان",ad_title:"بروتوكولك، أمام أربعة أسواق.",ad_slot_tag:"مساحة إعلان",ad_slot_tag2:"مساحة إعلان",ad_slot_tag3:"مساحة إعلان",ad_slot_tag4:"مساحة إعلان",ad_slot1:"إعلان علوي",ad_slot2:"مقال برعاية",ad_slot3:"بانر النشرة",ad_slot4:"وحدة جانبية",ad_slot_cta:"احجز هذا المكان ←",ad_slot_cta2:"احجز هذا المكان ←",ad_slot_cta3:"احجز هذا المكان ←",ad_slot_cta4:"احجز هذا المكان ←",editors_kicker:"اختيار المحرر"},
+  tr:{kicker:"KRİPTO · FOREX · TEKNOLOJİ · OTOMOBİL",hero_title:"Gözünü piyasadan ayırma.",hero_sub:"Piyasayı hareketlendiren kripto, forex, teknoloji ve otomobil haberleri dört dilde — hızlı, ham ve gürültüsüz.",latest:"Son Gönderiler",snap_title:"Piyasa Özeti",snap_live:"Canlı",feed:"Akıştan",promo_label:"PREMIUM · TAHMİNLER",promo_sub:"PİYASA ZEKASI",promo_title:"GELECEK",promo_seal:"TAHMİN SÜRÜMÜ",ad_label:"SPONSORLU · REKLAM",ad_title:"Protokolünüz, dört piyasanın önünde.",ad_slot_tag:"REKLAM ALANI",ad_slot_tag2:"REKLAM ALANI",ad_slot_tag3:"REKLAM ALANI",ad_slot_tag4:"REKLAM ALANI",ad_slot1:"Üst banner",ad_slot2:"Sponsorlu haber",ad_slot3:"Bülten banner",ad_slot4:"Kenar birimi",ad_slot_cta:"Bu yeri ayırt →",ad_slot_cta2:"Bu yeri ayırt →",ad_slot_cta3:"Bu yeri ayırt →",ad_slot_cta4:"Bu yeri ayırt →",editors_kicker:"Editörün Seçimi"}
 };
 </script>
 <script src="assets/app.js"></script>

@@ -33,59 +33,33 @@
 ]}
 </script>
 </head>
-<body dir="ltr">
+<body dir="ltr" class="bs-page">
+<div class="bs-frame">
 
-<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-</div></div>
-
-<header class="topbar"><div class="wrap">
-  <a class="logo logo-mark" href="index.html" aria-label="MAXGAZINE — home"><span class="dot"></span><span class="logo-word">MAXGAZINE</span></a>
-  <nav class="nav" aria-label="Primary">
-    <div class="nav-links" id="nav-links">
-      <div class="menu-head">
-        <a class="menu-logo" href="index.html">MAXGAZINE<span class="dot">.</span></a>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="stories.html" data-i="nav_stories">Stories</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
-        <div class="sub">
-          <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-          <a href="stories.html?cat=forex" data-i="nav_forex">Forex</a>
-          <a href="stories.html?cat=tech" data-i="nav_tech">Tech</a>
-          <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
-          <a href="stories.html?cat=analysis" data-i="nav_analysis">Market Analysis</a>
-        </div>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
-        <div class="sub">
-          <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
-          <a href="brokers.html" data-i="nav_brokers">Brokers</a>
-        </div>
-      </div>
-      <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-      <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
-      <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
-      <div class="lang menu-lang" role="group" aria-label="Select language">
+<header class="bsheet">
+    <div class="bs-top">
+      <div class="bs-date" id="bs-date"></div>
+      <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+      <div class="bs-lang" role="group" aria-label="Select language">
         <button data-lang="en" class="active" lang="en">EN</button>
-        <button data-lang="fa" lang="fa">فارسی</button>
-        <button data-lang="ar" lang="ar">العربية</button>
-        <button data-lang="tr" lang="tr">Türkçe</button>
-      </div>
-      <div class="menu-foot">
-        <button class="menu-close" type="button" aria-label="Close menu">✕ <span data-i="m_close">Close</span></button>
-        <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+        <button data-lang="fa" lang="fa">FA</button>
+        <button data-lang="ar" lang="ar">AR</button>
+        <button data-lang="tr" lang="tr">TR</button>
       </div>
     </div>
-    <div class="topbar-right">
-      <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    </div>
-  </nav>
-</div></header>
+    <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+    <nav class="bs-nav" aria-label="Primary">
+      <a href="stories.html" data-i="nav_stories">Stories</a>
+      <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
+      <a href="prices.html" data-i="nav_prices">Prices</a>
+      <a href="about.html" data-i="nav_about">About</a>
+      <a href="contact.html" data-i="nav_contact" class="active">Contact</a>
+    </nav>
+  </header>
+<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>SOL <span class="down">$142 ▼ 0.80%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span><span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>SOL <span class="down">$142 ▼ 0.80%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span><span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
+</div></div>
 
 <main>
 <div class="page-head"><div class="wrap">
@@ -150,6 +124,7 @@
   <div class="foot-bottom mono"><span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><span data-i="f_built">MULTILINGUAL MARKET MEDIA</span></div>
 </div></footer>
 
+</div><!-- /.bs-frame -->
 <script src="assets/i18n.js"></script>
 <script>
 window.PAGE_I = {

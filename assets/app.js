@@ -902,6 +902,16 @@ function feedCard(a, lang, prefix){
   const img = a.banner ? `<div class="card-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></div>` : '';
   return `<a class="card reveal" href="${href}">${img}<span class="cat mono">${cat}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
 }
+/* Crimson, image-less "dispatch" card — the Dispatch signature tile. Leads with
+   the category set huge in Fraunces, then the headline and meta. */
+function dispatchCard(a, lang, prefix){
+  const href = articleHref(a, lang, prefix);
+  const cat = esc((a.category||'').toUpperCase());
+  const headline = esc(pickLoc(a.headline, lang));
+  const date = esc(a.date||'');
+  const readLabel = esc((window.I[lang]&&window.I[lang].cta_read) || 'Read →');
+  return `<a class="dispatch-card reveal" href="${href}"><span class="dc-cat">${cat}</span><div class="dc-body"><h3>${headline}</h3><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></div></a>`;
+}
 function listRow(a, lang, prefix, i){
   const href = articleHref(a, lang, prefix);
   const headline = esc(pickLoc(a.headline, lang));
@@ -1009,11 +1019,20 @@ function renderFeedSections(feed, lang, prefix){
     editors.innerHTML = picks.map((a,i)=>editorRow(a,lang,prefix,i)).join('');
   }
 
-  // Latest — vertical stack of the ten most recent stories.
+  // Latest Dispatches — Terminal card grid. First row pairs two image cards
+  // with a crimson, image-less "dispatch" card (the Dispatch signature). The
+  // second grid carries the next six stories. Older pages may still use the
+  // vertical stack / three-card containers, so those are filled when present.
+  const grid1 = document.querySelector('[data-feed-grid]');
+  if(grid1){
+    const row = feed.slice(0,3);
+    grid1.innerHTML = row.map((a,i)=> i===1 ? dispatchCard(a,lang,prefix) : feedCard(a,lang,prefix)).join('');
+  }
+  const grid2 = document.querySelector('[data-feed-grid-2]');
+  if(grid2) grid2.innerHTML = feed.slice(3,9).map(a=>feedCard(a,lang,prefix)).join('');
+
   const latest = document.querySelector('[data-feed-latest]');
   if(latest) latest.innerHTML = feed.slice(0,10).map((a,i)=>listRow(a,lang,prefix,i)).join('');
-
-  // Three-card grid sits below the ad row.
   const cards = document.querySelector('[data-feed-cards]');
   if(cards) cards.innerHTML = feed.slice(10,13).map(a=>feedCard(a,lang,prefix)).join('');
 
@@ -1143,8 +1162,19 @@ function initForm(){
   });
 }
 
+function initBroadsheetDate(){
+  const el = document.getElementById('bs-date');
+  if(!el) return;
+  const lang = (typeof feedLang==='function') ? feedLang() : 'en';
+  const locale = {en:'en-US',fa:'fa-IR',ar:'ar',tr:'tr-TR'}[lang] || 'en-US';
+  try{
+    el.textContent = new Date().toLocaleDateString(locale,{weekday:'long',year:'numeric',month:'short',day:'numeric'});
+  }catch(e){ el.textContent = new Date().toDateString(); }
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   if(window.initLang) window.initLang();
+  initBroadsheetDate();
   initNav();
   initObservers();
   initStickyMark();

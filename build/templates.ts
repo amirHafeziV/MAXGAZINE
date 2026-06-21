@@ -181,59 +181,30 @@ function chromeHeader(lang: Lang, prefix: string): string {
   const c = CHROME[lang];
   const s = langSuffix(lang);
   const p = (href: string) => `${prefix}${href}${s}`;
-  return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}">
-
+  const langBtns = LANGS.map(
+    (l) => `<button data-lang="${l}"${l === lang ? ' class="active"' : ""} lang="${l}">${l.toUpperCase()}</button>`,
+  ).join("");
+  return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page">
+<div class="bs-frame">
+<header class="bsheet">
+  <div class="bs-top">
+    <div class="bs-date" id="bs-date"></div>
+    <div class="bs-cats">CRYPTO · FOREX · TECH · CARS</div>
+    <div class="bs-lang" role="group" aria-label="Select language">${langBtns}</div>
+  </div>
+  <div class="bs-logo-row"><a class="bs-logo" href="${p("index.html")}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+  <nav class="bs-nav" aria-label="Primary">
+    <a href="${p("stories.html")}">${esc(c.nav_stories!)}</a>
+    <a href="${p("exchanges.html")}">${esc(c.nav_topmarkets!)}</a>
+    <a href="${p("prices.html")}">${esc(c.nav_prices!)}</a>
+    <a href="${p("about.html")}">${esc(c.nav_about!)}</a>
+    <a href="${p("contact.html")}">${esc(c.nav_contact!)}</a>
+  </nav>
+</header>
 <div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
   <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
   <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-</div></div>
-
-<header class="topbar"><div class="wrap">
-  <a class="logo logo-mark" href="${p("index.html")}" aria-label="MAXGAZINE — home"><span class="dot"></span><span class="logo-word">MAXGAZINE</span></a>
-  <nav class="nav" aria-label="Primary">
-    <div class="nav-links" id="nav-links">
-      <div class="menu-head">
-        <a class="menu-logo" href="${p("index.html")}">MAXGAZINE<span class="dot">.</span></a>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="${p("stories.html")}">${esc(c.nav_stories!)}</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
-        <div class="sub">
-          <a href="${p("stories.html")}?cat=crypto">${esc(c.nav_crypto!)}</a>
-          <a href="${p("stories.html")}?cat=forex">${esc(c.nav_forex!)}</a>
-          <a href="${p("stories.html")}?cat=tech">${esc(c.nav_tech!)}</a>
-          <a href="${p("stories.html")}?cat=cars">${esc(c.nav_cars!)}</a>
-          <a href="${p("stories.html")}?cat=analysis">${esc(c.nav_analysis!)}</a>
-        </div>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="${p("exchanges.html")}">${esc(c.nav_topmarkets!)}</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Markets">+</button>
-        <div class="sub">
-          <a href="${p("exchanges.html")}">${esc(c.nav_exchanges!)}</a>
-          <a href="${p("brokers.html")}">${esc(c.nav_brokers!)}</a>
-        </div>
-      </div>
-      <div class="nav-group"><a href="${p("prices.html")}">${esc(c.nav_prices!)}</a></div>
-      <div class="nav-group future-only-mobile"><a href="${p("future.html")}">${esc(c.nav_future!)}</a> <span class="badge-soon">${esc(c.nav_soon!)}</span></div>
-      <div class="nav-group"><a href="${p("about.html")}">${esc(c.nav_about!)}</a></div>
-      <div class="nav-group"><a href="${p("contact.html")}">${esc(c.nav_contact!)}</a></div>
-      <div class="lang menu-lang" role="group" aria-label="Select language">
-        <button data-lang="en"${lang === "en" ? ' class="active"' : ""} lang="en">EN</button>
-        <button data-lang="fa"${lang === "fa" ? ' class="active"' : ""} lang="fa">فارسی</button>
-        <button data-lang="ar"${lang === "ar" ? ' class="active"' : ""} lang="ar">العربية</button>
-        <button data-lang="tr"${lang === "tr" ? ' class="active"' : ""} lang="tr">Türkçe</button>
-      </div>
-      <div class="menu-foot">
-        <button class="menu-close" type="button" aria-label="Close menu">✕ <span>${esc(c.m_close!)}</span></button>
-        <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    </div>
-  </nav>
-</div></header>`;
+</div></div>`;
 }
 
 function chromeFooter(lang: Lang, prefix: string): string {
@@ -258,6 +229,7 @@ function chromeFooter(lang: Lang, prefix: string): string {
   </div>
   <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><span>${esc(c.f_built!)}</span></div>
 </div></footer>
+</div><!-- /.bs-frame -->
 
 <script src="${prefix}assets/i18n.js"></script>
 <script src="${prefix}assets/app.js"></script>
@@ -325,10 +297,10 @@ export function renderArticle(
     : "";
 
   const bannerHtml = article.banner
-    ? `<img class="article-banner" src="${esc(article.banner.startsWith("http") ? article.banner : `${prefix}${article.banner.replace(/^\/+/, "")}`)}" alt="${esc(pick(article.headline, lang))}" style="width:100%;height:auto;display:block;margin:0 0 28px;border:2px solid #0a0a0a">`
+    ? `<figure class="lead-figure"><div class="lead-frame"><img src="${esc(article.banner.startsWith("http") ? article.banner : `${prefix}${article.banner.replace(/^\/+/, "")}`)}" alt="${esc(pick(article.headline, lang))}"></div></figure>`
     : "";
   const tagsHtml = article.tags?.length
-    ? `<div class="tags mono" style="display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 0">${article.tags
+    ? `<div class="read-tags">${article.tags
         .map((t) => `<span class="chip">${esc(t)}</span>`)
         .join("")}</div>`
     : "";
@@ -350,25 +322,28 @@ export function renderArticle(
 
   const relatedHtml = related.length
     ? `<div class="section-head"><h2>${esc(c.related!)}</h2></div>
-<div class="grid">
+<div class="feed-grid bs-grid">
 ${related.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n")}
 </div>`
     : "";
 
   const body = `<main>
-<article class="wrap section" style="max-width:760px">
-  <div class="kicker mono">${esc(article.category.toUpperCase())}</div>
+<article class="article-read bs-section">
+  <div class="read-kicker">${esc(article.category.toUpperCase())}</div>
   <h1>${esc(pick(article.headline, lang))}</h1>
-  <p class="dek" style="font-size:20px;color:#444;line-height:1.5;margin:14px 0 8px">${esc(pick(article.dek, lang))}</p>
-  <div class="byline mono" style="color:#888;font-size:13px;margin-bottom:28px">${esc(c.published!)} ${esc(article.date)} · ${esc(article.author)}</div>
+  <p class="read-dek">${esc(pick(article.dek, lang))}</p>
+  <div class="read-byline">
+    <span class="read-avatar" aria-hidden="true"></span>
+    <span class="by-meta">${esc(c.published!)} <b>${esc(article.author)}</b> · ${esc(article.date)}</span>
+  </div>
   ${bannerHtml}
-  <div class="prose" style="line-height:1.8">
+  <div class="article-prose">
 ${richHtml ? sanitizeHtml(richHtml) : md(pick(article.body, lang), prefix)}
   </div>
   ${tagsHtml}
   ${sourcesHtml}
 </article>
-${relatedHtml ? `<div class="wrap section" style="max-width:1320px;padding-top:0">${relatedHtml}</div>` : ""}
+${relatedHtml ? `<div class="bs-section" style="padding-top:0">${relatedHtml}</div>` : ""}
 </main>`;
 
   return [
@@ -423,10 +398,10 @@ export function renderStoriesIndex(
   const cards = articles.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n");
 
   const body = `<main>
-<div class="page-head"><div class="wrap"><h1>${esc(c.stories_title!)}</h1></div></div>
-<div class="wrap section"><div class="grid">
-${cards || "    <p>No stories yet.</p>"}
-</div></div>
+<div class="bs-pagehead"><h1>${esc(c.stories_title!)}</h1></div>
+<div class="feed-grid bs-grid">
+${cards || `    <p style="padding:34px 28px">No stories yet.</p>`}
+</div>
 </main>`;
 
   return [
@@ -480,52 +455,27 @@ const TICKER_PLACEHOLDER = `<div class="ticker" aria-label="Live prices"><div cl
 
 /** Full primary navigation + mobile menu, identical to the hand-built root pages (prices.html etc). */
 function rootHeader(): string {
-  return `<header class="topbar"><div class="wrap">
-  <a class="logo logo-mark" href="index.html" aria-label="MAXGAZINE — home"><span class="dot"></span><span class="logo-word">MAXGAZINE</span></a>
-  <nav class="nav" aria-label="Primary">
-    <div class="nav-links" id="nav-links">
-      <div class="menu-head">
-        <a class="menu-logo" href="index.html">MAXGAZINE<span class="dot">.</span></a>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="stories.html" data-i="nav_stories">Stories</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
-        <div class="sub">
-          <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-          <a href="stories.html?cat=forex" data-i="nav_forex">Forex</a>
-          <a href="stories.html?cat=tech" data-i="nav_tech">Tech</a>
-          <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
-          <a href="stories.html?cat=analysis" data-i="nav_analysis">Market Analysis</a>
-        </div>
-      </div>
-      <div class="nav-group has-sub">
-        <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Top Markets">+</button>
-        <div class="sub">
-          <a href="exchanges.html" data-i="nav_exchanges">Crypto Exchanges</a>
-          <a href="brokers.html" data-i="nav_brokers">Brokers</a>
-        </div>
-      </div>
-      <div class="nav-group"><a href="prices.html" data-i="nav_prices">Prices</a></div>
-      <div class="nav-group future-only-mobile"><a href="future.html" data-i="nav_future">Future</a> <span class="badge-soon" data-i="nav_soon">Coming Soon</span></div>
-      <div class="nav-group"><a href="about.html" data-i="nav_about">About</a></div>
-      <div class="nav-group"><a href="contact.html" data-i="nav_contact">Contact</a></div>
-      <div class="lang menu-lang" role="group" aria-label="Select language">
-        <button data-lang="en" class="active" lang="en">EN</button>
-        <button data-lang="fa" lang="fa">فارسی</button>
-        <button data-lang="ar" lang="ar">العربية</button>
-        <button data-lang="tr" lang="tr">Türkçe</button>
-      </div>
-      <div class="menu-foot">
-        <button class="menu-close" type="button" aria-label="Close menu">✕ <span data-i="m_close">Close</span></button>
-        <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      </div>
+  return `<div class="bs-frame">
+<header class="bsheet">
+  <div class="bs-top">
+    <div class="bs-date" id="bs-date"></div>
+    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+    <div class="bs-lang" role="group" aria-label="Select language">
+      <button data-lang="en" class="active" lang="en">EN</button>
+      <button data-lang="fa" lang="fa">FA</button>
+      <button data-lang="ar" lang="ar">AR</button>
+      <button data-lang="tr" lang="tr">TR</button>
     </div>
-    <div class="topbar-right">
-      <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    </div>
+  </div>
+  <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+  <nav class="bs-nav" aria-label="Primary">
+    <a href="stories.html" data-i="nav_stories">Stories</a>
+    <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
+    <a href="prices.html" data-i="nav_prices">Prices</a>
+    <a href="about.html" data-i="nav_about">About</a>
+    <a href="contact.html" data-i="nav_contact">Contact</a>
   </nav>
-</div></header>`;
+</header>`;
 }
 
 function rootFooter(): string {
@@ -544,7 +494,8 @@ function rootFooter(): string {
     </div>
   </div>
   <div class="foot-bottom mono"><span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><span data-i="f_built">MULTILINGUAL MARKET MEDIA</span></div>
-</div></footer>`;
+</div></footer>
+</div><!-- /.bs-frame -->`;
 }
 
 /** One related-story card, language-specific (links into /<lang>/<slug>.html). */
@@ -779,9 +730,9 @@ ${newsBlocks}
       prefix: "",
       bodyHtml: body,
     }),
-    `<body dir="ltr">`,
-    TICKER_PLACEHOLDER,
+    `<body dir="ltr" class="bs-page">`,
     rootHeader(),
+    TICKER_PLACEHOLDER,
     body,
     rootFooter(),
     `<script src="assets/i18n.js"></script>`,

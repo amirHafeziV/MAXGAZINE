@@ -17,3 +17,7 @@ admin/data/
 
 # MasterWriter panel server-side GitHub token (lives only on the host)
 admin/config.php
+
+# Imported design boards from claude.ai (reference only, never published)
+Maxgazine Directions*.html
+*.dc.html
