@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T09:00:35.359Z",
+  "updated": "2026-06-19T19:21:16.036Z",
   "slots": {
     "leaderboard": {
       "enabled": false,
@@ -16,7 +16,7 @@
       "image": ""
     },
     "newsletter": {
-      "enabled": false,
+      "enabled": true,
       "type": "script",
       "link": "",
       "alt": "",
