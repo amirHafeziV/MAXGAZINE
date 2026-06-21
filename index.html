@@ -126,38 +126,38 @@
     </div>
   </section>
 
-  <!-- ===== PERFORATED "LATEST" BAND ===== -->
-  <div class="bs-latest">
-    <h2 data-i="latest">Latest Dispatches</h2>
-    <a class="all" href="stories.html" data-i="cta_all">All stories →</a>
-  </div>
+  <!-- ===== SECTION 3 — ARTICLE BOX (Verge-style river + Latest rail) ===== -->
+  <section class="vbox" aria-label="Stories">
+    <div class="vbox-head">
+      <h2 data-i="latest">Latest Dispatches</h2>
+      <a class="all" href="stories.html" data-i="cta_all">All stories →</a>
+    </div>
+    <div class="vbox-grid">
+      <div class="vbox-main">
+        <div class="vriver" id="feed-river" data-feed-river>
+          <a class="vriver-item reveal" href="stories.html"><span class="vr-thumb vr-thumb-empty" data-cat="analysis">ANALYSIS</span><span class="vr-body"><span class="cat mono">ANALYSIS</span><h3>Why on-chain volume is leading price this cycle</h3><span class="vr-by mono"><b>MAXGAZINE DESK</b> · MAY 29, 2026</span></span></a>
+        </div>
+        <div class="feed-more-wrap">
+          <a class="btn ghost feed-more" data-feed-more data-i="cta_more" href="stories.html">Load more</a>
+        </div>
+      </div>
+      <aside class="vbox-side" aria-label="Latest">
+        <div class="vside-head"><span class="vside-pill active">Latest</span></div>
+        <div class="vstream" id="feed-stream" data-feed-stream></div>
+        <a class="vside-ad" data-ad-slot="sidebar1" href="contact.html">
+          <span class="ad-tag mono" data-i="ad_slot_sidebar1_tag">AD SPACE</span>
+          <span class="ad-banner-title" data-i="ad_slot_sidebar1">Sidebar placement</span>
+          <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
+        </a>
+      </aside>
+    </div>
+  </section>
 
-  <!-- ===== LATEST FEED (hydrated by app.js) ===== -->
-  <div class="feed-grid bs-grid" id="feed-grid" data-feed-grid>
-    <a class="card reveal" href="stories.html"><span class="cat mono">ANALYSIS</span><h3 data-i="c1t">Why on-chain volume is leading price this cycle</h3><p data-i="c1p">A structural shift in how liquidity moves between L1s and L2s is rewriting the old playbook.</p><div class="card-meta mono"><span>MAY 29, 2026</span><span class="read" data-i="cta_read">Read →</span></div></a>
-    <a class="dispatch-card reveal" href="stories.html"><span class="dc-cat">FOREX</span><div class="dc-body"><h3 data-i="c2t">Dollar strength tests emerging-market pegs</h3><div class="card-meta mono"><span>MAY 28, 2026</span><span class="read" data-i="cta_read2">Read →</span></div></div></a>
-    <a class="card reveal" href="stories.html"><span class="cat mono">TECH</span><h3 data-i="c3t">Regulators signal clearer stablecoin framework</h3><p data-i="c3p">A long-awaited rulebook could arrive by Q3, and desks are already repositioning.</p><div class="card-meta mono"><span>MAY 27, 2026</span><span class="read" data-i="cta_read3">Read →</span></div></a>
-  </div>
-
-  <!-- ===== AD PLACEMENTS (wired to the panel via data-ad-slot — preserved) ===== -->
-  <div class="ad-grid ad-grid-3" aria-label="Advertising placements">
+  <!-- ===== SECTION 4 — BOTTOM ADS (wired to the panel via data-ad-slot — preserved) ===== -->
+  <div class="ad-grid ad-grid-3 vbox-ads" aria-label="Advertising placements">
     <a class="ad-slot" data-ad-slot="leaderboard" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot1">Leaderboard placement</h4><span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span></div></a>
     <a class="ad-slot" data-ad-slot="sponsored" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag2">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot2">Sponsored story</h4><span class="ad-cta mono" data-i="ad_slot_cta2">Book this spot →</span></div></a>
     <a class="ad-slot" data-ad-slot="newsletter" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag3">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot3">Newsletter banner</h4><span class="ad-cta mono" data-i="ad_slot_cta3">Book this spot →</span></div></a>
-  </div>
-
-  <!-- ===== MORE DISPATCHES (hydrated by app.js) ===== -->
-  <div class="feed-grid bs-grid" id="feed-grid-2" data-feed-grid-2></div>
-
-  <!-- ===== WIDE AD BANNER ===== -->
-  <a class="ad-banner" href="contact.html" data-ad-slot="sidebar1">
-    <span class="ad-tag mono" data-i="ad_slot_sidebar1_tag">AD SPACE</span>
-    <span class="ad-banner-title" data-i="ad_slot_sidebar1">Sidebar placement</span>
-    <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
-  </a>
-
-  <div class="feed-more-wrap">
-    <a class="btn ghost feed-more" data-feed-more data-i="cta_more" href="stories.html">Load more</a>
   </div>
 
   <!-- ===== FOOTER (inside the frame) ===== -->

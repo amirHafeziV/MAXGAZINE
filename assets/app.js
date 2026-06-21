@@ -1036,6 +1036,85 @@ function startHeroRotation(){
     }, 400);
   }, 10000);
 }
+/* Verge-style main "river" card — thumb + headline + byline. The first card is a
+   full-width lead with a large image. */
+function riverItem(a, lang, prefix, lead){
+  const href = articleHref(a, lang, prefix);
+  const cat = esc((a.category||'').toUpperCase());
+  const catKey = esc((a.category||'').toLowerCase());
+  const headline = esc(pickLoc(a.headline, lang));
+  const dek = esc(pickLoc(a.dek, lang));
+  const author = esc(a.author||'MAXGAZINE DESK');
+  const date = esc(a.date||'');
+  const src = a.banner ? `${prefix}${esc(String(a.banner).replace(/^\/+/,''))}` : '';
+  if(lead){
+    const img = src
+      ? `<span class="vrl-img"><img src="${src}" alt="" loading="lazy"></span>`
+      : `<span class="vrl-img vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
+    return `<a class="vriver-item lead reveal" href="${href}">${img}<span class="vrl-body"><span class="cat mono">${cat}</span><h3>${headline}</h3><p class="vrl-dek">${dek}</p><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+  }
+  const thumb = src
+    ? `<span class="vr-thumb"><img src="${src}" alt="" loading="lazy"></span>`
+    : `<span class="vr-thumb vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
+  return `<a class="vriver-item reveal" href="${href}">${thumb}<span class="vr-body"><span class="cat mono">${cat}</span><h3>${headline}</h3><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+}
+/* "Latest" rail row — author avatar + name + date, headline, excerpt, thumb. */
+function streamRow(a, lang, prefix){
+  const href = articleHref(a, lang, prefix);
+  const cat = esc((a.category||'').toUpperCase());
+  const headline = esc(pickLoc(a.headline, lang));
+  const dek = esc(pickLoc(a.dek, lang));
+  const author = esc(a.author||'MAXGAZINE DESK');
+  const date = esc(a.date||'');
+  const initial = esc((String(a.author||'M').trim()[0]||'M').toUpperCase());
+  const thumb = a.banner ? `<a class="vs-thumb" href="${href}" aria-hidden="true" tabindex="-1"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></a>` : '';
+  return `<article class="vstream-item">
+    <div class="vs-top mono"><span class="vs-avatar">${initial}</span><span class="vs-name">${author}</span><span class="vs-date">${date}</span></div>
+    <div class="vs-row"><div class="vs-text"><span class="vs-cat mono">${cat}</span><a class="vs-title" href="${href}">${headline}</a><p class="vs-excerpt">${dek}</p></div>${thumb}</div>
+  </article>`;
+}
+
+/* Editor's-Pick reading modal — desktop only, plain (non-modified) clicks. Pulls
+   the real article's .article-read block (text + image, no site chrome) into an
+   in-page overlay so the reader never leaves the homepage. New-tab / cmd-click and
+   small screens fall through to a normal navigation. */
+function openArticleModal(href){
+  const ov = document.createElement('div');
+  ov.className = 'art-modal-ov';
+  ov.innerHTML = '<div class="art-modal" role="dialog" aria-modal="true" aria-label="Article"><button class="art-modal-close" aria-label="Close">✕</button><div class="art-modal-scroll"><div class="art-modal-body art-modal-loading">Loading…</div></div></div>';
+  document.body.appendChild(ov);
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(()=>ov.classList.add('in'));
+  const close = ()=>{ ov.classList.remove('in'); document.body.classList.remove('modal-open');
+    setTimeout(()=>ov.remove(), 240); document.removeEventListener('keydown', onKey); };
+  function onKey(e){ if(e.key==='Escape') close(); }
+  ov.querySelector('.art-modal-close').addEventListener('click', close);
+  ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
+  document.addEventListener('keydown', onKey);
+  fetch(href).then(r=>r.text()).then(html=>{
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const content = doc.querySelector('.article-read');
+    if(!content){ location.href = href; return; }
+    content.querySelectorAll('img').forEach(img=>{ const s=img.getAttribute('src'); if(s) img.src = new URL(s, href).href; });
+    const body = ov.querySelector('.art-modal-body');
+    body.classList.remove('art-modal-loading');
+    body.replaceChildren(content);
+  }).catch(()=>{ location.href = href; });
+}
+function initEditorPopups(){
+  const list = document.querySelector('[data-feed-editors]');
+  if(!list || list.__popupBound) return;
+  list.__popupBound = true;
+  list.addEventListener('click', e=>{
+    const row = e.target.closest('a.ep-row');
+    if(!row || !list.contains(row)) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button!==0) return; // honour new-tab
+    if(window.innerWidth < 900) return; // desktop only
+    e.preventDefault();
+    openArticleModal(row.href);
+  });
+}
+
 function renderFeedSections(feed, lang, prefix){
   // Editor's Pick — featured stories first, then fill with recent, skipping any
   // story shown in the hero rotation so it isn't duplicated next to itself.
@@ -1066,10 +1145,17 @@ function renderFeedSections(feed, lang, prefix){
   const cards = document.querySelector('[data-feed-cards]');
   if(cards) cards.innerHTML = feed.slice(10,13).map(a=>feedCard(a,lang,prefix)).join('');
 
+  // Verge-style article box: main river (left) + Latest rail (right)
+  const river = document.querySelector('[data-feed-river]');
+  if(river) river.innerHTML = feed.slice(0,9).map((a,i)=>riverItem(a,lang,prefix,i===0)).join('');
+  const stream = document.querySelector('[data-feed-stream]');
+  if(stream) stream.innerHTML = feed.slice(0,9).map(a=>streamRow(a,lang,prefix)).join('');
+
   const moreLink = document.querySelector('[data-feed-more]');
   if(moreLink) moreLink.href = `${prefix}${lang}/stories.html`;
 
   if(document.getElementById('stories-grid')) initStoriesPage(feed, lang, prefix);
+  initEditorPopups();
   initObservers();
 }
 async function loadFeed(){
