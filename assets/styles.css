@@ -2,7 +2,7 @@
    MAXGAZINE — shared design system
    Brutalist editorial magazine · crypto & forex
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Vazirmatn:wght@400;500;700&display=swap');
 /* ============================================================
    Design system — "The Dispatch / The Terminal" direction
    Warm paper · crimson accent · Fraunces + Lora editorial type
@@ -1581,3 +1581,6 @@ body.modal-open{overflow:hidden}
   .art-modal-ov,.art-modal{transition:none}
   .vriver-item.lead .vrl-img img{transition:none}
 }
+
+/* ROUND 9 — Persian masthead date in Vazirmatn */
+html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spacing:0}

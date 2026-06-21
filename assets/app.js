@@ -1188,6 +1188,7 @@ async function loadFeed(){
     const origSetLang = window.setLang;
     window.setLang = function(l){
       origSetLang(l);
+      initBroadsheetDate();
       if(featuredList.length) applyFeatured(l);
       renderFeedSections(feed, l, prefix);
     };
@@ -1282,10 +1283,19 @@ function initBroadsheetDate(){
   const el = document.getElementById('bs-date');
   if(!el) return;
   const lang = (typeof feedLang==='function') ? feedLang() : 'en';
-  const locale = {en:'en-US',fa:'fa-IR',ar:'ar',tr:'tr-TR'}[lang] || 'en-US';
+  const d = new Date();
   try{
-    el.textContent = new Date().toLocaleDateString(locale,{weekday:'long',year:'numeric',month:'short',day:'numeric'});
-  }catch(e){ el.textContent = new Date().toDateString(); }
+    if(lang==='fa'){
+      // Jalali date, composed in natural order: «یکشنبه، ۳۱ خرداد ۱۴۰۵»
+      const wd = new Intl.DateTimeFormat('fa-IR',{weekday:'long'}).format(d);
+      const dm = new Intl.DateTimeFormat('fa-IR',{day:'numeric',month:'long'}).format(d);
+      const yr = new Intl.DateTimeFormat('fa-IR',{year:'numeric'}).format(d);
+      el.textContent = `${wd}، ${dm} ${yr}`;
+    } else {
+      const locale = {en:'en-US',ar:'ar-SA',tr:'tr-TR'}[lang] || 'en-US';
+      el.textContent = d.toLocaleDateString(locale,{weekday:'long',year:'numeric',month:'short',day:'numeric'});
+    }
+  }catch(e){ el.textContent = d.toDateString(); }
 }
 
 /* Broadsheet chrome: a slim sticky header that slides in on scroll (wordmark in
