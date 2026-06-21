@@ -2,7 +2,7 @@
    MAXGAZINE — shared design system
    Brutalist editorial magazine · crypto & forex
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Vazirmatn:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Vazirmatn:wght@400;500;700&display=swap');
 /* ============================================================
    Design system — "The Dispatch / The Terminal" direction
    Warm paper · crimson accent · Fraunces + Lora editorial type
@@ -102,8 +102,8 @@ html[lang="fa"] .menu-lang button,html[lang="fa"] .menu-close{font-family:var(--
 body[dir="rtl"] .ticker-track{animation:scrollRtl 60s linear infinite}
 .ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-track span{padding:0 28px;text-transform:uppercase}
-.ticker-track .up{color:#3bff7a}
-.ticker-track .down{color:var(--accent)}
+.ticker-track .up{color:var(--up-d)}
+.ticker-track .down{color:var(--down-d)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes scrollRtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
 
@@ -308,8 +308,8 @@ body[dir="rtl"] .feature-img .tag{letter-spacing:.04em}
   inset-inline-start:clamp(18px,3.2vw,44px);inset-inline-end:clamp(18px,3.2vw,44px);
   max-width:min(760px,84%)}
 .hero-cover .kicker{margin-bottom:14px}
-.hero h1{font-family:var(--font-display);color:#fff;font-weight:600;
-  font-size:clamp(22px,3vw,40px);line-height:1.04;letter-spacing:-.02em;
+.hero h1{font-family:var(--font-display);color:#fff;font-weight:900;
+  font-size:clamp(26px,3.7vw,54px);line-height:1.0;letter-spacing:-.03em;
   text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.45);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .hero h1 .hl{color:#fff}
@@ -1141,11 +1141,16 @@ html[lang="fa"] .bs-nav a{font-family:var(--font-body)}
   background-image:linear-gradient(var(--grid-d) 1px,transparent 1px),
                    linear-gradient(90deg,var(--grid-d) 1px,transparent 1px);
   background-size:34px 34px}
-.bs-hero-grid .hero-cover .kicker{color:var(--accent)}
+/* kicker sits over the hero photo — crimson is unreadable there, so go white */
+.bs-hero-grid .hero-cover .kicker{color:#fff}
+.bs-hero-grid .hero-cover .kicker::before{background:#fff}
 .bs-hero-grid .editors-pick{border:none;border-inline-start:2px solid #242424;background:#0c0c0c}
 .bs-editors .editors-head{border-bottom-color:#242424}
-.bs-editors .editors-head .kicker{color:var(--accent)}
-.bs-editors .editors-head .kicker::before{background:var(--accent)}
+/* on the near-black hero band, full crimson is too dark — use the lighter
+   dark-surface crimson so the label and category tags stay legible */
+.bs-editors .editors-head .kicker{color:var(--accent-soft)}
+.bs-editors .editors-head .kicker::before{background:var(--accent-soft)}
+.bs-editors .ep-meta .cat{color:var(--accent-soft);border-color:var(--accent-soft)}
 .bs-editors .ep-row{border-bottom-color:#242424}
 .bs-editors .ep-thumb.ep-num{color:transparent;font-size:0;background:#161616;
   background-image:radial-gradient(rgba(255,255,255,.16) 1.3px,transparent 1.5px);background-size:9px 9px}

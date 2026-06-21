@@ -1171,7 +1171,8 @@ function renderFeedSections(feed, lang, prefix){
   const river = document.querySelector('[data-feed-river]');
   if(river) river.innerHTML = feed.slice(0,9).map((a,i)=>riverItem(a,lang,prefix,i===0)).join('');
   const stream = document.querySelector('[data-feed-stream]');
-  if(stream) stream.innerHTML = feed.slice(0,9).map(a=>streamRow(a,lang,prefix)).join('');
+  // 8 rows keeps the Latest rail height aligned with the main river column
+  if(stream) stream.innerHTML = feed.slice(0,8).map(a=>streamRow(a,lang,prefix)).join('');
 
   const moreLink = document.querySelector('[data-feed-more]');
   if(moreLink) moreLink.href = `${prefix}${lang}/stories.html`;
