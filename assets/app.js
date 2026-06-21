@@ -825,7 +825,14 @@ function adShim(){
     + `document.addEventListener('DOMContentLoaded',fix);setInterval(fix,400);fix();})();<\/script>`;
 }
 function fillAdSlot(el, ad, prefix){
-  if(!ad || !ad.enabled || !adHasContent(ad)) return;
+  // No creative booked for this slot: hide it entirely rather than leaving the
+  // "Book this spot" placeholder visible. hideEmptyAdContainers() then collapses
+  // any wrapper grid that ends up with no filled slots.
+  if(!ad || !ad.enabled || !adHasContent(ad)){
+    el.classList.add('ad-empty');
+    el.style.display = 'none';
+    return;
+  }
   const t = ad.type || 'image';
   if(t === 'script'){
     // Raw embed: drop any placeholder link, render the markup inside a sandboxed
@@ -883,6 +890,20 @@ function showAdPopup(p, prefix){
     ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
   }, (Number(p.delaySeconds)||0) * 1000);
 }
+// Once empty slots are hidden, an ad-grid wrapper may be left with nothing but
+// its own borders. Collapse any grid whose slots are all empty so no bare
+// bordered strip remains.
+function hideEmptyAdContainers(){
+  document.querySelectorAll('.ad-grid').forEach(grid=>{
+    const slots = grid.querySelectorAll('[data-ad-slot]');
+    if(!slots.length) return;
+    const visible = Array.from(slots).filter(s=>!s.classList.contains('ad-empty'));
+    grid.classList.remove('ad-grid-vis-1','ad-grid-vis-2','ad-grid-vis-3');
+    if(!visible.length){ grid.style.display = 'none'; return; }
+    // Reflow the row to the booked-slot count (see .ad-grid-vis-* in styles.css).
+    grid.classList.add('ad-grid-vis-' + Math.min(visible.length, 3));
+  });
+}
 async function loadAds(){
   const prefix = adPrefix();
   try{
@@ -892,8 +913,9 @@ async function loadAds(){
     document.querySelectorAll('[data-ad-slot]').forEach(el=>{
       fillAdSlot(el, ads.slots && ads.slots[el.dataset.adSlot], prefix);
     });
+    hideEmptyAdContainers();
     showAdPopup(ads.popup, prefix);
-  }catch(e){/* keep "book this spot" placeholders */}
+  }catch(e){/* fetch failed — leave placeholders rather than guess slots are empty */}
 }
 
 /* ---------- feed: dynamic homepage sections + stories index ---------- */

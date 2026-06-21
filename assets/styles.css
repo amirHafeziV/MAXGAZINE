@@ -434,6 +434,8 @@ html[lang="fa"] .dispatch-card h3{font-size:17px;line-height:1.5}
 .ad-banner .ad-banner-title{font-family:var(--font-head);font-weight:600;font-size:18px;letter-spacing:-.01em}
 .ad-banner .ad-cta{margin-inline-start:auto;color:var(--accent)}
 .ad-banner img{width:100%;height:auto}
+/* homepage advertorial band — spaced to match the article box gutter */
+.ad-advertorial{margin:24px 28px 0}
 
 /* ===== PROMO / PREMIUM CARD ===== */
 .promo{border:2px solid var(--line);padding:0;overflow:hidden}
@@ -452,6 +454,11 @@ html[lang="fa"] .dispatch-card h3{font-size:17px;line-height:1.5}
 /* ===== STAT BAND (count-up) ===== */
 .ad-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line)}
 .ad-grid-3{grid-template-columns:repeat(3,1fr)}
+/* Empty slots are hidden at runtime; reflow the row to however many ads are
+   actually booked so a lone ad isn't orphaned in an empty 3-up grid. */
+.ad-grid.ad-grid-vis-1{grid-template-columns:1fr}
+.ad-grid.ad-grid-vis-2{grid-template-columns:1fr 1fr}
+.ad-grid.ad-grid-vis-1 .ad-slot{border-inline-end:none}
 .ad-slot{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:190px;padding:26px 24px;
   border-inline-end:2px solid var(--line);text-decoration:none;color:var(--ink);background:
   repeating-linear-gradient(135deg,transparent,transparent 12px,rgba(10,10,10,.025) 12px,rgba(10,10,10,.025) 24px);transition:background .2s}
@@ -781,6 +788,8 @@ body[dir="rtl"] .foot-top{flex-direction:row-reverse}
   .ad-grid-3{grid-template-columns:1fr}
   .ad-grid-3 .ad-slot{border-inline-end:none;border-bottom:2px solid var(--line)}
   .ad-grid-3 .ad-slot:last-child{border-bottom:none}
+  /* reflowed rows also stack on narrow screens */
+  .ad-grid.ad-grid-vis-1,.ad-grid.ad-grid-vis-2{grid-template-columns:1fr}
 }
 @media(max-width:760px){
   /* tighter page gutter on phones (32px ate too much of a 375px screen) */
@@ -1515,8 +1524,11 @@ html[lang="fa"] .vrl-body h3{font-family:'Morabba','Estedad',sans-serif;font-wei
 
 /* Latest rail */
 .vside-head{padding:6px 0 16px}
-.vside-pill{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  background:var(--ink);color:var(--paper);padding:9px 20px;border-radius:999px}
+/* rail label follows the site-wide kicker treatment (mono + crimson lead bar)
+   instead of a rounded pill, to match the boxy editorial system */
+.vside-pill{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.vside-pill::before{content:"";width:38px;height:2px;background:var(--accent)}
 .vstream{display:flex;flex-direction:column}
 .vstream-item{padding:18px 0;border-bottom:1px solid var(--hair)}
 .vstream-item:first-child{padding-top:0}

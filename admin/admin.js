@@ -546,10 +546,10 @@ const SLOT_LABELS = {
   leaderboard: 'Leaderboard — top strip (wide)',
   sponsored:   'Sponsored story slot',
   newsletter:  'Newsletter banner',
-  sidebar:     'Sidebar unit',
   sidebar1:    'Homepage sidebar — square 1',
   sidebar2:    'Homepage sidebar — square 2',
   advertorial: 'Advertorial strip (homepage)',
+  exchange:    'Exchange spotlight (coin pages)',
 };
 // Recommended creative size per slot, shown to the writer so they don't upload a
 // stretched or cropped image. Slots not listed fall back to no hint.
@@ -557,10 +557,10 @@ const SLOT_HINTS = {
   leaderboard: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
   sponsored:   'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
   newsletter:  'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
-  sidebar:     'Recommended image size: 600 × 600px (square). JPG, PNG or WEBP.',
   sidebar1:    'Square box next to the homepage "Latest" feed. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
   sidebar2:    'Square box next to the homepage "Latest" feed, below slot 1. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
   advertorial: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
+  exchange:    'Square box in the coin-page sidebar. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
   popup:       'Recommended image size: 600 × 800px (3:4, portrait). JPG, PNG or WEBP.',
 };
 function adTypeOf(ad){ return ad.type || 'image'; }
@@ -607,7 +607,7 @@ function adCard(key, ad, isPopup){
 function renderAds(){
   if(!state.ads) return;
   const slots = state.ads.slots || {};
-  const keys = ['leaderboard','sponsored','newsletter','sidebar','sidebar1','sidebar2','advertorial'];
+  const keys = ['leaderboard','sponsored','newsletter','sidebar1','sidebar2','advertorial','exchange'];
   $('#ads-list').innerHTML =
     keys.map(k=>adCard(k, slots[k]||{}, false)).join('') +
     adCard('popup', state.ads.popup||{}, true);
