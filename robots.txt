@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /content/articles/
+Disallow: /content/coins/
+Disallow: /content/data/
+Disallow: /assets/uploads/
+
+Sitemap: https://maxgazine.com/sitemap.xml

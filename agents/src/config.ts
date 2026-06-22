@@ -31,5 +31,5 @@ export const OG_LOCALE: Record<Lang, string> = {
 };
 
 export const config = {
-  siteOrigin: (process.env.SITE_ORIGIN ?? "https://maxgazine.com").replace(/\/$/, ""),
+  siteOrigin: (process.env.SITE_ORIGIN || "https://maxgazine.com").replace(/\/$/, ""),
 } as const;

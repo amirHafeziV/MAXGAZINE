@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXGAZINE — دموی جایگاه‌های تبلیغاتی</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1A1208;
+  --paper: #F9F5EE;
+  --paper2: #F2EDE3;
+  --accent: #9B1C1C;
+  --muted: #6A5E50;
+  --hair: #D4C0BF;
+  --mono: 'IBM Plex Mono', monospace;
+  --g: #16a34a;   /* existing — green */
+  --o: #ea580c;   /* proposed — orange */
+  --p: #7c3aed;   /* coin-page — purple */
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: #0e0e0e;
+  color: var(--paper);
+  min-height: 100vh;
+  padding: 0;
+  direction: rtl;
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+  background: #1A1208;
+  border-bottom: 2px solid #ea580c;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .08em;
+  color: #F9F5EE;
+}
+.topbar-title strong { color: #ea580c; }
+.legend {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #C9BCA8;
+}
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+.legend-dot.g { background: var(--g); }
+.legend-dot.o { background: var(--o); animation: pulse .8s ease-in-out infinite alternate; }
+.legend-dot.p { background: var(--p); }
+@keyframes pulse { from { opacity: 1; } to { opacity: .4; } }
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+}
+.tab {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 6px 16px;
+  border: 1px solid #3A2E22;
+  background: none;
+  color: #9A8E7E;
+  cursor: pointer;
+  transition: all .15s;
+}
+.tab.active { background: #ea580c; border-color: #ea580c; color: #fff; }
+.tab:hover:not(.active) { border-color: #9A8E7E; color: #F9F5EE; }
+
+/* ===== VIEWS ===== */
+.view { display: none; padding: 32px; }
+.view.active { display: block; }
+
+/* ===== MAP VIEW ===== */
+.page-map {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 2px solid #3A2E22;
+  background: var(--paper);
+  color: var(--ink);
+  position: relative;
+}
+
+/* Each zone in the map */
+.zone {
+  position: relative;
+  border-bottom: 1px solid #D4C0BF;
+}
+.zone:last-child { border-bottom: none; }
+
+/* Zone inner content */
+.zone-inner {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+}
+
+/* Zone types */
+.zone.structure .zone-inner {
+  background: var(--paper2);
+  color: #9A8E7E;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.zone.ad-existing {
+  outline: 3px solid var(--g);
+  outline-offset: -3px;
+}
+.zone.ad-existing .zone-inner {
+  background: #f0fdf4;
+  min-height: 60px;
+}
+
+.zone.ad-proposed {
+  outline: 3px dashed var(--o);
+  outline-offset: -3px;
+  animation: dash-pulse 2s ease-in-out infinite;
+}
+.zone.ad-proposed .zone-inner {
+  background: repeating-linear-gradient(-45deg, #fff8f0, #fff8f0 6px, #fde8d6 6px, #fde8d6 12px);
+  min-height: 60px;
+}
+
+.zone.ad-coinpage {
+  outline: 3px dashed var(--p);
+  outline-offset: -3px;
+}
+.zone.ad-coinpage .zone-inner {
+  background: repeating-linear-gradient(-45deg, #f8f5ff, #f8f5ff 6px, #ede9ff 6px, #ede9ff 12px);
+  min-height: 60px;
+}
+
+@keyframes dash-pulse {
+  0%, 100% { outline-color: var(--o); }
+  50% { outline-color: #fbbf24; }
+}
+
+/* Badge label */
+.zone-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ad-existing .zone-badge { background: var(--g); color: #fff; }
+.ad-proposed .zone-badge { background: var(--o); color: #fff; }
+.ad-coinpage .zone-badge { background: var(--p); color: #fff; }
+
+.zone-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+.ad-existing .zone-name { color: var(--g); }
+.ad-proposed .zone-name { color: var(--o); }
+.ad-coinpage .zone-name { color: var(--p); }
+
+.zone-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.zone-size {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #9A8E7E;
+  margin-inline-start: auto;
+  white-space: nowrap;
+}
+
+/* Sidebar layout zones */
+.zone-two-col {
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid #D4C0BF;
+}
+.zone-two-col .zone { border-bottom: none; border-inline-start: 1px solid #D4C0BF; }
+.zone-two-col .zone:first-child { border-inline-start: none; }
+
+/* Ad grid row */
+.zone-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid #D4C0BF;
+}
+.zone-three-col .zone { border-bottom: none; border-inline-start: 1px solid #D4C0BF; }
+.zone-three-col .zone:first-child { border-inline-start: none; }
+
+/* Section label */
+.section-divider {
+  background: #1A1208;
+  color: #C9BCA8;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-bottom: 1px solid #3A2E22;
+}
+
+/* ===== PREVIEW VIEW ===== */
+#view-preview {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.preview-section {
+  margin-bottom: 24px;
+  border: 2px solid #3A2E22;
+}
+.preview-section-head {
+  background: #1A1208;
+  color: #C9BCA8;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 8px 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #3A2E22;
+}
+
+.preview-strip {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Masthead preview */
+.prev-masthead {
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  padding: 12px 24px;
+}
+.prev-logo {
+  text-align: center;
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 8px 0 12px;
+  border-bottom: 2px solid var(--ink);
+}
+.prev-logo span { color: var(--accent); }
+.prev-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.prev-nav a {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 10px 20px;
+  color: var(--ink);
+  border-inline-start: 1px solid var(--hair);
+  text-decoration: none;
+}
+.prev-nav a:first-child { border-inline-start: none; }
+
+/* Hero dark band */
+.prev-hero {
+  background: #0c0c0c;
+  min-height: 120px;
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 0;
+}
+.prev-hero-main {
+  border-inline-start: 2px solid #242424;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  min-height: 120px;
+}
+.prev-hero-main h3 { font-family: 'Fraunces', serif; font-size: 20px; color: #F9F5EE; }
+.prev-hero-main p { font-size: 12px; color: #9A8E7E; }
+.prev-hero-aside {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.prev-ep {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #2E2618;
+  padding-bottom: 8px;
+  align-items: flex-start;
+}
+.prev-ep-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #C9BCA8;
+  background: #2E2618;
+  padding: 2px 6px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.prev-ep-text { font-size: 11px; color: #C9BCA8; }
+
+/* Ad slot placeholders */
+.prev-ad {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 16px;
+}
+.prev-ad.existing {
+  background: #f0fdf4;
+  outline: 2px solid var(--g);
+  outline-offset: -2px;
+}
+.prev-ad.proposed {
+  background: repeating-linear-gradient(-45deg, #fff8f0, #fff8f0 5px, #fde8d6 5px, #fde8d6 10px);
+  outline: 2px dashed var(--o);
+  outline-offset: -2px;
+  animation: dash-pulse 2s ease-in-out infinite;
+}
+.prev-ad.coinpage {
+  background: repeating-linear-gradient(-45deg, #f8f5ff, #f8f5ff 5px, #ede9ff 5px, #ede9ff 10px);
+  outline: 2px dashed var(--p);
+  outline-offset: -2px;
+}
+.prev-ad-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+}
+.existing .prev-ad-label { background: var(--g); color: #fff; }
+.proposed .prev-ad-label { background: var(--o); color: #fff; }
+.coinpage .prev-ad-label { background: var(--p); color: #fff; }
+.prev-ad-name { font-family: var(--mono); font-size: 12px; font-weight: 600; }
+.existing .prev-ad-name { color: var(--g); }
+.proposed .prev-ad-name { color: var(--o); }
+.coinpage .prev-ad-name { color: var(--p); }
+.prev-ad-note { font-size: 11px; color: var(--muted); max-width: 200px; }
+
+/* Article section */
+.prev-articles {
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.prev-articles-main {
+  border-inline-start: 2px solid var(--ink);
+  padding: 16px;
+}
+.prev-article-item {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.prev-article-thumb {
+  width: 40px;
+  height: 40px;
+  background: #D4C0BF;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+}
+.prev-article-text h4 { font-size: 13px; color: var(--ink); margin-bottom: 3px; }
+.prev-article-text span { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.prev-articles-side { padding: 16px; }
+
+/* Three col bottom ads */
+.prev-ad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.prev-ad-grid .prev-ad { border-inline-start: 1px solid var(--hair); min-height: 80px; }
+.prev-ad-grid .prev-ad:first-child { border-inline-start: none; }
+
+/* Full-width advertorial */
+.prev-advertorial {
+  border-top: 2px solid var(--ink);
+  min-height: 80px;
+}
+
+/* Coin page section */
+.prev-coin {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 0;
+}
+.prev-coin-main {
+  background: var(--paper2);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 120px;
+  border-inline-start: 2px solid var(--ink);
+}
+
+/* ===== SUMMARY CARDS ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 32px;
+}
+.summary-card {
+  border: 2px solid #3A2E22;
+  padding: 20px;
+  background: #1A1208;
+}
+.summary-card h3 {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #3A2E22;
+}
+.summary-card.green h3 { color: var(--g); border-color: var(--g); }
+.summary-card.orange h3 { color: var(--o); border-color: var(--o); }
+.summary-card.purple h3 { color: var(--p); border-color: var(--p); }
+.summary-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.summary-slot-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.summary-card.green .summary-slot-dot { background: var(--g); }
+.summary-card.orange .summary-slot-dot { background: var(--o); }
+.summary-card.purple .summary-slot-dot { background: var(--p); }
+.summary-slot-name { color: #F9F5EE; }
+.summary-slot-note { color: #6A5E50; font-size: 10px; }
+
+/* Decision bar */
+.decision-bar {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #1A1208;
+  border: 2px solid #3A2E22;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.decision-bar p {
+  flex: 1;
+  font-size: 13px;
+  color: #C9BCA8;
+  line-height: 1.6;
+}
+.decision-bar strong { color: #F9F5EE; }
+.btn-decide {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: 2px solid;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+}
+.btn-yes { background: var(--g); border-color: var(--g); color: #fff; }
+.btn-yes:hover { background: #15803d; }
+.btn-partial { background: none; border-color: var(--o); color: var(--o); }
+.btn-partial:hover { background: var(--o); color: #fff; }
+
+/* Section head inside map */
+.map-section-head {
+  background: var(--paper2);
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-title">MAXGAZINE · <strong>دمو جایگاه‌های تبلیغاتی</strong> · فقط محلی</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot g"></div> موجود و سینک</div>
+    <div class="legend-item"><div class="legend-dot o"></div> پیشنهادی (پنل دارد، سایت ندارد)</div>
+    <div class="legend-item"><div class="legend-dot p"></div> سایت دارد، پنل ندارد</div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('map')">نقشه کامل</button>
+    <button class="tab" onclick="switchTab('preview')">پیش‌نمایش</button>
+    <button class="tab" onclick="switchTab('summary')">جمع‌بندی</button>
+  </div>
+</div>
+
+<!-- ===== VIEW 1: MAP ===== -->
+<div id="view-map" class="view active">
+  <div class="page-map">
+
+    <!-- MASTHEAD -->
+    <div class="section-divider">هدر / ناوبری</div>
+    <div class="zone structure">
+      <div class="zone-inner">تاپ بار · لوگو MAXGAZINE · منو اصلی</div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="zone structure">
+      <div class="zone-inner">تیکر قیمت‌های زنده — BTC · ETH · SOL · EUR/USD</div>
+    </div>
+
+    <!-- HERO BAND -->
+    <div class="section-divider">بخش هیرو (تاریک)</div>
+    <div class="zone structure">
+      <div class="zone-inner" style="min-height:80px;">
+        هیرو اصلی — تصویر بزرگ + عنوان مقاله + انتخاب سردبیر
+      </div>
+    </div>
+
+    <!-- ADVERTORIAL — PROPOSED FULL WIDTH -->
+    <div class="section-divider" style="background:#7a2200;color:#fff;border-color:#ea580c;">★ جایگاه پیشنهادی جدید</div>
+    <div class="zone ad-proposed">
+      <div class="zone-inner">
+        <span class="zone-badge">پیشنهادی</span>
+        <div>
+          <div class="zone-name">advertorial — نوار عرض کامل</div>
+          <div class="zone-desc">بین هیرو و ریور مقالات · مناسب رپورتاژ آگهی · محتوای حمایت‌شده</div>
+        </div>
+        <div class="zone-size">۱۲۰۰ × ۱۶۰px</div>
+      </div>
+    </div>
+
+    <!-- ARTICLE + SIDEBAR -->
+    <div class="section-divider">بخش مقالات</div>
+    <div class="zone-two-col">
+      <!-- Main river -->
+      <div class="zone structure">
+        <div class="zone-inner" style="min-height:220px;flex-direction:column;align-items:flex-start;gap:8px;">
+          <div style="font-size:11px;font-weight:700;">ریور مقالات اصلی</div>
+          <div style="height:1px;width:100%;background:#D4C0BF;"></div>
+          <div style="display:flex;gap:8px;"><div style="width:36px;height:36px;background:#D4C0BF;"></div><div style="font-size:11px;">عنوان مقاله ۱ — ANALYSIS</div></div>
+          <div style="display:flex;gap:8px;"><div style="width:36px;height:36px;background:#D4C0BF;"></div><div style="font-size:11px;">عنوان مقاله ۲ — MARKETS</div></div>
+          <div style="display:flex;gap:8px;"><div style="width:36px;height:36px;background:#D4C0BF;"></div><div style="font-size:11px;">عنوان مقاله ۳ — TECH</div></div>
+        </div>
+      </div>
+      <!-- Sidebar -->
+      <div style="display:flex;flex-direction:column;">
+        <div class="zone structure">
+          <div class="zone-inner" style="min-height:140px;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:11px;font-weight:700;">استریم آخرین مطالب</div>
+            <div style="font-size:10px;color:#9A8E7E;margin-top:6px;">خبر ۱ · خبر ۲ · خبر ۳</div>
+          </div>
+        </div>
+        <!-- sidebar1 — existing -->
+        <div class="zone ad-existing">
+          <div class="zone-inner">
+            <span class="zone-badge">موجود</span>
+            <div>
+              <div class="zone-name">sidebar1</div>
+              <div class="zone-desc">جایگاه کناری مربعی ۱</div>
+            </div>
+            <div class="zone-size">۶۰۰ × ۶۰۰px</div>
+          </div>
+        </div>
+        <!-- sidebar2 — proposed -->
+        <div class="zone ad-proposed">
+          <div class="zone-inner">
+            <span class="zone-badge">پیشنهادی</span>
+            <div>
+              <div class="zone-name">sidebar2</div>
+              <div class="zone-desc">جایگاه کناری مربعی ۲ — زیر sidebar1</div>
+            </div>
+            <div class="zone-size">۶۰۰ × ۶۰۰px</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ADS (3-col) -->
+    <div class="section-divider">تبلیغات پایین صفحه — موجود و سینک</div>
+    <div class="zone-three-col">
+      <div class="zone ad-existing">
+        <div class="zone-inner">
+          <span class="zone-badge">موجود</span>
+          <div><div class="zone-name">leaderboard</div><div class="zone-desc">بنر اصلی</div></div>
+          <div class="zone-size">۱۲۰۰ × ۴۰۰px</div>
+        </div>
+      </div>
+      <div class="zone ad-existing">
+        <div class="zone-inner">
+          <span class="zone-badge">موجود</span>
+          <div><div class="zone-name">sponsored</div><div class="zone-desc">رپورتاژ</div></div>
+          <div class="zone-size">۱۲۰۰ × ۴۰۰px</div>
+        </div>
+      </div>
+      <div class="zone ad-existing">
+        <div class="zone-inner">
+          <span class="zone-badge">موجود</span>
+          <div><div class="zone-name">newsletter</div><div class="zone-desc">خبرنامه</div></div>
+          <div class="zone-size">۱۲۰۰ × ۴۰۰px</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="zone structure">
+      <div class="zone-inner">فوتر — لوگو · لینک‌ها · کپی‌رایت</div>
+    </div>
+
+    <!-- COIN PAGE SECTION -->
+    <div class="section-divider" style="background:#3b0764;color:#ede9ff;border-color:#7c3aed;margin-top:2px;">صفحات رمزارز (bitcoin-btc.html و ...)</div>
+    <div class="zone-two-col">
+      <div class="zone structure">
+        <div class="zone-inner" style="min-height:80px;">محتوای اصلی صفحه کوین</div>
+      </div>
+      <div class="zone ad-coinpage">
+        <div class="zone-inner">
+          <span class="zone-badge">سایت دارد، پنل ندارد</span>
+          <div>
+            <div class="zone-name">exchange</div>
+            <div class="zone-desc">اسپاتلایت صرافی — در HTML هست، در ads.json و پنل نیست</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== VIEW 2: PREVIEW ===== -->
+<div id="view-preview" class="view">
+  <div class="preview-section">
+    <div class="preview-section-head">صفحه اصلی — homepage</div>
+    <div class="preview-strip">
+      <!-- Masthead -->
+      <div class="prev-masthead">
+        <div class="prev-logo">MAXGAZINE<span>.</span></div>
+        <div class="prev-nav">
+          <a href="#">مطالب</a><a href="#">بازارها</a><a href="#">قیمت‌ها</a><a href="#">درباره</a><a href="#">تماس</a>
+        </div>
+      </div>
+
+      <!-- Ticker -->
+      <div style="background:#0c0c0c;padding:8px 16px;font-family:var(--mono);font-size:11px;color:#3bff7a;direction:ltr;">
+        BTC $94,210 ▲ &nbsp; ETH $3,180 ▲ &nbsp; SOL $142 ▼ &nbsp; EUR/USD 1.0850 ▲
+      </div>
+
+      <!-- Hero -->
+      <div class="prev-hero">
+        <div class="prev-hero-main" style="grid-column:1;border-inline-start:none;">
+          <p style="font-family:var(--mono);font-size:10px;color:#9B1C1C;">CRYPTO · FOREX</p>
+          <h3>چشم‌هایت را روی بازار نبند.</h3>
+          <p>خبرهای مهم کریپتو، فارکس، تکنولوژی و خودرو در چهار زبان</p>
+        </div>
+        <div class="prev-hero-aside">
+          <div class="prev-ep"><span class="prev-ep-num">01</span><span class="prev-ep-text">بیت‌کوین از ۹۴K گذشت</span></div>
+          <div class="prev-ep"><span class="prev-ep-num">02</span><span class="prev-ep-text">ظهور خزانه‌داری‌های توکن‌شده</span></div>
+          <div class="prev-ep"><span class="prev-ep-num">03</span><span class="prev-ep-text">سه حوزه در رقابت برای کریپتو</span></div>
+        </div>
+      </div>
+
+      <!-- PROPOSED: Advertorial full-width -->
+      <div class="prev-advertorial">
+        <div class="prev-ad proposed" style="min-height:80px;border-inline:none;outline-offset:-2px;">
+          <span class="prev-ad-label">پیشنهادی</span>
+          <div class="prev-ad-name">advertorial — نوار عرض کامل</div>
+          <div class="prev-ad-note">بین هیرو و ریور · ۱۲۰۰×۱۶۰px · رپورتاژ / محتوای حمایت‌شده</div>
+        </div>
+      </div>
+
+      <!-- Article + Sidebar -->
+      <div class="prev-articles">
+        <div class="prev-articles-main" style="border-inline-start:none;">
+          <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:12px;color:var(--ink);">آخرین مطالب</div>
+          <div class="prev-article-item">
+            <div class="prev-article-thumb">ANA</div>
+            <div class="prev-article-text"><h4>چرا حجم آن‌چین پیشتاز قیمت است</h4><span>ANALYSIS · 29 MAY 2026</span></div>
+          </div>
+          <div class="prev-article-item">
+            <div class="prev-article-thumb">MKT</div>
+            <div class="prev-article-text"><h4>اتریوم در آستانه EIP-4844</h4><span>MARKETS · 28 MAY 2026</span></div>
+          </div>
+          <div class="prev-article-item">
+            <div class="prev-article-thumb">TEC</div>
+            <div class="prev-article-text"><h4>هوش مصنوعی و پیش‌بینی فارکس</h4><span>TECH · 27 MAY 2026</span></div>
+          </div>
+        </div>
+        <div class="prev-articles-side">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;margin-bottom:10px;color:var(--muted);">آخرین</div>
+          <div style="font-size:11px;color:var(--ink);margin-bottom:16px;">• BTC در سطح ۹۰K<br>• TVL لایه ۲ رکورد زد<br>• SEC و استیبل‌کوین‌ها</div>
+
+          <!-- EXISTING: sidebar1 -->
+          <div class="prev-ad existing" style="margin-bottom:12px;">
+            <span class="prev-ad-label">موجود</span>
+            <div class="prev-ad-name">sidebar1</div>
+            <div class="prev-ad-note">جایگاه کناری ۱ · مربع ۶۰۰×۶۰۰px</div>
+          </div>
+
+          <!-- PROPOSED: sidebar2 -->
+          <div class="prev-ad proposed">
+            <span class="prev-ad-label">پیشنهادی</span>
+            <div class="prev-ad-name">sidebar2</div>
+            <div class="prev-ad-note">جایگاه کناری ۲ · مربع ۶۰۰×۶۰۰px</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom ads (3-col) -->
+      <div class="prev-ad-grid">
+        <div class="prev-ad existing">
+          <span class="prev-ad-label">موجود</span>
+          <div class="prev-ad-name">leaderboard</div>
+        </div>
+        <div class="prev-ad existing">
+          <span class="prev-ad-label">موجود</span>
+          <div class="prev-ad-name">sponsored</div>
+        </div>
+        <div class="prev-ad existing">
+          <span class="prev-ad-label">موجود</span>
+          <div class="prev-ad-name">newsletter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coin page preview -->
+  <div class="preview-section">
+    <div class="preview-section-head">صفحات رمزارز — bitcoin-btc.html و ...</div>
+    <div class="preview-strip">
+      <div class="prev-coin">
+        <div class="prev-coin-main">[ محتوای اصلی صفحه کوین — قیمت · نمودار · اطلاعات ]</div>
+        <div class="prev-ad coinpage" style="min-height:120px;">
+          <span class="prev-ad-label">سایت دارد، پنل ندارد</span>
+          <div class="prev-ad-name">exchange</div>
+          <div class="prev-ad-note">اسپاتلایت صرافی · در HTML هست ولی در پنل تعریف نشده</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VIEW 3: SUMMARY ===== -->
+<div id="view-summary" class="view">
+  <div class="summary-grid">
+    <div class="summary-card green">
+      <h3>✅ موجود و سینک</h3>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">leaderboard</div><div class="summary-slot-note">بنر پایین صفحه · ۳ستونه</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">sponsored</div><div class="summary-slot-note">رپورتاژ · ۳ستونه</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">newsletter</div><div class="summary-slot-note">خبرنامه · ۳ستونه</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">sidebar1</div><div class="summary-slot-note">کناری مربعی ۱</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">popup</div><div class="summary-slot-note">پاپ‌آپ ورودی</div></div></div>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>⚠️ پیشنهادی — اضافه شود؟</h3>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">advertorial</div><div class="summary-slot-note">نوار عرض‌کامل · بین هیرو و مقالات</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">sidebar2</div><div class="summary-slot-note">کناری مربعی ۲ · زیر sidebar1</div></div></div>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">sidebar (generic)</div><div class="summary-slot-note">در پنل هست ولی پلیسمنت مشخص ندارد</div></div></div>
+    </div>
+
+    <div class="summary-card purple">
+      <h3>🟣 سایت دارد، پنل ندارد</h3>
+      <div class="summary-slot"><div class="summary-slot-dot"></div><div><div class="summary-slot-name">exchange</div><div class="summary-slot-note">صفحات کوین · پنل نمی‌شناسد</div></div></div>
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid #3A2E22;font-size:11px;color:#9A8E7E;line-height:1.6;">
+        برای فعال شدن باید:<br>
+        ۱. به <code style="color:#a78bfa;">ads.json</code> اضافه شود<br>
+        ۲. در پنل تعریف شود
+      </div>
+    </div>
+  </div>
+
+  <div class="decision-bar">
+    <p>
+      <strong>تصمیم:</strong> آیا جایگاه‌های پیشنهادی (<code style="color:#ea580c;">advertorial</code> و <code style="color:#ea580c;">sidebar2</code>) را به HTML اضافه کنیم؟ و جایگاه <code style="color:#a78bfa;">exchange</code> را به پنل اضافه کنیم؟
+    </p>
+    <button class="btn-decide btn-yes" onclick="alert('بردیم سراغ پیاده‌سازی کامل!')">بله، همه را اضافه کن</button>
+    <button class="btn-decide btn-partial" onclick="alert('کدام‌ها را می‌خواهی؟')">فقط بعضی‌ها</button>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
