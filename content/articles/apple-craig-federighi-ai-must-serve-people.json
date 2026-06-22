@@ -16,10 +16,16 @@
     "tr": "Craig Federighi, Apple'ın rakiplerini eleştirerek yapay zeka geliştirme yaklaşımlarını sorguladı."
   },
   "body": {
-    "en": "Craig Federighi, Apple's senior vice president of Software Engineering, drew a clear line between Apple's approach to artificial intelligence and that of other tech companies during the Worldwide Developers Conference (WWDC) 2026. He argued that some rivals are racing ahead without properly weighing what users actually need.\n\nIn his keynote remarks, Federighi took aim at the broader industry's approach to this emerging technology: \"AI is an incredibly powerful technology. And yet, some seem to be racing ahead, pursuing AI for its own sake, without a clear focus on the people this technology is ultimately meant to serve.\"\n\nThe comments appeared aimed at companies such as OpenAI, Google and Meta — tech giants that have pushed a rapid stream of products to market over the past two years. Federighi, by contrast, framed Apple's more cautious strategy as the more useful path, stressing that Apple's AI becomes more capable by drawing on a user's own personal context.\n\nFederighi said the new Siri is not simply a chatbot. He described it as an integrated, conversation-driven assistant that steps in to help users in the moment.",
-    "fa": "کریگ فدریگی، رئیس بخش نرم‌افزار اپل، در جریان کنفرانس جهانی توسعه‌دهندگان (WWDC) ۲۰۲۶ مرز روشنی میان رویکرد اپل به هوش مصنوعی و سایر شرکت‌های فناوری ترسیم کرد. به باور او، برخی از رقبا بدون توجه کافی به نیازهای کاربران، تنها در پی پیشرفت شتاب‌زده هستند.\n\nفدریگی در سخنرانی خود به رویکرد صنعت فناوری در قبال این فناوری نوظهور تاخت و گفت: «هوش مصنوعی فناوری بسیار قدرتمندی است. با این حال، به نظر می‌رسد برخی صرفاً برای خودِ هوش مصنوعی و با شتاب به جلو می‌تازند، بدون آن‌که توجه روشنی به انسان‌هایی داشته باشند که این فناوری در نهایت باید به آن‌ها خدمت کند.»\n\nاین اظهارات بیشتر متوجه شرکت‌هایی مانند اوپن‌ای‌آی، گوگل و متا بود؛ غول‌های فناوری‌ای که طی دو سال گذشته محصولات متعددی را با سرعت بالا روانه‌ی بازار کرده‌اند. در مقابل، فدریگی استراتژی محافظه‌کارانه‌ی اپل را مفیدتر می‌داند و تأکید کرد هوش مصنوعی اپل با تکیه بر اطلاعات شخصی کاربران، کارایی بیشتری دارد.\n\nبه گفته‌ی فدریگی، نسخه‌ی جدید سیری یک چت‌بات ساده نیست، بلکه ابزاری مکالمه‌محور و یکپارچه است که در لحظه به کمک کاربر می‌آید.",
-    "ar": "رسم كريغ فيدريغي، نائب الرئيس الأول لقسم البرمجيات في آبل، خلال مؤتمر مطوري آبل العالمي (WWDC) لعام 2026 خطاً واضحاً بين نهج آبل في الذكاء الاصطناعي ونهج الشركات التقنية الأخرى. وأعرب عن اعتقاده بأن بعض المنافسين يسعون إلى التقدم بسرعة دون مراعاة كافية لما يحتاجه المستخدمون فعلاً.\n\nوانتقد فيدريغي في كلمته الافتتاحية نهج صناعة التكنولوجيا تجاه هذه التقنية الناشئة قائلاً: «الذكاء الاصطناعي تقنية قوية للغاية. ومع ذلك، يبدو أن بعضهم يتسارع إلى الأمام، سعياً وراء الذكاء الاصطناعي لذاته، دون تركيز واضح على البشر الذين يُفترض أن تخدمهم هذه التقنية في النهاية.»\n\nوبدت هذه التصريحات موجهة إلى شركات مثل OpenAI وGoogle وMeta، وهي شركات تقنية ضخمة طرحت العديد من المنتجات بسرعة كبيرة خلال العامين الماضيين. وفي المقابل، رأى فيدريغي أن استراتيجية آبل الأكثر تحفظاً هي الأكثر فائدة، مؤكداً أن الذكاء الاصطناعي في آبل يصبح أكثر كفاءة بالاعتماد على السياق الشخصي للمستخدم.\n\nوقال فيدريغي إن النسخة الجديدة من Siri ليست مجرد روبوت محادثة بسيط، بل وصفها بأنها مساعد تفاعلي ومتكامل يتدخل لمساعدة المستخدم في اللحظة المناسبة.",
-    "tr": "Apple'ın yazılım mühendisliğinden sorumlu kıdemli başkan yardımcısı Craig Federighi, 2026 Dünya Geliştirici Konferansı (WWDC) sırasında Apple'ın yapay zeka yaklaşımı ile diğer teknoloji şirketlerininki arasına net bir çizgi çekti. Bazı rakiplerin, kullanıcıların gerçekte neye ihtiyaç duyduğunu yeterince düşünmeden hızla ilerlediğini söyledi.\n\nFederighi, açılış konuşmasında sektörün bu yeni teknolojiye yaklaşımını eleştirdi: \"Yapay zeka son derece güçlü bir teknoloji. Ancak bazıları, bu teknolojinin nihayetinde hizmet etmesi gereken insanlara net bir şekilde odaklanmadan, sadece yapay zekanın kendisi için hızla ileri atılıyor gibi görünüyor.\"\n\nBu açıklamalar OpenAI, Google ve Meta gibi şirketleri hedef alıyor gibi görünüyor; bu teknoloji devleri son iki yılda hızla birçok ürünü piyasaya sürdü. Federighi ise Apple'ın daha temkinli stratejisini daha faydalı bir yol olarak nitelendirdi ve Apple'ın yapay zekasının kullanıcının kişisel bağlamına dayanarak daha yetkin hale geldiğini vurguladı.\n\nFederighi, yeni Siri'nin basit bir sohbet botu olmadığını söyledi. Onu, kullanıcıya anında yardımcı olan, konuşma odaklı ve bütünleşik bir asistan olarak tanımladı."
+    "en": "",
+    "fa": "",
+    "ar": "",
+    "tr": ""
+  },
+  "bodyHtml": {
+    "en": "<p>Craig Federighi, Apple's senior vice president of Software Engineering, drew a clear line between Apple's approach to artificial intelligence and that of other tech companies during the Worldwide Developers Conference (WWDC) 2026. He argued that some rivals are racing ahead without properly weighing what users actually need.</p>\n<p>In his keynote remarks, Federighi took aim at the broader industry's approach to this emerging technology: \"AI is an incredibly powerful technology. And yet, some seem to be racing ahead, pursuing AI for its own sake, without a clear focus on the people this technology is ultimately meant to serve.\"</p>\n<p>The comments appeared aimed at companies such as OpenAI, Google and Meta — tech giants that have pushed a rapid stream of products to market over the past two years. Federighi, by contrast, framed Apple's more cautious strategy as the more useful path, stressing that Apple's AI becomes more capable by drawing on a user's own personal context.</p>\n<p>Federighi said the new Siri is not simply a chatbot. He described it as an integrated, conversation-driven assistant that steps in to help users in the moment.</p>",
+    "fa": "<p>کریگ فدریگی، رئیس بخش نرم‌افزار اپل، در جریان کنفرانس جهانی توسعه‌دهندگان (WWDC) ۲۰۲۶ مرز روشنی میان رویکرد اپل به هوش مصنوعی و سایر شرکت‌های فناوری ترسیم کرد. به باور او، برخی از رقبا بدون توجه کافی به نیازهای کاربران، تنها در پی پیشرفت شتاب‌زده هستند.</p>\n<p>فدریگی در سخنرانی خود به رویکرد صنعت فناوری در قبال این فناوری نوظهور تاخت و گفت: «هوش مصنوعی فناوری بسیار قدرتمندی است. با این حال، به نظر می‌رسد برخی صرفاً برای خودِ هوش مصنوعی و با شتاب به جلو می‌تازند، بدون آن‌که توجه روشنی به انسان‌هایی داشته باشند که این فناوری در نهایت باید به آن‌ها خدمت کند.»</p>\n<p>این اظهارات بیشتر متوجه شرکت‌هایی مانند اوپن‌ای‌آی، گوگل و متا بود؛ غول‌های فناوری‌ای که طی دو سال گذشته محصولات متعددی را با سرعت بالا روانه‌ی بازار کرده‌اند. در مقابل، فدریگی استراتژی محافظه‌کارانه‌ی اپل را مفیدتر می‌داند و تأکید کرد هوش مصنوعی اپل با تکیه بر اطلاعات شخصی کاربران، کارایی بیشتری دارد.</p>\n<p>به گفته‌ی فدریگی، نسخه‌ی جدید سیری یک چت‌بات ساده نیست، بلکه ابزاری مکالمه‌محور و یکپارچه است که در لحظه به کمک کاربر می‌آید.</p>",
+    "ar": "<p>رسم كريغ فيدريغي، نائب الرئيس الأول لقسم البرمجيات في آبل، خلال مؤتمر مطوري آبل العالمي (WWDC) لعام 2026 خطاً واضحاً بين نهج آبل في الذكاء الاصطناعي ونهج الشركات التقنية الأخرى. وأعرب عن اعتقاده بأن بعض المنافسين يسعون إلى التقدم بسرعة دون مراعاة كافية لما يحتاجه المستخدمون فعلاً.</p>\n<p>وانتقد فيدريغي في كلمته الافتتاحية نهج صناعة التكنولوجيا تجاه هذه التقنية الناشئة قائلاً: «الذكاء الاصطناعي تقنية قوية للغاية. ومع ذلك، يبدو أن بعضهم يتسارع إلى الأمام، سعياً وراء الذكاء الاصطناعي لذاته، دون تركيز واضح على البشر الذين يُفترض أن تخدمهم هذه التقنية في النهاية.»</p>\n<p>وبدت هذه التصريحات موجهة إلى شركات مثل OpenAI وGoogle وMeta، وهي شركات تقنية ضخمة طرحت العديد من المنتجات بسرعة كبيرة خلال العامين الماضيين. وفي المقابل، رأى فيدريغي أن استراتيجية آبل الأكثر تحفظاً هي الأكثر فائدة، مؤكداً أن الذكاء الاصطناعي في آبل يصبح أكثر كفاءة بالاعتماد على السياق الشخصي للمستخدم.</p>\n<p>وقال فيدريغي إن النسخة الجديدة من Siri ليست مجرد روبوت محادثة بسيط، بل وصفها بأنها مساعد تفاعلي ومتكامل يتدخل لمساعدة المستخدم في اللحظة المناسبة.</p>",
+    "tr": "<p>Apple'ın yazılım mühendisliğinden sorumlu kıdemli başkan yardımcısı Craig Federighi, 2026 Dünya Geliştirici Konferansı (WWDC) sırasında Apple'ın yapay zeka yaklaşımı ile diğer teknoloji şirketlerininki arasına net bir çizgi çekti. Bazı rakiplerin, kullanıcıların gerçekte neye ihtiyaç duyduğunu yeterince düşünmeden hızla ilerlediğini söyledi.</p>\n<p>Federighi, açılış konuşmasında sektörün bu yeni teknolojiye yaklaşımını eleştirdi: \"Yapay zeka son derece güçlü bir teknoloji. Ancak bazıları, bu teknolojinin nihayetinde hizmet etmesi gereken insanlara net bir şekilde odaklanmadan, sadece yapay zekanın kendisi için hızla ileri atılıyor gibi görünüyor.\"</p>\n<p>Bu açıklamalar OpenAI, Google ve Meta gibi şirketleri hedef alıyor gibi görünüyor; bu teknoloji devleri son iki yılda hızla birçok ürünü piyasaya sürdü. Federighi ise Apple'ın daha temkinli stratejisini daha faydalı bir yol olarak nitelendirdi ve Apple'ın yapay zekasının kullanıcının kişisel bağlamına dayanarak daha yetkin hale geldiğini vurguladı.</p>\n<p>Federighi, yeni Siri'nin basit bir sohbet botu olmadığını söyledi. Onu, kullanıcıya anında yardımcı olan, konuşma odaklı ve bütünleşik bir asistan olarak tanımladı.</p>"
   },
   "seo": {
     "title": {
@@ -35,20 +41,50 @@
       "tr": "Apple'dan Craig Federighi, WWDC 2026'da rakiplerin yapay zeka yarışını eleştirdi ve yapay zekanın insana hizmet etmesi gerektiğini söyledi; yeni Siri'yi bütünleşik bir konuşma asistanı olarak tanımladı."
     },
     "keywords": {
-      "en": ["Apple", "AI", "Craig Federighi", "Siri", "WWDC 2026", "Technology"],
-      "fa": ["اپل", "هوش مصنوعی", "کریگ فدریگی", "سیری", "WWDC", "تکنولوژی"],
-      "ar": ["آبل", "الذكاء الاصطناعي", "كريغ فيدريغي", "Siri", "WWDC 2026", "تكنولوجيا"],
-      "tr": ["Apple", "yapay zeka", "Craig Federighi", "Siri", "WWDC 2026", "teknoloji"]
+      "en": [
+        "Apple",
+        "AI",
+        "Craig Federighi",
+        "Siri",
+        "WWDC 2026",
+        "Technology"
+      ],
+      "fa": [
+        "اپل",
+        "هوش مصنوعی",
+        "کریگ فدریگی",
+        "سیری",
+        "WWDC",
+        "تکنولوژی"
+      ],
+      "ar": [
+        "آبل",
+        "الذكاء الاصطناعي",
+        "كريغ فيدريغي",
+        "Siri",
+        "WWDC 2026",
+        "تكنولوجيا"
+      ],
+      "tr": [
+        "Apple",
+        "yapay zeka",
+        "Craig Federighi",
+        "Siri",
+        "WWDC 2026",
+        "teknoloji"
+      ]
     }
   },
-  "sources": [
-    {
-      "title": "Apple Newsroom: WWDC 2026 keynote highlights",
-      "url": "https://www.apple.com/newsroom/2026/06/wwdc-2026-keynote-highlights/"
-    }
+  "sources": [],
+  "tags": [
+    "Technology",
+    "AI",
+    "Apple",
+    "Craig Federighi",
+    "Siri",
+    "WWDC"
   ],
-  "tags": ["Technology", "AI", "Apple", "Craig Federighi", "Siri", "WWDC"],
+  "status": "published",
   "banner": "content/articles/2022-10-craig-federighi-apple-senior-vice-president-software-engineering/2022-10-craig-federighi-apple-senior-vice-president-software-engineering-speech-638c6a663801d1ddad8e3f08.webp",
-  "featured": true,
-  "status": "published"
+  "featured": false
 }
