@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 400px; overflow: hidden; background: #F7F2E6; }
+  #root { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+
+<script type="text/babel" data-presets="react">
+// ── Easing ──────────────────────────────────────────────────────────────────
+const Easing = {
+  linear: t => t,
+  easeInQuad:    t => t * t,
+  easeOutQuad:   t => t * (2 - t),
+  easeInCubic:   t => t * t * t,
+  easeOutCubic:  t => (--t) * t * t + 1,
+  easeInOutCubic:t => t < 0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1,
+  easeOutExpo:   t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+  easeOutBack:   t => { const c1=1.70158, c3=c1+1; return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2); },
+  easeInBack:    t => { const c1=1.70158, c3=c1+1; return c3*t*t*t - c1*t*t; },
+  easeInCubicFn: t => t * t * t,
+  easeOutQuad:   t => t * (2 - t),
+  easeInQuad2:   t => t * t,
+};
+
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+function animate({ from=0, to=1, start=0, end=1, ease=Easing.easeOutCubic }) {
+  return t => {
+    if (t <= start) return from;
+    if (t >= end) return to;
+    return from + (to - from) * ease((t - start) / (end - start));
+  };
+}
+
+// ── Timeline context ─────────────────────────────────────────────────────────
+const TimelineContext = React.createContext({ time: 0, duration: 16 });
+const useTime = () => React.useContext(TimelineContext).time;
+
+// ── Stage (no player bar) ────────────────────────────────────────────────────
+function Stage({ width=1200, height=400, duration=16, background='#F7F2E6', loop=true, autoplay=true, children }) {
+  const [time, setTime] = React.useState(0);
+  const [playing] = React.useState(autoplay);
+  const rafRef = React.useRef(null);
+  const lastTsRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!playing) return;
+    const step = ts => {
+      if (lastTsRef.current == null) lastTsRef.current = ts;
+      const dt = (ts - lastTsRef.current) / 1000;
+      lastTsRef.current = ts;
+      setTime(t => {
+        let next = t + dt;
+        if (next >= duration) next = loop ? next % duration : duration;
+        return next;
+      });
+      rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => { cancelAnimationFrame(rafRef.current); lastTsRef.current = null; };
+  }, [playing, duration, loop]);
+
+  const ctx = React.useMemo(() => ({ time, duration }), [time, duration]);
+
+  return (
+    <div style={{ position:'absolute', inset:0, overflow:'hidden', background }}>
+      <TimelineContext.Provider value={ctx}>
+        {children}
+      </TimelineContext.Provider>
+    </div>
+  );
+}
+
+// ── Scene components ─────────────────────────────────────────────────────────
+const C = {
+  bg:'#F7F2E6', ink:'#14201F', ink2:'#2C3A39',
+  muted:'#8A938E', muted2:'#B5B8B0',
+  green:'#4CAF7A', greenInk:'#0F3A24',
+  yellow:'#E5B73B', red:'#E76A3F',
+  card:'#FFFCF3',
+  line:'rgba(20,32,31,0.08)', line2:'rgba(20,32,31,0.14)',
+};
+const f = 'Inter, system-ui, sans-serif';
+
+function SceneWrap({ idx, children }) {
+  const SDUR = 4, TR = 0.55;
+  const t = useTime();
+  const s0 = idx * SDUR, s1 = s0 + SDUR;
+  if (t < s0 || t >= s1) return null;
+  const lt = t - s0;
+  let op = 1, tx = 0;
+  if (lt < TR) {
+    const p = Easing.easeOutCubic(lt / TR);
+    op = p; tx = (1 - p) * 64;
+  } else if (lt > SDUR - TR) {
+    const p = Easing.easeInCubic((lt - (SDUR - TR)) / TR);
+    op = 1 - p; tx = -p * 44;
+  }
+  return (
+    <div style={{ position:'absolute', inset:0, opacity:op, transform:`translateX(${tx}px)`, willChange:'opacity,transform' }}>
+      {children}
+    </div>
+  );
+}
+
+function GridBg() {
+  return (
+    <div style={{
+      position:'absolute', inset:0,
+      backgroundColor: C.bg,
+      backgroundImage: [`linear-gradient(${C.line} 1px,transparent 1px)`, `linear-gradient(90deg,${C.line} 1px,transparent 1px)`].join(','),
+      backgroundSize: '80px 80px',
+    }} />
+  );
+}
+
+function Scene1() {
+  const t = useTime(), lt = t;
+  const a = (fr, to, s, en, ease) => animate({ from:fr, to, start:s, end:en, ease: ease||Easing.easeOutCubic })(lt);
+  const cards = [
+    { tag:'MARKETS',  cat:C.green,  title:'Bitcoin surges 12% as institutional demand rises', t0:0.65 },
+    { tag:'ANALYSIS', cat:C.yellow, title:'Fed signals rate pause — impact on crypto markets', t0:0.90 },
+    { tag:'DEFI',     cat:C.red,    title:'DeFi TVL hits $180B — record high since 2022',     t0:1.15 },
+  ];
+  return (
+    <>
+      <div style={{ position:'absolute', left:80, top:0, bottom:0, width:500, display:'flex', flexDirection:'column', justifyContent:'center' }}>
+        <div style={{ opacity:a(0,1,0.12,0.48), transform:`translateY(${a(10,0,0.12,0.48)}px)`, fontFamily:f, fontSize:15, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:C.green, marginBottom:14 }}>Market Intelligence Platform</div>
+        <div style={{ opacity:a(0,1,0.38,0.82,Easing.easeOutBack), transform:`translateY(${a(28,0,0.38,0.82)}px)`, fontFamily:f, fontSize:94, fontWeight:900, letterSpacing:'-0.04em', color:C.ink, lineHeight:0.91, marginBottom:22 }}>MAXGAZINE</div>
+        <div style={{ width:a(0,260,0.92,1.42), height:3, background:C.green, borderRadius:2, marginBottom:16 }} />
+        <div style={{ opacity:a(0,1,1.18,1.58), fontFamily:f, fontSize:21, fontWeight:500, color:C.muted, letterSpacing:'-0.01em', lineHeight:1.5 }}>The trusted source for traders worldwide</div>
+      </div>
+      <div style={{ position:'absolute', right:60, top:0, bottom:0, width:500, display:'flex', flexDirection:'column', justifyContent:'center', gap:10 }}>
+        {cards.map(({ tag, cat, title, t0 }) => (
+          <div key={tag} style={{ opacity:a(0,1,t0,t0+0.38), transform:`translateX(${a(52,0,t0,t0+0.38)}px)`, background:C.card, borderRadius:14, padding:'14px 18px', boxShadow:'0 1px 3px rgba(20,32,31,0.06),0 4px 14px rgba(20,32,31,0.05)', display:'flex', alignItems:'flex-start', gap:12 }}>
+            <div style={{ width:3, alignSelf:'stretch', background:cat, borderRadius:2, flexShrink:0, marginTop:1 }} />
+            <div>
+              <div style={{ fontFamily:f, fontSize:13, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:cat, marginBottom:6 }}>{tag}</div>
+              <div style={{ fontFamily:f, fontSize:17, fontWeight:600, color:C.ink, letterSpacing:'-0.01em', lineHeight:1.35 }}>{title}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function Scene2() {
+  const t = useTime(), lt = t - 4;
+  const a = (fr, to, s, en, ease) => animate({ from:fr, to, start:s, end:en, ease: ease||Easing.easeOutCubic })(lt);
+  const numProg = Easing.easeOutExpo(clamp((lt - 0.18) / 1.42, 0, 1));
+  const thousands = Math.round(numProg * 50);
+  const displayNum = thousands >= 50 ? '50K+' : (thousands > 0 ? thousands + 'K' : '0');
+  const bars = [{ h:68, d:0.38 },{ h:100, d:0.52 },{ h:132, d:0.66 },{ h:165, d:0.80 },{ h:200, d:0.94 }];
+  return (
+    <>
+      <div style={{ position:'absolute', left:80, top:0, bottom:0, width:460, display:'flex', flexDirection:'column', justifyContent:'center' }}>
+        <div style={{ opacity:a(0,1,0.08,0.38), fontFamily:f, fontSize:15, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:C.green, marginBottom:10 }}>Active Traders</div>
+        <div style={{ opacity:a(0,1,0.14,0.48), fontFamily:f, fontSize:128, fontWeight:900, letterSpacing:'-0.05em', color:C.ink, lineHeight:0.86, marginBottom:20, fontVariantNumeric:'tabular-nums' }}>{displayNum}</div>
+        <div style={{ width:a(0,60,0.82,1.18), height:2, background:C.green, borderRadius:1, marginBottom:14 }} />
+        <div style={{ opacity:a(0,1,0.98,1.38), fontFamily:f, fontSize:21, fontWeight:500, color:C.muted, letterSpacing:'-0.01em', lineHeight:1.55, whiteSpace:'pre-wrap' }}>{'Read Maxgazine daily\nfor market intelligence'}</div>
+      </div>
+      <div style={{ position:'absolute', right:80, bottom:56, display:'flex', alignItems:'flex-end', gap:16 }}>
+        {bars.map(({ h, d }, i) => {
+          const bh = a(0, h, d, d + 0.52);
+          const isLast = i === bars.length - 1;
+          return (
+            <div key={i} style={{ position:'relative', width:52 }}>
+              {isLast && <div style={{ position:'absolute', bottom:bh+8, left:'50%', transform:'translateX(-50%)', fontFamily:f, fontSize:16, fontWeight:700, color:C.green, opacity:a(0,1,d+0.48,d+0.76), whiteSpace:'nowrap' }}>↑ 38%</div>}
+              <div style={{ width:'100%', height:bh, background:isLast ? C.green : `rgba(76,175,122,${0.14+i*0.1})`, borderRadius:'8px 8px 0 0' }} />
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ position:'absolute', right:64, bottom:55, width:360, height:1, background:C.line2 }} />
+      <div style={{ position:'absolute', right:64, bottom:33, width:360, textAlign:'center', fontFamily:f, fontSize:13, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:C.muted2, opacity:a(0,1,1.38,1.72) }}>Daily Readership Growth</div>
+    </>
+  );
+}
+
+function Scene3() {
+  const t = useTime(), lt = t - 8;
+  const a = (fr, to, s, en, ease) => animate({ from:fr, to, start:s, end:en, ease: ease||Easing.easeOutCubic })(lt);
+  const NW=162, NH=92, n1x=98, n2x=519, n3x=940, ny=154, GAP=259;
+  const lnY = ny + NH / 2;
+
+  const mkParticle = (lx, startT, dur) => {
+    const px = a(lx, lx+GAP, startT, startT+dur);
+    const fi = Easing.easeOutQuad(clamp((lt-startT)/0.14, 0, 1));
+    const fo = 1 - Easing.easeInQuad(clamp((lt-(startT+dur-0.14))/0.14, 0, 1));
+    return <div key={`p${startT}`} style={{ position:'absolute', left:px-5, top:lnY-5, width:10, height:10, borderRadius:'50%', background:C.green, opacity:Math.min(fi,fo), boxShadow:'0 0 8px 3px rgba(76,175,122,0.35)' }} />;
+  };
+
+  const mkNode = (x, op, ty, dark, border, label, sub, lc, sc, icon) => (
+    <div style={{ position:'absolute', left:x, top:ny, width:NW, height:NH, opacity:op, transform:`translateY(${ty}px)`, background:dark?C.ink:C.card, borderRadius:18, border:border?`2px solid ${border}`:`1.5px solid ${C.line2}`, boxShadow:dark?'0 8px 32px rgba(20,32,31,0.22)':'0 2px 14px rgba(20,32,31,0.06)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:5 }}>
+      {icon}
+      <div style={{ fontFamily:f, fontSize:13, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:lc }}>{label}</div>
+      <div style={{ fontFamily:f, fontSize:12, fontWeight:500, color:sc||C.muted }}>{sub}</div>
+    </div>
+  );
+
+  return (
+    <>
+      <div style={{ position:'absolute', top:34, left:0, right:0, textAlign:'center', opacity:a(0,1,0.08,0.38), fontFamily:f, fontSize:15, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:C.green }}>How It Works</div>
+      {mkNode(n1x, a(0,1,0.18,0.58,Easing.easeOutBack), a(22,0,0.18,0.58), false, null, 'Your Brand', 'Advertiser', C.muted, null,
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="4" y="11" width="22" height="15" rx="3" fill="rgba(20,32,31,0.10)"/><rect x="10" y="4" width="10" height="8" rx="2" fill="rgba(20,32,31,0.16)"/><rect x="12" y="17" width="6" height="9" fill="rgba(20,32,31,0.07)"/></svg>
+      )}
+      <div style={{ position:'absolute', left:n1x+NW, top:lnY-1, width:a(0,GAP,0.72,1.22), height:2, background:`linear-gradient(90deg,${C.green},rgba(76,175,122,0.25))`, borderRadius:1 }} />
+      {mkParticle(n1x+NW, 1.28, 0.58)}
+      {mkParticle(n1x+NW, 1.68, 0.52)}
+      {mkNode(n2x, a(0,1,1.10,1.50,Easing.easeOutBack), a(22,0,1.10,1.50), true, null, 'MAXGAZINE', 'Trusted Source', '#F7F2E6', C.green,
+        <div style={{ fontFamily:f, fontSize:36, fontWeight:900, letterSpacing:'-0.04em', color:'#F7F2E6', lineHeight:1, marginBottom:1 }}>M</div>
+      )}
+      <div style={{ position:'absolute', left:n2x+NW, top:lnY-1, width:a(0,GAP,1.62,2.12), height:2, background:`linear-gradient(90deg,${C.green},rgba(76,175,122,0.25))`, borderRadius:1 }} />
+      {mkParticle(n2x+NW, 2.18, 0.58)}
+      {mkParticle(n2x+NW, 2.58, 0.50)}
+      {mkNode(n3x, a(0,1,2.02,2.44,Easing.easeOutBack), a(22,0,2.02,2.44), false, C.green, 'Trader Trust', 'Brand Credibility', C.greenInk, C.green,
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" fill="rgba(76,175,122,0.12)"/><path d="M8 15l5 5 9-9" stroke={C.green} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      )}
+      <div style={{ position:'absolute', bottom:42, left:0, right:0, textAlign:'center', opacity:a(0,1,2.48,2.95), transform:`translateY(${a(12,0,2.48,2.95)}px)`, fontFamily:f, fontSize:24, fontWeight:600, color:C.ink2, letterSpacing:'-0.02em' }}>Your brand earns trust through trusted association</div>
+    </>
+  );
+}
+
+function Scene4() {
+  const t = useTime(), lt = t - 12;
+  const a = (fr, to, s, en, ease) => animate({ from:fr, to, start:s, end:en, ease: ease||Easing.easeOutCubic })(lt);
+  const stats = [
+    { num:'50K+', label:'Active Traders',       color:C.green,  d:0.88 },
+    { num:'3×',   label:'Higher Brand Recall',   color:C.yellow, d:1.08 },
+    { num:'94%',  label:'Reader Retention Rate', color:C.red,    d:1.28 },
+  ];
+  return (
+    <>
+      <div style={{ position:'absolute', left:80, top:0, bottom:0, width:580, display:'flex', flexDirection:'column', justifyContent:'center' }}>
+        <div style={{ opacity:a(0,1,0.18,0.52), fontFamily:f, fontSize:15, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:C.green, marginBottom:12 }}>Advertise on Maxgazine</div>
+        <div style={{ opacity:a(0,1,0.32,0.78), transform:`translateY(${a(20,0,0.32,0.78)}px)`, fontFamily:f, fontSize:62, fontWeight:900, letterSpacing:'-0.03em', color:C.ink, lineHeight:1.02, marginBottom:16, whiteSpace:'pre-wrap' }}>{'Reach traders at the\nmoment of trust.'}</div>
+        <div style={{ opacity:a(0,1,0.78,1.18), fontFamily:f, fontSize:19, fontWeight:500, color:C.muted, letterSpacing:'-0.01em', lineHeight:1.55, marginBottom:28, whiteSpace:'pre-wrap' }}>{'Your brand earns credibility through association\nwith the source traders rely on every day.'}</div>
+        <div style={{ opacity:a(0,1,1.28,1.65), transform:`translateY(${a(16,0,1.28,1.65,Easing.easeOutBack)}px)` }}>
+          <div style={{ display:'inline-block', background:C.green, color:C.greenInk, padding:'14px 32px', borderRadius:'999px', fontFamily:f, fontSize:17, fontWeight:700, letterSpacing:'-0.01em', boxShadow:'0 4px 22px rgba(76,175,122,0.32)' }}>Start Advertising →</div>
+        </div>
+      </div>
+      <div style={{ position:'absolute', right:72, top:0, bottom:0, width:380, display:'flex', flexDirection:'column', justifyContent:'center', gap:12 }}>
+        {stats.map(({ num, label, color, d }) => (
+          <div key={label} style={{ opacity:a(0,1,d,d+0.34), transform:`translateX(${a(42,0,d,d+0.34)}px)`, background:C.card, borderRadius:14, padding:'18px 22px', boxShadow:'0 1px 3px rgba(20,32,31,0.06),0 4px 14px rgba(20,32,31,0.05)', display:'flex', alignItems:'center', gap:16 }}>
+            <div style={{ fontFamily:f, fontSize:48, fontWeight:900, letterSpacing:'-0.04em', color, lineHeight:1, minWidth:84 }}>{num}</div>
+            <div style={{ fontFamily:f, fontSize:17, fontWeight:600, color:C.ink, letterSpacing:'-0.01em', lineHeight:1.3 }}>{label}</div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Stage width={1200} height={400} duration={16} background={C.bg} loop autoplay>
+      <GridBg />
+      <SceneWrap idx={0}><Scene1 /></SceneWrap>
+      <SceneWrap idx={1}><Scene2 /></SceneWrap>
+      <SceneWrap idx={2}><Scene3 /></SceneWrap>
+      <SceneWrap idx={3}><Scene4 /></SceneWrap>
+    </Stage>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
