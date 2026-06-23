@@ -929,6 +929,12 @@ function feedLang(){
   if(window.I && window.I[fromUrl]) return fromUrl;
   let stored=null; try{ stored=localStorage.getItem('mg_lang'); }catch(e){}
   if(window.I && window.I[stored]) return stored;
+  // No explicit choice: match the chrome's language detection so labels and
+  // feed content never disagree (e.g. Persian chrome must not show non-fa cards).
+  if(typeof window.detectLang === 'function'){
+    const d = window.detectLang();
+    if(window.I && window.I[d]) return d;
+  }
   return 'en';
 }
 function pickLoc(loc, lang){
