@@ -186,9 +186,10 @@ function chromeHeader(lang: Lang, prefix: string): string {
   const c = CHROME[lang];
   const s = langSuffix(lang);
   const p = (href: string) => `${prefix}${href}${s}`;
-  const langBtns = LANGS.map(
-    (l) => `<button data-lang="${l}"${l === lang ? ' class="active"' : ""} lang="${l}">${l.toUpperCase()}</button>`,
+  const langItems = LANGS.map(
+    (l) => `<button data-lang="${l}"${l === lang ? ' class="active"' : ""} lang="${l}" role="menuitem"><span class="bs-lang-code">${l.toUpperCase()}</span><span class="bs-lang-name">${LANG_NAMES[l]}</span></button>`,
   ).join("");
+  const langBtns = `<button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">${lang.toUpperCase()}</span></button><div class="bs-lang-menu" role="menu">${langItems}</div>`;
   return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page">
 <div class="bs-frame">
 <header class="bsheet">
@@ -342,9 +343,11 @@ ${related.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n")}
     <span class="by-meta">${esc(c.published!)} <b>${esc(article.author)}</b> · ${esc(article.date)}</span>
   </div>
   ${bannerHtml}
+  <a class="ad-banner ad-inline" data-ad-slot="article-top" href="${prefix}contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-article banner</span><span class="ad-cta mono">Book this spot →</span></a>
   <div class="article-prose">
 ${richHtml ? sanitizeHtml(richHtml) : md(pick(article.body, lang), prefix)}
   </div>
+  <a class="ad-banner ad-inline" data-ad-slot="article-end" href="${prefix}contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-article banner</span><span class="ad-cta mono">Book this spot →</span></a>
   ${tagsHtml}
   ${sourcesHtml}
 </article>

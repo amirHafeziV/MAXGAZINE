@@ -113,8 +113,14 @@ function setLang(l, persist){
   if(dict.pm_title){ document.title = dict.pm_title; _setMeta('meta[property="og:title"]',dict.pm_title); _setMeta('meta[name="twitter:title"]',dict.pm_title); }
   if(dict.pm_desc){ _setMeta('meta[name="description"]',dict.pm_desc); _setMeta('meta[property="og:description"]',dict.pm_desc); _setMeta('meta[name="twitter:description"]',dict.pm_desc); }
   _setMeta('meta[property="og:locale"]', OG_LOCALE[l]||'en_US');
-  document.querySelectorAll('.lang button, .bs-lang button').forEach(b=>{
+  document.querySelectorAll('.lang button, .bs-lang-menu button').forEach(b=>{
     const on = b.dataset.lang===l; b.classList.toggle('active',on); b.setAttribute('aria-pressed',on);
+  });
+  // reflect the active language on the globe toggle and close any open dropdown
+  document.querySelectorAll('.bs-lang-cur').forEach(el=>{ el.textContent = l.toUpperCase(); });
+  document.querySelectorAll('.bs-lang.open').forEach(box=>{
+    box.classList.remove('open');
+    const t = box.querySelector('.bs-lang-toggle'); if(t) t.setAttribute('aria-expanded','false');
   });
   const url = new URL(location.href);
   if(l==='en') url.searchParams.delete('lang'); else url.searchParams.set('lang',l);

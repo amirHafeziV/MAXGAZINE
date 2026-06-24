@@ -722,11 +722,31 @@ function initNav(){
     if(fixedLang){ location.href = `../${l}/${location.pathname.split('/').pop()}`; }
     else window.setLang(l);
   };
-  document.querySelectorAll('.lang button, .bs-lang button').forEach(b=>{
+  // only data-lang buttons switch language — the .bs-lang-toggle (globe) has no
+  // data-lang and just opens the dropdown, so it must NOT be in this selector.
+  document.querySelectorAll('.lang button, .bs-lang-menu button').forEach(b=>{
     b.addEventListener('click',e=>{e.preventDefault(); switchLang(b.dataset.lang);});
   });
   document.querySelectorAll('[data-lang]').forEach(b=>{
     if(b.tagName==='A') b.addEventListener('click',e=>{e.preventDefault(); switchLang(b.dataset.lang);});
+  });
+  // globe toggle → open/close the language dropdown
+  document.querySelectorAll('.bs-lang-toggle').forEach(t=>{
+    t.addEventListener('click',e=>{
+      e.preventDefault(); e.stopPropagation();
+      const box = t.closest('.bs-lang');
+      const open = box.classList.toggle('open');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  // click outside closes any open dropdown
+  document.addEventListener('click',e=>{
+    document.querySelectorAll('.bs-lang.open').forEach(box=>{
+      if(!box.contains(e.target)){
+        box.classList.remove('open');
+        const t = box.querySelector('.bs-lang-toggle'); if(t) t.setAttribute('aria-expanded','false');
+      }
+    });
   });
 }
 
@@ -904,8 +924,28 @@ function hideEmptyAdContainers(){
     grid.classList.add('ad-grid-vis-' + Math.min(visible.length, 3));
   });
 }
+// The mid-article slot can't be placed by the template — the body is one opaque
+// blob of rich HTML — so we inject an empty [data-ad-slot="article-mid"] anchor
+// roughly halfway down the prose (after a whole paragraph, never mid-sentence).
+// loadAds() then fills or hides it like any other slot.
+function injectArticleMidSlot(){
+  const prose = document.querySelector('.article-prose');
+  if(!prose || prose.querySelector('[data-ad-slot="article-mid"]')) return;
+  const blocks = Array.from(prose.children).filter(el=>{
+    const t = el.tagName;
+    return t === 'P' || t === 'H2' || t === 'H3' || t === 'UL' || t === 'OL' || t === 'BLOCKQUOTE';
+  });
+  if(blocks.length < 4) return;                 // too short to interrupt
+  const after = blocks[Math.floor(blocks.length / 2) - 1];
+  const slot = document.createElement('a');
+  slot.className = 'ad-banner ad-inline';
+  slot.setAttribute('data-ad-slot', 'article-mid');
+  slot.href = 'contact.html';
+  after.insertAdjacentElement('afterend', slot);
+}
 async function loadAds(){
   const prefix = adPrefix();
+  injectArticleMidSlot();
   try{
     const r = await fetch(prefix + 'content/data/ads.json', {cache:'no-cache'});
     if(!r.ok) return;

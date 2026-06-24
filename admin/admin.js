@@ -541,27 +541,70 @@ async function removeArticle(){
   }catch(e){ $('#save-msg').textContent = `Delete failed: ${e.message}`; }
 }
 
-/* ----- ads ----- */
-const SLOT_LABELS = {
-  leaderboard: 'Leaderboard — top strip (wide)',
-  sponsored:   'Sponsored story slot',
-  newsletter:  'Newsletter banner',
-  sidebar1:    'Homepage sidebar — square 1',
-  sidebar2:    'Homepage sidebar — square 2',
-  advertorial: 'Advertorial strip (homepage)',
-  exchange:    'Exchange spotlight (coin pages)',
-};
-// Recommended creative size per slot, shown to the writer so they don't upload a
-// stretched or cropped image. Slots not listed fall back to no hint.
-const SLOT_HINTS = {
-  leaderboard: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
-  sponsored:   'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
-  newsletter:  'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
-  sidebar1:    'Square box next to the homepage "Latest" feed. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
-  sidebar2:    'Square box next to the homepage "Latest" feed, below slot 1. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
-  advertorial: 'Recommended image size: 1200 × 400px (3:1, wide banner). JPG, PNG or WEBP.',
-  exchange:    'Square box in the coin-page sidebar. Recommended image size: 600 × 600px (1:1 square), JPG/PNG/WEBP, ideally under 300KB.',
-  popup:       'Recommended image size: 600 × 800px (3:4, portrait). JPG, PNG or WEBP.',
+/* ----- ads -----
+   Single source of truth for ad placements. Each slot maps 1:1 to a
+   [data-ad-slot] anchor in the live site (index.html + build/templates.ts) and
+   is drawn as a clickable zone on a schematic of the page it lives on. Add a
+   slot here AND drop a matching [data-ad-slot="id"] element in the markup. */
+const AD_SLOTS = [
+  { id:'home-top',    surface:'home',    label:'بنر بالای صفحه',    pos:'زیر هدر، بالای خبر اصلی',          shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'home-feed',   surface:'home',    label:'بنر داخل فید',       pos:'قبل از فهرست «Latest Dispatches»', shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'home-rail',   surface:'home',    label:'باکس ستون کناری',    pos:'کنار فهرست Latest',                shape:'square',   size:'۶۰۰×۶۰۰ (۱:۱)' },
+  { id:'home-footer', surface:'home',    label:'بنر بالای فوتر',     pos:'انتهای صفحه‌ی اصلی',               shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'article-top', surface:'article', label:'بنر ابتدای مقاله',   pos:'زیر تیتر/تصویر، قبل از متن',        shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'article-mid', surface:'article', label:'بنر وسط مقاله',      pos:'میانه‌ی متن مقاله',                 shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'article-end', surface:'article', label:'بنر انتهای مقاله',   pos:'بعد از متن، قبل از تگ‌ها',          shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'coin-mid',    surface:'coin',    label:'بنر میان صفحه کوین', pos:'بین کارت قیمت و بخش‌ها',            shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'coin-side',   surface:'coin',    label:'باکس ستون کوین',     pos:'سایدبار صفحه‌ی کوین',               shape:'square',   size:'۶۰۰×۶۰۰ (۱:۱)' },
+  { id:'popup',       surface:'global',  label:'پاپ‌آپ سراسری',      pos:'روی همه‌ی صفحات',                   shape:'portrait', size:'۶۰۰×۸۰۰ (۳:۴)' },
+];
+const AD_SURFACES = [
+  { id:'home',    label:'صفحه اصلی' },
+  { id:'article', label:'صفحه مقاله' },
+  { id:'coin',    label:'صفحه کوین' },
+  { id:'global',  label:'سراسری / پاپ‌آپ' },
+];
+// Schematic wireframe per surface. {{zone:id}} placeholders are swapped for the
+// clickable ad-zone buttons so each slot sits where it really appears on the page.
+const AD_WIREFRAMES = {
+  home: `<div class="wf">
+    <div class="wf-bar">هدر · منو · نوار قیمت</div>
+    {{zone:home-top}}
+    <div class="wf-hero">خبر اصلی (Hero) + انتخاب سردبیر</div>
+    {{zone:home-feed}}
+    <div class="wf-cols">
+      <div class="wf-main"><div class="wf-cap">فهرست Latest Dispatches</div><span class="wf-line"></span><span class="wf-line"></span><span class="wf-line"></span></div>
+      <div class="wf-side"><div class="wf-cap">ستون Latest</div><span class="wf-line sm"></span><span class="wf-line sm"></span>{{zone:home-rail}}</div>
+    </div>
+    {{zone:home-footer}}
+    <div class="wf-bar">فوتر</div>
+  </div>`,
+  article: `<div class="wf">
+    <div class="wf-bar">هدر</div>
+    <div class="wf-kick">دسته‌بندی</div>
+    <div class="wf-title">تیتر مقاله</div>
+    <div class="wf-dek">خلاصه و امضای نویسنده</div>
+    {{zone:article-top}}
+    <span class="wf-line"></span><span class="wf-line"></span>
+    {{zone:article-mid}}
+    <span class="wf-line"></span><span class="wf-line sm"></span>
+    {{zone:article-end}}
+    <div class="wf-bar">مقالات مرتبط · فوتر</div>
+  </div>`,
+  coin: `<div class="wf">
+    <div class="wf-bar">هدر</div>
+    <div class="wf-hero">کارت قیمت + چارت ۷ روزه</div>
+    {{zone:coin-mid}}
+    <div class="wf-cols">
+      <div class="wf-main"><div class="wf-cap">About · History · News</div><span class="wf-line"></span><span class="wf-line"></span></div>
+      <div class="wf-side">{{zone:coin-side}}<div class="wf-cap">اخبار مرتبط</div></div>
+    </div>
+    <div class="wf-bar">فوتر</div>
+  </div>`,
+  global: `<div class="wf wf-global">
+    <div class="wf-dim">هر صفحه‌ی سایت (محو شده)</div>
+    {{zone:popup}}
+  </div>`,
 };
 function adTypeOf(ad){ return ad.type || 'image'; }
 function adPreviewHTML(ad){
@@ -569,53 +612,103 @@ function adPreviewHTML(ad){
   if(t === 'video'){ const v = ad.video || ad.image; return v ? `<video src="${esc(v)}" muted autoplay loop playsinline></video>` : 'NO CREATIVE'; }
   return ad.image ? `<img src="${esc(ad.image)}" alt="">` : 'NO CREATIVE';
 }
-function adCard(key, ad, isPopup){
-  const label = isPopup ? 'Popup (overlay on visit)' : (SLOT_LABELS[key] || key);
-  const hint = SLOT_HINTS[key];
+function adCard(slot, ad){
+  const isPopup = slot.id === 'popup';
   const t = adTypeOf(ad);
   const mediaUrl = t === 'video' ? (ad.video || ad.image || '') : (ad.image || '');
-  return `<div class="ad-card" data-slot="${key}" data-popup="${isPopup?1:0}" data-type="${t}">
-    <h3>${esc(label)}
-      <span class="switch"><input type="checkbox" class="a-enabled" ${ad.enabled?'checked':''}> live</span></h3>
-    ${hint?`<p class="mono ad-hint">${esc(hint)}</p>`:''}
-    <label class="mono">Creative type
+  return `<div class="ad-card" data-slot="${slot.id}" data-popup="${isPopup?1:0}" data-type="${t}">
+    <div class="ad-card-head">
+      <h3>${esc(slot.label)}</h3>
+      <span class="switch"><input type="checkbox" class="a-enabled" ${ad.enabled?'checked':''}> فعال</span>
+    </div>
+    <p class="mono ad-hint">${esc(slot.pos)} — اندازه‌ی پیشنهادی <span dir="ltr">${esc(slot.size)}</span></p>
+    <label class="mono">نوع تبلیغ
       <select class="a-type">
-        <option value="image"${t==='image'?' selected':''}>Image — JPG / PNG / WEBP</option>
-        <option value="gif"${t==='gif'?' selected':''}>GIF — animated</option>
-        <option value="video"${t==='video'?' selected':''}>Video — MP4</option>
-        <option value="script"${t==='script'?' selected':''}>Script / embed code</option>
+        <option value="image"${t==='image'?' selected':''}>تصویر — JPG / PNG / WEBP</option>
+        <option value="gif"${t==='gif'?' selected':''}>گیف — متحرک</option>
+        <option value="video"${t==='video'?' selected':''}>ویدیو — MP4</option>
+        <option value="script"${t==='script'?' selected':''}>کد امبد / اسکریپت</option>
       </select>
     </label>
     <div class="preview">${adPreviewHTML(ad)}</div>
     <div class="ad-f-media">
-      <label class="mono">Media URL <input class="a-image" value="${esc(mediaUrl)}" placeholder="https://… or upload below"></label>
-      <button class="ghost mono a-upload" type="button">⬆ Upload file</button>
+      <label class="mono">آدرس فایل (URL) <input class="a-image" value="${esc(mediaUrl)}" placeholder="https://… یا از پایین آپلود کن"></label>
+      <button class="ghost mono a-upload" type="button">⬆ آپلود فایل</button>
     </div>
     <div class="ad-f-code">
-      <label class="mono">Embed / script code
-        <textarea class="a-code" rows="6" spellcheck="false" placeholder="Paste any HTML/JS embed, e.g. an ad-network tag or a &lt;script&gt;…&lt;/script&gt; snippet">${esc(ad.code||'')}</textarea>
+      <label class="mono">کد امبد / اسکریپت
+        <textarea class="a-code" rows="6" spellcheck="false" placeholder="هر کد HTML/JS امبد را اینجا بچسبان، مثل تگ شبکه‌ی تبلیغاتی یا یک &lt;script&gt;…&lt;/script&gt;">${esc(ad.code||'')}</textarea>
       </label>
-      <p class="mono note">Runs as-is on the live site. Paste only code from sources you trust.</p>
+      <p class="mono note">این کد عیناً روی سایت اجرا می‌شود — فقط کد منابع مورد اعتماد را بگذار.</p>
     </div>
-    <label class="mono" style="margin-top:12px">Destination link <input class="a-link" value="${esc(ad.link||'')}" placeholder="https://…"></label>
-    <label class="mono">Alt text <input class="a-alt" value="${esc(ad.alt||'')}"></label>
+    <label class="mono" style="margin-top:12px">لینک مقصد <input class="a-link" value="${esc(ad.link||'')}" placeholder="https://…"></label>
+    <label class="mono">متن جایگزین (alt) <input class="a-alt" value="${esc(ad.alt||'')}"></label>
     ${isPopup?`
-    <label class="mono">Show again after (hours) <input class="a-freq" type="number" value="${Number(ad.frequencyHours)||24}"></label>
-    <label class="mono">Delay before showing (seconds) <input class="a-delay" type="number" value="${Number(ad.delaySeconds)||4}"></label>`:''}
+    <label class="mono">تکرار نمایش بعد از (ساعت) <input class="a-freq" type="number" value="${Number(ad.frequencyHours)||24}"></label>
+    <label class="mono">تأخیر قبل از نمایش (ثانیه) <input class="a-delay" type="number" value="${Number(ad.delaySeconds)||4}"></label>`:''}
   </div>`;
+}
+// Which surface/slot the panel is currently focused on. Persists across re-renders.
+const adUI = { surface: 'home', slot: null };
+function adSlotData(slot){
+  return slot.id === 'popup' ? (state.ads.popup || {}) : ((state.ads.slots || {})[slot.id] || {});
+}
+function adCardEl(id){ return $(`#ads-list .ad-card[data-slot="${id}"]`); }
+function adZoneHTML(slot){
+  const card = adCardEl(slot.id);
+  const on = card ? card.querySelector('.a-enabled').checked : !!adSlotData(slot).enabled;
+  const sel = adUI.slot === slot.id ? ' is-sel' : '';
+  return `<button type="button" class="ad-zone shape-${slot.shape} ${on?'is-on':''}${sel}" data-zone="${slot.id}">
+    <span class="ad-zone-top"><span class="ad-zone-dot"></span><span class="ad-zone-state">${on?'فعال':'خاموش'}</span></span>
+    <span class="ad-zone-label">${esc(slot.label)}</span>
+    <span class="ad-zone-size mono" dir="ltr">${esc(slot.size)}</span>
+  </button>`;
+}
+function renderAdMap(){
+  const surface = adUI.surface;
+  let html = AD_WIREFRAMES[surface] || '';
+  AD_SLOTS.filter(s=>s.surface===surface).forEach(s=>{
+    html = html.replace(`{{zone:${s.id}}}`, adZoneHTML(s));
+  });
+  $('#ad-map').innerHTML = html;
+  $$('#ad-map .ad-zone').forEach(z=>z.addEventListener('click', ()=>selectAdSlot(z.dataset.zone)));
+}
+function selectAdSurface(id){
+  adUI.surface = id;
+  $$('#ads-list .ad-stab').forEach(b=>b.classList.toggle('is-active', b.dataset.surface===id));
+  // Default the editor to this surface's first slot.
+  const first = AD_SLOTS.find(s=>s.surface===id);
+  adUI.slot = first ? first.id : null;
+  renderAdMap();
+  showAdCard(adUI.slot);
+}
+function selectAdSlot(id){
+  adUI.slot = id;
+  $$('#ad-map .ad-zone').forEach(z=>z.classList.toggle('is-sel', z.dataset.zone===id));
+  showAdCard(id);
+}
+function showAdCard(id){
+  $$('#ads-list .ad-card').forEach(c=>c.classList.toggle('is-active', c.dataset.slot===id));
+  const card = id && adCardEl(id);
+  if(card) card.scrollIntoView({block:'nearest', behavior:'smooth'});
 }
 function renderAds(){
   if(!state.ads) return;
-  const slots = state.ads.slots || {};
-  const keys = ['leaderboard','sponsored','newsletter','sidebar1','sidebar2','advertorial','exchange'];
-  $('#ads-list').innerHTML =
-    keys.map(k=>adCard(k, slots[k]||{}, false)).join('') +
-    adCard('popup', state.ads.popup||{}, true);
+  const cards = AD_SLOTS.map(s=>adCard(s, adSlotData(s))).join('');
+  $('#ads-list').innerHTML = `
+    <div class="ad-surface-tabs">${AD_SURFACES.map(f=>`<button type="button" class="ad-stab" data-surface="${f.id}">${esc(f.label)}</button>`).join('')}</div>
+    <div class="ad-board">
+      <div class="ad-map" id="ad-map"></div>
+      <div class="ad-editor">${cards}</div>
+    </div>`;
+  $$('#ads-list .ad-stab').forEach(b=>b.addEventListener('click', ()=>selectAdSurface(b.dataset.surface)));
   // Switching creative type just flips which fields the card shows (CSS keys off
   // data-type); nothing is saved until "Save all placements".
   $$('#ads-list .a-type').forEach(sel=>sel.addEventListener('change', ()=>{
     sel.closest('.ad-card').dataset.type = sel.value;
   }));
+  // Toggling a slot live updates its zone on the map immediately.
+  $$('#ads-list .a-enabled').forEach(chk=>chk.addEventListener('change', renderAdMap));
   $$('#ads-list .a-upload').forEach(b=>b.addEventListener('click', async ()=>{
     const card = b.closest('.ad-card');
     const type = card.dataset.type;
@@ -628,8 +721,9 @@ function renderAds(){
       : `<img src="${picked.dataUrl}" alt="">`;
     // Confirm the file is queued — it's only sent to GitHub on "Save all placements".
     b.classList.add('is-picked');
-    b.textContent = '✓ File ready — Save to upload';
+    b.textContent = '✓ فایل آماده شد — برای آپلود ذخیره کن';
   }));
+  selectAdSurface(adUI.surface);
 }
 async function saveAds(){
   const msg = $('#ads-msg');

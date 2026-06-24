@@ -57,10 +57,13 @@
       <div class="bs-date" id="bs-date"></div>
       <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
       <div class="bs-lang" role="group" aria-label="Select language">
-        <button data-lang="en" class="active" lang="en">EN</button>
-        <button data-lang="fa" lang="fa">FA</button>
-        <button data-lang="ar" lang="ar">AR</button>
-        <button data-lang="tr" lang="tr">TR</button>
+        <button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">EN</span></button>
+        <div class="bs-lang-menu" role="menu">
+          <button data-lang="en" class="active" lang="en" role="menuitem"><span class="bs-lang-code">EN</span><span class="bs-lang-name">English</span></button>
+          <button data-lang="fa" lang="fa" role="menuitem"><span class="bs-lang-code">FA</span><span class="bs-lang-name">فارسی</span></button>
+          <button data-lang="ar" lang="ar" role="menuitem"><span class="bs-lang-code">AR</span><span class="bs-lang-name">العربية</span></button>
+          <button data-lang="tr" lang="tr" role="menuitem"><span class="bs-lang-code">TR</span><span class="bs-lang-name">Türkçe</span></button>
+        </div>
       </div>
     </div>
     <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
@@ -89,6 +92,13 @@
         <span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
       </div>
     </div>
+
+    <!-- ===== AD — home-top (top banner, panel-driven; hidden when empty) ===== -->
+    <a class="ad-banner ad-top" data-ad-slot="home-top" href="contact.html">
+      <span class="ad-tag mono">AD SPACE</span>
+      <span class="ad-banner-title">Top banner</span>
+      <span class="ad-cta mono">Book this spot →</span>
+    </a>
 
     <div class="bs-hero-grid">
       <!-- HERO (hydrated by app.js) -->
@@ -123,11 +133,11 @@
     </div>
   </section>
 
-  <!-- ===== ADVERTORIAL — full-width sponsored band (panel-driven; hidden when empty) ===== -->
-  <a class="ad-banner ad-advertorial" data-ad-slot="advertorial" href="contact.html">
-    <span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span>
-    <span class="ad-banner-title" data-i="ad_slot_advertorial">Advertorial</span>
-    <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
+  <!-- ===== AD — home-feed (full-width band beside the feed; hidden when empty) ===== -->
+  <a class="ad-banner ad-advertorial" data-ad-slot="home-feed" href="contact.html">
+    <span class="ad-tag mono">AD SPACE</span>
+    <span class="ad-banner-title">In-feed banner</span>
+    <span class="ad-cta mono">Book this spot →</span>
   </a>
 
   <!-- ===== SECTION 3 — ARTICLE BOX (Verge-style river + Latest rail) ===== -->
@@ -148,26 +158,21 @@
       <aside class="vbox-side" aria-label="Latest">
         <div class="vside-head"><span class="vside-pill active">Latest</span></div>
         <div class="vstream" id="feed-stream" data-feed-stream></div>
-        <a class="vside-ad" data-ad-slot="sidebar1" href="contact.html">
-          <span class="ad-tag mono" data-i="ad_slot_sidebar1_tag">AD SPACE</span>
-          <span class="ad-banner-title" data-i="ad_slot_sidebar1">Sidebar placement</span>
-          <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
-        </a>
-        <a class="vside-ad" data-ad-slot="sidebar2" href="contact.html">
-          <span class="ad-tag mono" data-i="ad_slot_sidebar2_tag">AD SPACE</span>
-          <span class="ad-banner-title" data-i="ad_slot_sidebar2">Sidebar placement</span>
-          <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
+        <a class="vside-ad" data-ad-slot="home-rail" href="contact.html">
+          <span class="ad-tag mono">AD SPACE</span>
+          <span class="ad-banner-title">Sidebar box</span>
+          <span class="ad-cta mono">Book this spot →</span>
         </a>
       </aside>
     </div>
   </section>
 
-  <!-- ===== SECTION 4 — BOTTOM ADS (wired to the panel via data-ad-slot — preserved) ===== -->
-  <div class="ad-grid ad-grid-3 vbox-ads" aria-label="Advertising placements">
-    <a class="ad-slot" data-ad-slot="leaderboard" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot1">Leaderboard placement</h4><span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span></div></a>
-    <a class="ad-slot" data-ad-slot="sponsored" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag2">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot2">Sponsored story</h4><span class="ad-cta mono" data-i="ad_slot_cta2">Book this spot →</span></div></a>
-    <a class="ad-slot" data-ad-slot="newsletter" href="contact.html"><span class="ad-tag mono" data-i="ad_slot_tag3">AD SPACE</span><div class="ad-slot-body"><h4 data-i="ad_slot3">Newsletter banner</h4><span class="ad-cta mono" data-i="ad_slot_cta3">Book this spot →</span></div></a>
-  </div>
+  <!-- ===== AD — home-footer (full-width banner above the footer; hidden when empty) ===== -->
+  <a class="ad-banner ad-advertorial ad-footer" data-ad-slot="home-footer" href="contact.html">
+    <span class="ad-tag mono">AD SPACE</span>
+    <span class="ad-banner-title">Footer banner</span>
+    <span class="ad-cta mono">Book this spot →</span>
+  </a>
 
   <!-- ===== FOOTER (inside the frame) ===== -->
   <footer>

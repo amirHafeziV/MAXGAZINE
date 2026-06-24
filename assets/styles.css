@@ -18,7 +18,7 @@
   --up:#166534;
   --down:#9B1C1C;
   --up-d:#3bff7a;          /* terminal/up on dark */
-  --down-d:#ff6a55;        /* terminal/down on dark */
+  --down-d:#ff3b3b;        /* terminal/down on dark */
   --ink-soft:#3A2E22;      /* warm body ink */
   --muted:#6A5E50;         /* muted brown text */
   --muted2:#9A8E7E;        /* faint mono labels */
@@ -436,6 +436,16 @@ html[lang="fa"] .dispatch-card h3{font-size:17px;line-height:1.5}
 .ad-banner img{width:100%;height:auto}
 /* homepage advertorial band — spaced to match the article box gutter */
 .ad-advertorial{margin:24px 28px 0}
+/* home-top: banner above the hero */
+.ad-top{margin:0 28px 24px}
+/* home-footer: banner above the footer (give it breathing room below too) */
+.ad-footer{margin:28px 28px 28px}
+/* in-article banners (article-top / article-mid / article-end) — sit inside the
+   reading column with vertical rhythm; when filled they collapse to the creative */
+.ad-inline{margin:28px 0;width:100%}
+.ad-inline.ad-filled,.ad-inline.ad-filled-frame{padding:0;border:none;background:none}
+/* coin-mid: full-width banner between the hero and the how-to section */
+.ad-coin-mid{margin:0 auto 8px}
 
 /* ===== PROMO / PREMIUM CARD ===== */
 .promo{border:2px solid var(--line);padding:0;overflow:hidden}
@@ -1107,11 +1117,25 @@ body.bs-page{background-color:var(--paper);
 .bs-date{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .bs-cats{justify-self:center;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 body[dir="rtl"] .bs-cats,body[dir="rtl"] .bs-date{letter-spacing:0}
-.bs-lang{justify-self:end;display:flex;border:0}
-.bs-lang button{background:none;border:0;cursor:pointer;
-  font-family:var(--mono);font-size:12px;padding:6px 9px;color:var(--muted);transition:.15s}
-.bs-lang button.active{background:var(--ink);color:var(--paper)}
-.bs-lang button:hover:not(.active){color:var(--accent)}
+.bs-lang{justify-self:end;position:relative}
+.bs-lang-toggle{display:inline-flex;align-items:center;gap:7px;background:none;border:2px solid var(--ink);
+  cursor:pointer;font-family:var(--mono);font-size:12px;padding:6px 11px;color:var(--ink);transition:.15s}
+.bs-lang-toggle:hover,.bs-lang.open .bs-lang-toggle{background:var(--ink);color:var(--paper)}
+.bs-lang-globe{flex:none;display:block}
+.bs-lang-cur{letter-spacing:.05em}
+.bs-lang-menu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;z-index:60;min-width:168px;
+  background:var(--paper);border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  display:none;flex-direction:column}
+.bs-lang.open .bs-lang-menu{display:flex}
+.bs-lang-menu button{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:none;border:0;cursor:pointer;font-family:var(--mono);font-size:12px;
+  padding:10px 14px;color:var(--ink);text-align:start;transition:.12s}
+.bs-lang-menu button+button{border-top:1px solid var(--hair)}
+.bs-lang-menu button:hover:not(.active){background:var(--paper2);color:var(--accent)}
+.bs-lang-menu button.active{background:var(--ink);color:var(--paper)}
+.bs-lang-code{font-weight:600;letter-spacing:.05em}
+.bs-lang-name{color:var(--muted)}
+.bs-lang-menu button.active .bs-lang-name{color:var(--paper)}
 .bs-logo-row{text-align:center;padding:16px 24px 24px;border-bottom:2px solid var(--ink)}
 .bs-logo{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:600;
   font-size:clamp(46px,9.6vw,120px);line-height:.86;letter-spacing:-.035em;text-transform:lowercase;
