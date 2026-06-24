@@ -87,6 +87,34 @@ function feedEntry(a: Article) {
   };
 }
 
+/** Rewrite the `# BEGIN coin-redirects` … `# END coin-redirects` block in
+ *  .htaccess so every coin slug 301-redirects from its old root URL
+ *  (/slug[.html]) to the English page (/en/slug.html). No-op if the markers
+ *  are missing or the block is already current. */
+async function syncCoinRedirects(slugs: string[]): Promise<void> {
+  const path = join(REPO_ROOT, ".htaccess");
+  let src: string;
+  try {
+    src = await readFile(path, "utf8");
+  } catch {
+    return;
+  }
+  const begin = "# BEGIN coin-redirects";
+  const end = "# END coin-redirects";
+  const bi = src.indexOf(begin);
+  const ei = src.indexOf(end);
+  if (bi === -1 || ei === -1 || ei < bi) return;
+
+  const rule = slugs.length
+    ? `RewriteRule ^(${slugs.join("|")})(\\.html)?$ /en/$1.html [R=301,L]\n`
+    : "";
+  const next = `${src.slice(0, bi + begin.length)}\n${rule}${src.slice(ei)}`;
+  if (next !== src) {
+    await writeFile(path, next, "utf8");
+    console.log(`[build] synced ${slugs.length} coin redirect(s) in .htaccess.`);
+  }
+}
+
 async function main() {
   const articles = await loadArticles();
   console.log(`[build] ${articles.length} article(s) found.`);
@@ -96,6 +124,9 @@ async function main() {
     JSON.stringify(articles.map(feedEntry)),
     "utf8",
   );
+
+  const coins = await loadCoins();
+  console.log(`[build] ${coins.length} coin page(s) found.`);
 
   const urls: Array<{ loc: string; lastmod?: string }> = [];
   for (const p of STATIC_PAGES) urls.push({ loc: `${ORIGIN}/${p === "index.html" ? "" : p}` });
@@ -110,6 +141,13 @@ async function main() {
       urls.push({ loc: `${ORIGIN}/${lang}/${article.slug}.html`, lastmod: article.date });
     }
 
+    // coin profile pages now live per-language alongside articles (/<lang>/<slug>.html)
+    for (const coin of coins) {
+      const html = renderCoinPage(coin, articles, lang, ORIGIN);
+      await writeFile(join(dir, `${coin.slug}.html`), html, "utf8");
+      urls.push({ loc: `${ORIGIN}/${lang}/${coin.slug}.html` });
+    }
+
     const PER_PAGE = 12;
     const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
     for (let pg = 1; pg <= totalPages; pg++) {
@@ -122,6 +160,7 @@ async function main() {
     // prune stale pages (renamed or now-draft slugs) so they never linger live
     const valid = new Set<string>([
       ...articles.map((a) => `${a.slug}.html`),
+      ...coins.map((c) => `${c.slug}.html`),
       ...Array.from({ length: totalPages }, (_, i) => (i === 0 ? "stories.html" : `stories-${i + 1}.html`)),
     ]);
     for (const f of await readdir(dir)) {
@@ -129,22 +168,25 @@ async function main() {
     }
   }
 
-  const coins = await loadCoins();
-  console.log(`[build] ${coins.length} coin page(s) found.`);
-
+  // slug map consumed client-side (assets/app.js) to build language-aware
+  // Trade-Now deep links: <lang>/<slug>.html
   const coinPages: Record<string, string> = {};
+  for (const coin of coins) coinPages[coin.id] = coin.slug;
+
+  // remove the old root-level coin pages (now superseded by /<lang>/<slug>.html)
   for (const coin of coins) {
-    const html = renderCoinPage(coin, articles, ORIGIN);
-    await writeFile(join(REPO_ROOT, `${coin.slug}.html`), html, "utf8");
-    urls.push({ loc: `${ORIGIN}/${coin.slug}` });
-    coinPages[coin.id] = coin.slug;
+    try { await unlink(join(REPO_ROOT, `${coin.slug}.html`)); } catch { /* already gone */ }
   }
+
+  // keep the .htaccess 301 redirects (old root coin URLs -> /en/<slug>.html) in
+  // sync with the live coin set, between the BEGIN/END coin-redirects markers
+  await syncCoinRedirects(coins.map((c) => c.slug));
 
   await mkdir(DATA_DIR, { recursive: true });
   await writeFile(join(DATA_DIR, "coin-pages.json"), JSON.stringify(coinPages), "utf8");
 
   await writeFile(join(REPO_ROOT, "sitemap.xml"), sitemap(urls), "utf8");
-  console.log(`[build] wrote ${articles.length * LANGS.length} article pages, ${LANGS.length} indexes, ${coins.length} coin pages, sitemap.xml.`);
+  console.log(`[build] wrote ${articles.length * LANGS.length} article pages, ${coins.length * LANGS.length} coin pages, ${LANGS.length} indexes, sitemap.xml.`);
 }
 
 main().catch((err) => {

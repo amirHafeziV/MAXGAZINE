@@ -165,7 +165,7 @@ const _chgStr = ch => `${ch>=0?'▲':'▼'} ${Math.abs(ch).toFixed(2)}%`;
 
 let _coins = [];      // last fetched top-100 crypto
 let _fxData = null;   // last fetched forex snapshot
-let _coinPages = {};  // coingeckoId -> slug, for Trade-Now deep links into /<slug> SEO pages
+let _coinPages = {};  // coingeckoId -> slug, for Trade-Now deep links into /<lang>/<slug>.html SEO pages
 async function loadCoinPages(){
   try{
     const r = await fetch(adPrefix() + 'content/data/coin-pages.json', {cache:'no-cache'});
@@ -205,7 +205,7 @@ function mCryptoRow(coin, i, lang, prefix){
         <div><b>${esc(d.ath)}</b><span>${fmtPrice(coin.ath||0)}</span></div>
         <div><b>${esc(d.supply)}</b><span>${fmtSupply(coin.circulating_supply)} ${esc(sym)}</span></div>
       </div>
-      <a class="btn" href="${_coinPages[coin.id] ? prefix+_coinPages[coin.id]+'.html' : prefix+'exchanges.html'}">${esc(d.trade)}</a>
+      <a class="btn" href="${_coinPages[coin.id] ? prefix+lang+'/'+_coinPages[coin.id]+'.html' : prefix+'exchanges.html'}">${esc(d.trade)}</a>
     </div></div>
   </div>`;
 }
@@ -311,7 +311,7 @@ function bigSparkline(vals, up){
   </svg>`;
 }
 
-// Coin SEO pages (/<slug>.html): fill the live price card + 7-day chart from CoinGecko.
+// Coin SEO pages (/<lang>/<slug>.html): fill the live price card + 7-day chart from CoinGecko.
 async function loadCoinPage(){
   const card = document.querySelector('.coin-hero-card[data-coin-id]');
   const chartEl = document.querySelector('.coin-chart[data-coin-chart]');

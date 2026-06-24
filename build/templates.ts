@@ -450,10 +450,45 @@ ${cards || `    <p style="padding:34px 28px">No stories yet.</p>`}
 }
 
 /* ============================================================
-   coin profile pages — root-level, single multilingual page
-   per coin (e.g. /bitcoin-btc), language switched client-side
-   via assets/i18n.js (?lang= + data-lang-block)
+   coin profile pages — per-language, server-rendered under
+   /<lang>/<slug>.html (e.g. /en/bitcoin-btc.html), exactly like
+   articles: one fixed-language page per coin, self-canonical,
+   full hreflang. Language switching navigates between siblings
+   (assets/app.js switchLang), never client-side text swapping.
    ============================================================ */
+
+/** Coin-page label strings, mirrored from assets/i18n.js (window.I coin_*).
+ *  Baked server-side so crawlers see fully-localized pages. Keep in sync. */
+const COIN_I: Record<Lang, Record<string, string>> = {
+  en: {
+    coin_7d_chart: "7-Day Price Chart", coin_mcap: "Market Cap", coin_vol: "24h Volume",
+    coin_high24: "24h High", coin_low24: "24h Low", coin_about: "About", coin_history: "History",
+    coin_story: "Recent Developments", coin_news: "Latest News", coin_trade: "Trade Now →",
+    coin_disclaimer: "Live prices from CoinGecko. Informational only — not financial advice.",
+    coin_updated: "Updated", coin_no_news: "No related stories yet — check back soon.",
+  },
+  fa: {
+    coin_7d_chart: "نمودار قیمت ۷ روزه", coin_mcap: "ارزش بازار", coin_vol: "حجم ۲۴ ساعته",
+    coin_high24: "سقف ۲۴ ساعته", coin_low24: "کف ۲۴ ساعته", coin_about: "معرفی", coin_history: "تاریخچه",
+    coin_story: "تازه‌ترین تحولات", coin_news: "آخرین اخبار", coin_trade: "معامله کنید ←",
+    coin_disclaimer: "قیمت‌های لحظه‌ای از کوین‌گکو. صرفاً اطلاع‌رسانی — توصیه مالی نیست.",
+    coin_updated: "به‌روزرسانی", coin_no_news: "هنوز خبری مرتبط ثبت نشده — به‌زودی بررسی کنید.",
+  },
+  ar: {
+    coin_7d_chart: "مخطط السعر لـ ٧ أيام", coin_mcap: "القيمة السوقية", coin_vol: "حجم ٢٤ ساعة",
+    coin_high24: "أعلى ٢٤س", coin_low24: "أدنى ٢٤س", coin_about: "نظرة عامة", coin_history: "التاريخ",
+    coin_story: "آخر التطورات", coin_news: "آخر الأخبار", coin_trade: "تداول الآن ←",
+    coin_disclaimer: "الأسعار اللحظية من كوين‌غيكو. للمعلومات فقط — ليست نصيحة مالية.",
+    coin_updated: "آخر تحديث", coin_no_news: "لا توجد مقالات ذات صلة حتى الآن — تابعونا قريباً.",
+  },
+  tr: {
+    coin_7d_chart: "7 Günlük Fiyat Grafiği", coin_mcap: "Piyasa Değeri", coin_vol: "24s Hacim",
+    coin_high24: "24s Yüksek", coin_low24: "24s Düşük", coin_about: "Hakkında", coin_history: "Tarihçe",
+    coin_story: "Son Gelişmeler", coin_news: "Son Haberler", coin_trade: "Şimdi İşlem Yap →",
+    coin_disclaimer: "Canlı fiyatlar CoinGecko'dan alınır. Yalnızca bilgi amaçlıdır — yatırım tavsiyesi değildir.",
+    coin_updated: "Güncellendi", coin_no_news: "Henüz ilgili haber yok — yakında tekrar kontrol edin.",
+  },
+};
 
 /** Per-coin SEO/content payload, read from content/coins/<slug>.json. */
 export interface CoinContent {
@@ -476,79 +511,17 @@ export interface CoinContent {
   };
 }
 
-const TICKER_PLACEHOLDER = `<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-</div></div>`;
-
-/** Full primary navigation + mobile menu, identical to the hand-built root pages (prices.html etc). */
-function rootHeader(): string {
-  return `<div class="bs-frame">
-<header class="bsheet">
-  <div class="bs-top">
-    <div class="bs-date" id="bs-date"></div>
-    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
-    <div class="bs-lang" role="group" aria-label="Select language">
-      <button data-lang="en" class="active" lang="en">EN</button>
-      <button data-lang="fa" lang="fa">FA</button>
-      <button data-lang="ar" lang="ar">AR</button>
-      <button data-lang="tr" lang="tr">TR</button>
-    </div>
-  </div>
-  <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
-  <nav class="bs-nav" aria-label="Primary">
-    <a href="stories.html" data-i="nav_stories">Stories</a>
-    <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
-    <a href="prices.html" data-i="nav_prices">Prices</a>
-    <a href="about.html" data-i="nav_about">About</a>
-    <a href="contact.html" data-i="nav_contact">Contact</a>
-  </nav>
-</header>`;
-}
-
-function rootFooter(): string {
-  return `<footer><div class="wrap">
-  <div class="foot-top">
-    <div class="foot-brand">
-        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
-      <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      </div>
-    <div class="foot-cols">
-      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="prices.html" data-i="f_prices">Prices</a></div>
-      <div class="foot-col"><h5 data-i="foot_markets">Markets</h5><a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a><a href="brokers.html" data-i="f_brokers">Top Brokers</a></div>
-      <div class="foot-col"><h5 data-i="foot_company">Company</h5><a href="about.html" data-i="f_about">About Us</a><a href="contact.html" data-i="f_contact">Contact Us</a></div>
-      <div class="foot-col"><h5 data-i="foot_lang">Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
-    </div>
-  </div>
-  <div class="foot-bottom mono"><span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><span data-i="f_built">MULTILINGUAL MARKET MEDIA</span></div>
-</div></footer>
-</div><!-- /.bs-frame -->`;
-}
-
-/** One related-story card, language-specific (links into /<lang>/<slug>.html). */
-function coinNewsCard(a: Article, lang: Lang): string {
-  return `<a class="card" href="${lang}/${a.slug}.html">
-      <div class="cat mono">${esc(a.category.toUpperCase())} · ${esc(a.date)}</div>
-      <h3>${esc(pick(a.headline, lang))}</h3>
-      <p>${esc(pick(a.dek, lang))}</p>
-    </a>`;
-}
-
 /** Compact related-story row for the coin-page sidebar (no dek, no image). */
-function coinNewsSideCard(a: Article, lang: Lang): string {
-  return `<a class="side-news-item" href="${lang}/${a.slug}.html">
+function coinNewsSideCard(a: Article, lang: Lang, prefix: string): string {
+  return `<a class="side-news-item" href="${prefix}${lang}/${a.slug}.html">
       <span class="cat mono">${esc(a.category.toUpperCase())}</span>
       <h4>${esc(pick(a.headline, lang))}</h4>
     </a>`;
 }
 
-/** Render the four-language blocks for one prose section (about/history/story). */
-function langProseBlocks(content: Localized): string {
-  return LANGS.map(
-    (l) =>
-      `<div class="prose" data-lang-block="${l}"${l === "en" ? "" : " hidden"}>\n${md(pick(content, l))}\n</div>`,
-  ).join("\n");
+/** Render one prose section (about/history/story) in a single language. */
+function coinProse(content: Localized, lang: Lang): string {
+  return `<div class="prose">\n${md(pick(content, lang))}\n</div>`;
 }
 
 /** Generic "how to buy" steps shown on every coin page (language-independent of the coin itself). */
@@ -601,38 +574,50 @@ function howtoTitle(l: Lang, symbol: string): string {
   }
 }
 
-/** Render the four-language step grids for the "how to buy" section. */
-function coinHowtoBlocks(): string {
-  return LANGS.map((l) => {
-    const steps = HOWTO_STEPS.map(
-      (s, i) => `    <div class="coin-step">
+/** Render the "how to buy" step grid in a single language. */
+function coinHowtoBlocks(lang: Lang): string {
+  const steps = HOWTO_STEPS.map(
+    (s, i) => `    <div class="coin-step">
       <span class="coin-step-num mono">0${i + 1}</span>
-      <h3>${esc(pick(s.title, l))}</h3>
-      <p>${esc(pick(s.body, l))}</p>
+      <h3>${esc(pick(s.title, lang))}</h3>
+      <p>${esc(pick(s.body, lang))}</p>
     </div>`,
-    ).join("\n");
-    return `<div class="coin-steps" data-lang-block="${l}"${l === "en" ? "" : " hidden"}>\n${steps}\n</div>`;
-  }).join("\n");
+  ).join("\n");
+  return `<div class="coin-steps">\n${steps}\n</div>`;
 }
 
-/** Full coin profile page: SEO head, live price/chart widgets, four-language
- *  content sections and a related-news block, served at the site root. */
-export function renderCoinPage(coin: CoinContent, allArticles: Article[], origin: string): string {
-  const url = `${origin}/${coin.slug}`;
+const AD_SLOT_TAG: Localized = { en: "AD SPACE", fa: "جایگاه تبلیغ", ar: "مساحة إعلان", tr: "REKLAM ALANI" };
+const AD_SLOT_CTA: Localized = { en: "Book this spot →", fa: "رزرو این جایگاه ←", ar: "احجز هذا المكان ←", tr: "Bu yeri ayırt →" };
+const AD_BANNER_TITLE: Localized = { en: "In-page banner", fa: "بنر داخل صفحه", ar: "بانر داخل الصفحة", tr: "Sayfa içi banner" };
+const AD_SIDE_TITLE: Localized = { en: "Sidebar box", fa: "باکس کناری", ar: "صندوق جانبي", tr: "Kenar çubuğu kutusu" };
+
+/** Full coin profile page for one language: SEO head, live price/chart widgets,
+ *  localized content sections and a related-news block. Served at /<lang>/<slug>.html,
+ *  exactly like article pages (fixed-language path, self-canonical, full hreflang). */
+export function renderCoinPage(
+  coin: CoinContent,
+  allArticles: Article[],
+  lang: Lang,
+  origin: string,
+): string {
+  const prefix = "../";
+  const s = langSuffix(lang);
+  const ci = COIN_I[lang];
   const alternates = Object.fromEntries(
-    LANGS.map((l) => [l, l === "en" ? url : `${url}?lang=${l}`]),
+    LANGS.map((l) => [l, `${origin}/${l}/${coin.slug}.html`]),
   ) as Record<Lang, string>;
+  const canonical = alternates[lang];
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
-        headline: pick(coin.seo.title, "en"),
-        description: pick(coin.seo.description, "en"),
+        headline: pick(coin.seo.title, lang),
+        description: pick(coin.seo.description, lang),
         about: { "@type": "Thing", name: coin.name, sameAs: `https://www.coingecko.com/en/coins/${coin.id}` },
-        mainEntityOfPage: { "@id": url },
-        inLanguage: "en",
+        mainEntityOfPage: { "@id": canonical },
+        inLanguage: lang,
         author: { "@type": "Organization", name: "MAXGAZINE", url: `${origin}/` },
         publisher: {
           "@type": "Organization",
@@ -643,9 +628,9 @@ export function renderCoinPage(coin: CoinContent, allArticles: Article[], origin
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${origin}/` },
-          { "@type": "ListItem", position: 2, name: "Prices", item: `${origin}/prices.html` },
-          { "@type": "ListItem", position: 3, name: coin.name, item: url },
+          { "@type": "ListItem", position: 1, name: "MAXGAZINE", item: `${origin}/` },
+          { "@type": "ListItem", position: 2, name: CHROME[lang].nav_prices, item: `${origin}/prices.html` },
+          { "@type": "ListItem", position: 3, name: coin.name, item: canonical },
         ],
       },
     ],
@@ -657,116 +642,90 @@ export function renderCoinPage(coin: CoinContent, allArticles: Article[], origin
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 4);
 
-  const newsBlocks = LANGS.map((l) => {
-    const inner = related.length
-      ? related.map((a) => coinNewsSideCard(a, l)).join("\n")
-      : `<p class="mono" data-i="coin_no_news">No related stories yet — check back soon.</p>`;
-    return `<div data-lang-block="${l}"${l === "en" ? "" : " hidden"}>${inner}</div>`;
-  }).join("\n");
+  const newsBlock = related.length
+    ? related.map((a) => coinNewsSideCard(a, lang, prefix)).join("\n")
+    : `<p class="mono">${esc(ci.coin_no_news!)}</p>`;
 
-  const AD_SLOT_TAG: Localized = { en: "AD SPACE", fa: "جایگاه تبلیغ", ar: "مساحة إعلان", tr: "REKLAM ALANI" };
-  const AD_SLOT_CTA: Localized = { en: "Book this spot →", fa: "رزرو این جایگاه ←", ar: "احجز هذا المكان ←", tr: "Bu yeri ayırt →" };
-  const AD_SLOT_HEADING: Localized = { en: "Exchange spotlight", fa: "معرفی صرافی", ar: "تسليط الضوء على منصة", tr: "Borsa tanıtımı" };
-
-  const pageI = Object.fromEntries(
-    LANGS.map((l) => [
-      l,
-      {
-        pm_title: pick(coin.seo.title, l),
-        pm_desc: pick(coin.seo.description, l),
-        ph_title: pick(coin.h1, l),
-        ph_sub: pick(coin.intro, l),
-        cta_title: `${coin.name} (${coin.symbol})`,
-        howto_title: howtoTitle(l, coin.symbol),
-        ad_slot_tag: pick(AD_SLOT_TAG, l),
-        ad_slot_cta: pick(AD_SLOT_CTA, l),
-        ad_slot1: pick(AD_SLOT_HEADING, l),
-      },
-    ]),
-  );
+  const adTag = esc(pick(AD_SLOT_TAG, lang));
+  const adCta = esc(pick(AD_SLOT_CTA, lang));
 
   const body = `<main>
 <div class="page-head page-head--coin"><div class="wrap">
-  <h1 data-i="ph_title">${esc(pick(coin.h1, "en"))}</h1>
-  <p data-i="ph_sub">${esc(pick(coin.intro, "en"))}</p>
+  <h1>${esc(pick(coin.h1, lang))}</h1>
+  <p>${esc(pick(coin.intro, lang))}</p>
 </div></div>
 
 <section class="wrap section coin-hero">
   <div class="coin-hero-card reveal" data-coin-id="${esc(coin.id)}">
     <div class="coin-hero-top">
       <div class="coin-hero-id"><span class="coin-hero-name">${esc(coin.name)}</span><span class="coin-sym mono">${esc(coin.symbol)}</span></div>
-      <span class="coin-updated mono"><span data-i="coin_updated">Updated</span><span data-field="updated"></span></span>
+      <span class="coin-updated mono"><span>${esc(ci.coin_updated!)}</span><span data-field="updated"></span></span>
     </div>
     <div class="coin-hero-price">
       <span class="coin-price-val mono" data-field="price">—</span>
       <span class="coin-price-chg mono" data-field="chg24">—</span>
     </div>
     <div class="coin-hero-stats">
-      <div class="coin-stat"><b data-i="coin_mcap">Market Cap</b><span class="mono" data-field="mcap">—</span></div>
-      <div class="coin-stat"><b data-i="coin_vol">24h Volume</b><span class="mono" data-field="vol">—</span></div>
-      <div class="coin-stat"><b data-i="coin_high24">24h High</b><span class="mono" data-field="high24">—</span></div>
-      <div class="coin-stat"><b data-i="coin_low24">24h Low</b><span class="mono" data-field="low24">—</span></div>
+      <div class="coin-stat"><b>${esc(ci.coin_mcap!)}</b><span class="mono" data-field="mcap">—</span></div>
+      <div class="coin-stat"><b>${esc(ci.coin_vol!)}</b><span class="mono" data-field="vol">—</span></div>
+      <div class="coin-stat"><b>${esc(ci.coin_high24!)}</b><span class="mono" data-field="high24">—</span></div>
+      <div class="coin-stat"><b>${esc(ci.coin_low24!)}</b><span class="mono" data-field="low24">—</span></div>
     </div>
   </div>
   <div class="coin-hero-chart reveal">
-    <div class="coin-chart-head mono" data-i="coin_7d_chart">7-Day Price Chart</div>
+    <div class="coin-chart-head mono">${esc(ci.coin_7d_chart!)}</div>
     <div class="coin-chart" data-coin-chart="${esc(coin.id)}"><div class="coin-chart-skel"></div></div>
   </div>
 </section>
 
+<a class="ad-banner ad-advertorial ad-coin-mid wrap" data-ad-slot="coin-mid" href="${prefix}contact.html${s}"><span class="ad-tag mono">${adTag}</span><span class="ad-banner-title">${esc(pick(AD_BANNER_TITLE, lang))}</span><span class="ad-cta mono">${adCta}</span></a>
+
 <section class="wrap section coin-howto reveal">
-  <h2 data-i="howto_title">${esc(howtoTitle("en", coin.symbol))}</h2>
-${coinHowtoBlocks()}
-  <a class="btn coin-howto-cta" href="exchanges.html" data-i="coin_trade">Trade Now →</a>
+  <h2>${esc(howtoTitle(lang, coin.symbol))}</h2>
+${coinHowtoBlocks(lang)}
+  <a class="btn coin-howto-cta" href="${prefix}exchanges.html${s}">${esc(ci.coin_trade!)}</a>
 </section>
 
 <section class="wrap section coin-sections">
   <div class="coin-main">
-    <h2 data-i="coin_about">About</h2>
-${langProseBlocks(coin.sections.about)}
-    <h2 data-i="coin_history">History</h2>
-${langProseBlocks(coin.sections.history)}
-    <h2 data-i="coin_story">Recent Developments</h2>
-${langProseBlocks(coin.sections.story)}
+    <h2>${esc(ci.coin_about!)}</h2>
+${coinProse(coin.sections.about, lang)}
+    <h2>${esc(ci.coin_history!)}</h2>
+${coinProse(coin.sections.history, lang)}
+    <h2>${esc(ci.coin_story!)}</h2>
+${coinProse(coin.sections.story, lang)}
   </div>
   <aside class="coin-side">
-    <a class="ad-square reveal" href="contact.html" data-ad-slot="exchange">
-      <span class="ad-tag mono" data-i="ad_slot_tag">AD SPACE</span>
-      <h4 data-i="ad_slot1">Exchange spotlight</h4>
-      <span class="ad-cta mono" data-i="ad_slot_cta">Book this spot →</span>
+    <a class="ad-square reveal" href="${prefix}contact.html${s}" data-ad-slot="coin-side">
+      <span class="ad-tag mono">${adTag}</span>
+      <h4>${esc(pick(AD_SIDE_TITLE, lang))}</h4>
+      <span class="ad-cta mono">${adCta}</span>
     </a>
     <div class="coin-related reveal">
-      <h3 data-i="coin_news">Latest News</h3>
-${newsBlocks}
+      <h3>${esc(ci.coin_news!)}</h3>
+${newsBlock}
     </div>
   </aside>
 </section>
 
 <div class="wrap section">
-  <p class="mono" style="font-size:12px;color:#888;line-height:1.7" data-i="coin_disclaimer">Live prices from CoinGecko. Informational only — not financial advice.</p>
+  <p class="mono" style="font-size:12px;color:#888;line-height:1.7">${esc(ci.coin_disclaimer!)}</p>
 </div>
 </main>`;
 
   return [
     head({
-      lang: "en",
-      title: pick(coin.seo.title, "en"),
-      description: pick(coin.seo.description, "en"),
-      canonical: url,
+      lang,
+      title: pick(coin.seo.title, lang),
+      description: pick(coin.seo.description, lang),
+      canonical,
       alternates,
       jsonLd,
-      prefix: "",
+      prefix,
       bodyHtml: body,
     }),
-    `<body dir="ltr" class="bs-page">`,
-    rootHeader(),
-    TICKER_PLACEHOLDER,
+    chromeHeader(lang, prefix),
     body,
-    rootFooter(),
-    `<script src="assets/i18n.js"></script>`,
-    `<script>window.PAGE_I = ${JSON.stringify(pageI)};</script>`,
-    `<script src="assets/app.js"></script>`,
-    `</body>`,
-    `</html>`,
+    chromeFooter(lang, prefix),
   ].join("\n");
 }
