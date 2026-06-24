@@ -84,7 +84,7 @@
     "Lido",
     "proof of stake"
   ],
-  "status": "draft",
+  "status": "published",
   "banner": "https://maxgazine.com/assets/uploads/1782334260732-banner.jpg",
-  "featured": false
+  "featured": true
 }
