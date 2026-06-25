@@ -1,0 +1,98 @@
+{
+  "slug": "what-is-a-dex-2026-guide",
+  "category": "crypto",
+  "date": "2026-06-23",
+  "author": "MAXGAZINE SEO Desk",
+  "headline": {
+    "en": "What Is a DEX? How Decentralized Exchanges Work in 2026",
+    "fa": "صرافی غیرمتمرکز (DEX) چیست و چگونه کار می‌کند؟ راهنمای کامل ۲۰۲۶",
+    "ar": "ما هي البورصة اللامركزية (DEX) وكيف تعمل؟ دليل ٢٠٢٦",
+    "tr": "DEX Nedir ve Nasıl Çalışır? Kapsamlı 2026 Rehberi"
+  },
+  "dek": {
+    "en": "What a DEX is, how it works through smart contracts, how it differs from a centralized exchange, and why its share of global trading hit a record in 2026.",
+    "fa": "صرافی غیرمتمرکز چیست، چگونه با قرارداد هوشمند کار می‌کند، چه تفاوتی با صرافی متمرکز دارد و چرا سهمش از معاملات جهانی در ۲۰۲۶ به رکورد رسید.",
+    "ar": "ما هي البورصة اللامركزية، وكيف تعمل عبر العقود الذكية، وما الفرق عن البورصة المركزية، ولماذا بلغت حصتها من التداول العالمي رقمًا قياسيًا في ٢٠٢٦.",
+    "tr": "DEX nedir, akıllı sözleşmelerle nasıl çalışır, merkezi borsadan farkı nedir ve küresel işlemlerdeki payı 2026'da neden rekor kırdı."
+  },
+  "body": {
+    "en": "A decentralized exchange — or DEX — is a trading platform that lets users swap cryptocurrencies directly from their own wallet, with no intermediary holding their funds. If you want to understand what a DEX is and why it has become the backbone of DeFi, this guide covers what you need. Unlike a traditional exchange, a DEX never custodies your assets; everything runs through smart contracts on a blockchain. In the first quarter of 2026, decentralized exchanges' share of spot trading volume hit a record near 27%. Below we explain how a DEX works, how it differs from a centralized exchange, and what risks to watch.\n\n## How a DEX works\n\nOn a decentralized exchange, a trade flows directly between users' wallets and a smart contract rather than through a company's order book. You connect a non-custodial wallet such as MetaMask, and your private keys and assets stay in your control the whole time — the \"non-custodial\" property that separates a DEX from a centralized exchange.\n\nTo swap tokens, you pick two assets and an amount, sign the transaction, and the smart contract executes the trade automatically and sends the new asset back to the same wallet. With no central party involved, there is no signup, no identity check, and no handing your funds to a third party. This structure delivers full transparency and global access, since every transaction is traceable on-chain.\n\n## Automated market makers and liquidity pools\n\nAt the heart of most modern DEXs is a mechanism called an automated market maker (AMM). Instead of matching a buyer and seller directly, prices are set by a math formula and a reserve of pooled assets. Those assets sit in a \"liquidity pool\" — a reserve anyone can join by depositing a token pair, earning a share of trading fees in return for providing liquidity.\n\nThat reward is the main incentive for liquidity providers. But joining a pool is not risk-free: a phenomenon called impermanent loss can erode a provider's return versus simply holding when one of the two assets swings sharply in price. Understanding it is essential before investing in pools.\n\n## DEX vs. centralized exchange\n\nThe core difference between a DEX and a centralized exchange (CEX) is custody: on a CEX like Binance the company holds your assets and runs a traditional order book, whereas a DEX leaves full control of your funds in your hands. That advantage comes at the cost of more complexity and no customer support.\n\nEven so, appetite for DEXs is growing fast: in Q1 2026 the ratio of DEX to CEX spot volume hit a record of roughly 27%, up from just 6% a few years earlier. Uniswap is the world's largest DEX, with cumulative trading volume past \\$3.4 trillion since launch. Rivals such as PancakeSwap and Hyperliquid — the latter focused on decentralized perpetual futures — also command large shares of the market.\n\n## Fees, slippage and risks\n\nBefore using a DEX, it pays to know a few costs and risks. First, gas fees: every transaction on networks like Ethereum requires a network fee that can spike during congestion. Second, slippage — the gap between the price you expect and the price your trade actually executes at, which grows in shallow pools or on large orders. Third, smart contract risk: if a DEX's code has a vulnerability, user funds are exposed to a hack.\n\nOn top of that, fake tokens and scams are common on permissionless platforms, since anyone can list a token. To reduce these risks, use well-known, audited DEXs, verify the exact token address, and set a sensible slippage limit.\n\n## Conclusion\n\nNow that you know what a DEX is, its place in the market is clearer: a tool that returns full control of assets to the user and makes trading possible with nothing but a smart contract. The rise of the DEX share of global trading to an all-time high in 2026 shows this model is no longer a fringe experiment but a serious part of crypto's financial infrastructure. Still, more freedom brings more responsibility — with no central backstop, the security of your assets rests entirely on you. Knowing the fees, slippage and smart contract risk is the first step to using this technology wisely.",
+    "fa": "صرافی غیرمتمرکز یا دکس (DEX) نوعی پلتفرم معاملاتی است که به کاربران اجازه می‌دهد رمزارزها را بدون واسطه و به‌صورت مستقیم از کیف پول خود مبادله کنند. اگر می‌خواهید بدانید صرافی غیرمتمرکز چیست و چرا به ستون اصلی دنیای دیفای (DeFi) تبدیل شده، این راهنما همان چیزی است که نیاز دارید. برخلاف صرافی‌های سنتی، در دکس هیچ شرکتی دارایی شما را نگه نمی‌دارد و همه‌چیز با قرارداد هوشمند روی بلاک‌چین اجرا می‌شود. در سه‌ماههٔ نخست ۲۰۲۶ سهم صرافی‌های غیرمتمرکز از حجم معاملات نقدی به رکورد حدود ۲۷ درصد رسید. در ادامه می‌خوانید که دکس چگونه کار می‌کند، چه تفاوتی با صرافی متمرکز دارد و چه ریسک‌هایی به همراه دارد.\n\n## صرافی غیرمتمرکز چگونه کار می‌کند؟\n\nدر یک صرافی غیرمتمرکز، معامله به‌جای آنکه از دفتر سفارش‌های یک شرکت بگذرد، مستقیماً میان کیف پول کاربران و قرارداد هوشمند انجام می‌شود. کاربر کیف پول غیرحضانتی خود — مانند متامسک — را به پلتفرم متصل می‌کند و کلید خصوصی و دارایی همواره در اختیار خودش باقی می‌ماند؛ همین ویژگیِ «غیرحضانتی» بودن است که دکس را از صرافی متمرکز جدا می‌کند.\n\nبرای مبادله توکن (token swap)، کافی است کاربر دو ارز و مقدار موردنظر را انتخاب و تراکنش را امضا کند؛ سپس قرارداد هوشمند به‌طور خودکار مبادله را اجرا و دارایی جدید را به همان کیف پول واریز می‌کند. چون هیچ نهاد مرکزی‌ای در میان نیست، نه ثبت‌نام لازم است، نه احراز هویت و نه سپردن دارایی به دست شخص ثالث. همین ساختار، شفافیت کامل و دسترسی جهانی را ممکن می‌کند، زیرا هر تراکنش روی بلاک‌چین قابل ردیابی است.\n\n## بازارساز خودکار و استخر نقدینگی\n\nقلب بیشتر صرافی‌های غیرمتمرکز امروزی، سازوکاری به نام بازارساز خودکار (AMM) است. در این مدل، به‌جای آنکه خریدار و فروشنده مستقیماً با هم معامله کنند، قیمت‌ها را یک فرمول ریاضی و مجموعه‌ای از دارایی‌های ذخیره‌شده تعیین می‌کند. این دارایی‌ها در «استخر نقدینگی» نگهداری می‌شوند؛ مخزنی که هر کس می‌تواند با واریز جفت‌ارز به آن، در تأمین نقدینگی مشارکت کند و در ازای آن بخشی از کارمزد معاملات را دریافت کند.\n\nاین پاداش، انگیزهٔ اصلی تأمین‌کنندگان نقدینگی است. اما مشارکت در استخر بدون خطر نیست؛ پدیده‌ای به نام «ضرر ناپایدار» (impermanent loss) می‌تواند هنگام نوسان شدید قیمتِ یکی از دو ارز، بازده تأمین‌کننده را نسبت به نگه‌داری ساده کاهش دهد. درک این مفهوم پیش از سرمایه‌گذاری در استخرها ضروری است.\n\n## صرافی غیرمتمرکز در برابر صرافی متمرکز\n\nتفاوت اصلی دکس با صرافی متمرکز (CEX) در نگهداری دارایی است: در صرافی متمرکز مانند بایننس، شرکت دارایی کاربر را نگه می‌دارد و دفتر سفارش سنتی را اداره می‌کند، اما در صرافی غیرمتمرکز کنترل کامل دارایی در دست کاربر می‌ماند. این مزیت به بهای پیچیدگی بیشتر و نبود پشتیبانی مشتری به‌دست می‌آید.\n\nبا وجود این، اقبال به دکس به‌سرعت در حال رشد است: در سه‌ماههٔ نخست ۲۰۲۶ نسبت حجم معاملات نقدی دکس به صرافی‌های متمرکز به رکورد حدود ۲۷ درصد رسید، در حالی که این رقم چند سال پیش تنها ۶ درصد بود. یونی‌سواپ بزرگ‌ترین صرافی غیرمتمرکز جهان است و حجم تجمعی معاملاتش از زمان راه‌اندازی از ۳٫۴ تریلیون دلار فراتر رفته است. رقبایی مانند پنکیک‌سواپ و هایپرلیکوئید — که در حوزهٔ معاملات آتی دائمی غیرمتمرکز فعال است — نیز سهم بزرگی از این بازار را به خود اختصاص داده‌اند.\n\n## کارمزد، لغزش قیمت و ریسک‌ها\n\nپیش از استفاده از یک صرافی غیرمتمرکز، باید با چند هزینه و خطر آشنا بود. نخست، کارمزد گس؛ هر تراکنش روی شبکه‌هایی مانند اتریوم به پرداخت کارمزد شبکه نیاز دارد که در زمان شلوغی می‌تواند بالا برود. دوم، لغزش قیمت (slippage)؛ یعنی اختلاف میان قیمتی که انتظار دارید و قیمتی که معامله واقعاً با آن اجرا می‌شود، که در استخرهای کم‌عمق یا معاملات بزرگ بیشتر می‌شود. سوم، ریسک قرارداد هوشمند؛ اگر کد یک دکس آسیب‌پذیری داشته باشد، دارایی کاربران در معرض هک قرار می‌گیرد.\n\nافزون بر این، توکن‌های جعلی و کلاهبرداری در پلتفرم‌های بی‌مجوز فراوان است، زیرا هر کسی می‌تواند توکن خود را فهرست کند. برای کاهش این خطرها، استفاده از دکس‌های شناخته‌شده و حسابرسی‌شده، بررسی آدرس دقیق توکن و تنظیم حد لغزش مناسب توصیه می‌شود.\n\n## جمع‌بندی\n\nحالا که می‌دانید صرافی غیرمتمرکز چیست، تصویر روشن‌تری از جایگاه آن در بازار دارید: ابزاری که کنترل کامل دارایی را به کاربر بازمی‌گرداند و معامله را بدون واسطه و تنها با یک قرارداد هوشمند ممکن می‌کند. رشد سهم دکس از معاملات جهانی به بالاترین سطح تاریخ در ۲۰۲۶ نشان می‌دهد که این الگو دیگر یک آزمایش حاشیه‌ای نیست، بلکه به بخشی جدی از زیرساخت مالی رمزارز بدل شده است. با این حال، آزادی بیشتر مسئولیت بیشتری هم به همراه دارد؛ در نبودِ پشتیبان مرکزی، امنیت دارایی کاملاً بر عهدهٔ خود کاربر است. آشنایی با کارمزد، لغزش قیمت و ریسک قرارداد هوشمند، نخستین گام برای استفادهٔ آگاهانه از این فناوری است.",
+    "ar": "البورصة اللامركزية أو DEX منصة تداول تتيح للمستخدمين تبادل العملات المشفّرة مباشرة من محافظهم دون وسيط يحتفظ بأموالهم. إذا أردت أن تعرف ما هي البورصة اللامركزية ولماذا أصبحت العمود الفقري للتمويل اللامركزي (DeFi)، فهذا الدليل يقدّم لك ما تحتاجه. فخلافًا للبورصة التقليدية، لا تحتفظ المنصّة اللامركزية بأصولك أبدًا؛ إذ يجري كل شيء عبر العقود الذكية على البلوك تشين. وفي الربع الأول من ٢٠٢٦ بلغت حصة البورصات اللامركزية من حجم التداول الفوري رقمًا قياسيًا قرب ٢٧٪.\n\n## كيف تعمل البورصة اللامركزية\n\nعلى البورصة اللامركزية تتدفق الصفقة مباشرة بين محافظ المستخدمين وعقد ذكي بدل أن تمرّ عبر دفتر أوامر شركة. تربط محفظة غير حافظة مثل MetaMask، وتبقى مفاتيحك وأصولك في سيطرتك طوال الوقت؛ وهي خاصية «عدم الحفظ» التي تفصل DEX عن البورصة المركزية. ولتبادل الرموز تختار أصلين ومبلغًا وتوقّع المعاملة، فينفّذ العقد الذكي الصفقة تلقائيًا ويعيد الأصل الجديد إلى المحفظة نفسها. وبغياب أي طرف مركزي، لا تسجيل ولا تحقّق من الهوية ولا تسليم للأموال لطرف ثالث، ما يمنح شفافية كاملة ووصولًا عالميًا لأن كل معاملة قابلة للتتبّع على السلسلة.\n\n## صانع السوق الآلي وبرك السيولة\n\nيقع في قلب معظم البورصات اللامركزية الحديثة آلية تُسمّى صانع السوق الآلي (AMM). فبدل مطابقة بائع بمشترٍ مباشرة، تُحدَّد الأسعار بمعادلة رياضية ومجموعة أصول محتجزة تُحفظ في «بركة سيولة» يستطيع أي شخص الانضمام إليها بإيداع زوج من الرموز مقابل حصة من رسوم التداول لقاء توفير السيولة. وهذه المكافأة هي الحافز الأساسي لمزوّدي السيولة. لكن الانضمام ليس بلا مخاطر؛ فظاهرة «الخسارة غير الدائمة» (impermanent loss) قد تقلّص عائد المزوّد مقارنة بمجرد الاحتفاظ عند تقلّب سعر أحد الأصلين بحدّة.\n\n## البورصة اللامركزية في مواجهة المركزية\n\nالفرق الجوهري بين DEX والبورصة المركزية (CEX) هو الحفظ: ففي بورصة مركزية مثل Binance تحتفظ الشركة بأصولك وتدير دفتر أوامر تقليديًا، بينما تترك البورصة اللامركزية السيطرة الكاملة على أموالك بيدك، وهي ميزة تأتي بثمن التعقيد الأكبر وغياب دعم العملاء. ومع ذلك ينمو الإقبال بسرعة: ففي الربع الأول من ٢٠٢٦ بلغت نسبة حجم DEX إلى CEX الفوري رقمًا قياسيًا نحو ٢٧٪ بعد أن كانت ٦٪ قبل سنوات. ويُعدّ Uniswap أكبر بورصة لامركزية في العالم بحجم تداول تراكمي تجاوز ٣٫٤ تريليون دولار منذ انطلاقه، إلى جانب منافسين مثل PancakeSwap وHyperliquid المتخصّص في العقود الدائمة اللامركزية.\n\n## الرسوم والانزلاق والمخاطر\n\nقبل استخدام بورصة لامركزية يجدر معرفة بعض التكاليف والمخاطر. أولًا رسوم الغاز؛ فكل معاملة على شبكات مثل إيثريوم تتطلّب رسمًا قد يرتفع وقت الازدحام. ثانيًا الانزلاق السعري (slippage)؛ أي الفارق بين السعر المتوقَّع والسعر الذي تُنفَّذ به الصفقة فعلًا، ويزداد في البرك الضحلة أو الأوامر الكبيرة. ثالثًا مخاطر العقد الذكي؛ فإن كان في الكود ثغرة تعرّضت أموال المستخدمين للاختراق. كما تكثر الرموز المزيّفة والاحتيال على المنصّات المفتوحة لأن أي أحد يستطيع إدراج رمز. ولتقليل ذلك استخدم بورصات معروفة ومُدقّقة وتحقّق من عنوان الرمز واضبط حدّ انزلاق معقولًا.\n\n## الخلاصة\n\nبعد أن عرفت ما هي البورصة اللامركزية، صار دورها أوضح: أداة تعيد السيطرة الكاملة على الأصول للمستخدم وتتيح التداول بعقد ذكي فقط. وصعود حصة DEX من التداول العالمي إلى أعلى مستوى تاريخي في ٢٠٢٦ يثبت أن هذا النموذج لم يعد تجربة هامشية بل جزءًا جادًّا من البنية المالية للكريبتو. لكن الحرية الأكبر تجلب مسؤولية أكبر؛ فبغياب جهة مركزية داعمة، يقع أمان أصولك عليك وحدك. ومعرفة الرسوم والانزلاق ومخاطر العقد الذكي هي الخطوة الأولى لاستخدام هذه التقنية بوعي.",
+    "tr": "Merkeziyetsiz borsa — yani DEX — kullanıcıların kripto paraları aracısız, doğrudan kendi cüzdanlarından takas etmelerini sağlayan bir işlem platformudur; hiçbir kurum paranızı tutmaz. DEX nedir ve neden DeFi'nin belkemiği hâline geldiğini anlamak istiyorsanız, bu rehber ihtiyacınız olanı veriyor. Geleneksel bir borsanın aksine bir DEX varlıklarınızı asla saklamaz; her şey blok zincir üzerindeki akıllı sözleşmelerle çalışır. 2026'nın ilk çeyreğinde merkeziyetsiz borsaların spot işlem hacmindeki payı %27'ye yakın rekor bir seviyeye ulaştı. Aşağıda bir DEX'in nasıl çalıştığını, merkezi borsadan farkını ve hangi risklere dikkat edilmesi gerektiğini anlatıyoruz.\n\n## Bir DEX nasıl çalışır\n\nMerkeziyetsiz bir borsada işlem, bir şirketin emir defterinden geçmek yerine doğrudan kullanıcıların cüzdanları ile bir akıllı sözleşme arasında akar. MetaMask gibi saklamasız (non-custodial) bir cüzdan bağlarsınız ve özel anahtarlarınız ile varlıklarınız her zaman sizin kontrolünüzde kalır; bu, DEX'i merkezi borsadan ayıran \"saklamasız\" özelliğidir.\n\nToken takası için iki varlık ve bir miktar seçer, işlemi imzalarsınız; akıllı sözleşme takası otomatik gerçekleştirir ve yeni varlığı aynı cüzdana gönderir. Merkezî bir taraf olmadığından kayıt, kimlik doğrulama ya da paranızı üçüncü bir tarafa teslim etme yoktur; bu da her işlem zincir üzerinde izlenebilir olduğundan tam şeffaflık ve küresel erişim sağlar.\n\n## Otomatik piyasa yapıcı ve likidite havuzları\n\nÇoğu modern DEX'in kalbinde otomatik piyasa yapıcı (AMM) denen bir mekanizma vardır. Alıcı ile satıcıyı doğrudan eşleştirmek yerine fiyatlar bir matematik formülü ve havuzlanmış varlık rezerviyle belirlenir. Bu varlıklar bir \"likidite havuzu\"nda durur; herkesin bir token çifti yatırarak katılabileceği ve likidite sağladığı için işlem ücretlerinden pay kazandığı bir rezerv.\n\nBu ödül, likidite sağlayıcıların temel teşvikidir. Ancak havuza katılmak risksiz değildir: \"geçici kayıp\" (impermanent loss) denen olgu, iki varlıktan biri sert dalgalandığında sağlayıcının getirisini sadece elde tutmaya kıyasla aşındırabilir. Havuzlara yatırım yapmadan önce bunu anlamak şarttır.\n\n## DEX ile merkezi borsa karşılaştırması\n\nBir DEX ile merkezi borsa (CEX) arasındaki temel fark saklamadır: Binance gibi bir CEX'te şirket varlıklarınızı tutar ve geleneksel bir emir defteri işletir; bir DEX ise paranızın tam kontrolünü sizde bırakır. Bu avantaj, daha fazla karmaşıklık ve müşteri desteğinin olmaması pahasına gelir.\n\nYine de DEX'lere ilgi hızla artıyor: 2026'nın ilk çeyreğinde DEX'in CEX'e spot hacim oranı, birkaç yıl önceki %6'dan yükselerek yaklaşık %27 ile rekor kırdı. Uniswap, kuruluşundan bu yana 3,4 trilyon doları aşan kümülatif işlem hacmiyle dünyanın en büyük DEX'idir. PancakeSwap ve merkeziyetsiz vadeli işlemlere odaklanan Hyperliquid gibi rakipler de pazarın büyük bir bölümünü elinde tutuyor.\n\n## Ücretler, kayma ve riskler\n\nBir DEX kullanmadan önce birkaç maliyet ve riski bilmekte fayda var. Birincisi gas ücretleri; Ethereum gibi ağlardaki her işlem, yoğunlukta yükselebilen bir ağ ücreti gerektirir. İkincisi kayma (slippage); beklediğiniz fiyat ile işlemin gerçekte gerçekleştiği fiyat arasındaki fark olup sığ havuzlarda veya büyük emirlerde artar. Üçüncüsü akıllı sözleşme riski; bir DEX'in kodunda açık varsa kullanıcı fonları hack'e açık hâle gelir.\n\nÜstelik herkes token listeleyebildiği için izinsiz platformlarda sahte tokenlar ve dolandırıcılıklar yaygındır. Bu riskleri azaltmak için tanınmış, denetlenmiş DEX'ler kullanın, tam token adresini doğrulayın ve makul bir kayma limiti ayarlayın.\n\n## Sonuç\n\nArtık DEX nedir bildiğinize göre piyasadaki yeri daha net: varlıkların tam kontrolünü kullanıcıya geri veren ve işlemi yalnızca bir akıllı sözleşmeyle mümkün kılan bir araç. DEX'in küresel işlemlerdeki payının 2026'da tüm zamanların zirvesine çıkması, bu modelin artık marjinal bir deney değil, kriptonun finansal altyapısının ciddi bir parçası olduğunu gösteriyor. Yine de daha fazla özgürlük daha fazla sorumluluk getirir; merkezî bir güvence olmadığında varlıklarınızın güvenliği tamamen size aittir. Ücretleri, kaymayı ve akıllı sözleşme riskini bilmek, bu teknolojiyi bilinçli kullanmanın ilk adımıdır."
+  },
+  "seo": {
+    "title": {
+      "en": "What Is a DEX? 2026 Guide — MAXGAZINE",
+      "fa": "صرافی غیرمتمرکز (DEX) چیست؟ راهنمای ۲۰۲۶ — MAXGAZINE",
+      "ar": "ما هي البورصة اللامركزية (DEX)؟ دليل ٢٠٢٦ — MAXGAZINE",
+      "tr": "DEX Nedir? 2026 Rehberi — MAXGAZINE"
+    },
+    "description": {
+      "en": "What is a DEX and how does it work? A 2026 guide to AMMs, liquidity pools, DEX vs CEX, gas fees, slippage and the risks before you trade.",
+      "fa": "صرافی غیرمتمرکز (DEX) چیست و چگونه کار می‌کند؟ راهنمای کامل ۲۰۲۶: بازارساز خودکار، استخر نقدینگی، تفاوت با صرافی متمرکز، کارمزد گس و ریسک‌ها.",
+      "ar": "ما هي البورصة اللامركزية (DEX) وكيف تعمل؟ دليل ٢٠٢٦ لصانع السوق الآلي وبرك السيولة والفرق عن البورصة المركزية والرسوم والمخاطر.",
+      "tr": "DEX nedir ve nasıl çalışır? 2026 rehberi: otomatik piyasa yapıcı, likidite havuzları, DEX ve CEX farkı, gas ücretleri ve riskler."
+    },
+    "keywords": {
+      "en": [
+        "what is a DEX",
+        "decentralized exchange",
+        "AMM",
+        "liquidity pool",
+        "Uniswap",
+        "DeFi"
+      ],
+      "fa": [
+        "صرافی غیرمتمرکز چیست",
+        "دکس",
+        "بازارساز خودکار",
+        "استخر نقدینگی",
+        "یونی‌سواپ",
+        "DEX"
+      ],
+      "ar": [
+        "ما هي البورصة اللامركزية",
+        "DEX",
+        "صانع السوق الآلي",
+        "بركة السيولة",
+        "Uniswap"
+      ],
+      "tr": [
+        "DEX nedir",
+        "merkeziyetsiz borsa",
+        "AMM",
+        "likidite havuzu",
+        "Uniswap"
+      ]
+    }
+  },
+  "tags": [
+    "DEX",
+    "DeFi",
+    "Uniswap",
+    "crypto",
+    "blockchain",
+    "AMM"
+  ],
+  "sources": [
+    {
+      "title": "CoinGecko — CEX & DEX Trading Activity Report 2026",
+      "url": "https://www.coingecko.com/research/publications/cex-dex-trading-activity-report-2026"
+    },
+    {
+      "title": "BeInCrypto — DEXs Kept Winning Share From CEXs in Q1 2026",
+      "url": "https://beincrypto.com/dex-cex-market-share-q1-2026-ark/"
+    },
+    {
+      "title": "DefiLlama — DEX Volume Rankings",
+      "url": "https://defillama.com/dexs"
+    },
+    {
+      "title": "SQ Magazine — Uniswap Statistics 2026",
+      "url": "https://sqmagazine.co.uk/uniswap-statistics/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

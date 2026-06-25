@@ -1,0 +1,96 @@
+{
+  "slug": "ripple-rlusd-japan-sbi-jfsa",
+  "category": "crypto",
+  "date": "2026-06-24",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Ripple and SBI Launch RLUSD in Japan After JFSA Approval",
+    "fa": "ریپل و اس‌بی‌آی استیبل‌کوین RLUSD را در ژاپن راه‌اندازی کردند",
+    "ar": "ريبل و SBI يطلقان عملة RLUSD المستقرة في اليابان بعد موافقة هيئة الخدمات المالية",
+    "tr": "Ripple ve SBI, JFSA Onayının Ardından Japonya'da RLUSD'yi Piyasaya Sürdü"
+  },
+  "dek": {
+    "en": "Ripple's dollar stablecoin became Japan's first regulated foreign-currency digital payment instrument on June 24, clearing a JFSA hurdle — but an Ethereum-only setup and a ¥1 million transaction cap reveal the early limits of even a well-regulated launch.",
+    "fa": "استیبل‌کوین دلاری ریپل پس از تأیید رگولاتور مالی ژاپن، نخستین ابزار پرداخت دیجیتال ارز خارجی مجاز در این کشور شد؛ اما سقف معاملاتی یک میلیون ینی و اجرا فقط از طریق بلاک‌چین اتریوم، محدودیت‌های اولیه این عرضه را آشکار می‌کند.",
+    "ar": "أصبحت عملة ريبل المستقرة بالدولار أول أداة دفع رقمية بعملة أجنبية خاضعة للتنظيم في اليابان في 24 يونيو، غير أن اشتراط استخدام إيثيريوم حصراً وسقف المليون ين لكل معاملة يكشفان عن قيود المرحلة الأولى من هذا الإطلاق.",
+    "tr": "Ripple'ın dolar destekli stabilcoini, 24 Haziran'da JFSA onayını alarak Japonya'nın ilk düzenlenmiş yabancı para dijital ödeme aracı haline geldi; ancak yalnızca Ethereum tabanlı kurulum ve işlem başına 1 milyon yen sınırı bu lansmanın başlangıç kısıtlamalarını gözler önüne seriyor."
+  },
+  "body": {
+    "en": "Ripple and SBI Group officially launched RLUSD, a U.S. dollar-backed stablecoin, in Japan on June 24, 2026, following regulatory approval from the Japan Financial Services Agency (JFSA). The token has been classified as a \"Type 4\" electronic payment instrument under Japanese law — a designation created specifically to accommodate foreign-currency-denominated stablecoins — and is now available to institutions and retail users through SBI VC Trade, the regulated exchange arm of Japan's SBI Group.\n\nRLUSD has accumulated a $1.7 billion market capitalization since its global launch in late 2024. It is issued by Standard Custody & Trust Company, a New York-chartered Ripple subsidiary, with each token backed 1:1 by U.S. dollar deposits and short-term U.S. Treasury bills — placing it in the same collateral tier as USDC and USDT.\n\n## Ethereum, Not XRP Ledger\n\nA notable technical detail of the Japan launch: SBI VC Trade is processing only Ethereum-based RLUSD tokens, not those on Ripple's own XRP Ledger. Ripple has positioned RLUSD as a multi-chain asset, but the practical infrastructure for the Japanese market runs on Ethereum — a reflection of that chain's deeper DeFi liquidity and broader institutional wallet support in the Asia-Pacific region.\n\nRegulatory constraints remain significant in the initial phase. Japanese rules cap individual RLUSD transactions at one million yen — roughly $6,200 at June 2026 exchange rates — limiting the instrument to retail-sized transfers for now. Ripple and SBI indicated they expect that ceiling to rise as regulators build confidence in the framework and as market participants demonstrate compliance.\n\n## Japan's Stablecoin-Forward Posture\n\nJapan has been one of the most systematically crypto-forward G7 economies, having built a formal stablecoin licensing regime in 2023 and expanded it since. The JFSA approval of RLUSD marks the first foreign-currency stablecoin to clear this regulatory hurdle, giving Ripple a beachhead in one of the world's largest cross-border payment corridors.\n\nJapan sends substantial remittance and trade-settlement flows to Southeast Asia, the United States, and the Middle East — markets where Ripple's existing On-Demand Liquidity (ODL) rails already operate. The RLUSD launch strengthens Ripple's position in those corridors by providing a regulated dollar-denominated settlement layer within the Japanese financial system.\n\n## The Global Stablecoin Moment\n\nThe broader context is a convergence of stablecoin regulation across major economies. The U.S. GENIUS Act, signed into law in early June 2026, established the first federal framework for dollar stablecoins, effectively legitimizing the asset class for American institutions. The JFSA approval of RLUSD arrives just weeks later, suggesting regulators in G7 nations are moving toward a shared framework: compliant stablecoins are infrastructure, not speculation.\n\nRipple CEO Brad Garlinghouse said in a statement that RLUSD's Japan approval \"validates that compliant stablecoins can operate within traditional financial systems rather than around them.\" For SBI, the partnership extends an already deep relationship with Ripple that has run the ODL payments corridor between Japan and Southeast Asia for several years.",
+    "fa": "ریپل و گروه اس‌بی‌آی (SBI) در تاریخ ۲۴ ژوئن ۲۰۲۶، استیبل‌کوین دلاری RLUSD را پس از دریافت مجوز رسمی از سازمان خدمات مالی ژاپن (JFSA) در این کشور راه‌اندازی کردند. این ارز دیجیتال به‌عنوان «ابزار پرداخت الکترونیک نوع چهارم» در چارچوب قانونی ژاپن دسته‌بندی شده است؛ دسته‌ای که ویژه استیبل‌کوین‌های مبتنی بر ارز خارجی طراحی شده و RLUSD را به اولین استیبل‌کوین ارز خارجی مجاز در ژاپن تبدیل می‌کند. این ارز پایدار از طریق SBI VC Trade، بازوی صرافی تنظیم‌شده گروه SBI، برای مؤسسات مالی و کاربران عادی در دسترس است.\n\nRLUSD از زمان عرضه جهانی در اواخر ۲۰۲۴ به ارزش بازار ۱.۷ میلیارد دلار دست یافته است. این استیبل‌کوین توسط شرکت Standard Custody & Trust، زیرمجموعه تحت‌نظارت ایالت نیویورک که متعلق به ریپل است، منتشر می‌شود و پشتوانه هر توکن، معادل یک‌به‌یک از سپرده‌های دلاری و اوراق خزانه کوتاه‌مدت آمریکاست.\n\n## اتریوم، نه دفتر XRP\n\nجزئیاتی که در عرضه ژاپن قابل توجه است: SBI VC Trade فقط توکن‌های RLUSD مبتنی بر شبکه اتریوم را پردازش می‌کند، نه آن‌هایی که روی دفتر XRP خود ریپل فعالند. با اینکه ریپل RLUSD را به‌عنوان دارایی چندزنجیره‌ای معرفی کرده، زیرساخت عملی در بازار ژاپن روی اتریوم اجرا می‌شود؛ موضوعی که نشان‌دهنده نقدینگی عمیق‌تر آن شبکه در دیفای و پشتیبانی گسترده‌تر کیف‌پول‌های نهادی در منطقه آسیا-اقیانوسیه است.\n\nمحدودیت‌های قانونی در مرحله اولیه قابل‌توجه‌اند. مقررات ژاپن سقف هر معامله RLUSD را به یک میلیون ین محدود کرده‌اند که با نرخ ارز ژوئن ۲۰۲۶ معادل حدود ۶٬۲۰۰ دلار است. این محدودیت، استفاده از این ابزار را در مرحله اول به انتقال‌های خرد محدود می‌کند. ریپل و اس‌بی‌آی انتظار دارند این سقف با گذشت زمان و با افزایش اطمینان رگولاتورها افزایش یابد.\n\n## موضع پیشرو ژاپن در حوزه استیبل‌کوین\n\nژاپن یکی از پیشروترین کشورهای گروه هفت در حوزه دارایی‌های دیجیتال است که از سال ۲۰۲۳ چارچوب مجوزدهی استیبل‌کوین را ایجاد کرده و از آن زمان گسترش داده است. تأیید RLUSD از سوی JFSA، نخستین استیبل‌کوین ارز خارجی است که از این مانع قانونی عبور می‌کند و ریپل را در یکی از بزرگ‌ترین کریدورهای پرداخت بین‌المللی جهان مستقر می‌سازد.\n\nژاپن جریان‌های قابل‌توجهی از حواله‌ها و تسویه‌های تجاری به جنوب‌شرق آسیا، آمریکا و خاورمیانه دارد؛ بازارهایی که ریل‌های نقدینگی آنی (ODL) ریپل در آن‌ها از پیش فعالند. راه‌اندازی RLUSD، موقعیت ریپل را در این کریدورها با ایجاد یک لایه تسویه دلاری تحت نظارت در درون نظام مالی ژاپن تقویت می‌کند.\n\n## لحظه جهانی استیبل‌کوین\n\nزمینه گسترده‌تر، همگرایی مقررات استیبل‌کوین در اقتصادهای بزرگ جهان است. قانون GENIUS Act آمریکا که اوایل ژوئن ۲۰۲۶ به امضا رسید، نخستین چارچوب فدرال برای استیبل‌کوین‌های دلاری را ایجاد کرد. تأیید JFSA برای RLUSD چند هفته پس از آن قانون صادر شده که نشان می‌دهد رگولاتورهای کشورهای گروه هفت به سمت یک دیدگاه مشترک در حرکت‌اند: استیبل‌کوین‌های منطبق با مقررات، زیرساخت هستند نه ابزار سفته‌بازی.",
+    "ar": "أطلقت شركة ريبل ومجموعة SBI اليابانية عملتهما المستقرة بالدولار RLUSD رسمياً في اليابان بتاريخ 24 يونيو 2026، عقب الحصول على موافقة هيئة الخدمات المالية اليابانية (JFSA). صُنِّفت هذه العملة باعتبارها «أداة دفع إلكترونية من النوع الرابع» وفق القانون الياباني، وهو تصنيف أُنشئ خصيصاً للعملات المستقرة المقوّمة بعملات أجنبية، مما يجعل RLUSD أول عملة مستقرة بعملة أجنبية خاضعة للتنظيم في اليابان. وتتاح العملة للمؤسسات والمستخدمين الأفراد عبر منصة SBI VC Trade، الذراع التداولية الخاضعة للتنظيم لمجموعة SBI.\n\nوصلت القيمة السوقية لـ RLUSD إلى 1.7 مليار دولار منذ إطلاقها العالمي في أواخر عام 2024. وتُصدر العملة شركةُ Standard Custody & Trust، الشركة التابعة لريبل المرخصة في ولاية نيويورك، إذ يحظى كل رمز بضمان بنسبة واحد لواحد من الودائع الدولارية وأذونات الخزانة الأمريكية قصيرة الأجل.\n\n## إيثيريوم لا دفتر XRP\n\nثمة تفصيلة تقنية لافتة في الإطلاق الياباني: تعالج منصة SBI VC Trade رموز RLUSD المبنية على شبكة إيثيريوم فحسب، دون تلك الموجودة على دفتر XRP الخاص بريبل. وعلى الرغم من تسويق ريبل لـ RLUSD بوصفها أصلاً متعدد السلاسل، تعمل البنية التحتية الفعلية في اليابان على إيثيريوم، وهو ما يعكس عمق سيولة تلك الشبكة في قطاع التمويل اللامركزي ودعمها الأوسع للمحافظ المؤسسية في منطقة آسيا والمحيط الهادئ.\n\nتبقى القيود التنظيمية في مرحلتها الأولى ملموسة؛ إذ تحدد المقررات اليابانية سقف كل معاملة بمليون ين، ما يعادل نحو 6,200 دولار بأسعار صرف يونيو 2026، مما يحصر العملة في نطاق التحويلات الصغيرة في الوقت الراهن. وأشارت ريبل وSBI إلى توقعهما برفع هذا السقف مستقبلاً مع تزايد ثقة الجهات التنظيمية.\n\n## اليابان في طليعة تنظيم العملات المستقرة\n\nتُعد اليابان من أكثر دول مجموعة السبع تقدماً في التعامل مع الأصول الرقمية، إذ أرست منظومة ترخيص رسمية للعملات المستقرة عام 2023 ووسّعتها منذ ذلك الحين. ويُمثّل منح JFSA الموافقة لـ RLUSD أول اختراق لعملة مستقرة بعملة أجنبية لهذا الحاجز التنظيمي، مما يمنح ريبل موطئ قدم في أحد أكبر ممرات المدفوعات العابرة للحدود في العالم.\n\nتضخ اليابان تدفقات ضخمة من التحويلات والتسويات التجارية نحو جنوب شرق آسيا والولايات المتحدة والشرق الأوسط، وهي أسواق تعمل فيها قنوات السيولة الفورية (ODL) التابعة لريبل أصلاً. ويعزز إطلاق RLUSD مكانة ريبل في هذه الممرات بتوفير طبقة تسوية دولارية خاضعة للتنظيم داخل المنظومة المالية اليابانية.\n\n## اللحظة العالمية للعملات المستقرة\n\nيندرج هذا الحدث ضمن سياق أوسع من تقارب تنظيمات العملات المستقرة عبر الاقتصادات الكبرى. فقانون GENIUS الأمريكي، الذي أُقرَّ مطلع يونيو 2026، أرسى الإطار الفيدرالي الأول للعملات المستقرة بالدولار. وجاءت موافقة JFSA على RLUSD بعد أسابيع قليلة من ذلك، في مؤشر على توجه المنظمين في دول مجموعة السبع نحو رؤية مشتركة: العملات المستقرة الملتزمة بالتنظيم بنية تحتية، لا مضاربة.",
+    "tr": "Ripple ve SBI Group, Japonya Finansal Hizmetler Ajansı'nın (JFSA) onayının ardından 24 Haziran 2026'da Amerikan dolarına endeksli stabilcoin RLUSD'yi Japonya'da resmi olarak piyasaya sürdü. Token, Japon mevzuatı kapsamında \"Tip 4 elektronik ödeme aracı\" olarak sınıflandırıldı; bu kategori özellikle yabancı para cinsinden stabilcoinler için oluşturulmuş olup RLUSD'yi Japonya'nın ilk düzenlenmiş yabancı para dijital ödeme aracı haline getiriyor. Token, SBI Group'un düzenlenmiş borsa kolu SBI VC Trade aracılığıyla hem kurumsal hem bireysel kullanıcılara sunuluyor.\n\nRLUSD, 2024 sonu itibarıyla gerçekleşen küresel lansmanından bu yana 1,7 milyar dolarlık piyasa değerine ulaştı. Token, Ripple'ın New York lisanslı iştiraki Standard Custody & Trust Company tarafından ihraç ediliyor; her token 1:1 oranında ABD doları mevduatları ve kısa vadeli ABD Hazine bonolarıyla destekleniyor.\n\n## Ethereum, XRP Defteri Değil\n\nJaponya lansmanının dikkat çekici teknik bir ayrıntısı var: SBI VC Trade yalnızca Ethereum tabanlı RLUSD tokenlarını işleme alıyor, Ripple'ın kendi XRP Defteri'ndeki tokenları değil. Ripple, RLUSD'yi çok zincirli bir varlık olarak konumlandırsa da Japonya pazarının pratik altyapısı Ethereum üzerinde çalışıyor; bu durum, söz konusu zincirin Asya-Pasifik bölgesindeki derin DeFi likiditesini ve kurumsal cüzdan desteğini yansıtıyor.\n\nBaşlangıç aşamasındaki düzenleyici kısıtlamalar hâlâ belirleyici: Japon mevzuatı, bireysel RLUSD işlemlerini Haziran 2026 döviz kuruna göre yaklaşık 6.200 dolara karşılık gelen bir milyon yen ile sınırlıyor. Bu durum, tokenın şimdilik küçük ölçekli transferlerle sınırlı kalmasına yol açıyor. Ripple ve SBI, düzenleyicilerin güveni artıkça bu sınırın yükseleceğini öngörüyor.\n\n## Japonya'nın Stabilcoin Öncülüğü\n\nJaponya, G7 ülkeleri arasında kripto varlıklara en sistematik biçimde yaklaşan ülkelerden biri; 2023'te resmi bir stabilcoin lisans çerçevesi oluşturdu ve o tarihten bu yana kapsamı genişletti. JFSA'nın RLUSD'yi onaylaması, bu düzenleyici engeli aşan ilk yabancı para stabilcoini olarak tarihe geçiyor ve Ripple'a dünyanın en büyük sınır ötesi ödeme koridorlarından birinde önemli bir dayanak noktası kazandırıyor.\n\n## Küresel Stabilcoin Dönüşümü\n\nArka plan, büyük ekonomilerde stabilcoin düzenlemelerinin yakınsamasıdır. Haziran 2026 başında imzalanan ABD'nin GENIUS Yasası, dolar stabilcoinleri için ilk federal çerçeveyi oluşturarak bu varlık sınıfını Amerikan kurumları için meşrulaştırdı. JFSA'nın RLUSD onayı, bu yasanın hemen ardından geliyor; bu durum, G7 ülkelerinin ortak bir tutuma doğru ilerlediğine işaret ediyor: düzenlemelere uyumlu stabilcoinler bir spekülasyon aracı değil, bir altyapı unsurudur."
+  },
+  "seo": {
+    "title": {
+      "en": "Ripple and SBI Launch RLUSD Stablecoin in Japan — MAXGAZINE",
+      "fa": "ریپل و اس‌بی‌آی استیبل‌کوین RLUSD را در ژاپن عرضه کردند — MAXGAZINE",
+      "ar": "ريبل و SBI يطلقان RLUSD في اليابان بعد موافقة JFSA — MAXGAZINE",
+      "tr": "Ripple ve SBI, RLUSD'yi Japonya'da Piyasaya Sürdü — MAXGAZINE"
+    },
+    "description": {
+      "en": "Ripple and SBI Group launched RLUSD in Japan on June 24, 2026, making it Japan's first regulated USD stablecoin under JFSA approval. Available via SBI VC Trade with a ¥1M transaction cap.",
+      "fa": "ریپل و اس‌بی‌آی در ۲۴ ژوئن ۲۰۲۶ استیبل‌کوین RLUSD را در ژاپن راه‌اندازی کردند. نخستین ارز پایدار دلاری مجاز در ژاپن با مجوز JFSA و سقف معامله یک میلیون ین.",
+      "ar": "أطلقت ريبل و SBI عملة RLUSD المستقرة في اليابان في 24 يونيو 2026 لتصبح أول عملة مستقرة بالدولار خاضعة لتنظيم JFSA، وتتاح عبر SBI VC Trade بسقف مليون ين للمعاملة.",
+      "tr": "Ripple ve SBI, 24 Haziran 2026'da Japonya'da RLUSD stabilcoinini piyasaya sürdü. JFSA onaylı, Japonya'nın ilk düzenlenmiş USD stabilcoini — SBI VC Trade üzerinden 1 milyon yen işlem limiti ile."
+    },
+    "keywords": {
+      "en": [
+        "RLUSD",
+        "Ripple stablecoin Japan",
+        "SBI VC Trade",
+        "JFSA approval",
+        "XRP",
+        "stablecoin regulation"
+      ],
+      "fa": [
+        "RLUSD",
+        "ریپل ژاپن",
+        "استیبل‌کوین ژاپن",
+        "SBI VC Trade",
+        "XRP",
+        "ارز پایدار دلاری"
+      ],
+      "ar": [
+        "RLUSD",
+        "ريبل اليابان",
+        "عملة مستقرة اليابان",
+        "SBI VC Trade",
+        "JFSA",
+        "XRP"
+      ],
+      "tr": [
+        "RLUSD",
+        "Ripple Japonya",
+        "stablecoin Japonya",
+        "SBI VC Trade",
+        "JFSA onayı",
+        "XRP"
+      ]
+    }
+  },
+  "tags": [
+    "Ripple",
+    "RLUSD",
+    "Stablecoins",
+    "XRP",
+    "crypto",
+    "Japan"
+  ],
+  "sources": [
+    {
+      "title": "Ripple and SBI Group Partner to Launch RLUSD in Japan",
+      "url": "https://ripple.com/ripple-press/ripple-and-sbi-group-partner-to-launch-ripple-usd-in-japan/"
+    },
+    {
+      "title": "Ripple launches RLUSD stablecoin in Japan — The Block",
+      "url": "https://www.theblock.co/post/406067/ripple-launches-rlusd-stablecoin-japan"
+    },
+    {
+      "title": "Ripple used Ethereum to list RLUSD in Japan — Protos",
+      "url": "https://protos.com/ripple-used-ethereum-to-list-its-rlusd-stablecoin-in-japan/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

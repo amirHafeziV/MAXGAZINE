@@ -1,0 +1,100 @@
+{
+  "slug": "defi-tvl-45b-wipeout-hacks-2026",
+  "category": "defi",
+  "date": "2026-06-24",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "DeFi Has Lost $45 Billion in 2026 — Hacks and Declining Prices Are Finishing What Each Other Started",
+    "fa": "دیفای در سال ۲۰۲۶ به ۴۵ میلیارد دلار ریزش ارزش کرده است",
+    "ar": "التمويل اللامركزي يخسر 45 مليار دولار في 2026: الاختراقات وانخفاض الأسعار يُفاقمان بعضهما",
+    "tr": "DeFi 2026'da 45 Milyar Dolar Kaybetti: Hackler ve Fiyat Düşüşleri Birbirini Besliyor"
+  },
+  "dek": {
+    "en": "DeFi's total value locked has fallen 39% year-to-date in 2026, from $115 billion to roughly $70 billion, as $942 million in hacks compound a broad crypto market correction — and only two of the top ten blockchains are still growing.",
+    "fa": "ارزش کل قفل‌شده در دیفای از ابتدای ۲۰۲۶ تاکنون ۳۹ درصد کاهش یافته، از ۱۱۵ میلیارد دلار به حدود ۷۰ میلیارد دلار رسیده است. هک‌هایی با زیان کل ۹۴۲ میلیون دلار و اصلاح گسترده بازار کریپتو دو موتور این سقوط بوده‌اند.",
+    "ar": "تراجع إجمالي القيمة المقفلة في التمويل اللامركزي بنسبة 39% منذ مطلع 2026، من 115 مليار دولار إلى نحو 70 ملياراً، مع تضافر اختراقات بلغت 942 مليون دولار مع تصحيح سوق العملات المشفرة، فيما ينمو بلوكتشينان فحسب من أصل أكبر عشرة.",
+    "tr": "DeFi'nin toplam kilitli değeri 2026 başından bu yana yüzde 39 geriledi; 115 milyar dolardan yaklaşık 70 milyar dolara indi. 942 milyon dolarlık hack zararları geniş çaplı kripto piyasası düzeltmesini daha da derinleştirirken ilk on blok zincirinden yalnızca ikisi büyümeye devam ediyor."
+  },
+  "body": {
+    "en": "Decentralized finance entered 2026 under pressure and has not recovered. Total value locked (TVL) across all DeFi protocols has declined in every single month of the year, sliding from approximately $115 billion in January to roughly $70 billion as of June 24, 2026 — a 39% drop that erases gains made during the late-2025 bull run.\n\nThe decline is the product of two reinforcing forces: a broad crypto market correction that dragged asset prices lower, and a sustained wave of exploits that shook user confidence and accelerated withdrawals.\n\n## The Hack Wave\n\nDeFi protocols have suffered approximately $942 million in exploit losses across 121 separate attacks so far in 2026, making Q2 the most-hacked quarter in the sector's history with 85 incidents. Two hacks stand out in scale.\n\nIn April 2026, KelpDAO — an Ethereum-based liquid restaking protocol — lost $290 million in what became the largest single DeFi exploit of the year. Blockchain analytics firm Chainalysis attributed the attack to North Korea's Lazarus Group, specifically the TraderTraitor sub-unit. The attackers did not exploit a smart contract flaw; instead they compromised internal RPC nodes and fed false data to a single-verifier bridge setup — a configuration that security researchers had flagged as dangerously centralized. In the days following the attack, Aave's TVL dropped from $26.4 billion to $14.3 billion as users across Ethereum-based protocols pulled funds.\n\nThe second largest incident of the year involved Drift Protocol, which lost approximately $285 million in a separate exploit with different methodology. Together, the two attacks account for nearly 60% of all DeFi losses in 2026.\n\n## The Chain Divergence\n\nEthereum, Solana, and Arbitrum — which together held the majority of DeFi TVL entering the year — have all posted sharp declines. Of the top ten blockchains by TVL, only TRON and Hyperliquid recorded net growth through June 2026.\n\nTRON's resilience partly reflects its concentration in stablecoin settlement and USDT activity, which is less sensitive to price-driven TVL erosion. Hyperliquid's growth reflects continued user appetite for on-chain perpetual futures, one of the few DeFi sub-sectors that showed consistent volume growth even as underlying asset prices fell.\n\n## Institutional Skepticism\n\nA JPMorgan research note in June 2026 observed that recurring exploits and stagnant TVL are \"continuing to limit institutional appeal\" for DeFi. The report noted that the absence of credible on-chain insurance, the complexity of smart contract auditing, and the bridge infrastructure risk exposed by the KelpDAO attack remain unresolved barriers to meaningful institutional capital allocation.\n\n## What Comes Next\n\nProtocol teams across the ecosystem have responded by accelerating security upgrades. Multi-DVN bridge configurations — which would have prevented the KelpDAO attack — are now being mandated by several major protocols. On-chain insurance primitives from providers such as Nexus Mutual and Neptune Finance have seen increased coverage demand in the months since the KelpDAO hack.\n\nWhether that is enough to restore confidence remains uncertain. With Bitcoin down roughly 20% from its May 2026 peak and risk-off sentiment building across global markets as of late June, DeFi's TVL recovery depends on both protocol security improvements and a broader macro tailwind that has not yet materialized.",
+    "fa": "دیفای (امور مالی غیرمتمرکز) سال ۲۰۲۶ را زیر فشار آغاز کرد و هرگز بهبود نیافت. ارزش کل قفل‌شده (TVL) در تمام پروتکل‌های دیفای در هر ماه از سال کاهش یافته؛ از حدود ۱۱۵ میلیارد دلار در ژانویه به تقریباً ۷۰ میلیارد دلار در ۲۴ ژوئن ۲۰۲۶ رسیده است. این افت ۳۹ درصدی، دستاوردهای دوران صعودی اواخر ۲۰۲۵ را از بین برده است.\n\nاین کاهش حاصل دو نیروی تقویت‌کننده است: اصلاح گسترده بازار کریپتو که قیمت دارایی‌ها را پایین کشید، و موجی مداوم از حملات که اعتماد کاربران را متزلزل کرد و خروج سرمایه را شتاب داد.\n\n## موج هک‌ها\n\nپروتکل‌های دیفای تا اواخر ژوئن ۲۰۲۶ حدود ۹۴۲ میلیون دلار ضرر ناشی از ۱۲۱ حمله جداگانه داشته‌اند. فصل دوم سال با ۸۵ حادثه، پرهرج‌ومرج‌ترین فصل در تاریخ این بخش بوده است.\n\nدر آوریل ۲۰۲۶، پروتکل KelpDAO که یک پروتکل ریستیکینگ مایع مبتنی بر اتریوم است، در بزرگ‌ترین حمله امسال ۲۹۰ میلیون دلار از دست داد. شرکت تحلیل بلاک‌چین Chainalysis این حمله را به گروه لازاروس کره شمالی نسبت داد. مهاجمان به جای بهره‌برداری از نقص قرارداد هوشمند، گره‌های RPC داخلی را به خطر انداختند و داده‌های نادرست به یک پیکربندی پل تک-تأییدکننده تزریق کردند؛ پیکربندی‌ای که محققان امنیتی پیش از این درباره خطر تمرکز آن هشدار داده بودند. در روزهای پس از این حمله، TVL Aave از ۲۶.۴ میلیارد به ۱۴.۳ میلیارد دلار سقوط کرد.\n\nحمله دوم بزرگ سال به Drift Protocol مربوط بود که تقریباً ۲۸۵ میلیون دلار ضرر به بار آورد. مجموعاً، این دو حمله نزدیک به ۶۰ درصد از کل زیان‌های دیفای در ۲۰۲۶ را پوشش می‌دهند.\n\n## واگرایی بین بلاک‌چین‌ها\n\nاتریوم، سولانا و آربیتروم که در ابتدای سال بخش عمده TVL دیفای را در اختیار داشتند، همگی کاهش شدیدی ثبت کرده‌اند. از میان ده بلاک‌چین برتر از نظر TVL، تنها TRON و Hyperliquid تا ژوئن ۲۰۲۶ رشد خالص داشته‌اند. مقاومت TRON بازتاب تمرکزش در تسویه استیبل‌کوین و فعالیت USDT است. رشد Hyperliquid نشان می‌دهد اشتها برای معاملات آتی بی‌وقفه آنچین کمتر از سایر بخش‌ها تحت تأثیر قرار گرفته است.\n\n## چشم‌انداز\n\nتیم‌های پروتکل با شتاب بیشتری ارتقاهای امنیتی را دنبال می‌کنند. پیکربندی‌های پل چندتأییدکننده که از وقوع حمله KelpDAO جلوگیری می‌کرد، اکنون توسط چندین پروتکل بزرگ الزامی شده است. با این حال، بازگشت اعتماد به دیفای هم به بهبود امنیت پروتکل‌ها نیاز دارد و هم به تغییر روند کلی بازار کریپتو که تا اواخر ژوئن هنوز محقق نشده است.",
+    "ar": "دخل قطاع التمويل اللامركزي (DeFi) عام 2026 في مواجهة ضغوط متصاعدة ولم يتعافَ بعد. تراجع إجمالي القيمة المقفلة (TVL) عبر بروتوكولات التمويل اللامركزي في كل شهر من أشهر العام، منزلقاً من نحو 115 مليار دولار في يناير إلى ما يقارب 70 مليار دولار في 24 يونيو 2026، بانخفاض نسبته 39% يمحو مكاسب موجة الصعود التي شهدتها الأشهر الأخيرة من عام 2025.\n\nيتغذى هذا الانخفاض من قوتين متضافرتين: تصحيح واسع في سوق العملات المشفرة أسقط أسعار الأصول، وموجة متواصلة من الاختراقات زعزعت ثقة المستخدمين وضاعفت عمليات السحب.\n\n## موجة الاختراقات\n\nتعرضت بروتوكولات التمويل اللامركزي لحوالي 942 مليون دولار من الخسائر جراء 121 هجوماً منفصلاً حتى الآن في 2026، ليغدو الربع الثاني الأكثر اختراقاً في تاريخ القطاع بـ 85 حادثة. حادثتان تبرزان بحجمهما: أولاهما في أبريل 2026، حين خسرت KelpDAO—بروتوكول الريستيكينج السائل على إيثيريوم—290 مليون دولار في أكبر عملية اختراق مفردة للتمويل اللامركزي هذا العام. نسبت شركة Chainalysis للتحليل الجنائي للبلوكتشين هذه الهجمة إلى مجموعة لازاروس الكورية الشمالية. لم يستغل المهاجمون ثغرة في العقد الذكي، بل اخترقوا عقدَ RPC الداخلية وضخّوا بيانات مزيفة في إعداد جسر أحادي المُتحقِّق. وفي الأيام التالية، تراجع TVL منصة Aave من 26.4 مليار إلى 14.3 مليار دولار فيما سارع مستخدمو بروتوكولات إيثيريوم إلى سحب أموالهم. الثانية استهدفت Drift Protocol بخسارة تقارب 285 مليون دولار. يمثّل هذان الحادثان معاً قرابة 60% من مجمل خسائر التمويل اللامركزي في 2026.\n\n## تباين أداء البلوكتشينات\n\nسجّلت إيثيريوم وسولانا وأربيترام—التي كانت تستحوذ على غالبية TVL التمويل اللامركزي مطلع العام—انخفاضات حادة. ومن بين أكبر عشرة بلوكتشينات من حيث TVL، اثنان فحسب حققا نمواً صافياً هما TRON وHyperliquid. يعكس صمود TRON اتكاءه على تسوية العملات المستقرة ونشاط USDT، في حين يشير نمو Hyperliquid إلى استمرار الطلب على العقود الآجلة الدائمة على السلسلة.\n\n## شك مؤسسي\n\nأشارت مذكرة أبحاث جيه بي مورغان في يونيو 2026 إلى أن الاختراقات المتكررة وجمود TVL \"يواصلان تقييد الجاذبية المؤسسية\" لقطاع التمويل اللامركزي. ولا يزال غياب التأمين على السلسلة وتعقيد مراجعة العقود الذكية ومخاطر البنية التحتية للجسور حواجز قائمة أمام ضخ رأس المال المؤسسي.\n\n## المستقبل\n\nسارعت فرق البروتوكولات إلى تطوير تحديثات أمنية، وباتت إعدادات الجسر متعدد المُتحقِّقين التي كان يمكنها صرف هجمة KelpDAO إلزامية لدى عدة بروتوكولات كبرى. ومع ذلك، يظل تعافي التمويل اللامركزي رهيناً بتحسّن أمن البروتوكولات من جهة، وبتحوّل الاتجاه الكلي للسوق من جهة أخرى، وهو ما لم يتحقق بعد في نهاية يونيو.",
+    "tr": "Merkezi olmayan finans (DeFi), 2026 yılına baskı altında girdi ve toparlanamadı. Tüm DeFi protokollerindeki toplam kilitli değer (TVL) yılın her ayında düştü; Ocak ayındaki yaklaşık 115 milyar dolardan 24 Haziran 2026 itibarıyla yaklaşık 70 milyar dolara geriledi. Bu yüzde 39'luk düşüş, 2025'in son çeyreğinde yaşanan boğa rallisinin kazanımlarını tamamen sildi.\n\nGerilemenin arkasında iki pekiştirici güç var: varlık fiyatlarını aşağı çeken geniş çaplı kripto piyasası düzeltmesi ve kullanıcı güvenini sarsan süregelen istismar dalgası.\n\n## Hack Dalgası\n\nDeFi protokolleri 2026'da şimdiye dek 121 ayrı saldırıda yaklaşık 942 milyon dolar kayba uğradı; 85 vakıyla 2. çeyrek, sektörün tarihindeki en fazla hack yaşanan dönem oldu. İki olay öne çıkıyor.\n\nNisan 2026'da Ethereum tabanlı likit yeniden stake etme protokolü KelpDAO, yılın en büyük tek DeFi istismarında 290 milyon dolar kaybetti. Chainalysis bu saldırıyı Kuzey Kore'nin Lazarus Grubu'na bağladı. Saldırganlar akıllı sözleşme açığını değil; dahili RPC node'larını ele geçirip tek doğrulayıcılı köprü yapılandırmasına sahte veri enjekte ederek sistemi çökerttiler. Saldırının ardından Aave'nin TVL'i 26,4 milyar dolardan 14,3 milyar dolara geriledi. Yılın ikinci büyük istismarı yaklaşık 285 milyon dolar kaybıyla Drift Protocol'ü vurdu. Bu iki olay birlikte 2026'nın toplam DeFi kayıplarının yüzde 60'ını oluşturuyor.\n\n## Blok Zincirleri Arasındaki Ayrışma\n\nYıl başında DeFi TVL'nin büyük bölümünü elinde bulunduran Ethereum, Solana ve Arbitrum hepsi sert düşüş kaydetti. TVL büyüklüğüne göre ilk on blok zincirinden yalnızca TRON ve Hyperliquid Haziran 2026'ya kadar net büyüme gösterdi. TRON'un direnci büyük ölçüde stabilcoin takasına ve USDT işlemlerine olan bağımlılığından kaynaklanıyor; Hyperliquid'in büyümesi ise zincir üstü sürekli vadeli işlemlere olan talebin devam ettiğine işaret ediyor.\n\n## Kurumsal Şüphecilik\n\nJPMorgan'ın Haziran 2026'da yayımladığı araştırma notu, süregelen açıkların ve durağan TVL'nin \"DeFi'nin kurumsal çekiciliğini kısıtlamayı sürdürdüğünü\" vurguladı. Güvenilir zincir üstü sigorta yokluğu, akıllı sözleşme denetiminin karmaşıklığı ve KelpDAO saldırısının gün yüzüne çıkardığı köprü altyapı riskleri, kurumsal sermaye akışı önünde duran çözümsüz engeller olmayı sürdürüyor.\n\nDeFi'nin TVL'de toparlanması hem protokol güvenliğinin iyileştirilmesine hem de Haziran sonu itibarıyla henüz gerçekleşmemiş olan genel piyasa dönüşüne bağlı."
+  },
+  "seo": {
+    "title": {
+      "en": "DeFi Loses $45B in 2026: Hacks and Market Crash — MAXGAZINE",
+      "fa": "دیفای در ۲۰۲۶ چهل‌وپنج میلیارد دلار از دست داد — MAXGAZINE",
+      "ar": "التمويل اللامركزي يخسر 45 مليار دولار في 2026 — MAXGAZINE",
+      "tr": "DeFi 2026'da 45 Milyar Dolar Kaybetti: Hackler ve Düşüş — MAXGAZINE"
+    },
+    "description": {
+      "en": "DeFi TVL has dropped 39% in 2026 from $115B to $70B, hit by $942M in hacks including the $290M KelpDAO exploit and a broad crypto market correction. Only TRON and Hyperliquid are growing.",
+      "fa": "ارزش کل قفل‌شده دیفای در ۲۰۲۶ از ۱۱۵ میلیارد به ۷۰ میلیارد دلار رسیده است. هک KelpDAO با ۲۹۰ میلیون دلار زیان و اصلاح بازار کریپتو دو عامل اصلی این سقوط ۳۹ درصدی هستند.",
+      "ar": "تراجع TVL في قطاع DeFi 39% خلال 2026 من 115 إلى 70 مليار دولار، تحت وطأة اختراقات بـ 942 مليون دولار أبرزها استغلال KelpDAO بـ 290 مليوناً، وتصحيح سوق العملات المشفرة.",
+      "tr": "DeFi TVL 2026'da 115 milyar dolardan 70 milyar dolara yüzde 39 geriledi. 290 milyon dolarlık KelpDAO hacki dahil 942 milyon dolarlık saldırılar ve kripto düzeltmesi belirleyici oldu."
+    },
+    "keywords": {
+      "en": [
+        "DeFi TVL",
+        "KelpDAO hack",
+        "DeFi hacks 2026",
+        "crypto exploit",
+        "Lazarus Group",
+        "Ethereum DeFi"
+      ],
+      "fa": [
+        "دیفای",
+        "هک KelpDAO",
+        "TVL دیفای ۲۰۲۶",
+        "گروه لازاروس",
+        "DeFi",
+        "بلاک‌چین"
+      ],
+      "ar": [
+        "DeFi",
+        "اختراق KelpDAO",
+        "TVL التمويل اللامركزي 2026",
+        "مجموعة لازاروس",
+        "هجمات الكريبتو",
+        "Ethereum"
+      ],
+      "tr": [
+        "DeFi TVL",
+        "KelpDAO hack",
+        "DeFi saldırıları 2026",
+        "Lazarus Grubu",
+        "kripto istismar",
+        "Ethereum DeFi"
+      ]
+    }
+  },
+  "tags": [
+    "DeFi",
+    "crypto",
+    "Ethereum",
+    "hack",
+    "TVL",
+    "Lazarus Group"
+  ],
+  "sources": [
+    {
+      "title": "DeFi's $45B wipeout: Hacks and market crash drive TVL lower — CryptoTimes",
+      "url": "https://www.cryptotimes.io/2026/06/24/defis-45b-wipeout-hacks-and-market-crash-drive-tvl-lower/"
+    },
+    {
+      "title": "DeFi TVL shrinks 39% in 2026, hacks cost $942M — BlockchainReporter",
+      "url": "https://blockchainreporter.net/defi-tvl-shrinks-39-in-2026-hacks-cost-942m-as-only-two-chains-grow"
+    },
+    {
+      "title": "DeFi sheds $13 billion in TVL following KelpDAO hack — Sherwood News",
+      "url": "https://sherwood.news/crypto/kelpdao-290million-largest-defi-hack-2026/"
+    },
+    {
+      "title": "KelpDAO suffers $290 million heist tied to Lazarus hackers — BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/security/kelpdao-suffers-290-million-heist-tied-to-lazarus-hackers/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

@@ -990,6 +990,29 @@ const CAT_LABELS = {
   ar:{all:'الكل',markets:'الأسواق',crypto:'كريبتو',forex:'فوركس',defi:'ديفاي',policy:'سياسة',mining:'تعدين',analysis:'تحليل',tech:'تقنية',cars:'سيارات',staff:'الطاقم',reportage:'ريبورتاج'},
   tr:{all:'Tümü',markets:'Piyasalar',crypto:'Kripto',forex:'Forex',defi:'DeFi',policy:'Politika',mining:'Madencilik',analysis:'Analiz',tech:'Teknoloji',cars:'Otomobil',staff:'Personel',reportage:'Röportaj'}
 };
+/* ---- topic & type vocab (mirrors agents/src/taxonomy.ts) ---- */
+const TOPIC_LABELS = {
+  en:{market:'Markets',crypto:'Crypto',cars:'Cars',tech:'Tech'},
+  fa:{market:'بازار',crypto:'کریپتو',cars:'خودرو',tech:'تکنولوژی'},
+  ar:{market:'الأسواق',crypto:'كريبتو',cars:'سيارات',tech:'تقنية'},
+  tr:{market:'Piyasalar',crypto:'Kripto',cars:'Otomobil',tech:'Teknoloji'}
+};
+const TYPE_LABELS = {
+  en:{news:'News',article:'Feature',analysis:'Analysis',review:'Review',reportage:'Reportage',podcast:'Podcast',video:'Video'},
+  fa:{news:'خبر',article:'مقاله',analysis:'تحلیل',review:'معرفی',reportage:'رپورتاژ',podcast:'پادکست',video:'ویدیو'},
+  ar:{news:'خبر',article:'مقال',analysis:'تحليل',review:'مراجعة',reportage:'ريبورتاج',podcast:'بودكاست',video:'فيديو'},
+  tr:{news:'Haber',article:'Makale',analysis:'Analiz',review:'İnceleme',reportage:'Röportaj',podcast:'Podcast',video:'Video'}
+};
+const MEDIA_TYPES = ['podcast','video'];
+const TOPIC_TO_CATEGORY = { market:'markets', crypto:'crypto', cars:'cars', tech:'tech' };
+/* Type chip — shown only for non-news formats so plain news cards stay clean.
+   data-type drives the accent colour (see styles.css). */
+function typeChip(a, lang){
+  const t = a.type;
+  if(!t || t === 'news') return '';
+  const label = esc(((TYPE_LABELS[lang]||TYPE_LABELS.en)[t]) || t);
+  return `<span class="type-chip mono" data-type="${esc(t)}">${label}</span>`;
+}
 function feedCard(a, lang, prefix){
   const href = articleHref(a, lang, prefix);
   const cat = esc((a.category||'').toUpperCase());
@@ -998,7 +1021,7 @@ function feedCard(a, lang, prefix){
   const date = esc(a.date||'');
   const readLabel = esc((window.I[lang]&&window.I[lang].cta_read) || 'Read →');
   const img = a.banner ? `<div class="card-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></div>` : '';
-  return `<a class="card reveal" href="${href}">${img}<span class="cat mono">${cat}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
+  return `<a class="card reveal" href="${href}">${img}<span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
 }
 /* Crimson, image-less "dispatch" card — the Dispatch signature tile. Leads with
    the category set huge in Fraunces, then the headline and meta. */
@@ -1119,12 +1142,12 @@ function riverItem(a, lang, prefix, lead){
     const img = src
       ? `<span class="vrl-img"><img src="${src}" alt="" loading="lazy"></span>`
       : `<span class="vrl-img vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
-    return `<a class="vriver-item lead reveal" href="${href}">${img}<span class="vrl-body"><span class="cat mono">${cat}</span><h3>${headline}</h3><p class="vrl-dek">${dek}</p><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+    return `<a class="vriver-item lead reveal" href="${href}">${img}<span class="vrl-body"><span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><p class="vrl-dek">${dek}</p><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
   }
   const thumb = src
     ? `<span class="vr-thumb"><img src="${src}" alt="" loading="lazy"></span>`
     : `<span class="vr-thumb vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
-  return `<a class="vriver-item reveal" href="${href}">${thumb}<span class="vr-body"><span class="cat mono">${cat}</span><h3>${headline}</h3><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+  return `<a class="vriver-item reveal" href="${href}">${thumb}<span class="vr-body"><span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
 }
 /* "Latest" rail row — author avatar + name + date, headline, excerpt, thumb. */
 function streamRow(a, lang, prefix){
@@ -1138,7 +1161,7 @@ function streamRow(a, lang, prefix){
   const thumb = a.banner ? `<a class="vs-thumb" href="${href}" aria-hidden="true" tabindex="-1"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></a>` : '';
   return `<article class="vstream-item">
     <div class="vs-top mono"><span class="vs-avatar">${initial}</span><span class="vs-name">${author}</span><span class="vs-date">${date}</span></div>
-    <div class="vs-row"><div class="vs-text"><span class="vs-cat mono">${cat}</span><a class="vs-title" href="${href}">${headline}</a><p class="vs-excerpt">${dek}</p></div>${thumb}</div>
+    <div class="vs-row"><div class="vs-text"><span class="cat-line"><span class="vs-cat mono">${cat}</span>${typeChip(a,lang)}</span><a class="vs-title" href="${href}">${headline}</a><p class="vs-excerpt">${dek}</p></div>${thumb}</div>
   </article>`;
 }
 
@@ -1183,17 +1206,57 @@ function initEditorPopups(){
   });
 }
 
+/* ---- placement & ordering (mirrors agents/src/taxonomy.ts) ----
+   Every feed entry carries a `placement` { hero, editorsPick, hideFromLatest,
+   pinned, priority }. These helpers turn those editor controls into ordering. */
+function plc(a){ return a.placement || {}; }
+function byPriorityDate(a,b){
+  const pa = plc(a).priority||0, pb = plc(b).priority||0;
+  if(pb !== pa) return pb - pa;            // higher priority first
+  return (a.date < b.date) ? 1 : -1;       // then newest first
+}
+/* LATEST pool: drop stories the editor hid, float pinned ones to the top, then
+   order by priority and date. */
+function latestPool(feed){
+  return feed.filter(a=>!plc(a).hideFromLatest).slice().sort((a,b)=>{
+    const pinA = plc(a).pinned?1:0, pinB = plc(b).pinned?1:0;
+    if(pinB !== pinA) return pinB - pinA;
+    return byPriorityDate(a,b);
+  });
+}
 function renderFeedSections(feed, lang, prefix){
-  // Editor's Pick — featured stories first, then fill with recent, skipping any
-  // story shown in the hero rotation so it isn't duplicated next to itself.
+  // LATEST sections draw from a placement-aware pool (hidden removed, pinned up)
+  const latestFeed = latestPool(feed);
+  // Page-wide de-duplication: a story shown in one section won't reappear in
+  // another. Seed the "used" set with the hero rotation, then have every
+  // section draw the next unused items from the pool. This keeps each block a
+  // distinct slice of the feed (Zoomit-style silos) instead of every section
+  // re-showing the same newest stories.
+  const used = new Set(featuredList.map(a=>a.slug));
+  // Pull up to `n` not-yet-shown items from `pool`; marks them used by default.
+  const take = (pool, n, mark=true) => {
+    const out = [];
+    for(const a of pool){
+      if(out.length >= n) break;
+      if(used.has(a.slug)) continue;
+      out.push(a);
+      if(mark) used.add(a.slug);
+    }
+    return out;
+  };
+
+  // Editor's Pick — explicit picks first, then featured, then recent; skipping
+  // anything already in the hero rotation. Marked used so it isn't repeated below.
   const editors = document.querySelector('[data-feed-editors]');
   if(editors){
+    const explicit = feed.filter(a=>plc(a).editorsPick).sort(byPriorityDate);
     const seen = new Set(featuredList.map(a=>a.slug));
     const picks = [];
-    featuredList.concat(feed).forEach(a=>{
+    [...explicit, ...featuredList, ...latestFeed].forEach(a=>{
       if(picks.length < 3 && !seen.has(a.slug)){ seen.add(a.slug); picks.push(a); }
     });
     editors.innerHTML = picks.map((a,i)=>editorRow(a,lang,prefix,i)).join('');
+    picks.forEach(a=>used.add(a.slug));
   }
 
   // Latest Dispatches — Terminal card grid. First row pairs two image cards
@@ -1202,23 +1265,52 @@ function renderFeedSections(feed, lang, prefix){
   // vertical stack / three-card containers, so those are filled when present.
   const grid1 = document.querySelector('[data-feed-grid]');
   if(grid1){
-    const row = feed.slice(0,3);
+    const row = take(latestFeed, 3);
     grid1.innerHTML = row.map((a,i)=> i===1 ? dispatchCard(a,lang,prefix) : feedCard(a,lang,prefix)).join('');
   }
   const grid2 = document.querySelector('[data-feed-grid-2]');
-  if(grid2) grid2.innerHTML = feed.slice(3,9).map(a=>feedCard(a,lang,prefix)).join('');
+  if(grid2) grid2.innerHTML = take(latestFeed, 6).map(a=>feedCard(a,lang,prefix)).join('');
 
   const latest = document.querySelector('[data-feed-latest]');
-  if(latest) latest.innerHTML = feed.slice(0,10).map((a,i)=>listRow(a,lang,prefix,i)).join('');
+  if(latest) latest.innerHTML = take(latestFeed, 10).map((a,i)=>listRow(a,lang,prefix,i)).join('');
   const cards = document.querySelector('[data-feed-cards]');
-  if(cards) cards.innerHTML = feed.slice(10,13).map(a=>feedCard(a,lang,prefix)).join('');
+  if(cards) cards.innerHTML = take(latestFeed, 3).map(a=>feedCard(a,lang,prefix)).join('');
 
-  // Verge-style article box: main river (left) + Latest rail (right)
+  // River (main column) fills first, then stream gets the NEXT stories so
+  // the sidebar never repeats what the river already showed.
   const river = document.querySelector('[data-feed-river]');
-  if(river) river.innerHTML = feed.slice(0,9).map((a,i)=>riverItem(a,lang,prefix,i===0)).join('');
+  if(river) river.innerHTML = take(latestFeed, 9).map((a,i)=>riverItem(a,lang,prefix,i===0)).join('');
   const stream = document.querySelector('[data-feed-stream]');
-  // 8 rows keeps the Latest rail height aligned with the main river column
-  if(stream) stream.innerHTML = feed.slice(0,8).map(a=>streamRow(a,lang,prefix)).join('');
+  if(stream) stream.innerHTML = take(latestFeed, 8).map(a=>streamRow(a,lang,prefix)).join('');
+
+  // Tabbed "Latest" hub — fills FIRST so its top-12 get marked used before
+  // any topic desk runs; desks then show only stories not already in the hub.
+  renderLatestTabs(feed, lang, prefix, used);
+
+  // Per-topic desk sections — each fills with its topic's latest stories that
+  // haven't appeared above, and hides itself when that desk has nothing fresh.
+  document.querySelectorAll('[data-feed-topic]').forEach(grid=>{
+    const topic = grid.getAttribute('data-feed-topic');
+    const items = take(latestFeed.filter(a=>a.topic===topic), 6);
+    const section = grid.closest('[data-topic-section]') || grid;
+    if(!items.length){ section.hidden = true; return; }
+    section.hidden = false;
+    grid.innerHTML = items.map(a=>feedCard(a,lang,prefix)).join('');
+    const head = section.querySelector('[data-topic-head]');
+    if(head) head.textContent = (TOPIC_LABELS[lang]||TOPIC_LABELS.en)[topic] || topic;
+    const all = section.querySelector('[data-topic-all]');
+    if(all) all.href = `${prefix}${lang}/stories.html?cat=${esc(TOPIC_TO_CATEGORY[topic]||topic)}`;
+  });
+
+  // Podcast / video strip — surfaces media formats; hidden until such content
+  // exists (ignores hideFromLatest so a desk can stay news-only).
+  const mediaGrid = document.querySelector('[data-feed-media]');
+  if(mediaGrid){
+    const media = take(feed.filter(a=>MEDIA_TYPES.includes(a.type)).sort(byPriorityDate), 4);
+    const section = mediaGrid.closest('[data-media-section]') || mediaGrid;
+    if(!media.length){ section.hidden = true; }
+    else { section.hidden = false; mediaGrid.innerHTML = media.map(a=>feedCard(a,lang,prefix)).join(''); }
+  }
 
   const moreLink = document.querySelector('[data-feed-more]');
   if(moreLink) moreLink.href = `${prefix}${lang}/stories.html`;
@@ -1226,6 +1318,38 @@ function renderFeedSections(feed, lang, prefix){
   if(document.getElementById('stories-grid')) initStoriesPage(feed, lang, prefix);
   initEditorPopups();
   initObservers();
+}
+/* Tabbed "Latest" hub — the main browse section below the hero (replaces the
+   old river+stream layout). Uses listRow for an editorial list feel.
+   "All" shows the top 12 newest stories and marks them in usedSet so the
+   topic desks below don't repeat them. Category tabs show that category's own
+   freshest 12, independently, so clicking "Crypto" always shows top crypto. */
+function renderLatestTabs(feed, lang, prefix, usedSet){
+  const wrap = document.querySelector('[data-latest-section]');
+  if(!wrap) return;
+  const tabsEl = wrap.querySelector('[data-latest-tabs]');
+  const listEl = wrap.querySelector('[data-feed-latest-grid]');
+  if(!tabsEl || !listEl){ wrap.hidden = true; return; }
+  const pool = latestPool(feed);
+  if(!pool.length){ wrap.hidden = true; return; }
+  wrap.hidden = false;
+  const labels = CAT_LABELS[lang] || CAT_LABELS.en;
+  const cats = ['all', ...Array.from(new Set(pool.map(a=>a.category).filter(Boolean)))];
+  let active = tabsEl.dataset.active || 'all';
+  if(!cats.includes(active)) active = 'all';
+  const PER = 12;
+  // The "All" view shows the freshest 12 and marks them as used so desks skip them.
+  const allItems = pool.slice(0, PER);
+  if(usedSet) allItems.forEach(a=>usedSet.add(a.slug));
+  function paint(){
+    tabsEl.dataset.active = active;
+    tabsEl.innerHTML = cats.map(c=>`<a class="tab${c===active?' active':''}" href="#" data-cat="${esc(c)}">${esc(labels[c]||c)}</a>`).join('');
+    tabsEl.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',e=>{ e.preventDefault(); active = t.dataset.cat; paint(); }));
+    const items = active==='all' ? allItems : pool.filter(a=>a.category===active).slice(0,PER);
+    listEl.innerHTML = items.map((a,i)=>listRow(a,lang,prefix,i)).join('');
+    initObservers();
+  }
+  paint();
 }
 async function loadFeed(){
   const prefix = adPrefix();
@@ -1237,7 +1361,7 @@ async function loadFeed(){
   if(!Array.isArray(feed) || !feed.length) return;
   const lang = feedLang();
 
-  featuredList = feed.filter(a=>a.featured && a.banner);
+  featuredList = feed.filter(a=>(plc(a).hero || a.featured) && a.banner).sort(byPriorityDate);
   if(featuredList.length){
     ['hero-kicker','hero-sub'].forEach(id=>{
       const el = document.getElementById(id);

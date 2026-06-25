@@ -1,0 +1,96 @@
+{
+  "slug": "qualcomm-tenstorrent-10b-ai-chip",
+  "category": "tech",
+  "date": "2026-06-24",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Qualcomm Bets $14 Billion on Breaking Nvidia's AI Stranglehold With RISC-V",
+    "fa": "کوالکام ۱۴ میلیارد دلار برای شکستن سلطه انویدیا در هوش مصنوعی شرط می‌بندد",
+    "ar": "كوالكوم تراهن بـ14 مليار دولار على كسر هيمنة إنفيديا على رقائق الذكاء الاصطناعي",
+    "tr": "Qualcomm, Nvidia'nın Yapay Zeka Tekeline Karşı 14 Milyar Dolarlık RISC-V Bahsine Giriyor"
+  },
+  "dek": {
+    "en": "Qualcomm is in advanced talks to acquire AI chip startup Tenstorrent for up to $10 billion — part of a $14 billion dual-acquisition strategy targeting Nvidia's dominance in AI hardware, built on open RISC-V architecture and Jim Keller's chip design expertise.",
+    "fa": "کوالکام در مذاکرات پیشرفته برای خرید استارتاپ تراشه هوش مصنوعی Tenstorrent با ارزش‌گذاری تا ۱۰ میلیارد دلار است؛ بخشی از استراتژی دو-خرید ۱۴ میلیارد دلاری که با معماری RISC-V باز و تخصص طراحی تراشه جیم کلر، سلطه انویدیا را هدف می‌گیرد.",
+    "ar": "تجري كوالكوم محادثات متقدمة للاستحواذ على شركة شرائح الذكاء الاصطناعي تنسورنت بما يصل إلى 10 مليارات دولار، ضمن استراتيجية استحواذ مزدوج بـ14 ملياراً تستهدف هيمنة إنفيديا على عتاد الذكاء الاصطناعي.",
+    "tr": "Qualcomm, yapay zeka çip girişimi Tenstorrent'i 10 milyar dolara kadar satın almak için ileri müzakerelerde; bu adım, Nvidia'nın yapay zeka donanımındaki hakimiyetini açık RISC-V mimarisinin kullanımıyla kırmayı hedefleyen 14 milyar dolarlık çift satın alma stratejisinin parçası."
+  },
+  "body": {
+    "en": "Qualcomm is negotiating to acquire Tenstorrent, a Canadian AI chip startup led by legendary chip architect Jim Keller, in a deal that would value the company at between $8 billion and $10 billion. The negotiations, first reported on June 16, 2026 and confirmed in additional reporting on June 24, position the deal as part of a larger $14 billion strategic push by Qualcomm to compete directly with Nvidia in the AI accelerator market.\n\nThe $14 billion figure reflects two parallel acquisitions. In addition to the Tenstorrent discussions, Qualcomm has confirmed a separate deal to acquire Modular, a compiler infrastructure company building open-source tooling for heterogeneous AI hardware. Together, Qualcomm says these moves form a coherent strategy: deliver AI compute hardware and the software stack needed to run it, without relying on Nvidia's CUDA ecosystem.\n\n## What Tenstorrent Brings\n\nTenstorrent, founded in 2016, has built a family of AI accelerators around the RISC-V open-source instruction set architecture and its proprietary Tensix core design. Its Blackhole chip — which reached general availability on April 28, 2026 — uses a fundamentally different approach to AI computation than the GPU parallelism Nvidia has refined for over two decades.\n\nEach Tensix core packages five RISC-V processors, local on-chip SRAM, a matrix engine for tensor operations, and a vector engine — all interconnected on a chip-level mesh network. The architecture is designed to reduce the memory bottlenecks and power inefficiencies that limit GPU scaling in large-model inference workloads.\n\nTenstorrent raised $693 million in a Series D round in December 2024 at a valuation of more than $2.6 billion, with investors including Jeff Bezos' Bezos Expeditions and Samsung Securities. A deal at $8–10 billion would represent a roughly 3–4x markup on that valuation, reflecting how much the AI infrastructure investment climate has intensified in the 18 months since.\n\n## The Strategic Logic\n\nQualcomm's move reflects a growing concern among cloud providers, hyperscalers, and enterprise buyers: that Nvidia's near-monopoly in AI accelerators creates dangerous dependency and pricing power. Nvidia holds an estimated 70–80% share of the GPU accelerator market as of mid-2026, and its CUDA software ecosystem has created a switching cost that competitors have struggled to overcome.\n\nThe RISC-V angle is significant. By building on an open instruction set, Qualcomm and Tenstorrent would be able to offer cloud customers hardware that is more customizable and avoids Nvidia's proprietary toolchain lock-in. Several major hyperscalers — including Google (TPUs), Amazon (Trainium/Inferentia), and Microsoft (Maia) — have already invested billions in custom silicon for the same reason.\n\nQualcomm CEO Cristiano Amon has described the Tenstorrent talks as \"a different kind of AI bet — one built on open foundations.\" No deal closing timeline has been confirmed, and both companies have declined to comment on active negotiations.\n\n## Risks and Unknowns\n\nThe acquisition faces several risks. Regulatory scrutiny is likely given the deal size and Qualcomm's existing market power in mobile chips. The talent risk is also real: Jim Keller's involvement in and commitment to the combined entity post-acquisition is unconfirmed, and his departures from previous employers (Intel, Apple, Tesla, AMD) have historically created uncertainty.\n\nWhether Tenstorrent's Tensix architecture can realistically challenge Nvidia's CUDA-entrenched ecosystem at scale remains an open question that the market will ultimately answer.",
+    "fa": "کوالکام در حال مذاکره برای خرید Tenstorrent، استارتاپ تراشه هوش مصنوعی کانادایی به رهبری معمار افسانه‌ای تراشه جیم کلر است. این معامله شرکت را بین ۸ تا ۱۰ میلیارد دلار ارزش‌گذاری می‌کند. این مذاکرات که اول در ۱۶ ژوئن ۲۰۲۶ گزارش شد و در ۲۴ ژوئن تأیید گردید، بخشی از یک استراتژی بلندپروازانه ۱۴ میلیارد دلاری کوالکام برای رقابت مستقیم با انویدیا در بازار شتاب‌دهنده‌های هوش مصنوعی است.\n\nاین ۱۴ میلیارد دلار به دو خرید موازی تعلق دارد: علاوه بر مذاکرات با Tenstorrent، کوالکام قرارداد جداگانه‌ای برای خرید Modular — شرکت زیرساخت کامپایلر با ابزارهای متن‌باز برای سخت‌افزار هوش مصنوعی ناهمگن — منعقد کرده است. کوالکام می‌گوید هدف این دو خرید ارائه سخت‌افزار محاسباتی هوش مصنوعی و پشته نرم‌افزاری مورد نیاز برای اجرای آن، بدون وابستگی به اکوسیستم CUDA انویدیا است.\n\n## Tenstorrent چه می‌آورد\n\nTenstorrent که در سال ۲۰۱۶ تأسیس شد، خانواده‌ای از شتاب‌دهنده‌های هوش مصنوعی را بر اساس معماری مجموعه دستورالعمل متن‌باز RISC-V و طراحی اختصاصی هسته Tensix ساخته است. تراشه Blackhole این شرکت که در ۲۸ آوریل ۲۰۲۶ به صورت عمومی عرضه شد، رویکرد اساساً متفاوتی نسبت به موازی‌سازی GPU انویدیا در محاسبات هوش مصنوعی دارد.\n\nهر هسته Tensix شامل پنج پردازنده RISC-V، SRAM محلی روی تراشه، یک موتور ماتریس برای عملیات تنسور، و یک موتور برداری است که همه از طریق یک شبکه مش در سطح تراشه به هم متصل‌اند.\n\nTenstorrent در دسامبر ۲۰۲۴ در یک دور Series D ۶۹۳ میلیون دلار با ارزش‌گذاری بیش از ۲.۶ میلیارد دلار جذب کرد. معامله با ارزش ۸ تا ۱۰ میلیارد دلار نشان‌دهنده جهش ۳ تا ۴ برابری است و منعکس‌کننده شدت تقاضا برای سرمایه‌گذاری در زیرساخت هوش مصنوعی در ۱۸ ماه گذشته است.\n\n## منطق استراتژیک\n\nحرکت کوالکام بازتاب نگرانی فزاینده ارائه‌دهندگان ابر، هایپراسکیلرها و خریداران سازمانی است: تسلط شبه‌انحصاری انویدیا در شتاب‌دهنده‌های هوش مصنوعی وابستگی خطرناک و قدرت قیمت‌گذاری ایجاد کرده است. انویدیا تخمیناً ۷۰ تا ۸۰ درصد از بازار شتاب‌دهنده GPU را در اختیار دارد و اکوسیستم نرم‌افزاری CUDA آن هزینه تغییر را برای رقبا بسیار سنگین کرده است.\n\nزاویه RISC-V قابل توجه است: با بنا کردن بر یک مجموعه دستورالعمل باز، کوالکام و Tenstorrent می‌توانند سخت‌افزاری ارائه دهند که قابل‌سفارشی‌سازی بیشتری است و از قفل‌شدن به زنجیره ابزار اختصاصی انویدیا جلوگیری می‌کند.",
+    "ar": "تتفاوض كوالكوم على الاستحواذ على Tenstorrent، الشركة الناشئة الكندية لرقائق الذكاء الاصطناعي بقيادة مهندس الرقائق الأسطوري جيم كيلر، في صفقة تُقيّم الشركة بين 8 و10 مليارات دولار. كُشف عن هذه المفاوضات في 16 يونيو 2026 وتأكدت في 24 يونيو، لتُشكّل جزءاً من استراتيجية استحواذ مزدوج بـ14 ملياراً تسعى كوالكوم من خلالها إلى منافسة إنفيديا مباشرة في سوق معالجات تسريع الذكاء الاصطناعي.\n\nتشمل الـ14 مليار دولار صفقتين متوازيتين: إلى جانب مفاوضات Tenstorrent، أعلنت كوالكوم عن اتفاق منفصل للاستحواذ على Modular، شركة بنية تحتية للمترجمات البرمجية. وتُصوّر كوالكوم هذين الاستحواذين استراتيجيةً واحدة: تقديم عتاد الحوسبة للذكاء الاصطناعي مع الحزمة البرمجية اللازمة لتشغيله دون الاعتماد على نظام CUDA الخاص بإنفيديا.\n\n## ما تُقدّمه Tenstorrent\n\nتأسست Tenstorrent عام 2016، وصمّمت سلسلة من مسرّعات الذكاء الاصطناعي تقوم على معمارية RISC-V مفتوحة المصدر وتصميم النواة الخاصة Tensix. تراهن معمارية Blackhole—المتاحة للعموم منذ 28 أبريل 2026—على نهج مختلف جذرياً عن توازي GPU الذي صقلته إنفيديا على مدى عقدين. تُضمّن كل نواة Tensix خمسة معالجات RISC-V وذاكرة SRAM محلية ومحرك مصفوفة ومحرك متجهات، تترابط جميعها عبر شبكة شبكية داخل الرقاقة.\n\n## المنطق الاستراتيجي\n\nتعكس خطوة كوالكوم القلق المتصاعد لدى مزودي الحوسبة السحابية من هيمنة إنفيديا وما تُولّده من اعتماد مكلف. تتحكم إنفيديا في ما يُقدَّر بـ 70-80% من سوق مسرّعات GPU، فيما رسّخ نظام CUDA البيئي تكاليف التحوّل بشكل يصعب على المنافسين تجاوزه. البعد المتعلق بـ RISC-V جوهري: يُتيح الاعتماد على مجموعة تعليمات مفتوحة تقديم عتاد أكثر مرونة وتجنّب الارتباط بسلسلة أدوات إنفيديا الاحتكارية، على غرار ما فعلته جوجل وأمازون ومايكروسوفت باستثماراتها في الرقائق الخاصة.",
+    "tr": "Qualcomm, efsanevi çip mimarı Jim Keller önderliğindeki Kanada merkezli yapay zeka çip girişimi Tenstorrent'i 8-10 milyar dolara satın almak için ileri düzeyde müzakerelerde. 16 Haziran 2026'da ilk raporların ardından 24 Haziran'da teyit edilen bu görüşmeler, Qualcomm'un yapay zeka hızlandırıcı pazarında Nvidia ile doğrudan rekabet etmeye yönelik 14 milyar dolarlık kapsamlı stratejisinin parçası.\n\n14 milyar dolar iki paralel satın almayı kapsıyor. Tenstorrent görüşmelerine ek olarak Qualcomm, heterojen yapay zeka donanımı için açık kaynaklı araçlar geliştiren derleyici altyapı şirketi Modular'ı satın almayı da teyit etti. Qualcomm, bu iki hamlenin tutarlı bir strateji oluşturduğunu savunuyor: Nvidia'nın CUDA ekosistemine bağımlı kalmaksızın yapay zeka işlem donanımı ve onu çalıştıracak yazılım yığınını sunmak.\n\n## Tenstorrent Ne Getiriyor?\n\n2016'da kurulan Tenstorrent, açık kaynak RISC-V komut seti mimarisi ve tescilli Tensix çekirdek tasarımı üzerine kurulu yapay zeka hızlandırıcılar geliştirdi. 28 Nisan 2026'da genel kullanıma açılan Blackhole çipi, Nvidia'nın yirmi yıl boyunca mükemmelleştirdiği GPU paralelliğinden köklü biçimde farklı bir yaklaşım benimsiyor. Her Tensix çekirdeği beş RISC-V işlemciyi, yerel SRAM'ı, matris işlemleri için bir motor ve vektör motorunu birleştiriyor.\n\n## Stratejik Gerekçe\n\nQualcomm'un hamlesi, bulut sağlayıcıları ve kurumsal alıcılar arasında büyüyen kaygıyı yansıtıyor: Nvidia'nın yapay zeka hızlandırıcı pazarındaki yakın tekel konumu, tehlikeli bir bağımlılık ve fiyat gücü yaratıyor. RISC-V faktörü kritik: açık bir komut seti üzerine inşa ederek müşterilere daha özelleştirilebilir, Nvidia'nın mülkiyet araç zincirine kilitlenmeyi önleyen donanım sunulabilir. Google (TPU'lar), Amazon (Trainium) ve Microsoft (Maia) aynı gerekçeyle özel silikon yatırımına milyarlarca dolar aktardı.\n\nAnlaşmanın kapanma takvimi açıklanmadı. Her iki şirket de aktif müzakereler hakkında yorum yapmayı reddediyor."
+  },
+  "seo": {
+    "title": {
+      "en": "Qualcomm's $14B RISC-V Bet Against Nvidia's AI Monopoly — MAXGAZINE",
+      "fa": "شرط ۱۴ میلیارد دلاری کوالکام با RISC-V علیه انویدیا — MAXGAZINE",
+      "ar": "مراهنة كوالكوم بـ14 مليار دولار عبر RISC-V لكسر هيمنة إنفيديا — MAXGAZINE",
+      "tr": "Qualcomm'un Nvidia'ya Karşı 14 Milyar Dolarlık RISC-V Bahsi — MAXGAZINE"
+    },
+    "description": {
+      "en": "Qualcomm is in talks to acquire AI chip startup Tenstorrent for up to $10B, combined with a Modular deal totaling $14B — a RISC-V-based strategy to challenge Nvidia's GPU dominance in the AI accelerator market.",
+      "fa": "کوالکام در مذاکره برای خرید Tenstorrent با ارزش تا ۱۰ میلیارد دلار است. با احتساب معامله Modular، مجموعاً ۱۴ میلیارد دلار در استراتژی RISC-V برای چالش با سلطه GPU انویدیا سرمایه‌گذاری می‌شود.",
+      "ar": "تتفاوض كوالكوم على الاستحواذ على Tenstorrent بما يصل إلى 10 مليارات دولار، ومع صفقة Modular يبلغ الإجمالي 14 ملياراً، في استراتيجية قائمة على RISC-V لتحدي هيمنة إنفيديا على سوق مسرّعات الذكاء الاصطناعي.",
+      "tr": "Qualcomm, yapay zeka çip girişimi Tenstorrent'i 10 milyar dolara kadar satın almak için görüşmelerde. Modular anlaşmasıyla birlikte 14 milyar dolarlık bu RISC-V stratejisi, Nvidia'nın GPU hakimiyetine meydan okuyor."
+    },
+    "keywords": {
+      "en": [
+        "Qualcomm Tenstorrent",
+        "RISC-V AI chip",
+        "AI hardware",
+        "Nvidia rival",
+        "Jim Keller",
+        "tech acquisition"
+      ],
+      "fa": [
+        "کوالکام Tenstorrent",
+        "تراشه هوش مصنوعی RISC-V",
+        "انویدیا",
+        "جیم کلر",
+        "Qualcomm",
+        "سخت‌افزار هوش مصنوعی"
+      ],
+      "ar": [
+        "كوالكوم Tenstorrent",
+        "رقاقة RISC-V للذكاء الاصطناعي",
+        "إنفيديا",
+        "جيم كيلر",
+        "Qualcomm",
+        "عتاد الذكاء الاصطناعي"
+      ],
+      "tr": [
+        "Qualcomm Tenstorrent",
+        "RISC-V AI çipi",
+        "Nvidia rakibi",
+        "Jim Keller",
+        "yapay zeka donanımı",
+        "teknoloji satın alma"
+      ]
+    }
+  },
+  "tags": [
+    "Qualcomm",
+    "AI",
+    "Nvidia",
+    "tech",
+    "Technology",
+    "RISC-V"
+  ],
+  "sources": [
+    {
+      "title": "Qualcomm said to be circling Tenstorrent in $10B RISC-V power play — The Register",
+      "url": "https://www.theregister.com/systems/2026/06/16/qualcomm-said-to-be-circling-ai-chip-biz-tenstorrent-in-10b-risc-v-power-play/5256084"
+    },
+    {
+      "title": "Qualcomm Bets $14 Billion on Cracking Nvidia's AI Monopoly — TechTimes",
+      "url": "https://www.techtimes.com/articles/319017/20260624/qualcomm-bets-14-billion-cracking-nvidias-ai-monopoly-risc-v-open-compiler.htm"
+    },
+    {
+      "title": "Qualcomm in Talks to Acquire Tenstorrent for Up to $10B — Yahoo Finance",
+      "url": "https://finance.yahoo.com/technology/ai/articles/qualcomm-talks-acquire-ai-chip-230401789.html"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

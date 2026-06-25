@@ -1,0 +1,51 @@
+{
+  "date": "2026-06-25",
+  "generated_by": "MAXGAZINE SEO Content Agent",
+  "market_snapshot": {
+    "top_gainer_24h": "XLM (Stellar) — +27.67% با حجم ۱.۸۷ میلیارد دلار",
+    "top_volume_spike": "XLM — ~۹ برابر حجم معمول؛ AAVE +13.6% با $400M حجم روی خبر گزارش استاندارد چارترد",
+    "dominant_narrative": "مجلس آمریکا با رأی تاریخی ۳۵۸-۳۲ قانون ممنوعیت CBDC تا ۲۰۳۰ را تصویب کرد؛ ترامپ امروز امضا می‌کند. استیبل‌کوین‌های خصوصی معاف شدند. همزمان اسکاندارد چارترد گزارش صعودی روی AAVE منتشر کرد."
+  },
+  "selected_keyword": {
+    "keyword": "ممنوعیت CBDC در آمریکا ۲۰۳۰",
+    "search_form": "Mixed",
+    "intent": "Informational",
+    "difficulty": "Low",
+    "category": "policy",
+    "trend_source": "Cointelegraph — regulatory news, Jun 24-25 2026",
+    "why": "مجلس نمایندگان آمریکا با رأی تاریخی ۳۵۸-۳۲ قانون ممنوعیت CBDC تا ۲۰۳۰ را تصویب کرد؛ ترامپ همین امروز امضا می‌کند — تاریخی‌ترین اقدام قانونی ضد-CBDC در آمریکا که فضا را برای استیبل‌کوین‌های خصوصی باز می‌کند",
+    "lsi": [
+      "ارز دیجیتال بانک مرکزی",
+      "فدرال رزرو",
+      "قانون مسکن قرن بیست‌ویکم",
+      "استیبل‌کوین",
+      "ترامپ",
+      "CLARITY Act",
+      "جمهوری‌خواهان آمریکا",
+      "حریم خصوصی مالی",
+      "Bitcoin",
+      "سیاست‌گذاری رمزارز ۲۰۲۶"
+    ],
+    "lsi_placements": {
+      "ارز دیجیتال بانک مرکزی": "intro",
+      "فدرال رزرو": "intro + section 1",
+      "قانون مسکن قرن بیست‌ویکم": "section 1",
+      "استیبل‌کوین": "section 2",
+      "ترامپ": "intro + section 3",
+      "CLARITY Act": "section 3",
+      "جمهوری‌خواهان آمریکا": "intro + section 3",
+      "حریم خصوصی مالی": "section 2",
+      "Bitcoin": "conclusion",
+      "سیاست‌گذاری رمزارز ۲۰۲۶": "conclusion"
+    },
+    "scoring": {
+      "trend_velocity": 28,
+      "search_volume_potential": 20,
+      "content_gap": 25,
+      "monetization_relevance": 18,
+      "total": 91
+    },
+    "gap_note": "هیچ مقاله‌ای درباره CBDC یا ممنوعیت آن در مخزن MAXGAZINE وجود ندارد. این موضوع در ۳۰ روز گذشته پوشش داده نشده است.",
+    "category_balance_note": "آخرین ۵ مقاله: crypto، forex، tech، crypto، cars. یک مقاله policy/regulation اکنون مناسب است."
+  }
+}

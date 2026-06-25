@@ -1631,3 +1631,32 @@ body.modal-open{overflow:hidden}
 
 /* ROUND 9 — Persian masthead date in Vazirmatn */
 html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spacing:0}
+
+/* ===== Content-type chip + topic desk sections (two-axis taxonomy) ===== */
+.cat-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.cat-line .cat,.cat-line .vs-cat{margin-bottom:0}
+.type-chip{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;padding:3px 8px;line-height:1.45;white-space:nowrap;
+  background:var(--ink);color:var(--paper)}
+.type-chip[data-type="analysis"]{background:var(--tag-c-fg)}
+.type-chip[data-type="review"]{background:var(--tag-a-fg)}
+.type-chip[data-type="reportage"]{background:var(--tag-b-fg)}
+.type-chip[data-type="podcast"]{background:var(--tag-d-fg)}
+.type-chip[data-type="video"]{background:var(--accent)}
+.type-chip[data-type="article"]{background:var(--muted)}
+/* keep the chip readable when a card inverts on hover */
+.card:hover .type-chip{filter:brightness(1.12)}
+
+/* desk sections reuse .section-head + .feed-grid, matching the .vbox gutter */
+.desk{padding:0 28px;margin-top:8px}
+.desk .section-head{padding-block:22px}
+.media-strip .section-head h2::before{content:"▶ ";color:var(--accent);font-size:.7em;vertical-align:middle}
+@media(max-width:760px){.desk{padding:0 var(--gut)}}
+
+/* ---- Latest hub (tabbed main browse zone, zoomit-style) ---- */
+.latest-hub{margin-top:0;border-top:2px solid var(--line)}
+.latest-hub .section-head{border-bottom:none;padding-bottom:0}
+.latest-list{display:grid;gap:0}
+.latest-list .list-row{border-bottom:1px solid var(--paper2);padding-block:20px}
+.latest-list .list-row:last-child{border-bottom:none}
+@media(max-width:760px){.latest-hub{padding:0 var(--gut)}}
