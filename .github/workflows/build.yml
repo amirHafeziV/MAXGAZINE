@@ -11,6 +11,10 @@ on:
       - "content/**"
       - "assets/uploads/**"
       - "build/**"
+      - "assets/styles.css"
+      - "assets/app.js"
+      - "assets/i18n.js"
+      - "index.html"
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
