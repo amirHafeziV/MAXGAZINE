@@ -9,6 +9,7 @@ import { mkdir, writeFile, readFile, readdir, unlink } from "node:fs/promises";
 import { join } from "node:path";
 import { LANGS, REPO_ROOT, ARTICLES_DIR, DATA_DIR, CONTENT_DIR, config } from "../agents/src/config.js";
 import type { Article } from "../agents/src/types.js";
+import { normalizeArticle } from "../agents/src/taxonomy.js";
 import { renderArticle, renderStoriesIndex, renderCoinPage, type CoinContent } from "./templates.js";
 
 const ORIGIN = config.siteOrigin;
@@ -54,7 +55,8 @@ async function loadArticles(): Promise<Article[]> {
       console.log(`[build] scheduled for ${article.publishAt}, skipping: ${article.slug}`);
       continue;
     }
-    articles.push(article);
+    // backfill topic/type/placement from legacy category/featured
+    articles.push(normalizeArticle(article));
   }
   return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
@@ -78,12 +80,16 @@ function feedEntry(a: Article) {
   return {
     slug: a.slug,
     category: a.category,
+    topic: a.topic,
+    type: a.type,
+    placement: a.placement,
     date: a.date,
     author: a.author,
     headline: a.headline,
     dek: a.dek,
     banner: a.banner ?? null,
-    featured: a.featured === true && !!a.banner,
+    // hero requires a banner; mirror to legacy `featured` for older consumers
+    featured: a.placement?.hero === true && !!a.banner,
   };
 }
 

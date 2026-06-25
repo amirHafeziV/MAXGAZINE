@@ -58,7 +58,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
 };
 
 const FONTS =
-  'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap';
+  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Estedad:wght@300;400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap';
 
 /**
  * Pick a localized value with fallback (manual panel articles may only be
@@ -190,21 +190,31 @@ function chromeHeader(lang: Lang, prefix: string): string {
     (l) => `<button data-lang="${l}"${l === lang ? ' class="active"' : ""} lang="${l}" role="menuitem"><span class="bs-lang-code">${l.toUpperCase()}</span><span class="bs-lang-name">${LANG_NAMES[l]}</span></button>`,
   ).join("");
   const langBtns = `<button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">${lang.toUpperCase()}</span></button><div class="bs-lang-menu" role="menu">${langItems}</div>`;
-  return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page">
+  return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page theme-dark">
+<script>try{if(localStorage.getItem('theme')==='light')document.body.classList.remove('theme-dark');}catch(e){}</script>
 <div class="bs-frame">
 <header class="bsheet">
   <div class="bs-top">
     <div class="bs-date" id="bs-date"></div>
-    <div class="bs-cats">CRYPTO · FOREX · TECH · CARS</div>
-    <div class="bs-lang" role="group" aria-label="Select language">${langBtns}</div>
+    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+    <div class="bs-top-right">
+      <button class="bs-search-btn mono" id="bs-search-btn" type="button" aria-label="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
+      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
+      <button class="theme-toggle mono" id="theme-toggle" aria-label="Toggle theme">LIGHT</button>
+      <div class="bs-lang" role="group" aria-label="Select language">${langBtns}</div>
+    </div>
   </div>
   <div class="bs-logo-row"><a class="bs-logo" href="${p("index.html")}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
   <nav class="bs-nav" aria-label="Primary">
-    <a href="${p("stories.html")}">${esc(c.nav_stories!)}</a>
-    <a href="${p("exchanges.html")}">${esc(c.nav_topmarkets!)}</a>
-    <a href="${p("prices.html")}">${esc(c.nav_prices!)}</a>
-    <a href="${p("about.html")}">${esc(c.nav_about!)}</a>
-    <a href="${p("contact.html")}">${esc(c.nav_contact!)}</a>
+    <a href="${p("stories.html")}" data-i="nav_stories">${esc(c.nav_stories!)}</a>
+    <a href="${p("stories.html")}?cat=crypto" data-nav="crypto" data-i="nav_crypto">${esc(c.nav_crypto!)}</a>
+    <a href="${p("exchanges.html")}" data-i="nav_topmarkets">${esc(c.nav_topmarkets!)}</a>
+    <a href="${p("prices.html")}" data-i="nav_prices">${esc(c.nav_prices!)}</a>
+    <a href="${p("stories.html")}?cat=ai" data-nav="ai">AI News<span class="nav-badge-new">NEW</span></a>
+    <a href="${p("stories.html")}?cat=cars" data-nav="cars" data-i="nav_cars">${esc(c.nav_cars!)}</a>
+    <a href="${p("chart.html")}" data-i="nav_chart">${esc(c.f_chart!)}</a>
+    <a href="${p("about.html")}" data-i="nav_about">${esc(c.nav_about!)}</a>
+    <a href="${p("contact.html")}" data-i="nav_contact">${esc(c.nav_contact!)}</a>
   </nav>
 </header>
 <div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
@@ -250,7 +260,7 @@ function articleCard(a: Article, lang: Lang, prefix: string, readMore: string): 
       `
     : "";
   return `    <a class="card${a.banner ? " has-img" : ""}" href="${prefix}${lang}/${a.slug}.html">
-      ${img}<div class="cat mono">${esc(a.category.toUpperCase())} · ${esc(a.date)}</div>
+      ${img}<div class="cat mono">${esc((a.category||"").toUpperCase())} · ${esc(a.date)}</div>
       <h3>${esc(pick(a.headline, lang))}</h3>
       <p>${esc(pick(a.dek, lang))}</p>
       <span class="mono">${esc(readMore)}</span>
@@ -335,7 +345,7 @@ ${related.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n")}
 
   const body = `<main>
 <article class="article-read bs-section">
-  <div class="read-kicker">${esc(article.category.toUpperCase())}</div>
+  <div class="read-kicker">${esc((article.category||"").toUpperCase())}</div>
   <h1>${esc(pick(article.headline, lang))}</h1>
   <p class="read-dek">${esc(pick(article.dek, lang))}</p>
   <div class="read-byline">
@@ -517,7 +527,7 @@ export interface CoinContent {
 /** Compact related-story row for the coin-page sidebar (no dek, no image). */
 function coinNewsSideCard(a: Article, lang: Lang, prefix: string): string {
   return `<a class="side-news-item" href="${prefix}${lang}/${a.slug}.html">
-      <span class="cat mono">${esc(a.category.toUpperCase())}</span>
+      <span class="cat mono">${esc((a.category||"").toUpperCase())}</span>
       <h4>${esc(pick(a.headline, lang))}</h4>
     </a>`;
 }

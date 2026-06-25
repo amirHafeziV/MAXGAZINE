@@ -33,7 +33,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Estedad:wght@300;400;500;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 
 <script type="application/ld+json">
@@ -47,15 +47,35 @@
 }
 </script>
 </head>
-<body dir="ltr" class="bs-page">
+<body dir="ltr" class="bs-page theme-dark">
+<script>(function(){try{var t=localStorage.getItem('mg_theme');if(t==='light')document.body.classList.remove('theme-dark');}catch(e){}})()</script>
 
 <div class="bs-frame">
+
+  <!-- ===== SUBSCRIBE MODAL ===== -->
+  <div class="sub-modal-overlay" id="sub-modal-overlay" role="dialog" aria-modal="true" aria-label="Subscribe">
+    <div class="sub-modal">
+      <button class="sub-modal-close" id="sub-modal-close" aria-label="Close">✕</button>
+      <div class="sub-modal-eyebrow">Market Intelligence</div>
+      <h2>Stay ahead of the market.</h2>
+      <p>Crypto, forex, tech and cars — fast, raw, and without the noise. No spam. Unsubscribe anytime.</p>
+      <form class="sub-modal-form" id="sub-modal-form" onsubmit="return false">
+        <input class="sub-modal-input" id="sub-modal-email" type="email" placeholder="your@email.com" autocomplete="email" required>
+        <button class="sub-modal-submit" type="submit">Subscribe →</button>
+      </form>
+      <p class="sub-modal-legal">By subscribing you agree to receive editorial emails from MAXGAZINE. We never share your address.</p>
+    </div>
+  </div>
 
   <!-- ===== THREE-ROW MASTHEAD ===== -->
   <header class="bsheet">
     <div class="bs-top">
       <div class="bs-date" id="bs-date"></div>
       <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+      <div class="bs-top-right">
+      <button class="bs-search-btn" id="bs-search-btn" type="button" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
+      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"><span class="tt-icon">☀</span><span class="mono tt-label">LIGHT</span></button>
       <div class="bs-lang" role="group" aria-label="Select language">
         <button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">EN</span></button>
         <div class="bs-lang-menu" role="menu">
@@ -65,12 +85,17 @@
           <button data-lang="tr" lang="tr" role="menuitem"><span class="bs-lang-code">TR</span><span class="bs-lang-name">Türkçe</span></button>
         </div>
       </div>
+      </div><!-- /.bs-top-right -->
     </div>
     <div class="bs-logo-row"><a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
     <nav class="bs-nav" aria-label="Primary">
       <a href="stories.html" data-i="nav_stories">Stories</a>
+      <a href="stories.html?cat=crypto" data-nav="crypto" data-i="nav_crypto">Crypto</a>
       <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
       <a href="prices.html" data-i="nav_prices">Prices</a>
+      <a href="stories.html?cat=ai" data-nav="ai">AI News<span class="nav-badge-new">NEW</span></a>
+      <a href="stories.html?cat=cars" data-nav="cars" data-i="nav_cars">Cars</a>
+      <a href="chart.html" data-i="nav_chart">Charts</a>
       <a href="about.html" data-i="nav_about">About</a>
       <a href="contact.html" data-i="nav_contact">Contact</a>
     </nav>
@@ -125,9 +150,9 @@
       <aside class="editors-pick bs-editors" aria-label="Editor's Pick">
         <div class="editors-head"><span class="kicker mono" data-i="editors_kicker">Editor's Pick</span></div>
         <div class="editors-list" id="editors-list" data-feed-editors>
-          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="markets">MARKETS</span><span class="ep-body"><span class="ep-title">Bitcoin breaks $94K as spot ETF inflows hit a record weekly high</span><span class="ep-meta"><span class="cat mono">MARKETS</span><span class="ep-date mono">MAY 29, 2026</span></span></span></a>
-          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="defi">DEFI</span><span class="ep-body"><span class="ep-title">The quiet rise of tokenized treasuries</span><span class="ep-meta"><span class="cat mono">DEFI</span><span class="ep-date mono">MAY 28, 2026</span></span></span></a>
-          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="policy">POLICY</span><span class="ep-body"><span class="ep-title">Three jurisdictions racing to define crypto custody</span><span class="ep-meta"><span class="cat mono">POLICY</span><span class="ep-date mono">MAY 27, 2026</span></span></span></a>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="markets">MARKETS</span><span class="ep-body"><span class="ep-title">Bitcoin breaks $94K as spot ETF inflows hit a record weekly high</span><span class="ep-meta"><span class="cat mono cat-markets">MARKETS</span><span class="ep-date mono">MAY 29, 2026</span></span></span></a>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="defi">DEFI</span><span class="ep-body"><span class="ep-title">The quiet rise of tokenized treasuries</span><span class="ep-meta"><span class="cat mono cat-defi">DEFI</span><span class="ep-date mono">MAY 28, 2026</span></span></span></a>
+          <a class="ep-row" href="stories.html"><span class="ep-thumb ep-num" data-cat="policy">POLICY</span><span class="ep-body"><span class="ep-title">Three jurisdictions racing to define crypto custody</span><span class="ep-meta"><span class="cat mono cat-policy">POLICY</span><span class="ep-date mono">MAY 27, 2026</span></span></span></a>
         </div>
       </aside>
     </div>
@@ -168,26 +193,30 @@
   </section>
 
   <!-- ===== DESK SECTIONS — one per topic, hydrated & auto-hidden by app.js ===== -->
-  <section class="desk" data-topic-section hidden>
-    <div class="section-head"><h2 data-topic-head>Markets</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories →</a></div>
+  <div class="topic-sep" aria-hidden="true"><div class="topic-sep-track">crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · </div></div>
+  <section class="desk desk-market desk-style-a" data-topic-section hidden>
+    <div class="section-head"><div class="section-head-inner"><h2 data-topic-head>Markets</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories</a></div></div>
     <div class="feed-grid" data-feed-topic="market"></div>
   </section>
-  <section class="desk" data-topic-section hidden>
-    <div class="section-head"><h2 data-topic-head>Crypto</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories →</a></div>
+  <div class="topic-sep" aria-hidden="true"><div class="topic-sep-track">crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · </div></div>
+  <section class="desk desk-crypto desk-style-b" data-topic-section hidden>
+    <div class="section-head"><div class="section-head-inner"><h2 data-topic-head>Crypto</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories</a></div></div>
     <div class="feed-grid" data-feed-topic="crypto"></div>
   </section>
-  <section class="desk" data-topic-section hidden>
-    <div class="section-head"><h2 data-topic-head>Cars</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories →</a></div>
+  <div class="topic-sep" aria-hidden="true"><div class="topic-sep-track">crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · </div></div>
+  <section class="desk desk-cars desk-style-b" data-topic-section hidden>
+    <div class="section-head"><div class="section-head-inner"><h2 data-topic-head>Cars</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories</a></div></div>
     <div class="feed-grid" data-feed-topic="cars"></div>
   </section>
-  <section class="desk" data-topic-section hidden>
-    <div class="section-head"><h2 data-topic-head>Tech</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories →</a></div>
+  <div class="topic-sep" aria-hidden="true"><div class="topic-sep-track">crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · crypto news · market analysis · car review · tech trends · crypto launch pad · ai insights · forex signals · tech reviews · nft market · web3 · blockchain · defi news · ai & more · </div></div>
+  <section class="desk desk-tech desk-style-a" data-topic-section hidden>
+    <div class="section-head"><div class="section-head-inner"><h2 data-topic-head>Tech</h2><a class="all" data-topic-all href="stories.html" data-i="cta_all">All stories</a></div></div>
     <div class="feed-grid" data-feed-topic="tech"></div>
   </section>
 
   <!-- ===== MEDIA STRIP — podcasts & video, hidden until such content exists ===== -->
-  <section class="desk media-strip" data-media-section hidden>
-    <div class="section-head"><h2 data-i="sec_media">Podcasts &amp; Video</h2><a class="all" href="stories.html" data-i="cta_all">All stories →</a></div>
+  <section class="desk" data-media-section hidden>
+    <div class="section-head"><div class="section-head-inner"><h2 data-i="sec_media">Podcasts &amp; Video</h2><a class="all" href="stories.html" data-i="cta_all">All stories →</a></div></div>
     <div class="feed-grid" data-feed-media></div>
   </section>
 
@@ -235,7 +264,7 @@
         </div>
       </div>
       <div class="foot-bottom mono">
-        <span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span>
+        <span data-i="f_copy">© 2026 BRUTALIST MEDIA, LLC. ALL RIGHTS RESERVED</span>
         <span data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
       </div>
     </div>

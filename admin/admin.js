@@ -9,6 +9,21 @@
 
 const LANGS = ['en','fa','ar','tr'];
 const RTL = ['fa','ar'];
+/* content taxonomy — mirrors agents/src/taxonomy.ts. Maps legacy single-axis
+   `category` onto the new topic/type axes when opening older articles. */
+const CATEGORY_MAP = {
+  markets:{topic:'market',type:'news'}, forex:{topic:'market',type:'news'},
+  crypto:{topic:'crypto',type:'news'}, defi:{topic:'crypto',type:'news'},
+  policy:{topic:'crypto',type:'news'}, mining:{topic:'crypto',type:'news'},
+  analysis:{topic:'crypto',type:'analysis'}, reportage:{topic:'crypto',type:'reportage'},
+  staff:{topic:'crypto',type:'article'}, tech:{topic:'tech',type:'news'}, cars:{topic:'cars',type:'news'},
+};
+const TOPIC_TO_CATEGORY = { market:'markets', crypto:'crypto', cars:'cars', tech:'tech' };
+/** topic/type for an article, derived from legacy category when absent. */
+function articleTopicType(d){
+  const m = CATEGORY_MAP[d.category] || {};
+  return { topic: d.topic || m.topic || 'crypto', type: d.type || m.type || 'news' };
+}
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>[...document.querySelectorAll(s)];
 
@@ -340,9 +355,14 @@ function newArticle(){
   $('#schedule-row').hidden = true;
   $('#f-author').value = 'MAXGAZINE Desk';
   $('#f-slug').value = '';
-  $('#f-category').value = 'crypto';
+  $('#f-topic').value = 'crypto';
+  $('#f-type').value = 'news';
   $('#f-tags').value = '';
-  $('#f-featured').checked = false;
+  $('#f-hero').checked = false;
+  $('#f-editors').checked = false;
+  $('#f-pinned').checked = false;
+  $('#f-hidelatest').checked = false;
+  $('#f-priority').value = '0';
   $('#btn-delete').hidden = true;
   $('#save-msg').textContent = '';
   setBanner('');
@@ -372,9 +392,16 @@ function openEditor(entry){
   $('#schedule-row').hidden = $('#f-status').value !== 'scheduled';
   $('#f-author').value = d.author || 'MAXGAZINE Desk';
   $('#f-slug').value = d.slug || '';
-  $('#f-category').value = d.category || 'crypto';
+  const tt = articleTopicType(d);
+  $('#f-topic').value = tt.topic;
+  $('#f-type').value = tt.type;
   $('#f-tags').value = (d.tags||[]).join(', ');
-  $('#f-featured').checked = !!d.featured;
+  const p = d.placement || {};
+  $('#f-hero').checked = p.hero !== undefined ? !!p.hero : !!d.featured;
+  $('#f-editors').checked = !!p.editorsPick;
+  $('#f-pinned').checked = !!p.pinned;
+  $('#f-hidelatest').checked = !!p.hideFromLatest;
+  $('#f-priority').value = String(p.priority || 0);
   $('#btn-delete').hidden = false;
   $('#save-msg').textContent = '';
   setBanner(state.banner);
@@ -440,7 +467,7 @@ async function saveArticle(){
   const msg = $('#save-msg');
   const filled = LANGS.filter(l=>state.buf[l].headline.trim());
   if(!filled.length){ msg.textContent = 'Write a headline in at least one language.'; return; }
-  if($('#f-featured').checked && !state.banner){ msg.textContent = 'Featured articles need a banner image — add one above.'; return; }
+  if($('#f-hero').checked && !state.banner){ msg.textContent = 'مقالهٔ هیرو به تصویر بنر نیاز دارد — یکی اضافه کن.'; return; }
   msg.textContent = 'Saving…';
   const restoreSave = btnBusy($('#btn-save'), 'Saving…');
   state.saving = true;
@@ -464,9 +491,21 @@ async function saveArticle(){
     const publishAtLocal = $('#f-publish-at').value;
     const slug = ($('#f-slug').value.trim() || slugify(state.buf[filled[0]].headline));
     $('#f-slug').value = slug;
+    const topic = $('#f-topic').value;
+    const type = $('#f-type').value;
+    const placement = {
+      hero: $('#f-hero').checked,
+      editorsPick: $('#f-editors').checked,
+      pinned: $('#f-pinned').checked,
+      hideFromLatest: $('#f-hidelatest').checked,
+      priority: parseInt($('#f-priority').value, 10) || 0,
+    };
     const article = {
       slug,
-      category: $('#f-category').value,
+      topic,
+      type,
+      placement,
+      category: TOPIC_TO_CATEGORY[topic] || 'crypto',  // legacy compat for code still reading category
       date: new Date().toISOString().slice(0,10),
       author: $('#f-author').value.trim() || 'MAXGAZINE Desk',
       headline: loc('headline'),
@@ -483,7 +522,7 @@ async function saveArticle(){
       status: statusSel === 'draft' ? 'draft' : 'published',
       ...(statusSel === 'scheduled' && publishAtLocal ? { publishAt: new Date(publishAtLocal).toISOString() } : {}),
       ...(banner ? { banner } : {}),
-      featured: $('#f-featured').checked,
+      featured: placement.hero,  // legacy mirror of placement.hero
     };
     if(state.editing){
       const existing = state.articles.find(a=>a.path===state.editing.path);

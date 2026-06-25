@@ -174,27 +174,41 @@
         </label>
         <label class="mono">Author <input id="f-author" value="MAXGAZINE Desk"></label>
         <label class="mono">Slug <input id="f-slug" placeholder="auto from headline"></label>
-        <label class="mono switch-row"><input type="checkbox" id="f-featured"> Featured — pin to site header &amp; homepage</label>
-        <p class="mono note">Featured articles need a banner image (required).</p>
+        <div class="placement-box">
+          <h4 class="mono">جای‌گذاری در صفحهٔ اصلی</h4>
+          <label class="mono switch-row"><input type="checkbox" id="f-hero"> هیرو — بالای صفحه + هدر سایت</label>
+          <label class="mono switch-row"><input type="checkbox" id="f-editors"> انتخاب سردبیر</label>
+          <label class="mono switch-row"><input type="checkbox" id="f-pinned"> سنجاق به بالای LATEST</label>
+          <label class="mono switch-row"><input type="checkbox" id="f-hidelatest"> مخفی از LATEST</label>
+          <label class="mono">اولویت ترتیب
+            <input type="number" id="f-priority" value="0" step="1" style="width:5rem">
+          </label>
+          <p class="mono note">عدد بزرگ‌تر بالاتر می‌نشیند؛ ۰ یعنی ترتیب بر اساس تاریخ. هیرو به تصویر بنر نیاز دارد.</p>
+        </div>
         <button class="btn" id="btn-save">Save article</button>
         <button class="mono ghost danger" id="btn-delete" hidden>Delete article</button>
         <p class="mono note" id="save-msg"></p>
       </div>
 
       <div class="panel">
-        <h3 class="mono">TAGS &amp; CATEGORY</h3>
-        <label class="mono">Category
-          <select id="f-category">
-            <option value="crypto">Crypto</option>
-            <option value="forex">Forex</option>
-            <option value="markets">Markets</option>
-            <option value="defi">DeFi</option>
-            <option value="policy">Policy</option>
-            <option value="analysis">Analysis</option>
-            <option value="tech">Tech</option>
-            <option value="cars">Cars</option>
-            <option value="staff">Staff</option>
-            <option value="reportage">Reportage</option>
+        <h3 class="mono">دسته‌بندی</h3>
+        <label class="mono">موضوع (Topic)
+          <select id="f-topic">
+            <option value="market">بازار</option>
+            <option value="crypto">کریپتو</option>
+            <option value="cars">خودرو</option>
+            <option value="tech">تکنولوژی</option>
+          </select>
+        </label>
+        <label class="mono">تیپ محتوا (Type)
+          <select id="f-type">
+            <option value="news">خبر</option>
+            <option value="article">مقاله</option>
+            <option value="analysis">تحلیل</option>
+            <option value="review">معرفی</option>
+            <option value="reportage">رپورتاژ</option>
+            <option value="podcast">پادکست</option>
+            <option value="video">ویدیو</option>
           </select>
         </label>
         <label class="mono">Tags (comma separated)

@@ -3,6 +3,12 @@ import type { Lang } from "./config.js";
 /** A localized string: one value per language. */
 export type Localized = Record<Lang, string>;
 
+/**
+ * Legacy single-axis classification. Kept for backward compatibility: existing
+ * content still carries it, and the build derives the new `topic`/`type` axes
+ * from it when those are absent (see taxonomy.ts).
+ * @deprecated Use the orthogonal `topic` + `type` fields instead.
+ */
 export type Category =
   | "markets"
   | "crypto"
@@ -15,6 +21,37 @@ export type Category =
   | "cars"
   | "staff"
   | "reportage";
+
+/** Subject matter — the *what* of a story. One of four desks. */
+export type Topic = "market" | "crypto" | "cars" | "tech";
+
+/** Content format — the *how* a story is told. */
+export type ContentType =
+  | "news"
+  | "article"
+  | "analysis"
+  | "review"
+  | "reportage"
+  | "podcast"
+  | "video";
+
+/**
+ * Editorial placement on the homepage. Each flag is an independent control the
+ * editor sets at publish time; `priority` orders stories within a section
+ * (higher floats up; default 0 falls back to publish-date ordering).
+ */
+export interface Placement {
+  /** Show in the hero stage (and pin to the site header). Requires a banner. */
+  hero?: boolean;
+  /** Surface in the Editor's Pick rail. */
+  editorsPick?: boolean;
+  /** Keep out of the LATEST feed/river. */
+  hideFromLatest?: boolean;
+  /** Float to the top of LATEST regardless of date. */
+  pinned?: boolean;
+  /** Manual ordering weight; higher sorts first. Default 0. */
+  priority?: number;
+}
 
 export interface SourceRef {
   title: string;
@@ -35,7 +72,19 @@ export interface SeoMeta {
 /** A fully assembled, publishable article (all languages). */
 export interface Article {
   slug: string;
-  category: Category;
+  /**
+   * Legacy classification. Optional going forward — new content sets `topic`
+   * and `type` instead, and the build backfills this from them for any code
+   * still reading it.
+   * @deprecated Prefer `topic` + `type`.
+   */
+  category?: Category;
+  /** Subject desk: market / crypto / cars / tech. */
+  topic?: Topic;
+  /** Content format: news / article / analysis / review / reportage / podcast / video. */
+  type?: ContentType;
+  /** Homepage placement controls set by the editor at publish time. */
+  placement?: Placement;
   /** ISO date, e.g. "2026-05-29". */
   date: string;
   author: string;

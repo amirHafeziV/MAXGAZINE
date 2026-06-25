@@ -2,7 +2,7 @@
    MAXGAZINE — shared design system
    Brutalist editorial magazine · crypto & forex
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Vazirmatn:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@600;700;800;900&family=Vazirmatn:wght@400;500;700&display=swap');
 /* ============================================================
    Design system — "The Dispatch / The Terminal" direction
    Warm paper · crimson accent · Fraunces + Lora editorial type
@@ -27,9 +27,9 @@
   --hair:#D4C0BF;          /* hairline divider on paper — 1px */
   --hair-dark:#2E2618;     /* hairline divider on ink — 1px */
   --mono:'IBM Plex Mono',monospace;
-  --font-display:'Fraunces',Georgia,serif;
+  --font-display:'Barlow Condensed',Impact,sans-serif;
   --font-head:'Fraunces',Georgia,serif;
-  --font-body:'Lora',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
   --gut:32px;
   --maxw:1320px;
   --ease:cubic-bezier(.2,.7,.2,1);
@@ -256,10 +256,10 @@ body.menu-open .burger{color:var(--paper);border-color:var(--paper)}
 .ep-row{position:relative;counter-increment:ep;display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:center;
   padding:14px 18px;border-bottom:1px solid var(--hair-dark);text-decoration:none;color:var(--paper);transition:background .15s,color .15s}
 .ep-row:last-child{border-bottom:none}
-.ep-row:hover{background:var(--accent);color:#fff}
-.ep-row:hover .cat{color:#fff;border-color:#fff}
-.ep-row:hover .ep-date{color:rgba(255,255,255,.78)}
-.ep-row:hover::before{background:var(--ink)}
+.ep-row:hover{background:var(--accent-orange,#E8682A);color:#fff}
+.ep-row:hover .cat{color:#fff;border-color:rgba(255,255,255,.5);background:transparent}
+.ep-row:hover .ep-date{color:rgba(255,255,255,.75)}
+.ep-row:hover::before{background:#fff;color:var(--accent-orange,#E8682A)}
 .ep-row::before{content:"0" counter(ep);position:absolute;top:10px;inset-inline-start:10px;z-index:2;
   font-family:var(--font-display);font-size:10px;color:#fff;background:var(--accent);padding:3px 7px;line-height:1.3;transition:background .15s}
 .ep-thumb{width:62px;height:62px;background:#050505 center/cover no-repeat;display:block;flex:0 0 62px}
@@ -1308,6 +1308,307 @@ html[lang="fa"] .bs-pagehead h1{font-family:'Morabba','Estedad',sans-serif;font-
 .feature-img.has-img .fi-label{display:none}
 
 /* ============================================================
+   REFRESH PASS — June 2026
+   1. English font system: Barlow Condensed display + DM Sans body
+   2. Persian font-weight fix: heavier titles, lighter body
+   3. Dark theme as default; light toggle
+   4. Desk section topic colour bands (no more abrupt section starts)
+   5. River → 1 column; desk grid → 2 columns
+   6. Category colour tokens: crypto=purple, tech=amber, market=green
+   ============================================================ */
+
+/* ── 1. ENGLISH FONT SYSTEM ── */
+/* English (and Turkish): Barlow Condensed for display/heads, DM Sans for body */
+html:not([lang="fa"]):not([lang="ar"]){
+  --font-display:'Barlow Condensed','Fraunces',Georgia,serif;
+  --font-head:'Barlow Condensed','Fraunces',Georgia,serif;
+  --font-body:'DM Sans','Lora',Georgia,sans-serif;
+}
+/* Barlow Condensed letters are already condensed — remove opsz variation override
+   for English headings so the font renders at its natural weight */
+html:not([lang="fa"]):not([lang="ar"]) h1,
+/* Barlow Condensed: reset variable-font settings; uppercase for display-level heads only */
+html:not([lang="fa"]):not([lang="ar"]) h1,
+html:not([lang="fa"]):not([lang="ar"]) h2,
+html:not([lang="fa"]):not([lang="ar"]) .giant,
+html:not([lang="fa"]):not([lang="ar"]) .hero h1,
+html:not([lang="fa"]):not([lang="ar"]) .section-head h2{
+  font-variation-settings:normal;letter-spacing:.02em;text-transform:uppercase
+}
+/* h3 (card/article sub-titles): mixed case, slight tracking */
+html:not([lang="fa"]):not([lang="ar"]) h3{
+  font-variation-settings:normal;letter-spacing:.01em;text-transform:none
+}
+html:not([lang="fa"]):not([lang="ar"]) .hero h1{font-weight:900;letter-spacing:.02em;font-size:clamp(30px,4.5vw,64px)}
+/* DM Sans body — slightly lighter weight than Lora was */
+html:not([lang="fa"]):not([lang="ar"]) body{font-weight:400}
+
+/* ── 2. PERSIAN FONT WEIGHTS — titles light/editorial, body normal weight ── */
+/* Body: normal weight (400) — not too heavy, not too light */
+html[lang="fa"] .article-prose,
+html[lang="fa"] .list-row p,
+html[lang="fa"] .card p,
+html[lang="fa"] .vrl-dek,
+html[lang="fa"] .vs-excerpt,
+html[lang="fa"] .bs-prose p,
+html[lang="fa"] .hero-sub,
+html[lang="fa"] .foot-desc{font-weight:400 !important}
+/* Page titles (h1): 700 — bold but not Black */
+html[lang="fa"] .hero h1,
+html[lang="fa"] h1,
+html[lang="fa"] .bs-pagehead h1,
+html[lang="fa"] .article-read h1,
+html[lang="fa"] .cover-hero h1{font-weight:700 !important;letter-spacing:0}
+/* Section h2: lighter for editorial feel */
+html[lang="fa"] h2{font-weight:400 !important;letter-spacing:0}
+/* Lead article titles: 700 */
+html[lang="fa"] .vrl-body h3,
+html[lang="fa"] .pullquote p{font-weight:700 !important;letter-spacing:0}
+/* Card/stream titles: 400 (editorial, not heavy) */
+html[lang="fa"] .card h3,
+html[lang="fa"] .vr-body h3,
+html[lang="fa"] .vs-title,
+html[lang="fa"] .ep-title,
+html[lang="fa"] .list-row h3,
+html[lang="fa"] .side-news-item h4{font-weight:400 !important}
+
+/* ── 3. DARK THEME ── */
+/* Default = dark; class .theme-dark on <body>; toggled by user to .theme-light */
+body.theme-dark{
+  --ink:#F5EFE5;
+  --paper:#0A0908;
+  --paper2:#141210;
+  --paper3:#0E0C0B;
+  --accent:#D94F4F;
+  --accent-soft:#E46060;
+  --gold:#E8B04B;
+  --up:#22c55e;
+  --down:#ef4444;
+  --up-d:#3bff7a;
+  --down-d:#ff3b3b;
+  --ink-soft:#C8C0B4;
+  --muted:#7A6E60;
+  --muted2:#504844;
+  --muted-d:#B8AE9C;
+  --line:#2E2A24;
+  --hair:#1E1C18;
+  --hair-dark:#181614;
+  --up-bg:#08200E;
+  --down-bg:#200808;
+  --grid:#1A1816;
+  --tag-a-bg:#102010;--tag-a-fg:#6dba62;
+  --tag-b-bg:#201800;--tag-b-fg:#d4a240;
+  --tag-c-bg:#0E1428;--tag-c-fg:#7090d0;
+  --tag-d-bg:#200E0E;--tag-d-fg:#d06845;
+  background:var(--paper);color:var(--ink)
+}
+
+/* dark: prevent flash — the broadsheet body bg removal still applies */
+body.theme-dark.bs-page{background-color:var(--paper);background-image:none}
+
+/* dark: frame border */
+body.theme-dark .bs-frame{border-color:var(--line)}
+
+/* dark: header surfaces */
+body.theme-dark .topbar{background:var(--paper);border-bottom-color:var(--line)}
+body.theme-dark .bs-mini{background:var(--paper2);border-color:var(--line)}
+body.theme-dark .bs-mini-nav a{color:var(--ink)}
+body.theme-dark .bsheet{background:transparent}
+body.theme-dark .bs-top{border-bottom-color:var(--line)}
+body.theme-dark .bs-logo-row{border-bottom-color:var(--line)}
+body.theme-dark .bs-nav a{color:var(--ink)}
+body.theme-dark .bs-nav a:hover{color:var(--accent)}
+body.theme-dark .bs-nav a.active{background:var(--accent);color:#fff}
+
+/* dark: hero band stays very dark */
+body.theme-dark .bs-hero-band{background:#040302}
+body.theme-dark .ticker{background:#060504;border-color:var(--line);color:var(--muted-d)}
+body.theme-dark .bs-hero-band .ticker{border-bottom-color:#181614}
+
+/* dark: editors-pick — pure near-black */
+body.theme-dark .editors-pick{background:#080706;color:var(--ink);border-color:var(--line)}
+body.theme-dark .editors-pick .editors-head{border-bottom-color:#282420}
+body.theme-dark .ep-row{border-bottom-color:#282420;color:var(--ink)}
+body.theme-dark .ep-title{color:#F5EFE5}
+body.theme-dark .ep-date{color:#9A9087}
+body.theme-dark .ep-row:hover{background:var(--accent-orange,#E8682A) !important;color:#fff !important}
+
+/* dark: cards */
+body.theme-dark .card:hover{background:var(--paper2);color:var(--ink)}
+body.theme-dark .card:hover .cat{color:var(--accent)}
+body.theme-dark .card:hover p,body.theme-dark .card:hover .card-meta{color:var(--muted)}
+
+/* dark: river items */
+body.theme-dark .vriver-item:not(.lead):hover{background:var(--paper2);color:var(--ink)}
+body.theme-dark .vriver-item:not(.lead):hover h3,
+body.theme-dark .vriver-item:not(.lead):hover .vrl-dek{color:var(--ink)}
+body.theme-dark .vriver-item:not(.lead):hover .vr-by b{color:var(--ink)}
+body.theme-dark .vriver-item:not(.lead):hover .cat{color:var(--accent);border-color:var(--accent)}
+
+/* dark: sidebar ad / side boxes */
+body.theme-dark .vside-ad{border-color:var(--line)}
+
+/* dark: sections */
+body.theme-dark .section-head{border-bottom-color:var(--line)}
+body.theme-dark .vbox-head{border-bottom-color:var(--line)}
+body.theme-dark .bs-latest{border-block-color:var(--line)}
+
+/* dark: tabs */
+body.theme-dark .tab{border-color:var(--line);color:var(--ink)}
+body.theme-dark .tab.active,body.theme-dark .tab:hover{background:var(--ink);color:var(--paper)}
+
+/* dark: dropdown */
+body.theme-dark .sub{background:var(--paper2);border-color:var(--line)}
+body.theme-dark .sub a:hover{background:var(--paper3);color:var(--accent)}
+
+/* dark: lang switcher */
+body.theme-dark .lang{border-color:var(--line)}
+body.theme-dark .lang button{color:var(--ink);border-color:var(--line)}
+body.theme-dark .lang button.active{background:var(--ink);color:var(--paper)}
+body.theme-dark .bs-lang-toggle{border-color:var(--line);color:var(--ink)}
+body.theme-dark .bs-lang-menu{background:var(--paper2);border-color:var(--line);box-shadow:5px 5px 0 var(--line)}
+body.theme-dark .bs-lang-menu button{color:var(--ink)}
+body.theme-dark .bs-lang-menu button.active{background:var(--ink);color:var(--paper)}
+
+/* dark: market snap */
+body.theme-dark .market-snap{border-color:var(--line)}
+body.theme-dark .market-snap-head{border-bottom-color:var(--line)}
+body.theme-dark .snap-cell{border-color:var(--hair)}
+body.theme-dark .snap-cell:hover{background:var(--paper3)}
+
+/* dark: tables */
+body.theme-dark table.data thead th{border-bottom-color:var(--line)}
+body.theme-dark table.data tbody tr:hover{background:var(--paper2)}
+body.theme-dark .rank-head:hover{background:var(--paper2)}
+body.theme-dark .rank-row{border-bottom-color:var(--hair)}
+
+/* dark: forms */
+body.theme-dark .form input,
+body.theme-dark .form textarea,
+body.theme-dark .form select{background:var(--paper2);color:var(--ink);border-color:var(--line)}
+
+/* dark: footer (was ink bg) */
+body.theme-dark footer{background:#060504}
+
+/* dark: dispatch crimson card stays crimson */
+body.theme-dark .dispatch-card{background:var(--accent)}
+body.theme-dark .dispatch-card:hover{background:#7d1414}
+
+/* dark: mobile menus */
+body.theme-dark .nav-links,body.theme-dark .bs-menu{background:var(--paper)}
+body.theme-dark .nav-links .menu-head{border-bottom-color:var(--line)}
+body.theme-dark .bs-menu-head{border-bottom-color:var(--line)}
+body.theme-dark .nav-group{border-bottom-color:rgba(255,255,255,.08)}
+body.theme-dark .nav-group>a{color:var(--ink)}
+
+/* dark: coin hero panels */
+body.theme-dark.bs-page .coin-hero-card,
+body.theme-dark.bs-page .coin-hero-chart{border-color:var(--line);background:var(--paper2)}
+
+/* dark: promo/ad borders */
+body.theme-dark .promo{border-color:var(--line)}
+body.theme-dark .ad-banner{border-color:var(--line)}
+body.theme-dark .ad-slot{border-color:var(--line)}
+
+/* dark: imageless card accent top rule stays readable */
+body.theme-dark .bs-grid .card:not(:has(.card-img)){border-top-color:var(--accent)}
+
+/* ── THEME TOGGLE BUTTON ── */
+.theme-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  background:none;border:2px solid var(--line);cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:6px 10px;color:var(--ink);
+  transition:background .15s,color .15s,border-color .15s;white-space:nowrap
+}
+.theme-toggle:hover{background:var(--ink);color:var(--paper)}
+.tt-icon{font-style:normal;font-size:13px;line-height:1;transition:transform .4s ease}
+body.theme-dark .tt-icon{transform:rotate(180deg)}
+
+/* bs-top right cell: flex wrapper for toggle + lang */
+.bs-top-right{justify-self:end;display:flex;align-items:center;gap:10px}
+.bs-top-right .bs-lang{justify-self:auto}
+
+/* ── 4. DESK SECTION TOPIC COLOUR BANDS ── */
+/* Visual "chapter entry" for each topic section — perforated rule + coloured band */
+.desk{border-top:3px dotted var(--ink);margin-top:40px}
+.desk .section-head{border-bottom:none;padding-inline:0;padding-block:0}
+.desk .section-head-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 28px 20px;
+  margin-inline:-28px;
+}
+
+/* Crypto — periwinkle blue on near-black */
+.desk-crypto .section-head-inner{
+  background:#0A0E1E;border-bottom:4px solid #7090D0;border-top:4px solid #7090D0
+}
+.desk-crypto .section-head-inner h2{color:#B0C0E8}
+.desk-crypto .section-head-inner .all{color:#7090D0;border-color:#7090D0}
+.desk-crypto .feed-grid{border-top:none}
+
+/* Tech — pure amber/yellow on near-black */
+.desk-tech .section-head-inner{
+  background:#120E00;border-bottom:4px solid #D97706;border-top:4px solid #D97706
+}
+.desk-tech .section-head-inner h2{color:#FCD34D}
+.desk-tech .section-head-inner .all{color:#F59E0B;border-color:#F59E0B}
+.desk-tech .feed-grid{border-top:none}
+
+/* Markets/Finance — pure emerald on near-black */
+.desk-market .section-head-inner{
+  background:#051408;border-bottom:4px solid #16A34A;border-top:4px solid #16A34A
+}
+.desk-market .section-head-inner h2{color:#86EFAC}
+.desk-market .section-head-inner .all{color:#22C55E;border-color:#22C55E}
+.desk-market .feed-grid{border-top:none}
+
+/* Cars — pure crimson on near-black */
+.desk-cars .section-head-inner{
+  background:#140404;border-bottom:4px solid #DC2626;border-top:4px solid #DC2626
+}
+.desk-cars .section-head-inner h2{color:#FCA5A5}
+.desk-cars .section-head-inner .all{color:#EF4444;border-color:#EF4444}
+.desk-cars .feed-grid{border-top:none}
+
+/* dark mode topic bands (deeper blacks) */
+body.theme-dark .desk-crypto .section-head-inner{background:#0C1022}
+body.theme-dark .desk-tech .section-head-inner{background:#160F00}
+body.theme-dark .desk-market .section-head-inner{background:#071608}
+body.theme-dark .desk-cars .section-head-inner{background:#160606}
+
+/* RTL: padding symmetry already provided by padding-inline:0 on parent; inner has fixed 28px */
+body[dir="rtl"] .desk .section-head-inner{text-align:start}
+
+/* mobile: tighten gutter */
+@media(max-width:760px){
+  .desk .section-head-inner{margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut)}
+}
+
+/* ── 5. LAYOUT FIXES ── */
+/* Main time-sorted feed: force single column */
+.vriver{grid-template-columns:1fr !important;column-gap:0}
+
+/* Desk topic sections: two-column card grid */
+.desk .feed-grid{grid-template-columns:repeat(2,1fr)}
+/* fix nth-child border rules for 2-col instead of 3-col */
+.desk .feed-grid>*:nth-child(3n){border-inline-end:2px solid var(--line)}
+.desk .feed-grid>*:nth-child(2n){border-inline-end:none}
+
+@media(max-width:860px){.desk .feed-grid{grid-template-columns:1fr}}
+
+/* ── 6. CATEGORY COLOUR TOKENS ON CARDS ── */
+/* catKey class added by app.js from a.category.toLowerCase() */
+.cat-crypto{color:#7090D0 !important;border-color:#7090D0 !important}
+.cat-tech{color:#F59E0B !important;border-color:#F59E0B !important}
+.cat-market,.cat-markets{color:#22C55E !important;border-color:#22C55E !important}
+.cat-cars{color:#EF4444 !important;border-color:#EF4444 !important}
+.cat-defi,.cat-policy,.cat-forex{color:var(--accent-soft) !important;border-color:var(--accent-soft) !important}
+
+/* Desk section headings use font-display (Barlow Condensed on English) */
+.desk .section-head-inner h2{font-family:var(--font-display);font-size:clamp(24px,3.2vw,40px);letter-spacing:-.01em;font-weight:900}
+
+/* ============================================================
    BROADSHEET FIXES (round 2) — feedback pass
    ============================================================ */
 /* 1) چهارخونه only in small spots (image placeholders), NOT page-wide */
@@ -1336,7 +1637,9 @@ body.scrolled .bs-mini{transform:none}
 .bs-mini-nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink);transition:color .15s}
 .bs-mini-nav a:hover{color:var(--accent)}
 html[lang="fa"] .bs-mini-nav a,html[lang="ar"] .bs-mini-nav a{font-family:var(--font-body);letter-spacing:0}
-.bs-mini-burger{display:none;width:42px;height:42px;flex:0 0 42px;border:2px solid var(--ink);background:var(--ink);cursor:pointer;position:relative;padding:0}
+.bs-mini-burger{display:flex;width:42px;height:42px;flex:0 0 42px;border:2px solid var(--ink);background:var(--ink);cursor:pointer;position:relative;padding:0}
+/* show the .burger (created by initBroadsheetChrome) inside .bs-mini on all screens */
+.bs-mini .burger{display:flex;width:42px;height:42px;flex:0 0 42px;border:2px solid var(--ink);background:var(--ink);cursor:pointer;position:relative;padding:0;align-items:center;justify-content:center}
 .bs-mini-burger::before{content:"";position:absolute;inset:0;margin:auto;width:18px;height:12px;
   background-image:repeating-linear-gradient(to bottom,var(--paper) 0 2px,transparent 2px 5px)}
 .bs-mini-burger:active{transform:scale(.94)}
@@ -1632,6 +1935,319 @@ body.modal-open{overflow:hidden}
 /* ROUND 9 — Persian masthead date in Vazirmatn */
 html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spacing:0}
 
+/* ============================================================
+   ROUND 10 — Full visual polish pass (desktop)
+   1. Equal-height header buttons
+   2. Dark-mode lang dropdown shadow → orange
+   3. Dark-mode separator under nav + purple ticker
+   4. Editor's Pick hover: number → black, cat → category colour
+   5. Hero chip: solid filled per category
+   6. Topic separator (animated text marquee)
+   7. Desk sections: vertical category label redesign
+   8. Footer dark-mode fix
+   9. Nav: coloured pips for new category links
+   ============================================================ */
+
+/* ── 1. EQUAL-HEIGHT HEADER BUTTONS ── */
+.theme-toggle,.bs-lang-toggle{height:36px;box-sizing:border-box}
+
+/* ── 2. DARK-MODE LANG DROPDOWN SHADOW → ORANGE ── */
+body.theme-dark .bs-lang-menu{box-shadow:5px 5px 0 var(--accent-orange)}
+
+/* ── 3. DARK-MODE SEPARATOR + PURPLE TICKER ── */
+/* A hairline under the masthead so the dark hero band isn't merged with the header */
+body.theme-dark .bsheet{border-bottom:2px solid var(--line)}
+/* Crypto-purple tint on the ticker band */
+.bs-hero-band .ticker{background:#100C28;color:#B0C0E8}
+body.theme-dark .bs-hero-band .ticker{background:#0A0718}
+.bs-hero-band .ticker .up{color:#8BAAE0 !important}
+.bs-hero-band .ticker .down{color:#E46060 !important}
+
+/* ── 4. EDITOR'S PICK HOVER: white bg, ink text ── */
+/* Number badge: always ink bg on hover */
+.ep-row:hover::before{background:var(--ink) !important;color:#fff !important}
+/* Cat chip on white hover bg: use category colour */
+.ep-row:hover .cat{color:var(--ink);border-color:currentColor;background:transparent}
+/* dark mode: white hover bg overrides */
+body.theme-dark .ep-row:hover .ep-date{color:rgba(255,255,255,.75) !important}
+body.theme-dark .ep-row:hover .ep-title{color:#fff !important}
+/* Category chips on orange hover bg: all white */
+.ep-row:hover .cat.cat-markets,.ep-row:hover .cat.cat-market,
+.ep-row:hover .cat.cat-crypto,.ep-row:hover .cat.cat-tech,
+.ep-row:hover .cat.cat-cars,.ep-row:hover .cat.cat-defi,
+.ep-row:hover .cat.cat-policy,.ep-row:hover .cat.cat-forex,
+.ep-row:hover .cat.cat-analysis{
+  color:#fff !important;border-color:rgba(255,255,255,.5) !important;background:transparent !important}
+
+/* ── 5. HERO CHIP: solid filled per category ── */
+/* Default: dark frosted pill so text stays readable over photo */
+.hero-meta .chip{
+  background:rgba(0,0,0,.72);
+  border-color:rgba(255,255,255,.25);
+  color:#fff
+}
+/* Category-specific solid fills (cat-X set by app.js; override !important because
+   .cat-crypto etc. already use !important on color/border-color) */
+.hero-meta .chip.cat-markets,.hero-meta .chip.cat-market{
+  background:#166534 !important;border-color:#22C55E !important;color:#86EFAC !important}
+.hero-meta .chip.cat-crypto{
+  background:#1e2a5e !important;border-color:#7090D0 !important;color:#B0C0E8 !important}
+.hero-meta .chip.cat-tech{
+  background:#451a00 !important;border-color:#D97706 !important;color:#FCD34D !important}
+.hero-meta .chip.cat-cars{
+  background:#450a0a !important;border-color:#EF4444 !important;color:#FCA5A5 !important}
+.hero-meta .chip.cat-defi,.hero-meta .chip.cat-policy,.hero-meta .chip.cat-forex{
+  background:rgba(155,28,28,.6) !important;border-color:var(--accent) !important;color:#fff !important}
+/* Default gold (fallback for uncategorised hero) */
+.hero-meta .chip.cat-gold{
+  background:rgba(80,50,0,.65) !important;border-color:#E8B04B !important;color:#E8B04B !important}
+
+/* ── 6. TOPIC SEPARATOR: animated text marquee ── */
+.topic-sep{
+  overflow:hidden;white-space:nowrap;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:7px 0;margin:0 28px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted2);
+  user-select:none;-webkit-user-select:none
+}
+.topic-sep-track{
+  display:inline-block;
+  animation:topicsep 38s linear infinite;will-change:transform
+}
+@keyframes topicsep{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.topic-sep-track{animation:none}}
+@media(max-width:760px){.topic-sep{margin-inline:var(--gut)}}
+
+/* ── 7. DESK SECTIONS: big horizontal label + card grid ── */
+.desk[hidden]{display:none !important}
+.desk{
+  display:block;
+  padding:0;
+  margin-top:0;
+  border-top:none
+}
+
+/* ── Section head: horizontal strip with BIG category label ── */
+.desk .section-head{
+  border-bottom:none;
+  padding:0
+}
+.desk .section-head-inner{
+  writing-mode:horizontal-tb;
+  transform:none;
+  display:flex;
+  flex-direction:row;
+  align-items:baseline;
+  justify-content:space-between;
+  padding:28px 0 18px;
+  margin:0;
+  gap:20px;
+  border-bottom:2px solid currentColor
+}
+/* Big category label with half-height marker highlight */
+.desk .section-head-inner h2{
+  font-family:var(--font-display);
+  font-size:clamp(52px,6vw,80px);
+  font-weight:900;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  line-height:1;
+  margin:0;
+  white-space:nowrap;
+  position:relative;
+  display:inline-block
+}
+/* Marker highlight: colored band behind lower 45% of text */
+.desk .section-head-inner h2::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:-4px;right:-4px;
+  height:44%;
+  z-index:-1;
+  opacity:.85
+}
+.desk .section-head-inner .all{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding-bottom:2px;
+  border-bottom:1px solid currentColor;
+  flex-shrink:0;
+  opacity:.82
+}
+
+/* Per-category label colour + marker highlight colour */
+.desk-market .section-head-inner{color:#16A34A}
+.desk-market .section-head-inner h2::after{background:#22C55E}
+.desk-crypto .section-head-inner{color:#7090D0}
+.desk-crypto .section-head-inner h2::after{background:#5070B8}
+.desk-tech .section-head-inner{color:#D97706}
+.desk-tech .section-head-inner h2::after{background:#FBBF24}
+.desk-cars .section-head-inner{color:#DC2626}
+.desk-cars .section-head-inner h2::after{background:#EF4444}
+
+/* dark mode: lighter label text */
+body.theme-dark .desk-market .section-head-inner{color:#4ADE80}
+body.theme-dark .desk-crypto .section-head-inner{color:#93B4F0}
+body.theme-dark .desk-tech .section-head-inner{color:#FCD34D}
+body.theme-dark .desk-cars .section-head-inner{color:#FCA5A5}
+
+/* Feed grid: full width under the label */
+.desk .feed-grid{
+  border-top:none !important;
+  border-inline-start:none !important;
+  grid-template-columns:repeat(2,1fr)
+}
+.desk .feed-grid>*:nth-child(3n){border-inline-end:2px solid var(--line)}
+.desk .feed-grid>*:nth-child(2n){border-inline-end:none}
+body.theme-dark .desk .feed-grid>*{border-color:var(--line)}
+
+/* ── Desk cards: full image + overlaid cat + content below ── */
+/* Card resets to vertical layout, no side padding bleed needed */
+.desk .card{
+  padding:0;
+  display:grid;
+  grid-template-rows:auto auto 1fr auto auto;
+  grid-template-columns:1fr
+}
+/* Image: full-width, 16:9, no margin bleed */
+.desk .card .card-img{
+  grid-row:1;
+  grid-column:1;
+  margin:0 !important;
+  height:auto !important;
+  overflow:hidden;
+  position:relative
+}
+.desk .card .card-img::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:50%;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));
+  pointer-events:none
+}
+.desk .card .card-img img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  height:auto !important
+}
+/* Cat tag: overlaid at bottom-left of image using grid overlap */
+.desk .card .cat{
+  grid-row:1;
+  grid-column:1;
+  align-self:end;
+  justify-self:start;
+  position:relative;
+  z-index:2;
+  margin:0 0 10px 12px;
+  background:rgba(0,0,0,.65);
+  color:#fff !important;
+  border-color:rgba(255,255,255,.4) !important
+}
+/* Title: below image */
+.desk .card h3{
+  grid-row:2;
+  grid-column:1;
+  font-size:clamp(15px,1.6vw,19px);
+  line-height:1.18;
+  margin:0;
+  padding:14px 18px 8px
+}
+/* Excerpt */
+.desk .card p{
+  grid-row:3;
+  grid-column:1;
+  font-size:13px;
+  line-height:1.52;
+  padding:0 18px 10px;
+  margin:0;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  color:var(--ink-soft)
+}
+/* Author + date meta */
+.desk .card .card-meta{
+  grid-row:4;
+  grid-column:1;
+  padding:0 18px 14px;
+  font-size:11px;
+  justify-content:flex-start;
+  gap:10px
+}
+/* READ → link at bottom */
+.desk .card .read,.desk .card [class*="read"]{
+  grid-row:5;
+  grid-column:1;
+  display:block;
+  padding:10px 18px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-top:1px solid var(--line);
+  color:var(--accent)
+}
+
+/* Nav padding tweak to fit 9 items */
+.bs-nav a{padding:17px 28px}
+@media(min-width:1200px){.bs-nav a{padding:17px 34px}}
+
+/* Mobile: single-column cards */
+@media(max-width:760px){
+  .desk .feed-grid{grid-template-columns:1fr}
+  .desk .feed-grid>*{border-inline-end:none !important}
+  .desk .section-head-inner{padding:20px 0 14px}
+  .desk .section-head-inner h2{font-size:clamp(36px,10vw,52px)}
+}
+
+/* ── 8. FOOTER DARK-MODE FIX ──
+   Bug: footer{color:var(--paper)} where dark-mode --paper = #0A0908 (near-black)
+   → black text on near-black background = invisible. Override explicitly. */
+body.theme-dark footer{background:#060504;color:#C8C0B4}
+body.theme-dark .foot-logo{color:#F0EAE0}
+body.theme-dark .foot-desc{color:#6A5E50}
+body.theme-dark .foot-socials a{color:#B8AE9C;opacity:1}
+body.theme-dark .foot-socials a:hover{color:var(--accent);opacity:1}
+body.theme-dark .foot-col h5{color:#6A5E50}
+body.theme-dark .foot-col a{color:#B8AE9C}
+body.theme-dark .foot-col a:hover{color:var(--accent)}
+body.theme-dark .foot-top{border-bottom-color:#1E1C18}
+body.theme-dark .foot-bottom{color:#504844}
+/* Persian text in footer → Estedad */
+html[lang="fa"] .foot-desc,
+html[lang="fa"] .foot-col a,
+html[lang="fa"] .foot-col h5{font-family:'Estedad',sans-serif}
+
+/* ── 9. NAV: coloured pips for category links ── */
+.bs-nav a[data-nav]::before{
+  content:"";display:inline-block;
+  width:5px;height:5px;border-radius:50%;
+  vertical-align:middle;margin-inline-end:6px;margin-bottom:1px
+}
+.bs-nav a[data-nav="ai"]::before{background:#D97706}
+.bs-nav a[data-nav="ai"]:hover{color:#D97706}
+.bs-nav a[data-nav="cars"]::before{background:#DC2626}
+.bs-nav a[data-nav="cars"]:hover{color:#DC2626}
+.bs-nav a[data-nav="crypto"]::before{background:#7090D0}
+.bs-nav a[data-nav="crypto"]:hover{color:#7090D0}
+/* NEW badge for freshly added nav sections */
+.nav-badge-new{
+  display:inline-block;font-family:var(--mono);
+  font-size:7px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;
+  background:var(--gold);color:#000;
+  padding:1px 5px;
+  vertical-align:middle;margin-inline-start:5px
+}
+
 /* ===== Content-type chip + topic desk sections (two-axis taxonomy) ===== */
 .cat-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
 .cat-line .cat,.cat-line .vs-cat{margin-bottom:0}
@@ -1660,3 +2276,788 @@ html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spa
 .latest-list .list-row{border-bottom:1px solid var(--paper2);padding-block:20px}
 .latest-list .list-row:last-child{border-bottom:none}
 @media(max-width:760px){.latest-hub{padding:0 var(--gut)}}
+
+/* ===== ROUND 11 — Search overlay + Sign In + Subscribe + Rich Menu ===== */
+
+/* ── Search & action buttons in bs-top-right ── */
+.bs-search-btn,.bs-signin-btn,.bs-subscribe-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  height:34px;padding:0 14px;
+  border:1px solid currentColor;
+  font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;text-decoration:none;
+  cursor:pointer;white-space:nowrap;transition:all .15s
+}
+.bs-search-btn{
+  background:transparent;color:var(--ink);border-color:var(--line)
+}
+.bs-search-btn:hover{background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--accent-orange,#E8682A)}
+body.theme-dark .bs-search-btn{color:var(--ink);border-color:rgba(255,255,255,.25)}
+body.theme-dark .bs-search-btn:hover{background:var(--ink);color:var(--paper)}
+.bs-signin-btn{
+  background:transparent;color:var(--ink);border-color:var(--line)
+}
+.bs-signin-btn:hover{background:var(--ink);color:var(--paper)}
+body.theme-dark .bs-signin-btn{color:#E0D8CC;border-color:rgba(255,255,255,.2)}
+body.theme-dark .bs-signin-btn:hover{background:#E0D8CC;color:#0A0908}
+.bs-subscribe-btn{
+  background:var(--accent-orange,#E8682A);color:#fff;
+  border-color:var(--accent-orange,#E8682A)
+}
+.bs-subscribe-btn:hover{background:#cf5a23;border-color:#cf5a23;box-shadow:4px 4px 0 var(--ink)}
+
+/* Hide sign-in/subscribe text on small widths */
+@media(max-width:1100px){
+  .bs-signin-btn,.bs-subscribe-btn,.bs-search-btn .tt-label{display:none}
+  .bs-search-btn{padding:0 10px}
+}
+
+/* ── Search overlay ── */
+.bs-search-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(0,0,0,.92);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding-top:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s
+}
+.bs-search-overlay.open{opacity:1;pointer-events:all}
+.bs-search-form{
+  width:min(680px,90vw);
+  display:flex;gap:0;
+  border-bottom:2px solid #fff
+}
+.bs-search-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:var(--font-head);font-size:clamp(22px,4vw,38px);
+  color:#fff;padding:10px 0;caret-color:var(--accent-orange,#E8682A)
+}
+.bs-search-input::placeholder{color:rgba(255,255,255,.4)}
+.bs-search-submit{
+  background:transparent;border:none;cursor:pointer;
+  color:rgba(255,255,255,.6);padding:10px 8px;
+  font-size:20px
+}
+.bs-search-close{
+  position:absolute;top:24px;right:28px;
+  background:transparent;border:none;cursor:pointer;
+  color:#fff;font-size:24px;opacity:.7;padding:8px
+}
+.bs-search-close:hover{opacity:1}
+.bs-search-hint{
+  margin-top:18px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.06em;color:rgba(255,255,255,.4);text-transform:uppercase
+}
+
+/* ── Rich full-screen menu — hidden until .open ── */
+body > .nav-links{display:none !important}
+body > .nav-links.open{
+  display:grid !important;
+  position:fixed !important;
+  top:0 !important;right:0 !important;bottom:0 !important;left:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  z-index:800 !important;
+  background:#0A0908 !important;
+  grid-template-columns:1fr 1fr !important;
+  grid-template-rows:auto auto 1fr auto !important;
+  padding:0 !important;
+  overflow-y:auto !important
+}
+.menu-head{
+  grid-column:1/-1;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 36px;
+  border-bottom:1px solid rgba(255,255,255,.1) !important
+}
+.menu-head .menu-logo{
+  font-family:'Fraunces',Georgia,serif;font-size:28px;font-weight:600;
+  color:#fff;text-decoration:none;letter-spacing:-.02em
+}
+.menu-head-actions{
+  display:flex;gap:12px;align-items:center
+}
+.menu-head-actions a,.menu-head-actions button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;color:rgba(255,255,255,.65);background:transparent;border:none;cursor:pointer
+}
+.menu-head-actions .menu-subscribe{
+  padding:8px 18px;background:var(--accent-orange,#E8682A);color:#fff;
+  font-weight:700
+}
+/* Nav groups: two columns in rich menu */
+.nav-links .nav-groups{
+  grid-column:1;
+  padding:28px 36px 20px;
+  display:flex;flex-direction:column;gap:4px
+}
+.nav-links .nav-extras{
+  grid-column:2;
+  padding:28px 36px 20px;
+  display:flex;flex-direction:column;gap:4px;
+  border-left:1px solid rgba(255,255,255,.08)
+}
+.nav-links .nav-group a{
+  font-family:var(--font-display);font-size:clamp(22px,2.8vw,34px);
+  font-weight:900;letter-spacing:-.02em;text-transform:uppercase;
+  color:#E0D8CC;text-decoration:none;line-height:1.05;
+  transition:color .12s
+}
+.nav-links .nav-group a:hover{color:var(--accent-orange,#E8682A)}
+.nav-links .nav-group .sub a{
+  font-size:13px;font-family:var(--mono);letter-spacing:.04em;font-weight:400
+}
+.nav-links .menu-foot{
+  grid-column:1/-1;
+  border-top:1px solid rgba(255,255,255,.1) !important;
+  padding:16px 36px !important;
+  display:flex;align-items:center;justify-content:space-between
+}
+/* Search bar inside menu */
+.menu-search{
+  grid-column:1/-1;
+  padding:14px 36px;
+  border-bottom:1px solid rgba(255,255,255,.08)
+}
+.menu-search-input{
+  width:100%;background:rgba(255,255,255,.06);border:none;outline:none;
+  font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+  color:#fff;padding:10px 16px;caret-color:var(--accent-orange,#E8682A)
+}
+.menu-search-input::placeholder{color:rgba(255,255,255,.35)}
+
+@media(max-width:640px){
+  .nav-links{grid-template-columns:1fr !important}
+  .nav-links .nav-extras{grid-column:1;border-left:none;padding-top:0}
+  .menu-head{padding:16px 20px}
+  .nav-links .nav-groups,.nav-links .nav-extras{padding-left:20px;padding-right:20px}
+  .menu-search{padding-left:20px;padding-right:20px}
+  .nav-links .menu-foot{padding:14px 20px !important}
+}
+
+/* ===== ROUND 12 — Animated logo patterns + card overlay fix + alignment ===== */
+
+/* ── 1. Animated cycling patterns behind the logotype ── */
+@keyframes logoPatternCycle {
+  0%,18%   { background-image:radial-gradient(circle, rgba(var(--ink-rgb,26,18,8),.09) 1.5px, transparent 1.5px);
+              background-size:22px 22px }
+  20%,38%  { background-image:
+                linear-gradient(rgba(var(--ink-rgb,26,18,8),.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--ink-rgb,26,18,8),.07) 1px, transparent 1px);
+              background-size:30px 30px }
+  40%,58%  { background-image:repeating-linear-gradient(
+                45deg,
+                rgba(var(--ink-rgb,26,18,8),.06) 0px, rgba(var(--ink-rgb,26,18,8),.06) 1px,
+                transparent 1px, transparent 16px);
+              background-size:23px 23px }
+  60%,78%  { background-image:
+                radial-gradient(circle at 0 0, rgba(var(--ink-rgb,26,18,8),.08) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, rgba(var(--ink-rgb,26,18,8),.05) 1px, transparent 1px);
+              background-size:40px 40px, 20px 20px }
+  80%,98%  { background-image:repeating-linear-gradient(
+                -45deg,
+                rgba(var(--ink-rgb,26,18,8),.06) 0px, rgba(var(--ink-rgb,26,18,8),.06) 1px,
+                transparent 1px, transparent 16px);
+              background-size:23px 23px }
+  100%     { background-image:radial-gradient(circle, rgba(var(--ink-rgb,26,18,8),.09) 1.5px, transparent 1.5px);
+              background-size:22px 22px }
+}
+@keyframes logoPatternFade {
+  0%,15%   { opacity:.8 }
+  17%,19%  { opacity:0 }
+  21%,35%  { opacity:.8 }
+  37%,39%  { opacity:0 }
+  41%,55%  { opacity:.8 }
+  57%,59%  { opacity:0 }
+  61%,75%  { opacity:.8 }
+  77%,79%  { opacity:0 }
+  81%,95%  { opacity:.8 }
+  97%,99%  { opacity:0 }
+  100%     { opacity:.8 }
+}
+.bs-logo-row{position:relative;overflow:hidden}
+.bs-logo-row::before{
+  content:'';
+  position:absolute;inset:0;
+  animation:logoPatternCycle 24s linear infinite, logoPatternFade 24s linear infinite;
+  pointer-events:none;
+  z-index:0
+}
+/* Dark mode: lighter pattern dots */
+body.theme-dark .bs-logo-row::before{
+  animation:logoPatternCycleDark 24s linear infinite, logoPatternFade 24s linear infinite
+}
+@keyframes logoPatternCycleDark {
+  0%,18%   { background-image:radial-gradient(circle, rgba(245,239,229,.08) 1.5px, transparent 1.5px);
+              background-size:22px 22px }
+  20%,38%  { background-image:
+                linear-gradient(rgba(245,239,229,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245,239,229,.06) 1px, transparent 1px);
+              background-size:30px 30px }
+  40%,58%  { background-image:repeating-linear-gradient(
+                45deg,
+                rgba(245,239,229,.05) 0px, rgba(245,239,229,.05) 1px,
+                transparent 1px, transparent 16px);
+              background-size:23px 23px }
+  60%,78%  { background-image:radial-gradient(circle at 0 0, rgba(245,239,229,.07) 1px, transparent 1px);
+              background-size:40px 40px }
+  80%,98%  { background-image:repeating-linear-gradient(
+                -45deg,
+                rgba(245,239,229,.05) 0px, rgba(245,239,229,.05) 1px,
+                transparent 1px, transparent 16px);
+              background-size:23px 23px }
+  100%     { background-image:radial-gradient(circle, rgba(245,239,229,.08) 1.5px, transparent 1.5px);
+              background-size:22px 22px }
+}
+.bs-logo,.bs-logo-row>.bs-logo{position:relative;z-index:1}
+
+/* ── 2. Desk card: fix cat-line overlay (direct grid child) ── */
+/* Cat-line must be a grid-row:1 child overlapping the image */
+.desk .card{
+  display:grid;
+  grid-template-rows:auto auto 1fr auto;
+  grid-template-columns:1fr;
+  padding:0 !important;
+  background:var(--paper)
+}
+.desk .card .card-img{
+  grid-row:1;grid-column:1;
+  margin:0 !important;
+  overflow:hidden;position:relative
+}
+.desk .card .card-img img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;display:block;height:auto !important
+}
+.desk .card .card-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(transparent 40%, rgba(0,0,0,.7) 100%);
+  pointer-events:none
+}
+/* cat-line overlaid at bottom of image */
+.desk .card .cat-line{
+  grid-row:1;grid-column:1;
+  align-self:end;justify-self:start;
+  position:relative;z-index:2;
+  padding:0 0 10px 14px;
+  display:flex;gap:6px;flex-wrap:wrap
+}
+.desk .card .cat-line .cat,.desk .card .cat-line .vs-cat{
+  background:rgba(0,0,0,.7) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+  font-size:10px !important;
+  margin:0 !important
+}
+/* Title, excerpt, meta below image */
+.desk .card h3{
+  grid-row:2;grid-column:1;
+  font-size:clamp(14px,1.5vw,18px);line-height:1.18;
+  margin:0;padding:14px 16px 6px
+}
+.desk .card p{
+  grid-row:3;grid-column:1;
+  font-size:13px;line-height:1.52;
+  padding:0 16px 10px;margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  color:var(--ink-soft)
+}
+.desk .card .card-meta{
+  grid-row:4;grid-column:1;
+  padding:8px 16px 14px;
+  font-size:10px;justify-content:space-between;
+  border-top:1px solid var(--line);
+  display:flex;align-items:center
+}
+.desk .card .card-meta .read{
+  color:var(--accent-orange,#E8682A);
+  font-weight:700;text-decoration:none;
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase
+}
+
+/* ── 3. Visual alignment — page-frame edge consistency ── */
+/* All top-level sections share the same horizontal inset as the page frame */
+:root{--page-inset:28px}
+.bs-hero-band,.bs-hero-grid,.desk,.latest-hub,footer .foot-inner{
+  max-width:var(--grid,1300px);
+  margin-inline:auto
+}
+/* Ticker band spans full width */
+.ticker{max-width:none}
+
+/* ── 4. Section label: bigger headline with half-height color marker ── */
+.desk .section-head-inner h2{
+  position:relative;display:inline-block
+}
+/* Remove old ::before marker, replace with bottom half highlight */
+.desk .section-head-inner h2::before{display:none !important}
+.desk .section-head-inner h2::after{
+  content:'';
+  position:absolute;
+  left:-4px;right:-4px;
+  bottom:0;
+  height:46%;
+  background:currentColor;
+  opacity:.18;
+  z-index:-1
+}
+
+/* ── 5. Footer copyright text (bottom strip) ── */
+.foot-bottom .foot-copy,.foot-copy{font-size:11px;letter-spacing:.04em}
+
+
+/* ===== ROUND 13 — Sub-tags + primary cat hide in desk sections ===== */
+
+/* Sub-tag chip: smaller, muted style */
+.cat-line .sub-tag{
+  font-size:9px !important;
+  padding:2px 6px !important;
+  background:var(--paper2);
+  color:var(--ink-soft);
+  border-color:var(--line) !important;
+  text-transform:uppercase;
+  letter-spacing:.05em
+}
+/* Inside desk cards: sub-tags overlaid on dark image gradient */
+.desk .card .cat-line .sub-tag{
+  background:rgba(0,0,0,.5) !important;
+  color:rgba(255,255,255,.72) !important;
+  border-color:rgba(255,255,255,.2) !important
+}
+/* Hide primary category tag when redundant with the desk section */
+.desk-market .cat-line .cat-markets,
+.desk-market .cat-line .cat-market{display:none !important}
+.desk-crypto .cat-line .cat-crypto{display:none !important}
+.desk-cars   .cat-line .cat-cars{display:none !important}
+.desk-tech   .cat-line .cat-tech{display:none !important}
+.desk-forex  .cat-line .cat-forex{display:none !important}
+.desk-ai     .cat-line .cat-ai{display:none !important}
+/* If ALL cat-line children hidden, hide the cat-line itself */
+.desk .card .cat-line:empty{display:none}
+
+/* ============================================================
+   IMAGE BORDER FIX — Round 14
+   Remove the 2px ink border that appears as a visible cream line in dark mode
+   ============================================================ */
+/* Feature images in feed context: no surrounding border */
+.feed-stack .feature-img,
+.latest-hub .feature-img,
+.desk .feature-img,
+.vbox .feature-img,
+.bs-frame .feature-img{
+  border:none !important
+}
+/* Card image separator: thin hair line instead of bold line */
+.card .card-img{border-bottom:1px solid var(--hair-dark) !important}
+
+/* ============================================================
+   VERTICAL CATEGORY SIDEBAR — Round 14
+   .desk becomes a 2-col grid: narrow rotated label | feed cards
+   ============================================================ */
+
+/* 1. Desk wrapper → grid */
+.desk{
+  display:grid !important;
+  grid-template-columns:64px 1fr;
+  grid-template-rows:auto;
+  align-items:stretch;
+  border-top:3px dotted var(--line);
+  margin-top:40px;
+  padding:0
+}
+
+/* 2. Section head occupies the left column, full height */
+.desk .section-head{
+  grid-column:1;
+  grid-row:1;
+  border-bottom:none !important;
+  border-inline-end:2px solid var(--line);
+  padding:0 !important;
+  display:flex;
+  align-self:stretch
+}
+
+/* 3. Feed grid occupies the right column */
+.desk .feed-grid{
+  grid-column:2;
+  grid-row:1
+}
+
+/* 4. Inner wrapper: full-height flex container in vertical writing mode */
+.desk .section-head-inner{
+  writing-mode:vertical-rl;
+  flex:1;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:28px 0;
+  width:100%;
+  height:100%;
+  min-height:180px;
+  background:transparent !important;
+  border:none !important;
+  margin:0 !important;
+  position:relative;
+  overflow:hidden
+}
+
+/* 5. Category name — big, uppercase, dark ink text */
+.desk .section-head-inner h2{
+  font-family:var(--font-display);
+  font-size:clamp(28px,3vw,42px) !important;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  line-height:1;
+  position:relative;
+  z-index:1;
+  display:inline;
+  color:var(--ink) !important
+}
+
+/* 6. Color band through the middle: colored stripe, dark text sits on top */
+.desk .section-head-inner h2::before{
+  display:none !important
+}
+.desk .section-head-inner h2::after{
+  content:'';
+  position:absolute;
+  /* span full sidebar width */
+  left:-20px;right:-20px;
+  /* center 42% of text height → color passes through the middle */
+  top:29%;
+  height:42%;
+  z-index:-1;
+  /* background set per-category below */
+  opacity:1
+}
+
+/* 7. "All stories" link */
+.desk .section-head-inner .all{
+  writing-mode:vertical-rl;
+  font-size:9px !important;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.55;
+  color:var(--ink) !important;
+  text-decoration:none;
+  border-bottom:none !important;
+  border-inline-start:1px solid var(--muted2);
+  padding-inline-start:4px;
+  padding-bottom:0
+}
+
+/* 8. Full-height coloured sidebar — background on .section-head, white text */
+/* Remove the partial text band — sidebar bg IS the colour */
+.desk .section-head-inner h2::after{display:none !important}
+.desk .section-head-inner h2{color:#fff !important}
+.desk .section-head-inner .all{color:rgba(255,255,255,.72) !important;border-inline-start-color:rgba(255,255,255,.35) !important}
+
+.desk-market .section-head{background:#16A34A}
+.desk-market .section-head-inner{background:transparent !important;border:none !important}
+.desk-crypto .section-head{background:#5070B8}
+.desk-crypto .section-head-inner{background:transparent !important;border:none !important}
+.desk-tech   .section-head{background:#D97706}
+.desk-tech   .section-head-inner{background:transparent !important;border:none !important}
+.desk-cars   .section-head{background:#DC2626}
+.desk-cars   .section-head-inner{background:transparent !important;border:none !important}
+
+/* 9. Remove the column-separator border that cuts through images */
+.desk .feed-grid>*{border-inline-end:none !important}
+
+/* 9. Mobile: collapse sidebar to a horizontal top bar */
+@media(max-width:680px){
+  .desk{grid-template-columns:1fr !important}
+  .desk .section-head{
+    grid-column:1;grid-row:1;
+    border-inline-end:none;
+    border-bottom:3px dotted var(--line) !important
+  }
+  .desk .feed-grid{grid-column:1;grid-row:2}
+  .desk .section-head-inner{
+    writing-mode:horizontal-tb !important;
+    transform:none !important;
+    flex-direction:row !important;
+    justify-content:space-between !important;
+    padding:16px var(--gut) !important;
+    min-height:auto !important;
+    height:auto !important
+  }
+  .desk .section-head-inner h2{font-size:clamp(22px,6vw,34px) !important}
+  .desk .section-head-inner h2::after{
+    left:-4px;right:-4px;
+    top:auto;bottom:0;
+    height:44%
+  }
+  .desk .section-head-inner .all{
+    writing-mode:horizontal-tb;
+    border-inline-start:none;
+    border-bottom:1px solid currentColor !important;
+    padding-inline-start:0;
+    padding-bottom:2px
+  }
+}
+
+/* ===== CATEGORY SECTION STYLES (Style A = hero+list, Style B = 4-col grid) ===== */
+
+/* ── Style A: Large hero left + 3 stacked list rows right ── */
+.desk-style-a .feed-grid{
+  display:grid !important;
+  grid-template-columns:1.75fr 1fr;
+  grid-template-rows:repeat(3,1fr);
+  min-height:420px;gap:0;border:none
+}
+/* Hero card — fills entire left column */
+.desk-style-a .feed-grid .card:first-child{
+  grid-column:1;grid-row:1/4;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:24px;text-decoration:none;color:#fff;
+  border-bottom:none !important;border-inline-end:none !important
+}
+.desk-style-a .feed-grid .card:first-child .card-img{
+  position:absolute;inset:0;z-index:0;width:100%;height:100%
+}
+.desk-style-a .feed-grid .card:first-child .card-img img{
+  width:100%;height:100%;object-fit:cover;display:block
+}
+.desk-style-a .feed-grid .card:first-child::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.3) 55%,transparent 80%)
+}
+.desk-style-a .feed-grid .card:first-child .cat-line,
+.desk-style-a .feed-grid .card:first-child h3,
+.desk-style-a .feed-grid .card:first-child p,
+.desk-style-a .feed-grid .card:first-child .card-meta{position:relative;z-index:2}
+.desk-style-a .feed-grid .card:first-child h3{
+  font-size:clamp(20px,2.4vw,32px);line-height:1.1;
+  margin-bottom:8px;color:#fff
+}
+.desk-style-a .feed-grid .card:first-child p{
+  font-size:13px;color:rgba(255,255,255,.8);margin-bottom:8px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
+}
+.desk-style-a .feed-grid .card:first-child .card-meta{color:rgba(255,255,255,.65);font-size:10px;margin-bottom:0}
+.desk-style-a .feed-grid .card:first-child .cat{color:#fff;border-color:rgba(255,255,255,.45);margin-bottom:10px}
+
+/* List rows — stacked in right column */
+.desk-style-a .feed-grid .card:not(:first-child){
+  grid-column:2;
+  display:grid;grid-template-columns:1fr 84px;grid-template-rows:auto auto auto auto;
+  align-content:start;gap:0 10px;padding:14px 16px;
+  border-bottom:1px solid var(--line) !important;border-inline-end:none !important;
+  text-decoration:none;color:var(--ink)
+}
+.desk-style-a .feed-grid .card:not(:first-child):last-child{border-bottom:none !important}
+.desk-style-a .feed-grid .card:not(:first-child) .card-img{
+  grid-column:2;grid-row:1/5;width:84px;height:75px;overflow:hidden;align-self:start
+}
+.desk-style-a .feed-grid .card:not(:first-child) .card-img img{width:100%;height:100%;object-fit:cover}
+.desk-style-a .feed-grid .card:not(:first-child) .cat-line{grid-column:1;grid-row:1;margin-bottom:4px}
+.desk-style-a .feed-grid .card:not(:first-child) h3{
+  grid-column:1;grid-row:2;font-size:clamp(13px,1.2vw,16px);
+  line-height:1.25;margin-bottom:4px;font-weight:700
+}
+.desk-style-a .feed-grid .card:not(:first-child) p{
+  grid-column:1;grid-row:3;font-size:12px;color:var(--muted);margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
+}
+.desk-style-a .feed-grid .card:not(:first-child) .card-meta{grid-column:1;grid-row:4;font-size:10px}
+.desk-style-a .feed-grid .card:not(:first-child) .cat{font-size:9px;padding:2px 6px;margin-bottom:6px}
+
+/* ── Style B: 4-column equal card grid ── */
+.desk-style-b .feed-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,1fr) !important;
+  gap:0
+}
+.desk-style-b .feed-grid .card{
+  border-inline-end:1px solid var(--line) !important;
+  border-bottom:none !important
+}
+.desk-style-b .feed-grid .card:last-child{border-inline-end:none !important}
+.desk-style-b .feed-grid .card .card-img{height:180px;overflow:hidden}
+.desk-style-b .feed-grid .card .card-img img{width:100%;height:100%;object-fit:cover}
+.desk-style-b .feed-grid .card h3{font-size:clamp(14px,1.35vw,18px);line-height:1.2;margin-bottom:8px}
+.desk-style-b .feed-grid .card p{font-size:12px;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ===== SUBSCRIBE MODAL ===== */
+.sub-modal-overlay{
+  position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.72);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s
+}
+.sub-modal-overlay.open{opacity:1;visibility:visible}
+.sub-modal{
+  background:var(--paper);border:2px solid var(--ink);
+  padding:40px 48px;max-width:520px;width:calc(100% - 48px);
+  position:relative;transform:translateY(12px);transition:transform .32s var(--ease)
+}
+.sub-modal-overlay.open .sub-modal{transform:none}
+.sub-modal-close{
+  position:absolute;top:14px;inset-inline-end:14px;
+  width:36px;height:36px;border:2px solid var(--ink);background:none;
+  cursor:pointer;font-family:var(--mono);font-size:16px;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s
+}
+.sub-modal-close:hover{background:var(--ink);color:var(--paper)}
+.sub-modal-eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--accent);margin-bottom:12px}
+.sub-modal h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);
+  font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:12px}
+.sub-modal p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-bottom:28px}
+.sub-modal-form{display:flex;gap:0;border:2px solid var(--ink)}
+.sub-modal-input{
+  flex:1;border:none;background:transparent;padding:12px 16px;
+  font-family:var(--mono);font-size:13px;color:var(--ink);outline:none
+}
+.sub-modal-input::placeholder{color:var(--muted)}
+.sub-modal-submit{
+  border:none;border-inline-start:2px solid var(--ink);background:var(--ink);
+  color:var(--paper);padding:12px 20px;font-family:var(--mono);font-size:12px;
+  text-transform:uppercase;letter-spacing:.06em;cursor:pointer;
+  white-space:nowrap;transition:background .15s,color .15s
+}
+.sub-modal-submit:hover{background:var(--accent-orange,#E8682A);border-color:var(--accent-orange,#E8682A)}
+.sub-modal-legal{font-size:11px;color:var(--muted);margin-top:14px;line-height:1.5}
+body.theme-dark .sub-modal{background:var(--paper2)}
+body.theme-dark .sub-modal-input{color:var(--ink)}
+
+/* ── Mega menu on desktop: full-screen overlay like mobile ── */
+@media(min-width:761px){
+  #nav-links{
+    position:fixed;inset:0;z-index:240;
+    background:var(--paper);display:flex;flex-direction:column;
+    padding:28px var(--gut) 32px;overflow-y:auto;
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .28s ease,transform .32s var(--ease),visibility .28s
+  }
+  #nav-links.open{opacity:1;visibility:visible;transform:none}
+}
+
+/* ── .desk margin flush — sections butt against topic-sep ── */
+.desk{margin-top:0 !important}
+
+/* Fix Style B over-stretching: desk grid should not stretch cells beyond natural height */
+.desk-style-b{align-items:start !important}
+.desk-style-b .section-head{align-self:stretch}
+.desk-style-b .feed-grid .card{align-self:start;height:auto !important}
+/* Style B card image: fixed height, no stretching */
+.desk-style-b .feed-grid .card .card-img{height:180px;flex:0 0 180px}
+
+/* Style B: section-head doesn't need to fill full feed-grid height */
+.desk-style-b .section-head,.desk-style-b .section-head-inner{height:auto !important;align-self:start}
+.desk-style-b .section-head{min-height:0 !important;border-inline-end:none !important}
+.desk-style-b .section-head-inner{min-height:0 !important;padding:16px 0}
+
+/* Style B: switch to full-width horizontal header layout (no vertical sidebar) */
+.desk-style-b{display:block !important}
+.desk-style-b .section-head{
+  display:flex !important;align-items:center !important;
+  justify-content:space-between !important;
+  padding:14px 0 14px 28px !important;
+  border-bottom:2px solid var(--ink) !important;
+  border-inline-end:none !important;
+  width:100% !important;height:auto !important
+}
+.desk-style-b .section-head-inner{
+  writing-mode:horizontal-tb !important;flex-direction:row !important;
+  justify-content:space-between !important;
+  width:100% !important;height:auto !important;
+  min-height:0 !important;padding:0 !important;
+  background:transparent !important;align-items:center !important
+}
+.desk-style-b .section-head-inner h2{
+  font-size:clamp(22px,2.6vw,32px) !important;
+  color:#fff !important;letter-spacing:-.02em !important
+}
+.desk-style-b .section-head-inner .all{
+  color:#fff !important;border-color:rgba(255,255,255,.5) !important;
+  font-size:12px !important;writing-mode:horizontal-tb !important;
+  white-space:nowrap;padding-right:28px
+}
+.desk-style-b .feed-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,1fr) !important;
+  gap:0 !important;padding:0 !important;
+  border:none !important
+}
+
+/* ===== CLEANUP v2: hero fix + style A/B complete redesign ===== */
+
+/* 1. Fix hero image — remove global aspect-ratio:16/9 that breaks full fill */
+.desk-style-a .feed-grid .card:first-child .card-img img{
+  aspect-ratio:auto !important;height:100% !important
+}
+
+/* 2. Style A grid: 2 right-side rows (not 3) */
+.desk-style-a .feed-grid{grid-template-rows:repeat(2,1fr) !important}
+
+/* Style A right cards: image on top, text below (no thumb layout) */
+.desk-style-a .feed-grid .card:not(:first-child){
+  display:flex !important;flex-direction:column !important;
+  grid-template-columns:unset !important;padding:0 !important;
+  gap:0 !important;overflow:hidden !important;
+  border-bottom:1px solid var(--line) !important;border-inline-end:none !important
+}
+.desk-style-a .feed-grid .card:not(:first-child):last-child{border-bottom:none !important}
+.desk-style-a .feed-grid .card:not(:first-child) .card-img{
+  position:static !important;grid-column:unset !important;grid-row:unset !important;
+  width:100% !important;height:140px !important;flex:0 0 140px !important;
+  margin:0 !important;border-bottom:2px solid var(--line) !important;overflow:hidden !important
+}
+.desk-style-a .feed-grid .card:not(:first-child) .card-img img{
+  width:100% !important;height:100% !important;aspect-ratio:auto !important;object-fit:cover !important
+}
+.desk-style-a .feed-grid .card:not(:first-child) .cat-line{
+  grid-column:unset !important;grid-row:unset !important;padding:10px 14px 4px !important
+}
+.desk-style-a .feed-grid .card:not(:first-child) h3{
+  grid-column:unset !important;grid-row:unset !important;
+  padding:0 14px !important;font-size:clamp(14px,1.35vw,18px) !important;
+  line-height:1.2 !important;margin-bottom:6px !important;font-weight:700 !important
+}
+.desk-style-a .feed-grid .card:not(:first-child) p{
+  grid-column:unset !important;grid-row:unset !important;
+  padding:0 14px !important;font-size:12px !important;line-height:1.5 !important;
+  display:-webkit-box !important;-webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;overflow:hidden !important
+}
+.desk-style-a .feed-grid .card:not(:first-child) .card-meta{
+  grid-column:unset !important;grid-row:unset !important;
+  padding:8px 14px 12px !important;margin-top:auto !important
+}
+
+/* 3. Style B cards: clean design-system layout (no negative margin bleed) */
+.desk-style-b .feed-grid .card{padding:0 !important}
+.desk-style-b .feed-grid .card .card-img{
+  margin:0 !important;height:180px !important;
+  border-bottom:2px solid var(--line) !important;overflow:hidden !important
+}
+.desk-style-b .feed-grid .card .card-img img{
+  width:100% !important;height:100% !important;
+  aspect-ratio:auto !important;object-fit:cover !important
+}
+.desk-style-b .feed-grid .card .cat-line{padding:10px 14px 4px !important}
+.desk-style-b .feed-grid .card h3{
+  padding:0 14px !important;font-size:clamp(13px,1.2vw,16px) !important;
+  line-height:1.25 !important;margin-bottom:6px !important
+}
+.desk-style-b .feed-grid .card p{
+  padding:0 14px !important;font-size:12px !important;line-height:1.5 !important;
+  display:-webkit-box !important;-webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;overflow:hidden !important
+}
+.desk-style-b .feed-grid .card .card-meta{padding:8px 14px 14px !important}
+.desk-style-b .feed-grid .card .card-meta .read{
+  display:inline-block;border:1.5px solid var(--ink) !important;
+  padding:3px 10px !important;font-size:10px !important;letter-spacing:.04em !important
+}
+.desk-style-b .feed-grid .card:hover .card-meta .read{
+  background:var(--ink) !important;color:var(--paper) !important
+}
+
+/* 4. Sticky vertical label — sticks within section while scrolling */
+.desk-style-a .section-head-inner{position:sticky !important;top:0 !important}

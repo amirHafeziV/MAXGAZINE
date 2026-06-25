@@ -1016,12 +1016,15 @@ function typeChip(a, lang){
 function feedCard(a, lang, prefix){
   const href = articleHref(a, lang, prefix);
   const cat = esc((a.category||'').toUpperCase());
+  const catKey = esc((a.category||'').toLowerCase());
   const headline = esc(pickLoc(a.headline, lang));
   const dek = esc(pickLoc(a.dek, lang));
   const date = esc(a.date||'');
   const readLabel = esc((window.I[lang]&&window.I[lang].cta_read) || 'Read →');
   const img = a.banner ? `<div class="card-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></div>` : '';
-  return `<a class="card reveal" href="${href}">${img}<span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
+  // Sub-tags: first 2 article tags (shown in desk sections where primary cat is hidden)
+  const subTags = (a.tags||[]).slice(0,2).map(t=>`<span class="cat mono sub-tag">${esc(String(t).toUpperCase())}</span>`).join('');
+  return `<a class="card reveal" href="${href}">${img}<span class="cat-line"><span class="cat mono cat-${catKey}">${cat}</span>${subTags}${typeChip(a,lang)}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
 }
 /* Crimson, image-less "dispatch" card — the Dispatch signature tile. Leads with
    the category set huge in Fraunces, then the headline and meta. */
@@ -1038,14 +1041,15 @@ function listRow(a, lang, prefix, i){
   const headline = esc(pickLoc(a.headline, lang));
   const dek = esc(pickLoc(a.dek, lang));
   const cat = esc((a.category||'').toUpperCase());
+  const catKey = esc((a.category||'').toLowerCase());
   const date = esc(a.date||'');
   if(!a.banner){
     // No image: a solid accent tile fills the image slot with the category
     // and date in display type, keeping the row's two-column rhythm.
     return `<article class="list-row no-img reveal">
-    <div class="dispatch-mark"><span class="cat">${cat}</span><span class="post-date mono">${date}</span></div>
+    <div class="dispatch-mark"><span class="cat cat-${catKey}">${cat}</span><span class="post-date mono">${date}</span></div>
     <div class="list-body">
-      <span class="cat mono">${cat}</span>
+      <span class="cat mono cat-${catKey}">${cat}</span>
       <h3><a href="${href}" style="color:inherit;text-decoration:none">${headline}</a></h3>
       <p>${dek}</p>
     </div>
@@ -1055,7 +1059,7 @@ function listRow(a, lang, prefix, i){
   return `<article class="list-row reveal">
     ${visual}
     <div class="list-body">
-      <span class="cat mono">${cat}</span>
+      <span class="cat mono cat-${catKey}">${cat}</span>
       <h3><a href="${href}" style="color:inherit;text-decoration:none">${headline}</a></h3>
       <p>${dek}</p>
       <div class="byline mono"><span>${date}</span></div>
@@ -1072,7 +1076,7 @@ function editorRow(a, lang, prefix, i){
   const thumb = a.banner
     ? `<span class="ep-thumb" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></span>`
     : `<span class="ep-thumb ep-num" data-cat="${catKey}">${cat}</span>`;
-  return `<a class="ep-row" href="${href}">${thumb}<span class="ep-body"><span class="ep-title">${headline}</span><span class="ep-meta"><span class="cat mono">${cat}</span><span class="ep-date mono">${date}</span></span></span></a>`;
+  return `<a class="ep-row" href="${href}">${thumb}<span class="ep-body"><span class="ep-title">${headline}</span><span class="ep-meta"><span class="cat mono cat-${catKey}">${cat}</span><span class="ep-date mono">${date}</span></span></span></a>`;
 }
 // Featured rotation: every featured article with a banner gets a turn in the
 // hero; with 2+ of them the stage cross-fades to the next one every 10s.
@@ -1142,17 +1146,18 @@ function riverItem(a, lang, prefix, lead){
     const img = src
       ? `<span class="vrl-img"><img src="${src}" alt="" loading="lazy"></span>`
       : `<span class="vrl-img vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
-    return `<a class="vriver-item lead reveal" href="${href}">${img}<span class="vrl-body"><span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><p class="vrl-dek">${dek}</p><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+    return `<a class="vriver-item lead reveal" href="${href}">${img}<span class="vrl-body"><span class="cat-line"><span class="cat mono cat-${catKey}">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><p class="vrl-dek">${dek}</p><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
   }
   const thumb = src
     ? `<span class="vr-thumb"><img src="${src}" alt="" loading="lazy"></span>`
     : `<span class="vr-thumb vr-thumb-empty" data-cat="${catKey}">${cat}</span>`;
-  return `<a class="vriver-item reveal" href="${href}">${thumb}<span class="vr-body"><span class="cat-line"><span class="cat mono">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
+  return `<a class="vriver-item reveal" href="${href}">${thumb}<span class="vr-body"><span class="cat-line"><span class="cat mono cat-${catKey}">${cat}</span>${typeChip(a,lang)}</span><h3>${headline}</h3><span class="vr-by mono"><b>${author}</b> · ${date}</span></span></a>`;
 }
 /* "Latest" rail row — author avatar + name + date, headline, excerpt, thumb. */
 function streamRow(a, lang, prefix){
   const href = articleHref(a, lang, prefix);
   const cat = esc((a.category||'').toUpperCase());
+  const catKey = esc((a.category||'').toLowerCase());
   const headline = esc(pickLoc(a.headline, lang));
   const dek = esc(pickLoc(a.dek, lang));
   const author = esc(a.author||'MAXGAZINE DESK');
@@ -1161,7 +1166,7 @@ function streamRow(a, lang, prefix){
   const thumb = a.banner ? `<a class="vs-thumb" href="${href}" aria-hidden="true" tabindex="-1"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></a>` : '';
   return `<article class="vstream-item">
     <div class="vs-top mono"><span class="vs-avatar">${initial}</span><span class="vs-name">${author}</span><span class="vs-date">${date}</span></div>
-    <div class="vs-row"><div class="vs-text"><span class="cat-line"><span class="vs-cat mono">${cat}</span>${typeChip(a,lang)}</span><a class="vs-title" href="${href}">${headline}</a><p class="vs-excerpt">${dek}</p></div>${thumb}</div>
+    <div class="vs-row"><div class="vs-text"><span class="cat-line"><span class="vs-cat mono cat-${catKey}">${cat}</span>${typeChip(a,lang)}</span><a class="vs-title" href="${href}">${headline}</a><p class="vs-excerpt">${dek}</p></div>${thumb}</div>
   </article>`;
 }
 
@@ -1291,7 +1296,8 @@ function renderFeedSections(feed, lang, prefix){
   // haven't appeared above, and hides itself when that desk has nothing fresh.
   document.querySelectorAll('[data-feed-topic]').forEach(grid=>{
     const topic = grid.getAttribute('data-feed-topic');
-    const items = take(latestFeed.filter(a=>a.topic===topic), 6);
+    const isStyleA = !!grid.closest('.desk-style-a');
+    const items = take(latestFeed.filter(a=>a.topic===topic), isStyleA ? 3 : 4);
     const section = grid.closest('[data-topic-section]') || grid;
     if(!items.length){ section.hidden = true; return; }
     section.hidden = false;
@@ -1513,42 +1519,117 @@ function initBroadsheetChrome(){
   const mnav = document.createElement('nav'); mnav.className = 'bs-mini-nav';
   nav.querySelectorAll('a').forEach(a=>{ const c=a.cloneNode(true); c.removeAttribute('class'); mnav.appendChild(c); });
   const burger = document.createElement('button'); burger.className='burger'; burger.type='button';
-  burger.setAttribute('aria-label','Toggle menu'); burger.setAttribute('aria-expanded','false'); burger.textContent='☰';
+  burger.setAttribute('aria-label','Toggle menu'); burger.setAttribute('aria-expanded','false');
+  burger.innerHTML='<span></span><span></span><span></span>';
   mini.append(mnav, burger);
 
-  // original full-screen mega-menu (data-i localised below via setLang)
+  // rich full-screen mega-menu
   const langBtns = ['en','fa','ar','tr'].map(l=>`<button data-lang="${l}"${l===lang?' class="active"':''} lang="${l}">${langName[l]}</button>`).join('');
   const menu = document.createElement('div'); menu.className='nav-links'; menu.id='nav-links';
   menu.innerHTML = `
-    <div class="menu-head"><a class="menu-logo" href="${homeHref}">MAXGAZINE<span class="dot">.</span></a></div>
-    <div class="nav-group has-sub">
-      <a href="${p('stories.html')}" data-i="nav_stories">Stories</a>
-      <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
-      <div class="sub">
-        <a href="${prefix}stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-        <a href="${prefix}stories.html?cat=forex" data-i="nav_forex">Forex</a>
-        <a href="${prefix}stories.html?cat=tech" data-i="nav_tech">Tech</a>
-        <a href="${prefix}stories.html?cat=cars" data-i="nav_cars">Cars</a>
-        <a href="${prefix}stories.html?cat=analysis" data-i="nav_analysis">Market Analysis</a>
+    <div class="menu-head">
+      <a class="menu-logo" href="${homeHref}">MAXGAZINE<span class="dot">.</span></a>
+      <div class="menu-head-actions">
+        <a class="menu-subscribe" href="${p('contact.html')}">Subscribe</a>
+        <button class="menu-close" type="button" aria-label="Close menu">✕</button>
       </div>
     </div>
-    <div class="nav-group has-sub">
-      <a href="${p('exchanges.html')}" data-i="nav_topmarkets">Markets</a>
-      <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Markets">+</button>
-      <div class="sub">
-        <a href="${p('exchanges.html')}" data-i="nav_exchanges">Crypto Exchanges</a>
-        <a href="${p('brokers.html')}" data-i="nav_brokers">Brokers</a>
-      </div>
+    <div class="menu-search">
+      <input class="menu-search-input" type="search" placeholder="Search stories, markets, coins…" aria-label="Search">
     </div>
-    <div class="nav-group"><a href="${p('prices.html')}" data-i="nav_prices">Prices</a></div>
-    <div class="nav-group"><a href="${p('about.html')}" data-i="nav_about">About</a></div>
-    <div class="nav-group"><a href="${p('contact.html')}" data-i="nav_contact">Contact</a></div>
-    <div class="lang menu-lang" role="group" aria-label="Select language">${langBtns}</div>
+    <div class="nav-groups">
+      <div class="nav-group has-sub">
+        <a href="${p('stories.html')}" data-i="nav_stories">Stories</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Stories">+</button>
+        <div class="sub">
+          <a href="${prefix}stories.html?cat=crypto${sfx}">Crypto</a>
+          <a href="${prefix}stories.html?cat=forex${sfx}">Forex</a>
+          <a href="${prefix}stories.html?cat=tech${sfx}">Tech</a>
+          <a href="${prefix}stories.html?cat=cars${sfx}">Cars</a>
+          <a href="${prefix}stories.html?cat=analysis${sfx}">Market Analysis</a>
+        </div>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${prefix}stories.html?cat=crypto${sfx}" data-i="nav_crypto">Crypto</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Crypto">+</button>
+        <div class="sub">
+          <a href="${prefix}stories.html?cat=crypto&tag=bitcoin${sfx}">Bitcoin</a>
+          <a href="${prefix}stories.html?cat=crypto&tag=ethereum${sfx}">Ethereum</a>
+          <a href="${prefix}stories.html?cat=defi${sfx}">DeFi</a>
+          <a href="${prefix}stories.html?cat=policy${sfx}">Regulation</a>
+        </div>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${p('exchanges.html')}" data-i="nav_topmarkets">Markets</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Markets">+</button>
+        <div class="sub">
+          <a href="${p('exchanges.html')}">Crypto Exchanges</a>
+          <a href="${p('brokers.html')}">Brokers</a>
+          <a href="${prefix}stories.html?cat=forex${sfx}">Forex</a>
+        </div>
+      </div>
+      <div class="nav-group"><a href="${p('prices.html')}" data-i="nav_prices">Prices</a></div>
+    </div>
+    <div class="nav-extras">
+      <div class="nav-group has-sub">
+        <a href="${prefix}stories.html?cat=ai${sfx}">AI News</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand AI News">+</button>
+        <div class="sub">
+          <a href="${prefix}stories.html?cat=ai&tag=chatgpt${sfx}">ChatGPT</a>
+          <a href="${prefix}stories.html?cat=ai&tag=gemini${sfx}">Gemini</a>
+          <a href="${prefix}stories.html?cat=ai&tag=openai${sfx}">OpenAI</a>
+        </div>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${prefix}stories.html?cat=cars${sfx}" data-i="nav_cars">Cars</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Cars">+</button>
+        <div class="sub">
+          <a href="${prefix}stories.html?cat=cars&brand=bmw${sfx}">BMW</a>
+          <a href="${prefix}stories.html?cat=cars&brand=tesla${sfx}">Tesla</a>
+          <a href="${prefix}stories.html?cat=cars&brand=byd${sfx}">BYD</a>
+          <a href="${prefix}stories.html?cat=cars&brand=porsche${sfx}">Porsche</a>
+        </div>
+      </div>
+      <div class="nav-group has-sub">
+        <a href="${prefix}stories.html?cat=tech${sfx}">Tech</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand Tech">+</button>
+        <div class="sub">
+          <a href="${prefix}stories.html?cat=tech&brand=apple${sfx}">Apple</a>
+          <a href="${prefix}stories.html?cat=tech&brand=google${sfx}">Google</a>
+          <a href="${prefix}stories.html?cat=tech&brand=microsoft${sfx}">Microsoft</a>
+        </div>
+      </div>
+      <div class="nav-group"><a href="${p('chart.html')}" data-i="nav_chart">Charts</a></div>
+      <div class="nav-group"><a href="${p('about.html')}" data-i="nav_about">About</a></div>
+      <div class="nav-group"><a href="${p('contact.html')}" data-i="nav_contact">Contact</a></div>
+    </div>
     <div class="menu-foot">
-      <button class="menu-close" type="button" aria-label="Close menu">✕ <span data-i="m_close">Close</span></button>
+      <div class="lang menu-lang" role="group" aria-label="Select language">${langBtns}</div>
       <div class="menu-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
     </div>`;
   document.body.append(mini, menu);
+
+  // search overlay
+  const searchOverlay = document.createElement('div'); searchOverlay.className='bs-search-overlay'; searchOverlay.id='bs-search-overlay';
+  searchOverlay.innerHTML=`<button class="bs-search-close" aria-label="Close search">✕</button>
+    <form class="bs-search-form" action="stories.html" method="get">
+      <input class="bs-search-input" name="q" type="search" placeholder="Search stories, coins, markets…" autocomplete="off" aria-label="Search">
+      <button class="bs-search-submit" type="submit" aria-label="Submit search">→</button>
+    </form>
+    <p class="bs-search-hint">Press ESC to close</p>`;
+  document.body.appendChild(searchOverlay);
+
+  // wire up search open/close
+  const openSearch = ()=>{ searchOverlay.classList.add('open'); searchOverlay.querySelector('.bs-search-input').focus(); };
+  const closeSearch = ()=>{ searchOverlay.classList.remove('open'); };
+  document.getElementById('bs-search-btn')?.addEventListener('click', openSearch);
+  searchOverlay.querySelector('.bs-search-close').addEventListener('click', closeSearch);
+  searchOverlay.addEventListener('click', e=>{ if(e.target===searchOverlay) closeSearch(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSearch(); });
+  // menu search mirrors to overlay
+  menu.querySelector('.menu-search-input')?.addEventListener('keydown', e=>{
+    if(e.key==='Enter'){ window.location.href=`stories.html?q=${encodeURIComponent(e.target.value)}`; }
+  });
 
   // localise the injected data-i strings to the active language
   if(window.I){
@@ -1561,8 +1642,30 @@ function initBroadsheetChrome(){
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 }
 
+/* ---------- theme toggle (dark default / light option) ---------- */
+function initTheme(){
+  /* apply stored preference (FOUC prevention script in HTML sets default=dark) */
+  const stored = (() => { try{ return localStorage.getItem('mg_theme'); }catch(e){ return null; } })();
+  /* if preference not set yet, dark is already applied by the inline script */
+  const btn = document.getElementById('theme-toggle');
+  if(!btn) return;
+  const isDark = () => document.body.classList.contains('theme-dark');
+  const updateBtn = () => {
+    btn.querySelector('.tt-icon').textContent = isDark() ? '☀' : '☽';
+    btn.querySelector('.tt-label').textContent = isDark() ? 'LIGHT' : 'DARK';
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme');
+  };
+  updateBtn();
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('theme-dark');
+    try{ localStorage.setItem('mg_theme', isDark() ? 'dark' : 'light'); }catch(e){}
+    updateBtn();
+  });
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   if(window.initLang) window.initLang();
+  initTheme();
   initBroadsheetDate();
   initBroadsheetChrome();
   initNav();
@@ -1593,3 +1696,21 @@ document.addEventListener('DOMContentLoaded',()=>{
     window.__marketsSetLangWrapped = true;
   }
 });
+
+/* ===== SUBSCRIBE MODAL ===== */
+(function(){
+  const overlay = document.getElementById('sub-modal-overlay');
+  if(!overlay) return;
+  const btn = document.getElementById('bs-subscribe-btn');
+  const close = document.getElementById('sub-modal-close');
+  const open  = ()=>{ overlay.classList.add('open'); overlay.querySelector('.sub-modal-input')?.focus(); };
+  const shut  = ()=> overlay.classList.remove('open');
+  btn?.addEventListener('click', open);
+  close?.addEventListener('click', shut);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) shut(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') shut(); });
+  // wire mega-menu subscribe link if present
+  document.addEventListener('click', e=>{
+    if(e.target.matches('.menu-subscribe,.bs-subscribe-btn')) { e.preventDefault(); open(); }
+  });
+})();
