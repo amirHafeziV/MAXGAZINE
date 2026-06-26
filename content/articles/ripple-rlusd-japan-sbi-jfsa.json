@@ -1,5 +1,14 @@
 {
   "slug": "ripple-rlusd-japan-sbi-jfsa",
+  "topic": "crypto",
+  "type": "news",
+  "placement": {
+    "hero": false,
+    "editorsPick": false,
+    "pinned": true,
+    "hideFromLatest": false,
+    "priority": 0
+  },
   "category": "crypto",
   "date": "2026-06-24",
   "author": "MAXGAZINE Desk",
@@ -84,7 +93,7 @@
     "crypto",
     "Japan"
   ],
-  "status": "draft",
+  "status": "published",
   "banner": "https://maxgazine.com/assets/uploads/1782388843132-banner.jpg",
   "featured": false
 }
