@@ -40,7 +40,7 @@
 </script>
 </head>
 <body dir="ltr" class="bs-page theme-dark">
-<script>try{if(localStorage.getItem('mg_theme')==='light')document.body.classList.remove('theme-dark');}catch(e){}</script>
+<script>try{var t=localStorage.getItem('mg_theme');var d=t==='dark'||((!t||t==='system')&&matchMedia('(prefers-color-scheme:dark)').matches);if(!d)document.body.classList.remove('theme-dark');}catch(e){}</script>
 <div class="bs-frame">
 <header class="bsheet">
   <div class="bs-top">
