@@ -631,6 +631,8 @@ const AD_SLOTS = [
   { id:'home-top',    surface:'home',    label:'بنر بالای صفحه',    pos:'زیر هدر، بالای خبر اصلی',          shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
   { id:'home-feed',   surface:'home',    label:'بنر داخل فید',       pos:'قبل از فهرست «Latest Dispatches»', shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
   { id:'home-rail',   surface:'home',    label:'باکس ستون کناری',    pos:'کنار فهرست Latest',                shape:'square',   size:'۶۰۰×۶۰۰ (۱:۱)' },
+  { id:'home-desk-1', surface:'home',    label:'بنر میان‌فید ۱',     pos:'بین بخش کریپتو و خودرو',            shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
+  { id:'home-desk-2', surface:'home',    label:'بنر میان‌فید ۲',     pos:'بین بخش کریپتو و خودرو',            shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
   { id:'home-footer', surface:'home',    label:'بنر بالای فوتر',     pos:'انتهای صفحه‌ی اصلی',               shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
   { id:'article-top', surface:'article', label:'بنر ابتدای مقاله',   pos:'زیر تیتر/تصویر، قبل از متن',        shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
   { id:'article-mid', surface:'article', label:'بنر وسط مقاله',      pos:'میانه‌ی متن مقاله',                 shape:'wide',     size:'۱۲۰۰×۴۰۰ (۳:۱)' },
@@ -657,6 +659,10 @@ const AD_WIREFRAMES = {
       <div class="wf-main"><div class="wf-cap">فهرست Latest Dispatches</div><span class="wf-line"></span><span class="wf-line"></span><span class="wf-line"></span></div>
       <div class="wf-side"><div class="wf-cap">ستون Latest</div><span class="wf-line sm"></span><span class="wf-line sm"></span>{{zone:home-rail}}</div>
     </div>
+    <div class="wf-bar">بخش‌های موضوعی: Markets · Crypto</div>
+    {{zone:home-desk-1}}
+    {{zone:home-desk-2}}
+    <div class="wf-bar">بخش‌های موضوعی: Cars · Tech</div>
     {{zone:home-footer}}
     <div class="wf-bar">فوتر</div>
   </div>`,

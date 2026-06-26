@@ -1078,6 +1078,55 @@ function editorRow(a, lang, prefix, i){
     : `<span class="ep-thumb ep-num" data-cat="${catKey}">${cat}</span>`;
   return `<a class="ep-row" href="${href}">${thumb}<span class="ep-body"><span class="ep-title">${headline}</span><span class="ep-meta"><span class="cat mono cat-${catKey}">${cat}</span><span class="ep-date mono">${date}</span></span></span></a>`;
 }
+/* ── Desk FEATURE layout (Markets, Tech) — one big hero on the left + up to
+   three compact text+thumb side rows on the right, then a "view all" link.
+   Mirrors the supplied editorial reference. ── */
+function deskFeature(items, lang, prefix, allHref){
+  const hero = items[0];
+  if(!hero) return '';
+  const side = items.slice(1, 4);
+  const viewAll = esc((window.I[lang]&&window.I[lang].cta_all) || 'View all stories');
+  const heroImg = hero.banner
+    ? `<span class="dfh-img"><img src="${prefix}${esc(String(hero.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></span>` : '';
+  const heroHtml = `<a class="df-hero" href="${articleHref(hero,lang,prefix)}">
+      ${heroImg}
+      <span class="dfh-body">
+        <h3 class="dfh-title">${esc(pickLoc(hero.headline,lang))}</h3>
+        <p class="dfh-dek">${esc(pickLoc(hero.dek,lang))}</p>
+        <span class="df-author mono">${esc(hero.author||'MAXGAZINE')}</span>
+      </span></a>`;
+  const sideHtml = side.map(a=>{
+    const thumb = a.banner
+      ? `<span class="dfs-thumb"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></span>` : '';
+    return `<a class="df-side-row" href="${articleHref(a,lang,prefix)}">
+      <span class="dfs-body">
+        <span class="dfs-title">${esc(pickLoc(a.headline,lang))}</span>
+        <span class="dfs-dek">${esc(pickLoc(a.dek,lang))}</span>
+        <span class="df-author mono">${esc(a.author||'MAXGAZINE')}</span>
+      </span>${thumb}</a>`;
+  }).join('');
+  return `<div class="df-main">${heroHtml}</div>
+    <div class="df-side">${sideHtml}<a class="df-viewall mono" href="${allHref}">${viewAll}</a></div>`;
+}
+
+/* ── Desk SPLIT layout (Crypto) — a six-card image grid on the left + a
+   "Top Stories" text list (no images) on the right, sitting on a colour band.
+   Mirrors the supplied editorial reference. ── */
+function deskSplit(cards, list, lang, prefix){
+  const gridHtml = cards.map(a=>{
+    const img = a.banner
+      ? `<span class="dsc-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></span>`
+      : `<span class="dsc-img dsc-noimg"></span>`;
+    return `<a class="ds-card" href="${articleHref(a,lang,prefix)}">${img}<span class="dsc-title">${esc(pickLoc(a.headline,lang))}</span></a>`;
+  }).join('');
+  const listHead = esc((window.I[lang]&&window.I[lang].sec_latest) || 'Top Stories');
+  const listHtml = list.map(a=>`<a class="ds-list-row" href="${articleHref(a,lang,prefix)}">
+      <span class="dsl-date mono">${esc(a.date||'')}</span>
+      <span class="dsl-title">${esc(pickLoc(a.headline,lang))}</span></a>`).join('');
+  return `<div class="ds-grid">${gridHtml}</div>
+    <aside class="ds-list"><div class="ds-list-head mono">${listHead}</div>${listHtml}</aside>`;
+}
+
 // Featured rotation: every featured article with a banner gets a turn in the
 // hero; with 2+ of them the stage cross-fades to the next one every 10s.
 let featuredList = [];
@@ -1296,16 +1345,28 @@ function renderFeedSections(feed, lang, prefix){
   // haven't appeared above, and hides itself when that desk has nothing fresh.
   document.querySelectorAll('[data-feed-topic]').forEach(grid=>{
     const topic = grid.getAttribute('data-feed-topic');
-    const isStyleA = !!grid.closest('.desk-style-a');
-    const items = take(latestFeed.filter(a=>a.topic===topic), isStyleA ? 3 : 4);
     const section = grid.closest('[data-topic-section]') || grid;
+    const isFeature = section.classList.contains('desk-style-a'); // Markets, Tech
+    const isSplit   = section.classList.contains('desk-style-c'); // Crypto
+    const need = isSplit ? 6 : (isFeature ? 4 : 4);
+    const items = take(latestFeed.filter(a=>a.topic===topic), need);
     if(!items.length){ section.hidden = true; return; }
     section.hidden = false;
-    grid.innerHTML = items.map(a=>feedCard(a,lang,prefix)).join('');
+    const allHref = `${prefix}${lang}/stories.html?cat=${esc(TOPIC_TO_CATEGORY[topic]||topic)}`;
+    if(isFeature)      grid.innerHTML = deskFeature(items, lang, prefix, allHref);
+    else if(isSplit){
+      // "Top Stories" recap can repeat headlines shown elsewhere (Verge-style),
+      // so draw it from the whole topic pool minus the 6 grid cards — this keeps
+      // the right rail full even when fresh items are scarce.
+      const gridSlugs = new Set(items.map(a=>a.slug));
+      const listItems = latestFeed.filter(a=>a.topic===topic && !gridSlugs.has(a.slug)).slice(0,5);
+      grid.innerHTML = deskSplit(items, listItems, lang, prefix);
+    }
+    else               grid.innerHTML = items.map(a=>feedCard(a,lang,prefix)).join('');
     const head = section.querySelector('[data-topic-head]');
     if(head) head.textContent = (TOPIC_LABELS[lang]||TOPIC_LABELS.en)[topic] || topic;
     const all = section.querySelector('[data-topic-all]');
-    if(all) all.href = `${prefix}${lang}/stories.html?cat=${esc(TOPIC_TO_CATEGORY[topic]||topic)}`;
+    if(all) all.href = allHref;
   });
 
   // Podcast / video strip — surfaces media formats; hidden until such content

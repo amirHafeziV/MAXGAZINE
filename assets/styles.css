@@ -3214,3 +3214,170 @@ body.theme-dark .sub-modal-input{color:var(--ink)}
   .bs-frame .desk{padding-inline:var(--gut) !important}
   .desk .section-head-inner h2{font-size:clamp(20px,6vw,28px) !important}
 }
+
+/* ============================================================
+   DESK LAYOUTS v2 (2026-06-26) — editorial reference match
+   Style A (Markets, Tech) = big hero left + 3 text/thumb side rows.
+   Style B (Cars)          = the approved 4-up card grid (unchanged).
+   Style C (Crypto)        = full electric-purple band: 6-card image
+                             grid left + "Top Stories" text list right.
+   These layouts use their own child classes (.df-*, .ds-*), so the
+   round-1 `.desk .feed-grid>.card` rules above don't touch them.
+   ============================================================ */
+
+/* electric purple sampled from the Crypto reference */
+.desk-crypto{--desk-color:#5826E8}
+body.theme-dark .desk-crypto{--desk-color:#5826E8}
+
+/* ---- Style A: FEATURE (hero + side list) ---- */
+.desk-style-a .feed-grid{
+  display:grid !important;grid-template-columns:1.5fr 1fr !important;
+  grid-template-rows:auto !important;gap:0 44px !important;
+  border:none !important;padding:30px 4px 36px !important;align-items:start !important
+}
+.desk-style-a .df-main{min-width:0}
+.df-hero{display:flex;flex-direction:column;text-decoration:none}
+.df-hero .dfh-img{display:block;width:100%;aspect-ratio:16/11;overflow:hidden;margin-bottom:18px}
+.df-hero .dfh-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dfh-title{font-family:var(--font-display);font-weight:900;font-size:clamp(26px,3vw,40px);
+  line-height:1.04;letter-spacing:-.01em;color:var(--ink);margin:0 0 12px;transition:color .15s}
+.dfh-dek{font-family:'Lora',var(--font-body),Georgia,serif;font-size:clamp(16px,1.4vw,19px);
+  line-height:1.45;color:var(--ink-soft);margin:0 0 14px}
+.df-author{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--desk-color)}
+.df-hero:hover .dfh-title{color:var(--desk-color)}
+
+.df-side{display:flex;flex-direction:column;min-width:0}
+.df-side-row{display:grid;grid-template-columns:1fr 92px;gap:18px;align-items:start;
+  padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.df-side-row:first-child{padding-top:2px}
+.dfs-body{display:flex;flex-direction:column;min-width:0}
+.dfs-title{font-family:var(--font-display);font-weight:800;font-size:clamp(17px,1.5vw,21px);
+  line-height:1.12;letter-spacing:-.005em;color:var(--ink);margin-bottom:8px;transition:color .15s}
+.dfs-dek{font-family:'Lora',var(--font-body),Georgia,serif;font-size:14px;line-height:1.42;
+  color:var(--ink-soft);margin-bottom:10px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.dfs-thumb{width:92px;height:92px;overflow:hidden;flex:0 0 92px}
+.dfs-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.df-side-row:hover .dfs-title{color:var(--desk-color)}
+.df-viewall{align-self:flex-end;margin-top:20px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--desk-color);text-decoration:none}
+.df-viewall:hover{text-decoration:underline}
+
+/* ---- Style C: SPLIT (purple band) ---- */
+.desk-style-c{background:var(--desk-color) !important}
+.desk-style-c .section-head{background:transparent !important;border:none !important}
+.desk-style-c .section-head-inner{background:transparent !important;padding:18px 4px 4px !important}
+.desk-style-c .section-head-inner h2{color:#fff !important}
+.desk-style-c .section-head-inner .all{color:rgba(255,255,255,.85) !important;border-color:rgba(255,255,255,.5) !important}
+.desk-style-c .section-head-inner .all:hover{background:#fff !important;color:var(--desk-color) !important}
+.desk-style-c .feed-grid{
+  display:grid !important;grid-template-columns:minmax(0,1fr) 300px !important;gap:0 48px !important;
+  border:none !important;padding:14px 4px 42px !important;align-items:start !important
+}
+.ds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 26px;min-width:0}
+.ds-card{display:flex;flex-direction:column;text-decoration:none}
+.ds-card .dsc-img{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;margin-bottom:12px}
+.ds-card .dsc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ds-card .dsc-noimg{background:rgba(255,255,255,.10)}
+.dsc-title{font-family:var(--font-display);font-weight:800;font-size:clamp(16px,1.3vw,19px);
+  line-height:1.16;letter-spacing:-.005em;color:#fff}
+.ds-card:hover .dsc-title{text-decoration:underline}
+.ds-list{min-width:0}
+.ds-list-head{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.9);margin-bottom:4px}
+.ds-list-row{display:block;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none}
+.ds-list-row:last-child{border-bottom:none}
+.dsl-date{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+  color:rgba(255,255,255,.6);margin-bottom:6px}
+.dsl-title{font-family:var(--font-display);font-weight:800;font-size:clamp(16px,1.3vw,19px);
+  line-height:1.16;color:#fff}
+.ds-list-row:hover .dsl-title{text-decoration:underline}
+
+/* ---- two ad placements between Crypto and Cars ---- */
+.desk-ads{display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  max-width:1300px;margin:0 auto;padding:24px 28px}
+/* collapse when both slots are empty (fillAdSlot tags unbooked slots .ad-empty) */
+.desk-ads:not(:has(> a:not(.ad-empty))){display:none}
+.desk-ads .ad-banner{margin:0}
+
+/* ---- responsive ---- */
+@media(max-width:900px){
+  .desk-style-a .feed-grid{grid-template-columns:1fr !important;gap:28px 0 !important}
+  .desk-style-c .feed-grid{grid-template-columns:1fr !important;gap:32px 0 !important}
+  .ds-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .ds-grid{grid-template-columns:1fr}
+  .df-side-row{grid-template-columns:1fr 84px}
+  .desk-ads{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   MASTHEAD + ASSORTED FIXES (2026-06-26, round 2)
+   ============================================================ */
+
+/* (2a) Hero+Editor's Pick box: give it a bottom edge in dark mode so it
+   doesn't bleed into Latest Dispatches below. */
+body.theme-dark .bs-hero-grid{border-bottom:2px solid var(--line)}
+
+/* (2b) Editor's Pick hover: keep the article number legible (was washing out
+   to white-on-white on hover). Orange number on a white chip. */
+.bs-editors .ep-row::before{background:#fff;color:var(--accent-orange,#E8682A)}
+.bs-editors .ep-row:hover::before{background:#fff !important;color:var(--accent-orange,#E8682A) !important}
+
+/* (3) Load More: was stretched by flex:1 (huge dead gap beside the taller
+   Latest rail) and styled as a small floating pill. Make it a tight, full-width
+   brutalist bar that sits right under the river. */
+.vbox-main .feed-more-wrap{
+  flex:0 0 auto !important;display:block;padding:0 !important;margin-top:18px;
+  border-top:2px solid var(--line)
+}
+.vbox-main .feed-more{
+  display:block;width:100%;box-sizing:border-box;text-align:center;
+  margin:18px 0 0;padding:16px;font-size:13px;font-weight:700;letter-spacing:.14em;
+  border:2px solid var(--ink)
+}
+
+/* (menu) Brutalist desktop nav: one bold ruled row, no wrapping, hard invert on
+   hover. Horizontal-scroll fallback instead of an ugly second line. */
+.bs-nav{
+  flex-wrap:nowrap;overflow-x:auto;justify-content:center;
+  border-bottom:2px solid var(--line);scrollbar-width:none
+}
+.bs-nav::-webkit-scrollbar{display:none}
+.bs-nav a{
+  font-size:13px;font-weight:600;letter-spacing:.08em;
+  padding:15px clamp(13px,1.7vw,30px);
+  border-inline-start:1px solid var(--line);white-space:nowrap
+}
+.bs-nav a:hover{background:var(--ink);color:var(--paper)}
+.bs-nav a.active{background:var(--accent);color:#fff}
+.nav-badge-new{margin-inline-start:5px}
+
+/* (menu) Top action row: never wrap (kept SUBSCRIBE etc. from spilling toward
+   the centred wordmark), and drop the centre kicker on mid widths for room. */
+.bs-top-right{flex-wrap:nowrap}
+@media(max-width:1280px){ .bs-cats{display:none} }
+
+/* (1) BAUHAUS MOTION behind the wordmark — five drifting primary-colour
+   geometric shapes replace the old 3-pattern graph-paper cycle. */
+.bs-logo-row::before{display:none !important}      /* retire the pattern cycle */
+.bs-bauhaus{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bs-bauhaus .bh{position:absolute;opacity:.5;will-change:transform}
+body.theme-dark .bs-bauhaus .bh{opacity:.62}
+.bh-circle{width:58px;height:58px;border-radius:50%;background:#E63946;
+  left:6%;top:20%;animation:bhDrift1 17s ease-in-out infinite}
+.bh-triangle{width:0;height:0;border-left:32px solid transparent;border-right:32px solid transparent;
+  border-bottom:56px solid #1D4ED8;left:21%;bottom:-4px;animation:bhDrift2 21s ease-in-out infinite}
+.bh-semi{width:72px;height:36px;border-radius:72px 72px 0 0;background:#F4C20D;
+  right:15%;top:10px;animation:bhDrift3 19s ease-in-out infinite}
+.bh-quarter{width:54px;height:54px;border-radius:0 0 54px 0;background:#1AA35A;
+  right:7%;bottom:6px;animation:bhDrift4 23s ease-in-out infinite}
+.bh-bar{width:82px;height:17px;background:var(--accent,#9B1C1C);
+  left:43%;top:12px;animation:bhSpin 28s linear infinite}
+@keyframes bhDrift1{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,14px)}}
+@keyframes bhDrift2{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(18px,-16px) rotate(12deg)}}
+@keyframes bhDrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,10px)}}
+@keyframes bhDrift4{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-16px,-12px) rotate(-10deg)}}
+@keyframes bhSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.bs-bauhaus .bh{animation:none !important}}
