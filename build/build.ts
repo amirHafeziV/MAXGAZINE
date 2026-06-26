@@ -93,6 +93,53 @@ function feedEntry(a: Article) {
   };
 }
 
+/** Lightweight index of EVERY article — including drafts and scheduled ones —
+ *  written for the MasterWriter panel so its list/dashboard loads in ONE request
+ *  instead of one GitHub Contents fetch per file (the N+1 that made the panel
+ *  crawl to load). Only summary fields the list needs; the full body + git sha
+ *  are still fetched lazily by the panel when an article is opened to edit. */
+async function buildPanelIndex(): Promise<void> {
+  let files: string[];
+  try {
+    files = (await readdir(ARTICLES_DIR)).filter((f) => f.endsWith(".json"));
+  } catch {
+    return;
+  }
+  const entries: Array<Record<string, unknown>> = [];
+  for (const f of files) {
+    let a: Article;
+    try {
+      a = JSON.parse(await readFile(join(ARTICLES_DIR, f), "utf8")) as Article;
+    } catch {
+      console.warn(`[build] panel index: skipping unparseable ${f}`);
+      continue;
+    }
+    entries.push({
+      file: f,
+      slug: a.slug,
+      // keep the ORIGINAL status so the panel's articleStatus() can still derive
+      // "scheduled" from publishAt exactly as it does for live-fetched articles
+      status: a.status ?? null,
+      date: a.date,
+      publishAt: a.publishAt ?? null,
+      category: a.category ?? null,
+      topic: a.topic ?? null,
+      type: a.type ?? null,
+      author: a.author ?? null,
+      headline: a.headline,
+      banner: a.banner ?? null,
+      featured: a.placement?.hero === true || a.featured === true,
+    });
+  }
+  entries.sort((a, b) => (String(a.date) < String(b.date) ? 1 : -1));
+  await writeFile(
+    join(REPO_ROOT, "content", "data", "articles-index.json"),
+    JSON.stringify(entries),
+    "utf8",
+  );
+  console.log(`[build] wrote panel index: ${entries.length} article(s).`);
+}
+
 /** Rewrite the `# BEGIN coin-redirects` … `# END coin-redirects` block in
  *  .htaccess so every coin slug 301-redirects from its old root URL
  *  (/slug[.html]) to the English page (/en/slug.html). No-op if the markers
@@ -130,6 +177,8 @@ async function main() {
     JSON.stringify(articles.map(feedEntry)),
     "utf8",
   );
+
+  await buildPanelIndex();
 
   const coins = await loadCoins();
   console.log(`[build] ${coins.length} coin page(s) found.`);

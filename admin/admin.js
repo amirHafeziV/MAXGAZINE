@@ -137,6 +137,31 @@ function enterApp(){
 async function loadArticles(){
   const listEl = $('#articles-list');
   if(listEl) listEl.innerHTML = '<div class="row"><span class="m">Loading articles…</span></div>';
+
+  // Fast path — one request for the build-generated panel index (every article,
+  // incl. drafts + scheduled). Entries are summaries flagged `_summary`; the full
+  // body + git sha are fetched lazily by openEditor() on demand. This replaces an
+  // N+1 of ~one GitHub fetch per article file, which was the panel-load slowness.
+  const idx = await getFile('content/data/articles-index.json');
+  if(idx){
+    try{
+      const entries = JSON.parse(idx.text);
+      if(Array.isArray(entries)){
+        state.articles = entries.map(e=>({
+          path: 'content/articles/' + e.file,
+          sha: null,
+          _summary: true,
+          data: e,
+        }));
+        state.articles.sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
+        state.articlesLoaded = true;
+        return;
+      }
+    }catch(e){ console.warn('articles-index.json unparseable — falling back to per-file load', e); }
+  }
+
+  // Fallback — index missing (e.g. before the next build deploys it) or invalid:
+  // load each file directly so the panel keeps working.
   const list = await gh(`${repoPath('content/articles')}?ref=${state.cfg.branch}`) || [];
   const files = list.filter(f=>f.name.endsWith('.json'));
   const fetched = await Promise.all(files.map(async f=>{
@@ -369,7 +394,17 @@ function newArticle(){
   show('editor');
   setLang('en', true);
 }
-function openEditor(entry){
+async function openEditor(entry){
+  // Index entries are summaries — pull the full article (body, dek, seo) + the
+  // current git sha the first time it's opened, then cache it on the entry.
+  if(entry._summary){
+    const listEl = $('#articles-list');
+    const got = await getFile(entry.path);
+    if(got){
+      try{ entry.data = JSON.parse(got.text); entry.sha = got.sha; entry._summary = false; }
+      catch(e){ if(listEl) console.warn('failed to parse full article', entry.path, e); }
+    }
+  }
   const d = entry.data;
   state.editing = { path: entry.path, sha: entry.sha };
   state.buf = {};
@@ -556,11 +591,15 @@ async function saveArticle(){
     msg.textContent = statusSel==='draft' ? 'Draft saved.' :
       statusSel==='scheduled' ? `Scheduled — goes live ${publishAtLocal.replace('T',' ')}.` :
       'Saved & deploying — live in ~2 minutes.';
-    await loadArticles(); renderDashboard(); renderArticles();
-    // Refresh editing SHA from the reloaded list if available (keeps SHA in sync
-    // for subsequent saves without needing a manual refresh)
-    const saved = state.articles.find(a=>a.path===path);
-    if(saved) state.editing = { path, sha: saved.sha };
+    // Optimistic in-memory update — reflect the save locally instead of reloading
+    // the panel index, which only refreshes on the next build (so a just-saved
+    // draft, which triggers no build, wouldn't be in it yet). Also avoids the
+    // full list re-fetch after every save.
+    const entry = state.articles.find(a=>a.path===path);
+    if(entry){ entry.data = article; entry.sha = newSha || entry.sha; entry._summary = false; }
+    else { state.articles.unshift({ path, sha: newSha || null, data: article, _summary: false }); }
+    state.articles.sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
+    renderDashboard(); renderArticles();
   }catch(e){
     msg.textContent = `Save failed: ${e.message}`;
   }finally{
@@ -573,9 +612,12 @@ async function removeArticle(){
   if(!state.editing) return;
   if(!confirm('Delete this article from the site? This cannot be undone from the panel.')) return;
   try{
-    await deleteFile(state.editing.path, state.editing.sha, `panel: delete ${state.editing.path}`);
+    const delPath = state.editing.path;
+    await deleteFile(delPath, state.editing.sha, `panel: delete ${delPath}`);
     await triggerBuild();
-    await loadArticles(); renderDashboard(); renderArticles();
+    // Optimistic in-memory removal (the index file refreshes on the next build).
+    state.articles = state.articles.filter(a=>a.path!==delPath);
+    renderDashboard(); renderArticles();
     show('articles');
   }catch(e){ $('#save-msg').textContent = `Delete failed: ${e.message}`; }
 }
