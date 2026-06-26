@@ -1,6 +1,15 @@
 {
   "slug": "us-cbdc-ban-2030-trump-signs",
-  "category": "policy",
+  "topic": "crypto",
+  "type": "news",
+  "placement": {
+    "hero": false,
+    "editorsPick": true,
+    "pinned": false,
+    "hideFromLatest": false,
+    "priority": 0
+  },
+  "category": "crypto",
   "date": "2026-06-25",
   "author": "MAXGAZINE SEO Desk",
   "headline": {
