@@ -216,3 +216,16 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 
 [dir="rtl"] .f-headline,[dir="rtl"] .f-dek{direction:rtl}
 .f-body[dir="rtl"]{direction:rtl}
+
+/* ---- header motion picker (dashboard) ---- */
+.motion-card{margin-top:30px;border-top:2px solid var(--ink);padding-top:22px}
+.motion-card h2{margin-bottom:4px}
+.motion-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.motion-opt{display:flex;flex-direction:column;gap:6px;text-align:start;cursor:pointer;
+  padding:14px 16px;border:2px solid var(--ink);background:transparent;color:var(--ink);
+  transition:background .12s,color .12s,box-shadow .12s}
+.motion-opt:hover{box-shadow:4px 4px 0 var(--ink)}
+.motion-opt.active{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--accent,#E8682A)}
+.motion-opt-name{font-weight:700;font-size:15px}
+.motion-opt-desc{font-size:10px;opacity:.7;letter-spacing:.02em}
+.motion-opt.active .motion-opt-desc{opacity:.85}

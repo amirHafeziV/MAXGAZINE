@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4CRCP6Q118"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4CRCP6Q118');
+</script>
 <title>MAXGAZINE — Crypto, Forex, Tech & Cars</title>
 <meta name="description" content="MAXGAZINE — fast, multilingual crypto, forex, tech and cars media. Market-moving news, ranked exchanges and brokers, and premium forecasts in English, Persian, Arabic and Turkish.">
 <meta name="keywords" content="crypto news, forex news, bitcoin, ethereum, market analysis, crypto forecast, top exchanges, top brokers, AI financial media">
@@ -88,13 +96,7 @@
       </div><!-- /.bs-top-right -->
     </div>
     <div class="bs-logo-row">
-      <div class="bs-bauhaus" aria-hidden="true">
-        <span class="bh bh-circle"></span>
-        <span class="bh bh-triangle"></span>
-        <span class="bh bh-semi"></span>
-        <span class="bh bh-quarter"></span>
-        <span class="bh bh-bar"></span>
-      </div>
+      <div class="bs-motion" aria-hidden="true"></div>
       <a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a>
     </div>
     <nav class="bs-nav" aria-label="Primary">
@@ -249,44 +251,61 @@
     <span class="ad-cta mono">Book this spot →</span>
   </a>
 
-  <!-- ===== FOOTER (inside the frame) ===== -->
-  <footer>
+  <!-- ===== FOOTER (inside the frame) — rich ===== -->
+  <footer class="foot-rich">
     <div class="wrap">
-      <div class="foot-top">
+      <div class="foot-lead">
         <div class="foot-brand">
           <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
           <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-          <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+          <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
         </div>
-        <div class="foot-cols">
-          <div class="foot-col">
-            <h5 data-i="foot_explore">Explore</h5>
-            <a href="stories.html" data-i="f_stories">Stories</a>
-            <a href="chart.html" data-i="f_chart">Chart</a>
-            <a href="prices.html" data-i="f_prices">Prices</a>
-          </div>
-          <div class="foot-col">
-            <h5 data-i="foot_markets">Markets</h5>
-            <a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a>
-            <a href="brokers.html" data-i="f_brokers">Top Brokers</a>
-            <a href="prices.html" data-i="f_prices2">Prices</a>
-          </div>
-          <div class="foot-col">
-            <h5 data-i="foot_company">Company</h5>
-            <a href="about.html" data-i="f_about">About Us</a>
-            <a href="contact.html" data-i="f_contact">Contact Us</a>
-          </div>
-          <div class="foot-col">
-            <h5 data-i="foot_lang">Languages</h5>
-            <a href="#" data-lang="en">English</a>
-            <a href="#" data-lang="fa">فارسی</a>
-            <a href="#" data-lang="ar">العربية</a>
-            <a href="#" data-lang="tr">Türkçe</a>
-          </div>
+        <div class="foot-news">
+          <div class="foot-news-eyebrow mono" data-i="promo_sub">MARKET INTELLIGENCE</div>
+          <h4 data-i="foot_news_h">Stay ahead of the market.</h4>
+          <form class="foot-news-form" onsubmit="return false">
+            <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
+            <button class="foot-news-btn mono" type="submit" data-i="foot_news_cta">Subscribe →</button>
+          </form>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5 data-i="foot_explore">Explore</h5>
+          <a href="stories.html" data-i="f_stories">Stories</a>
+          <a href="chart.html" data-i="f_chart">Chart</a>
+          <a href="prices.html" data-i="f_prices">Prices</a>
+        </div>
+        <div class="foot-col">
+          <h5 data-i="foot_markets">Markets</h5>
+          <a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a>
+          <a href="brokers.html" data-i="f_brokers">Top Brokers</a>
+          <a href="prices.html" data-i="f_prices2">Prices</a>
+        </div>
+        <div class="foot-col">
+          <h5 data-i="foot_topics">Topics</h5>
+          <a href="stories.html?cat=crypto" data-nav="crypto">Crypto</a>
+          <a href="stories.html?cat=forex">Forex</a>
+          <a href="stories.html?cat=tech">Tech</a>
+          <a href="stories.html?cat=cars" data-nav="cars">Cars</a>
+          <a href="stories.html?cat=ai">AI News</a>
+        </div>
+        <div class="foot-col">
+          <h5 data-i="foot_company">Company</h5>
+          <a href="about.html" data-i="f_about">About Us</a>
+          <a href="contact.html" data-i="f_contact">Contact Us</a>
+        </div>
+        <div class="foot-col">
+          <h5 data-i="foot_lang">Languages</h5>
+          <a href="#" data-lang="en">English</a>
+          <a href="#" data-lang="fa">فارسی</a>
+          <a href="#" data-lang="ar">العربية</a>
+          <a href="#" data-lang="tr">Türkçe</a>
         </div>
       </div>
       <div class="foot-bottom mono">
         <span data-i="f_copy">© 2026 BRUTALIST MEDIA, LLC. ALL RIGHTS RESERVED</span>
+        <div class="foot-legal"><a href="about.html" data-i="f_privacy">Privacy</a><a href="about.html" data-i="f_terms">Terms</a><a href="contact.html" data-i="f_advertise">Advertise</a></div>
         <span data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
       </div>
     </div>

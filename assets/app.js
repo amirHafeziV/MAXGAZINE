@@ -1558,6 +1558,35 @@ function initBroadsheetDate(){
   }catch(e){ el.textContent = d.toDateString(); }
 }
 
+/* Header motion: five selectable background animations that play behind the
+   wordmark. The active model is panel-controlled via content/data/site.json
+   ({"headerMotion":"bauhaus"}); markup is injected here so every page — home and
+   built — shares the same system. Falls back to 'bauhaus'. */
+const HEADER_MOTIONS = {
+  bauhaus: `<span class="bh bh-circle"></span><span class="bh bh-triangle"></span><span class="bh bh-semi"></span><span class="bh bh-quarter"></span><span class="bh bh-bar"></span>`,
+  grid:    ``,
+  orbits:  `<span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span>`,
+  rays:    ``,
+  ticker:  `<div class="hm-ticker"><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span></div>`,
+};
+const HEADER_MOTION_DEFAULT = 'bauhaus';
+function applyHeaderMotion(model){
+  // NB: some models (grid, rays) have empty markup, so test key existence — not
+  // truthiness of the value, which would wrongly fall back to the default.
+  const m = Object.prototype.hasOwnProperty.call(HEADER_MOTIONS, model) ? model : HEADER_MOTION_DEFAULT;
+  document.querySelectorAll('.bs-motion').forEach(el=>{
+    el.setAttribute('data-motion', m);
+    el.innerHTML = HEADER_MOTIONS[m];
+  });
+}
+async function initHeaderMotion(){
+  applyHeaderMotion(HEADER_MOTION_DEFAULT);            // paint a default immediately
+  try{
+    const r = await fetch(adPrefix() + 'content/data/site.json', {cache:'no-cache'});
+    if(r.ok){ const cfg = await r.json(); if(cfg && cfg.headerMotion) applyHeaderMotion(cfg.headerMotion); }
+  }catch(e){/* keep the default */}
+}
+
 /* Broadsheet chrome: a slim sticky header that slides in on scroll (wordmark in
    the corner + playful orange dot) and carries the mobile menu trigger. It injects
    the ORIGINAL full-screen mega-menu (.burger + .nav-links) so the existing initNav
@@ -1729,6 +1758,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initTheme();
   initBroadsheetDate();
   initBroadsheetChrome();
+  initHeaderMotion();
   initNav();
   initObservers();
   initStickyMark();

@@ -180,9 +180,49 @@ async function loadAds(){
   state.adsSha = got ? got.sha : null;
   state.ads = got ? JSON.parse(got.text) : { slots:{}, popup:{} };
 }
+async function loadSite(){
+  const got = await getFile('content/data/site.json');
+  state.siteSha = got ? got.sha : null;
+  state.site = got ? JSON.parse(got.text) : { headerMotion: 'bauhaus' };
+}
 async function refreshAll(){
-  await Promise.all([loadArticles(), loadAds()]);
-  renderDashboard(); renderArticles(); renderAds();
+  await Promise.all([loadArticles(), loadAds(), loadSite()]);
+  renderDashboard(); renderArticles(); renderAds(); renderMotion();
+}
+
+/* ---------------- header motion picker ---------------- */
+const MOTION_MODELS = [
+  { id:'bauhaus', label:'باهاوس', desc:'اشکال هندسی رنگی شناور' },
+  { id:'grid',    label:'شبکه',   desc:'الگوهای کاغذ شطرنجی متغیر' },
+  { id:'orbits',  label:'مدارها', desc:'گوی‌های گرادیانی نرم' },
+  { id:'rays',    label:'پرتوها', desc:'بادبزن چرخان اپ‌آرت' },
+  { id:'ticker',  label:'تیکر',   desc:'نوشته‌ی غول‌پیکر کم‌رنگ روان' },
+];
+function renderMotion(){
+  const wrap = document.getElementById('motion-options');
+  if(!wrap) return;
+  const active = (state.site && state.site.headerMotion) || 'bauhaus';
+  wrap.innerHTML = MOTION_MODELS.map(m=>`
+    <button class="motion-opt${m.id===active?' active':''}" data-motion="${m.id}" type="button">
+      <span class="motion-opt-name">${esc(m.label)}</span>
+      <span class="motion-opt-desc mono">${esc(m.desc)}</span>
+    </button>`).join('');
+  wrap.querySelectorAll('.motion-opt').forEach(b=>b.addEventListener('click',()=>saveMotion(b.dataset.motion)));
+}
+async function saveMotion(model){
+  const msg = document.getElementById('motion-msg');
+  if(state.site && state.site.headerMotion === model){ return; }
+  if(msg) msg.textContent = 'در حال ذخیره…';
+  try{
+    const next = Object.assign({}, state.site, { headerMotion: model });
+    const result = await putFile('content/data/site.json', JSON.stringify(next, null, 2),
+      `panel: header motion → ${model}`, state.siteSha || undefined);
+    state.site = next;
+    state.siteSha = result?.content?.sha || state.siteSha;
+    renderMotion();
+    await triggerBuild();
+    if(msg) msg.textContent = `موشن «${model}» ذخیره شد — تا چند دقیقه روی سایت اعمال می‌شود.`;
+  }catch(e){ if(msg) msg.textContent = `ذخیره ناموفق: ${e.message}`; }
 }
 
 /* ---------------- helpers ---------------- */

@@ -155,6 +155,14 @@ function head(o: PageOpts): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4CRCP6Q118"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4CRCP6Q118');
+</script>
 <title>${esc(o.title)}</title>
 <meta name="description" content="${esc(o.description)}">
 <meta name="robots" content="index, follow">
@@ -191,7 +199,7 @@ function chromeHeader(lang: Lang, prefix: string): string {
   ).join("");
   const langBtns = `<button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">${lang.toUpperCase()}</span></button><div class="bs-lang-menu" role="menu">${langItems}</div>`;
   return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page theme-dark">
-<script>try{if(localStorage.getItem('theme')==='light')document.body.classList.remove('theme-dark');}catch(e){}</script>
+<script>try{if(localStorage.getItem('mg_theme')==='light')document.body.classList.remove('theme-dark');}catch(e){}</script>
 <div class="bs-frame">
 <header class="bsheet">
   <div class="bs-top">
@@ -204,7 +212,7 @@ function chromeHeader(lang: Lang, prefix: string): string {
       <div class="bs-lang" role="group" aria-label="Select language">${langBtns}</div>
     </div>
   </div>
-  <div class="bs-logo-row"><a class="bs-logo" href="${p("index.html")}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+  <div class="bs-logo-row"><div class="bs-motion" aria-hidden="true"></div><a class="bs-logo" href="${p("index.html")}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
   <nav class="bs-nav" aria-label="Primary">
     <a href="${p("stories.html")}" data-i="nav_stories">${esc(c.nav_stories!)}</a>
     <a href="${p("stories.html")}?cat=crypto" data-nav="crypto" data-i="nav_crypto">${esc(c.nav_crypto!)}</a>
@@ -229,21 +237,30 @@ function chromeFooter(lang: Lang, prefix: string): string {
   const langLinks = LANGS.map(
     (l) => `<a href="#" data-lang="${l}">${LANG_NAMES[l]}</a>`,
   ).join("");
-  return `<footer><div class="wrap">
-  <div class="foot-top">
+  return `<footer class="foot-rich"><div class="wrap">
+  <div class="foot-lead">
     <div class="foot-brand">
       <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
       <p class="foot-desc">${esc(c.foot_desc!)}</p>
-      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
+      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
     </div>
-    <div class="foot-cols">
-      <div class="foot-col"><h5>${esc(c.foot_explore!)}</h5><a href="${prefix}stories.html${s}">${esc(c.f_stories!)}</a><a href="${prefix}chart.html${s}">${esc(c.f_chart!)}</a><a href="${prefix}prices.html${s}">${esc(c.f_prices!)}</a></div>
-      <div class="foot-col"><h5>${esc(c.foot_markets!)}</h5><a href="${prefix}exchanges.html${s}">${esc(c.f_exchanges!)}</a><a href="${prefix}brokers.html${s}">${esc(c.f_brokers!)}</a></div>
-      <div class="foot-col"><h5>${esc(c.foot_company!)}</h5><a href="${prefix}about.html${s}">${esc(c.f_about!)}</a><a href="${prefix}contact.html${s}">${esc(c.f_contact!)}</a></div>
-      <div class="foot-col"><h5>${esc(c.foot_lang!)}</h5>${langLinks}</div>
+    <div class="foot-news">
+      <div class="foot-news-eyebrow mono">MARKET INTELLIGENCE</div>
+      <h4>Stay ahead of the market.</h4>
+      <form class="foot-news-form" onsubmit="return false">
+        <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
+        <button class="foot-news-btn mono" type="submit">Subscribe →</button>
+      </form>
     </div>
   </div>
-  <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><span>${esc(c.f_built!)}</span></div>
+  <div class="foot-cols">
+    <div class="foot-col"><h5>${esc(c.foot_explore!)}</h5><a href="${prefix}stories.html${s}">${esc(c.f_stories!)}</a><a href="${prefix}chart.html${s}">${esc(c.f_chart!)}</a><a href="${prefix}prices.html${s}">${esc(c.f_prices!)}</a></div>
+    <div class="foot-col"><h5>${esc(c.foot_markets!)}</h5><a href="${prefix}exchanges.html${s}">${esc(c.f_exchanges!)}</a><a href="${prefix}brokers.html${s}">${esc(c.f_brokers!)}</a></div>
+    <div class="foot-col"><h5>Topics</h5><a href="${prefix}stories.html?cat=crypto${s.replace("?","&")}">Crypto</a><a href="${prefix}stories.html?cat=forex${s.replace("?","&")}">Forex</a><a href="${prefix}stories.html?cat=tech${s.replace("?","&")}">Tech</a><a href="${prefix}stories.html?cat=cars${s.replace("?","&")}">Cars</a></div>
+    <div class="foot-col"><h5>${esc(c.foot_company!)}</h5><a href="${prefix}about.html${s}">${esc(c.f_about!)}</a><a href="${prefix}contact.html${s}">${esc(c.f_contact!)}</a></div>
+    <div class="foot-col"><h5>${esc(c.foot_lang!)}</h5>${langLinks}</div>
+  </div>
+  <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><div class="foot-legal"><a href="${prefix}about.html${s}">Privacy</a><a href="${prefix}about.html${s}">Terms</a><a href="${prefix}contact.html${s}">Advertise</a></div><span>${esc(c.f_built!)}</span></div>
 </div></footer>
 </div><!-- /.bs-frame -->
 
