@@ -707,9 +707,17 @@ function initNav(){
       t.addEventListener('click',e=>{
         e.preventDefault(); e.stopPropagation();
         const group = t.closest('.nav-group');
-        const open = group.classList.toggle('open-sub');
-        t.textContent = open?'−':'+';
-        t.setAttribute('aria-expanded',String(open));
+        const willOpen = !group.classList.contains('open-sub');
+        // accordion: only one open at a time — collapse the others first
+        links.querySelectorAll('.nav-group.open-sub').forEach(g=>{
+          if(g===group) return;
+          g.classList.remove('open-sub');
+          const ot=g.querySelector('.sub-toggle');
+          if(ot){ ot.textContent='+'; ot.setAttribute('aria-expanded','false'); }
+        });
+        group.classList.toggle('open-sub', willOpen);
+        t.textContent = willOpen?'−':'+';
+        t.setAttribute('aria-expanded',String(willOpen));
       });
     });
     // close menu only when navigating via an actual link
@@ -1786,34 +1794,44 @@ function initBroadsheetChrome(){
   // story + subscribe; hovering a nav item swaps in that item's content. Hidden
   // on mobile (CSS), where the inline accordion subs are used instead.
   const escMenu = s => String(s==null?'':s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  // per-category accent colours (match the site palette + crypto purple)
+  const CAT_COLORS = {crypto:'#8A6CFF', market:'#22C55E', cars:'#EF4444', tech:'#F59E0B', prices:'#3B82F6', ai:'#06B6D4'};
+  function catOf(g){ const a=g&&g.querySelector(':scope > a'); if(!a) return null;
+    const di=a.getAttribute('data-i')||'', dn=a.getAttribute('data-nav')||'', href=a.getAttribute('href')||'';
+    if(di==='nav_crypto'||dn==='crypto') return 'crypto';
+    if(di==='nav_topmarkets') return 'market';
+    if(di==='nav_cars'||dn==='cars') return 'cars';
+    if(dn==='ai') return 'ai';
+    if(/cat=tech/.test(href)) return 'tech';
+    if(/prices\.html/.test(href)) return 'prices';
+    return null; }
   const coinRow = (symbol,id) =>
     `<a class="mp-coin" href="${p('exchanges.html')}" data-coin="${id}"><span class="mc-sym">${symbol}</span><span class="mc-price">—</span><span class="mc-chg">—</span><span class="mc-trade">Trade →</span></a>`;
-  function defaultPanelHTML(){
+  // persistent block (always visible): latest story + subscribe
+  function persistHTML(){
     const fl = feedLang();
     const feed = Array.isArray(window.__feed) ? window.__feed : [];
     const art = feed.find(a=>a && a.banner) || feed[0];
-    const news = art ? `<div class="mp-featured"><span class="mp-eyebrow">Featured</span>`+
+    const news = art ? `<div class="mp-featured"><span class="mp-eyebrow">Latest</span>`+
       `<a class="mp-news" href="${articleHref(art, fl, prefix)}"><span class="mp-news-cat">${escMenu((art.category||'').toUpperCase())}</span>`+
       `<h4>${escMenu(pickLoc(art.headline, fl))}</h4></a></div>` : '';
     return `${news}<div class="mp-subscribe"><h5>Stay ahead of the market.</h5>`+
       `<form class="mp-form" onsubmit="return false"><input type="email" placeholder="your@email.com" aria-label="Email"><button type="submit" aria-label="Subscribe">→</button></form></div>`;
   }
+  // dynamic block (per-hover): the hovered item's content
   function groupPanelHTML(g){
-    const a = g.querySelector(':scope > a'); if(!a) return {cls:'', html:defaultPanelHTML()};
+    const a = g.querySelector(':scope > a'); if(!a) return '';
     const href = a.getAttribute('href')||''; const di = a.getAttribute('data-i')||'';
     const label = a.textContent.replace(/new$/i,'').trim();
-    if(di==='nav_crypto') return {cls:'is-crypto', html:
-      `<span class="mp-eyebrow">Crypto</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}${coinRow('SOL','solana')}</div>`+
-      `<a class="mp-more" href="${prefix}stories.html?cat=crypto${sfx}">All crypto coverage →</a>`};
-    if(/prices\.html/.test(href)) return {cls:'', html:
-      `<span class="mp-eyebrow">Live Prices</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}</div>`+
-      `<a class="mp-more" href="${p('prices.html')}">Show more →</a>`};
-    if(di==='nav_topmarkets') return {cls:'', html:
-      `<span class="mp-eyebrow">Markets</span><div class="mp-links"><a href="${p('exchanges.html')}">Crypto Exchanges</a><a href="${p('brokers.html')}">Brokers</a><a href="${prefix}stories.html?cat=forex${sfx}">Forex</a><span class="mp-soon">Future <em>soon</em></span></div>`};
+    if(di==='nav_crypto') return `<span class="mp-eyebrow">Crypto</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}${coinRow('SOL','solana')}</div>`+
+      `<a class="mp-more" href="${prefix}stories.html?cat=crypto${sfx}">All crypto coverage →</a>`;
+    if(/prices\.html/.test(href)) return `<span class="mp-eyebrow">Live Prices</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}</div>`+
+      `<a class="mp-more" href="${p('prices.html')}">Show more →</a>`;
+    if(di==='nav_topmarkets') return `<span class="mp-eyebrow">Markets</span><div class="mp-links"><a href="${p('exchanges.html')}">Crypto Exchanges</a><a href="${p('brokers.html')}">Brokers</a><a href="${prefix}stories.html?cat=forex${sfx}">Forex</a><span class="mp-soon">Future <em>soon</em></span></div>`;
     const sub = g.querySelector('.sub');
     if(sub){ const links=[...sub.querySelectorAll('a')].map(x=>`<a href="${x.getAttribute('href')}">${escMenu(x.textContent)}</a>`).join('');
-      return {cls:'', html:`<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links">${links}</div>`}; }
-    return {cls:'', html:`<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links"><a href="${href}">Open ${escMenu(label)} →</a></div>`};
+      return `<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links">${links}</div>`; }
+    return `<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links"><a href="${href}">Open ${escMenu(label)} →</a></div>`;
   }
   let _mpCoins = null;
   async function fillCoins(scope){
@@ -1827,19 +1845,21 @@ function initBroadsheetChrome(){
       });
     }catch(e){/* leave dashes */}
   }
-  const panel = document.createElement('div'); panel.className='menu-panel mp-default'; panel.setAttribute('aria-hidden','true');
+  const panel = document.createElement('div'); panel.className='menu-panel'; panel.setAttribute('aria-hidden','true');
+  panel.innerHTML = `<div class="mp-dynamic"></div><div class="mp-persist">${persistHTML()}</div>`;
   menu.appendChild(panel);
+  const dyn = panel.querySelector('.mp-dynamic'), persist = panel.querySelector('.mp-persist');
   const _groups = [...menu.querySelectorAll('.nav-group')];
-  _groups.forEach(g=>{ const a0=g.querySelector(':scope > a'); if(a0 && a0.getAttribute('data-i')==='nav_crypto') g.classList.add('is-crypto'); });
-  function renderDefault(){ panel.className='menu-panel mp-default'; panel.innerHTML = `<div class="mp-fade">${defaultPanelHTML()}</div>`; }
-  function renderGroup(g){ const r=groupPanelHTML(g); panel.className='menu-panel '+r.cls; panel.innerHTML = `<div class="mp-fade">${r.html}</div>`; fillCoins(panel); }
+  function setCat(key){ if(key && CAT_COLORS[key]) panel.style.setProperty('--cat', CAT_COLORS[key]); else panel.style.removeProperty('--cat'); }
+  function renderDefault(){ dyn.innerHTML=''; setCat(null); }
+  function renderGroup(g){ dyn.innerHTML = `<div class="mp-fade">${groupPanelHTML(g)}</div>`; setCat(catOf(g)); fillCoins(dyn); }
   function clearActive(){ _groups.forEach(x=>x.classList.remove('is-active')); }
   renderDefault();
   _groups.forEach(g=> g.addEventListener('mouseenter', ()=>{ clearActive(); g.classList.add('is-active'); renderGroup(g); }));
   ['.menu-head','.menu-search','.menu-theme','.menu-foot'].forEach(sel=>{
     const el = menu.querySelector(sel); if(el) el.addEventListener('mouseenter', ()=>{ clearActive(); renderDefault(); });
   });
-  window.__refreshMenuPanel = ()=>{ if(!menu.querySelector('.nav-group.is-active')) renderDefault(); };
+  window.__refreshMenuPanel = ()=>{ persist.innerHTML = persistHTML(); };
 
   // search overlay
   const searchOverlay = document.createElement('div'); searchOverlay.className='bs-search-overlay'; searchOverlay.id='bs-search-overlay';
