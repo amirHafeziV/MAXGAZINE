@@ -11,7 +11,7 @@
   },
   "category": "markets",
   "date": "2026-06-24",
-  "author": "MAXGAZINE Desk",
+  "author": "Elements Desk",
   "headline": {
     "en": "Gold Plunges Below $4,000 as Dollar Strengthens on September Rate Hike Bets",
     "fa": "طلا به زیر ۴٬۰۰۰ دلار سقوط کرد؛ دلار با انتظار افزایش نرخ بهره سپتامبر تقویت شد",
@@ -94,5 +94,6 @@
     "forex"
   ],
   "status": "published",
+  "banner": "https://maxgazine.com/assets/uploads/1782458454301-banner.png",
   "featured": false
 }
