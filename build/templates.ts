@@ -199,7 +199,7 @@ function chromeHeader(lang: Lang, prefix: string): string {
   ).join("");
   const langBtns = `<button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">${lang.toUpperCase()}</span></button><div class="bs-lang-menu" role="menu">${langItems}</div>`;
   return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page theme-dark">
-<script>try{if(localStorage.getItem('mg_theme')==='light')document.body.classList.remove('theme-dark');}catch(e){}</script>
+<script>try{var t=localStorage.getItem('mg_theme');var d=t==='dark'||((!t||t==='system')&&matchMedia('(prefers-color-scheme:dark)').matches);if(!d)document.body.classList.remove('theme-dark');}catch(e){}</script>
 <div class="bs-frame">
 <header class="bsheet">
   <div class="bs-top">

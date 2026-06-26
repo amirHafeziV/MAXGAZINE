@@ -3491,3 +3491,115 @@ body.theme-dark .bs-motion[data-motion="rays"]{
   text-transform:uppercase;letter-spacing:-.01em;color:var(--ink);opacity:.06;padding-inline:18px}
 body.theme-dark .hm-ticker span{opacity:.09}
 @keyframes hmTickerSlide{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   SECTION TITLES v3 (2026-06-26 round 4) — The Verge style.
+   Replaces the loud full-width colour bar with a big reflected
+   display heading + "View All Articles →". Per-desk identity now
+   lives only in the accent-coloured view-all link (calmer palette).
+   ============================================================ */
+.desk .section-head{
+  background:none !important;border:none !important;
+  padding:10px 4px 0 !important;margin:0 !important;display:block !important}
+.desk .section-head-inner{
+  background:none !important;border:none !important;writing-mode:horizontal-tb !important;
+  display:flex !important;align-items:flex-end !important;justify-content:space-between !important;
+  gap:24px !important;flex-wrap:wrap;
+  padding:4px 0 6px !important;margin:0 !important;
+  width:auto !important;height:auto !important;min-height:0 !important;
+  position:static !important;overflow:visible !important}
+.desk .section-head-inner h2{
+  writing-mode:horizontal-tb !important;font-family:var(--font-display) !important;font-weight:900 !important;
+  font-size:clamp(28px,4.4vw,58px) !important;line-height:.92 !important;letter-spacing:-.01em !important;
+  text-transform:none !important;color:var(--ink) !important;margin:0 !important;display:block !important;
+  -webkit-box-reflect:below 1px linear-gradient(transparent 50%, transparent 58%, rgba(0,0,0,.20))}
+.desk .section-head-inner h2::before,.desk .section-head-inner h2::after{display:none !important}
+.desk .section-head-inner .all{
+  writing-mode:horizontal-tb !important;font-family:var(--mono) !important;font-size:13px !important;
+  letter-spacing:.05em !important;text-transform:uppercase !important;white-space:nowrap;
+  color:var(--desk-color) !important;border:none !important;background:none !important;
+  padding:0 0 16px !important;margin:0 !important;text-decoration:none;align-self:flex-end;opacity:1}
+.desk .section-head-inner .all:hover{text-decoration:underline}
+
+/* Crypto purple band: white heading + link, deeper reflection on the band */
+.desk-style-c .section-head{padding-top:16px !important}
+.desk-style-c .section-head-inner h2{color:#fff !important;
+  -webkit-box-reflect:below 1px linear-gradient(transparent 52%, transparent 60%, rgba(0,0,0,.30))}
+.desk-style-c .section-head-inner .all{color:#fff !important}
+
+body[dir="rtl"] .desk .section-head-inner .all{white-space:normal}
+
+/* ============================================================
+   MENU v2 (2026-06-26 round 4) — Verge-style full-screen menu:
+   bold colour field, faded wordmark watermark, utility links +
+   well-placed close, big white search, 3-equal theme toggle,
+   mint "+" accordions on ruled dividers.
+   ============================================================ */
+body > .nav-links.open{background:#5826E8 !important;
+  grid-template-rows:auto auto auto 1fr auto !important;
+  align-content:stretch !important;row-gap:0 !important}
+.nav-links > *{position:relative;z-index:1}
+.nav-links .menu-watermark{
+  position:absolute !important;left:50%;bottom:-3%;transform:translateX(-50%);z-index:0;
+  pointer-events:none;user-select:none;white-space:nowrap;overflow:hidden;
+  font-family:var(--font-display);font-weight:900;letter-spacing:-.045em;
+  font-size:clamp(140px,30vw,420px);line-height:.7;color:rgba(255,255,255,.08);text-transform:uppercase}
+
+/* head: utility links left, "close ✕" right */
+.nav-links .menu-head{
+  grid-column:1/-1 !important;display:flex !important;align-items:center;justify-content:space-between;
+  padding:22px var(--gut) 16px !important;border:none !important;background:none !important;margin:0 !important}
+.nav-links .menu-head-links{display:flex;align-items:center;gap:12px}
+.nav-links .menu-head-links a{color:#fff;text-decoration:underline;text-underline-offset:3px;
+  font-family:var(--font-head),Georgia,serif;font-size:19px;font-weight:600}
+.nav-links .menu-head-links a:hover{color:rgba(255,255,255,.78)}
+.nav-links .menu-head-sep{color:rgba(255,255,255,.55);font-size:18px}
+.nav-links .menu-close{
+  display:inline-flex !important;align-items:center;gap:10px;background:none !important;border:none !important;
+  cursor:pointer;color:#fff !important;font-family:var(--mono);font-size:15px;letter-spacing:.04em;
+  text-transform:lowercase;padding:8px 4px !important;position:static !important;width:auto !important;height:auto !important}
+.nav-links .menu-close .menu-close-x{font-size:24px;line-height:1}
+.nav-links .menu-close:hover{color:rgba(255,255,255,.72) !important;background:none !important}
+
+/* big white search box */
+.nav-links .menu-search{
+  grid-column:1/-1 !important;position:relative;margin:6px var(--gut) 4px !important;
+  padding:0 !important;border:none !important}
+.nav-links .menu-search-input{
+  width:100%;background:#fff !important;border:none;border-radius:0;outline:none;
+  font-family:var(--font-body);font-size:18px;color:#1a1a1a !important;
+  padding:20px 58px 20px 24px;letter-spacing:0}
+.nav-links .menu-search-input::placeholder{color:#8a8a8a;text-transform:none}
+.nav-links .menu-search-icon{position:absolute;top:50%;inset-inline-end:22px;transform:translateY(-50%);color:#555}
+
+/* 3-equal-segment theme toggle */
+.nav-links .menu-theme{
+  grid-column:1/-1 !important;display:flex !important;align-items:stretch;align-self:start;
+  margin:14px var(--gut) 22px !important;border:2px solid rgba(255,255,255,.55);border-radius:999px;overflow:hidden}
+.nav-links .menu-theme button{
+  flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 6px;background:transparent;border:none;border-inline-end:2px solid rgba(255,255,255,.32);
+  color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:background .15s,color .15s}
+.nav-links .menu-theme button:last-child{border-inline-end:none}
+.nav-links .menu-theme button:hover{background:rgba(255,255,255,.14)}
+.nav-links .menu-theme button.active{background:#fff;color:#5826E8}
+
+/* category list: white items, ruled dividers, mint "+" accordions */
+.nav-links .nav-groups,.nav-links .nav-extras{padding:14px var(--gut) 10px !important;border-left:none !important}
+.nav-links .nav-group{border-bottom:1px solid rgba(255,255,255,.28) !important}
+.nav-links .nav-group > a,.nav-links .nav-group > a[data-i]{color:#fff !important}
+.nav-links .sub-toggle{color:#7defc0 !important}
+.nav-links .nav-group .sub a{color:rgba(255,255,255,.8) !important}
+.nav-links .nav-group .sub a:hover{color:#7defc0 !important}
+
+/* footer row: language switcher + socials on the colour field */
+.nav-links .menu-foot{grid-column:1/-1 !important;border-top:1px solid rgba(255,255,255,.22) !important}
+.nav-links .menu-foot .menu-lang,.nav-links .lang.menu-lang{border-color:rgba(255,255,255,.5) !important}
+.nav-links .menu-foot .menu-lang button,.nav-links .menu-lang button{color:#fff !important;border-color:rgba(255,255,255,.28) !important}
+.nav-links .menu-foot .menu-lang button.active,.nav-links .menu-lang button.active{background:#fff !important;color:#5826E8 !important}
+.nav-links .menu-foot .menu-socials a,.nav-links .menu-socials a{color:#fff !important}
+
+@media(max-width:760px){
+  .nav-links .menu-watermark{bottom:auto;top:38%;font-size:46vw;color:rgba(255,255,255,.07)}
+}

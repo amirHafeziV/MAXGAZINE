@@ -991,11 +991,16 @@ const CAT_LABELS = {
   tr:{all:'Tümü',markets:'Piyasalar',crypto:'Kripto',forex:'Forex',defi:'DeFi',policy:'Politika',mining:'Madencilik',analysis:'Analiz',tech:'Teknoloji',cars:'Otomobil',staff:'Personel',reportage:'Röportaj'}
 };
 /* ---- topic & type vocab (mirrors agents/src/taxonomy.ts) ---- */
+/* Editorial, SEO-friendly desk titles (shown as the big reflected section
+   heading) — descriptive "Best …" framing rather than the bare topic word. */
 const TOPIC_LABELS = {
-  en:{market:'Markets',crypto:'Crypto',cars:'Cars',tech:'Tech'},
-  fa:{market:'بازار',crypto:'کریپتو',cars:'خودرو',tech:'تکنولوژی'},
-  ar:{market:'الأسواق',crypto:'كريبتو',cars:'سيارات',tech:'تقنية'},
-  tr:{market:'Piyasalar',crypto:'Kripto',cars:'Otomobil',tech:'Teknoloji'}
+  en:{market:'Best Market Analysis',crypto:'Best Crypto Coverage',cars:'Best Automotive Articles',tech:'Best Tech Stories'},
+  fa:{market:'بهترین تحلیل‌های بازار',crypto:'بهترین پوشش کریپتو',cars:'بهترین مقالات خودرو',tech:'بهترین مطالب تکنولوژی'},
+  ar:{market:'أفضل تحليلات السوق',crypto:'أفضل تغطية الكريبتو',cars:'أفضل مقالات السيارات',tech:'أفضل قصص التقنية'},
+  tr:{market:'En İyi Piyasa Analizleri',crypto:'En İyi Kripto Haberleri',cars:'En İyi Otomotiv Yazıları',tech:'En İyi Teknoloji Yazıları'}
+};
+const VIEWALL_LABELS = {
+  en:'View All Articles →', fa:'مشاهده همه مطالب ←', ar:'عرض كل المقالات ←', tr:'Tüm Yazıları Gör →'
 };
 const TYPE_LABELS = {
   en:{news:'News',article:'Feature',analysis:'Analysis',review:'Review',reportage:'Reportage',podcast:'Podcast',video:'Video'},
@@ -1106,7 +1111,7 @@ function deskFeature(items, lang, prefix, allHref){
       </span>${thumb}</a>`;
   }).join('');
   return `<div class="df-main">${heroHtml}</div>
-    <div class="df-side">${sideHtml}<a class="df-viewall mono" href="${allHref}">${viewAll}</a></div>`;
+    <div class="df-side">${sideHtml}</div>`;
 }
 
 /* ── Desk SPLIT layout (Crypto) — a six-card image grid on the left + a
@@ -1366,7 +1371,7 @@ function renderFeedSections(feed, lang, prefix){
     const head = section.querySelector('[data-topic-head]');
     if(head) head.textContent = (TOPIC_LABELS[lang]||TOPIC_LABELS.en)[topic] || topic;
     const all = section.querySelector('[data-topic-all]');
-    if(all) all.href = allHref;
+    if(all){ all.href = allHref; all.removeAttribute('data-i'); all.textContent = (VIEWALL_LABELS[lang]||VIEWALL_LABELS.en); }
   });
 
   // Podcast / video strip — surfaces media formats; hidden until such content
@@ -1617,15 +1622,23 @@ function initBroadsheetChrome(){
   const langBtns = ['en','fa','ar','tr'].map(l=>`<button data-lang="${l}"${l===lang?' class="active"':''} lang="${l}">${langName[l]}</button>`).join('');
   const menu = document.createElement('div'); menu.className='nav-links'; menu.id='nav-links';
   menu.innerHTML = `
+    <div class="menu-watermark" aria-hidden="true">MAXGAZINE</div>
     <div class="menu-head">
-      <a class="menu-logo" href="${homeHref}">MAXGAZINE<span class="dot">.</span></a>
-      <div class="menu-head-actions">
+      <div class="menu-head-links">
         <a class="menu-subscribe" href="${p('contact.html')}">Subscribe</a>
-        <button class="menu-close" type="button" aria-label="Close menu">✕</button>
+        <span class="menu-head-sep" aria-hidden="true">/</span>
+        <a href="${p('contact.html')}">Contact</a>
       </div>
+      <button class="menu-close" type="button" aria-label="Close menu"><span class="menu-close-label">close</span><span class="menu-close-x" aria-hidden="true">✕</span></button>
     </div>
     <div class="menu-search">
-      <input class="menu-search-input" type="search" placeholder="Search stories, markets, coins…" aria-label="Search">
+      <input class="menu-search-input" type="search" placeholder="Search" aria-label="Search">
+      <svg class="menu-search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    </div>
+    <div class="menu-theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-set="light"><span aria-hidden="true">☀</span> Light</button>
+      <button type="button" data-theme-set="system"><span aria-hidden="true">◑</span> System</button>
+      <button type="button" data-theme-set="dark"><span aria-hidden="true">☾</span> Dark</button>
     </div>
     <div class="nav-groups">
       <div class="nav-group has-sub">
@@ -1732,32 +1745,46 @@ function initBroadsheetChrome(){
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 }
 
-/* ---------- theme toggle (dark default / light option) ---------- */
-function initTheme(){
-  /* apply stored preference (FOUC prevention script in HTML sets default=dark) */
-  const stored = (() => { try{ return localStorage.getItem('mg_theme'); }catch(e){ return null; } })();
-  /* if preference not set yet, dark is already applied by the inline script */
-  const btn = document.getElementById('theme-toggle');
-  if(!btn) return;
-  const isDark = () => document.body.classList.contains('theme-dark');
-  const updateBtn = () => {
-    btn.querySelector('.tt-icon').textContent = isDark() ? '☀' : '☽';
-    btn.querySelector('.tt-label').textContent = isDark() ? 'LIGHT' : 'DARK';
-    btn.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme');
-  };
-  updateBtn();
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('theme-dark');
-    try{ localStorage.setItem('mg_theme', isDark() ? 'dark' : 'light'); }catch(e){}
-    updateBtn();
+/* ---------- theme: light / dark / system (follows OS) ---------- */
+function currentThemeMode(){ try{ return localStorage.getItem('mg_theme') || 'system'; }catch(e){ return 'system'; } }
+function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function applyTheme(mode){
+  const dark = mode === 'dark' ? true : mode === 'light' ? false : systemPrefersDark();
+  document.body.classList.toggle('theme-dark', dark);
+  try{ localStorage.setItem('mg_theme', mode); }catch(e){}
+  // reflect on the menu's 3-way segmented control
+  document.querySelectorAll('[data-theme-set]').forEach(b=>{
+    const on = b.getAttribute('data-theme-set') === mode;
+    b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on));
   });
+  // reflect on the masthead single toggle
+  const btn = document.getElementById('theme-toggle');
+  if(btn){
+    const ti = btn.querySelector('.tt-icon'), tl = btn.querySelector('.tt-label');
+    if(ti) ti.textContent = dark ? '☀' : '☽';
+    if(tl) tl.textContent = dark ? 'LIGHT' : 'DARK';
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+}
+function initTheme(){
+  applyTheme(currentThemeMode());
+  const btn = document.getElementById('theme-toggle');
+  if(btn) btn.addEventListener('click', ()=> applyTheme(document.body.classList.contains('theme-dark') ? 'light' : 'dark'));
+  document.querySelectorAll('[data-theme-set]').forEach(b=>b.addEventListener('click', ()=> applyTheme(b.getAttribute('data-theme-set'))));
+  // when in "system" mode, track OS theme changes live
+  if(window.matchMedia){
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = ()=>{ if(currentThemeMode() === 'system') applyTheme('system'); };
+    if(mq.addEventListener) mq.addEventListener('change', onChange);
+    else if(mq.addListener) mq.addListener(onChange);
+  }
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
   if(window.initLang) window.initLang();
-  initTheme();
   initBroadsheetDate();
-  initBroadsheetChrome();
+  initBroadsheetChrome();          // injects the menu (incl. theme controls)
+  initTheme();                     // …so theme controls are wired after injection
   initHeaderMotion();
   initNav();
   initObservers();
