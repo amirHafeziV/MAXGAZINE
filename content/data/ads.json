@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T00:42:45.502Z",
+  "updated": "2026-06-26T00:45:24.697Z",
   "slots": {
     "home-top": {
       "enabled": false,
@@ -16,11 +16,11 @@
       "image": ""
     },
     "home-rail": {
-      "enabled": false,
+      "enabled": true,
       "type": "image",
       "link": "",
       "alt": "",
-      "image": "https://maxgazine.com/assets/uploads/1782434565518-ad-home-rail.png"
+      "image": "https://maxgazine.com/assets/uploads/1782434724703-ad-home-rail.png"
     },
     "home-footer": {
       "enabled": false,
