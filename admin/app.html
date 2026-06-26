@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Estedad:wght@400;500;700;900&family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="admin.css?v=20260619b">
 </head>
 <body>
@@ -48,8 +48,25 @@
   </div>
   <div class="motion-card">
     <h2 class="mono">HEADER MOTION — موشن هدر</h2>
-    <p class="mono note">انیمیشن پس‌زمینه‌ی لوگوتایپ. انتخاب شما روی همه‌ی صفحات سایت اعمال می‌شود.</p>
-    <div id="motion-options" class="motion-options"></div>
+    <p class="mono note">انیمیشن پس‌زمینه‌ی لوگوتایپ. از منو یک موشن را انتخاب کن، نتیجه را در باکس پیش‌نمایش (هم‌اندازهٔ هدر سایت) ببین، سپس ذخیره کن تا روی همهٔ صفحات اعمال شود.</p>
+    <div class="motion-picker">
+      <label class="mono motion-select-l">انتخاب موشن
+        <select id="motion-select"></select>
+      </label>
+      <span class="mono note motion-desc" id="motion-desc"></span>
+      <button class="btn motion-save" id="btn-motion-save">ذخیره و اعمال</button>
+    </div>
+    <div class="bg-picker">
+      <span class="mono filt-l">رنگ پس‌زمینهٔ هدر — پیش‌نمایش روی سیاه و رنگی</span>
+      <div id="bg-swatches" class="bg-swatches"></div>
+    </div>
+    <div class="motion-preview">
+      <span class="mono preview-tag">پیش‌نمایش — ابعاد هدر سایت</span>
+      <div class="hm-stage bs-logo-row">
+        <div class="bs-motion" aria-hidden="true"></div>
+        <span class="bs-logo">Maxgazine<span class="dot">.</span></span>
+      </div>
+    </div>
     <p class="mono note" id="motion-msg"></p>
   </div>
 </section>
@@ -61,6 +78,10 @@
     <button class="btn" data-view="editor" id="btn-new">+ New article</button>
   </div>
   <div class="filter-bar mono" id="filter-bar">
+    <div class="filt filt-search">
+      <span class="filt-l">Search</span>
+      <input type="search" id="filter-search" placeholder="عنوان، اسلاگ، نویسنده…" autocomplete="off">
+    </div>
     <div class="filt">
       <span class="filt-l">Status</span>
       <select id="filter-status">

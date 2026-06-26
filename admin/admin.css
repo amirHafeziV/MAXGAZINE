@@ -131,8 +131,12 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
   appearance:none;-webkit-appearance:none;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230a0a0a' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 9px center}
+.filt-search{flex:1 1 240px}
+.filter-bar input[type="search"]{width:100%;min-width:200px;padding:7px 10px;font-size:12px;
+  border:2px solid var(--ink);background:var(--paper)}
 /* a filter that is narrowing the list gets the accent so it's obvious it's active */
-.filter-bar select.is-active{border-color:var(--accent);color:var(--accent);background-color:#fff}
+.filter-bar select.is-active,
+.filter-bar input[type="search"].is-active{border-color:var(--accent);color:var(--accent);background-color:#fff}
 .filter-right{margin-inline-start:auto;display:flex;align-items:center;gap:10px}
 .filter-right .ghost{padding:7px 12px}
 #filter-count{font-size:11px;color:#888;white-space:nowrap}
@@ -220,12 +224,121 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 /* ---- header motion picker (dashboard) ---- */
 .motion-card{margin-top:30px;border-top:2px solid var(--ink);padding-top:22px}
 .motion-card h2{margin-bottom:4px}
-.motion-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
-.motion-opt{display:flex;flex-direction:column;gap:6px;text-align:start;cursor:pointer;
-  padding:14px 16px;border:2px solid var(--ink);background:transparent;color:var(--ink);
-  transition:background .12s,color .12s,box-shadow .12s}
-.motion-opt:hover{box-shadow:4px 4px 0 var(--ink)}
-.motion-opt.active{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--accent,#E8682A)}
-.motion-opt-name{font-weight:700;font-size:15px}
-.motion-opt-desc{font-size:10px;opacity:.7;letter-spacing:.02em}
-.motion-opt.active .motion-opt-desc{opacity:.85}
+.motion-picker{display:flex;align-items:flex-end;flex-wrap:wrap;gap:12px 16px;margin-top:14px}
+.motion-select-l{margin-bottom:0;flex:0 1 240px}
+.motion-select-l select{min-width:200px}
+.motion-desc{flex:1 1 220px;align-self:center;font-size:11px;color:#888;line-height:1.5}
+.motion-save{width:auto;flex:0 0 auto;align-self:flex-end}
+.motion-preview{margin-top:18px}
+.motion-preview .preview-tag{display:block;font-size:9px;text-transform:uppercase;
+  letter-spacing:.14em;color:#999;margin-bottom:7px}
+
+/* preview stage — mirrors the live site's .bs-logo-row header dimensions.
+   --ink-rgb feeds the legacy grid keyframes; --hm-ink feeds every other
+   pattern and is overridden inline by previewBg() to match the chosen colour. */
+.hm-stage{position:relative;overflow:hidden;text-align:center;background:#fff;
+  border:2px solid var(--ink);padding:16px 24px 24px;--ink-rgb:10,10,10;--hm-ink:26,18,8}
+.hm-stage .bs-logo{position:relative;z-index:1;font-family:var(--serif);
+  font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(46px,9.6vw,120px);
+  line-height:.86;letter-spacing:-.035em;text-transform:lowercase;color:var(--ink);
+  direction:ltr;display:inline-block}
+.hm-stage .bs-logo::first-letter{text-transform:uppercase}
+.hm-stage .bs-logo .dot{color:var(--accent)}
+
+/* ── motion subsystem (copied from assets/styles.css so the preview is faithful) ── */
+.hm-stage .bs-motion{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+@media(prefers-reduced-motion:reduce){.hm-stage .bs-motion,.hm-stage .bs-motion *{animation:none !important}}
+/* bauhaus */
+.hm-stage .bs-motion .bh{position:absolute;opacity:.5;will-change:transform}
+.hm-stage .bh-circle{width:58px;height:58px;border-radius:50%;background:#E63946;left:6%;top:20%;animation:bhDrift1 17s ease-in-out infinite}
+.hm-stage .bh-triangle{width:0;height:0;border-left:32px solid transparent;border-right:32px solid transparent;border-bottom:56px solid #1D4ED8;left:21%;bottom:-4px;animation:bhDrift2 21s ease-in-out infinite}
+.hm-stage .bh-semi{width:72px;height:36px;border-radius:72px 72px 0 0;background:#F4C20D;right:15%;top:10px;animation:bhDrift3 19s ease-in-out infinite}
+.hm-stage .bh-quarter{width:54px;height:54px;border-radius:0 0 54px 0;background:#1AA35A;right:7%;bottom:6px;animation:bhDrift4 23s ease-in-out infinite}
+.hm-stage .bh-bar{width:82px;height:17px;background:var(--accent);left:43%;top:12px;animation:bhSpin 28s linear infinite}
+@keyframes bhDrift1{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,14px)}}
+@keyframes bhDrift2{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(18px,-16px) rotate(12deg)}}
+@keyframes bhDrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,10px)}}
+@keyframes bhDrift4{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-16px,-12px) rotate(-10deg)}}
+@keyframes bhSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+/* grid */
+.hm-stage .bs-motion[data-motion="grid"]{animation:logoPatternCycle 24s linear infinite, logoPatternFade 24s linear infinite}
+@keyframes logoPatternCycle{
+  0%,18%{background-image:radial-gradient(circle, rgba(var(--ink-rgb),.09) 1.5px, transparent 1.5px);background-size:22px 22px}
+  20%,38%{background-image:linear-gradient(rgba(var(--ink-rgb),.07) 1px, transparent 1px),linear-gradient(90deg, rgba(var(--ink-rgb),.07) 1px, transparent 1px);background-size:30px 30px}
+  40%,58%{background-image:repeating-linear-gradient(45deg, rgba(var(--ink-rgb),.06) 0px, rgba(var(--ink-rgb),.06) 1px, transparent 1px, transparent 16px);background-size:23px 23px}
+  60%,78%{background-image:radial-gradient(circle at 0 0, rgba(var(--ink-rgb),.08) 1px, transparent 1px),radial-gradient(circle at 50% 50%, rgba(var(--ink-rgb),.05) 1px, transparent 1px);background-size:40px 40px, 20px 20px}
+  80%,98%{background-image:repeating-linear-gradient(-45deg, rgba(var(--ink-rgb),.06) 0px, rgba(var(--ink-rgb),.06) 1px, transparent 1px, transparent 16px);background-size:23px 23px}
+  100%{background-image:radial-gradient(circle, rgba(var(--ink-rgb),.09) 1.5px, transparent 1.5px);background-size:22px 22px}}
+@keyframes logoPatternFade{0%,15%{opacity:.8}17%,19%{opacity:0}21%,35%{opacity:.8}37%,39%{opacity:0}41%,55%{opacity:.8}57%,59%{opacity:0}61%,75%{opacity:.8}77%,79%{opacity:0}81%,95%{opacity:.8}97%,99%{opacity:0}100%{opacity:.8}}
+/* orbits */
+.hm-stage .bs-motion[data-motion="orbits"] .orb{position:absolute;border-radius:50%;filter:blur(14px);opacity:.55;will-change:transform}
+.hm-stage .orb-1{width:90px;height:90px;background:radial-gradient(circle,#E63946,transparent 70%);left:7%;top:-10px;animation:orbA 13s ease-in-out infinite}
+.hm-stage .orb-2{width:120px;height:120px;background:radial-gradient(circle,#1D4ED8,transparent 70%);right:9%;top:-24px;animation:orbB 16s ease-in-out infinite}
+.hm-stage .orb-3{width:80px;height:80px;background:radial-gradient(circle,#F4C20D,transparent 70%);left:31%;bottom:-30px;animation:orbA 18s ease-in-out infinite reverse}
+.hm-stage .orb-4{width:70px;height:70px;background:radial-gradient(circle,#1AA35A,transparent 70%);right:30%;bottom:-22px;animation:orbB 15s ease-in-out infinite}
+@keyframes orbA{0%{transform:translate(0,0)}25%{transform:translate(46px,26px)}50%{transform:translate(78px,4px)}75%{transform:translate(36px,-22px)}100%{transform:translate(0,0)}}
+@keyframes orbB{0%{transform:translate(0,0)}25%{transform:translate(-44px,22px)}50%{transform:translate(-70px,-6px)}75%{transform:translate(-30px,-26px)}100%{transform:translate(0,0)}}
+/* ticker */
+.hm-stage .bs-motion[data-motion="ticker"]{display:flex;align-items:center}
+.hm-stage .hm-ticker{display:flex;white-space:nowrap;will-change:transform;animation:hmTickerSlide 32s linear infinite}
+.hm-stage .hm-ticker span{font-family:var(--head);font-size:clamp(42px,9vw,92px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;color:rgb(var(--hm-ink));opacity:.07;padding-inline:18px}
+@keyframes hmTickerSlide{to{transform:translateX(-50%)}}
+/* hatch */
+.hm-stage .bs-motion[data-motion="hatch"]{background:repeating-linear-gradient(45deg, rgba(var(--hm-ink),.11) 0 2px, transparent 2px 13px);animation:hmHatchSlide 7s linear infinite}
+@keyframes hmHatchSlide{to{background-position:37px 0}}
+/* crosshatch */
+.hm-stage .bs-motion[data-motion="crosshatch"]{background:repeating-linear-gradient(45deg, rgba(var(--hm-ink),.09) 0 1.5px, transparent 1.5px 12px),repeating-linear-gradient(-45deg, rgba(var(--hm-ink),.09) 0 1.5px, transparent 1.5px 12px);animation:hmCrossPulse 9s ease-in-out infinite}
+@keyframes hmCrossPulse{0%,100%{opacity:.6}50%{opacity:1}}
+/* dots */
+.hm-stage .bs-motion[data-motion="dots"]{background:radial-gradient(circle, rgba(var(--hm-ink),.16) 2px, transparent 2.5px);background-size:26px 26px;animation:hmDotsDrift 13s ease-in-out infinite}
+@keyframes hmDotsDrift{0%,100%{background-position:0 0}50%{background-position:26px 13px}}
+/* quad — four corner colour squares, softly breathing */
+.hm-stage .bs-motion[data-motion="quad"] .q4{position:absolute;width:44%;height:42%;opacity:.16;will-change:transform,opacity}
+.hm-stage .q4-1{left:3%;top:7%;background:#E63946;animation:q4A 13s ease-in-out infinite}
+.hm-stage .q4-2{right:3%;top:7%;background:#1D4ED8;animation:q4B 16s ease-in-out infinite}
+.hm-stage .q4-3{left:3%;bottom:7%;background:#F4C20D;animation:q4B 18s ease-in-out infinite reverse}
+.hm-stage .q4-4{right:3%;bottom:7%;background:#1AA35A;animation:q4A 15s ease-in-out infinite reverse}
+@keyframes q4A{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(10px,6px) scale(1.05)}}
+@keyframes q4B{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-10px,-6px) scale(1.05)}}
+/* mondrian — drifting + breathing blocks */
+.hm-stage .bs-motion[data-motion="mondrian"] .mdr{position:absolute;will-change:transform,opacity}
+.hm-stage .mdr-a{left:4%;top:14%;width:70px;height:42px;background:#E63946;animation:mdrA 15s ease-in-out infinite}
+.hm-stage .mdr-b{left:0;bottom:0;width:46px;height:62px;background:#1D4ED8;animation:mdrB 19s ease-in-out infinite}
+.hm-stage .mdr-c{right:12%;top:8px;width:54px;height:54px;background:#F4C20D;animation:mdrA 17s ease-in-out infinite reverse}
+.hm-stage .mdr-d{right:0;bottom:6px;width:66px;height:30px;background:#1AA35A;animation:mdrB 22s ease-in-out infinite reverse}
+.hm-stage .mdr-e{left:46%;top:48%;width:30px;height:30px;background:var(--accent);animation:mdrA 12s ease-in-out infinite}
+@keyframes mdrA{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(24px,13px) scale(1.12);opacity:.74}}
+@keyframes mdrB{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(-22px,-12px) scale(1.08);opacity:.7}}
+/* vangogh — soft swirling brushwork */
+.hm-stage .bs-motion[data-motion="vangogh"]{background:radial-gradient(120% 160% at 50% -30%, rgba(29,78,216,.16), transparent 60%)}
+.hm-stage .bs-motion[data-motion="vangogh"] .vg{position:absolute;will-change:transform;filter:blur(7px)}
+.hm-stage .vg-swirl{border-radius:50%;opacity:.5}
+.hm-stage .vg-1{width:150px;height:150px;left:4%;top:-46px;background:conic-gradient(from 0deg,#1E3A8A,#1D4ED8,#60A5FA,#1D4ED8,#1E3A8A);animation:vgSwirl 26s linear infinite}
+.hm-stage .vg-2{width:120px;height:120px;right:8%;top:-30px;background:conic-gradient(from 120deg,#1D4ED8,#3B82F6,#93C5FD,#2563EB,#1D4ED8);animation:vgSwirl 32s linear infinite reverse}
+.hm-stage .vg-star{border-radius:50%;background:radial-gradient(circle,#F4C20D,rgba(244,194,13,.2) 45%,transparent 65%)}
+.hm-stage .vg-3{width:64px;height:64px;left:34%;top:8px;opacity:.55;animation:vgStar 9s ease-in-out infinite}
+.hm-stage .vg-4{width:48px;height:48px;right:30%;bottom:-12px;opacity:.5;animation:vgStar 12s ease-in-out infinite reverse}
+@keyframes vgSwirl{to{transform:rotate(360deg)}}
+@keyframes vgStar{0%,100%{transform:scale(.85);opacity:.35}50%{transform:scale(1.15);opacity:.7}}
+/* cubism — angular shards rotating + sliding */
+.hm-stage .bs-motion[data-motion="cubism"] .cub{position:absolute;opacity:.5;will-change:transform}
+.hm-stage .cub-1{left:6%;top:10%;width:78px;height:78px;background:#E63946;clip-path:polygon(0 0,100% 22%,72% 100%,0 70%);animation:cubA 19s ease-in-out infinite}
+.hm-stage .cub-2{left:26%;bottom:-10px;width:64px;height:64px;background:#1D4ED8;clip-path:polygon(50% 0,100% 100%,0 100%);animation:cubB 23s ease-in-out infinite}
+.hm-stage .cub-3{right:20%;top:-6px;width:70px;height:70px;background:#F4C20D;clip-path:polygon(20% 0,100% 30%,80% 100%,0 80%);animation:cubA 21s ease-in-out infinite reverse}
+.hm-stage .cub-4{right:5%;bottom:0;width:60px;height:60px;background:#1AA35A;clip-path:polygon(0 30%,70% 0,100% 70%,30% 100%);animation:cubB 26s ease-in-out infinite reverse}
+.hm-stage .cub-5{left:48%;top:30%;width:46px;height:46px;background:var(--accent);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);animation:cubA 16s ease-in-out infinite}
+@keyframes cubA{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(16px,10px) rotate(24deg)}}
+@keyframes cubB{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-18px,-8px) rotate(-20deg)}}
+
+/* ---- header background swatches ---- */
+.bg-picker{margin-top:16px}
+.bg-picker .filt-l{display:block;margin-bottom:8px}
+.bg-swatches{display:flex;flex-wrap:wrap;gap:8px}
+.bg-swatch{position:relative;width:54px;height:38px;border:2px solid var(--ink);background:#fff;
+  display:flex;align-items:flex-end;justify-content:center;padding:3px;overflow:hidden;
+  transition:box-shadow .12s,transform .12s}
+.bg-swatch>span{font-family:var(--mono);font-size:8px;line-height:1;background:rgba(255,255,255,.82);
+  color:#0a0a0a;padding:2px 3px;border-radius:2px;white-space:nowrap}
+.bg-swatch.is-theme{background:repeating-linear-gradient(45deg,#fff 0 6px,#e7e2d6 6px 12px)}
+.bg-swatch:hover{box-shadow:3px 3px 0 var(--ink);transform:translate(-1px,-1px)}
+.bg-swatch.active{box-shadow:3px 3px 0 var(--accent);border-color:var(--accent)}

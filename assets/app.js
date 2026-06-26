@@ -1431,6 +1431,8 @@ async function loadFeed(){
     if(r.ok) feed = await r.json();
   }catch(e){/* keep static fallback */}
   if(!Array.isArray(feed) || !feed.length) return;
+  window.__feed = feed;                      // expose for the desktop menu panel
+  if(window.__refreshMenuPanel) window.__refreshMenuPanel();
   const lang = feedLang();
 
   featuredList = feed.filter(a=>(plc(a).hero || a.featured) && a.banner).sort(byPriorityDate);
@@ -1571,24 +1573,66 @@ const HEADER_MOTIONS = {
   bauhaus: `<span class="bh bh-circle"></span><span class="bh bh-triangle"></span><span class="bh bh-semi"></span><span class="bh bh-quarter"></span><span class="bh bh-bar"></span>`,
   grid:    ``,
   orbits:  `<span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span>`,
-  rays:    ``,
   ticker:  `<div class="hm-ticker"><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span></div>`,
+  // — pattern models: drawn purely with CSS backgrounds, so no markup —
+  hatch:      ``,
+  crosshatch: ``,
+  dots:       ``,
+  // — bauhaus-family: drifting primary-colour blocks (Mondrian-style) —
+  mondrian: `<span class="mdr mdr-a"></span><span class="mdr mdr-b"></span><span class="mdr mdr-c"></span><span class="mdr mdr-d"></span><span class="mdr mdr-e"></span>`,
+  // — quad: four colour squares in the corners, softly breathing —
+  quad: `<span class="q4 q4-1"></span><span class="q4 q4-2"></span><span class="q4 q4-3"></span><span class="q4 q4-4"></span>`,
+  // — vangogh: soft swirling Starry-Night brushwork —
+  vangogh: `<span class="vg vg-swirl vg-1"></span><span class="vg vg-swirl vg-2"></span><span class="vg vg-star vg-3"></span><span class="vg vg-star vg-4"></span>`,
+  // — cubism: angular shards slowly rotating + sliding —
+  cubism: `<span class="cub cub-1"></span><span class="cub cub-2"></span><span class="cub cub-3"></span><span class="cub cub-4"></span><span class="cub cub-5"></span>`,
 };
 const HEADER_MOTION_DEFAULT = 'bauhaus';
 function applyHeaderMotion(model){
-  // NB: some models (grid, rays) have empty markup, so test key existence — not
-  // truthiness of the value, which would wrongly fall back to the default.
+  // NB: some models (grid, hatch, …) have empty markup, so test key existence —
+  // not truthiness of the value, which would wrongly fall back to the default.
   const m = Object.prototype.hasOwnProperty.call(HEADER_MOTIONS, model) ? model : HEADER_MOTION_DEFAULT;
   document.querySelectorAll('.bs-motion').forEach(el=>{
     el.setAttribute('data-motion', m);
     el.innerHTML = HEADER_MOTIONS[m];
   });
 }
+// Header background: panel-controlled solid colour behind the wordmark
+// (content/data/site.json {"headerBg":"#0a0a0a"}). 'theme'/empty restores the
+// theme default. On a dark colour we flip --hm-ink (pattern marks) and the
+// wordmark to a light tone so everything stays legible.
+function hexLuminance(hex){
+  const m = String(hex||'').replace('#','').match(/^([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if(!m) return 1;                                    // unknown → treat as light
+  let h = m[1]; if(h.length===3) h = h.split('').map(c=>c+c).join('');
+  const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
+  return (0.2126*r + 0.7152*g + 0.0722*b) / 255;      // 0 (black) … 1 (white)
+}
+const HEADER_BG_DEFAULT = 'theme';
+function applyHeaderBg(color){
+  const isDefault = !color || color === 'theme';
+  const dark = !isDefault && hexLuminance(color) < 0.45;
+  document.querySelectorAll('.bs-logo-row').forEach(row=>{
+    if(isDefault){
+      row.style.removeProperty('background');
+      row.style.removeProperty('--hm-ink');
+    } else {
+      row.style.background = color;
+      row.style.setProperty('--hm-ink', dark ? '245,239,229' : '26,18,8');
+    }
+    row.querySelectorAll('.bs-logo').forEach(l=>{
+      l.style.color = isDefault ? '' : (dark ? '#F5EFE5' : '#0a0a0a');
+    });
+  });
+}
 async function initHeaderMotion(){
   applyHeaderMotion(HEADER_MOTION_DEFAULT);            // paint a default immediately
   try{
     const r = await fetch(adPrefix() + 'content/data/site.json', {cache:'no-cache'});
-    if(r.ok){ const cfg = await r.json(); if(cfg && cfg.headerMotion) applyHeaderMotion(cfg.headerMotion); }
+    if(r.ok){ const cfg = await r.json();
+      if(cfg && cfg.headerMotion) applyHeaderMotion(cfg.headerMotion);
+      applyHeaderBg(cfg && cfg.headerBg ? cfg.headerBg : HEADER_BG_DEFAULT);
+    }
   }catch(e){/* keep the default */}
 }
 
@@ -1675,8 +1719,8 @@ function initBroadsheetChrome(){
     </div>
     <div class="nav-extras">
       <div class="nav-group has-sub">
-        <a href="${prefix}stories.html?cat=ai${sfx}">AI News</a>
-        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand AI News">+</button>
+        <a href="${prefix}stories.html?cat=ai${sfx}">AI</a>
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-label="Expand AI">+</button>
         <div class="sub">
           <a href="${prefix}stories.html?cat=ai&tag=chatgpt${sfx}">ChatGPT</a>
           <a href="${prefix}stories.html?cat=ai&tag=gemini${sfx}">Gemini</a>
@@ -1712,16 +1756,31 @@ function initBroadsheetChrome(){
     </div>`;
   document.body.append(mini, menu);
 
-  // Desktop submenu motion (Sidewave-style): each nav item reveals a horizontal
-  // "[VIEW X]" marquee on hover. Built once here; shown/animated via CSS.
-  menu.querySelectorAll('.nav-group').forEach(g=>{
-    const a = g.querySelector(':scope > a'); if(!a) return;
-    const label = (a.textContent || '').trim().toUpperCase();
-    const vm = document.createElement('span'); vm.className = 'nav-vm'; vm.setAttribute('aria-hidden','true');
-    const track = document.createElement('span'); track.className = 'nav-vm-track';
-    track.textContent = `[VIEW ${label}]   `.repeat(10);
-    vm.appendChild(track); g.appendChild(vm);
+  // (The desktop "[VIEW X]" hover marquee was removed — the reference menu is a
+  //  static type-only stack, and the animation didn't read well.)
+
+  // Prices: give the Prices item a hover/accordion sub showing live BTC & ETH
+  // quotes + "Show More". Same reveal animation as the other groups.
+  const pricesGroup = [...menu.querySelectorAll('.nav-group')].find(g=>{
+    const a = g.querySelector(':scope > a'); return a && /prices\.html/.test(a.getAttribute('href')||'');
   });
+  if(pricesGroup && !pricesGroup.querySelector('.sub')){
+    pricesGroup.classList.add('has-sub');
+    const sub = document.createElement('div'); sub.className = 'sub sub-prices';
+    sub.innerHTML =
+      `<a class="sub-price" href="${p('prices.html')}" data-coin="bitcoin"><span class="sp-sym">BTC</span><span class="sp-val">—</span></a>`+
+      `<a class="sub-price" href="${p('prices.html')}" data-coin="ethereum"><span class="sp-sym">ETH</span><span class="sp-val">—</span></a>`+
+      `<a class="sub-more" href="${p('prices.html')}">Show More →</a>`;
+    pricesGroup.appendChild(sub);
+    (async()=>{ try{
+      const cg = await fetchCrypto([['BTC','bitcoin'],['ETH','ethereum']]);
+      sub.querySelectorAll('.sub-price').forEach(el=>{
+        const d = cg[el.getAttribute('data-coin')]; if(!d || typeof d.usd!=='number') return;
+        const v = el.querySelector('.sp-val'); v.textContent = fmtPrice(d.usd);
+        v.classList.add((d.usd_24h_change||0) >= 0 ? 'up' : 'down');
+      });
+    }catch(e){/* leave placeholders */} })();
+  }
 
   // search overlay
   const searchOverlay = document.createElement('div'); searchOverlay.className='bs-search-overlay'; searchOverlay.id='bs-search-overlay';

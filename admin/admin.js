@@ -57,7 +57,7 @@ const state = {
   // per-language editor buffers: {en:{headline,dek,bodyHtml,seoTitle,seoDesc,seoKeywords}, ...}
   buf: {},
   banner: '',           // committed path/URL, or dataURL pending upload
-  filters: { status: 'all', banner: 'all', category: 'all', type: 'all', sort: 'newest' },
+  filters: { search: '', status: 'all', banner: 'all', category: 'all', type: 'all', sort: 'newest' },
   articlesLoaded: false,
   saving: false,
 };
@@ -191,38 +191,128 @@ async function refreshAll(){
 }
 
 /* ---------------- header motion picker ---------------- */
+// Twelve selectable models. Keep `id` in lock-step with HEADER_MOTIONS in
+// assets/app.js (the front-end) and the [data-motion="…"] rules in styles.css.
 const MOTION_MODELS = [
-  { id:'bauhaus', label:'باهاوس', desc:'اشکال هندسی رنگی شناور' },
-  { id:'grid',    label:'شبکه',   desc:'الگوهای کاغذ شطرنجی متغیر' },
-  { id:'orbits',  label:'مدارها', desc:'گوی‌های گرادیانی نرم' },
-  { id:'rays',    label:'پرتوها', desc:'بادبزن چرخان اپ‌آرت' },
-  { id:'ticker',  label:'تیکر',   desc:'نوشته‌ی غول‌پیکر کم‌رنگ روان' },
+  { id:'bauhaus',    label:'باهاوس',         desc:'اشکال هندسی رنگی شناور (نسخهٔ فعلی)' },
+  { id:'mondrian',   label:'موندریان',       desc:'بلوک‌های رنگی پرایمری شناور + تنفس (خانوادهٔ باهاوس)' },
+  { id:'cubism',     label:'کوبیسم',         desc:'تکه‌های زاویه‌دار چرخان و لغزان (خانوادهٔ باهاوس)' },
+  { id:'vangogh',    label:'ون‌گوگ',         desc:'قلم‌موهای مارپیچ نرم سبک شب پرستاره' },
+  { id:'quad',       label:'چهارخانه',       desc:'چهار مربع رنگی در چهار گوشه با تنفس آرام (خانوادهٔ باهاوس)' },
+  { id:'orbits',     label:'مدارها',         desc:'گوی‌های گرادیانی روی مسیر دایره‌ای' },
+  { id:'grid',       label:'شبکه',           desc:'الگوهای کاغذ شطرنجی متغیر' },
+  { id:'ticker',     label:'تیکر',           desc:'نوشتهٔ غول‌پیکر کم‌رنگ روان' },
+  { id:'hatch',      label:'هاشور',          desc:'خطوط مورب هاشوری روان (پترن)' },
+  { id:'crosshatch', label:'هاشور متقاطع',   desc:'هاشور دوطرفهٔ ضربدری با تپش (پترن)' },
+  { id:'dots',       label:'نقطه‌چین',       desc:'شبکهٔ نقطه‌ای هاف‌تون شناور (پترن)' },
 ];
-function renderMotion(){
-  const wrap = document.getElementById('motion-options');
-  if(!wrap) return;
-  const active = (state.site && state.site.headerMotion) || 'bauhaus';
-  wrap.innerHTML = MOTION_MODELS.map(m=>`
-    <button class="motion-opt${m.id===active?' active':''}" data-motion="${m.id}" type="button">
-      <span class="motion-opt-name">${esc(m.label)}</span>
-      <span class="motion-opt-desc mono">${esc(m.desc)}</span>
-    </button>`).join('');
-  wrap.querySelectorAll('.motion-opt').forEach(b=>b.addEventListener('click',()=>saveMotion(b.dataset.motion)));
+// Markup injected behind the wordmark — must mirror HEADER_MOTIONS in app.js.
+// Pattern models (hatch/crosshatch/dots/grid) are drawn purely with
+// CSS backgrounds, so their markup is empty.
+const MOTION_MARKUP = {
+  bauhaus: '<span class="bh bh-circle"></span><span class="bh bh-triangle"></span><span class="bh bh-semi"></span><span class="bh bh-quarter"></span><span class="bh bh-bar"></span>',
+  grid: '',
+  orbits: '<span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span>',
+  ticker: '<div class="hm-ticker"><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span><span>crypto · forex · tech · cars · markets · ai · web3 · defi · nft · blockchain · </span></div>',
+  hatch: '', crosshatch: '', dots: '',
+  quad: '<span class="q4 q4-1"></span><span class="q4 q4-2"></span><span class="q4 q4-3"></span><span class="q4 q4-4"></span>',
+  mondrian: '<span class="mdr mdr-a"></span><span class="mdr mdr-b"></span><span class="mdr mdr-c"></span><span class="mdr mdr-d"></span><span class="mdr mdr-e"></span>',
+  vangogh: '<span class="vg vg-swirl vg-1"></span><span class="vg vg-swirl vg-2"></span><span class="vg vg-star vg-3"></span><span class="vg vg-star vg-4"></span>',
+  cubism: '<span class="cub cub-1"></span><span class="cub cub-2"></span><span class="cub cub-3"></span><span class="cub cub-4"></span><span class="cub cub-5"></span>',
+};
+// Header background swatches. `id` is what we persist to site.json (headerBg);
+// 'theme' = follow the site theme (no override).
+const HEADER_BGS = [
+  { id:'theme',   label:'پیش‌فرض', color:'' },
+  { id:'#ffffff', label:'سفید',    color:'#ffffff' },
+  { id:'#0a0a0a', label:'سیاه',    color:'#0a0a0a' },
+  { id:'#0f172a', label:'سرمه‌ای', color:'#0f172a' },
+  { id:'#9B1C1C', label:'قرمز',    color:'#9B1C1C' },
+  { id:'#1D4ED8', label:'آبی',     color:'#1D4ED8' },
+  { id:'#1AA35A', label:'سبز',     color:'#1AA35A' },
+  { id:'#F4C20D', label:'طلایی',   color:'#F4C20D' },
+];
+let currentPreviewBg = 'theme';
+function bgIsDark(hex){
+  const m = String(hex||'').replace('#','').match(/^([0-9a-f]{6})$/i);
+  if(!m) return false;
+  const h = m[1];
+  const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16);
+  return (0.2126*r + 0.7152*g + 0.0722*b)/255 < 0.45;
 }
-async function saveMotion(model){
+function previewMotion(model){
+  const m = Object.prototype.hasOwnProperty.call(MOTION_MARKUP, model) ? model : 'bauhaus';
+  document.querySelectorAll('.motion-preview .bs-motion').forEach(el=>{
+    el.setAttribute('data-motion', m);
+    el.innerHTML = MOTION_MARKUP[m];
+  });
+  const meta = MOTION_MODELS.find(x=>x.id===m);
+  const desc = document.getElementById('motion-desc');
+  if(desc) desc.textContent = meta ? meta.desc : '';
+}
+// Paint the preview stage on the chosen background so the editor can judge each
+// motion on black / white / colour, and flip pattern + wordmark ink for contrast.
+function previewBg(id){
+  currentPreviewBg = id || 'theme';
+  const stage = document.querySelector('.motion-preview .hm-stage');
+  const sw = HEADER_BGS.find(x=>x.id===currentPreviewBg) || HEADER_BGS[0];
+  const isDefault = !sw.color;
+  const dark = !isDefault && bgIsDark(sw.color);
+  if(stage){
+    if(isDefault){ stage.style.removeProperty('background'); stage.style.removeProperty('--hm-ink'); }
+    else { stage.style.background = sw.color; stage.style.setProperty('--hm-ink', dark ? '245,239,229' : '26,18,8'); }
+    stage.querySelectorAll('.bs-logo').forEach(l=>{ l.style.color = isDefault ? '' : (dark ? '#F5EFE5' : '#0a0a0a'); });
+  }
+  document.querySelectorAll('.bg-swatch').forEach(b=>b.classList.toggle('active', b.dataset.bg===currentPreviewBg));
+}
+function renderMotion(){
+  const sel = document.getElementById('motion-select');
+  if(!sel) return;
+  const active = (state.site && state.site.headerMotion) || 'bauhaus';
+  sel.innerHTML = MOTION_MODELS.map(m=>
+    `<option value="${m.id}"${m.id===active?' selected':''}>${esc(m.label)}</option>`).join('');
+  sel.value = active;
+  previewMotion(active);
+
+  // background swatches
+  const bgWrap = document.getElementById('bg-swatches');
+  if(bgWrap){
+    bgWrap.innerHTML = HEADER_BGS.map(b=>{
+      const style = b.color ? `background:${b.color}` : '';
+      return `<button type="button" class="bg-swatch${b.id==='theme'?' is-theme':''}" data-bg="${esc(b.id)}" title="${esc(b.label)}" style="${style}"><span>${esc(b.label)}</span></button>`;
+    }).join('');
+    bgWrap.querySelectorAll('.bg-swatch').forEach(b=>b.addEventListener('click',()=>previewBg(b.dataset.bg)));
+  }
+  previewBg((state.site && state.site.headerBg) || 'theme');
+
+  const save = document.getElementById('btn-motion-save');
+  if(save) save.disabled = false;
+}
+// Commit both the selected motion and the selected background in one go.
+async function saveHeader(){
   const msg = document.getElementById('motion-msg');
-  if(state.site && state.site.headerMotion === model){ return; }
+  const btn = document.getElementById('btn-motion-save');
+  const sel = document.getElementById('motion-select');
+  const model = sel ? sel.value : 'bauhaus';
+  const bg = currentPreviewBg || 'theme';
+  const cur = state.site || {};
+  if(cur.headerMotion === model && (cur.headerBg||'theme') === bg){
+    if(msg) msg.textContent = 'این ترکیب همین حالا فعال است.';
+    return;
+  }
   if(msg) msg.textContent = 'در حال ذخیره…';
+  if(btn) btn.disabled = true;
   try{
-    const next = Object.assign({}, state.site, { headerMotion: model });
+    const next = Object.assign({}, state.site, { headerMotion: model, headerBg: bg });
     const result = await putFile('content/data/site.json', JSON.stringify(next, null, 2),
-      `panel: header motion → ${model}`, state.siteSha || undefined);
+      `panel: header → ${model} / bg ${bg}`, state.siteSha || undefined);
     state.site = next;
     state.siteSha = result?.content?.sha || state.siteSha;
     renderMotion();
     await triggerBuild();
-    if(msg) msg.textContent = `موشن «${model}» ذخیره شد — تا چند دقیقه روی سایت اعمال می‌شود.`;
+    if(msg) msg.textContent = `ذخیره شد: موشن «${model}» + پس‌زمینه «${bg}» — تا چند دقیقه روی سایت اعمال می‌شود.`;
   }catch(e){ if(msg) msg.textContent = `ذخیره ناموفق: ${e.message}`; }
+  finally{ if(btn) btn.disabled = false; }
 }
 
 /* ---------------- helpers ---------------- */
@@ -237,6 +327,23 @@ function slugify(s){
     .replace(/^-+|-+$/g,'').slice(0,80) || `article-${Date.now()}`;
 }
 function pickL(loc){ if(!loc) return ''; return loc.en || Object.values(loc).find(Boolean) || ''; }
+// Haystack for the Articles search box: every-language headline + dek, slug,
+// author, category, topic, type and tags — lower-cased once per render pass.
+function articleSearchText(a){
+  if(a._search) return a._search;
+  const d = a.data || {};
+  const parts = [];
+  const collect = v => { if(!v) return;
+    if(typeof v === 'string') parts.push(v);
+    else if(typeof v === 'object') Object.values(v).forEach(collect); };
+  collect(d.headline); collect(d.dek);
+  parts.push(d.slug||'', d.author||'', d.category||'', d.topic||'', d.type||'');
+  if(Array.isArray(d.tags)) parts.push(d.tags.join(' '));
+  const text = parts.join(' ').toLowerCase();
+  // Cache only on fully-loaded entries; index summaries may gain a dek later.
+  if(!a._summary) a._search = text;
+  return text;
+}
 function readFileAsDataURL(file){
   return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); });
 }
@@ -312,17 +419,17 @@ function renderDashboard(){
 
 /* ----- articles list ----- */
 const ARTICLES_PAGE_SIZE = 20;
-const FILTER_DEFAULTS = { status:'all', banner:'all', category:'all', type:'all', sort:'newest' };
+const FILTER_DEFAULTS = { search:'', status:'all', banner:'all', category:'all', type:'all', sort:'newest' };
 function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 // Light up any filter that differs from its default and reveal the Reset button,
 // so it's always visually clear which filters are narrowing the list.
 function syncFilterChrome(){
-  const map = { 'filter-status':'status', 'filter-banner':'banner',
+  const map = { 'filter-search':'search', 'filter-status':'status', 'filter-banner':'banner',
     'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
   let anyActive = false;
   Object.entries(map).forEach(([id, key])=>{
     const el = $('#'+id); if(!el) return;
-    const active = state.filters[key] !== FILTER_DEFAULTS[key];
+    const active = (state.filters[key]||'') !== FILTER_DEFAULTS[key];
     el.classList.toggle('is-active', active);
     if(active) anyActive = true;
   });
@@ -333,6 +440,8 @@ function renderArticles(){
   // Apply active filters
   const f = state.filters;
   let items = state.articles.slice();
+  const q = (f.search || '').trim().toLowerCase();
+  if(q) items = items.filter(a => articleSearchText(a).includes(q));
   if(f.status !== 'all') items = items.filter(a => articleStatus(a.data) === f.status);
   if(f.banner === 'has') items = items.filter(a => !!a.data.banner);
   if(f.banner === 'no') items = items.filter(a => !a.data.banner);
@@ -938,6 +1047,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   }));
 
+  // Header motion picker: dropdown previews live; the button commits + builds.
+  const motionSel = $('#motion-select');
+  if(motionSel) motionSel.addEventListener('change', ()=>previewMotion(motionSel.value));
+  const motionSave = $('#btn-motion-save');
+  if(motionSave) motionSave.addEventListener('click', saveHeader);
+
   // Filter bar
   const filterMap = { 'filter-status':'status', 'filter-banner':'banner',
     'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
@@ -949,8 +1064,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
       renderArticles();
     });
   });
+  const searchEl = $('#filter-search');
+  if(searchEl) searchEl.addEventListener('input', ()=>{
+    state.filters.search = searchEl.value;
+    state.articlesPage = 0;
+    renderArticles();
+  });
   $('#btn-filter-reset').addEventListener('click', ()=>{
     state.filters = { ...FILTER_DEFAULTS };
+    if(searchEl) searchEl.value = '';
     $('#filter-status').value = 'all'; $('#filter-banner').value = 'all';
     $('#filter-category').value = 'all'; $('#filter-type').value = 'all';
     $('#filter-sort').value = 'newest';

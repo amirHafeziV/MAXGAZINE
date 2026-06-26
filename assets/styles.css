@@ -1954,14 +1954,15 @@ html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spa
 /* ── 2. DARK-MODE LANG DROPDOWN SHADOW → ORANGE ── */
 body.theme-dark .bs-lang-menu{box-shadow:5px 5px 0 var(--accent-orange)}
 
-/* ── 3. DARK-MODE SEPARATOR + PURPLE TICKER ── */
+/* ── 3. DARK-MODE SEPARATOR ── */
 /* A hairline under the masthead so the dark hero band isn't merged with the header */
 body.theme-dark .bsheet{border-bottom:2px solid var(--line)}
-/* Crypto-purple tint on the ticker band */
-.bs-hero-band .ticker{background:#100C28;color:#B0C0E8}
-body.theme-dark .bs-hero-band .ticker{background:#0A0718}
-.bs-hero-band .ticker .up{color:#8BAAE0 !important}
-.bs-hero-band .ticker .down{color:#E46060 !important}
+/* The home ticker must match the ticker on every built page: same near-black
+   band, green = up, red = down. (Previously this block tinted it indigo/navy,
+   which made price rises look blue instead of green — removed for consistency.) */
+.bs-hero-band .ticker{background:#060504;color:var(--muted-d)}
+.bs-hero-band .ticker .up{color:var(--up-d)}
+.bs-hero-band .ticker .down{color:var(--down-d)}
 
 /* ── 4. EDITOR'S PICK HOVER: white bg, ink text ── */
 /* Number badge: always ink bg on hover */
@@ -2266,6 +2267,12 @@ html[lang="fa"] .foot-col h5{font-family:'Estedad',sans-serif}
 /* desk sections reuse .section-head + .feed-grid, matching the .vbox gutter */
 .desk{padding:0 28px;margin-top:8px}
 .desk .section-head{padding-block:22px}
+/* Editorial request: drop the black divider lines under the desk-section
+   article cards (Best Crypto Coverage / Best Tech Stories / Markets / Cars).
+   Covers every desk layout: feature (.df-*), 6-card grid (.ds-card) and plain cards. */
+.desk .feed-grid > *,
+.desk .ds-grid > *,
+.desk .feed-grid .card{border-bottom:none !important}
 .media-strip .section-head h2::before{content:"▶ ";color:var(--accent);font-size:.7em;vertical-align:middle}
 @media(max-width:760px){.desk{padding:0 var(--gut)}}
 
@@ -3185,8 +3192,10 @@ body.theme-dark .sub-modal-input{color:var(--ink)}
   grid-column:auto !important;grid-row:auto !important;
   grid-template-columns:none !important;grid-template-rows:none !important;
   border:none !important;
-  border-inline-end:1px solid var(--line) !important;border-bottom:1px solid var(--line) !important
+  border-inline-end:1px solid var(--line) !important;border-bottom:none !important
 }
+/* Exception: keep the single line under the 4 Best Automotive Articles cards. */
+.desk-cars .feed-grid>.card{border-bottom:1px solid var(--line) !important}
 .desk .feed-grid>.card::before{display:none !important}
 .desk .feed-grid>.card .card-img{
   position:static !important;inset:auto !important;
@@ -3435,12 +3444,18 @@ body.theme-dark .bs-hero-grid{border-bottom:2px solid var(--line)}
 .card .card-meta .read:hover,.card .card-meta .read:active{
   box-shadow:4px 4px 0 currentColor !important;transform:translate(-1px,-1px)}
 
-/* (1+3) HEADER MOTION — five selectable models behind the wordmark. app.js
-   injects the markup and sets [data-motion] from the panel config
-   (content/data/site.json). Models: bauhaus · grid · orbits · rays · ticker. */
+/* (1+3) HEADER MOTION — selectable models behind the wordmark. app.js injects
+   the markup and sets [data-motion] from the panel config (content/data/site.json).
+   Models: bauhaus · mondrian · cubism · vangogh · quad · orbits · grid · ticker
+   · hatch · crosshatch · dots. Header background is set inline by applyHeaderBg(). */
 .bs-logo-row::before{display:none !important}      /* retire the old pattern cycle */
 .bs-motion{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 @media(prefers-reduced-motion:reduce){.bs-motion,.bs-motion *{animation:none !important}}
+/* --hm-ink drives every CSS-pattern model's mark colour. It flips to a light
+   value in dark theme, and applyHeaderBg() in app.js overrides it inline to
+   match a custom header background (so patterns stay legible on any colour). */
+.bs-logo-row{--hm-ink:26,18,8}
+body.theme-dark .bs-logo-row{--hm-ink:245,239,229}
 
 /* ── model: bauhaus — drifting primary-colour geometric shapes ── */
 .bs-motion .bh{position:absolute;opacity:.5;will-change:transform}
@@ -3467,30 +3482,92 @@ body.theme-dark .bs-motion .bh{opacity:.62}
 body.theme-dark .bs-motion[data-motion="grid"]{
   animation:logoPatternCycleDark 24s linear infinite, logoPatternFade 24s linear infinite}
 
-/* ── model: orbits — soft drifting gradient blobs ── */
-.bs-motion[data-motion="orbits"] .orb{position:absolute;border-radius:50%;filter:blur(15px);opacity:.5;will-change:transform}
-.orb-1{width:96px;height:96px;background:radial-gradient(circle,#E63946,transparent 70%);left:7%;top:-12px;animation:orbA 16s ease-in-out infinite}
-.orb-2{width:126px;height:126px;background:radial-gradient(circle,#1D4ED8,transparent 70%);right:9%;top:-26px;animation:orbB 21s ease-in-out infinite}
-.orb-3{width:84px;height:84px;background:radial-gradient(circle,#F4C20D,transparent 70%);left:31%;bottom:-34px;animation:orbA 23s ease-in-out infinite reverse}
-.orb-4{width:74px;height:74px;background:radial-gradient(circle,#1AA35A,transparent 70%);right:30%;bottom:-26px;animation:orbB 18s ease-in-out infinite}
-@keyframes orbA{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,20px)}}
-@keyframes orbB{0%,100%{transform:translate(0,0)}50%{transform:translate(-36px,24px)}}
-
-/* ── model: rays — slow-rotating conic op-art fan ── */
-.bs-motion[data-motion="rays"]{
-  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(155,28,28,.10) 0deg 7deg, transparent 7deg 16deg);
-  animation:raysSpin 70s linear infinite}
-body.theme-dark .bs-motion[data-motion="rays"]{
-  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(245,239,229,.07) 0deg 7deg, transparent 7deg 16deg)}
-@keyframes raysSpin{to{transform:rotate(360deg)}}
+/* ── model: orbits — gradient blobs travelling on clear circular paths ── */
+.bs-motion[data-motion="orbits"] .orb{position:absolute;border-radius:50%;filter:blur(14px);opacity:.55;will-change:transform}
+.orb-1{width:90px;height:90px;background:radial-gradient(circle,#E63946,transparent 70%);left:7%;top:-10px;animation:orbA 13s ease-in-out infinite}
+.orb-2{width:120px;height:120px;background:radial-gradient(circle,#1D4ED8,transparent 70%);right:9%;top:-24px;animation:orbB 16s ease-in-out infinite}
+.orb-3{width:80px;height:80px;background:radial-gradient(circle,#F4C20D,transparent 70%);left:31%;bottom:-30px;animation:orbA 18s ease-in-out infinite reverse}
+.orb-4{width:70px;height:70px;background:radial-gradient(circle,#1AA35A,transparent 70%);right:30%;bottom:-22px;animation:orbB 15s ease-in-out infinite}
+@keyframes orbA{0%{transform:translate(0,0)}25%{transform:translate(46px,26px)}50%{transform:translate(78px,4px)}75%{transform:translate(36px,-22px)}100%{transform:translate(0,0)}}
+@keyframes orbB{0%{transform:translate(0,0)}25%{transform:translate(-44px,22px)}50%{transform:translate(-70px,-6px)}75%{transform:translate(-30px,-26px)}100%{transform:translate(0,0)}}
 
 /* ── model: ticker — faint oversized marquee behind the wordmark ── */
 .bs-motion[data-motion="ticker"]{display:flex;align-items:center}
 .hm-ticker{display:flex;white-space:nowrap;will-change:transform;animation:hmTickerSlide 32s linear infinite}
 .hm-ticker span{font-family:var(--font-display);font-size:clamp(42px,9vw,92px);font-weight:900;
-  text-transform:uppercase;letter-spacing:-.01em;color:var(--ink);opacity:.06;padding-inline:18px}
-body.theme-dark .hm-ticker span{opacity:.09}
+  text-transform:uppercase;letter-spacing:-.01em;color:rgb(var(--hm-ink,26,18,8));opacity:.07;padding-inline:18px}
+body.theme-dark .hm-ticker span{opacity:.1}
 @keyframes hmTickerSlide{to{transform:translateX(-50%)}}
+
+/* ── model: hatch — single-direction diagonal hatching, slowly scrolling ── */
+.bs-motion[data-motion="hatch"]{
+  background:repeating-linear-gradient(45deg,
+    rgba(var(--hm-ink,26,18,8),.11) 0 2px, transparent 2px 13px);
+  animation:hmHatchSlide 7s linear infinite}
+@keyframes hmHatchSlide{to{background-position:37px 0}}
+
+/* ── model: crosshatch — two opposing hatch grids, gently breathing ── */
+.bs-motion[data-motion="crosshatch"]{
+  background:
+    repeating-linear-gradient(45deg, rgba(var(--hm-ink,26,18,8),.09) 0 1.5px, transparent 1.5px 12px),
+    repeating-linear-gradient(-45deg, rgba(var(--hm-ink,26,18,8),.09) 0 1.5px, transparent 1.5px 12px);
+  animation:hmCrossPulse 9s ease-in-out infinite}
+@keyframes hmCrossPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* ── model: dots — halftone dot grid drifting on a slow diagonal ── */
+.bs-motion[data-motion="dots"]{
+  background:radial-gradient(circle, rgba(var(--hm-ink,26,18,8),.16) 2px, transparent 2.5px);
+  background-size:26px 26px;
+  animation:hmDotsDrift 13s ease-in-out infinite}
+@keyframes hmDotsDrift{0%,100%{background-position:0 0}50%{background-position:26px 13px}}
+
+/* ── model: quad — four colour squares in the corners, softly breathing ── */
+.bs-motion[data-motion="quad"] .q4{position:absolute;width:44%;height:42%;opacity:.16;will-change:transform,opacity}
+body.theme-dark .bs-motion[data-motion="quad"] .q4{opacity:.22}
+.q4-1{left:3%;top:7%;background:#E63946;animation:q4A 13s ease-in-out infinite}
+.q4-2{right:3%;top:7%;background:#1D4ED8;animation:q4B 16s ease-in-out infinite}
+.q4-3{left:3%;bottom:7%;background:#F4C20D;animation:q4B 18s ease-in-out infinite reverse}
+.q4-4{right:3%;bottom:7%;background:#1AA35A;animation:q4A 15s ease-in-out infinite reverse}
+@keyframes q4A{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(10px,6px) scale(1.05)}}
+@keyframes q4B{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-10px,-6px) scale(1.05)}}
+
+/* ── model: mondrian — primary-colour blocks drifting + breathing (bauhaus family) ── */
+.bs-motion[data-motion="mondrian"] .mdr{position:absolute;will-change:transform,opacity}
+.mdr-a{left:4%;top:14%;width:70px;height:42px;background:#E63946;animation:mdrA 15s ease-in-out infinite}
+.mdr-b{left:0;bottom:0;width:46px;height:62px;background:#1D4ED8;animation:mdrB 19s ease-in-out infinite}
+.mdr-c{right:12%;top:8px;width:54px;height:54px;background:#F4C20D;animation:mdrA 17s ease-in-out infinite reverse}
+.mdr-d{right:0;bottom:6px;width:66px;height:30px;background:#1AA35A;animation:mdrB 22s ease-in-out infinite reverse}
+.mdr-e{left:46%;top:48%;width:30px;height:30px;background:var(--accent,#9B1C1C);animation:mdrA 12s ease-in-out infinite}
+@keyframes mdrA{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(24px,13px) scale(1.12);opacity:.74}}
+@keyframes mdrB{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(-22px,-12px) scale(1.08);opacity:.7}}
+body.theme-dark .bs-motion[data-motion="mondrian"] .mdr{opacity:.62}
+
+/* ── model: vangogh — soft swirling Starry-Night brushwork (gentle motion) ── */
+.bs-motion[data-motion="vangogh"]{background:radial-gradient(120% 160% at 50% -30%, rgba(29,78,216,.16), transparent 60%)}
+.bs-motion[data-motion="vangogh"] .vg{position:absolute;will-change:transform;filter:blur(7px)}
+.vg-swirl{border-radius:50%;opacity:.5}
+.vg-1{width:150px;height:150px;left:4%;top:-46px;
+  background:conic-gradient(from 0deg,#1E3A8A,#1D4ED8,#60A5FA,#1D4ED8,#1E3A8A);
+  animation:vgSwirl 26s linear infinite}
+.vg-2{width:120px;height:120px;right:8%;top:-30px;
+  background:conic-gradient(from 120deg,#1D4ED8,#3B82F6,#93C5FD,#2563EB,#1D4ED8);
+  animation:vgSwirl 32s linear infinite reverse}
+.vg-star{border-radius:50%;background:radial-gradient(circle,#F4C20D,rgba(244,194,13,.2) 45%,transparent 65%)}
+.vg-3{width:64px;height:64px;left:34%;top:8px;opacity:.55;animation:vgStar 9s ease-in-out infinite}
+.vg-4{width:48px;height:48px;right:30%;bottom:-12px;opacity:.5;animation:vgStar 12s ease-in-out infinite reverse}
+@keyframes vgSwirl{to{transform:rotate(360deg)}}
+@keyframes vgStar{0%,100%{transform:scale(.85);opacity:.35}50%{transform:scale(1.15);opacity:.7}}
+
+/* ── model: cubism — angular shards slowly rotating + sliding ── */
+.bs-motion[data-motion="cubism"] .cub{position:absolute;opacity:.5;will-change:transform}
+body.theme-dark .bs-motion[data-motion="cubism"] .cub{opacity:.6}
+.cub-1{left:6%;top:10%;width:78px;height:78px;background:#E63946;clip-path:polygon(0 0,100% 22%,72% 100%,0 70%);animation:cubA 19s ease-in-out infinite}
+.cub-2{left:26%;bottom:-10px;width:64px;height:64px;background:#1D4ED8;clip-path:polygon(50% 0,100% 100%,0 100%);animation:cubB 23s ease-in-out infinite}
+.cub-3{right:20%;top:-6px;width:70px;height:70px;background:#F4C20D;clip-path:polygon(20% 0,100% 30%,80% 100%,0 80%);animation:cubA 21s ease-in-out infinite reverse}
+.cub-4{right:5%;bottom:0;width:60px;height:60px;background:#1AA35A;clip-path:polygon(0 30%,70% 0,100% 70%,30% 100%);animation:cubB 26s ease-in-out infinite reverse}
+.cub-5{left:48%;top:30%;width:46px;height:46px;background:var(--accent,#9B1C1C);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);animation:cubA 16s ease-in-out infinite}
+@keyframes cubA{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(16px,10px) rotate(24deg)}}
+@keyframes cubB{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-18px,-8px) rotate(-20deg)}}
 
 /* ============================================================
    SECTION TITLES v3 (2026-06-26 round 4) — The Verge style.
@@ -3538,6 +3615,8 @@ body[dir="rtl"] .desk .section-head-inner .all{white-space:normal}
 body > .nav-links.open{background:#5826E8 !important;
   grid-template-rows:auto auto auto 1fr auto !important;
   align-content:stretch !important;row-gap:0 !important}
+/* Light theme = electric-purple field (above); dark theme = pure black field. */
+body.theme-dark > .nav-links.open{background:#0A0908 !important}
 .nav-links > *{position:relative;z-index:1}
 .nav-links .menu-watermark{
   position:absolute !important;left:50%;bottom:-3%;transform:translateX(-50%);z-index:0;
@@ -3639,8 +3718,12 @@ body[dir="rtl"] .vbox-main .feed-more::before{transform-origin:right}
 /* (#1) Theme control — square brutalist edges, no rounding anywhere */
 .nav-links .menu-theme{border-radius:0 !important}
 
-/* (#4,#12) Mobile menu language boxes — truly equal width (basis 0, not content) */
-.nav-links .menu-lang button,.menu-lang button{flex:1 1 0 !important;min-width:0;text-align:center}
+/* (#4,#12) Menu language boxes — size each segment to its label with comfortable
+   padding and no wrapping, so longer labels (Türkçe / العربية) never clip. */
+.nav-links .menu-lang,.lang.menu-lang{width:auto !important}
+.nav-links .menu-lang button,.menu-lang button{
+  flex:0 1 auto !important;min-width:0;text-align:center;white-space:nowrap !important;
+  padding:11px 18px !important;font-size:12px !important;line-height:1.1 !important}
 
 /* (#9) Persian / Arabic words always render in their own font, even on the
    English page (e.g. the "فارسی" footer link the build keeps regenerating). */
@@ -3677,29 +3760,185 @@ body > .nav-links.open{animation:menuWipe .55s cubic-bezier(.16,1,.3,1)}
 
 @media(min-width:761px){
   /* one big left-aligned stack instead of two columns */
-  body > .nav-links.open{grid-template-columns:1fr !important}
+  /* ── Desktop mega-menu: LEFT = vertical type stack, RIGHT = live panel that
+     fills the empty space. Default panel = featured news + subscribe; hovering a
+     nav item shows that item's content horizontally in the panel (app.js feeds it). */
+  body > .nav-links.open{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-rows:auto auto auto 1fr auto !important;
+    grid-template-areas:
+      "head head"
+      "search theme"
+      "nav panel"
+      "extras panel"
+      "foot foot" !important;
+    column-gap:0 !important}
+  .nav-links .menu-head{grid-area:head}
+  .nav-links .menu-search{grid-area:search;margin:14px 14px 14px var(--gut) !important}
+  .nav-links .menu-theme{grid-area:theme;margin:14px var(--gut) 14px 0 !important;align-self:stretch}
+  .nav-links .nav-groups{grid-area:nav}
+  .nav-links .nav-extras{grid-area:extras}
+  .nav-links .menu-panel{grid-area:panel}
+  .nav-links .menu-foot{grid-area:foot}
+
+  /* equal height: search box + theme toggle share row 2 */
+  .nav-links .menu-search-input{min-height:58px !important;box-sizing:border-box;display:flex;align-items:center}
+  .nav-links .menu-theme{min-height:58px;display:flex !important;align-items:stretch}
+  .nav-links .menu-theme button{min-height:58px}
+
+  /* left type stack (column is narrower now, so trim the size a touch) */
   .nav-links .nav-groups,.nav-links .nav-extras{
-    grid-column:1 !important;border-left:none !important;padding:2px var(--gut) !important}
+    border-left:none !important;padding:0 0 0 var(--gut) !important}
   .nav-links .nav-extras{padding-top:0 !important}
-  .nav-links .nav-group{position:relative;overflow:hidden;
-    border-bottom:1px solid rgba(255,255,255,.16) !important}
+  .nav-links .nav-group{display:block !important;position:relative;border-bottom:none !important}
   .nav-links .nav-group > a{
     display:inline-block;position:relative;z-index:2;
     font-family:var(--font-display) !important;font-weight:900 !important;text-transform:uppercase;
-    font-size:clamp(32px,4.2vw,60px) !important;line-height:1.05 !important;letter-spacing:-.01em !important;
-    color:#fff !important;padding:6px 0 !important;transition:opacity .2s,transform .2s}
-  /* STORIES bigger than the rest */
-  .nav-links .nav-groups .nav-group:first-child > a{font-size:clamp(44px,5.6vw,86px) !important}
-  .nav-links .nav-group:hover > a{transform:translateX(10px)}
-  /* drop the accordion dropdown on desktop — the marquee replaces it */
+    font-size:clamp(28px,3.4vw,50px) !important;line-height:1.05 !important;letter-spacing:-.01em !important;
+    color:#fff !important;padding:5px 0 !important;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),color .15s}
+  .nav-links .nav-groups .nav-group:first-child > a{font-size:clamp(36px,4.4vw,66px) !important}
+  /* hover/active: NO colour change — just a slide. The panel is the real feedback. */
+  .nav-links .nav-group:hover > a,
+  .nav-links .nav-group.is-active > a{transform:translateX(12px)}
+  .nav-links .nav-group.is-active > a::before{content:"";position:absolute;inset-inline-start:-16px;top:50%;
+    transform:translateY(-50%);width:6px;height:58%;background:var(--accent-orange,#E8682A)}
+  /* Crypto is the one exception: purple accent (on the dark field) */
+  body.theme-dark .nav-links .nav-group.is-crypto:hover > a,
+  body.theme-dark .nav-links .nav-group.is-crypto.is-active > a{color:#8A6CFF !important}
+  .nav-links .nav-group.is-crypto.is-active > a::before{background:#8A6CFF}
+
+  /* inline subs + toggles hidden on desktop — their content feeds the panel */
   .nav-links .nav-group .sub,.nav-links .sub-toggle{display:none !important}
-  /* "[VIEW X]" marquee revealed behind/right of the word on hover */
-  .nav-vm{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;
-    overflow:hidden;pointer-events:none;opacity:0;transition:opacity .3s ease;z-index:1}
-  .nav-group:hover .nav-vm{opacity:.5}
-  .nav-vm-track{white-space:nowrap;font-family:var(--mono);font-size:clamp(15px,1.5vw,22px);
-    letter-spacing:.14em;color:#fff;animation:navVm 20s linear infinite;will-change:transform}
-  @keyframes navVm{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ── the right panel ── */
+  .nav-links .menu-panel{
+    display:flex;flex-direction:column;justify-content:center;gap:26px;min-width:0;overflow:hidden;
+    padding:8px var(--gut) 8px 44px;border-inline-start:1px solid rgba(255,255,255,.12)}
+  .nav-links .menu-panel .mp-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent-orange,#E8682A);margin-bottom:14px;display:block}
+  .nav-links .menu-panel .mp-fade{animation:mpFade .32s cubic-bezier(.16,1,.3,1)}
+  /* featured news card */
+  .nav-links .mp-featured .mp-news{display:block;text-decoration:none;color:#fff}
+  .nav-links .mp-featured .mp-news .mp-news-cat{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .nav-links .mp-featured .mp-news h4{font-family:var(--font-head),Georgia,serif;font-weight:600;
+    font-size:clamp(20px,1.7vw,26px);line-height:1.18;margin:8px 0 0;transition:color .15s}
+  .nav-links .mp-featured .mp-news:hover h4{color:var(--accent-orange,#E8682A)}
+  /* subscribe block */
+  .nav-links .mp-subscribe h5{font-family:var(--font-display);font-weight:900;text-transform:uppercase;
+    font-size:clamp(22px,2vw,32px);line-height:1;letter-spacing:-.01em;margin:0 0 12px;color:#fff}
+  .nav-links .mp-form{display:flex;gap:0;max-width:420px}
+  .nav-links .mp-form input{flex:1;min-width:0;background:rgba(255,255,255,.08);border:none;outline:none;
+    color:#fff;font-family:var(--mono);font-size:14px;padding:14px 16px}
+  .nav-links .mp-form input::placeholder{color:rgba(255,255,255,.4)}
+  .nav-links .mp-form button{flex:0 0 auto;background:var(--accent-orange,#E8682A);border:none;color:#fff;
+    font-size:18px;padding:0 20px;cursor:pointer;transition:background .15s}
+  .nav-links .mp-form button:hover{background:#cf5a23}
+  /* coin rows (crypto / prices) */
+  .nav-links .mp-coins{display:flex;flex-direction:column;gap:2px}
+  .nav-links .mp-coin{display:grid;grid-template-columns:54px 1fr auto auto;align-items:center;gap:16px;
+    text-decoration:none;color:#fff;padding:12px 6px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-links .mp-coin:hover{background:rgba(255,255,255,.05)}
+  .nav-links .mp-coin .mc-sym{font-family:var(--mono);font-weight:600;letter-spacing:.06em}
+  .nav-links .mp-coin .mc-price{font-family:var(--mono);font-size:15px}
+  .nav-links .mp-coin .mc-chg{font-family:var(--mono);font-size:13px}
+  .nav-links .mp-coin .mc-chg.up{color:var(--up-d)}
+  .nav-links .mp-coin .mc-chg.down{color:var(--down-d)}
+  .nav-links .mp-coin .mc-trade{font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--accent-orange,#E8682A);white-space:nowrap}
+  .nav-links .mp-more{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent-orange,#E8682A);text-decoration:none;margin-top:14px;display:inline-block}
+  /* generic link list (markets, stories, ai, cars, tech) */
+  .nav-links .mp-links{display:flex;flex-direction:column;gap:0}
+  .nav-links .mp-links a,.nav-links .mp-links .mp-soon{font-family:var(--font-head),Georgia,serif;
+    font-size:clamp(18px,1.5vw,23px);font-weight:600;color:#fff;text-decoration:none;padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);transition:color .15s,padding-inline-start .15s}
+  .nav-links .mp-links a:hover{color:var(--accent-orange,#E8682A);padding-inline-start:8px}
+  .nav-links .mp-links .mp-soon{color:rgba(255,255,255,.45);display:flex;align-items:center;gap:10px}
+  .nav-links .mp-links .mp-soon em{font-family:var(--mono);font-size:11px;font-style:normal;letter-spacing:.08em;
+    text-transform:uppercase;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.22);padding:2px 7px}
+  /* crypto panel accent = purple */
+  .nav-links .menu-panel.is-crypto .mp-eyebrow,
+  .nav-links .menu-panel.is-crypto .mc-trade,
+  .nav-links .menu-panel.is-crypto .mp-more{color:#8A6CFF}
 }
-/* the marquee element is desktop-only */
-@media(max-width:760px){ .nav-vm{display:none !important} }
+@keyframes mpFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* marquee fully retired on every breakpoint */
+.nav-vm{display:none !important}
+
+/* ============================================================
+   Mobile menu polish (round 6): top spacing, staggered word
+   entrance, elevated sub cards with shadow, tidy footer row.
+   ============================================================ */
+@media(max-width:760px){
+  /* breathing room above STORIES — it was hugging the theme-toggle box */
+  .nav-links .nav-groups{padding-top:30px !important}
+
+  /* the big words animate in (staggered) when the menu opens */
+  body > .nav-links.open .nav-group{animation:navWordIn .5s cubic-bezier(.16,1,.3,1) both}
+  body > .nav-links.open .nav-groups .nav-group:nth-child(1){animation-delay:.05s}
+  body > .nav-links.open .nav-groups .nav-group:nth-child(2){animation-delay:.10s}
+  body > .nav-links.open .nav-groups .nav-group:nth-child(3){animation-delay:.15s}
+  body > .nav-links.open .nav-groups .nav-group:nth-child(4){animation-delay:.20s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(1){animation-delay:.25s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(2){animation-delay:.30s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(3){animation-delay:.35s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(4){animation-delay:.40s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(5){animation-delay:.45s}
+  body > .nav-links.open .nav-extras .nav-group:nth-child(6){animation-delay:.50s}
+
+  /* expanded sub becomes an elevated card: soft shadow + rounded surface */
+  .nav-links .has-sub.open-sub .sub{
+    box-shadow:0 16px 34px rgba(0,0,0,.45) !important;
+    background:rgba(255,255,255,.05) !important;border-radius:12px !important;
+    padding:14px 16px !important;margin:6px 0 12px !important}
+
+  /* footer row: wrap the language box + socials instead of overflowing */
+  .nav-links .menu-foot{flex-wrap:wrap !important;gap:16px 18px !important;
+    justify-content:space-between !important}
+}
+@keyframes navWordIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(max-width:760px) and (prefers-reduced-motion:reduce){
+  body > .nav-links.open .nav-group{animation:none !important}
+}
+
+/* ============================================================
+   RTL (round 6): the header, the live ticker and the footer keep the
+   English LTR layout in EVERY language — they must NOT mirror. Only the
+   words get translated. The page body stays RTL for article content.
+   ============================================================ */
+body[dir="rtl"] .bsheet,
+body[dir="rtl"] .ticker,
+body[dir="rtl"] .foot-rich{direction:ltr}
+/* ticker scrolls the same way (left) in all languages — no mirrored scroll */
+body[dir="rtl"] .ticker-track{animation:scroll 60s linear infinite}
+/* keep the translated words right-reading inside their cells without
+   reordering the columns/structure */
+body[dir="rtl"] .foot-rich .foot-desc,
+body[dir="rtl"] .foot-rich h4,
+body[dir="rtl"] .foot-rich h5,
+body[dir="rtl"] .foot-rich .foot-col a,
+body[dir="rtl"] .foot-rich .foot-news-eyebrow{unicode-bidi:plaintext}
+
+/* ============================================================
+   Round 7 — menu watermark removed, Editor's Pick white hover
+   ============================================================ */
+/* watermark didn't read well — removed on every breakpoint */
+.nav-links .menu-watermark{display:none !important}
+
+/* Editor's Pick / hero list: white brutalist hover (NOT orange), readable in
+   dark mode (white field, ink text, hard accent rule on the inside edge). */
+.bs-editors .ep-row:hover,
+.ep-row:hover,
+body.theme-dark .ep-row:hover{
+  background:#fff !important;color:#0A0908 !important;
+  box-shadow:inset 5px 0 0 var(--accent,#9B1C1C) !important}
+.ep-row:hover .ep-title,.ep-row:hover .ep-date,
+body.theme-dark .ep-row:hover .ep-title,
+body.theme-dark .ep-row:hover .ep-date{color:#0A0908 !important}
+.ep-row:hover .cat,
+body.theme-dark .ep-row:hover .cat{color:#0A0908 !important;border-color:#0A0908 !important;background:transparent !important}
+.ep-row:hover::before,
+.bs-editors .ep-row:hover::before,
+body.theme-dark .ep-row:hover::before{background:#0A0908 !important;color:#fff !important}
