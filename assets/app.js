@@ -1782,6 +1782,65 @@ function initBroadsheetChrome(){
     }catch(e){/* leave placeholders */} })();
   }
 
+  // ── Desktop mega-menu panel: fills the empty right half. Default = featured
+  // story + subscribe; hovering a nav item swaps in that item's content. Hidden
+  // on mobile (CSS), where the inline accordion subs are used instead.
+  const escMenu = s => String(s==null?'':s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  const coinRow = (symbol,id) =>
+    `<a class="mp-coin" href="${p('exchanges.html')}" data-coin="${id}"><span class="mc-sym">${symbol}</span><span class="mc-price">—</span><span class="mc-chg">—</span><span class="mc-trade">Trade →</span></a>`;
+  function defaultPanelHTML(){
+    const fl = feedLang();
+    const feed = Array.isArray(window.__feed) ? window.__feed : [];
+    const art = feed.find(a=>a && a.banner) || feed[0];
+    const news = art ? `<div class="mp-featured"><span class="mp-eyebrow">Featured</span>`+
+      `<a class="mp-news" href="${articleHref(art, fl, prefix)}"><span class="mp-news-cat">${escMenu((art.category||'').toUpperCase())}</span>`+
+      `<h4>${escMenu(pickLoc(art.headline, fl))}</h4></a></div>` : '';
+    return `${news}<div class="mp-subscribe"><h5>Stay ahead of the market.</h5>`+
+      `<form class="mp-form" onsubmit="return false"><input type="email" placeholder="your@email.com" aria-label="Email"><button type="submit" aria-label="Subscribe">→</button></form></div>`;
+  }
+  function groupPanelHTML(g){
+    const a = g.querySelector(':scope > a'); if(!a) return {cls:'', html:defaultPanelHTML()};
+    const href = a.getAttribute('href')||''; const di = a.getAttribute('data-i')||'';
+    const label = a.textContent.replace(/new$/i,'').trim();
+    if(di==='nav_crypto') return {cls:'is-crypto', html:
+      `<span class="mp-eyebrow">Crypto</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}${coinRow('SOL','solana')}</div>`+
+      `<a class="mp-more" href="${prefix}stories.html?cat=crypto${sfx}">All crypto coverage →</a>`};
+    if(/prices\.html/.test(href)) return {cls:'', html:
+      `<span class="mp-eyebrow">Live Prices</span><div class="mp-coins" data-mp-coins>${coinRow('BTC','bitcoin')}${coinRow('ETH','ethereum')}</div>`+
+      `<a class="mp-more" href="${p('prices.html')}">Show more →</a>`};
+    if(di==='nav_topmarkets') return {cls:'', html:
+      `<span class="mp-eyebrow">Markets</span><div class="mp-links"><a href="${p('exchanges.html')}">Crypto Exchanges</a><a href="${p('brokers.html')}">Brokers</a><a href="${prefix}stories.html?cat=forex${sfx}">Forex</a><span class="mp-soon">Future <em>soon</em></span></div>`};
+    const sub = g.querySelector('.sub');
+    if(sub){ const links=[...sub.querySelectorAll('a')].map(x=>`<a href="${x.getAttribute('href')}">${escMenu(x.textContent)}</a>`).join('');
+      return {cls:'', html:`<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links">${links}</div>`}; }
+    return {cls:'', html:`<span class="mp-eyebrow">${escMenu(label)}</span><div class="mp-links"><a href="${href}">Open ${escMenu(label)} →</a></div>`};
+  }
+  let _mpCoins = null;
+  async function fillCoins(scope){
+    const rows = scope.querySelectorAll('.mp-coin[data-coin]'); if(!rows.length) return;
+    try{
+      if(!_mpCoins) _mpCoins = await fetchCrypto([['BTC','bitcoin'],['ETH','ethereum'],['SOL','solana']]);
+      rows.forEach(el=>{ const d=_mpCoins[el.getAttribute('data-coin')]; if(!d||typeof d.usd!=='number') return;
+        el.querySelector('.mc-price').textContent = fmtPrice(d.usd);
+        const chg = d.usd_24h_change||0, c = el.querySelector('.mc-chg');
+        c.textContent = (chg>=0?'+':'') + chg.toFixed(2) + '%'; c.classList.add(chg>=0?'up':'down');
+      });
+    }catch(e){/* leave dashes */}
+  }
+  const panel = document.createElement('div'); panel.className='menu-panel mp-default'; panel.setAttribute('aria-hidden','true');
+  menu.appendChild(panel);
+  const _groups = [...menu.querySelectorAll('.nav-group')];
+  _groups.forEach(g=>{ const a0=g.querySelector(':scope > a'); if(a0 && a0.getAttribute('data-i')==='nav_crypto') g.classList.add('is-crypto'); });
+  function renderDefault(){ panel.className='menu-panel mp-default'; panel.innerHTML = `<div class="mp-fade">${defaultPanelHTML()}</div>`; }
+  function renderGroup(g){ const r=groupPanelHTML(g); panel.className='menu-panel '+r.cls; panel.innerHTML = `<div class="mp-fade">${r.html}</div>`; fillCoins(panel); }
+  function clearActive(){ _groups.forEach(x=>x.classList.remove('is-active')); }
+  renderDefault();
+  _groups.forEach(g=> g.addEventListener('mouseenter', ()=>{ clearActive(); g.classList.add('is-active'); renderGroup(g); }));
+  ['.menu-head','.menu-search','.menu-theme','.menu-foot'].forEach(sel=>{
+    const el = menu.querySelector(sel); if(el) el.addEventListener('mouseenter', ()=>{ clearActive(); renderDefault(); });
+  });
+  window.__refreshMenuPanel = ()=>{ if(!menu.querySelector('.nav-group.is-active')) renderDefault(); };
+
   // search overlay
   const searchOverlay = document.createElement('div'); searchOverlay.className='bs-search-overlay'; searchOverlay.id='bs-search-overlay';
   searchOverlay.innerHTML=`<button class="bs-search-close" aria-label="Close search">✕</button>

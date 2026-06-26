@@ -9,6 +9,8 @@ const CHROME: Record<Lang, Record<string, string>> = {
     nav_crypto: "Crypto", nav_forex: "Forex", nav_tech: "Tech", nav_cars: "Cars",
     nav_analysis: "Market Analysis", nav_topmarkets: "Markets", nav_contact: "Contact", m_close: "Close",
     foot_explore: "Explore", foot_markets: "Markets", foot_company: "Company", foot_lang: "Languages",
+    foot_intel: "Market Intelligence", foot_news_head: "Stay ahead of the market.", foot_subscribe: "Subscribe →",
+    foot_topics: "Topics", foot_privacy: "Privacy", foot_terms: "Terms", foot_advertise: "Advertise",
     foot_desc: "Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.",
     f_stories: "Stories", f_chart: "Chart", f_prices: "Prices",
     f_exchanges: "Top Exchanges", f_brokers: "Top Brokers", f_about: "About Us", f_contact: "Contact Us",
@@ -22,6 +24,8 @@ const CHROME: Record<Lang, Record<string, string>> = {
     nav_crypto: "کریپتو", nav_forex: "فارکس", nav_tech: "تکنولوژی", nav_cars: "خودرو",
     nav_analysis: "تحلیل بازار", nav_topmarkets: "بازارها", nav_contact: "تماس", m_close: "بستن",
     foot_explore: "کاوش", foot_markets: "بازارها", foot_company: "شرکت", foot_lang: "زبان‌ها",
+    foot_intel: "هوش بازار", foot_news_head: "از بازار جلوتر بمانید.", foot_subscribe: "عضویت →",
+    foot_topics: "موضوعات", foot_privacy: "حریم خصوصی", foot_terms: "قوانین", foot_advertise: "تبلیغات",
     foot_desc: "Maxgazine رسانه‌ای چندزبانه در حوزه بازار است که اخبار کریپتو، فارکس، تکنولوژی و خودرو را سریع، خام و بدون شلوغی پوشش می‌دهد.",
     f_stories: "مطالب", f_chart: "نمودار", f_prices: "قیمت‌ها",
     f_exchanges: "برترین صرافی‌ها", f_brokers: "برترین بروکرها", f_about: "درباره ما", f_contact: "تماس با ما",
@@ -35,6 +39,8 @@ const CHROME: Record<Lang, Record<string, string>> = {
     nav_crypto: "كريبتو", nav_forex: "فوركس", nav_tech: "تقنية", nav_cars: "سيارات",
     nav_analysis: "تحليل السوق", nav_topmarkets: "الأسواق", nav_contact: "تواصل", m_close: "إغلاق",
     foot_explore: "استكشف", foot_markets: "الأسواق", foot_company: "الشركة", foot_lang: "اللغات",
+    foot_intel: "ذكاء السوق", foot_news_head: "ابقَ في صدارة السوق.", foot_subscribe: "اشترك →",
+    foot_topics: "المواضيع", foot_privacy: "الخصوصية", foot_terms: "الشروط", foot_advertise: "الإعلان",
     foot_desc: "Maxgazine منصة إعلامية متعددة اللغات تغطي أسواق الكريبتو والفوركس والتقنية والسيارات بسرعة وبصدق وبلا ضجيج.",
     f_stories: "المقالات", f_chart: "الرسم البياني", f_prices: "الأسعار",
     f_exchanges: "أفضل المنصّات", f_brokers: "أفضل الوسطاء", f_about: "حول", f_contact: "تواصل معنا",
@@ -48,6 +54,8 @@ const CHROME: Record<Lang, Record<string, string>> = {
     nav_crypto: "Kripto", nav_forex: "Forex", nav_tech: "Teknoloji", nav_cars: "Otomobil",
     nav_analysis: "Piyasa Analizi", nav_topmarkets: "Piyasalar", nav_contact: "İletişim", m_close: "Kapat",
     foot_explore: "Keşfet", foot_markets: "Piyasalar", foot_company: "Şirket", foot_lang: "Diller",
+    foot_intel: "Piyasa Zekâsı", foot_news_head: "Piyasanın önünde olun.", foot_subscribe: "Abone ol →",
+    foot_topics: "Konular", foot_privacy: "Gizlilik", foot_terms: "Şartlar", foot_advertise: "Reklam",
     foot_desc: "Maxgazine; kripto, forex, teknoloji ve otomobil haberlerini hızlı, sade ve gürültüsüz biçimde sunan çok dilli bir piyasa medyasıdır.",
     f_stories: "Haberler", f_chart: "Grafik", f_prices: "Fiyatlar",
     f_exchanges: "En İyi Borsalar", f_brokers: "En İyi Aracılar", f_about: "Hakkımızda", f_contact: "İletişim",
@@ -218,7 +226,7 @@ function chromeHeader(lang: Lang, prefix: string): string {
     <a href="${p("stories.html")}?cat=crypto" data-nav="crypto" data-i="nav_crypto">${esc(c.nav_crypto!)}</a>
     <a href="${p("exchanges.html")}" data-i="nav_topmarkets">${esc(c.nav_topmarkets!)}</a>
     <a href="${p("prices.html")}" data-i="nav_prices">${esc(c.nav_prices!)}</a>
-    <a href="${p("stories.html")}?cat=ai" data-nav="ai">AI News<span class="nav-badge-new">NEW</span></a>
+    <a href="${p("stories.html")}?cat=ai" data-nav="ai">AI<span class="nav-badge-new">NEW</span></a>
     <a href="${p("stories.html")}?cat=cars" data-nav="cars" data-i="nav_cars">${esc(c.nav_cars!)}</a>
     <a href="${p("chart.html")}" data-i="nav_chart">${esc(c.f_chart!)}</a>
     <a href="${p("about.html")}" data-i="nav_about">${esc(c.nav_about!)}</a>
@@ -245,8 +253,8 @@ function chromeFooter(lang: Lang, prefix: string): string {
       <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
     </div>
     <div class="foot-news">
-      <div class="foot-news-eyebrow mono">MARKET INTELLIGENCE</div>
-      <h4>Stay ahead of the market.</h4>
+      <div class="foot-news-eyebrow mono">${esc(c.foot_intel!)}</div>
+      <h4>${esc(c.foot_news_head!)}</h4>
       <form class="foot-news-form" onsubmit="return false">
         <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
         <button class="foot-news-btn mono" type="submit">Subscribe →</button>
@@ -256,11 +264,11 @@ function chromeFooter(lang: Lang, prefix: string): string {
   <div class="foot-cols">
     <div class="foot-col"><h5>${esc(c.foot_explore!)}</h5><a href="${prefix}stories.html${s}">${esc(c.f_stories!)}</a><a href="${prefix}chart.html${s}">${esc(c.f_chart!)}</a><a href="${prefix}prices.html${s}">${esc(c.f_prices!)}</a></div>
     <div class="foot-col"><h5>${esc(c.foot_markets!)}</h5><a href="${prefix}exchanges.html${s}">${esc(c.f_exchanges!)}</a><a href="${prefix}brokers.html${s}">${esc(c.f_brokers!)}</a></div>
-    <div class="foot-col"><h5>Topics</h5><a href="${prefix}stories.html?cat=crypto${s.replace("?","&")}">Crypto</a><a href="${prefix}stories.html?cat=forex${s.replace("?","&")}">Forex</a><a href="${prefix}stories.html?cat=tech${s.replace("?","&")}">Tech</a><a href="${prefix}stories.html?cat=cars${s.replace("?","&")}">Cars</a></div>
+    <div class="foot-col"><h5>${esc(c.foot_topics!)}</h5><a href="${prefix}stories.html?cat=crypto${s.replace("?","&")}">${esc(c.nav_crypto!)}</a><a href="${prefix}stories.html?cat=forex${s.replace("?","&")}">${esc(c.nav_forex!)}</a><a href="${prefix}stories.html?cat=tech${s.replace("?","&")}">${esc(c.nav_tech!)}</a><a href="${prefix}stories.html?cat=cars${s.replace("?","&")}">${esc(c.nav_cars!)}</a></div>
     <div class="foot-col"><h5>${esc(c.foot_company!)}</h5><a href="${prefix}about.html${s}">${esc(c.f_about!)}</a><a href="${prefix}contact.html${s}">${esc(c.f_contact!)}</a></div>
     <div class="foot-col"><h5>${esc(c.foot_lang!)}</h5>${langLinks}</div>
   </div>
-  <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><div class="foot-legal"><a href="${prefix}about.html${s}">Privacy</a><a href="${prefix}about.html${s}">Terms</a><a href="${prefix}contact.html${s}">Advertise</a></div><span>${esc(c.f_built!)}</span></div>
+  <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><div class="foot-legal"><a href="${prefix}about.html${s}">${esc(c.foot_privacy!)}</a><a href="${prefix}about.html${s}">${esc(c.foot_terms!)}</a><a href="${prefix}contact.html${s}">${esc(c.foot_advertise!)}</a></div><span>${esc(c.f_built!)}</span></div>
 </div></footer>
 </div><!-- /.bs-frame -->
 

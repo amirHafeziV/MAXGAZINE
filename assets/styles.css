@@ -3942,3 +3942,6 @@ body.theme-dark .ep-row:hover .cat{color:#0A0908 !important;border-color:#0A0908
 .ep-row:hover::before,
 .bs-editors .ep-row:hover::before,
 body.theme-dark .ep-row:hover::before{background:#0A0908 !important;color:#fff !important}
+
+/* desktop mega-menu panel is desktop-only */
+@media(max-width:760px){ .nav-links .menu-panel{display:none !important} }
