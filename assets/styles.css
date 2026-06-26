@@ -3800,15 +3800,9 @@ body > .nav-links.open{animation:menuWipe .55s cubic-bezier(.16,1,.3,1)}
     color:#fff !important;padding:5px 0 !important;
     transition:color .08s linear !important}
   .nav-links .nav-groups .nav-group:first-child > a{font-size:clamp(36px,4.4vw,66px) !important}
-  /* per-category accent colour — matches the site's category palette
-     (crypto purple, markets green, cars red, tech amber, prices blue; rest orange) */
-  .nav-links .nav-group{--cat:var(--accent-orange,#E8682A)}
+  /* accent colour rule (fixed): ORANGE for every category — PURPLE only for crypto. */
+  .nav-links .nav-group{--cat:var(--accent-orange,#EA5A1B)}
   .nav-links .nav-group:has(> a[data-i="nav_crypto"]){--cat:#8A6CFF}
-  .nav-links .nav-group:has(> a[data-i="nav_topmarkets"]){--cat:#22C55E}
-  .nav-links .nav-group:has(> a[data-i="nav_cars"]){--cat:#EF4444}
-  .nav-links .nav-group:has(> a[data-nav="ai"]){--cat:#06B6D4}
-  .nav-links .nav-group:has(> a[href*="cat=tech"]){--cat:#F59E0B}
-  .nav-links .nav-group:has(> a[href*="prices.html"]){--cat:#3B82F6}
   /* BRUTAL hover: no soft slide — the word snaps to its category colour with a
      thick, hard, full-height accent bar. The panel opening beside it is the reveal. */
   .nav-links .nav-group:hover > a,
@@ -3927,7 +3921,9 @@ body > .nav-links.open{animation:menuWipe .55s cubic-bezier(.16,1,.3,1)}
    ============================================================ */
 body[dir="rtl"] .bsheet,
 body[dir="rtl"] .ticker,
-body[dir="rtl"] .foot-rich{direction:ltr}
+body[dir="rtl"] .foot-rich,
+body[dir="rtl"] .nav-links,
+body[dir="rtl"] .bs-mini{direction:ltr}
 /* ticker scrolls the same way (left) in all languages — no mirrored scroll */
 body[dir="rtl"] .ticker-track{animation:scroll 60s linear infinite}
 /* keep the translated words right-reading inside their cells without

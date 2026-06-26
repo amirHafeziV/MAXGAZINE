@@ -1795,7 +1795,7 @@ function initBroadsheetChrome(){
   // on mobile (CSS), where the inline accordion subs are used instead.
   const escMenu = s => String(s==null?'':s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
   // per-category accent colours (match the site palette + crypto purple)
-  const CAT_COLORS = {crypto:'#8A6CFF', market:'#22C55E', cars:'#EF4444', tech:'#F59E0B', prices:'#3B82F6', ai:'#06B6D4'};
+  const CAT_COLORS = {crypto:'#8A6CFF'};   // orange everywhere; purple only for crypto
   function catOf(g){ const a=g&&g.querySelector(':scope > a'); if(!a) return null;
     const di=a.getAttribute('data-i')||'', dn=a.getAttribute('data-nav')||'', href=a.getAttribute('href')||'';
     if(di==='nav_crypto'||dn==='crypto') return 'crypto';
