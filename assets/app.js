@@ -1670,6 +1670,21 @@ function initBroadsheetChrome(){
   burger.innerHTML='<span></span><span></span><span></span>';
   mini.append(mnav, burger);
 
+  // Mark the active header-nav item (matched by path + ?cat=) so it renders as a
+  // coloured box. Runs after the mini-nav is cloned (clones drop their class).
+  (function markActiveBsNav(){
+    const norm = p => (p||'').split('/').pop().replace(/\.html$/,'') || 'index';
+    const curPath = norm(location.pathname);
+    const curCat = new URLSearchParams(location.search).get('cat') || '';
+    if(curPath==='index') return;                 // homepage: no active box
+    document.querySelectorAll('.bs-nav a, .bs-mini-nav a').forEach(a=>{
+      try{
+        const u = new URL(a.getAttribute('href')||'', location.href);
+        if(norm(u.pathname)===curPath && (u.searchParams.get('cat')||'')===curCat) a.classList.add('active');
+      }catch(e){}
+    });
+  })();
+
   // rich full-screen mega-menu
   const langBtns = ['en','fa','ar','tr'].map(l=>`<button data-lang="${l}"${l===lang?' class="active"':''} lang="${l}">${langName[l]}</button>`).join('');
   const menu = document.createElement('div'); menu.className='nav-links'; menu.id='nav-links';

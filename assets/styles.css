@@ -1193,7 +1193,7 @@ html[lang="fa"] .bs-nav a{font-family:var(--font-body)}
 .bs-grid.feed-grid>*:nth-child(3n){border-inline-end:none}
 .bs-grid .card{padding:34px 30px}
 .bs-grid .card h3{font-size:25px;margin-bottom:14px}
-.bs-grid .card .card-meta{justify-content:flex-start}
+.bs-grid .card .card-meta{justify-content:space-between;gap:16px}
 
 /* ===== ARTICLE READING PAGE ===== */
 .article-read{max-width:760px;margin:0 auto;padding-block:48px}
@@ -3589,8 +3589,7 @@ body.theme-dark .bs-motion[data-motion="cubism"] .cub{opacity:.6}
 .desk .section-head-inner h2{
   writing-mode:horizontal-tb !important;font-family:var(--font-display) !important;font-weight:900 !important;
   font-size:clamp(28px,4.4vw,58px) !important;line-height:.92 !important;letter-spacing:-.01em !important;
-  text-transform:none !important;color:var(--ink) !important;margin:0 !important;display:block !important;
-  -webkit-box-reflect:below 1px linear-gradient(transparent 50%, transparent 58%, rgba(0,0,0,.20))}
+  text-transform:none !important;color:var(--ink) !important;margin:0 !important;display:block !important}
 .desk .section-head-inner h2::before,.desk .section-head-inner h2::after{display:none !important}
 .desk .section-head-inner .all{
   writing-mode:horizontal-tb !important;font-family:var(--mono) !important;font-size:13px !important;
@@ -3601,8 +3600,7 @@ body.theme-dark .bs-motion[data-motion="cubism"] .cub{opacity:.6}
 
 /* Crypto purple band: white heading + link, deeper reflection on the band */
 .desk-style-c .section-head{padding-top:16px !important}
-.desk-style-c .section-head-inner h2{color:#fff !important;
-  -webkit-box-reflect:below 1px linear-gradient(transparent 52%, transparent 60%, rgba(0,0,0,.30))}
+.desk-style-c .section-head-inner h2{color:#fff !important}
 .desk-style-c .section-head-inner .all{color:#fff !important}
 
 body[dir="rtl"] .desk .section-head-inner .all{white-space:normal}
@@ -3702,8 +3700,7 @@ body.theme-dark > .nav-links.open{background:#0A0908 !important}
    type is consistent across sections (it sits in the site's best spot). */
 .vbox-head h2{
   font-family:var(--font-display) !important;font-weight:900 !important;
-  font-size:clamp(30px,4.4vw,58px) !important;line-height:.92 !important;letter-spacing:-.01em !important;
-  -webkit-box-reflect:below 1px linear-gradient(transparent 50%, transparent 58%, rgba(0,0,0,.20))}
+  font-size:clamp(30px,4.4vw,58px) !important;line-height:.92 !important;letter-spacing:-.01em !important}
 .vbox-head .all{border-bottom:none !important;color:var(--accent) !important}
 
 /* (#6) Load More — left→right fill on hover; on a longer hover the type morphs
@@ -3962,3 +3959,19 @@ body.theme-dark .ep-row:hover::before{background:#0A0908 !important;color:#fff !
 
 /* desktop mega-menu panel is desktop-only */
 @media(max-width:760px){ .nav-links .menu-panel{display:none !important} }
+
+/* ============================================================
+   Active header nav = brutal filled box (orange+white; purple+white for crypto).
+   On category pages this replaces the in-page title/dek.
+   ============================================================ */
+.bs-nav a.active,.bs-mini-nav a.active{background:var(--accent-orange,#EA5A1B) !important;color:#fff !important}
+.bs-nav a.active[data-nav="crypto"],.bs-mini-nav a.active[data-nav="crypto"]{background:#5826E8 !important;color:#fff !important}
+body.theme-dark .bs-nav a.active,body.theme-dark .bs-mini-nav a.active{background:var(--accent-orange,#EA5A1B) !important;color:#fff !important}
+body.theme-dark .bs-nav a.active[data-nav="crypto"],body.theme-dark .bs-mini-nav a.active[data-nav="crypto"]{background:#8A6CFF !important;color:#0A0908 !important}
+
+/* Listing pages (Stories/Prices/Exchanges/…): drop the redundant in-page title +
+   dek — the coloured active nav box already names the section. Keep the tabs.
+   Scoped via :has(ph_title) so article/coin headlines are never touched. */
+.page-head:has(> .wrap > h1[data-i="ph_title"]) > .wrap > h1,
+.page-head:has(> .wrap > h1[data-i="ph_title"]) > .wrap > p{display:none}
+.page-head:has(> .wrap > h1[data-i="ph_title"]){padding-block:16px}
