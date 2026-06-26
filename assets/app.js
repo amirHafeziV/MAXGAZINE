@@ -1712,6 +1712,17 @@ function initBroadsheetChrome(){
     </div>`;
   document.body.append(mini, menu);
 
+  // Desktop submenu motion (Sidewave-style): each nav item reveals a horizontal
+  // "[VIEW X]" marquee on hover. Built once here; shown/animated via CSS.
+  menu.querySelectorAll('.nav-group').forEach(g=>{
+    const a = g.querySelector(':scope > a'); if(!a) return;
+    const label = (a.textContent || '').trim().toUpperCase();
+    const vm = document.createElement('span'); vm.className = 'nav-vm'; vm.setAttribute('aria-hidden','true');
+    const track = document.createElement('span'); track.className = 'nav-vm-track';
+    track.textContent = `[VIEW ${label}]   `.repeat(10);
+    vm.appendChild(track); g.appendChild(vm);
+  });
+
   // search overlay
   const searchOverlay = document.createElement('div'); searchOverlay.className='bs-search-overlay'; searchOverlay.id='bs-search-overlay';
   searchOverlay.innerHTML=`<button class="bs-search-close" aria-label="Close search">✕</button>

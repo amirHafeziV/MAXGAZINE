@@ -3603,3 +3603,103 @@ body > .nav-links.open{background:#5826E8 !important;
 @media(max-width:760px){
   .nav-links .menu-watermark{bottom:auto;top:38%;font-size:46vw;color:rgba(255,255,255,.07)}
 }
+
+/* ============================================================
+   ROUND 5 (2026-06-26) — border cleanup + menu/footer polish
+   ============================================================ */
+
+/* (#5,#8) Remove every flagged border line — no half-borders anywhere.
+   Separation is carried by spacing instead. */
+.vbox-head{border-bottom:none !important}
+.feed-more-wrap,.vbox-main .feed-more-wrap{border-top:none !important}
+.vbox-main{border-inline-end:none !important}
+.vriver-item{border-bottom:none !important}
+.desk-style-a .df-side-row{border-bottom:none !important}
+.desk-style-c .ds-list-row{border-bottom:none !important;padding-block:13px}
+.desk-style-c .ds-list-row + .ds-list-row{margin-top:0}
+
+/* (#7) "Latest Dispatches" heading — match the desk big-title treatment so the
+   type is consistent across sections (it sits in the site's best spot). */
+.vbox-head h2{
+  font-family:var(--font-display) !important;font-weight:900 !important;
+  font-size:clamp(30px,4.4vw,58px) !important;line-height:.92 !important;letter-spacing:-.01em !important;
+  -webkit-box-reflect:below 1px linear-gradient(transparent 50%, transparent 58%, rgba(0,0,0,.20))}
+.vbox-head .all{border-bottom:none !important;color:var(--accent) !important}
+
+/* (#6) Load More — left→right fill on hover; on a longer hover the type morphs
+   to mono with a motion (font swap + letter-spacing, delayed). */
+.vbox-main .feed-more{position:relative;overflow:hidden;z-index:0;
+  transition:color .35s ease,letter-spacing .7s .35s ease,font-family 0s .35s ease}
+.vbox-main .feed-more::before{content:'';position:absolute;inset:0;z-index:-1;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.4,0,.2,1)}
+body[dir="rtl"] .vbox-main .feed-more::before{transform-origin:right}
+.vbox-main .feed-more:hover::before{transform:scaleX(1)}
+.vbox-main .feed-more:hover{color:var(--paper);font-family:var(--mono);letter-spacing:.26em}
+
+/* (#1) Theme control — square brutalist edges, no rounding anywhere */
+.nav-links .menu-theme{border-radius:0 !important}
+
+/* (#4,#12) Mobile menu language boxes — truly equal width (basis 0, not content) */
+.nav-links .menu-lang button,.menu-lang button{flex:1 1 0 !important;min-width:0;text-align:center}
+
+/* (#9) Persian / Arabic words always render in their own font, even on the
+   English page (e.g. the "فارسی" footer link the build keeps regenerating). */
+[data-lang="fa"]:lang(fa),a[data-lang="fa"],.foot-col a[data-lang="fa"],.bs-lang-name:lang(fa){font-family:'Estedad',sans-serif !important}
+[data-lang="ar"],.foot-col a[data-lang="ar"]{font-family:'IBM Plex Sans Arabic',sans-serif !important}
+
+/* (#10) Mobile menu watermark — rotated 90° (vertical), per request */
+@media(max-width:760px){
+  .nav-links .menu-watermark{
+    writing-mode:vertical-rl;text-orientation:mixed;transform:translateX(-50%) rotate(180deg);
+    left:auto;right:-6%;top:6%;bottom:auto;font-size:34vh;line-height:1}
+}
+
+/* (#13) Subscribe modal — stop the submit button overflowing the frame on mobile:
+   let the input shrink (min-width:0), tighten padding, stack on very narrow. */
+.sub-modal-input{min-width:0}
+@media(max-width:560px){
+  .sub-modal{padding:30px 22px;width:calc(100% - 32px)}
+  .sub-modal-submit{padding:12px 14px;font-size:11px}
+}
+@media(max-width:400px){
+  .sub-modal-form{flex-direction:column}
+  .sub-modal-submit{border-inline-start:none;border-top:2px solid var(--ink);width:100%}
+}
+
+/* ============================================================
+   ROUND 5 — DESKTOP MENU (Sidewave reference): big left stack,
+   STORIES larger, "[VIEW X]" marquee submenu motion, heavy open.
+   ============================================================ */
+
+/* (#2) heavy open motion — a top-to-bottom clip wipe on every breakpoint */
+body > .nav-links.open{animation:menuWipe .55s cubic-bezier(.16,1,.3,1)}
+@keyframes menuWipe{from{clip-path:inset(0 0 100% 0);opacity:.4}to{clip-path:inset(0 0 0 0);opacity:1}}
+
+@media(min-width:761px){
+  /* one big left-aligned stack instead of two columns */
+  body > .nav-links.open{grid-template-columns:1fr !important}
+  .nav-links .nav-groups,.nav-links .nav-extras{
+    grid-column:1 !important;border-left:none !important;padding:2px var(--gut) !important}
+  .nav-links .nav-extras{padding-top:0 !important}
+  .nav-links .nav-group{position:relative;overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.16) !important}
+  .nav-links .nav-group > a{
+    display:inline-block;position:relative;z-index:2;
+    font-family:var(--font-display) !important;font-weight:900 !important;text-transform:uppercase;
+    font-size:clamp(32px,4.2vw,60px) !important;line-height:1.05 !important;letter-spacing:-.01em !important;
+    color:#fff !important;padding:6px 0 !important;transition:opacity .2s,transform .2s}
+  /* STORIES bigger than the rest */
+  .nav-links .nav-groups .nav-group:first-child > a{font-size:clamp(44px,5.6vw,86px) !important}
+  .nav-links .nav-group:hover > a{transform:translateX(10px)}
+  /* drop the accordion dropdown on desktop — the marquee replaces it */
+  .nav-links .nav-group .sub,.nav-links .sub-toggle{display:none !important}
+  /* "[VIEW X]" marquee revealed behind/right of the word on hover */
+  .nav-vm{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;
+    overflow:hidden;pointer-events:none;opacity:0;transition:opacity .3s ease;z-index:1}
+  .nav-group:hover .nav-vm{opacity:.5}
+  .nav-vm-track{white-space:nowrap;font-family:var(--mono);font-size:clamp(15px,1.5vw,22px);
+    letter-spacing:.14em;color:#fff;animation:navVm 20s linear infinite;will-change:transform}
+  @keyframes navVm{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+}
+/* the marquee element is desktop-only */
+@media(max-width:760px){ .nav-vm{display:none !important} }
