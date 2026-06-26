@@ -1599,11 +1599,12 @@ body[dir="rtl"] .desk .section-head-inner{text-align:start}
 
 /* ── 6. CATEGORY COLOUR TOKENS ON CARDS ── */
 /* catKey class added by app.js from a.category.toLowerCase() */
-.cat-crypto{color:#7090D0 !important;border-color:#7090D0 !important}
-.cat-tech{color:#F59E0B !important;border-color:#F59E0B !important}
-.cat-market,.cat-markets{color:#22C55E !important;border-color:#22C55E !important}
-.cat-cars{color:#EF4444 !important;border-color:#EF4444 !important}
-.cat-defi,.cat-policy,.cat-forex{color:var(--accent-soft) !important;border-color:var(--accent-soft) !important}
+/* Category colours site-wide: ORANGE for every category — PURPLE only for crypto. */
+.cat-crypto{color:#8A6CFF !important;border-color:#8A6CFF !important}
+.cat-tech{color:var(--accent-orange,#EA5A1B) !important;border-color:var(--accent-orange,#EA5A1B) !important}
+.cat-market,.cat-markets{color:var(--accent-orange,#EA5A1B) !important;border-color:var(--accent-orange,#EA5A1B) !important}
+.cat-cars{color:var(--accent-orange,#EA5A1B) !important;border-color:var(--accent-orange,#EA5A1B) !important}
+.cat-defi,.cat-policy,.cat-forex{color:var(--accent-orange,#EA5A1B) !important;border-color:var(--accent-orange,#EA5A1B) !important}
 
 /* Desk section headings use font-display (Barlow Condensed on English) */
 .desk .section-head-inner h2{font-family:var(--font-display);font-size:clamp(24px,3.2vw,40px);letter-spacing:-.01em;font-weight:900}
@@ -3120,11 +3121,11 @@ body.theme-dark .sub-modal-input{color:var(--ink)}
 /* per-desk accent token (used by header bar, chips, hover, read link).
    Default first, per-desk overrides after — equal specificity, so source
    order decides and the topic colour must win over the fallback. */
-.desk{--desk-color:#555}
-.desk-market{--desk-color:#16A34A}
-.desk-crypto{--desk-color:#3A5BB0}
-.desk-tech  {--desk-color:#C2660A}
-.desk-cars  {--desk-color:#C62828}
+.desk{--desk-color:var(--accent-orange,#EA5A1B)}
+.desk-market{--desk-color:var(--accent-orange,#EA5A1B)}
+.desk-crypto{--desk-color:#5826E8}
+.desk-tech  {--desk-color:var(--accent-orange,#EA5A1B)}
+.desk-cars  {--desk-color:var(--accent-orange,#EA5A1B)}
 
 /* wrapper: plain block, page gutter matching .vbox; kill the 64px sidebar grid */
 .bs-frame .desk{
@@ -3803,13 +3804,16 @@ body > .nav-links.open{animation:menuWipe .55s cubic-bezier(.16,1,.3,1)}
   /* accent colour rule (fixed): ORANGE for every category — PURPLE only for crypto. */
   .nav-links .nav-group{--cat:var(--accent-orange,#EA5A1B)}
   .nav-links .nav-group:has(> a[data-i="nav_crypto"]){--cat:#8A6CFF}
-  /* BRUTAL hover: no soft slide — the word snaps to its category colour with a
-     thick, hard, full-height accent bar. The panel opening beside it is the reveal. */
+  /* hover/active: the word sits INSIDE a solid category-colour box (brutal, hard
+     square edges) — no accent bar, no underline. */
   .nav-links .nav-group:hover > a,
-  .nav-links .nav-group.is-active > a{color:var(--cat) !important;transform:none !important}
-  .nav-links .nav-group:hover > a::before,
-  .nav-links .nav-group.is-active > a::before{content:"";position:absolute;inset-inline-start:-18px;top:0;
-    width:11px;height:100%;background:var(--cat)}
+  .nav-links .nav-group.is-active > a{
+    background:var(--cat) !important;color:#0A0908 !important;
+    padding:2px 14px !important;margin-inline-start:-14px !important;transform:none !important;
+    transition:none !important}
+  /* remove the old accent bar and the base underline on desktop */
+  .nav-links .nav-group > a::before{display:none !important}
+  .nav-links .nav-group > a::after{display:none !important}
 
   /* inline subs + toggles hidden on desktop — their content feeds the panel */
   .nav-links .nav-group .sub,.nav-links .sub-toggle{display:none !important}
