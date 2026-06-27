@@ -194,22 +194,24 @@ async function refreshAll(){
 // Twelve selectable models. Keep `id` in lock-step with HEADER_MOTIONS in
 // assets/app.js (the front-end) and the [data-motion="…"] rules in styles.css.
 const MOTION_MODELS = [
-  { id:'bauhaus',    label:'باهاوس',         desc:'اشکال هندسی رنگی شناور (نسخهٔ فعلی)' },
-  { id:'mondrian',   label:'موندریان',       desc:'بلوک‌های رنگی پرایمری شناور + تنفس (خانوادهٔ باهاوس)' },
-  { id:'cubism',     label:'کوبیسم',         desc:'تکه‌های زاویه‌دار چرخان و لغزان (خانوادهٔ باهاوس)' },
-  { id:'vangogh',    label:'ون‌گوگ',         desc:'قلم‌موهای مارپیچ نرم سبک شب پرستاره' },
-  { id:'quad',       label:'چهارخانه',       desc:'چهار مربع رنگی در چهار گوشه با تنفس آرام (خانوادهٔ باهاوس)' },
-  { id:'orbits',     label:'مدارها',         desc:'گوی‌های گرادیانی روی مسیر دایره‌ای' },
-  { id:'grid',       label:'شبکه',           desc:'الگوهای کاغذ شطرنجی متغیر' },
-  { id:'ticker',     label:'تیکر',           desc:'نوشتهٔ غول‌پیکر کم‌رنگ روان' },
-  { id:'hatch',      label:'هاشور',          desc:'خطوط مورب هاشوری روان (پترن)' },
-  { id:'crosshatch', label:'هاشور متقاطع',   desc:'هاشور دوطرفهٔ ضربدری با تپش (پترن)' },
-  { id:'dots',       label:'نقطه‌چین',       desc:'شبکهٔ نقطه‌ای هاف‌تون شناور (پترن)' },
+  { id:'none',       label:'بدون موشن',       desc:'Solid Color — پس‌زمینهٔ ثابت رنگی، بدون هیچ انیمیشنی' },
+  { id:'bauhaus',    label:'باهاوس',          desc:'اشکال هندسی رنگی شناور (نسخهٔ پیش‌فرض)' },
+  { id:'mondrian',   label:'موندریان',        desc:'بلوک‌های رنگی پرایمری شناور + تنفس' },
+  { id:'cubism',     label:'کوبیسم',          desc:'تکه‌های زاویه‌دار چرخان و لغزان' },
+  { id:'vangogh',    label:'ون‌گوگ',          desc:'قلم‌موهای مارپیچ نرم سبک شب پرستاره' },
+  { id:'quad',       label:'چهارخانه',        desc:'چهار مربع رنگی در چهار گوشه با تنفس آرام' },
+  { id:'orbits',     label:'مدارها',          desc:'گوی‌های گرادیانی روی مسیر دایره‌ای' },
+  { id:'grid',       label:'شبکه',            desc:'الگوهای کاغذ شطرنجی متغیر' },
+  { id:'ticker',     label:'تیکر',            desc:'نوشتهٔ غول‌پیکر کم‌رنگ روان' },
+  { id:'hatch',      label:'هاشور',           desc:'خطوط مورب هاشوری روان (پترن)' },
+  { id:'crosshatch', label:'هاشور متقاطع',    desc:'هاشور دوطرفهٔ ضربدری با تپش (پترن)' },
+  { id:'dots',       label:'نقطه‌چین',        desc:'شبکهٔ نقطه‌ای هاف‌تون شناور (پترن)' },
 ];
 // Markup injected behind the wordmark — must mirror HEADER_MOTIONS in app.js.
 // Pattern models (hatch/crosshatch/dots/grid) are drawn purely with
 // CSS backgrounds, so their markup is empty.
 const MOTION_MARKUP = {
+  none: '',
   bauhaus: '<span class="bh bh-circle"></span><span class="bh bh-triangle"></span><span class="bh bh-semi"></span><span class="bh bh-quarter"></span><span class="bh bh-bar"></span>',
   grid: '',
   orbits: '<span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span>',
@@ -232,7 +234,16 @@ const HEADER_BGS = [
   { id:'#1AA35A', label:'سبز',     color:'#1AA35A' },
   { id:'#F4C20D', label:'طلایی',   color:'#F4C20D' },
 ];
+const HEADER_FONT_COLORS = [
+  { id:'auto',    label:'خودکار',  color:'' },
+  { id:'#f5efe5', label:'کرم',     color:'#f5efe5' },
+  { id:'#ffffff', label:'سفید',    color:'#ffffff' },
+  { id:'#0a0a0a', label:'سیاه',    color:'#0a0a0a' },
+  { id:'#e23b2e', label:'قرمز',    color:'#e23b2e' },
+];
 let currentPreviewBg = 'theme';
+let currentPreviewFontColor = 'auto';
+let currentPreviewMotion = 'bauhaus';
 function bgIsDark(hex){
   const m = String(hex||'').replace('#','').match(/^([0-9a-f]{6})$/i);
   if(!m) return false;
@@ -241,40 +252,70 @@ function bgIsDark(hex){
   return (0.2126*r + 0.7152*g + 0.0722*b)/255 < 0.45;
 }
 function previewMotion(model){
+  currentPreviewMotion = model;
   const m = Object.prototype.hasOwnProperty.call(MOTION_MARKUP, model) ? model : 'bauhaus';
-  document.querySelectorAll('.motion-preview .bs-motion').forEach(el=>{
+  document.querySelectorAll('.hm-stage .bs-motion').forEach(el=>{
     el.setAttribute('data-motion', m);
     el.innerHTML = MOTION_MARKUP[m];
   });
-  const meta = MOTION_MODELS.find(x=>x.id===m);
+  const meta = MOTION_MODELS.find(x=>x.id===model);
   const desc = document.getElementById('motion-desc');
   if(desc) desc.textContent = meta ? meta.desc : '';
+  document.querySelectorAll('.motion-pill').forEach(b=>b.classList.toggle('active', b.dataset.motion===model));
 }
-// Paint the preview stage on the chosen background so the editor can judge each
-// motion on black / white / colour, and flip pattern + wordmark ink for contrast.
-function previewBg(id){
-  currentPreviewBg = id || 'theme';
-  const stage = document.querySelector('.motion-preview .hm-stage');
-  const sw = HEADER_BGS.find(x=>x.id===currentPreviewBg) || HEADER_BGS[0];
-  const isDefault = !sw.color;
-  const dark = !isDefault && bgIsDark(sw.color);
-  if(stage){
-    if(isDefault){ stage.style.removeProperty('background'); stage.style.removeProperty('--hm-ink'); }
-    else { stage.style.background = sw.color; stage.style.setProperty('--hm-ink', dark ? '245,239,229' : '26,18,8'); }
+// Helper: apply ink (text/pattern colour) to preview stage based on current bg + font choice.
+function updateInkFromBgAndFontColor(){
+  const stage = document.querySelector('.hm-stage');
+  if(!stage) return;
+  const fcsw = HEADER_FONT_COLORS.find(x=>x.id===currentPreviewFontColor);
+  if(fcsw && fcsw.color){
+    const r=parseInt(fcsw.color.slice(1,3),16),g=parseInt(fcsw.color.slice(3,5),16),b=parseInt(fcsw.color.slice(5,7),16);
+    stage.style.setProperty('--hm-ink', `${r},${g},${b}`);
+    stage.querySelectorAll('.bs-logo').forEach(l=>{ l.style.color = fcsw.color; });
+  } else {
+    const bgSw = HEADER_BGS.find(x=>x.id===currentPreviewBg) || HEADER_BGS[0];
+    const isDefault = !bgSw.color;
+    const dark = !isDefault && bgIsDark(bgSw.color);
+    if(isDefault){ stage.style.removeProperty('--hm-ink'); }
+    else { stage.style.setProperty('--hm-ink', dark ? '245,239,229' : '26,18,8'); }
     stage.querySelectorAll('.bs-logo').forEach(l=>{ l.style.color = isDefault ? '' : (dark ? '#F5EFE5' : '#0a0a0a'); });
   }
+}
+// Paint the preview stage on the chosen background.
+function previewBg(id){
+  currentPreviewBg = id || 'theme';
+  const stage = document.querySelector('.hm-stage');
+  const sw = HEADER_BGS.find(x=>x.id===currentPreviewBg) || HEADER_BGS[0];
+  if(stage){
+    if(!sw.color){ stage.style.removeProperty('background'); }
+    else { stage.style.background = sw.color; }
+  }
+  updateInkFromBgAndFontColor();
   document.querySelectorAll('.bg-swatch').forEach(b=>b.classList.toggle('active', b.dataset.bg===currentPreviewBg));
 }
+// Set explicit font/logo colour.
+function previewFontColor(id){
+  currentPreviewFontColor = id || 'auto';
+  updateInkFromBgAndFontColor();
+  document.querySelectorAll('.font-color-swatch').forEach(b=>b.classList.toggle('active', b.dataset.fc===currentPreviewFontColor));
+}
 function renderMotion(){
-  const sel = document.getElementById('motion-select');
-  if(!sel) return;
   const active = (state.site && state.site.headerMotion) || 'bauhaus';
-  sel.innerHTML = MOTION_MODELS.map(m=>
-    `<option value="${m.id}"${m.id===active?' selected':''}>${esc(m.label)}</option>`).join('');
-  sel.value = active;
-  previewMotion(active);
+  currentPreviewMotion = active;
+  currentPreviewFontColor = (state.site && state.site.headerFontColor) || 'auto';
 
-  // background swatches
+  // Motion grid: clickable pills
+  const mgrid = document.getElementById('motion-grid');
+  if(mgrid){
+    mgrid.innerHTML = MOTION_MODELS.map(m=>
+      `<button type="button" class="motion-pill${m.id===active?' active':''}" data-motion="${esc(m.id)}" title="${esc(m.desc)}">${esc(m.label)}</button>`
+    ).join('');
+    mgrid.querySelectorAll('.motion-pill').forEach(b=>b.addEventListener('click',()=>{
+      previewMotion(b.dataset.motion);
+    }));
+  }
+
+  // Background color swatches
   const bgWrap = document.getElementById('bg-swatches');
   if(bgWrap){
     bgWrap.innerHTML = HEADER_BGS.map(b=>{
@@ -283,34 +324,47 @@ function renderMotion(){
     }).join('');
     bgWrap.querySelectorAll('.bg-swatch').forEach(b=>b.addEventListener('click',()=>previewBg(b.dataset.bg)));
   }
+
+  // Font color swatches
+  const fcWrap = document.getElementById('font-color-swatches');
+  if(fcWrap){
+    fcWrap.innerHTML = HEADER_FONT_COLORS.map(c=>{
+      const style = c.color ? `background:${c.color};${c.color==='#ffffff'?'border-color:#ccc;':''}` : '';
+      return `<button type="button" class="bg-swatch font-color-swatch${c.id==='auto'?' is-theme':''}" data-fc="${esc(c.id)}" title="${esc(c.label)}" style="${style}"><span>${esc(c.label)}</span></button>`;
+    }).join('');
+    fcWrap.querySelectorAll('.font-color-swatch').forEach(b=>b.addEventListener('click',()=>previewFontColor(b.dataset.fc)));
+  }
+
   previewBg((state.site && state.site.headerBg) || 'theme');
+  previewFontColor(currentPreviewFontColor);
+  previewMotion(active);
 
   const save = document.getElementById('btn-motion-save');
   if(save) save.disabled = false;
 }
-// Commit both the selected motion and the selected background in one go.
+// Commit motion, background colour and font colour in one go.
 async function saveHeader(){
   const msg = document.getElementById('motion-msg');
   const btn = document.getElementById('btn-motion-save');
-  const sel = document.getElementById('motion-select');
-  const model = sel ? sel.value : 'bauhaus';
+  const model = currentPreviewMotion || 'bauhaus';
   const bg = currentPreviewBg || 'theme';
+  const fontColor = currentPreviewFontColor || 'auto';
   const cur = state.site || {};
-  if(cur.headerMotion === model && (cur.headerBg||'theme') === bg){
+  if(cur.headerMotion === model && (cur.headerBg||'theme') === bg && (cur.headerFontColor||'auto') === fontColor){
     if(msg) msg.textContent = 'این ترکیب همین حالا فعال است.';
     return;
   }
   if(msg) msg.textContent = 'در حال ذخیره…';
   if(btn) btn.disabled = true;
   try{
-    const next = Object.assign({}, state.site, { headerMotion: model, headerBg: bg });
+    const next = Object.assign({}, state.site, { headerMotion: model, headerBg: bg, headerFontColor: fontColor });
     const result = await putFile('content/data/site.json', JSON.stringify(next, null, 2),
-      `panel: header → ${model} / bg ${bg}`, state.siteSha || undefined);
+      `panel: header → ${model} / bg ${bg} / font ${fontColor}`, state.siteSha || undefined);
     state.site = next;
     state.siteSha = result?.content?.sha || state.siteSha;
     renderMotion();
     await triggerBuild();
-    if(msg) msg.textContent = `ذخیره شد: موشن «${model}» + پس‌زمینه «${bg}» — تا چند دقیقه روی سایت اعمال می‌شود.`;
+    if(msg) msg.textContent = `ذخیره شد — موشن: ${model} · پس‌زمینه: ${bg} · متن: ${fontColor}`;
   }catch(e){ if(msg) msg.textContent = `ذخیره ناموفق: ${e.message}`; }
   finally{ if(btn) btn.disabled = false; }
 }
@@ -419,13 +473,13 @@ function renderDashboard(){
 
 /* ----- articles list ----- */
 const ARTICLES_PAGE_SIZE = 20;
-const FILTER_DEFAULTS = { search:'', status:'all', banner:'all', category:'all', type:'all', sort:'newest' };
+const FILTER_DEFAULTS = { search:'', status:'all', banner:'all', category:'all', type:'all', sort:'newest', placement:'all' };
 function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 // Light up any filter that differs from its default and reveal the Reset button,
 // so it's always visually clear which filters are narrowing the list.
 function syncFilterChrome(){
   const map = { 'filter-search':'search', 'filter-status':'status', 'filter-banner':'banner',
-    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
+    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort', 'filter-placement':'placement' };
   let anyActive = false;
   Object.entries(map).forEach(([id, key])=>{
     const el = $('#'+id); if(!el) return;
@@ -436,7 +490,42 @@ function syncFilterChrome(){
   const reset = $('#btn-filter-reset');
   if(reset) reset.hidden = !anyActive;
 }
+function renderPlacementStats(){
+  const counts = { hero:0, editorsPick:0, pinned:0, hideFromLatest:0, latest:0 };
+  state.articles.forEach(({data})=>{
+    const p = data.placement || {};
+    if(p.hero || data.featured) counts.hero++;
+    if(p.editorsPick) counts.editorsPick++;
+    if(p.pinned) counts.pinned++;
+    if(p.hideFromLatest) counts.hideFromLatest++;
+    if(!p.hero && !data.featured && !p.hideFromLatest) counts.latest++;
+  });
+  const PTABS = [
+    { key:'hero',           label:'Hero' },
+    { key:'editorsPick',    label:"Editor's Pick" },
+    { key:'pinned',         label:'Pinned' },
+    { key:'latest',         label:'In Latest' },
+    { key:'hideFromLatest', label:'Hidden from Latest' },
+  ];
+  const el = $('#placement-stats');
+  if(!el) return;
+  const cur = state.filters.placement;
+  el.innerHTML = PTABS.map(t=>
+    `<button class="pstat-btn${cur===t.key?' active':''}" data-pk="${esc(t.key)}">${esc(t.label)}<span class="pstat-n">${counts[t.key]||0}</span></button>`
+  ).join('');
+  el.querySelectorAll('.pstat-btn').forEach(b=>b.addEventListener('click',()=>{
+    const pk = b.dataset.pk;
+    state.filters.placement = state.filters.placement === pk ? 'all' : pk;
+    const sel = $('#filter-placement'); if(sel) sel.value = state.filters.placement;
+    state.articlesPage = 0;
+    renderArticles();
+  }));
+}
+
 function renderArticles(){
+  // Render placement stat bar
+  renderPlacementStats();
+
   // Apply active filters
   const f = state.filters;
   let items = state.articles.slice();
@@ -447,6 +536,11 @@ function renderArticles(){
   if(f.banner === 'no') items = items.filter(a => !a.data.banner);
   if(f.category !== 'all') items = items.filter(a => a.data.category === f.category);
   if(f.type === 'featured') items = items.filter(a => !!a.data.featured);
+  if(f.placement === 'hero') items = items.filter(a => !!(a.data.placement||{}).hero || !!a.data.featured);
+  else if(f.placement === 'editorsPick') items = items.filter(a => !!(a.data.placement||{}).editorsPick);
+  else if(f.placement === 'pinned') items = items.filter(a => !!(a.data.placement||{}).pinned);
+  else if(f.placement === 'hideFromLatest') items = items.filter(a => !!(a.data.placement||{}).hideFromLatest);
+  else if(f.placement === 'latest') items = items.filter(a => { const p=a.data.placement||{}; return !p.hero && !a.data.featured && !p.hideFromLatest; });
   if(f.sort === 'oldest') items.sort((a,b) => a.data.date > b.data.date ? 1 : -1);
 
   syncFilterChrome();
@@ -1047,15 +1141,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   }));
 
-  // Header motion picker: dropdown previews live; the button commits + builds.
-  const motionSel = $('#motion-select');
-  if(motionSel) motionSel.addEventListener('change', ()=>previewMotion(motionSel.value));
+  // Header motion picker: pills handle preview; the button commits + builds.
   const motionSave = $('#btn-motion-save');
   if(motionSave) motionSave.addEventListener('click', saveHeader);
 
   // Filter bar
   const filterMap = { 'filter-status':'status', 'filter-banner':'banner',
-    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort' };
+    'filter-category':'category', 'filter-type':'type', 'filter-sort':'sort', 'filter-placement':'placement' };
   Object.entries(filterMap).forEach(([id, key])=>{
     const el = $('#'+id); if(!el) return;
     el.addEventListener('change', ()=>{
@@ -1076,6 +1168,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     $('#filter-status').value = 'all'; $('#filter-banner').value = 'all';
     $('#filter-category').value = 'all'; $('#filter-type').value = 'all';
     $('#filter-sort').value = 'newest';
+    const fpEl = $('#filter-placement'); if(fpEl) fpEl.value = 'all';
     state.articlesPage = 0;
     renderArticles();
   });

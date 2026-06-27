@@ -147,6 +147,16 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
     padding-top:10px;border-top:2px solid var(--paper2)}
 }
 
+/* ===== placement stats bar (articles view) ===== */
+.placement-stats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.pstat-btn{display:flex;align-items:center;gap:7px;background:#fff;border:2px solid var(--ink);
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;
+  padding:7px 12px;cursor:pointer;transition:background .1s,box-shadow .1s,transform .1s}
+.pstat-btn:hover{background:var(--paper2);box-shadow:2px 2px 0 var(--ink);transform:translate(-1px,-1px)}
+.pstat-btn.active{background:var(--ink);color:var(--paper)}
+.pstat-n{font-size:14px;font-weight:800;min-width:18px;text-align:center}
+.pstat-btn:not(.active) .pstat-n{color:var(--accent)}
+
 /* ===== ads ===== */
 /* ===== AD PLACEMENTS — visual map ===== */
 #ads-list{direction:rtl;margin-top:22px}
@@ -221,17 +231,27 @@ h2.mono{font-size:12px;letter-spacing:.1em;color:#888;margin:26px 0 10px}
 [dir="rtl"] .f-headline,[dir="rtl"] .f-dek{direction:rtl}
 .f-body[dir="rtl"]{direction:rtl}
 
-/* ---- header motion picker (dashboard) ---- */
+/* ---- header settings (dashboard) ---- */
 .motion-card{margin-top:30px;border-top:2px solid var(--ink);padding-top:22px}
 .motion-card h2{margin-bottom:4px}
-.motion-picker{display:flex;align-items:flex-end;flex-wrap:wrap;gap:12px 16px;margin-top:14px}
-.motion-select-l{margin-bottom:0;flex:0 1 240px}
-.motion-select-l select{min-width:200px}
-.motion-desc{flex:1 1 220px;align-self:center;font-size:11px;color:#888;line-height:1.5}
-.motion-save{width:auto;flex:0 0 auto;align-self:flex-end}
-.motion-preview{margin-top:18px}
-.motion-preview .preview-tag{display:block;font-size:9px;text-transform:uppercase;
-  letter-spacing:.14em;color:#999;margin-bottom:7px}
+/* Two-column layout: controls left, preview right */
+.hdr-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;align-items:start}
+@media(max-width:900px){.hdr-layout{grid-template-columns:1fr}}
+.hdr-controls-col{display:flex;flex-direction:column;gap:20px}
+.hdr-preview-col{position:sticky;top:72px}
+.hdr-group{display:flex;flex-direction:column;gap:8px}
+.hdr-group>.filt-l{display:block}
+/* Motion pill grid */
+.motion-grid{display:flex;flex-wrap:wrap;gap:6px}
+.motion-pill{background:#fff;border:2px solid var(--ink);font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.04em;padding:6px 12px;cursor:pointer;
+  transition:background .1s,transform .1s,box-shadow .1s}
+.motion-pill:hover{background:var(--paper2);box-shadow:2px 2px 0 var(--ink);transform:translate(-1px,-1px)}
+.motion-pill.active{background:var(--ink);color:var(--paper)}
+.motion-desc{font-size:11px;color:#888;line-height:1.5;min-height:1.5em}
+.motion-save{align-self:flex-start}
+/* Preview */
+.preview-tag{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#999;margin-bottom:7px}
 
 /* preview stage — mirrors the live site's .bs-logo-row header dimensions.
    --ink-rgb feeds the legacy grid keyframes; --hm-ink feeds every other

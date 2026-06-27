@@ -47,27 +47,34 @@
     </div>
   </div>
   <div class="motion-card">
-    <h2 class="mono">HEADER MOTION — موشن هدر</h2>
-    <p class="mono note">انیمیشن پس‌زمینه‌ی لوگوتایپ. از منو یک موشن را انتخاب کن، نتیجه را در باکس پیش‌نمایش (هم‌اندازهٔ هدر سایت) ببین، سپس ذخیره کن تا روی همهٔ صفحات اعمال شود.</p>
-    <div class="motion-picker">
-      <label class="mono motion-select-l">انتخاب موشن
-        <select id="motion-select"></select>
-      </label>
-      <span class="mono note motion-desc" id="motion-desc"></span>
-      <button class="btn motion-save" id="btn-motion-save">ذخیره و اعمال</button>
-    </div>
-    <div class="bg-picker">
-      <span class="mono filt-l">رنگ پس‌زمینهٔ هدر — پیش‌نمایش روی سیاه و رنگی</span>
-      <div id="bg-swatches" class="bg-swatches"></div>
-    </div>
-    <div class="motion-preview">
-      <span class="mono preview-tag">پیش‌نمایش — ابعاد هدر سایت</span>
-      <div class="hm-stage bs-logo-row">
-        <div class="bs-motion" aria-hidden="true"></div>
-        <span class="bs-logo">Maxgazine<span class="dot">.</span></span>
+    <h2 class="mono">HEADER — تنظیمات هدر سایت</h2>
+    <p class="mono note">رنگ پس‌زمینه، رنگ متن و موشن هدر را انتخاب کن. برای Solid بدون انیمیشن، «بدون موشن» را انتخاب کن. پس از ذخیره روی تمام صفحات اعمال می‌شود.</p>
+    <div class="hdr-layout">
+      <div class="hdr-controls-col">
+        <div class="hdr-group">
+          <span class="mono filt-l">رنگ پس‌زمینه — Background Color</span>
+          <div id="bg-swatches" class="bg-swatches"></div>
+        </div>
+        <div class="hdr-group">
+          <span class="mono filt-l">رنگ متن / لوگو — Font Color</span>
+          <div id="font-color-swatches" class="bg-swatches"></div>
+        </div>
+        <div class="hdr-group">
+          <span class="mono filt-l">موشن پس‌زمینه — Background Motion</span>
+          <div id="motion-grid" class="motion-grid"></div>
+          <span class="mono note motion-desc" id="motion-desc"></span>
+        </div>
+        <button class="btn motion-save" id="btn-motion-save">ذخیره و اعمال هدر</button>
+        <p class="mono note" id="motion-msg"></p>
+      </div>
+      <div class="hdr-preview-col">
+        <span class="mono preview-tag">پیش‌نمایش — Header Preview</span>
+        <div class="hm-stage bs-logo-row">
+          <div class="bs-motion" aria-hidden="true"></div>
+          <span class="bs-logo">Maxgazine<span class="dot">.</span></span>
+        </div>
       </div>
     </div>
-    <p class="mono note" id="motion-msg"></p>
   </div>
 </section>
 
@@ -77,6 +84,7 @@
     <h1>Articles</h1>
     <button class="btn" data-view="editor" id="btn-new">+ New article</button>
   </div>
+  <div id="placement-stats" class="placement-stats mono"></div>
   <div class="filter-bar mono" id="filter-bar">
     <div class="filt filt-search">
       <span class="filt-l">Search</span>
@@ -120,6 +128,17 @@
       <select id="filter-type">
         <option value="all">All</option>
         <option value="featured">Featured</option>
+      </select>
+    </div>
+    <div class="filt">
+      <span class="filt-l">Placement</span>
+      <select id="filter-placement">
+        <option value="all">All</option>
+        <option value="hero">Hero</option>
+        <option value="editorsPick">Editor's Pick</option>
+        <option value="pinned">Pinned</option>
+        <option value="latest">In Latest</option>
+        <option value="hideFromLatest">Hidden from Latest</option>
       </select>
     </div>
     <div class="filt">
