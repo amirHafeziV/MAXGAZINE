@@ -54,8 +54,8 @@ h1,h2,h3,h4,h5{font-variation-settings:'opsz' 40}
 @font-face{font-family:'Morabba';font-weight:900;font-style:normal;font-display:swap;
   src:url('fonts/morabba/Morabba-Heavy.woff2') format('woff2'),url('fonts/morabba/Morabba-Heavy.woff') format('woff')}
 
-/* Persian → page titles in Morabba; content titles, body and small text in Estedad. Arabic → IBM Plex Sans Arabic */
-html[lang="fa"]{--font-display:'Morabba','Estedad',sans-serif;--font-head:'Estedad',sans-serif;--font-body:'Estedad',sans-serif;--mono:'Estedad','IBM Plex Mono',monospace}
+/* Persian → all text in Vazirmatn. Arabic → IBM Plex Sans Arabic */
+html[lang="fa"]{--font-display:'Vazirmatn',sans-serif;--font-head:'Vazirmatn',sans-serif;--font-body:'Vazirmatn',sans-serif;--mono:'Vazirmatn',sans-serif}
 html[lang="ar"]{--font-display:'IBM Plex Sans Arabic',sans-serif;--font-head:'IBM Plex Sans Arabic',sans-serif;--font-body:'IBM Plex Sans Arabic',sans-serif}
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -87,13 +87,16 @@ body[dir="rtl"] .promo .cover .sub,body[dir="rtl"] .paywall h3,body[dir="rtl"] .
 body[dir="rtl"] .forecast .conf,body[dir="rtl"] .menu-close,body[dir="rtl"] .ad-cta,
 body[dir="rtl"] .card h3,body[dir="rtl"] .list-row h3{letter-spacing:normal}
 
-/* Persian: nav links, submenus, lang switcher and "Close" button use Estedad, not the Latin mono font */
+/* Persian: nav links, submenus, lang switcher and "Close" button use Vazirmatn, not the Latin mono font */
 html[lang="fa"] .nav-group>a,html[lang="fa"] .sub a,html[lang="fa"] .lang button,
 html[lang="fa"] .menu-lang button,html[lang="fa"] .menu-close{font-family:var(--font-body)}
+/* Desktop menu: Vazirmatn at one step smaller than the Latin 13px */
+html[lang="fa"] .nav-group>a{font-size:12px}
+html[lang="fa"] .sub a{font-size:11px}
 
-/* The "فارسی" label in the language switcher always renders in Estedad,
+/* The "فارسی" label in the language switcher always renders in Vazirmatn,
    even on pages whose own language isn't Persian. */
-.lang button[lang="fa"],.menu-lang button[lang="fa"]{font-family:'Estedad',sans-serif}
+.lang button[lang="fa"],.menu-lang button[lang="fa"]{font-family:'Vazirmatn',sans-serif}
 
 /* ===== TICKER ===== */
 .ticker{background:var(--ink);color:var(--paper);border-block:2px solid var(--ink);
@@ -168,7 +171,7 @@ body[dir="rtl"] .badge-soon{letter-spacing:0}
 .nav-links>a{text-decoration:none;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;transition:color .15s}
 .nav-links>a:hover,.nav-links>a.current{color:var(--accent)}
 body[dir="rtl"] .nav-links>a{letter-spacing:normal}
-html[lang="fa"] .nav-links>a{font-family:var(--font-body)}
+html[lang="fa"] .nav-links>a{font-family:var(--font-body);font-size:12px}
 .sub-toggle{display:none}
 /* desktop hover dropdown — animated */
 .sub{position:absolute;top:100%;inset-inline-start:-14px;min-width:200px;background:var(--paper);border:2px solid var(--line);
@@ -313,7 +316,7 @@ body[dir="rtl"] .feature-img .tag{letter-spacing:.04em}
   text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.45);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .hero h1 .hl{color:#fff}
-html[lang="fa"] .hero h1{font-family:'Estedad',sans-serif;font-weight:900;font-size:clamp(20px,2.9vw,34px);line-height:1.34;letter-spacing:0;text-transform:none;-webkit-line-clamp:3}
+html[lang="fa"] .hero h1{font-family:'Vazirmatn',sans-serif;font-weight:900;font-size:clamp(20px,2.9vw,34px);line-height:1.34;letter-spacing:0;text-transform:none;-webkit-line-clamp:3}
 html[lang="ar"] .hero h1{font-size:clamp(16px,2.2vw,28px);line-height:1.55;letter-spacing:0;text-transform:none;-webkit-line-clamp:3}
 body[dir="rtl"] .hero h1{letter-spacing:0}
 .hero-sub{margin-top:14px;font-size:clamp(14px,1.05vw,16px);line-height:1.55;color:rgba(255,255,255,.84);
@@ -1201,7 +1204,7 @@ html[lang="fa"] .bs-nav a{font-family:var(--font-body)}
 body[dir="rtl"] .read-kicker{letter-spacing:.04em}
 .article-read h1{font-family:var(--font-display);font-weight:600;font-size:clamp(34px,5.2vw,60px);
   line-height:1.02;letter-spacing:-.025em;text-wrap:balance;margin:0 0 22px}
-html[lang="fa"] .article-read h1{font-family:'Morabba','Estedad',sans-serif;font-weight:700;line-height:1.18;letter-spacing:0}
+html[lang="fa"] .article-read h1{font-family:'Vazirmatn',sans-serif;font-weight:700;line-height:1.18;letter-spacing:0}
 html[lang="ar"] .article-read h1{line-height:1.4;letter-spacing:0}
 .article-read .read-dek{font-family:var(--font-body);font-style:italic;font-size:clamp(18px,1.6vw,22px);
   line-height:1.5;color:var(--muted);max-width:60ch;margin:0 0 26px}
@@ -1234,7 +1237,7 @@ body[dir="rtl"] .article-prose>p:first-of-type::first-letter{float:none;font-siz
 body[dir="rtl"] .pullquote,body[dir="rtl"] .article-prose blockquote{padding:6px 28px 6px 0}
 .pullquote p,.article-prose blockquote p{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,30px);
   line-height:1.18;letter-spacing:-.015em;color:var(--ink);margin:0}
-html[lang="fa"] .pullquote p,html[lang="fa"] .article-prose blockquote p{font-family:'Morabba','Estedad',sans-serif;line-height:1.4;letter-spacing:0}
+html[lang="fa"] .pullquote p,html[lang="fa"] .article-prose blockquote p{font-family:'Vazirmatn',sans-serif;line-height:1.4;letter-spacing:0}
 .pullquote .pq-cite{display:block;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .read-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:36px;padding-top:26px;border-top:1px solid var(--hair)}
 .read-tags .chip{border-color:var(--hair);color:var(--muted);font-size:10px;padding:5px 11px}
@@ -1257,7 +1260,7 @@ html[lang="fa"] .pullquote p,html[lang="fa"] .article-prose blockquote p{font-fa
 .cover-hero{text-align:center;padding:54px var(--gut) 0;max-width:1100px;margin:0 auto;background:transparent}
 .cover-hero .ch-kicker{font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:26px}
 .cover-hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,7.4vw,86px);line-height:.98;letter-spacing:-.03em;text-wrap:balance;margin:0 auto;max-width:14ch}
-html[lang="fa"] .cover-hero h1{font-family:'Morabba','Estedad',sans-serif;font-weight:700;line-height:1.15;letter-spacing:0}
+html[lang="fa"] .cover-hero h1{font-family:'Vazirmatn',sans-serif;font-weight:700;line-height:1.15;letter-spacing:0}
 .cover-hero .ch-dek{font-family:var(--font-body);font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--muted);max-width:52ch;margin:26px auto 0}
 .cover-hero .ch-byline{margin-top:24px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .cover-figure{margin:42px auto 0;max-width:1320px;padding-inline:var(--gut);background:transparent}
@@ -1270,7 +1273,7 @@ html[lang="fa"] .cover-hero h1{font-family:'Morabba','Estedad',sans-serif;font-w
 .bs-pagehead{padding:48px 28px 38px;border-bottom:3px dotted var(--ink);text-align:center}
 .bs-pagehead .ph-kicker{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 .bs-pagehead h1{font-family:var(--font-display);font-weight:600;font-size:clamp(36px,5.4vw,66px);letter-spacing:-.03em;line-height:1}
-html[lang="fa"] .bs-pagehead h1{font-family:'Morabba','Estedad',sans-serif;font-weight:700;line-height:1.18;letter-spacing:0}
+html[lang="fa"] .bs-pagehead h1{font-family:'Vazirmatn',sans-serif;font-weight:700;line-height:1.18;letter-spacing:0}
 .bs-pagehead p{max-width:60ch;margin:18px auto 0;font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--muted)}
 .bs-section{padding:34px 28px}
 .bs-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px 28px;border-bottom:2px solid var(--ink)}
@@ -1857,7 +1860,7 @@ body[dir="rtl"] .vr-by{letter-spacing:0}
 .vrl-body h3{font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.7vw,34px);line-height:1.06;letter-spacing:-.02em}
 .vriver-item.lead:hover h3 a,.vrl-body h3{transition:color .15s}
 .vriver-item.lead:hover h3{color:var(--accent)}
-html[lang="fa"] .vrl-body h3{font-family:'Morabba','Estedad',sans-serif;font-weight:700;line-height:1.25}
+html[lang="fa"] .vrl-body h3{font-family:'Vazirmatn',sans-serif;font-weight:700;line-height:1.25}
 .vrl-dek{font-family:var(--font-body);font-size:16px;line-height:1.55;color:var(--muted);max-width:60ch;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
@@ -1934,7 +1937,7 @@ body.modal-open{overflow:hidden}
 }
 
 /* ROUND 9 — Persian masthead date in Vazirmatn */
-html[lang="fa"] .bs-date{font-family:'Vazirmatn','Estedad',sans-serif;letter-spacing:0}
+html[lang="fa"] .bs-date{font-family:'Vazirmatn',sans-serif;letter-spacing:0}
 
 /* ============================================================
    ROUND 10 — Full visual polish pass (desktop)
@@ -2223,10 +2226,10 @@ body.theme-dark .foot-col a{color:#B8AE9C}
 body.theme-dark .foot-col a:hover{color:var(--accent)}
 body.theme-dark .foot-top{border-bottom-color:#1E1C18}
 body.theme-dark .foot-bottom{color:#504844}
-/* Persian text in footer → Estedad */
+/* Persian text in footer → Vazirmatn */
 html[lang="fa"] .foot-desc,
 html[lang="fa"] .foot-col a,
-html[lang="fa"] .foot-col h5{font-family:'Estedad',sans-serif}
+html[lang="fa"] .foot-col h5{font-family:'Vazirmatn',sans-serif}
 
 /* ── 9. NAV: coloured pips for category links ── */
 .bs-nav a[data-nav]::before{
@@ -3725,7 +3728,7 @@ body[dir="rtl"] .vbox-main .feed-more::before{transform-origin:right}
 
 /* (#9) Persian / Arabic words always render in their own font, even on the
    English page (e.g. the "فارسی" footer link the build keeps regenerating). */
-[data-lang="fa"]:lang(fa),a[data-lang="fa"],.foot-col a[data-lang="fa"],.bs-lang-name:lang(fa){font-family:'Estedad',sans-serif !important}
+[data-lang="fa"]:lang(fa),a[data-lang="fa"],.foot-col a[data-lang="fa"],.bs-lang-name:lang(fa){font-family:'Vazirmatn',sans-serif !important}
 [data-lang="ar"],.foot-col a[data-lang="ar"]{font-family:'IBM Plex Sans Arabic',sans-serif !important}
 
 /* (#10) Mobile menu watermark — rotated 90° (vertical), per request */
@@ -3927,13 +3930,13 @@ body[dir="rtl"] .nav-links,
 body[dir="rtl"] .bs-mini{direction:ltr}
 /* ticker scrolls the same way (left) in all languages — no mirrored scroll */
 body[dir="rtl"] .ticker-track{animation:scroll 60s linear infinite}
-/* keep the translated words right-reading inside their cells without
-   reordering the columns/structure */
+/* keep the translated words right-reading and right-aligned inside their cells
+   without reordering the columns/structure (footer stays LTR-laid-out) */
 body[dir="rtl"] .foot-rich .foot-desc,
 body[dir="rtl"] .foot-rich h4,
 body[dir="rtl"] .foot-rich h5,
 body[dir="rtl"] .foot-rich .foot-col a,
-body[dir="rtl"] .foot-rich .foot-news-eyebrow{unicode-bidi:plaintext}
+body[dir="rtl"] .foot-rich .foot-news-eyebrow{unicode-bidi:plaintext;text-align:right}
 
 /* ============================================================
    Round 7 — menu watermark removed, Editor's Pick white hover
