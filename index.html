@@ -56,13 +56,6 @@
 <body>
 
 <!-- ===== TOP BAR ===== -->
-<div class="topbar">
-  <div class="wrap">
-    <span class="tb-date ltr" id="bs-date">SUN · 28 JUN 2026</span>
-    <span class="tb-break" id="tb-break-txt">Latest market intelligence — Maxgazine</span>
-  </div>
-</div>
-
 <!-- ===== LIVE TICKER ===== -->
 <div class="ticker" aria-label="Live prices">
   <span class="ticker-live">LIVE</span>
@@ -76,6 +69,7 @@
   <div class="wrap">
     <a href="index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
     <div class="np-tools">
+      <span class="np-date ltr" id="bs-date">SUN · 28 JUN 2026</span>
       <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
       </button>
@@ -100,6 +94,7 @@
     <a href="prices.html" data-i="nav_prices">Prices</a>
     <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
     <a href="stories.html?cat=tech">Tech</a>
+    <a href="stories.html?cat=ai">AI</a>
     <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
     <a href="about.html" data-i="nav_about">About</a>
     <a href="contact.html" data-i="nav_contact">Contact</a>
@@ -273,7 +268,7 @@
 <div class="sec-mix">
   <div class="wrap">
     <div class="sec-mix-title">
-      <span class="sm-big"><span class="sm-num">004</span> <span data-i="nav_crypto">Crypto</span></span>
+      <a class="sm-big" href="stories.html?cat=crypto"><span class="sm-num">004</span> <span data-i="nav_crypto">Crypto</span></a>
     </div>
     <a href="stories.html?cat=crypto" class="sec-mix-all" data-i="cta_all">All Crypto →</a>
   </div>
@@ -288,7 +283,7 @@
 <div class="sec-mix">
   <div class="wrap">
     <div class="sec-mix-title">
-      <span class="sm-big"><span class="sm-num">005</span> Tech</span>
+      <a class="sm-big" href="stories.html?cat=tech"><span class="sm-num">005</span> Tech</a>
     </div>
     <a href="stories.html?cat=tech" class="sec-mix-all" data-i="cta_all">All Tech →</a>
   </div>
@@ -303,7 +298,7 @@
 <div class="sec-mix">
   <div class="wrap">
     <div class="sec-mix-title">
-      <span class="sm-big"><span class="sm-num">006</span> <span data-i="nav_cars">Cars</span></span>
+      <a class="sm-big" href="stories.html?cat=cars"><span class="sm-num">006</span> <span data-i="nav_cars">Cars</span></a>
     </div>
     <a href="stories.html?cat=cars" class="sec-mix-all" data-i="cta_all">All Cars →</a>
   </div>
@@ -311,6 +306,21 @@
 <div class="desk" data-topic-section hidden>
   <div class="desk-inner">
     <div class="wrap" data-feed-topic="cars"></div>
+  </div>
+</div>
+
+<!-- ===== 007 AI ===== -->
+<div class="sec-mix">
+  <div class="wrap">
+    <div class="sec-mix-title">
+      <a class="sm-big" href="stories.html?cat=ai"><span class="sm-num">007</span> AI</a>
+    </div>
+    <a href="stories.html?cat=ai" class="sec-mix-all" data-i="cta_all">All AI →</a>
+  </div>
+</div>
+<div class="desk" data-topic-section hidden>
+  <div class="desk-inner">
+    <div class="wrap" data-feed-topic="tech" data-feed-subtopic="ai"></div>
   </div>
 </div>
 

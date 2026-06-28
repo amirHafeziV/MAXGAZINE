@@ -7,7 +7,16 @@
 const CG_API = 'https://api.coingecko.com/api/v3';
 const FX_API = 'https://api.frankfurter.dev/v1';
 
-const TICKER_CRYPTO = [['BTC','bitcoin'],['ETH','ethereum'],['SOL','solana'],['BNB','binancecoin'],['XRP','ripple'],['TON','the-open-network'],['AVAX','avalanche-2'],['DOGE','dogecoin']];
+const TICKER_CRYPTO = [
+  ['BTC','bitcoin'],['ETH','ethereum'],['SOL','solana'],['BNB','binancecoin'],
+  ['XRP','ripple'],['TON','the-open-network'],['AVAX','avalanche-2'],['DOGE','dogecoin'],
+  ['ADA','cardano'],['LINK','chainlink'],['DOT','polkadot'],['UNI','uniswap'],
+  ['MATIC','matic-network'],['LTC','litecoin'],['BCH','bitcoin-cash'],['ATOM','cosmos'],
+  ['NEAR','near'],['APT','aptos'],['ARB','arbitrum'],['OP','optimism'],
+  ['SUI','sui'],['SEI','sei-network'],['WIF','dogwifcoin'],['PEPE','pepe']
+];
+const YF_API = 'https://query1.finance.yahoo.com/v7/finance/quote';
+const TICKER_STOCKS = [['^GSPC','S&P 500'],['^IXIC','NASDAQ'],['^DJI','DOW'],['^RUT','RUSSELL'],['^FTSE','FTSE'],['^N225','NIKKEI'],['GC=F','GOLD'],['CL=F','OIL'],['SI=F','SILVER']];
 /* ECB / Frankfurter-supported currencies (USD base). Full names used as the
    language-neutral sub-label on each forex row. */
 const FX_NAMES = {
@@ -123,14 +132,34 @@ function tickItem(label,valStr,change){
   const up = change>=0;
   return `<span class="ticker-item"><span class="ticker-sym">${label}</span><span class="ticker-val">${valStr}</span><span class="ticker-chg ${up?'up':'dn'}">${up?'▲':'▼'} ${Math.abs(change).toFixed(2)}%</span></span>`;
 }
+async function fetchStocks(){
+  try{
+    const syms = TICKER_STOCKS.map(s=>encodeURIComponent(s[0])).join('%2C');
+    const r = await fetch(`${YF_API}?symbols=${syms}&fields=regularMarketPrice,regularMarketChangePercent`,{headers:{Accept:'application/json'}});
+    if(!r.ok) return null;
+    const j = await r.json();
+    return (j.quoteResponse&&j.quoteResponse.result)||null;
+  }catch(e){ return null; }
+}
 async function loadTicker(){
   const el = document.getElementById('ticker');
   if(!el) return;
   try{
-    const [cg, fx] = await Promise.all([fetchCrypto(TICKER_CRYPTO), fetchForex()]);
+    const [cg, fx, stocks] = await Promise.all([fetchCrypto(TICKER_CRYPTO), fetchForex(), fetchStocks()]);
     const items = [];
+    /* crypto */
     TICKER_CRYPTO.forEach(([sym,id])=>{ const d=cg[id]; if(d&&typeof d.usd==='number') items.push(tickItem(sym,fmtPrice(d.usd),d.usd_24h_change||0)); });
-    if(fx.cur) FX_PAIRS.slice(0,6).forEach(([base,quote])=>{ const c=fxRate(base,quote,fx.cur),p=fx.prev?fxRate(base,quote,fx.prev):c; if(isFinite(c)) items.push(tickItem(`${base}/${quote}`,fmtFx(c),p?(c-p)/p*100:0)); });
+    /* stocks & indices */
+    if(stocks) stocks.forEach(q=>{
+      const pair = TICKER_STOCKS.find(s=>s[0]===q.symbol);
+      const label = pair ? pair[1] : q.symbol;
+      const price = q.regularMarketPrice;
+      const chg = q.regularMarketChangePercent||0;
+      if(typeof price==='number') items.push(tickItem(label, price>=1000?price.toLocaleString('en-US',{maximumFractionDigits:0}):price.toFixed(2), chg));
+    });
+    /* forex — all major pairs */
+    const FX_MAJOR = [['EUR','USD'],['GBP','USD'],['USD','JPY'],['AUD','USD'],['NZD','USD'],['USD','CAD'],['USD','CHF'],['EUR','GBP'],['EUR','JPY'],['GBP','JPY'],['EUR','CHF'],['AUD','JPY'],['USD','CNY'],['USD','TRY'],['USD','INR'],['USD','BRL'],['USD','ZAR'],['USD','MXN'],['USD','KRW'],['USD','SGD'],['EUR','AUD'],['GBP','CHF'],['USD','HKD'],['USD','SEK'],['USD','NOK'],['USD','DKK'],['USD','PLN'],['USD','CZK'],['USD','IDR'],['USD','MYR']];
+    if(fx.cur) FX_MAJOR.forEach(([base,quote])=>{ const c=fxRate(base,quote,fx.cur),p=fx.prev?fxRate(base,quote,fx.prev):c; if(isFinite(c)) items.push(tickItem(`${base}/${quote}`,fmtFx(c),p?(c-p)/p*100:0)); });
     if(items.length){
       const half=items.join('');
       el.innerHTML=half+half;
@@ -1196,10 +1225,10 @@ function articleHref(a, lang, prefix){
   return `${prefix}${lang}/${a.slug}.html`;
 }
 const CAT_LABELS = {
-  en:{all:'All',markets:'Markets',crypto:'Crypto',forex:'Forex',defi:'DeFi',policy:'Policy',mining:'Mining',analysis:'Analysis',tech:'Tech',cars:'Cars',staff:'Staff',reportage:'Reportage'},
-  fa:{all:'همه',markets:'بازارها',crypto:'کریپتو',forex:'فارکس',defi:'دیفای',policy:'سیاست',mining:'ماینینگ',analysis:'تحلیل',tech:'تکنولوژی',cars:'خودرو',staff:'کارکنان',reportage:'رپورتاژ'},
-  ar:{all:'الكل',markets:'الأسواق',crypto:'كريبتو',forex:'فوركس',defi:'ديفاي',policy:'سياسة',mining:'تعدين',analysis:'تحليل',tech:'تقنية',cars:'سيارات',staff:'الطاقم',reportage:'ريبورتاج'},
-  tr:{all:'Tümü',markets:'Piyasalar',crypto:'Kripto',forex:'Forex',defi:'DeFi',policy:'Politika',mining:'Madencilik',analysis:'Analiz',tech:'Teknoloji',cars:'Otomobil',staff:'Personel',reportage:'Röportaj'}
+  en:{all:'All',markets:'Markets',crypto:'Crypto',forex:'Forex',defi:'DeFi',policy:'Policy',mining:'Mining',analysis:'Analysis',tech:'Tech',cars:'Cars',ai:'AI',staff:'Staff',reportage:'Reportage'},
+  fa:{all:'همه',markets:'بازارها',crypto:'کریپتو',forex:'فارکس',defi:'دیفای',policy:'سیاست',mining:'ماینینگ',analysis:'تحلیل',tech:'تکنولوژی',cars:'خودرو',ai:'هوش مصنوعی',staff:'کارکنان',reportage:'رپورتاژ'},
+  ar:{all:'الكل',markets:'الأسواق',crypto:'كريبتو',forex:'فوركس',defi:'ديفاي',policy:'سياسة',mining:'تعدين',analysis:'تحليل',tech:'تقنية',cars:'سيارات',ai:'ذكاء اصطناعي',staff:'الطاقم',reportage:'ريبورتاج'},
+  tr:{all:'Tümü',markets:'Piyasalar',crypto:'Kripto',forex:'Forex',defi:'DeFi',policy:'Politika',mining:'Madencilik',analysis:'Analiz',tech:'Teknoloji',cars:'Otomobil',ai:'Yapay Zeka',staff:'Personel',reportage:'Röportaj'}
 };
 /* ---- topic & type vocab (mirrors agents/src/taxonomy.ts) ---- */
 /* Editorial, SEO-friendly desk titles (shown as the big reflected section
@@ -1563,11 +1592,15 @@ function renderFeedSections(feed, lang, prefix){
   // haven't appeared above, and hides itself when that desk has nothing fresh.
   document.querySelectorAll('[data-feed-topic]').forEach(grid=>{
     const topic = grid.getAttribute('data-feed-topic');
+    const subtopic = grid.getAttribute('data-feed-subtopic');
     const section = grid.closest('[data-topic-section]') || grid;
     const isFeature = section.classList.contains('desk-style-a'); // Markets, Tech
     const isSplit   = section.classList.contains('desk-style-c'); // Crypto
     const need = isSplit ? 6 : (isFeature ? 4 : 4);
-    const items = take(latestFeed.filter(a=>a.topic===topic), need);
+    const pool = subtopic
+      ? latestFeed.filter(a=>a.topic===topic && Array.isArray(a.tags) && a.tags.some(t=>t.toLowerCase().includes(subtopic)))
+      : latestFeed.filter(a=>a.topic===topic);
+    const items = take(pool, need);
     if(!items.length){ section.hidden = true; return; }
     section.hidden = false;
     const allHref = `${prefix}${lang}/stories.html?cat=${esc(TOPIC_TO_CATEGORY[topic]||topic)}`;
@@ -1641,7 +1674,7 @@ function renderLatestTabs(feed, lang, prefix, usedSet){
     tabsEl.dataset.active = active;
     tabsEl.innerHTML = cats.map(c=>`<a class="f-tab${c===active?' on':''}" href="#" data-cat="${esc(c)}">${esc(labels[c]||c)}</a>`).join('');
     tabsEl.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',e=>{ e.preventDefault(); active = t.dataset.cat; paint(); }));
-    const items = active==='all' ? allItems : pool.filter(a=>a.category===active).slice(0,PER);
+    const items = active==='all' ? allItems : pool.filter(a=>a.category===active||a.topic===active).slice(0,PER);
     listEl.innerHTML = items.map((a,i)=>listRow(a,lang,prefix,i)).join('');
     initObservers();
   }
@@ -1697,9 +1730,10 @@ function initStoriesPage(feed, lang, prefix){
   const labels = CAT_LABELS[lang] || CAT_LABELS.en;
   const cats = ['all', ...Array.from(new Set(feed.map(a=>a.category).filter(Boolean)))];
 
+  const VIRTUAL_CATS = ['ai'];  // cats not in feed.category but filtered via tags/topic
   const params = new URLSearchParams(location.search);
   let activeCat = params.get('cat') || 'all';
-  if(!cats.includes(activeCat)) activeCat = 'all';
+  if(!cats.includes(activeCat) && !VIRTUAL_CATS.includes(activeCat)) activeCat = 'all';
   let page = parseInt(params.get('page')||'1',10);
   if(!page || page < 1) page = 1;
 
@@ -1733,7 +1767,9 @@ function initStoriesPage(feed, lang, prefix){
   }
 
   function render(){
-    const filtered = activeCat==='all' ? feed : feed.filter(a=>a.category===activeCat);
+    const filtered = activeCat==='all' ? feed : activeCat==='ai'
+      ? feed.filter(a=>a.category==='tech'&&Array.isArray(a.tags)&&a.tags.some(t=>t.toLowerCase().includes('ai')))
+      : feed.filter(a=>a.category===activeCat||a.topic===activeCat);
     const totalPages = Math.max(1, Math.ceil(Math.max(0, filtered.length - 1)/PAGE_SIZE));
     if(page > totalPages) page = Math.max(1, totalPages);
 
