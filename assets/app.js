@@ -121,7 +121,7 @@ async function fetchForex(){
 /* ---------- ticker ---------- */
 function tickItem(label,valStr,change){
   const up = change>=0;
-  return `<span>${label} <span class="${up?'up':'down'}">${valStr} ${up?'▲':'▼'} ${Math.abs(change).toFixed(2)}%</span></span>`;
+  return `<span class="ticker-item"><span class="ticker-sym">${label}</span><span class="ticker-val">${valStr}</span><span class="ticker-chg ${up?'up':'dn'}">${up?'▲':'▼'} ${Math.abs(change).toFixed(2)}%</span></span>`;
 }
 async function loadTicker(){
   const el = document.getElementById('ticker');
@@ -131,7 +131,10 @@ async function loadTicker(){
     const items = [];
     TICKER_CRYPTO.forEach(([sym,id])=>{ const d=cg[id]; if(d&&typeof d.usd==='number') items.push(tickItem(sym,fmtPrice(d.usd),d.usd_24h_change||0)); });
     if(fx.cur) FX_PAIRS.slice(0,6).forEach(([base,quote])=>{ const c=fxRate(base,quote,fx.cur),p=fx.prev?fxRate(base,quote,fx.prev):c; if(isFinite(c)) items.push(tickItem(`${base}/${quote}`,fmtFx(c),p?(c-p)/p*100:0)); });
-    if(items.length){ const half=items.join(''); el.innerHTML=half+half; }
+    if(items.length){
+      const half=items.join('');
+      el.innerHTML=half+half;
+    }
   }catch(e){/* keep static fallback */}
 }
 
@@ -314,9 +317,10 @@ function bigSparkline(vals, up){
 // Coin SEO pages (/<lang>/<slug>.html): fill the live price card + 7-day chart from CoinGecko.
 async function loadCoinPage(){
   const card = document.querySelector('.coin-hero-card[data-coin-id]');
+  const bpmHero = document.querySelector('.coin-hero[data-coin-id]');
   const chartEl = document.querySelector('.coin-chart[data-coin-chart]');
-  if(!card && !chartEl) return;
-  const id = (card && card.dataset.coinId) || (chartEl && chartEl.dataset.coinChart);
+  if(!card && !bpmHero && !chartEl) return;
+  const id = (card && card.dataset.coinId) || (bpmHero && bpmHero.dataset.coinId) || (chartEl && chartEl.dataset.coinChart);
   if(!id) return;
   try{
     const url = `${CG_API}/coins/markets?vs_currency=usd&ids=${id}&sparkline=true&price_change_percentage=24h`;
@@ -325,7 +329,9 @@ async function loadCoinPage(){
     const data = await r.json();
     const c = data && data[0];
     if(!c) return;
+
     if(card){
+      // OLD site.css hero card
       const set = (field, val) => { const el = card.querySelector(`[data-field="${field}"]`); if(el) el.textContent = val; };
       set('price', fmtPrice(c.current_price||0));
       const chg = c.price_change_percentage_24h || 0;
@@ -337,10 +343,63 @@ async function loadCoinPage(){
       set('low24', fmtPrice(c.low_24h||0));
       set('updated', ' ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
     }
-    // Draw the 7-day chart once. The price card above refreshes every 60s,
-    // but redrawing the chart on each tick risks a failed OHLC fetch
-    // (rate limits) silently downgrading a candlestick chart to the line
-    // fallback, making the chart appear to "switch" mid-session.
+
+    if(bpmHero){
+      // BPM coin hero section
+      const setH = (field, val) => { const el = bpmHero.querySelector(`[data-field="${field}"]`); if(el) el.textContent = val; };
+      setH('price', fmtPrice(c.current_price||0));
+      const chg = c.price_change_percentage_24h || 0;
+      const chgEl = bpmHero.querySelector('[data-field="chg24"]');
+      if(chgEl){
+        chgEl.textContent = _chgStr(chg);
+        chgEl.className = 'coin-chg-big ltr ' + (chg >= 0 ? 'up' : 'dn');
+      }
+      const rankEl = bpmHero.querySelector('[data-field="rank"]');
+      if(rankEl && c.market_cap_rank) rankEl.textContent = '● Rank #' + c.market_cap_rank;
+      const badgeEl = bpmHero.querySelector('[data-field="badge"]');
+      if(badgeEl && c.image){
+        badgeEl.innerHTML = '<img src="' + esc(c.image) + '" alt="' + esc(c.symbol||'') + '" style="width:52px;height:52px;object-fit:contain">';
+      }
+
+      // BPM coin-stats section
+      const stats = document.querySelector('.coin-stats[data-coin-id]');
+      if(stats){
+        const setS = (field, val) => { const el = stats.querySelector(`[data-field="${field}"]`); if(el) el.textContent = val; };
+        setS('mcap', fmtCap(c.market_cap));
+        const mcapChg = c.market_cap_change_percentage_24h || 0;
+        setS('mcap-sub', (mcapChg >= 0 ? '▲ +' : '▼ ') + Math.abs(mcapChg).toFixed(1) + '% (24h)');
+        setS('vol', fmtCap(c.total_volume));
+        const sym = (c.symbol || '').toUpperCase();
+        setS('vol-sub', c.total_volume && c.current_price ? Math.round(c.total_volume / c.current_price).toLocaleString('en-US') + ' ' + sym + ' traded' : '—');
+        const supply = c.circulating_supply;
+        setS('supply', supply ? supply.toLocaleString('en-US', {maximumFractionDigits:0}) : '—');
+        setS('supply-sub', c.max_supply ? 'of ' + (c.max_supply/1e6).toFixed(2) + 'M max' : '—');
+        setS('ath', fmtPrice(c.ath||0));
+        const athPct = c.ath_change_percentage || 0;
+        setS('ath-sub', (athPct >= 0 ? '+' : '') + athPct.toFixed(1) + '% from ATH');
+      }
+
+      // Dominance + Fear & Greed (same data as THE MARKET band)
+      try{
+        const [globalRes, fngRes] = await Promise.all([
+          fetch(CG_API + '/global').then(r => r.ok ? r.json() : null),
+          fetch('https://api.alternative.me/fng/?limit=1').then(r => r.ok ? r.json() : null)
+        ]);
+        const domEl = document.getElementById('cs-dom');
+        if(domEl && globalRes && globalRes.data){
+          const dom = (globalRes.data.market_cap_percentage && globalRes.data.market_cap_percentage.btc) || 0;
+          domEl.textContent = dom.toFixed(1) + '%';
+        }
+        const fngEl = document.getElementById('cs-fng');
+        const fngLbl = document.getElementById('cs-fng-lbl');
+        if(fngRes && fngRes.data && fngRes.data[0]){
+          if(fngEl) fngEl.textContent = fngRes.data[0].value;
+          if(fngLbl) fngLbl.textContent = (fngRes.data[0].value_classification || '').toUpperCase();
+        }
+      }catch(e){/* leave dashes */}
+    }
+
+    // Draw the 7-day chart once.
     if(chartEl && !chartEl.dataset.loaded){
       let svg = '';
       try{
@@ -355,8 +414,6 @@ async function loadCoinPage(){
       if(svg){
         chartEl.innerHTML = svg;
         chartEl.dataset.loaded = '1';
-        // double rAF so the browser commits the initial (undrawn) state
-        // before the class flips, letting the draw-in transition run
         requestAnimationFrame(()=>requestAnimationFrame(()=>chartEl.classList.add('is-drawn')));
       }
     }
@@ -460,35 +517,179 @@ function applySearch(container){
   if(empty) empty.hidden = shown>0;
 }
 
+/* ---- BPM editorial prices page: crypto rows ---- */
+function renderProws(lang, prefix, showAll){
+  const list = document.getElementById('prow-list');
+  if(!list || !_coins.length) return;
+  const feed = Array.isArray(window.__feed) ? window.__feed : [];
+  const INITIAL = 10;
+  const coins = showAll ? _coins : _coins.slice(0, INITIAL);
+  let maxGainIdx = 1;
+  _coins.slice(1, 15).forEach((c,i)=>{ if((c.price_change_percentage_24h||0) > (_coins[maxGainIdx].price_change_percentage_24h||0)) maxGainIdx=i+1; });
+  list.innerHTML = coins.map((c,i)=>{
+    const cls = i===0 ? 'prow feat' : i===maxGainIdx ? 'prow acc' : 'prow';
+    const rank = String(i+1).padStart(2,'0');
+    const name = esc(c.name||'');
+    const sym = esc((c.symbol||'').toUpperCase());
+    const price = c.current_price||0;
+    const chg = c.price_change_percentage_24h||0;
+    const chgCls = chg>=0 ? 'up' : 'dn';
+    const chgStr = (chg>=0 ? '▲ +' : '▼ ')+Math.abs(chg).toFixed(2)+'%';
+    const sc = price>=10000 ? 'xl' : price>=1000 ? 'lg' : price>=1 ? 'md' : 'sm';
+    const priceStr = price>=1 ? price.toLocaleString('en-US',{maximumFractionDigits:2}) : price.toFixed(6);
+    const coinSlug = _coinPages[c.id];
+    const coinHref = coinSlug ? `${prefix}${lang}/${coinSlug}.html` : `${prefix}prices.html`;
+    const coinId = (c.id||'').toLowerCase();
+    const coinName = (c.name||'').toLowerCase();
+    const story = feed.find(a=>{ const sl=(a.slug||'').toLowerCase(), hed=((a.headline&&a.headline.en)||'').toLowerCase(); return sl.includes(coinId)||hed.includes(coinName); });
+    let newsHtml;
+    if(story){
+      const href = articleHref(story,lang,prefix);
+      const hed = esc(truncate(pickLoc(story.headline,lang)||'',72));
+      newsHtml = i===0 ? `<a href="${href}"><span class="serif">${hed}</span></a>` : `<a href="${href}">${hed}</a>`;
+    } else {
+      newsHtml = `<span style="color:var(--dim)">${sym} · market data</span>`;
+    }
+    return `<div class="${cls}"><div class="wrap"><div class="pc pc-rank">${rank}</div><div class="pc pc-name"><a class="coin-link" href="${coinHref}"><div class="nm">${name}</div><div class="sym">${sym}</div></a></div><div class="pc pc-news">${newsHtml}</div><div class="pc pc-chg ${chgCls} ltr">${chgStr}</div><div class="pc pc-price ltr"><span class="${sc}">${priceStr}</span><span class="unit">USD</span></div></div></div>`;
+  }).join('');
+  const moreEl = document.getElementById('prow-more');
+  if(moreEl){
+    if(!showAll && _coins.length > INITIAL){
+      moreEl.innerHTML = `<a href="#">Show all ${_coins.length} coins ↓</a>`;
+      moreEl.querySelector('a').addEventListener('click', e=>{ e.preventDefault(); renderProws(lang,prefix,true); });
+    } else {
+      moreEl.innerHTML = '';
+    }
+  }
+}
+
+/* ---- BPM editorial prices page: forex grid ---- */
+function renderFxGrid(lang){
+  const grid = document.getElementById('fx-grid');
+  if(!grid || !_fxData || !_fxData.cur) return;
+  const fx = _fxData;
+  const BPM_FX = [['EUR','USD'],['GBP','USD'],['USD','JPY'],['USD','TRY']];
+  const NAMES = {EUR:{en:'Euro',fa:'یورو',ar:'يورو',tr:'Euro'},GBP:{en:'Pound',fa:'پوند',ar:'جنيه',tr:'Sterlin'},USD:{en:'Dollar',fa:'دلار',ar:'دولار',tr:'Dolar'},JPY:{en:'Yen',fa:'ین',ar:'ين',tr:'Yen'},TRY:{en:'Lira',fa:'لیر',ar:'ليرة',tr:'Lira'}};
+  const n = (code,l) => (NAMES[code]||{})[l] || (NAMES[code]||{}).en || code;
+  grid.innerHTML = BPM_FX.map(([base,quote])=>{
+    const c = fxRate(base,quote,fx.cur);
+    const p = fx.prev ? fxRate(base,quote,fx.prev) : c;
+    const chg = p ? (c-p)/p*100 : 0;
+    const chgCls = chg>=0 ? 'up' : 'dn';
+    const chgStr = (chg>=0 ? '▲ +' : '▼ ')+Math.abs(chg).toFixed(2)+'%';
+    const valStr = c>=20 ? c.toFixed(2) : c.toFixed(4);
+    return `<div class="fxc"><div class="fxc-sym ltr">${base}/${quote}</div><div class="fxc-name">${n(base,lang)} / ${n(quote,lang)}</div><div class="fxc-val ltr">${valStr}</div><div class="fxc-chg ${chgCls} ltr">${chgStr}</div></div>`;
+  }).join('');
+}
+
+/* THE MARKET band — 24H Volume · BTC Dominance · Fear & Greed */
+async function loadMarketBand(){
+  const volEl = document.getElementById('tm-vol');
+  const domEl = document.getElementById('tm-dom');
+  const fngEl = document.getElementById('tm-fng');
+  const fngLbl = document.getElementById('tm-fng-label');
+  const btcEl = document.getElementById('tm-btc');
+  const btcChg = document.getElementById('tm-btc-chg');
+  const ethEl = document.getElementById('tm-eth');
+  const ethChg = document.getElementById('tm-eth-chg');
+  const eurEl = document.getElementById('tm-eurusd');
+  const eurChg = document.getElementById('tm-eurusd-chg');
+  if(!volEl && !domEl && !fngEl && !btcEl && !eurEl) return;
+  try{
+    const [globalRes, fngRes, cgRes, fxRes] = await Promise.all([
+      (volEl||domEl) ? fetch(`${CG_API}/global`).then(r=>r.ok?r.json():null) : Promise.resolve(null),
+      fngEl ? fetch('https://api.alternative.me/fng/?limit=1').then(r=>r.ok?r.json():null) : Promise.resolve(null),
+      (btcEl||ethEl) ? fetchCrypto([['BTC','bitcoin'],['ETH','ethereum']]) : Promise.resolve(null),
+      eurEl ? fetchForex() : Promise.resolve(null)
+    ]);
+    if(globalRes?.data){
+      const vol = globalRes.data.total_volume?.usd || 0;
+      if(volEl) volEl.textContent = vol>=1e9 ? '$'+(vol/1e9).toFixed(1)+'B' : '$'+(vol/1e6).toFixed(0)+'M';
+      const dom = globalRes.data.market_cap_percentage?.btc || 0;
+      if(domEl) domEl.textContent = dom.toFixed(1)+'%';
+    }
+    if(fngRes?.data?.[0]){
+      if(fngEl) fngEl.textContent = fngRes.data[0].value;
+      if(fngLbl) fngLbl.textContent = (fngRes.data[0].value_classification||'').toUpperCase();
+    }
+    if(cgRes){
+      const b=cgRes['bitcoin']; if(b&&btcEl){btcEl.textContent=fmtPrice(b.usd);const up=b.usd_24h_change>=0;if(btcChg){btcChg.textContent=(up?'▲ ':'▼ ')+Math.abs(b.usd_24h_change).toFixed(2)+'%';btcChg.className='tm-chg '+(up?'up':'dn');}}
+      const e=cgRes['ethereum']; if(e&&ethEl){ethEl.textContent=fmtPrice(e.usd);const up=e.usd_24h_change>=0;if(ethChg){ethChg.textContent=(up?'▲ ':'▼ ')+Math.abs(e.usd_24h_change).toFixed(2)+'%';ethChg.className='tm-chg '+(up?'up':'dn');}}
+    }
+    if(fxRes?.cur&&eurEl){const r=fxRate('EUR','USD',fxRes.cur);const p=fxRes.prev?fxRate('EUR','USD',fxRes.prev):r;if(isFinite(r)){eurEl.textContent=fmtFx(r);const d=(r-p)/p*100;const up=d>=0;if(eurChg){eurChg.textContent=(up?'▲ ':'▼ ')+Math.abs(d).toFixed(2)+'%';eurChg.className='tm-chg '+(up?'up':'dn');}}}
+  }catch(e){/* leave dashes */}
+}
+
+async function loadHomeMarkets(){
+  const btcV=document.getElementById('mkt-btc-val');
+  const btcC=document.getElementById('mkt-btc-chg');
+  const ethV=document.getElementById('mkt-eth-val');
+  const ethC=document.getElementById('mkt-eth-chg');
+  const eurV=document.getElementById('mkt-eurusd-val');
+  const eurC=document.getElementById('mkt-eurusd-chg');
+  const goldV=document.getElementById('mkt-gold-val');
+  const goldC=document.getElementById('mkt-gold-chg');
+  if(!btcV&&!eurV&&!goldV) return;
+  const setVal=(vEl,cEl,price,chgPct,extra)=>{
+    if(!vEl) return;
+    vEl.textContent=price;
+    if(cEl){const up=chgPct>=0;cEl.textContent=(up?'▲ ':'▼ ')+Math.abs(chgPct).toFixed(2)+'%';cEl.className='mnum-chg ltr '+(up?'up':'dn');}
+  };
+  try{
+    const [cgRes,fxRes,goldData]=await Promise.all([
+      (btcV||ethV) ? fetchCrypto([['BTC','bitcoin'],['ETH','ethereum']]) : Promise.resolve(null),
+      eurV ? fetchForex() : Promise.resolve(null),
+      goldV ? fetch(`${CG_API}/simple/price?ids=bitcoin&vs_currencies=usd,xau&include_24hr_change=true`).then(r=>r.ok?r.json():null).catch(()=>null) : Promise.resolve(null)
+    ]);
+    if(cgRes){
+      const b=cgRes['bitcoin']; if(b&&btcV) setVal(btcV,btcC,fmtPrice(b.usd),b.usd_24h_change||0);
+      const e=cgRes['ethereum']; if(e&&ethV) setVal(ethV,ethC,fmtPrice(e.usd),e.usd_24h_change||0);
+    }
+    if(fxRes?.cur&&eurV){const r=fxRate('EUR','USD',fxRes.cur);const p=fxRes.prev?fxRate('EUR','USD',fxRes.prev):r;if(isFinite(r)) setVal(eurV,eurC,fmtFx(r),(r-p)/p*100);}
+    if(goldData?.bitcoin&&goldV){
+      const btcUsd=goldData.bitcoin.usd, btcXau=goldData.bitcoin.xau;
+      if(btcUsd&&btcXau){
+        const goldPrice=btcUsd/btcXau;
+        const goldChg=(goldData.bitcoin.usd_24h_change||0)-(goldData.bitcoin.xau_24h_change||0);
+        setVal(goldV,goldC,'$'+Math.round(goldPrice).toLocaleString('en-US'),goldChg);
+      }
+    }
+  }catch(e){/* leave dashes */}
+}
+
 async function loadMarkets(){
   const cb = document.getElementById('crypto-rows');
+  const prowList = document.getElementById('prow-list');
   const fb = document.getElementById('forex-rows');
-  if(!cb && !fb) return;
+  const fxGrid = document.getElementById('fx-grid');
+  if(!cb && !fb && !prowList && !fxGrid) return;
   const lang = feedLang();
   const prefix = adPrefix();
-  // Load the two markets independently so a failure in one (e.g. a CoinGecko
-  // rate-limit) never blocks the other from rendering.
-  if(cb && !_coins.length) await loadCoinPages();
+  if((cb || prowList) && !_coins.length) await loadCoinPages();
   const jobs = [];
-  if(cb) jobs.push((async()=>{
-    // Retry with backoff so the first paint still succeeds through a transient
-    // 429. Once _coins holds data we stop retrying (interval handles refresh).
+  if(cb || prowList) jobs.push((async()=>{
     const delays = _coins.length ? [0] : [0, 4000, 12000];
     for(const wait of delays){
       if(wait) await new Promise(r=>setTimeout(r, wait));
       try{
         const coins = await fetchTop100();
-        if(Array.isArray(coins) && coins.length){ _coins = coins; renderCrypto(lang, prefix); return; }
+        if(Array.isArray(coins) && coins.length){
+          _coins = coins;
+          if(cb) renderCrypto(lang, prefix);
+          if(prowList) renderProws(lang, prefix);
+          return;
+        }
       }catch(e){/* try again after backoff */}
     }
   })());
-  if(fb) jobs.push((async()=>{
+  if(fb || fxGrid) jobs.push((async()=>{
     try{
       const fx = await fetchForex();
       _fxData = fx;
       const stamp = document.getElementById('fx-stamp'); if(stamp&&fx.date) stamp.textContent = fx.date;
-      renderForex(lang);
-    }catch(e){/* leave forex skeleton */}
+      if(fb) renderForex(lang);
+      if(fxGrid) renderFxGrid(lang);
+    }catch(e){/* leave skeleton */}
   })());
   await Promise.all(jobs);
 }
@@ -857,8 +1058,10 @@ function fillAdSlot(el, ad, prefix){
   // "Book this spot" placeholder visible. hideEmptyAdContainers() then collapses
   // any wrapper grid that ends up with no filled slots.
   if(!ad || !ad.enabled || !adHasContent(ad)){
-    el.classList.add('ad-empty');
-    el.style.display = 'none';
+    if(!el.querySelector('.ad-tag')){
+      el.classList.add('ad-empty');
+      el.style.display = 'none';
+    }
     return;
   }
   const t = ad.type || 'image';
@@ -1029,15 +1232,13 @@ function typeChip(a, lang){
 function feedCard(a, lang, prefix){
   const href = articleHref(a, lang, prefix);
   const cat = esc((a.category||'').toUpperCase());
-  const catKey = esc((a.category||'').toLowerCase());
   const headline = esc(pickLoc(a.headline, lang));
   const dek = esc(pickLoc(a.dek, lang));
   const date = esc(a.date||'');
-  const readLabel = esc((window.I[lang]&&window.I[lang].cta_read) || 'Read →');
-  const img = a.banner ? `<div class="card-img"><img src="${prefix}${esc(String(a.banner).replace(/^\/+/,''))}" alt="" loading="lazy"></div>` : '';
-  // Sub-tags: first 2 article tags (shown in desk sections where primary cat is hidden)
-  const subTags = (a.tags||[]).slice(0,2).map(t=>`<span class="cat mono sub-tag">${esc(String(t).toUpperCase())}</span>`).join('');
-  return `<a class="card reveal" href="${href}">${img}<span class="cat-line"><span class="cat mono cat-${catKey}">${cat}</span>${subTags}${typeChip(a,lang)}</span><h3>${headline}</h3><p>${dek}</p><div class="card-meta mono"><span>${date}</span><span class="read">${readLabel}</span></div></a>`;
+  const img = a.banner
+    ? `<div class="si-img" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></div>`
+    : '';
+  return `<div class="list-card">${img}<div class="si-cat">${cat}</div><h3 class="si-hed"><a href="${href}">${headline}</a></h3><p class="si-dek">${dek}</p><div class="si-meta">${date}</div></div>`;
 }
 /* Crimson, image-less "dispatch" card — the Dispatch signature tile. Leads with
    the category set huge in Fraunces, then the headline and meta. */
@@ -1084,12 +1285,10 @@ function editorRow(a, lang, prefix, i){
   const href = articleHref(a, lang, prefix);
   const cat = esc((a.category||'').toUpperCase());
   const catKey = esc((a.category||'').toLowerCase());
+  const catDisplay = cat || 'MARKETS';
   const headline = esc(pickLoc(a.headline, lang));
-  const date = esc(a.date||'');
-  const thumb = a.banner
-    ? `<span class="ep-thumb" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></span>`
-    : `<span class="ep-thumb ep-num" data-cat="${catKey}">${cat}</span>`;
-  return `<a class="ep-row" href="${href}">${thumb}<span class="ep-body"><span class="ep-title">${headline}</span><span class="ep-meta"><span class="cat mono cat-${catKey}">${cat}</span><span class="ep-date mono">${date}</span></span></span></a>`;
+  const numStr = (i != null && i < 9) ? ('0' + (i + 1)) : '—';
+  return `<div class="hero-ep"><div class="hero-ep-num">${numStr}</div><div class="hero-ep-cat">${catDisplay}</div><div class="hero-ep-hed"><a href="${href}">${headline}</a></div></div>`;
 }
 /* ── Desk FEATURE layout (Markets, Tech) — one big hero on the left + up to
    three compact text+thumb side rows on the right, then a "view all" link.
@@ -1350,6 +1549,12 @@ function renderFeedSections(feed, lang, prefix){
   const stream = document.querySelector('[data-feed-stream]');
   if(stream) stream.innerHTML = take(latestFeed, 8).map(a=>streamRow(a,lang,prefix)).join('');
 
+  /* ─── آخرین مطالب: 6 uniform list-cards matching stories page ─── */
+  const homeGrid = document.querySelector('[data-feed-home-grid]');
+  if(homeGrid){
+    homeGrid.innerHTML = take(latestFeed, 6).map(a=>feedCard(a,lang,prefix)).join('');
+  }
+
   // Tabbed "Latest" hub — fills FIRST so its top-12 get marked used before
   // any topic desk runs; desks then show only stories not already in the hub.
   renderLatestTabs(feed, lang, prefix, used);
@@ -1375,7 +1580,18 @@ function renderFeedSections(feed, lang, prefix){
       const listItems = latestFeed.filter(a=>a.topic===topic && !gridSlugs.has(a.slug)).slice(0,5);
       grid.innerHTML = deskSplit(items, listItems, lang, prefix);
     }
-    else               grid.innerHTML = items.map(a=>feedCard(a,lang,prefix)).join('');
+    else if(grid.closest('.desk-inner')){
+      grid.innerHTML = items.slice(0,3).map(a=>{
+        const hrefD = articleHref(a,lang,prefix);
+        const _rt = a.tags&&a.tags[0] ? a.tags[0] : (a.category||'');
+        const catD = esc(_rt.charAt(0).toUpperCase()+_rt.slice(1));
+        const hedD = esc(pickLoc(a.headline,lang));
+        const dekD = esc(pickLoc(a.dek,lang));
+        const dateD = esc(a.date||'');
+        const imgD = a.banner ? `<a href="${hrefD}"><div class="si-img" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></div></a>` : '';
+        return `<div class="ditem">${imgD}<div class="si-cat">${catD}</div><h3 class="si-hed"><a href="${hrefD}">${hedD}</a></h3><p class="si-dek">${dekD}</p><div class="si-meta">${dateD}</div></div>`;
+      }).join('');
+    } else               grid.innerHTML = items.map(a=>feedCard(a,lang,prefix)).join('');
     const head = section.querySelector('[data-topic-head]');
     if(head) head.textContent = (TOPIC_LABELS[lang]||TOPIC_LABELS.en)[topic] || topic;
     const all = section.querySelector('[data-topic-all]');
@@ -1423,7 +1639,7 @@ function renderLatestTabs(feed, lang, prefix, usedSet){
   if(usedSet) allItems.forEach(a=>usedSet.add(a.slug));
   function paint(){
     tabsEl.dataset.active = active;
-    tabsEl.innerHTML = cats.map(c=>`<a class="tab${c===active?' active':''}" href="#" data-cat="${esc(c)}">${esc(labels[c]||c)}</a>`).join('');
+    tabsEl.innerHTML = cats.map(c=>`<a class="f-tab${c===active?' on':''}" href="#" data-cat="${esc(c)}">${esc(labels[c]||c)}</a>`).join('');
     tabsEl.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',e=>{ e.preventDefault(); active = t.dataset.cat; paint(); }));
     const items = active==='all' ? allItems : pool.filter(a=>a.category===active).slice(0,PER);
     listEl.innerHTML = items.map((a,i)=>listRow(a,lang,prefix,i)).join('');
@@ -1472,6 +1688,7 @@ async function loadFeed(){
 }
 function initStoriesPage(feed, lang, prefix){
   const grid = document.getElementById('stories-grid');
+  const featureEl = document.getElementById('stories-feature');
   const tabsEl = document.getElementById('story-tabs');
   const pagerEl = document.getElementById('story-pager');
   if(!grid) return;
@@ -1493,18 +1710,40 @@ function initStoriesPage(feed, lang, prefix){
     history.replaceState(null,'',url);
   }
 
+  function renderFeature(a){
+    if(!featureEl || !a) return;
+    const href = articleHref(a, lang, prefix);
+    const cat = esc((a.category||'').toUpperCase());
+    const headline = esc(pickLoc(a.headline, lang));
+    const dek = esc(pickLoc(a.dek, lang));
+    const author = esc(a.author || 'MAXGAZINE DESK');
+    const date = esc(a.date || '');
+    const imgStyle = a.banner
+      ? `background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')`
+      : 'background:#111';
+    featureEl.innerHTML = `<div class="wrap">
+      <div class="feature-img" style="${imgStyle}"></div>
+      <div class="feature-body">
+        <div class="feature-cat">${cat}</div>
+        <h2 class="feature-hed"><a href="${href}">${headline}</a></h2>
+        <p class="feature-dek">${dek}</p>
+        <div class="feature-meta">${author} · ${date}</div>
+      </div>
+    </div>`;
+  }
+
   function render(){
     const filtered = activeCat==='all' ? feed : feed.filter(a=>a.category===activeCat);
-    const totalPages = Math.max(1, Math.ceil(filtered.length/PAGE_SIZE));
-    if(page > totalPages) page = totalPages;
+    const totalPages = Math.max(1, Math.ceil(Math.max(0, filtered.length - 1)/PAGE_SIZE));
+    if(page > totalPages) page = Math.max(1, totalPages);
 
     if(tabsEl){
       tabsEl.innerHTML = cats.map(c=>{
         const label = esc(labels[c] || c);
-        const active = c===activeCat ? ' active' : '';
-        return `<a class="tab${active}" href="#" data-cat="${esc(c)}">${label}</a>`;
+        const active = c===activeCat ? ' on' : '';
+        return `<a class="${active.trim() ? 'on' : ''}" href="#" data-cat="${esc(c)}">${label}</a>`;
       }).join('');
-      tabsEl.querySelectorAll('.tab').forEach(t=>{
+      tabsEl.querySelectorAll('a[data-cat]').forEach(t=>{
         t.addEventListener('click', e=>{
           e.preventDefault();
           activeCat = t.dataset.cat;
@@ -1515,7 +1754,10 @@ function initStoriesPage(feed, lang, prefix){
       });
     }
 
-    const pageItems = filtered.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
+    /* feature = first item; grid = rest paginated */
+    renderFeature(filtered[0]);
+    const rest = filtered.slice(1);
+    const pageItems = rest.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
     grid.innerHTML = pageItems.map(a=>feedCard(a,lang,prefix)).join('');
 
     if(pagerEl){
@@ -1959,9 +2201,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   loadTicker();
   initPricesUI();
   loadMarkets();
+  loadMarketBand();
+  loadHomeMarkets();
   loadCoinPage();
   setInterval(loadTicker,60000);
   setInterval(loadMarkets,60000);
+  setInterval(loadMarketBand,300000);
+  setInterval(loadHomeMarkets,300000);
   setInterval(loadCoinPage,60000);
 
   // Re-render markets in the new language when switched in place (root pages).

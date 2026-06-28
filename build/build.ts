@@ -22,10 +22,15 @@ const STATIC_PAGES = [
 
 const COINS_DIR = join(CONTENT_DIR, "coins");
 
+/** Real content slugs never start with "_" or "." — exclude agent scratch/probe
+ *  files (e.g. __writetest_*.json, __test_git_add.json) so they are never loaded
+ *  as content or leaked into the panel index. */
+const isContentJson = (f: string): boolean => f.endsWith(".json") && !/^[._]/.test(f);
+
 async function loadCoins(): Promise<CoinContent[]> {
   let files: string[];
   try {
-    files = (await readdir(COINS_DIR)).filter((f) => f.endsWith(".json"));
+    files = (await readdir(COINS_DIR)).filter(isContentJson);
   } catch {
     return [];
   }
@@ -39,7 +44,7 @@ async function loadCoins(): Promise<CoinContent[]> {
 async function loadArticles(): Promise<Article[]> {
   let files: string[];
   try {
-    files = (await readdir(ARTICLES_DIR)).filter((f) => f.endsWith(".json"));
+    files = (await readdir(ARTICLES_DIR)).filter(isContentJson);
   } catch {
     return [];
   }
@@ -88,6 +93,7 @@ function feedEntry(a: Article) {
     headline: a.headline,
     dek: a.dek,
     banner: a.banner ?? null,
+    tags: Array.isArray(a.tags) ? a.tags.slice(0, 3) : [],
     // hero requires a banner; mirror to legacy `featured` for older consumers
     featured: a.placement?.hero === true && !!a.banner,
   };
@@ -101,7 +107,7 @@ function feedEntry(a: Article) {
 async function buildPanelIndex(): Promise<void> {
   let files: string[];
   try {
-    files = (await readdir(ARTICLES_DIR)).filter((f) => f.endsWith(".json"));
+    files = (await readdir(ARTICLES_DIR)).filter(isContentJson);
   } catch {
     return;
   }
