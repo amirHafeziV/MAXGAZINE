@@ -14,7 +14,7 @@
 <title>Quant (QNT) Price, Chart, History &amp; News | MAXGAZINE</title>
 <meta name="description" content="Live Quant (QNT) price, 7-day chart, market cap and volume — plus the story of the Overledger network connecting blockchains for enterprise and finance.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://maxgazine.com/en/quant-qnt.html">
 
 
@@ -33,104 +33,106 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/bpm.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Vazirmatn:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Quant (QNT) Price, Chart, History & News | MAXGAZINE","description":"Live Quant (QNT) price, 7-day chart, market cap and volume — plus the story of the Overledger network connecting blockchains for enterprise and finance.","about":{"@type":"Thing","name":"Quant","sameAs":"https://www.coingecko.com/en/coins/quant-network"},"mainEntityOfPage":{"@id":"https://maxgazine.com/en/quant-qnt.html"},"inLanguage":"en","author":{"@type":"Organization","name":"MAXGAZINE","url":"https://maxgazine.com/"},"publisher":{"@type":"Organization","name":"MAXGAZINE","logo":{"@type":"ImageObject","url":"https://maxgazine.com/og-image.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MAXGAZINE","item":"https://maxgazine.com/"},{"@type":"ListItem","position":2,"name":"Prices","item":"https://maxgazine.com/prices.html"},{"@type":"ListItem","position":3,"name":"Quant","item":"https://maxgazine.com/en/quant-qnt.html"}]}]}
 </script>
 </head>
-<body dir="ltr" lang="en">
-<div class="topbar">
-  <div class="wrap">
-    <span class="tb-date ltr" id="bs-date"></span>
-    <span class="tb-break" id="tb-break-txt">Latest market intelligence — Maxgazine</span>
-  </div>
-</div>
-<div class="ticker" aria-label="Live prices">
-  <div class="ticker-track" id="ticker" data-ticker></div>
-</div>
-<div class="nameplate">
-  <div class="wrap">
-    <a href="../index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
-    <div class="np-tools">
-      <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-      </button>
-      <button class="tool tool-lang bs-lang-toggle" data-open="lang" aria-label="Language">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
-        <b id="cur-lang-label">EN</b>
-      </button>
-      <button class="tool tool-sub" id="bs-subscribe-btn" data-open="sub">Subscribe</button>
-      <button class="tool tool-burger" data-open="menu" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-      </button>
+<body dir="ltr" class="bs-page theme-dark">
+<script>try{var t=localStorage.getItem('mg_theme');var d=t==='dark'||((!t||t==='system')&&matchMedia('(prefers-color-scheme:dark)').matches);if(!d)document.body.classList.remove('theme-dark');}catch(e){}</script>
+<div class="bs-frame">
+<header class="bsheet">
+  <div class="bs-top">
+    <div class="bs-date" id="bs-date"></div>
+    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+    <div class="bs-top-right">
+      <button class="bs-search-btn mono" id="bs-search-btn" type="button" aria-label="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
+      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
+      <button class="theme-toggle mono" id="theme-toggle" aria-label="Toggle theme">LIGHT</button>
+      <div class="bs-lang" role="group" aria-label="Select language"><button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">EN</span></button><div class="bs-lang-menu" role="menu"><button data-lang="en" class="active" lang="en" role="menuitem"><span class="bs-lang-code">EN</span><span class="bs-lang-name">English</span></button><button data-lang="fa" lang="fa" role="menuitem"><span class="bs-lang-code">FA</span><span class="bs-lang-name">فارسی</span></button><button data-lang="ar" lang="ar" role="menuitem"><span class="bs-lang-code">AR</span><span class="bs-lang-name">العربية</span></button><button data-lang="tr" lang="tr" role="menuitem"><span class="bs-lang-code">TR</span><span class="bs-lang-name">Türkçe</span></button></div></div>
     </div>
   </div>
-</div>
-<nav class="mainnav" aria-label="Primary">
-  <div class="wrap">
-    <a href="../index.html" data-i="nav_home">Home</a>
+  <div class="bs-logo-row"><div class="bs-motion" aria-hidden="true"></div><a class="bs-logo" href="../index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+  <nav class="bs-nav" aria-label="Primary">
     <a href="../stories.html" data-i="nav_stories">Stories</a>
+    <a href="../stories.html?cat=crypto" data-nav="crypto" data-i="nav_crypto">Crypto</a>
     <a href="../exchanges.html" data-i="nav_topmarkets">Markets</a>
-    <a href="../prices.html" class="on" data-i="nav_prices">Prices</a>
-    <a href="../stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-    <a href="../stories.html?cat=tech">Tech</a>
-    <a href="../stories.html?cat=cars" data-i="nav_cars">Cars</a>
+    <a href="../prices.html" data-i="nav_prices">Prices</a>
+    <a href="../stories.html?cat=ai" data-nav="ai">AI<span class="nav-badge-new">NEW</span></a>
+    <a href="../stories.html?cat=cars" data-nav="cars" data-i="nav_cars">Cars</a>
+    <a href="../chart.html" data-i="nav_chart">Chart</a>
     <a href="../about.html" data-i="nav_about">About</a>
     <a href="../contact.html" data-i="nav_contact">Contact</a>
-  </div>
-</nav>
+  </nav>
+</header>
+<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+</div></div>
+<main>
+<div class="page-head page-head--coin"><div class="wrap">
+  <h1>Quant (QNT) Price, Chart &amp; News</h1>
+  <p>Track Quant&#39;s live price and 7-day trend, then read about the Overledger technology that connects blockchains for enterprise and central bank use.</p>
+</div></div>
 
-<!-- COIN HERO -->
-<section class="coin-hero" data-coin-id="quant-network">
-  <div class="wrap">
-    <div class="coin-id">
-      <div class="coin-badge-row">
-        <div class="coin-badge" data-field="badge">QNT</div>
-        <div>
-          <div class="coin-rank ltr" data-field="rank">Rank #—</div>
-          <div class="coin-sym-lbl ltr">QNT · Quant</div>
-        </div>
-      </div>
-      <h1 class="coin-name">Quant</h1>
+<section class="wrap section coin-hero">
+  <div class="coin-hero-card reveal" data-coin-id="quant-network">
+    <div class="coin-hero-top">
+      <div class="coin-hero-id"><span class="coin-hero-name">Quant</span><span class="coin-sym mono">QNT</span></div>
+      <span class="coin-updated mono"><span>Updated</span><span data-field="updated"></span></span>
     </div>
-    <div class="coin-quote">
-      <div class="coin-quote-lbl ltr">QNT / USD · Live price</div>
-      <div class="coin-price-big ltr" data-field="price">—</div>
-      <div class="coin-chg-big ltr" data-field="chg24">—</div>
-      <div class="coin-cta">
-        <a href="../exchanges.html" class="btn-buy">Buy QNT →</a>
-      </div>
+    <div class="coin-hero-price">
+      <span class="coin-price-val mono" data-field="price">—</span>
+      <span class="coin-price-chg mono" data-field="chg24">—</span>
     </div>
+    <div class="coin-hero-stats">
+      <div class="coin-stat"><b>Market Cap</b><span class="mono" data-field="mcap">—</span></div>
+      <div class="coin-stat"><b>24h Volume</b><span class="mono" data-field="vol">—</span></div>
+      <div class="coin-stat"><b>24h High</b><span class="mono" data-field="high24">—</span></div>
+      <div class="coin-stat"><b>24h Low</b><span class="mono" data-field="low24">—</span></div>
+    </div>
+  </div>
+  <div class="coin-hero-chart reveal">
+    <div class="coin-chart-head mono">7-Day Price Chart</div>
+    <div class="coin-chart" data-coin-chart="quant-network"><div class="coin-chart-skel"></div></div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="coin-stats" data-coin-id="quant-network">
-  <div class="wrap">
-    <div class="cstat"><div class="cstat-label">Market Cap</div><div class="cstat-val" data-field="mcap">—</div><div class="cstat-sub" data-field="mcap-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">24h Volume</div><div class="cstat-val" data-field="vol">—</div><div class="cstat-sub" data-field="vol-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">Circulating Supply</div><div class="cstat-val" data-field="supply">—</div><div class="cstat-sub" data-field="supply-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">All-Time High</div><div class="cstat-val" data-field="ath">—</div><div class="cstat-sub" data-field="ath-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">Dominance</div><div class="cstat-val" id="cs-dom">—</div><div class="cstat-sub">of total market</div></div>
-    <div class="cstat"><div class="cstat-label">Fear &amp; Greed</div><div class="cstat-val" id="cs-fng">—</div><div class="cstat-sub" id="cs-fng-lbl">—</div></div>
-  </div>
-</div>
+<a class="ad-banner ad-advertorial ad-coin-mid wrap" data-ad-slot="coin-mid" href="../contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-page banner</span><span class="ad-cta mono">Book this spot →</span></a>
 
-<!-- AD SLOT -->
-<div class="ad-wrap" style="padding-block:24px">
-  <a class="ad-banner" href="../contact.html"><span class="ad-tag">AD SPACE</span><span class="ad-title">Reach buyers at the moment of decision.</span><span class="ad-cta">Book this spot →</span></a>
+<section class="wrap section coin-howto reveal">
+  <h2>How to Buy QNT</h2>
+<div class="coin-steps">
+    <div class="coin-step">
+      <span class="coin-step-num mono">01</span>
+      <h3>Pick a Trusted Exchange</h3>
+      <p>Compare fees, security track record and supported pairs, then create an account with a reputable exchange.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">02</span>
+      <h3>Verify Your Identity</h3>
+      <p>Complete identity verification (KYC) so you can deposit funds and trade without limits.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">03</span>
+      <h3>Deposit Funds</h3>
+      <p>Fund your account using a bank transfer, card payment, or an existing crypto balance.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">04</span>
+      <h3>Buy &amp; Store Safely</h3>
+      <p>Place your order, then move your coins to a secure wallet for long-term storage.</p>
+    </div>
 </div>
+  <a class="btn coin-howto-cta" href="../exchanges.html">Trade Now →</a>
+</section>
 
-<!-- ABOUT -->
-<div class="sec" data-n="001">
-  <div class="wrap">
-    <span class="sec-num">001</span>
-    <div class="sec-title"><span class="a">About Quant</span></div>
-    <a href="../exchanges.html" class="sec-all">Trade Now →</a>
-  </div>
-</div>
-<div class="art-wrap"><div class="art-body"><p>Quant (QNT) is the native token of Quant Network, a technology company focused on solving one of blockchain&#39;s most persistent challenges: interoperability. Most blockchains operate in isolation — Ethereum cannot natively communicate with Hyperledger Fabric, and a Bitcoin payment cannot directly trigger a smart contract on another chain. Quant Network&#39;s flagship product, Overledger, is designed to bridge these silos through a software layer that sits above existing blockchains, connecting them without requiring any changes to their underlying code.</p>
+<section class="wrap section coin-sections">
+  <div class="coin-main">
+    <h2>About</h2>
+<div class="prose">
+<p>Quant (QNT) is the native token of Quant Network, a technology company focused on solving one of blockchain&#39;s most persistent challenges: interoperability. Most blockchains operate in isolation — Ethereum cannot natively communicate with Hyperledger Fabric, and a Bitcoin payment cannot directly trigger a smart contract on another chain. Quant Network&#39;s flagship product, Overledger, is designed to bridge these silos through a software layer that sits above existing blockchains, connecting them without requiring any changes to their underlying code.</p>
 <h2>Overledger: The Blockchain Operating System</h2>
 <p>Overledger is sometimes described as an &quot;operating system for blockchains.&quot; Rather than building a new blockchain or requiring each network to adopt a common standard, Overledger acts as a gateway or API layer that translates between different distributed ledger technologies. A developer can write a single application — called a multi-chain application, or mApp — that reads from and writes to multiple blockchains simultaneously, whether those are public networks like Ethereum and Bitcoin or private enterprise ledgers.</p>
 <p>This architecture gives financial institutions and large enterprises a practical path to adopting blockchain without locking themselves into a single network. Banks can interact with multiple ledgers, regulators can monitor across chains, and interbank settlement or tokenized asset transfer can be orchestrated in a coordinated, auditable way.</p>
@@ -138,7 +140,11 @@
 <p>The QNT token plays a functional role in the Overledger ecosystem. Enterprises and developers that want to access Overledger services — including API calls, deploying mApps and interacting with connected ledgers — must hold or spend QNT. Licensing fees and service access are denominated in QNT, creating demand tied directly to real-world usage of the platform.</p>
 <p>QNT has a fixed maximum supply of 14.6 million tokens. Unlike many crypto projects, this supply was set at launch and has not expanded, making QNT one of the smaller-supply tokens in the top-100 by market cap. The tight supply cap means that growth in Overledger usage tends to have a more concentrated effect on the token&#39;s economics.</p>
 <h2>Use Cases</h2>
-<p>Quant Network targets three main user groups: financial institutions, government bodies and enterprise technology companies. Central banks exploring Central Bank Digital Currencies (CBDCs) have shown interest in Overledger as a neutral interoperability layer that can connect their digital currencies to existing payment rail infrastructure. Global banks testing tokenized deposit projects have used Overledger as the orchestration layer that allows different institutions&#39; systems to communicate securely. Large enterprises seeking to connect their internal permissioned ledgers to public blockchains also represent a key market for the platform.</p><p>Quant Network was founded in 2015 by Gilbert Verdian, a cybersecurity veteran with a background advising governments and financial institutions on digital infrastructure. Verdian had worked with the UK National Health Service, the Treasury and the Bank of England, and through that experience he identified a critical gap: large institutions were beginning to explore blockchain, but no two organizations were likely to settle on the same platform. A layer that could connect those different systems without forcing everyone onto a single chain was, in his view, a necessary piece of infrastructure — one he decided to build.</p>
+<p>Quant Network targets three main user groups: financial institutions, government bodies and enterprise technology companies. Central banks exploring Central Bank Digital Currencies (CBDCs) have shown interest in Overledger as a neutral interoperability layer that can connect their digital currencies to existing payment rail infrastructure. Global banks testing tokenized deposit projects have used Overledger as the orchestration layer that allows different institutions&#39; systems to communicate securely. Large enterprises seeking to connect their internal permissioned ledgers to public blockchains also represent a key market for the platform.</p>
+</div>
+    <h2>History</h2>
+<div class="prose">
+<p>Quant Network was founded in 2015 by Gilbert Verdian, a cybersecurity veteran with a background advising governments and financial institutions on digital infrastructure. Verdian had worked with the UK National Health Service, the Treasury and the Bank of England, and through that experience he identified a critical gap: large institutions were beginning to explore blockchain, but no two organizations were likely to settle on the same platform. A layer that could connect those different systems without forcing everyone onto a single chain was, in his view, a necessary piece of infrastructure — one he decided to build.</p>
 <h2>The Overledger White Paper and Early Development</h2>
 <p>The concept of Overledger was formalized in a white paper published in 2018. The paper introduced the idea of a multi-chain operating system — software that could abstract blockchain differences the same way a conventional operating system abstracts hardware differences. Development accelerated through 2018, and in June of that year, Quant conducted a token generation event (TGE) that raised funds for further development and distributed QNT to early backers.</p>
 <p>By the end of 2018, Overledger had released its first API, allowing developers to read from and write to multiple blockchains through a standardized interface. Partnerships with enterprise technology providers and integration of networks such as Ethereum, Bitcoin, XRP Ledger and Hyperledger Fabric helped demonstrate the platform&#39;s multi-chain credentials from an early stage.</p>
@@ -149,7 +155,11 @@
 <p>By 2021 and 2022, Quant had become involved in formal explorations of programmable money and CBDCs in the United Kingdom. Gilbert Verdian participated in working groups and advisory bodies connected to the Bank of England&#39;s digital pound explorations. Quant Network also joined broader industry coalitions working on interoperability standards for tokenized assets and payments.</p>
 <p>The UK Finance-led Great British Tokenized Deposit (GBTD) project emerged as one of the most high-profile initiatives where Overledger played a central role. This project, involving major banks including HSBC and Barclays, used Overledger as its interoperability layer to coordinate tokenized deposits across different institutions. It represented exactly the enterprise, multi-ledger use case that Quant had been designed for.</p>
 <h2>Market Cycles and Token Performance</h2>
-<p>QNT experienced significant price appreciation during the broader crypto bull market of 2020–2021, and later went through the market-wide corrections of 2022. Because QNT has a small maximum supply and its demand is intended to be driven by enterprise usage rather than speculation alone, its price behavior has at times diverged from broader market movements — a characteristic that attracted attention from investors looking for tokens with real utility-driven demand dynamics.</p><p>Quant Network&#39;s current story is shaped by two converging trends: the rise of tokenized real-world assets in traditional finance, and the acceleration of central bank digital currency pilots around the world. Both trends require the kind of cross-chain coordination that Overledger is designed to provide, and Quant has positioned itself at the intersection of blockchain innovation and institutional financial infrastructure.</p>
+<p>QNT experienced significant price appreciation during the broader crypto bull market of 2020–2021, and later went through the market-wide corrections of 2022. Because QNT has a small maximum supply and its demand is intended to be driven by enterprise usage rather than speculation alone, its price behavior has at times diverged from broader market movements — a characteristic that attracted attention from investors looking for tokens with real utility-driven demand dynamics.</p>
+</div>
+    <h2>Recent Developments</h2>
+<div class="prose">
+<p>Quant Network&#39;s current story is shaped by two converging trends: the rise of tokenized real-world assets in traditional finance, and the acceleration of central bank digital currency pilots around the world. Both trends require the kind of cross-chain coordination that Overledger is designed to provide, and Quant has positioned itself at the intersection of blockchain innovation and institutional financial infrastructure.</p>
 <h2>Quant Flow and Programmable Money</h2>
 <p>In recent development cycles, Quant Network introduced Quant Flow, a money engine designed to make programmable money more accessible to banks and corporate treasury teams. Quant Flow allows organizations to set rules and conditions for how money moves — for example, triggering automated payments when certain conditions are met, or routing settlement funds across multiple ledgers. This is a natural extension of Overledger&#39;s multi-chain connectivity into the realm of smart finance operations.</p>
 <p>The Great British Tokenized Deposit project, involving some of the UK&#39;s largest banks, marked a significant milestone in real-world validation for Overledger. This kind of regulated financial infrastructure deployment is what differentiates Quant from blockchain projects that primarily serve retail or DeFi audiences.</p>
@@ -157,87 +167,69 @@
 <p>As global regulators move toward clearer frameworks for tokenized assets, digital currencies and cross-border payments, Quant&#39;s enterprise focus is increasingly well-positioned. The company has maintained a strong presence in UK and European financial policy circles, and Gilbert Verdian remains active as a voice on blockchain interoperability in regulatory and standards-setting conversations.</p>
 <p>Overledger now connects more than 45 networks, and the platform continues to expand its enterprise client base. The focus remains on the financial sector: banks, payment networks, custodians and governments looking to bridge their existing systems with blockchain-based infrastructure.</p>
 <h2>Market Outlook</h2>
-<p>Because QNT&#39;s utility is tied to enterprise contracts and platform usage rather than retail trading volume, its market dynamics differ from most crypto assets. Usage growth on Overledger — measured by API calls, new mApp deployments and enterprise contracts — feeds demand for the token in a more direct and contractual way than speculative token projects. With a fixed and relatively small supply, this utility-driven demand model remains central to QNT&#39;s long-term positioning in the market.</p></div></div>
-
-<!-- BUY CTA -->
-<div class="buy-cta">
-  <div class="wrap">
-    <div class="buy-cta-text">Ready to buy Quant?</div>
-    <a href="../exchanges.html" class="btn-buy">Compare exchanges →</a>
-  </div>
+<p>Because QNT&#39;s utility is tied to enterprise contracts and platform usage rather than retail trading volume, its market dynamics differ from most crypto assets. Usage growth on Overledger — measured by API calls, new mApp deployments and enterprise contracts — feeds demand for the token in a more direct and contractual way than speculative token projects. With a fixed and relatively small supply, this utility-driven demand model remains central to QNT&#39;s long-term positioning in the market.</p>
 </div>
+  </div>
+  <aside class="coin-side">
+    <a class="ad-square reveal" href="../contact.html" data-ad-slot="coin-side">
+      <span class="ad-tag mono">AD SPACE</span>
+      <h4>Sidebar box</h4>
+      <span class="ad-cta mono">Book this spot →</span>
+    </a>
+    <div class="coin-related reveal">
+      <h3>Latest News</h3>
+<a class="side-news-item" href="../en/bitcoin-etf-outflow-696m-june-2026.html">
+      <span class="cat mono">MARKETS</span>
+      <h4>Bitcoin Falls Below $60K as ETF Outflows Hit $696M — The Worst Week Since Launch</h4>
+    </a>
+<a class="side-news-item" href="../en/bitcoin-58k-options-expiry-june-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Bitcoin Slumps to $58K as $10.6B Quarterly Options Expiry Clears</h4>
+    </a>
+<a class="side-news-item" href="../en/binance-eu-mica-ban-july-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Binance to Suspend EU Services July 1 After MiCA License Failure</h4>
+    </a>
+<a class="side-news-item" href="../en/hyperliquid-hype-etf-record-price-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Hyperliquid Hits $76 All-Time High as Institutional ETFs Drive HYPE Surge</h4>
+    </a>
+    </div>
+  </aside>
+</section>
 
-<div class="sec-mix related">
-  <div class="wrap">
-    <div class="sec-mix-title"><span class="sm-big"><span class="sm-num">+</span> QNT NEWS</span></div>
-    <a href="../stories.html" class="sec-mix-all">All Stories →</a>
-  </div>
+<div class="wrap section">
+  <p class="mono" style="font-size:12px;color:#888;line-height:1.7">Live prices from CoinGecko. Informational only — not financial advice.</p>
 </div>
-<div class="desk"><div class="desk-inner"><div class="wrap">
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782454940322-banner.webp')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/hyperliquid-hype-etf-record-price-2026.html">Hyperliquid Hits $76 All-Time High as Institutional ETFs Drive HYPE Surge</a></h3>
-    
-    <div class="si-meta">JUN 26, 2026</div>
-  </div>
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782382152664-banner.jpg')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/us-cbdc-ban-2030-trump-signs.html">US Bans Federal Reserve From Issuing CBDC Until 2030 — Trump Signs Today</a></h3>
-    
-    <div class="si-meta">JUN 25, 2026</div>
-  </div>
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782433193494-banner.jpg')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/bitcoin-62k-etf-outflows-june-2026.html">Bitcoin Falls to $62,700 as Spot ETFs Post Sixth Consecutive Week of Outflows</a></h3>
-    
-    <div class="si-meta">JUN 24, 2026</div>
-  </div>
-</div></div></div>
-<footer class="footer">
-  <div class="footer-top">
-    <div class="wrap">
-      <div class="foot-brand">
-        <a href="../index.html" class="logo md on-dark" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
-        <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-        <div class="foot-sub">
-          <h5 data-i="foot_brief">The Brief — daily newsletter</h5>
-          <form class="foot-sub-form" onsubmit="return false">
-            <input type="email" placeholder="your@email.com" required>
-            <button type="submit" data-i="foot_news_cta">Join →</button>
-          </form>
-        </div>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_explore">Explore</h5>
-        <a href="../stories.html" data-i="f_stories">Stories</a>
-        <a href="../exchanges.html" data-i="f_exchanges">Top Exchanges</a>
-        <a href="../prices.html" data-i="f_prices">Prices</a>
-        <a href="../chart.html" data-i="f_chart">Chart</a>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_topics">Topics</h5>
-        <a href="../stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-        <a href="../stories.html?cat=tech">Tech</a>
-        <a href="../stories.html?cat=cars" data-i="nav_cars">Cars</a>
-        <a href="../stories.html?cat=forex">Forex</a>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_company">Company</h5>
-        <a href="../about.html" data-i="f_about">About Us</a>
-        <a href="../contact.html" data-i="f_contact">Contact Us</a>
-        <a href="../contact.html" data-i="f_advertise">Advertise</a>
-      </div>
+</main>
+<footer class="foot-rich"><div class="wrap">
+  <div class="foot-lead">
+    <div class="foot-brand">
+      <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <p class="foot-desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
+    </div>
+    <div class="foot-news">
+      <div class="foot-news-eyebrow mono">Market Intelligence</div>
+      <h4>Stay ahead of the market.</h4>
+      <form class="foot-news-form" onsubmit="return false">
+        <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
+        <button class="foot-news-btn mono" type="submit">Subscribe →</button>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="wrap">
-      <span class="foot-copy" data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span>
-      <span style="font-family:var(--mono);font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.08em" data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
-    </div>
+  <div class="foot-cols">
+    <div class="foot-col"><h5>Explore</h5><a href="../stories.html">Stories</a><a href="../chart.html">Chart</a><a href="../prices.html">Prices</a></div>
+    <div class="foot-col"><h5>Markets</h5><a href="../exchanges.html">Top Exchanges</a><a href="../brokers.html">Top Brokers</a></div>
+    <div class="foot-col"><h5>Topics</h5><a href="../stories.html?cat=crypto">Crypto</a><a href="../stories.html?cat=forex">Forex</a><a href="../stories.html?cat=tech">Tech</a><a href="../stories.html?cat=cars">Cars</a></div>
+    <div class="foot-col"><h5>Company</h5><a href="../about.html">About Us</a><a href="../contact.html">Contact Us</a></div>
+    <div class="foot-col"><h5>Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
   </div>
-</footer>
+  <div class="foot-bottom mono"><span>© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><div class="foot-legal"><a href="../about.html">Privacy</a><a href="../about.html">Terms</a><a href="../contact.html">Advertise</a></div><span>MULTILINGUAL MARKET MEDIA</span></div>
+</div></footer>
+</div><!-- /.bs-frame -->
+
 <script src="../assets/i18n.js"></script>
-<script src="../assets/bpm.js"></script>
 <script src="../assets/app.js"></script>
 </body>
 </html>

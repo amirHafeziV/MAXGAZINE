@@ -1,5 +1,14 @@
 {
   "slug": "bitcoin-58k-options-expiry-june-2026",
+  "topic": "crypto",
+  "type": "news",
+  "placement": {
+    "hero": false,
+    "editorsPick": false,
+    "pinned": false,
+    "hideFromLatest": false,
+    "priority": 0
+  },
   "category": "crypto",
   "date": "2026-06-27",
   "author": "MAXGAZINE Desk",
@@ -16,10 +25,16 @@
     "tr": "Deribit, 27 Haziran'da 2026'nın en büyük çeyreklik opsiyon vadesi olan 10,63 milyar dolarlık açık pozisyonu kapattı; pozisyonların %80'i kârın dışındaydı ve Bitcoin 58.000 dolar civarında işlem görüyordu. Bir gün önce yaşanan 692 milyon dolarlık rekor ETF çıkışı baskıyı daha da artırdı."
   },
   "body": {
-    "en": "The cryptocurrency market faced a double blow on June 27 as Deribit settled the largest quarterly options expiry of 2026 — a combined $10.63 billion in Bitcoin and Ethereum open interest — while Bitcoin itself was trading near $58,000, its lowest level since September 2024.\n\nThe expiry comprised approximately $9.06 billion in Bitcoin notional and $1.57 billion in Ethereum notional. Roughly 80% of total open interest had moved into out-of-the-money territory as prices fell well below the $72,000 max-pain level heading into settlement. The put-call ratio stood at 0.63 for Bitcoin and 0.50 for Ethereum, indicating that bullish call options still made up the majority of the expiring book — positions that expired worthless given the current price environment.\n\n## Record ETF outflows\n\nThe settlement coincided with the aftermath of a bruising week for Bitcoin ETF flows. On June 25, US spot Bitcoin ETFs recorded a net outflow of nearly $692 million — the largest single-day redemption since May 27, according to data tracked by major crypto analytics firms. Combined with the options expiry, more than $1.1 billion in leveraged positions were liquidated across crypto markets over the preceding 48 hours.\n\n## Macro headwinds piling up\n\nRising expectations for additional US Federal Reserve rate hikes have weighed heavily on risk assets. Markets were pricing an approximately 77% probability of a Fed rate increase in December as of late June, following a hawkish-toned hold at the June FOMC meeting chaired by Kevin Warsh. Bank of America is now forecasting three rate hikes in 2026, while Deutsche Bank expects two increases beginning in September.\n\nPCE inflation data released in the days prior came in broadly in line with consensus, preventing a sharp repricing but doing little to ease the underlying macro pressure on crypto valuations.\n\n## Where analysts see the floor\n\nAsset manager 21Shares stated in its latest semi-annual report that Bitcoin's current decline is \"broadly similar\" to prior post-halving pullbacks in 2016 and 2020, when corrections of 30–40% from cycle peaks preceded large subsequent rallies. The firm maintained a base-case price target of approximately $100,000 by year-end 2026. Bitcoin bears, meanwhile, are pointing to the $52,000 level as the next structural support if the current price fails to hold above $58,000.",
-    "fa": "بازار ارزهای دیجیتال در ۲۷ ژوئن با یک فشار مضاعف مواجه شد: دریبیت بزرگ‌ترین تسویه سه‌ماهه قراردادهای اختیار سال ۲۰۲۶ را با ۶۳/۱۰ میلیارد دلار بهره باز در بیت‌کوین و اتریوم انجام داد، در حالی که بیت‌کوین در محدوده ۵۸ هزار دلار — پایین‌ترین سطح از سپتامبر ۲۰۲۴ — معامله می‌شد.\n\nتسویه شامل حدود ۰۶/۹ میلیارد دلار بهره باز بیت‌کوین و ۵۷/۱ میلیارد دلار بهره باز اتریوم بود. تقریباً ۸۰ درصد از کل بهره باز با کاهش قیمت‌ها به زیر سطح «max pain» ۷۲ هزار دلار، به محدوده خارج از سود رسیده بود. نسبت پوت به کال برای بیت‌کوین ۶۳/۰ و برای اتریوم ۵۰/۰ بود که نشان می‌دهد قراردادهای کال صعودی هنوز اکثریت پوزیشن‌های منقضی‌شده را تشکیل می‌دادند — پوزیشن‌هایی که با توجه به محیط قیمتی فعلی بی‌ارزش منقضی شدند.\n\n## خروج رکورد از ETFهای بیت‌کوین\n\nتسویه با پیامدهای یک هفته سخت برای جریان‌های ETF بیت‌کوین همراه شد. در ۲۵ ژوئن، ETFهای نقطه‌ای بیت‌کوین در آمریکا خروج خالصی نزدیک به ۶۹۲ میلیون دلار ثبت کردند — بزرگ‌ترین بازخرید روزانه از ۲۷ مه. در مجموع، در ۴۸ ساعت گذشته بیش از ۱/۱ میلیارد دلار از پوزیشن‌های اهرمی در بازارهای رمزارز لیکویید شد.\n\n## فشارهای کلان اقتصادی\n\nانتظار افزایش بیشتر نرخ بهره توسط فدرال رزرو آمریکا سنگینی زیادی بر دارایی‌های پرریسک انداخته است. بازارها احتمال ۷۷ درصدی افزایش نرخ بهره در دسامبر را قیمت‌گذاری کرده‌اند. بانک آمریکا اکنون سه افزایش نرخ در سال ۲۰۲۶ را پیش‌بینی می‌کند، در حالی که دویچه بانک دو افزایش از سپتامبر را در نظر دارد.\n\n## کف بازار کجاست؟\n\nمدیر دارایی ۲۱شیرز در آخرین گزارش شش‌ماهه خود اعلام کرد که کاهش فعلی بیت‌کوین «به‌طور گسترده مشابه» اصلاحات پس از هاوینگ سابق در ۲۰۱۶ و ۲۰۲۰ است، زمانی که اصلاحات ۳۰ تا ۴۰ درصدی از اوج چرخه پیش از رشدهای بزرگ بعدی رخ داد. این شرکت هدف قیمتی پایه ۱۰۰ هزار دلار را برای پایان سال ۲۰۲۶ حفظ کرد.",
-    "ar": "واجه سوق العملات المشفرة ضغطًا مزدوجًا في 27 يونيو، إذ سوّت منصة Deribit أكبر انتهاء ربعي لعقود الخيارات في 2026 — بفائدة مفتوحة إجمالية بلغت 10.63 مليار دولار في البيتكوين والإيثيريوم — فيما كان البيتكوين يُتداول قرب 58 ألف دولار، أدنى مستوياته منذ سبتمبر 2024.\n\nشمل التسوية نحو 9.06 مليار دولار في العقود الآجلة للبيتكوين و1.57 مليار دولار للإيثيريوم. وكان نحو 80% من إجمالي الفائدة المفتوحة قد انزلق إلى منطقة الخسارة مع هبوط الأسعار دون مستوى الألم الأقصى البالغ 72 ألف دولار.\n\n## تدفقات خروج قياسية من صناديق ETF\n\nتزامن انتهاء العقود مع أسبوع صعب لتدفقات صناديق ETF. ففي 25 يونيو، سجّلت صناديق ETF الفورية للبيتكوين في الولايات المتحدة صافي تدفق خروج ناهز 692 مليون دولار — أكبر عملية استرداد يومية منذ 27 مايو — مع تصفية أكثر من 1.1 مليار دولار من المراكز الرافعة خلال الـ48 ساعة السابقة.\n\n## رياح اقتصادية معاكسة\n\nضغطت التوقعات المتزايدة برفع الفيدرالي الأمريكي لأسعار الفائدة بثقل على الأصول الخطرة؛ إذ تُسعّر الأسواق احتمالًا بنسبة 77% لرفع في ديسمبر. وتتوقع بنك أوف أمريكا ثلاثة رفعات في 2026، بينما يتوقع دويتشه بنك رفعتين ابتداءً من سبتمبر.\n\n## أين الدعم؟\n\nأفاد مدير الأصول 21Shares في أحدث تقاريره بأن التراجع الحالي للبيتكوين يُشبه \"إلى حد بعيد\" تصحيحات ما بعد التنصيف السابقة في 2016 و2020، حين سبقت تصحيحات بين 30 و40% من أعلى مستويات الدورة ارتفاعات كبيرة لاحقة. وحافظت الشركة على هدف سعري أساسي عند 100 ألف دولار بنهاية 2026.",
-    "tr": "Kripto para piyasası, 27 Haziran'da çifte baskıyla karşı karşıya kaldı: Deribit, 2026'nın en büyük çeyreklik opsiyon vadesi olan Bitcoin ve Ethereum'da toplam 10,63 milyar dolarlık açık pozisyonu kapatırken Bitcoin, Eylül 2024'ten bu yana en düşük seviyesi olan 58.000 dolara yakın işlem görüyordu.\n\nVade, yaklaşık 9,06 milyar dolar Bitcoin ve 1,57 milyar dolar Ethereum notional değerinden oluşuyordu. Açık pozisyonların yaklaşık %80'i, fiyatların 72.000 dolarlık maksimum acı seviyesinin çok altına inmesiyle kâr dışı bölgeye geçmişti.\n\n## Rekor ETF çıkışları\n\nVade bitişi, Bitcoin ETF'leri için zorlu bir haftanın ardından geldi. 25 Haziran'da ABD spot Bitcoin ETF'leri 692 milyon dolara yakın net çıkış kaydetti — 27 Mayıs'tan bu yana en büyük günlük itfa. Buna paralel olarak son 48 saatte kripto piyasalarında 1,1 milyar doları aşkın kaldıraçlı pozisyon tasfiye edildi.\n\n## Makro baskılar\n\nFed'in ek faiz artışı beklentileri, riskli varlıkları ağır şekilde baskılamaya devam ediyor. Piyasalar Aralık ayı için yaklaşık %77 faiz artışı olasılığı fiyatlıyor. Bank of America 2026'da üç artış öngörürken Deutsche Bank Eylül'den itibaren iki artış bekliyor.\n\n## Dip nerede?\n\n21Shares, son yarı yıllık raporunda Bitcoin'in mevcut düşüşünün 2016 ve 2020'deki halving sonrası geri çekilmelere \"büyük ölçüde benzediğini\" belirtti; söz konusu dönemlerde döngü tepelerinden %30-40'lık düşüşlerin ardından büyük ralli geldi. Şirket, 2026 yıl sonu için 100.000 dolar baz hedef fiyatını koruyor."
+    "en": "",
+    "fa": "",
+    "ar": "",
+    "tr": ""
+  },
+  "bodyHtml": {
+    "en": "<p>The cryptocurrency market faced a double blow on June 27 as Deribit settled the largest quarterly options expiry of 2026 — a combined $10.63 billion in Bitcoin and Ethereum open interest — while Bitcoin itself was trading near $58,000, its lowest level since September 2024.</p>\n<p>The expiry comprised approximately $9.06 billion in Bitcoin notional and $1.57 billion in Ethereum notional. Roughly 80% of total open interest had moved into out-of-the-money territory as prices fell well below the $72,000 max-pain level heading into settlement. The put-call ratio stood at 0.63 for Bitcoin and 0.50 for Ethereum, indicating that bullish call options still made up the majority of the expiring book — positions that expired worthless given the current price environment.</p>\n<h2>Record ETF outflows</h2>\n<p>The settlement coincided with the aftermath of a bruising week for Bitcoin ETF flows. On June 25, US spot Bitcoin ETFs recorded a net outflow of nearly $692 million — the largest single-day redemption since May 27, according to data tracked by major crypto analytics firms. Combined with the options expiry, more than $1.1 billion in leveraged positions were liquidated across crypto markets over the preceding 48 hours.</p>\n<h2>Macro headwinds piling up</h2>\n<p>Rising expectations for additional US Federal Reserve rate hikes have weighed heavily on risk assets. Markets were pricing an approximately 77% probability of a Fed rate increase in December as of late June, following a hawkish-toned hold at the June FOMC meeting chaired by Kevin Warsh. Bank of America is now forecasting three rate hikes in 2026, while Deutsche Bank expects two increases beginning in September.</p>\n<p>PCE inflation data released in the days prior came in broadly in line with consensus, preventing a sharp repricing but doing little to ease the underlying macro pressure on crypto valuations.</p>\n<h2>Where analysts see the floor</h2>\n<p>Asset manager 21Shares stated in its latest semi-annual report that Bitcoin's current decline is \"broadly similar\" to prior post-halving pullbacks in 2016 and 2020, when corrections of 30–40% from cycle peaks preceded large subsequent rallies. The firm maintained a base-case price target of approximately $100,000 by year-end 2026. Bitcoin bears, meanwhile, are pointing to the $52,000 level as the next structural support if the current price fails to hold above $58,000.</p>",
+    "fa": "<p>بازار ارزهای دیجیتال در ۲۷ ژوئن با یک فشار مضاعف مواجه شد: دریبیت بزرگ‌ترین تسویه سه‌ماهه قراردادهای اختیار سال ۲۰۲۶ را با ۶۳/۱۰ میلیارد دلار بهره باز در بیت‌کوین و اتریوم انجام داد، در حالی که بیت‌کوین در محدوده ۵۸ هزار دلار — پایین‌ترین سطح از سپتامبر ۲۰۲۴ — معامله می‌شد.</p>\n<p>تسویه شامل حدود ۰۶/۹ میلیارد دلار بهره باز بیت‌کوین و ۵۷/۱ میلیارد دلار بهره باز اتریوم بود. تقریباً ۸۰ درصد از کل بهره باز با کاهش قیمت‌ها به زیر سطح «max pain» ۷۲ هزار دلار، به محدوده خارج از سود رسیده بود. نسبت پوت به کال برای بیت‌کوین ۶۳/۰ و برای اتریوم ۵۰/۰ بود که نشان می‌دهد قراردادهای کال صعودی هنوز اکثریت پوزیشن‌های منقضی‌شده را تشکیل می‌دادند — پوزیشن‌هایی که با توجه به محیط قیمتی فعلی بی‌ارزش منقضی شدند.</p>\n<h2>خروج رکورد از ETFهای بیت‌کوین</h2>\n<p>تسویه با پیامدهای یک هفته سخت برای جریان‌های ETF بیت‌کوین همراه شد. در ۲۵ ژوئن، ETFهای نقطه‌ای بیت‌کوین در آمریکا خروج خالصی نزدیک به ۶۹۲ میلیون دلار ثبت کردند — بزرگ‌ترین بازخرید روزانه از ۲۷ مه. در مجموع، در ۴۸ ساعت گذشته بیش از ۱/۱ میلیارد دلار از پوزیشن‌های اهرمی در بازارهای رمزارز لیکویید شد.</p>\n<h2>فشارهای کلان اقتصادی</h2>\n<p>انتظار افزایش بیشتر نرخ بهره توسط فدرال رزرو آمریکا سنگینی زیادی بر دارایی‌های پرریسک انداخته است. بازارها احتمال ۷۷ درصدی افزایش نرخ بهره در دسامبر را قیمت‌گذاری کرده‌اند. بانک آمریکا اکنون سه افزایش نرخ در سال ۲۰۲۶ را پیش‌بینی می‌کند، در حالی که دویچه بانک دو افزایش از سپتامبر را در نظر دارد.</p>\n<h2>کف بازار کجاست؟</h2>\n<p>مدیر دارایی ۲۱شیرز در آخرین گزارش شش‌ماهه خود اعلام کرد که کاهش فعلی بیت‌کوین «به‌طور گسترده مشابه» اصلاحات پس از هاوینگ سابق در ۲۰۱۶ و ۲۰۲۰ است، زمانی که اصلاحات ۳۰ تا ۴۰ درصدی از اوج چرخه پیش از رشدهای بزرگ بعدی رخ داد. این شرکت هدف قیمتی پایه ۱۰۰ هزار دلار را برای پایان سال ۲۰۲۶ حفظ کرد.</p>",
+    "ar": "<p>واجه سوق العملات المشفرة ضغطًا مزدوجًا في 27 يونيو، إذ سوّت منصة Deribit أكبر انتهاء ربعي لعقود الخيارات في 2026 — بفائدة مفتوحة إجمالية بلغت 10.63 مليار دولار في البيتكوين والإيثيريوم — فيما كان البيتكوين يُتداول قرب 58 ألف دولار، أدنى مستوياته منذ سبتمبر 2024.</p>\n<p>شمل التسوية نحو 9.06 مليار دولار في العقود الآجلة للبيتكوين و1.57 مليار دولار للإيثيريوم. وكان نحو 80% من إجمالي الفائدة المفتوحة قد انزلق إلى منطقة الخسارة مع هبوط الأسعار دون مستوى الألم الأقصى البالغ 72 ألف دولار.</p>\n<h2>تدفقات خروج قياسية من صناديق ETF</h2>\n<p>تزامن انتهاء العقود مع أسبوع صعب لتدفقات صناديق ETF. ففي 25 يونيو، سجّلت صناديق ETF الفورية للبيتكوين في الولايات المتحدة صافي تدفق خروج ناهز 692 مليون دولار — أكبر عملية استرداد يومية منذ 27 مايو — مع تصفية أكثر من 1.1 مليار دولار من المراكز الرافعة خلال الـ48 ساعة السابقة.</p>\n<h2>رياح اقتصادية معاكسة</h2>\n<p>ضغطت التوقعات المتزايدة برفع الفيدرالي الأمريكي لأسعار الفائدة بثقل على الأصول الخطرة؛ إذ تُسعّر الأسواق احتمالًا بنسبة 77% لرفع في ديسمبر. وتتوقع بنك أوف أمريكا ثلاثة رفعات في 2026، بينما يتوقع دويتشه بنك رفعتين ابتداءً من سبتمبر.</p>\n<h2>أين الدعم؟</h2>\n<p>أفاد مدير الأصول 21Shares في أحدث تقاريره بأن التراجع الحالي للبيتكوين يُشبه \"إلى حد بعيد\" تصحيحات ما بعد التنصيف السابقة في 2016 و2020، حين سبقت تصحيحات بين 30 و40% من أعلى مستويات الدورة ارتفاعات كبيرة لاحقة. وحافظت الشركة على هدف سعري أساسي عند 100 ألف دولار بنهاية 2026.</p>",
+    "tr": "<p>Kripto para piyasası, 27 Haziran'da çifte baskıyla karşı karşıya kaldı: Deribit, 2026'nın en büyük çeyreklik opsiyon vadesi olan Bitcoin ve Ethereum'da toplam 10,63 milyar dolarlık açık pozisyonu kapatırken Bitcoin, Eylül 2024'ten bu yana en düşük seviyesi olan 58.000 dolara yakın işlem görüyordu.</p>\n<p>Vade, yaklaşık 9,06 milyar dolar Bitcoin ve 1,57 milyar dolar Ethereum notional değerinden oluşuyordu. Açık pozisyonların yaklaşık %80'i, fiyatların 72.000 dolarlık maksimum acı seviyesinin çok altına inmesiyle kâr dışı bölgeye geçmişti.</p>\n<h2>Rekor ETF çıkışları</h2>\n<p>Vade bitişi, Bitcoin ETF'leri için zorlu bir haftanın ardından geldi. 25 Haziran'da ABD spot Bitcoin ETF'leri 692 milyon dolara yakın net çıkış kaydetti — 27 Mayıs'tan bu yana en büyük günlük itfa. Buna paralel olarak son 48 saatte kripto piyasalarında 1,1 milyar doları aşkın kaldıraçlı pozisyon tasfiye edildi.</p>\n<h2>Makro baskılar</h2>\n<p>Fed'in ek faiz artışı beklentileri, riskli varlıkları ağır şekilde baskılamaya devam ediyor. Piyasalar Aralık ayı için yaklaşık %77 faiz artışı olasılığı fiyatlıyor. Bank of America 2026'da üç artış öngörürken Deutsche Bank Eylül'den itibaren iki artış bekliyor.</p>\n<h2>Dip nerede?</h2>\n<p>21Shares, son yarı yıllık raporunda Bitcoin'in mevcut düşüşünün 2016 ve 2020'deki halving sonrası geri çekilmelere \"büyük ölçüde benzediğini\" belirtti; söz konusu dönemlerde döngü tepelerinden %30-40'lık düşüşlerin ardından büyük ralli geldi. Şirket, 2026 yıl sonu için 100.000 dolar baz hedef fiyatını koruyor.</p>"
   },
   "seo": {
     "title": {
@@ -35,19 +50,45 @@
       "tr": "Bitcoin, Deribit'in 27 Haziran'da %80'i zararda olan 10,63 milyar dolarlık çeyreklik opsiyonu kapatmasıyla 58.000 dolara geriledi. 692 milyon dolarlık rekor ETF çıkışı ve 1,1 milyar dolarlık tasfiye baskıyı artırdı."
     },
     "keywords": {
-      "en": ["Bitcoin", "BTC", "crypto options expiry", "Deribit quarterly", "ETF outflows"],
-      "fa": ["بیت‌کوین", "BTC", "Bitcoin", "قرارداد اختیار رمزارز", "خروج ETF"],
-      "ar": ["Bitcoin", "BTC", "بيتكوين", "تسوية خيارات Deribit", "صناديق ETF"],
-      "tr": ["Bitcoin", "BTC", "Deribit opsiyonlar", "kripto vade", "ETF çıkışı"]
+      "en": [
+        "Bitcoin",
+        "BTC",
+        "crypto options expiry",
+        "Deribit quarterly",
+        "ETF outflows"
+      ],
+      "fa": [
+        "بیت‌کوین",
+        "BTC",
+        "Bitcoin",
+        "قرارداد اختیار رمزارز",
+        "خروج ETF"
+      ],
+      "ar": [
+        "Bitcoin",
+        "BTC",
+        "بيتكوين",
+        "تسوية خيارات Deribit",
+        "صناديق ETF"
+      ],
+      "tr": [
+        "Bitcoin",
+        "BTC",
+        "Deribit opsiyonlar",
+        "kripto vade",
+        "ETF çıkışı"
+      ]
     }
   },
-  "tags": ["Bitcoin", "BTC", "crypto", "ETF", "markets", "Fed"],
-  "sources": [
-    {"title": "$10.63 Billion Bitcoin and Ethereum Options Expire as Markets Search for a Bottom", "url": "https://beincrypto.com/bitcoin-ethereum-options-expiry-june-2026/"},
-    {"title": "Deribit Settles $10 Billion June Quarterly Options Expiry", "url": "https://www.newsbtc.com/news/deribit-settles-10-billion-june-quarterly-options-expiry/"},
-    {"title": "Bitcoin's $10 Billion Options Expiry Risks Deepening Selloff", "url": "https://www.bloomberg.com/news/articles/2026-06-25/bitcoin-s-woes-could-be-compounded-by-10-billion-options-expiry"},
-    {"title": "Forget max pain theory. Bitcoin is well below the $72,000 magnet going into $10 billion options expiry", "url": "https://www.coindesk.com/markets/2026/06/25/forget-max-pain-bitcoin-is-well-below-the-usd72-000-magnet-ahead-of-usd10-billion-options-expiry"}
+  "sources": [],
+  "tags": [
+    "Bitcoin",
+    "BTC",
+    "crypto",
+    "ETF",
+    "markets",
+    "Fed"
   ],
-  "status": "draft",
+  "status": "published",
   "featured": false
 }

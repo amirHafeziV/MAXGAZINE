@@ -14,7 +14,7 @@
 <title>Render (RENDER) Price, Chart, History &amp; News | MAXGAZINE</title>
 <meta name="description" content="Live Render (RENDER) price, 7-day chart, market cap and volume — plus the story of the decentralized GPU network powering 3D rendering and AI compute for creators worldwide.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://maxgazine.com/en/render.html">
 
 
@@ -33,104 +33,106 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/bpm.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Vazirmatn:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Render (RENDER) Price, Chart, History & News | MAXGAZINE","description":"Live Render (RENDER) price, 7-day chart, market cap and volume — plus the story of the decentralized GPU network powering 3D rendering and AI compute for creators worldwide.","about":{"@type":"Thing","name":"Render","sameAs":"https://www.coingecko.com/en/coins/render-token"},"mainEntityOfPage":{"@id":"https://maxgazine.com/en/render.html"},"inLanguage":"en","author":{"@type":"Organization","name":"MAXGAZINE","url":"https://maxgazine.com/"},"publisher":{"@type":"Organization","name":"MAXGAZINE","logo":{"@type":"ImageObject","url":"https://maxgazine.com/og-image.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MAXGAZINE","item":"https://maxgazine.com/"},{"@type":"ListItem","position":2,"name":"Prices","item":"https://maxgazine.com/prices.html"},{"@type":"ListItem","position":3,"name":"Render","item":"https://maxgazine.com/en/render.html"}]}]}
 </script>
 </head>
-<body dir="ltr" lang="en">
-<div class="topbar">
-  <div class="wrap">
-    <span class="tb-date ltr" id="bs-date"></span>
-    <span class="tb-break" id="tb-break-txt">Latest market intelligence — Maxgazine</span>
-  </div>
-</div>
-<div class="ticker" aria-label="Live prices">
-  <div class="ticker-track" id="ticker" data-ticker></div>
-</div>
-<div class="nameplate">
-  <div class="wrap">
-    <a href="../index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
-    <div class="np-tools">
-      <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-      </button>
-      <button class="tool tool-lang bs-lang-toggle" data-open="lang" aria-label="Language">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
-        <b id="cur-lang-label">EN</b>
-      </button>
-      <button class="tool tool-sub" id="bs-subscribe-btn" data-open="sub">Subscribe</button>
-      <button class="tool tool-burger" data-open="menu" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-      </button>
+<body dir="ltr" class="bs-page theme-dark">
+<script>try{var t=localStorage.getItem('mg_theme');var d=t==='dark'||((!t||t==='system')&&matchMedia('(prefers-color-scheme:dark)').matches);if(!d)document.body.classList.remove('theme-dark');}catch(e){}</script>
+<div class="bs-frame">
+<header class="bsheet">
+  <div class="bs-top">
+    <div class="bs-date" id="bs-date"></div>
+    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
+    <div class="bs-top-right">
+      <button class="bs-search-btn mono" id="bs-search-btn" type="button" aria-label="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
+      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
+      <button class="theme-toggle mono" id="theme-toggle" aria-label="Toggle theme">LIGHT</button>
+      <div class="bs-lang" role="group" aria-label="Select language"><button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">EN</span></button><div class="bs-lang-menu" role="menu"><button data-lang="en" class="active" lang="en" role="menuitem"><span class="bs-lang-code">EN</span><span class="bs-lang-name">English</span></button><button data-lang="fa" lang="fa" role="menuitem"><span class="bs-lang-code">FA</span><span class="bs-lang-name">فارسی</span></button><button data-lang="ar" lang="ar" role="menuitem"><span class="bs-lang-code">AR</span><span class="bs-lang-name">العربية</span></button><button data-lang="tr" lang="tr" role="menuitem"><span class="bs-lang-code">TR</span><span class="bs-lang-name">Türkçe</span></button></div></div>
     </div>
   </div>
-</div>
-<nav class="mainnav" aria-label="Primary">
-  <div class="wrap">
-    <a href="../index.html" data-i="nav_home">Home</a>
+  <div class="bs-logo-row"><div class="bs-motion" aria-hidden="true"></div><a class="bs-logo" href="../index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
+  <nav class="bs-nav" aria-label="Primary">
     <a href="../stories.html" data-i="nav_stories">Stories</a>
+    <a href="../stories.html?cat=crypto" data-nav="crypto" data-i="nav_crypto">Crypto</a>
     <a href="../exchanges.html" data-i="nav_topmarkets">Markets</a>
-    <a href="../prices.html" class="on" data-i="nav_prices">Prices</a>
-    <a href="../stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-    <a href="../stories.html?cat=tech">Tech</a>
-    <a href="../stories.html?cat=cars" data-i="nav_cars">Cars</a>
+    <a href="../prices.html" data-i="nav_prices">Prices</a>
+    <a href="../stories.html?cat=ai" data-nav="ai">AI<span class="nav-badge-new">NEW</span></a>
+    <a href="../stories.html?cat=cars" data-nav="cars" data-i="nav_cars">Cars</a>
+    <a href="../chart.html" data-i="nav_chart">Chart</a>
     <a href="../about.html" data-i="nav_about">About</a>
     <a href="../contact.html" data-i="nav_contact">Contact</a>
-  </div>
-</nav>
+  </nav>
+</header>
+<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
+</div></div>
+<main>
+<div class="page-head page-head--coin"><div class="wrap">
+  <h1>Render (RENDER) Price, Chart &amp; News</h1>
+  <p>Track Render&#39;s live price and 7-day trend, then read about the decentralized GPU marketplace connecting creators who need rendering power with node operators who supply it.</p>
+</div></div>
 
-<!-- COIN HERO -->
-<section class="coin-hero" data-coin-id="render-token">
-  <div class="wrap">
-    <div class="coin-id">
-      <div class="coin-badge-row">
-        <div class="coin-badge" data-field="badge">REND</div>
-        <div>
-          <div class="coin-rank ltr" data-field="rank">Rank #—</div>
-          <div class="coin-sym-lbl ltr">RENDER · Render</div>
-        </div>
-      </div>
-      <h1 class="coin-name">Render</h1>
+<section class="wrap section coin-hero">
+  <div class="coin-hero-card reveal" data-coin-id="render-token">
+    <div class="coin-hero-top">
+      <div class="coin-hero-id"><span class="coin-hero-name">Render</span><span class="coin-sym mono">RENDER</span></div>
+      <span class="coin-updated mono"><span>Updated</span><span data-field="updated"></span></span>
     </div>
-    <div class="coin-quote">
-      <div class="coin-quote-lbl ltr">RENDER / USD · Live price</div>
-      <div class="coin-price-big ltr" data-field="price">—</div>
-      <div class="coin-chg-big ltr" data-field="chg24">—</div>
-      <div class="coin-cta">
-        <a href="../exchanges.html" class="btn-buy">Buy RENDER →</a>
-      </div>
+    <div class="coin-hero-price">
+      <span class="coin-price-val mono" data-field="price">—</span>
+      <span class="coin-price-chg mono" data-field="chg24">—</span>
     </div>
+    <div class="coin-hero-stats">
+      <div class="coin-stat"><b>Market Cap</b><span class="mono" data-field="mcap">—</span></div>
+      <div class="coin-stat"><b>24h Volume</b><span class="mono" data-field="vol">—</span></div>
+      <div class="coin-stat"><b>24h High</b><span class="mono" data-field="high24">—</span></div>
+      <div class="coin-stat"><b>24h Low</b><span class="mono" data-field="low24">—</span></div>
+    </div>
+  </div>
+  <div class="coin-hero-chart reveal">
+    <div class="coin-chart-head mono">7-Day Price Chart</div>
+    <div class="coin-chart" data-coin-chart="render-token"><div class="coin-chart-skel"></div></div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="coin-stats" data-coin-id="render-token">
-  <div class="wrap">
-    <div class="cstat"><div class="cstat-label">Market Cap</div><div class="cstat-val" data-field="mcap">—</div><div class="cstat-sub" data-field="mcap-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">24h Volume</div><div class="cstat-val" data-field="vol">—</div><div class="cstat-sub" data-field="vol-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">Circulating Supply</div><div class="cstat-val" data-field="supply">—</div><div class="cstat-sub" data-field="supply-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">All-Time High</div><div class="cstat-val" data-field="ath">—</div><div class="cstat-sub" data-field="ath-sub">—</div></div>
-    <div class="cstat"><div class="cstat-label">Dominance</div><div class="cstat-val" id="cs-dom">—</div><div class="cstat-sub">of total market</div></div>
-    <div class="cstat"><div class="cstat-label">Fear &amp; Greed</div><div class="cstat-val" id="cs-fng">—</div><div class="cstat-sub" id="cs-fng-lbl">—</div></div>
-  </div>
-</div>
+<a class="ad-banner ad-advertorial ad-coin-mid wrap" data-ad-slot="coin-mid" href="../contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-page banner</span><span class="ad-cta mono">Book this spot →</span></a>
 
-<!-- AD SLOT -->
-<div class="ad-wrap" style="padding-block:24px">
-  <a class="ad-banner" href="../contact.html"><span class="ad-tag">AD SPACE</span><span class="ad-title">Reach buyers at the moment of decision.</span><span class="ad-cta">Book this spot →</span></a>
+<section class="wrap section coin-howto reveal">
+  <h2>How to Buy RENDER</h2>
+<div class="coin-steps">
+    <div class="coin-step">
+      <span class="coin-step-num mono">01</span>
+      <h3>Pick a Trusted Exchange</h3>
+      <p>Compare fees, security track record and supported pairs, then create an account with a reputable exchange.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">02</span>
+      <h3>Verify Your Identity</h3>
+      <p>Complete identity verification (KYC) so you can deposit funds and trade without limits.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">03</span>
+      <h3>Deposit Funds</h3>
+      <p>Fund your account using a bank transfer, card payment, or an existing crypto balance.</p>
+    </div>
+    <div class="coin-step">
+      <span class="coin-step-num mono">04</span>
+      <h3>Buy &amp; Store Safely</h3>
+      <p>Place your order, then move your coins to a secure wallet for long-term storage.</p>
+    </div>
 </div>
+  <a class="btn coin-howto-cta" href="../exchanges.html">Trade Now →</a>
+</section>
 
-<!-- ABOUT -->
-<div class="sec" data-n="001">
-  <div class="wrap">
-    <span class="sec-num">001</span>
-    <div class="sec-title"><span class="a">About Render</span></div>
-    <a href="../exchanges.html" class="sec-all">Trade Now →</a>
-  </div>
-</div>
-<div class="art-wrap"><div class="art-body"><p>Render (RENDER) is the native token of the Render Network, a decentralized platform that connects people and organizations who need GPU computing power with owners of GPUs who have spare capacity to offer. The network is designed primarily for 3D rendering — the computationally intensive process of generating photorealistic images and animations from 3D models — but has expanded its scope to include AI inference, machine learning workloads and other GPU-intensive computation.</p>
+<section class="wrap section coin-sections">
+  <div class="coin-main">
+    <h2>About</h2>
+<div class="prose">
+<p>Render (RENDER) is the native token of the Render Network, a decentralized platform that connects people and organizations who need GPU computing power with owners of GPUs who have spare capacity to offer. The network is designed primarily for 3D rendering — the computationally intensive process of generating photorealistic images and animations from 3D models — but has expanded its scope to include AI inference, machine learning workloads and other GPU-intensive computation.</p>
 <p>Think of it as a marketplace for GPU cycles: an artist or studio that needs to render a complex 3D scene can access distributed GPU nodes through Render Network, often at lower cost and with greater flexibility than renting capacity from a centralized cloud provider. GPU node operators, in turn, earn RENDER tokens for the work their hardware contributes to the network.</p>
 <h2>Origins: OTOY and Blockchain Rendering</h2>
 <p>The Render Network was conceived by Jules Urbach, the founder and CEO of OTOY Inc., a company with a long history in cloud rendering, holographic technology and media production tools. OTOY&#39;s OctaneRender is one of the leading GPU rendering engines used in film, television and visual effects production, giving the Render Network deep roots in professional creative industry workflows.</p>
@@ -138,7 +140,11 @@
 <h2>RENDER Token and the Burn-and-Mint Model</h2>
 <p>In late 2023, the Render Network community approved a shift from the original fixed-price payment model to a Burn-and-Mint Equilibrium (BME) model. Under this system, clients who pay for rendering work spend RENDER tokens, which are burned. Node operators who complete that work receive newly minted RENDER as compensation. This model ties token supply dynamics directly to network usage: more rendering jobs mean more burning and more minting, creating a supply mechanism anchored in real economic activity rather than pure speculation.</p>
 <h2>Scale and Infrastructure</h2>
-<p>As of 2026, the Render Network has processed tens of millions of frames for clients ranging from independent artists to major studios. The network has supported thousands of active GPU nodes worldwide, and its integration with professional tools and pipelines — including compatibility with OctaneRender — means that new users can often access the network without fundamentally changing their existing creative workflows.</p><p>The roots of the Render Network trace back to OTOY Inc., the media technology company founded by Jules Urbach. OTOY had spent years developing OctaneRender, a physically accurate GPU rendering engine used widely in Hollywood film production, advertising, architecture and game design. The company understood, firsthand, the computational demands of high-fidelity visual content — and the high cost of centralized rendering infrastructure.</p>
+<p>As of 2026, the Render Network has processed tens of millions of frames for clients ranging from independent artists to major studios. The network has supported thousands of active GPU nodes worldwide, and its integration with professional tools and pipelines — including compatibility with OctaneRender — means that new users can often access the network without fundamentally changing their existing creative workflows.</p>
+</div>
+    <h2>History</h2>
+<div class="prose">
+<p>The roots of the Render Network trace back to OTOY Inc., the media technology company founded by Jules Urbach. OTOY had spent years developing OctaneRender, a physically accurate GPU rendering engine used widely in Hollywood film production, advertising, architecture and game design. The company understood, firsthand, the computational demands of high-fidelity visual content — and the high cost of centralized rendering infrastructure.</p>
 <h2>Conceptualization and Early Development (2009–2017)</h2>
 <p>Urbach first articulated the idea of a distributed GPU rendering marketplace as early as 2009, envisioning a future where idle GPU capacity around the world could be pooled and directed toward rendering work. The rise of blockchain in 2016–2017 provided the economic infrastructure — specifically, a way to issue tokens, verify work and make trustless payments — that made a decentralized rendering marketplace technically feasible.</p>
 <p>OTOY began formally developing the blockchain-based Render Network from this foundation. The network held a token generation event in October 2017, raising capital through the sale of RNDR tokens (the original ticker before the 2023 rebrand). A private sale period followed from January to May 2018.</p>
@@ -149,7 +155,11 @@
 <p>A pivotal development came in 2023 when the Render Network community voted to migrate the network from the Ethereum blockchain to Solana, seeking faster transaction speeds and lower fees for the high volume of micro-transactions involved in paying for rendering work. This move was accompanied by a rebranding of the token from RNDR to RENDER.</p>
 <p>The 2023 period also brought the adoption of the Burn-and-Mint Equilibrium (BME) tokenomics model, replacing the older fixed-price structure. The Foundation was also formally established as an independent entity in the Cayman Islands, separating the network&#39;s governance from OTOY Inc. These changes collectively marked a maturation of the project from a startup experiment to a more fully formed decentralized network.</p>
 <h2>2024–2025: AI Expansion</h2>
-<p>As artificial intelligence and machine learning became one of the defining technology trends of the mid-2020s, Render Network&#39;s GPU compute infrastructure gained new relevance. The network began attracting AI developers and research groups seeking distributed GPU resources for model training and inference — a use case that extended Render Network&#39;s addressable market well beyond the creative industry.</p><p>Render Network&#39;s current story sits at one of the most discussed intersections in technology: AI compute and decentralized infrastructure. As demand for GPU resources has grown dramatically — driven by the global expansion of large language models, image generation systems, video synthesis and 3D content creation — Render Network has positioned itself as a decentralized alternative to the major centralized cloud providers that currently dominate AI compute.</p>
+<p>As artificial intelligence and machine learning became one of the defining technology trends of the mid-2020s, Render Network&#39;s GPU compute infrastructure gained new relevance. The network began attracting AI developers and research groups seeking distributed GPU resources for model training and inference — a use case that extended Render Network&#39;s addressable market well beyond the creative industry.</p>
+</div>
+    <h2>Recent Developments</h2>
+<div class="prose">
+<p>Render Network&#39;s current story sits at one of the most discussed intersections in technology: AI compute and decentralized infrastructure. As demand for GPU resources has grown dramatically — driven by the global expansion of large language models, image generation systems, video synthesis and 3D content creation — Render Network has positioned itself as a decentralized alternative to the major centralized cloud providers that currently dominate AI compute.</p>
 <h2>AI and the GPU Demand Surge</h2>
 <p>The scale of demand for GPU compute in the AI era has been well documented, with major technology companies racing to build and secure GPU capacity. Render Network&#39;s model — aggregating spare GPU capacity from distributed node operators — represents a structurally different approach: instead of building large proprietary data centers, the network grows by adding more nodes organically. As of 2026, the network has processed over 71 million frames since inception, and the combination of 3D rendering and AI workloads continues to drive usage.</p>
 <h2>RenderCon and Community Development</h2>
@@ -157,87 +167,69 @@
 <h2>Burn-and-Mint Dynamics</h2>
 <p>The BME tokenomics model means that the RENDER token&#39;s supply dynamics are directly tied to network activity. High usage periods lead to more token burns, putting structural deflationary pressure on supply during periods when creative and AI workflows are most active. This design is intended to create a more sustainable and usage-linked token economy than models where a fixed supply is simply speculated upon.</p>
 <h2>Competitive Position</h2>
-<p>Render Network competes in the broader decentralized compute space alongside projects such as Akash and others, as well as indirectly with centralized cloud GPU providers. Its strongest differentiator remains its deep integration with professional 3D creative workflows and OctaneRender, which gives it a specific, professional user base that is not fully served by general-purpose decentralized compute networks.</p></div></div>
-
-<!-- BUY CTA -->
-<div class="buy-cta">
-  <div class="wrap">
-    <div class="buy-cta-text">Ready to buy Render?</div>
-    <a href="../exchanges.html" class="btn-buy">Compare exchanges →</a>
-  </div>
+<p>Render Network competes in the broader decentralized compute space alongside projects such as Akash and others, as well as indirectly with centralized cloud GPU providers. Its strongest differentiator remains its deep integration with professional 3D creative workflows and OctaneRender, which gives it a specific, professional user base that is not fully served by general-purpose decentralized compute networks.</p>
 </div>
+  </div>
+  <aside class="coin-side">
+    <a class="ad-square reveal" href="../contact.html" data-ad-slot="coin-side">
+      <span class="ad-tag mono">AD SPACE</span>
+      <h4>Sidebar box</h4>
+      <span class="ad-cta mono">Book this spot →</span>
+    </a>
+    <div class="coin-related reveal">
+      <h3>Latest News</h3>
+<a class="side-news-item" href="../en/bitcoin-etf-outflow-696m-june-2026.html">
+      <span class="cat mono">MARKETS</span>
+      <h4>Bitcoin Falls Below $60K as ETF Outflows Hit $696M — The Worst Week Since Launch</h4>
+    </a>
+<a class="side-news-item" href="../en/bitcoin-58k-options-expiry-june-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Bitcoin Slumps to $58K as $10.6B Quarterly Options Expiry Clears</h4>
+    </a>
+<a class="side-news-item" href="../en/binance-eu-mica-ban-july-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Binance to Suspend EU Services July 1 After MiCA License Failure</h4>
+    </a>
+<a class="side-news-item" href="../en/hyperliquid-hype-etf-record-price-2026.html">
+      <span class="cat mono">CRYPTO</span>
+      <h4>Hyperliquid Hits $76 All-Time High as Institutional ETFs Drive HYPE Surge</h4>
+    </a>
+    </div>
+  </aside>
+</section>
 
-<div class="sec-mix related">
-  <div class="wrap">
-    <div class="sec-mix-title"><span class="sm-big"><span class="sm-num">+</span> RENDER NEWS</span></div>
-    <a href="../stories.html" class="sec-mix-all">All Stories →</a>
-  </div>
+<div class="wrap section">
+  <p class="mono" style="font-size:12px;color:#888;line-height:1.7">Live prices from CoinGecko. Informational only — not financial advice.</p>
 </div>
-<div class="desk"><div class="desk-inner"><div class="wrap">
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782454940322-banner.webp')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/hyperliquid-hype-etf-record-price-2026.html">Hyperliquid Hits $76 All-Time High as Institutional ETFs Drive HYPE Surge</a></h3>
-    
-    <div class="si-meta">JUN 26, 2026</div>
-  </div>
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782382152664-banner.jpg')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/us-cbdc-ban-2030-trump-signs.html">US Bans Federal Reserve From Issuing CBDC Until 2030 — Trump Signs Today</a></h3>
-    
-    <div class="si-meta">JUN 25, 2026</div>
-  </div>
-<div class="ditem">
-    <div class="si-img" style="background-image:url('https://maxgazine.com/assets/uploads/1782433193494-banner.jpg')"></div><div class="si-cat">CRYPTO</div>
-    <h3 class="si-hed"><a href="../en/bitcoin-62k-etf-outflows-june-2026.html">Bitcoin Falls to $62,700 as Spot ETFs Post Sixth Consecutive Week of Outflows</a></h3>
-    
-    <div class="si-meta">JUN 24, 2026</div>
-  </div>
-</div></div></div>
-<footer class="footer">
-  <div class="footer-top">
-    <div class="wrap">
-      <div class="foot-brand">
-        <a href="../index.html" class="logo md on-dark" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
-        <p class="foot-desc" data-i="foot_desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-        <div class="foot-sub">
-          <h5 data-i="foot_brief">The Brief — daily newsletter</h5>
-          <form class="foot-sub-form" onsubmit="return false">
-            <input type="email" placeholder="your@email.com" required>
-            <button type="submit" data-i="foot_news_cta">Join →</button>
-          </form>
-        </div>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_explore">Explore</h5>
-        <a href="../stories.html" data-i="f_stories">Stories</a>
-        <a href="../exchanges.html" data-i="f_exchanges">Top Exchanges</a>
-        <a href="../prices.html" data-i="f_prices">Prices</a>
-        <a href="../chart.html" data-i="f_chart">Chart</a>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_topics">Topics</h5>
-        <a href="../stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
-        <a href="../stories.html?cat=tech">Tech</a>
-        <a href="../stories.html?cat=cars" data-i="nav_cars">Cars</a>
-        <a href="../stories.html?cat=forex">Forex</a>
-      </div>
-      <div class="foot-col">
-        <h5 data-i="foot_company">Company</h5>
-        <a href="../about.html" data-i="f_about">About Us</a>
-        <a href="../contact.html" data-i="f_contact">Contact Us</a>
-        <a href="../contact.html" data-i="f_advertise">Advertise</a>
-      </div>
+</main>
+<footer class="foot-rich"><div class="wrap">
+  <div class="foot-lead">
+    <div class="foot-brand">
+      <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
+      <p class="foot-desc">Maxgazine is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
+    </div>
+    <div class="foot-news">
+      <div class="foot-news-eyebrow mono">Market Intelligence</div>
+      <h4>Stay ahead of the market.</h4>
+      <form class="foot-news-form" onsubmit="return false">
+        <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
+        <button class="foot-news-btn mono" type="submit">Subscribe →</button>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="wrap">
-      <span class="foot-copy" data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span>
-      <span style="font-family:var(--mono);font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.08em" data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
-    </div>
+  <div class="foot-cols">
+    <div class="foot-col"><h5>Explore</h5><a href="../stories.html">Stories</a><a href="../chart.html">Chart</a><a href="../prices.html">Prices</a></div>
+    <div class="foot-col"><h5>Markets</h5><a href="../exchanges.html">Top Exchanges</a><a href="../brokers.html">Top Brokers</a></div>
+    <div class="foot-col"><h5>Topics</h5><a href="../stories.html?cat=crypto">Crypto</a><a href="../stories.html?cat=forex">Forex</a><a href="../stories.html?cat=tech">Tech</a><a href="../stories.html?cat=cars">Cars</a></div>
+    <div class="foot-col"><h5>Company</h5><a href="../about.html">About Us</a><a href="../contact.html">Contact Us</a></div>
+    <div class="foot-col"><h5>Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
   </div>
-</footer>
+  <div class="foot-bottom mono"><span>© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><div class="foot-legal"><a href="../about.html">Privacy</a><a href="../about.html">Terms</a><a href="../contact.html">Advertise</a></div><span>MULTILINGUAL MARKET MEDIA</span></div>
+</div></footer>
+</div><!-- /.bs-frame -->
+
 <script src="../assets/i18n.js"></script>
-<script src="../assets/bpm.js"></script>
 <script src="../assets/app.js"></script>
 </body>
 </html>
