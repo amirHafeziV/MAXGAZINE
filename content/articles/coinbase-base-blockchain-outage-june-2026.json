@@ -1,0 +1,92 @@
+{
+  "slug": "coinbase-base-blockchain-outage-june-2026",
+  "category": "crypto",
+  "date": "2026-06-25",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "A Single Invalid Block Took Down Coinbase's Base Network for Two Hours",
+    "fa": "یک بلاک نامعتبر، شبکه Base کوین‌بیس را دو ساعت از کار انداخت",
+    "ar": "كتلة واحدة غير صالحة تُشلّ شبكة بيس التابعة لكوينبيس لساعتين",
+    "tr": "Tek Bir Geçersiz Blok Coinbase'in Base Ağını İki Saat Çalışmaz Hale Getirdi"
+  },
+  "dek": {
+    "en": "Coinbase's Ethereum Layer-2 network Base halted all block production for roughly two hours on June 25 after block number 47,806,542 turned out to be malformed — a reminder that single-sequencer L2 chains trade decentralization for a very specific kind of fragility.",
+    "fa": "شبکه لایه دوم اتریوم کوین‌بیس به نام Base در ۲۵ ژوئن حدود دو ساعت تمام تولید بلاک را متوقف کرد چرا که بلاک شماره ۴۷،۸۰۶،۵۴۲ معیوب بود — یادآوری این نکته که زنجیره‌های L2 با سکوئنسر واحد، تمرکززدایی را با نوع خاصی از آسیب‌پذیری معامله می‌کنند.",
+    "ar": "أوقفت شبكة بيس، طبقة الإيثيريوم الثانية التابعة لكوينبيس، إنتاج الكتل تماماً لنحو ساعتين في الخامس والعشرين من يونيو، بعد أن تبيّن أن الكتلة رقم 47,806,542 كانت مشوّهة — في تذكير بأن سلاسل L2 ذات المرتّب الواحد تُبادل اللامركزية بهشاشة من نوع خاص.",
+    "tr": "Coinbase'in Ethereum Katman-2 ağı Base, 25 Haziran'da 47.806.542 numaralı bloğun hatalı çıkmasının ardından yaklaşık iki saat boyunca tüm blok üretimini durdurdu; bu gelişme, tek sıralayıcılı L2 zincirlerinin merkeziyetsizlik yerine kendine özgü bir kırılganlık seçtiğini bir kez daha gözler önüne serdi."
+  },
+  "body": {
+    "en": "Coinbase's Base blockchain — one of the most heavily trafficked Ethereum Layer-2 networks with more than $9 billion in on-chain activity — went dark for approximately two hours on June 25, halting all deposits, withdrawals, and transaction processing for users across DeFi applications built on the network.\n\nThe outage began at approximately 16:03 UTC when block production stalled immediately following block 47,806,542. The Base engineering team identified the issue by 16:52 UTC: a single malformed block was preventing any subsequent blocks from being built. By roughly 18:00 UTC, production had resumed, and the team confirmed that no user funds had been lost or were at risk during the outage.\n\n## The Sequencer Problem at the Heart of L2 Architecture\n\nThe root cause of the incident points to a structural trade-off embedded in Base's current design. Like most major Ethereum Layer-2 chains — including Optimism and Arbitrum — Base currently operates with a single sequencer: a centralized component controlled by Coinbase that is responsible for ordering transactions and producing new blocks. When that sequencer encountered the invalid block, there was no fallback mechanism to route around the failure. The entire chain simply stopped.\n\nThis is not a bug in isolation — it is the known consequence of a design choice. Single-sequencer L2 chains achieve very low latency and high throughput precisely because they skip the coordination overhead of distributed consensus. The cost is that a single point of failure, whether from a software bug, a network partition, or a malicious block, can halt the entire system. Base experienced a similar outage in August 2025, which lasted approximately 33 minutes before operators manually handed sequencer leadership to a backup.\n\n## A Growing Concern as DeFi TVL Migrates to L2s\n\nBase has grown rapidly into one of the most active Layer-2 networks, hosting billions of dollars in DeFi applications including major lending protocols, decentralized exchanges, and a growing base of stablecoin issuers. The June 25 outage is significant not just because of its two-hour duration, but because it occurred during active market hours when thousands of users held positions in protocols built on Base.\n\nThe incident is likely to add momentum to calls for Base and other L2 networks to accelerate their decentralization roadmaps. Both Optimism and Arbitrum have outlined multiyear plans to transition from single-sequencer models to decentralized sequencer sets, though neither has reached that milestone yet. Coinbase has not published a timeline for decentralizing Base's sequencer.\n\nThe broader lesson from the outage is that the user experience of Layer-2 networks — which are often described as faster and cheaper than Ethereum mainnet — comes with availability risks that are poorly understood by retail participants who expect blockchain infrastructure to behave like bank infrastructure.",
+    "fa": "بلاک‌چین Base کوین‌بیس — یکی از پرترافیک‌ترین شبکه‌های لایه دوم اتریوم با بیش از ۹ میلیارد دلار فعالیت آن‌چین — در ۲۵ ژوئن حدود دو ساعت از کار افتاد. در این مدت تمام سپرده‌ها، برداشت‌ها و پردازش تراکنش‌ها برای کاربران اپلیکیشن‌های DeFi ساخته‌شده روی این شبکه متوقف شد.\n\nاختلال از حدود ساعت ۱۶:۰۳ UTC شروع شد، درست پس از آنکه تولید بلاک بعد از بلاک شماره ۴۷،۸۰۶،۵۴۲ متوقف شد. تیم مهندسی Base تا ساعت ۱۶:۵۲ UTC مشکل را شناسایی کرد: یک بلاک معیوب مانع از ساختن هر بلاک بعدی می‌شد. تا حدود ساعت ۱۸:۰۰ UTC تولید بلاک از سر گرفته شد و تیم تأیید کرد که هیچ دارایی کاربری در خطر نبوده است.\n\n## مشکل سکوئنسر در قلب معماری L2\n\nریشه این حادثه به یک معاوضه ساختاری در طراحی فعلی Base اشاره دارد. مانند اکثر زنجیره‌های اصلی لایه دوم اتریوم — از جمله Optimism و Arbitrum — Base فعلاً با یک سکوئنسر واحد کار می‌کند: مؤلفه‌ای متمرکز که توسط کوین‌بیس کنترل می‌شود و مسئول مرتب‌سازی تراکنش‌ها و تولید بلاک‌های جدید است. وقتی این سکوئنسر با بلاک نامعتبر مواجه شد، هیچ مکانیزم پشتیبانی برای دور زدن خرابی وجود نداشت و کل زنجیره متوقف شد.\n\nBase در آگوست ۲۰۲۵ نیز خرابی مشابهی را تجربه کرد که حدود ۳۳ دقیقه طول کشید. کوین‌بیس تاکنون برنامه زمانی برای تمرکززدایی سکوئنسر Base اعلام نکرده است.\n\n## نگرانی رو به رشد با مهاجرت TVL دیفای به L2ها\n\nBase به سرعت به یکی از فعال‌ترین شبکه‌های لایه دوم تبدیل شده که میلیاردها دلار از اپلیکیشن‌های DeFi را در خود جای داده است. اختلال ۲۵ ژوئن تنها به دلیل مدت دو ساعته آن مهم نیست — بلکه از آن جهت نیز اهمیت دارد که در ساعات فعال بازار رخ داد، زمانی که هزاران کاربر در پروتکل‌های ساخته‌شده روی Base موقعیت باز داشتند.\n\nاین حادثه احتمالاً بر خواسته‌ها برای تسریع مسیرهای تمرکززدایی Base و سایر شبکه‌های L2 می‌افزاید. درس گسترده‌تر از این اختلال این است که تجربه کاربری شبکه‌های لایه دوم — که اغلب سریع‌تر و ارزان‌تر از شبکه اصلی اتریوم توصیف می‌شوند — با ریسک‌های در دسترس‌پذیری همراه است که کاربران خرده‌پا آن را به خوبی درک نمی‌کنند.",
+    "ar": "تعطّلت شبكة بيس اللامركزية من الطبقة الثانية التابعة لكوينبيس — وهي من أكثر شبكات الطبقة الثانية لإيثيريوم نشاطاً، إذ تحتضن ما يزيد على 9 مليارات دولار من النشاط على السلسلة — لنحو ساعتين في الخامس والعشرين من يونيو، مما أوقف جميع عمليات الإيداع والسحب ومعالجة المعاملات لمستخدمي التطبيقات اللامركزية المبنية عليها.\n\nبدأ التعطل عند الساعة 16:03 بالتوقيت العالمي، حين توقف إنتاج الكتل فور اكتشاف خلل في الكتلة رقم 47,806,542. وبحلول الساعة 16:52 UTC، حدّد فريق هندسة بيس المشكلة: كتلة واحدة مشوّهة كانت تمنع بناء أي كتلة لاحقة. وبحلول نحو الساعة 18:00 UTC، استُؤنف إنتاج الكتل وأكّد الفريق عدم تعرّض أي أموال مستخدمين للخطر.\n\n## إشكالية المرتّب الواحد في قلب بنية الطبقة الثانية\n\nتكشف جذور الحادثة عن مقايضة هيكلية راسخة في تصميم بيس الحالي. كأغلب سلاسل الطبقة الثانية الرئيسية — بما فيها أوبتيميزم وأربيتروم — تعمل بيس حالياً بمرتّب واحد مركزي تتحكم فيه كوينبيس، يتولى ترتيب المعاملات وإنتاج الكتل. حين واجه هذا المرتّب الكتلة غير الصالحة، لم يكن ثمة آلية احتياطية للتحايل على العطل، فتوقّفت السلسلة بأسرها.\n\nواجهت بيس انقطاعاً مشابهاً في أغسطس 2025 لنحو 33 دقيقة. ولم تُعلن كوينبيس حتى الآن عن جدول زمني لتوزيع لامركزية مرتّب بيس.\n\n## قلق متصاعد مع تدفق القيمة الإجمالية المقفلة في التمويل اللامركزي نحو الطبقة الثانية\n\nنمت بيس بسرعة لتصبح إحدى أكثر شبكات الطبقة الثانية نشاطاً، مستضيفةً مليارات الدولارات من تطبيقات التمويل اللامركزي. ويكتسب انقطاع الخامس والعشرين من يونيو أهميته لا من دوامه الذي بلغ ساعتين فحسب، بل لوقوعه خلال ساعات النشاط الفعلي في الأسواق حين كان آلاف المستخدمين يحتفظون بمراكز مفتوحة في بروتوكولات مبنية على بيس.",
+    "tr": "Coinbase'in Ethereum Katman-2 ağı Base — zincir üstünde 9 milyar doları aşan hacmiyle en yoğun trafiğe sahip ağlardan biri — 25 Haziran'da yaklaşık iki saat boyunca tüm blok üretimini durdurdu. Bu süre zarfında ağ üzerine inşa edilmiş DeFi uygulamalarındaki kullanıcıların para yatırma, çekme ve işlem gerçekleştirme imkânı tamamen ortadan kalktı.\n\nKesinti, yaklaşık saat 16:03 UTC'de, 47.806.542 numaralı bloğun hemen ardından blok üretiminin durması ile başladı. Base mühendislik ekibi saat 16:52 UTC itibarıyla sorunu tespit etti: tek bir hatalı blok sonraki blokların üretilmesini engelliyordu. Yaklaşık 18:00 UTC'de üretim yeniden başladı ve ekip, kesinti süresince kullanıcılara ait herhangi bir fonun risk altına girmediğini doğruladı.\n\n## L2 Mimarisinin Merkezindeki Sıralayıcı Sorunu\n\nOlayın kök nedeni, Base'in mevcut tasarımında saklı yapısal bir ödünleşime işaret ediyor. Optimism ve Arbitrum dahil diğer büyük Ethereum Katman-2 zincirlerinde olduğu gibi, Base şu anda Coinbase tarafından kontrol edilen tek bir sıralayıcıyla çalışıyor. Bu sıralayıcı, işlemleri sıralamak ve yeni bloklar üretmekten sorumlu merkezi bir bileşen. Sıralayıcı geçersiz blokla karşılaştığında arızayı yönlendirecek bir yedek mekanizma bulunmuyordu; zincirin tamamı durdu.\n\nBase, Ağustos 2025'te de yaklaşık 33 dakika süren benzer bir kesinti yaşamıştı. Coinbase'in Base sıralayıcısını merkeziyetsizleştirmek için bir zaman çizelgesi açıklamadığı da dikkat çekiyor.\n\n## DeFi TVL'si L2'lere Taşındıkça Büyüyen Kaygı\n\nBase, milyarlarca dolarlık DeFi uygulamasına ev sahipliği yaparak en aktif Katman-2 ağlarından biri haline geldi. 25 Haziran'daki kesinti, yalnızca iki saatlik süresi nedeniyle değil, binlerce kullanıcının Base üzerine kurulu protokollerde açık pozisyon tuttuğu aktif piyasa saatlerinde yaşanması nedeniyle de önem taşıyor. Bu olay, Katman-2 ağlarının merkeziyetsizleşme yol haritalarını hızlandırma çağrılarına destek verecek nitelikte görünüyor."
+  },
+  "seo": {
+    "title": {
+      "en": "Coinbase Base Network Outage: Invalid Block Halts Chain for 2 Hours — MAXGAZINE",
+      "fa": "قطعی Base کوین‌بیس؛ توقف ۲ ساعته زنجیره — MAXGAZINE",
+      "ar": "انقطاع شبكة بيس: كتلة غير صالحة تُشلّ السلسلة لساعتين — MAXGAZINE",
+      "tr": "Coinbase Base Ağ Kesintisi: Hatalı Blok Zinciri 2 Saat Durdurdu — MAXGAZINE"
+    },
+    "description": {
+      "en": "Coinbase's Base Ethereum L2 was down for two hours on June 25, 2026 after a single invalid block halted the single-sequencer chain, exposing a key vulnerability in L2 architecture.",
+      "fa": "شبکه Base لایه دوم اتریوم کوین‌بیس در ۲۵ ژوئن ۲۰۲۶ دو ساعت از کار افتاد؛ یک بلاک نامعتبر زنجیره تک-سکوئنسری را متوقف کرد و ضعف معماری L2 را آشکار ساخت.",
+      "ar": "تعطّلت شبكة بيس من الطبقة الثانية لإيثيريوم التابعة لكوينبيس ساعتين في 25 يونيو 2026، إثر توقف السلسلة ذات المرتّب الواحد بسبب كتلة واحدة مشوّهة، كاشفةً عن ثغرة جوهرية في بنية الطبقة الثانية.",
+      "tr": "Coinbase'in Base Ethereum L2 ağı, 25 Haziran 2026'da tek bir hatalı bloğun tek sıralayıcılı zinciri durdurmasıyla iki saat çevrimdışı kaldı; bu gelişme L2 mimarisindeki kritik bir güvenlik açığını gün yüzüne çıkardı."
+    },
+    "keywords": {
+      "en": [
+        "Coinbase Base",
+        "blockchain outage",
+        "Layer-2 Ethereum",
+        "L2 sequencer",
+        "crypto infrastructure 2026"
+      ],
+      "fa": [
+        "کوین‌بیس Base",
+        "قطعی بلاک‌چین",
+        "لایه دو اتریوم",
+        "سکوئنسر L2",
+        "زیرساخت کریپتو"
+      ],
+      "ar": [
+        "كوينبيس بيس",
+        "تعطل سلسلة الكتل",
+        "الطبقة الثانية إيثيريوم",
+        "مرتّب واحد",
+        "Base"
+      ],
+      "tr": [
+        "Coinbase Base",
+        "blok zinciri kesintisi",
+        "Ethereum Katman-2",
+        "L2 sıralayıcı",
+        "kripto altyapı 2026"
+      ]
+    }
+  },
+  "tags": [
+    "Coinbase",
+    "Ethereum",
+    "blockchain",
+    "DeFi",
+    "crypto",
+    "L2"
+  ],
+  "sources": [
+    {
+      "title": "Coinbase's Base blockchain resumes after two-hour outage disrupted network — CoinDesk",
+      "url": "https://www.coindesk.com/tech/2026/06/25/coinbase-s-base-blockchain-resumes-after-two-hour-outage-disrupted-network"
+    },
+    {
+      "title": "Base blockchain goes down for over an hour as block production halts — CryptoBriefing",
+      "url": "https://cryptobriefing.com/base-blockchain-outage-block-production-halts/"
+    },
+    {
+      "title": "Coinbase's Base probes suspected invalid block behind two-hour outage — Cryptopolitan",
+      "url": "https://www.cryptopolitan.com/base-probes-invalid-block-two-hour-outage/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

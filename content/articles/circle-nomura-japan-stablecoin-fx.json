@@ -1,0 +1,96 @@
+{
+  "slug": "circle-nomura-japan-stablecoin-fx",
+  "category": "markets",
+  "date": "2026-06-25",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Circle and Nomura Plan a 24/7 Stablecoin Settlement Layer for Japan's $440 Billion Daily FX Market",
+    "fa": "سیرکل و نومورا یک لایه تسویه استیبل‌کوین ۲۴/۷ برای بازار فارکس روزانه ۴۴۰ میلیارد دلاری ژاپن طراحی می‌کنند",
+    "ar": "سيركل ونومورا يخططان لطبقة تسوية استيبل‌كوين على مدار الساعة لسوق الصرف الأجنبي الياباني البالغ 440 مليار دولار يومياً",
+    "tr": "Circle ve Nomura, Japonya'nın Günlük 440 Milyar Dolarlık Döviz Piyasası İçin 7/24 Stablecoin Mutabakat Katmanı Planlıyor"
+  },
+  "dek": {
+    "en": "Circle and Japanese banking giant Nomura have announced a joint platform targeting the settlement of Japan's massive corporate FX market using USDC, with a target launch by 2027. The plan would let Japanese companies convert yen to USDC and clear cross-border payments in minutes rather than days — the first time a licensed stablecoin has been positioned as direct replacement infrastructure for traditional correspondent banking in Japan.",
+    "fa": "سیرکل و غول بانکی ژاپنی نومورا پلتفرم مشترکی اعلام کرده‌اند که با هدف تسویه بازار بزرگ فارکس شرکتی ژاپن با استفاده از USDC طراحی شده و برای راه‌اندازی تا ۲۰۲۷ هدف‌گذاری شده است.",
+    "ar": "أعلنت سيركل وعملاق الخدمات المصرفية الياباني نومورا عن منصة مشتركة تستهدف تسوية سوق الصرف الأجنبي الياباني الضخم للشركات باستخدام USDC، مع إطلاق مستهدف بحلول 2027.",
+    "tr": "Circle ve Japon bankacılık devi Nomura, USDC kullanarak Japonya'nın büyük kurumsal döviz piyasasının mutabakatını hedefleyen ortak bir platform duyurdu; 2027 yılına kadar hizmete girmesi planlanıyor."
+  },
+  "body": {
+    "en": "Circle Internet Financial and Nomura Holdings have announced a joint venture targeting Japan's corporate foreign exchange settlement market, with the companies describing plans to allow Japanese businesses to convert yen directly into Circle's USDC stablecoin and clear cross-border transactions in near real-time rather than the two-to-three days typically required through traditional correspondent banking channels.\n\nThe partnership, reported June 25, targets a 2027 launch and is aimed at Japan's corporate FX market, which Bank for International Settlements data shows handles approximately $440 billion in daily transactions. The service will focus initially on high-value import, export, and overseas investment flows — areas where settlement delay creates meaningful cost and counterparty risk.\n\n## The Regulatory Foundation That Made This Possible\n\nThe announcement follows Japan's Financial Services Agency clearing USDC under updated payment rules, making it the first dollar-denominated global stablecoin approved for domestic corporate use in Japan. That regulatory clearance — alongside Japan's broader framework for payment stablecoins established in 2023 — has created conditions that regulators in Europe and the United States have not yet matched for large-scale institutional stablecoin settlement.\n\nFor Nomura, whose FX book processes significant yen-dollar and yen-euro volume for Japanese corporations with international operations, the partnership represents both an infrastructure upgrade and a business line extension. By deploying USDC as the settlement layer, Nomura aims to eliminate the correspondent banking intermediaries that add both cost and settlement latency to the present system.\n\n## Why This Matters Beyond Japan\n\nThe Circle-Nomura deal is one of the clearest examples yet of an established financial institution committing to blockchain-based settlement not as an experiment but as core infrastructure for a major existing business. Previous stablecoin-in-finance announcements have often been pilots, proofs of concept, or limited to synthetic instruments. This arrangement targets Nomura's live FX operation.\n\nIf the 2027 launch timeline holds and the platform sees meaningful adoption among Japanese corporates, it will represent the first time a regulated stablecoin has displaced traditional correspondent banking infrastructure at institutional scale for a major G7 economy. That outcome would provide a template — and a competitive pressure — for banks in other major economies to move toward similar models.\n\nThe deal also directly benefits Circle as the company approaches its own IPO. USDC adoption at institutional scale in one of the world's largest FX markets provides Circle with a growth narrative that goes significantly beyond retail cryptocurrency usage, positioning the stablecoin as utility infrastructure rather than a speculative asset.",
+    "fa": "سیرکل اینترنت فاینانشال و نومورا هولدینگز پیوستن به یکدیگر برای ایجاد یک پلتفرم مشترک با هدف بازار تسویه فارکس شرکتی ژاپن را اعلام کرده‌اند. این شرکت‌ها برنامه‌هایی توصیف کرده‌اند که به کسب‌وکارهای ژاپنی امکان می‌دهد ین را مستقیماً به استیبل‌کوین USDC سیرکل تبدیل کنند و تراکنش‌های برون‌مرزی را به جای دو تا سه روز معمول از طریق کانال‌های بانکداری کارگزار سنتی، در نزدیک به زمان واقعی تسویه نمایند.\n\nاین مشارکت که در ۲۵ ژوئن گزارش شد، راه‌اندازی را تا ۲۰۲۷ هدف گذاشته و بازار فارکس شرکتی ژاپن را که داده‌های بانک تسویه‌های بین‌المللی نشان می‌دهد روزانه حدود ۴۴۰ میلیارد دلار معامله دارد، هدف قرار می‌دهد.\n\n## بنیان نظارتی که این را ممکن کرد\n\nاین اعلامیه پس از آن صورت گرفت که سازمان نظارت بر خدمات مالی ژاپن (JFSA) USDC را تحت قوانین پرداخت به‌روز شده تأیید کرد — اولین استیبل‌کوین جهانی دلاری تأییدشده برای استفاده شرکتی داخلی در ژاپن. این تأییدیه نظارتی در کنار چارچوب گسترده‌تر ژاپن برای استیبل‌کوین‌های پرداختی که در ۲۰۲۳ تأسیس شد، شرایطی ایجاد کرده که نظارت‌کنندگان در اروپا و ایالات متحده هنوز برای تسویه استیبل‌کوین در مقیاس نهادی بزرگ به آن دست نیافته‌اند.\n\n## چرا این فراتر از ژاپن اهمیت دارد\n\nمعامله سیرکل-نومورا یکی از روشن‌ترین مثال‌هایی است که یک مؤسسه مالی تثبیت‌شده به تسویه مبتنی بر بلاک‌چین نه به عنوان آزمایش، بلکه به عنوان زیرساخت اصلی برای یک کسب‌وکار بزرگ موجود متعهد می‌شود. اگر جدول زمانی راه‌اندازی ۲۰۲۷ محقق شود و پلتفرم پذیرش معناداری از سوی شرکت‌های ژاپنی ببیند، برای اولین بار خواهد بود که یک استیبل‌کوین تنظیم‌شده زیرساخت بانکداری کارگزار سنتی را در مقیاس نهادی برای یک اقتصاد بزرگ G7 جابجا کرده است.\n\nاین معامله همچنین به‌طور مستقیم به نفع سیرکل است که به عرضه اولیه سهام خود نزدیک می‌شود. پذیرش USDC در مقیاس نهادی در یکی از بزرگ‌ترین بازارهای فارکس جهان، استیبل‌کوین را به عنوان زیرساخت کاربردی — نه دارایی سفته‌بازانه — معرفی می‌کند.",
+    "ar": "أعلنت سيركل إنترنت فاينانشال ونومورا هولدينجز عن مشروع مشترك يستهدف سوق تسوية العملات الأجنبية للشركات في اليابان، مع خطط تتيح للشركات اليابانية تحويل الين مباشرةً إلى عملة USDC المستقرة وتسوية المعاملات العابرة للحدود في وقت شبه فوري بدلاً من يومين إلى ثلاثة أيام عبر القنوات المصرفية المراسلة التقليدية.\n\nيستهدف هذا الاتفاق — الذي أُعلن في 25 يونيو — إطلاقاً بحلول 2027، ويضع نصب عينيه سوق الصرف الأجنبي للشركات في اليابان الذي تُظهر بيانات بنك التسويات الدولية أنه يعالج نحو 440 مليار دولار من المعاملات يومياً.\n\n## الأساس التنظيمي الذي أتاح هذا الاتفاق\n\nجاء الإعلان في أعقاب موافقة وكالة الخدمات المالية اليابانية (JFSA) على USDC في إطار قواعد الدفع المحدَّثة، لتغدو أول عملة مستقرة عالمية مقوّمة بالدولار تحصل على إذن للاستخدام المؤسسي الداخلي في اليابان.\n\n## أهمية هذا الاتفاق تتخطى حدود اليابان\n\nيُعدّ اتفاق سيركل-نومورا من أوضح الأمثلة حتى الآن على التزام مؤسسة مالية راسخة بالتسوية القائمة على البلوك تشين لا بوصفها تجربة، بل بنيةً تحتيةً جوهرية لعمل قائم. إن اكتمل إطلاق 2027 وحظي البرنامج بتبنٍّ واسع من الشركات اليابانية، فإن ذلك سيكون المرة الأولى التي تُحلّ فيها عملة مستقرة خاضعة للتنظيم محل البنية التحتية للمصرفية المراسلة التقليدية في مقياس مؤسسي لأحد أكبر اقتصادات مجموعة السبع.\n\nيصبّ هذا الاتفاق في مصلحة سيركل التي تقترب من طرحها العام المرتقب، إذ يمنح USDC سرديةً نمو تتخطى كثيراً استخدام العملات المشفرة بالتجزئة، ليتموضع كبنية تحتية نفعية لا كأصل مضاربي.",
+    "tr": "Circle Internet Financial ve Nomura Holdings, Japonya'nın kurumsal döviz mutabakat piyasasını hedefleyen ortak bir girişim duyurdu. Şirketler, Japon işletmelerinin yeni platformda yeni Circle'ın USDC stablecoin'ine doğrudan yen çevirmesine ve sınır ötesi işlemleri geleneksel muhabir bankacılık kanallarının gerektirdiği iki ila üç gün yerine neredeyse anlık olarak kapatmasına olanak tanıyan planlarını açıkladı.\n\n25 Haziran'da açıklanan ortaklık 2027 başlatma hedefi koyuyor ve Uluslararası Ödemeler Bankası verilerine göre günlük yaklaşık 440 milyar dolarlık işlem gören Japonya'nın kurumsal döviz piyasasını hedefliyor.\n\n## Bunu Mümkün Kılan Düzenleyici Çerçeve\n\nAçıklama, Japonya Finansal Hizmetler Ajansı'nın (FSA) güncellenmiş ödeme kuralları kapsamında USDC'yi onaylamasının ardından geldi; bu onay USDC'yi Japonya'da kurumsal kullanım için onaylanan ilk küresel dolar stablecoin'i yapıyor.\n\n## Bu Neden Japonya'nın Ötesinde Önem Taşıyor\n\nCircle-Nomura anlaşması, köklü bir finansal kurumun büyük bir mevcut iş kolu için blok zinciri tabanlı mutabakata deneme değil, temel altyapı olarak bağlılık gösterdiğinin en net örneklerinden biri. 2027 başlatma takvimi tutarsa ve platform Japon şirketleri arasında anlamlı bir benimseme görürse, düzenlenmiş bir stablecoin'in G7'nin büyük bir ekonomisinde kurumsal ölçekte geleneksel muhabir bankacılık altyapısının yerini aldığı ilk örnek olacak.\n\nAnlaşma aynı zamanda kendi halka arzına yaklaşan Circle açısından da doğrudan fayda sağlıyor; dünyanın en büyük döviz piyasalarından birinde kurumsal ölçekte USDC benimsenmesi, stablecoin'i spekülatif bir varlık değil, fayda sağlayan altyapı olarak konumlandırıyor."
+  },
+  "seo": {
+    "title": {
+      "en": "Circle and Nomura Launch Stablecoin FX Platform for Japan's $440B Market — MAXGAZINE",
+      "fa": "سیرکل و نومورا؛ فارکس استیبل‌کوین در ژاپن — MAXGAZINE",
+      "ar": "سيركل ونومورا يُطلقان منصة تسوية استيبل‌كوين لسوق الصرف الأجنبي الياباني البالغ 440 مليار دولار — MAXGAZINE",
+      "tr": "Circle ve Nomura, Japonya'nın 440 Milyar Dolarlık Piyasası İçin Stablecoin Döviz Platformu Kuruyor — MAXGAZINE"
+    },
+    "description": {
+      "en": "Circle and Nomura announced a 2027 launch for a USDC-based stablecoin FX settlement service targeting Japan's $440B daily corporate currency market, the first institutional stablecoin settlement of its scale in Japan.",
+      "fa": "سیرکل و نومورا پلتفرم تسویه فارکس مبتنی بر USDC برای بازار ۴۴۰ میلیارد دلاری روزانه ژاپن را برای ۲۰۲۷ اعلام کردند — نخستین تسویه نهادی در این مقیاس.",
+      "ar": "أعلنت سيركل ونومورا إطلاق خدمة تسوية صرف أجنبي قائمة على USDC في 2027 تستهدف سوق الشركات اليابانية البالغ 440 مليار دولار يومياً — أول تسوية مؤسسية باستيبل‌كوين بهذا الحجم في اليابان.",
+      "tr": "Circle ve Nomura, Japonya'nın günlük 440 milyar dolarlık kurumsal döviz piyasasını hedefleyen USDC tabanlı stablecoin döviz mutabakat hizmeti için 2027 başlatma hedefi belirledi."
+    },
+    "keywords": {
+      "en": [
+        "Circle",
+        "USDC",
+        "Nomura",
+        "Japan FX",
+        "stablecoin settlement",
+        "forex 2026"
+      ],
+      "fa": [
+        "سیرکل",
+        "USDC",
+        "نومورا",
+        "فارکس ژاپن",
+        "تسویه استیبل‌کوین",
+        "Stablecoins"
+      ],
+      "ar": [
+        "سيركل",
+        "USDC",
+        "نومورا",
+        "صرف أجنبي ياباني",
+        "تسوية استيبل‌كوين",
+        "Stablecoins"
+      ],
+      "tr": [
+        "Circle",
+        "USDC",
+        "Nomura",
+        "Japonya döviz",
+        "stablecoin mutabakat",
+        "forex 2026"
+      ]
+    }
+  },
+  "tags": [
+    "Stablecoins",
+    "USDC",
+    "forex",
+    "markets",
+    "Japan",
+    "crypto"
+  ],
+  "sources": [
+    {
+      "title": "Circle and Nomura join forces to target a $440 billion daily foreign exchange market in Japan — CoinDesk",
+      "url": "https://www.coindesk.com/markets/2026/06/25/circle-and-nomura-join-forces-to-target-a-usd750-billion-daily-foreign-exchange-market-in-japan"
+    },
+    {
+      "title": "Circle and Nomura Target Near-Instant FX Settlements by 2027 — CryptoTimes",
+      "url": "https://www.cryptotimes.io/2026/06/25/circle-and-nomura-target-near-instant-fx-settlements-by-2027/"
+    },
+    {
+      "title": "Circle and Nomura Target Japan's $440 Billion FX Market With USDC Settlement Platform — CryptoIntelligence",
+      "url": "https://www.cryptointelligence.co.uk/circle-and-nomura-target-japans-440-billion-fx-market-with-usdc-settlement-platform/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

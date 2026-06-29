@@ -1,0 +1,100 @@
+{
+  "slug": "genius-act-rulemaking-july-deadline-paradox",
+  "category": "policy",
+  "date": "2026-06-28",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Six Agencies Must Finalize Stablecoin Rules by July 18 — But the FDIC's Comment Period Runs Until August",
+    "fa": "شش نهاد باید قوانین استیبل‌کوین را تا ۱۸ جولای نهایی کنند — اما دوره نظرخواهی FDIC تا اوت ادامه دارد",
+    "ar": "ستة جهات تنظيمية مُلزَمة بإنهاء قواعد العملات المستقرة بحلول 18 يوليو — لكن مرحلة تعليق FDIC مفتوحة حتى أغسطس",
+    "tr": "Altı Kurum 18 Temmuz'a Kadar Stablecoin Kurallarını Sonuçlandırmalı — Ama FDIC'nin Yorum Süreci Ağustos'a Kadar Uzuyor"
+  },
+  "dek": {
+    "en": "The GENIUS Act gave U.S. regulators exactly one year to finalize stablecoin rules—a deadline that falls on July 18, 2026. But the FDIC published its proposed rules in April with a comment period that closes August 4, creating a statutory paradox that industry lawyers say has no clean legal resolution.",
+    "fa": "قانون GENIUS به نهادهای نظارتی آمریکا دقیقاً یک سال فرصت داد تا قوانین استیبل‌کوین را نهایی کنند؛ مهلتی که ۱۸ جولای ۲۰۲۶ است. اما FDIC قوانین پیشنهادی خود را در آوریل با دوره نظرخواهی تا ۴ اوت منتشر کرد و پارادوکس قانونی ایجاد کرد که وکلای صنعت می‌گویند راه‌حل حقوقی صریحی ندارد.",
+    "ar": "منح قانون GENIUS الجهات التنظيمية الأمريكية سنة كاملة لإنهاء قواعد العملات المستقرة، بموعد نهائي يُصادف 18 يوليو 2026. غير أن هيئة FDIC نشرت قواعدها المقترحة في أبريل بفترة تعليق تمتد حتى الرابع من أغسطس، مما أفرز تناقضًا تشريعيًا يؤكد محامو الصناعة أنه لا يحظى بحل قانوني واضح.",
+    "tr": "GENIUS Yasası ABD düzenleyicilerine stablecoin kurallarını kesinleştirmeleri için tam bir yıl verdi; son tarih 18 Temmuz 2026. Ancak FDIC önerilen kurallarını 4 Ağustos'a kadar uzanan yorum süresiyle Nisan'da yayımladı. Bu durum, sektör avukatlarının temiz bir hukuki çözümü olmadığını söylediği yasal bir çelişki yarattı."
+  },
+  "body": {
+    "en": "One year after the GENIUS Act became law on July 18, 2025, six federal agencies face a statutory deadline to produce final stablecoin regulations. The agencies—the OCC, FDIC, NCUA, Treasury, FinCEN, and OFAC—each published proposed rules earlier this year, and all major public comment periods had formally closed by June 9, 2026, except one.\n\nThe FDIC published its GENIUS Act stablecoin proposed rule on April 10, 2026, setting a comment period that runs through August 4, 2026—seventeen days after the July 18 statutory deadline for final rules. The agency has provided no public explanation for the scheduling conflict, and legal observers say the situation has no clear statutory fix: the FDIC cannot finalize a rule before its own comment period closes without rendering the notice-and-comment process a formality.\n\n## What the Rules Require\n\nThe OCC's proposed framework sets a $5 million minimum capital floor for any new stablecoin issuer seeking federal approval, requires 1:1 liquid asset backing for all payment stablecoins, and mandates monthly reserve attestations. The FDIC's draft clarifies that stablecoin holders will not receive deposit insurance protection under any circumstances, a point intended to draw a clear line between tokenized payment instruments and insured bank deposits.\n\nFor the GENIUS Act's provisions to take effect, at least one primary federal regulator must issue final implementing rules. If that condition is met within 120 days of enactment—by November 15, 2025—the law becomes operative. If not, it defaults to taking effect 18 months after enactment, meaning January 18, 2027.\n\n## Industry Impact\n\nFor stablecoin issuers, the regulatory uncertainty has a practical cost. Companies including Circle, Paxos, and several large bank stablecoin programs have been holding expansion decisions pending the final OCC and FDIC frameworks. The Tether-Ledn gold-loan announcement and the growing use of USDT and USAT in institutional lending reflect an industry proceeding in the absence of complete regulatory clarity.\n\nLegal analysts at Sullivan & Cromwell and Chapman and Cutler note that regulators have some flexibility to issue interim final rules or no-action guidance that addresses the gap. Whether the FDIC chooses to accelerate its process, issue an interim rule, or simply acknowledge a delay will likely be one of the more consequential regulatory decisions in U.S. crypto policy before year-end.",
+    "fa": "یک سال پس از تصویب قانون GENIUS در ۱۸ جولای ۲۰۲۵، شش نهاد فدرال با مهلت قانونی برای تولید مقررات نهایی استیبل‌کوین روبه‌رو هستند. این نهادها — OCC، FDIC، NCUA، وزارت خزانه‌داری، FinCEN و OFAC — هر کدام اوایل امسال قوانین پیشنهادی منتشر کردند و همه دوره‌های نظرخواهی عمومی اصلی به جز یک مورد تا ۹ ژوئن ۲۰۲۶ رسماً بسته شدند.\n\nFDIC قانون استیبل‌کوین پیشنهادی GENIUS Act خود را در ۱۰ آوریل ۲۰۲۶ منتشر کرد و دوره نظرخواهی تا ۴ اوت ۲۰۲۶ — هفده روز پس از مهلت قانونی ۱۸ جولای برای قوانین نهایی — تنظیم کرد. این نهاد هیچ توضیح عمومی برای این تعارض زمان‌بندی ارائه نداده و ناظران حقوقی می‌گویند این وضعیت راه‌حل قانونی صریحی ندارد: FDIC نمی‌تواند قانونی را پیش از بسته شدن دوره نظرخواهی خودش نهایی کند بدون اینکه فرایند اطلاع‌رسانی و نظرخواهی را صرفاً تشریفاتی کند.\n\n## الزامات قوانین\n\nچارچوب پیشنهادی OCC حداقل سرمایه ۵ میلیون دلار برای هر ناشر جدید استیبل‌کوین که به دنبال تأیید فدرال است تعیین می‌کند، پشتوانه دارایی نقدی ۱:۱ برای همه استیبل‌کوین‌های پرداختی الزامی می‌کند و گواهینامه‌های ماهانه ذخیره را اجباری می‌سازد. پیش‌نویس FDIC روشن می‌کند که دارندگان استیبل‌کوین تحت هیچ شرایطی از حمایت بیمه سپرده بهره‌مند نمی‌شوند؛ نکته‌ای که قصد دارد خطی روشن بین ابزارهای پرداخت توکن‌شده و سپرده‌های بانکی بیمه‌شده بکشد.\n\nبرای اجرایی شدن مفاد قانون GENIUS، حداقل یک نهاد نظارتی فدرال اولیه باید قوانین اجرایی نهایی صادر کند. اگر این شرط ظرف ۱۲۰ روز از تصویب — تا ۱۵ نوامبر ۲۰۲۵ — برآورده شود، قانون لازم‌الاجرا می‌شود. در غیر این صورت به طور پیش‌فرض ۱۸ ماه پس از تصویب، یعنی ۱۸ ژانویه ۲۰۲۷، اجرایی می‌شود.\n\n## تأثیر بر صنعت\n\nبرای ناشران استیبل‌کوین، این عدم قطعیت نظارتی هزینه عملی دارد. شرکت‌هایی از جمله Circle، Paxos و چندین برنامه بزرگ استیبل‌کوین بانکی تصمیمات توسعه را در انتظار چارچوب‌های نهایی OCC و FDIC نگه داشته‌اند. اعلامیه وام طلا-لدن تتر و استفاده رو به رشد از USDT و USAT در وام‌دهی نهادی نشان‌دهنده صنعتی است که در غیاب وضوح نظارتی کامل پیش می‌رود.\n\nتحلیل‌گران حقوقی در Sullivan & Cromwell و Chapman and Cutler اشاره می‌کنند که تنظیم‌کنندگان انعطاف‌پذیری برخی برای صدور قوانین نهایی موقت یا راهنمایی اقدام غیررسمی که شکاف را مرتفع کند دارند. اینکه آیا FDIC انتخاب می‌کند فرایند خود را تسریع کند، یک قانون موقت صادر کند یا صرفاً تأخیر را بپذیرد، احتمالاً یکی از تصمیمات نظارتی مهم‌تر در سیاست رمزارز آمریکا تا پایان سال خواهد بود.",
+    "ar": "بعد عام واحد على صدور قانون GENIUS في 18 يوليو 2025، تواجه ستة وكالات فيدرالية موعدًا تشريعيًا لإصدار لوائح نهائية للعملات المستقرة. نشرت كل من OCC وFDIC وNCUA ووزارة الخزانة وFinCEN وOFAC قواعدها المقترحة في وقت سابق من هذا العام، وانتهت جميع فترات التعليق العام الرئيسية رسميًا بحلول 9 يونيو 2026، باستثناء واحدة.\n\nنشرت FDIC قاعدتها المقترحة بموجب قانون GENIUS للعملات المستقرة في 10 أبريل 2026، وحددت فترة تعليق تمتد حتى 4 أغسطس 2026—أي سبعة عشر يومًا بعد الموعد التشريعي النهائي في 18 يوليو. ولم تُقدّم الوكالة أي تفسير علني لهذا التضارب الزمني، ويؤكد المراقبون القانونيون أن الوضع لا يحظى بحل قانوني صريح: لا تستطيع FDIC إنهاء قاعدة قبل إغلاق فترة التعليق الخاصة بها دون أن تجعل عملية الإخطار والتعليق مجرد إجراء شكلي.\n\n## ما تُلزم به القواعد\n\nيُحدد إطار OCC المقترح حدًّا أدنى لرأس المال بمقدار 5 ملايين دولار لأي جهة إصدار جديدة للعملات المستقرة تسعى للحصول على موافقة فيدرالية، ويشترط دعمًا بأصول سائلة بنسبة 1:1 لجميع عملات الدفع المستقرة، ويُلزم بإصدار شهادات احتياطية شهرية. أما مسودة FDIC فتُوضح أن حاملي العملات المستقرة لن يحظوا بأي حماية من التأمين على الودائع في أي حال، وهي نقطة تهدف إلى رسم خط فاصل واضح بين أدوات الدفع المرمّزة والودائع البنكية المؤمَّنة.\n\nلكي تدخل أحكام قانون GENIUS حيز التنفيذ، يتعين على نظام تنظيمي فيدرالي رئيسي واحد على الأقل إصدار لوائح تنفيذية نهائية. فإن تحقق هذا الشرط خلال 120 يومًا من سريان القانون—أي بحلول 15 نوفمبر 2025—دخل القانون حيز التطبيق. وإلا تأخر تطبيقه حتى مرور 18 شهرًا على صدوره، أي في 18 يناير 2027.\n\n## الأثر على الصناعة\n\nيُكلّف الغموض التنظيمي ناشري العملات المستقرة أثمانًا عملية. أجّلت شركات كـCircle وPaxos وعدد من برامج العملات المستقرة المصرفية الكبرى قراراتها التوسعية ريثما تتضح الأطر النهائية لـOCC وFDIC. ويعكس إعلان قرض الذهب بين تيثر وLedn، فضلًا عن الاستخدام المتنامي لـUSDT وUSAT في الإقراض المؤسسي، صناعةً تمضي قُدُمًا في غياب وضوح تنظيمي كامل.\n\nيُشير المحللون القانونيون في Sullivan & Cromwell وChapman and Cutler إلى أن المنظمين يمتلكون قدرًا من المرونة لإصدار قواعد نهائية مؤقتة أو توجيهات عدم اتخاذ إجراء تُعالج الفجوة. وما إذا كانت FDIC ستُسرّع إجراءاتها أو تُصدر قاعدة مؤقتة أو تقرّ ببساطة بتأخير، سيكون على الأرجح من أكثر القرارات التنظيمية أهمية في سياسة العملات الرقمية الأمريكية قبل نهاية العام.",
+    "tr": "GENIUS Yasası'nın 18 Temmuz 2025'te yürürlüğe girmesinden bir yıl sonra altı federal kurum, nihai stablecoin düzenlemelerini çıkarmak için yasal son tarihe yaklaşıyor. OCC, FDIC, NCUA, Hazine Bakanlığı, FinCEN ve OFAC bu yılın başında kendi önerilen kurallarını yayımladı; tüm kamuoyu yorum süreçleri 9 Haziran 2026'ya kadar resmen kapandı; tek bir istisna dışında.\n\nFDIC, GENIUS Yasası kapsamındaki stablecoin önerilen kuralını 10 Nisan 2026'da yayımladı ve nihai kurallar için yasal son tarih olan 18 Temmuz'dan 17 gün sonraya, yani 4 Ağustos 2026'ya kadar uzanan bir yorum süreci belirledi. Kurum bu zamanlama çelişkisi için kamuoyuna herhangi bir açıklama yapmadı. Hukuk gözlemcileri bu durumun net bir yasal çözümünün bulunmadığını söylüyor: FDIC, kendi yorum süreci kapanmadan bir kuralı kesinleştiremez; aksi hâlde bildirim ve yorum süreci şekle indirgenmiş olur.\n\n## Kurallar Ne Öngörüyor?\n\nOCC'nin önerilen çerçevesi federal onay isteyen her yeni stablecoin ihraççısı için 5 milyon dolar asgari sermaye tabanı belirliyor, tüm ödeme stablecoin'leri için 1:1 likit varlık desteği şart koşuyor ve aylık rezerv attestasyonlarını zorunlu kılıyor. FDIC'nin taslağı, stablecoin sahiplerinin hiçbir koşulda mevduat sigortası korumasından yararlanamayacağını açıklığa kavuşturuyor; bu, tokenize ödeme araçları ile sigortalı banka mevduatları arasına net bir çizgi çekme amacı taşıyor.\n\nGENIUS Yasası hükümlerinin yürürlüğe girebilmesi için en az bir birincil federal düzenleyicinin nihai uygulama kuralları çıkarması gerekiyor. Bu koşul yasanın çıkışından itibaren 120 gün içinde, yani 15 Kasım 2025'e kadar yerine getirilirse yasa işlev kazanıyor. Aksi hâlde çıkıştan 18 ay sonra, yani 18 Ocak 2027'de yürürlüğe giriyor.\n\n## Sektöre Etkisi\n\nStablecoin ihraççıları için düzenleyici belirsizliğin somut bir maliyeti var. Circle, Paxos ve birçok büyük banka stablecoin programı, genişleme kararlarını OCC ve FDIC'nin nihai çerçevelerini bekleyerek askıya aldı. Tether-Ledn altın kredi duyurusu ve kurumsal kredilendirmede USDT ile USAT kullanımının artması, sektörün tam düzenleyici netlik olmaksızın yoluna devam ettiğini gösteriyor.\n\nSullivan & Cromwell ve Chapman and Cutler'daki hukuk analistleri, düzenleyicilerin boşluğu kapatacak geçici nihai kurallar veya hareketsizlik kılavuzu çıkarma konusunda bir esnekliğe sahip olduğuna dikkat çekiyor. FDIC'nin sürecini hızlandırmayı, geçici bir kural çıkarmayı ya da sade bir şekilde gecikmeyi kabul etmeyi tercih edip etmeyeceği, yıl bitmeden ABD kripto politikasındaki en belirleyici düzenleyici kararlardan biri olacak."
+  },
+  "seo": {
+    "title": {
+      "en": "GENIUS Act July 18 Stablecoin Deadline: FDIC Paradox — MAXGAZINE",
+      "fa": "مهلت ۱۸ جولای استیبل‌کوین قانون GENIUS: پارادوکس FDIC — MAXGAZINE",
+      "ar": "موعد قانون GENIUS النهائي في 18 يوليو للعملات المستقرة: مفارقة FDIC — MAXGAZINE",
+      "tr": "GENIUS Yasası 18 Temmuz Stablecoin Son Tarihi: FDIC Paradoksu — MAXGAZINE"
+    },
+    "description": {
+      "en": "The GENIUS Act requires 6 agencies to finalize stablecoin rules by July 18, 2026. The FDIC's comment period closes August 4—17 days late. Industry lawyers say no clean legal fix exists.",
+      "fa": "قانون GENIUS از ۶ نهاد می‌خواهد تا ۱۸ جولای ۲۰۲۶ قوانین استیبل‌کوین را نهایی کنند. دوره نظرخواهی FDIC ۴ اوت بسته می‌شود — ۱۷ روز دیر. وکلای صنعت می‌گویند راه‌حل حقوقی صریحی وجود ندارد.",
+      "ar": "يُلزم قانون GENIUS ست جهات تنظيمية بإنهاء قواعد العملات المستقرة بحلول 18 يوليو 2026، غير أن فترة تعليق FDIC تنتهي في 4 أغسطس—متأخرة 17 يومًا. يقول محامو الصناعة إنه لا يوجد حل قانوني صريح.",
+      "tr": "GENIUS Yasası 6 kurumun stablecoin kurallarını 18 Temmuz 2026'ya kadar kesinleştirmesini şart koşuyor. FDIC'nin yorum süreci 4 Ağustos'ta kapanıyor—17 gün geç. Sektör avukatları net bir hukuki çözüm olmadığını söylüyor."
+    },
+    "keywords": {
+      "en": [
+        "GENIUS Act",
+        "stablecoin regulation",
+        "FDIC",
+        "OCC",
+        "US policy",
+        "crypto regulation"
+      ],
+      "fa": [
+        "GENIUS Act",
+        "مقررات استیبل‌کوین",
+        "FDIC",
+        "OCC",
+        "سیاست آمریکا",
+        "Bitcoin"
+      ],
+      "ar": [
+        "GENIUS Act",
+        "تنظيم العملات المستقرة",
+        "FDIC",
+        "OCC",
+        "السياسة الأمريكية",
+        "Bitcoin"
+      ],
+      "tr": [
+        "GENIUS Act",
+        "stablecoin düzenlemesi",
+        "FDIC",
+        "OCC",
+        "ABD politikası",
+        "Bitcoin"
+      ]
+    }
+  },
+  "tags": [
+    "regulation",
+    "Stablecoins",
+    "US policy",
+    "CFTC",
+    "SEC",
+    "crypto"
+  ],
+  "sources": [
+    {
+      "title": "GENIUS Act Rulemaking and Reporting Tracker",
+      "url": "https://www.chapman.com/publication-genius-act-rulemaking-tracker"
+    },
+    {
+      "title": "GENIUS Act Stablecoin Rules: July 2026 Investor Guide",
+      "url": "https://angelinvestorsnetwork.com/crypto-digital-assets/genius-act-stablecoin-final-rules-july-2026-accredited-investors"
+    },
+    {
+      "title": "GENIUS Act Rulemaking: Who Stablecoin Regulation Actually Serves",
+      "url": "https://www.vaasblock.com/news/genius-act-rulemaking-regulatory-capture-stablecoin-2026/"
+    },
+    {
+      "title": "FDIC Proposes Application Requirements Under the GENIUS Act",
+      "url": "https://www.sullcrom.com/insights/memo/2025/December/FDIC-Proposes-Application-Requirements-Under-GENIUS-Act"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

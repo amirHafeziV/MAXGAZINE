@@ -1,0 +1,92 @@
+{
+  "slug": "waymo-2026-us-expansion-robotaxi",
+  "category": "cars",
+  "date": "2026-06-25",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Waymo Now Operates in 11 US Cities and Is Targeting 20 More — Tesla's Robotaxi Still Amounts to Four Cars in Two Cities",
+    "fa": "وِیمو در ۱۱ شهر آمریکا فعال است و هدف ۲۰ شهر دیگر را دنبال می‌کند — روبوتاکسی تسلا همچنان به چهار خودرو در دو شهر محدود است",
+    "ar": "وايمو تعمل الآن في 11 مدينة أمريكية وتستهدف 20 إضافية — روبوتاكسي تسلا لا يزال يقتصر على أربع سيارات في مدينتين",
+    "tr": "Waymo Artık 11 ABD Şehrinde Faaliyet Gösteriyor ve 20 Şehir Daha Hedefliyor — Tesla'nın Robotaksisi Hâlâ İki Şehirde Dört Araçtan İbaret"
+  },
+  "dek": {
+    "en": "Waymo opened full commercial service in Nashville in June and plans expansion to San Diego, Detroit, and Las Vegas later in 2026 — all while targeting more than 20 cities worldwide including Tokyo and London. The autonomous vehicle race has a clear early leader, and it is not Tesla.",
+    "fa": "وِیمو در ژوئن خدمات تجاری کامل در نَشویل را آغاز کرد و گسترش به سن‌دیگو، دترویت و لاس‌وگاس را برای اواخر ۲۰۲۶ برنامه‌ریزی کرده — در حالی که بیش از ۲۰ شهر جهانی از جمله توکیو و لندن را هدف می‌گیرد. مسابقه خودروهای خودران یک پیشرو اولیه مشخص دارد و آن تسلا نیست.",
+    "ar": "افتتحت وايمو خدمات تجارية كاملة في ناشفيل في يونيو وتخطط للتوسع نحو سان دييغو وديترويت ولاس فيغاس في وقت لاحق من 2026 — فيما تستهدف أكثر من 20 مدينة حول العالم بما فيها طوكيو ولندن. سباق المركبات ذاتية القيادة له بوضوح قائد مبكر، وهو ليس تسلا.",
+    "tr": "Waymo, Haziran'da Nashville'de tam ticari hizmeti başlattı ve 2026'nın ilerleyen dönemlerinde San Diego, Detroit ve Las Vegas'a genişlemeyi planlıyor; aynı zamanda Tokyo ve Londra dahil 20'den fazla küresel şehri hedefliyor. Otonom araç yarışının net bir erken öncüsü var ve bu Tesla değil."
+  },
+  "body": {
+    "en": "Alphabet's autonomous vehicle division Waymo has now established commercial robotaxi service in eleven American cities and is preparing its most ambitious expansion to date, with plans to enter San Diego, Detroit, and Las Vegas before the end of 2026 — and internationally, Tokyo and London before the end of the decade.\n\nThe company opened full commercial service in Nashville in late April 2026, with anyone in the service area able to request a ride immediately through the Waymo app without a waiting list. By June 2026, tens of thousands of Nashville residents had registered for the service, according to the company. A Lyft integration allowing rides to be booked through the Lyft app is expected later this year.\n\n## The Scale Gap With Tesla\n\nThe contrast with Tesla's autonomous vehicle program is stark. Tesla launched its own robotaxi service in Austin, Texas in June 2025, initially with human safety monitors in the vehicle, and transitioned to unsupervised operation in January 2026. However, a Reuters investigation published in June 2026 found that the Austin fleet amounts to approximately four vehicles across two cities, with users reporting hours-long wait times and unusual routing behaviors.\n\nThe divergence between the two programs reflects fundamentally different technical approaches. Waymo uses a combination of lidar sensors, cameras, radar, and high-definition mapping that is built before each new launch, which requires substantial up-front preparation but produces reliable performance within defined geofences. Tesla relies entirely on cameras and a vision-based neural network approach that the company argues should, in theory, generalize more easily to new locations without requiring pre-mapped road data.\n\nIn practice, Waymo's approach has produced a commercially operational, safety-record-carrying robotaxi service in eleven cities. Tesla's approach has produced a very small, geofenced fleet that is not available to general public bookings in most of its claimed service areas.\n\n## Waymo's 2026 Expansion in Numbers\n\nWaymo reached an annualized pace of approximately 14 million fully autonomous trips in 2025 and completed 500,000 weekly rides by early 2026, tripling its volume from 2024. The company is now in the early stages of its most geographically ambitious phase: Nashville adds to existing operations in San Francisco, Los Angeles, Phoenix, Dallas, Houston, San Antonio, Orlando, Atlanta, Miami, and Washington D.C. San Diego, Detroit, and Las Vegas are confirmed for later in 2026, and Tokyo and London launches are planned for the next several years.\n\nThe commercial scale Waymo has now achieved is significant because it crosses a threshold above which autonomous vehicle economics begin to look viable. At 500,000 weekly rides, the fixed costs of fleet management, maintenance, and mapping are spread across a growing revenue base, and the system accumulates the edge-case driving data needed to make the technology increasingly reliable in new environments.\n\n## What the Industry Is Watching\n\nThe more important question for the automotive industry in late 2026 is not who leads today but whether either Tesla or Waymo — or a Chinese competitor such as Baidu's Apollo or Pony.AI — will be the first to demonstrate that fully autonomous commercial service can be profitable at scale without continuous heavy subsidy. Waymo's Alphabet parent has invested more than $16 billion in the company over two decades. The path to profitability remains the central unresolved question, but the operational distance between Waymo and every other player has never been wider.",
+    "fa": "شعبه خودروهای خودران Alphabet به نام وِیمو اکنون خدمات روبوتاکسی تجاری در یازده شهر آمریکا برقرار کرده و در حال آماده‌سازی بلندپروازانه‌ترین گسترش خود است؛ با برنامه ورود به سن‌دیگو، دترویت و لاس‌وگاس پیش از پایان ۲۰۲۶ — و در سطح بین‌المللی، توکیو و لندن پیش از پایان این دهه.\n\nشرکت در اواخر آوریل ۲۰۲۶ خدمات تجاری کامل در نَشویل را با امکان درخواست فوری از طریق اپ وِیمو بدون لیست انتظار آغاز کرد. تا ژوئن ۲۰۲۶، ده‌ها هزار ساکن نَشویل برای خدمت ثبت‌نام کرده بودند. ادغام با Lyft برای رزرو سفر از طریق اپ لیفت نیز در اواخر امسال انتظار می‌رود.\n\n## شکاف مقیاسی با تسلا\n\nتضاد با برنامه خودروهای خودران تسلا چشمگیر است. تسلا خدمات روبوتاکسی خود را در آستین، تگزاس در ژوئن ۲۰۲۵ آغاز کرد و در ژانویه ۲۰۲۶ به عملیات بدون نظارت انسانی روی آورد. با این حال، تحقیقاتی که در ژوئن ۲۰۲۶ منتشر شد نشان داد ناوگان آستین تنها حدود چهار خودرو در دو شهر است، با گزارش‌های زمان انتظار چند ساعته.\n\nوِیمو از ترکیبی از حسگرهای لیدار، دوربین‌ها، رادار و نقشه‌برداری با دقت بالا استفاده می‌کند که پیش از هر راه‌اندازی جدید انجام می‌شود. این رویکرد آماده‌سازی اولیه قابل توجهی نیاز دارد اما در محدوده‌های جغرافیایی تعریف‌شده عملکرد قابل اتکایی ارائه می‌دهد. تسلا کاملاً به دوربین‌ها و شبکه عصبی بینایی تکیه می‌کند.\n\n## گسترش وِیمو در ۲۰۲۶ به عدد و رقم\n\nوِیمو در سال ۲۰۲۵ به نرخ سالانه‌ای معادل حدود ۱۴ میلیون سفر کاملاً خودران رسید و اوایل ۲۰۲۶ به ۵۰۰،۰۰۰ سفر هفتگی دست یافت — سه برابر حجم ۲۰۲۴. شرکت اکنون در ابتدایی‌ترین مرحله بلندپروازانه‌ترین دوره جغرافیایی خود قرار دارد. سن‌دیگو، دترویت و لاس‌وگاس برای اواخر ۲۰۲۶ تأیید شده و راه‌اندازی در توکیو و لندن برای چند سال آینده برنامه‌ریزی شده است.\n\nسؤال مهم‌تر برای صنعت خودروسازی این است که آیا وِیمو، تسلا یا رقیبی چینی اول خواهد بود که نشان دهد خدمات تجاری کاملاً خودران می‌تواند در مقیاس بدون یارانه سنگین مداوم سودآور باشد. شرکت مادر وِیمو، Alphabet، طی دو دهه بیش از ۱۶ میلیارد دلار در این شرکت سرمایه‌گذاری کرده است.",
+    "ar": "رسّخ قسم المركبات ذاتية القيادة التابع لألفابيت، وايمو، حضوره التجاري في إحدى عشرة مدينة أمريكية، وبات يستعد لأطموح توسعاته حتى الآن، إذ يخطط للدخول إلى سان دييغو وديترويت ولاس فيغاس قبل نهاية 2026، وعلى الصعيد الدولي إلى طوكيو ولندن قبل نهاية هذا العقد.\n\nافتتحت الشركة خدمتها التجارية الكاملة في ناشفيل في أواخر أبريل 2026، بحيث يستطيع أي شخص في منطقة الخدمة طلب رحلة فوراً عبر تطبيق وايمو دون قائمة انتظار. وبحلول يونيو 2026، كان عشرات الآلاف من سكان ناشفيل قد سجّلوا في الخدمة.\n\n## هُوّة القياس مع تسلا\n\nيبدو التناقض مع برنامج مركبات تسلا ذاتية القيادة صارخاً. أطلقت تسلا خدمة الروبوتاكسي في أوستن، تكساس، في يونيو 2025، وانتقلت إلى التشغيل غير المُشرف في يناير 2026. غير أن تحقيقاً نُشر في يونيو 2026 كشف أن أسطول أوستن لا يتجاوز أربع سيارات في مدينتين، مع تقارير عن أوقات انتظار تمتد لساعات وتصرفات توجيه غير معتادة.\n\nتعتمد وايمو مزيجاً من حساسات ليدار وكاميرات وراديو وخرائط عالية الدقة يُعدّ مسبقاً لكل إطلاق جديد. أما تسلا فتعتمد كلياً على الكاميرات والشبكات العصبية البصرية.\n\n## توسع وايمو في 2026 بالأرقام\n\nبلغت وايمو معدلاً سنوياً يقارب 14 مليون رحلة مستقلة بالكامل في 2025، وحققت 500,000 رحلة أسبوعية في مطلع 2026، أي ثلاثة أضعاف حجم 2024. تُضاف ناشفيل إلى عمليات قائمة في سان فرانسيسكو ولوس أنجلوس وفينيكس وداباس وهيوستن وسان أنطونيو وأورلاندو وأتلانتا وميامي وواشنطن العاصمة.\n\nيضخّ مالك وايمو، ألفابيت، ما يزيد على 16 مليار دولار في الشركة على مدى عقدين. والمسار نحو الربحية يظل السؤال المركزي دون إجابة حاسمة، غير أن الفجوة التشغيلية بين وايمو وكل المنافسين الآخرين لم تكن أوسع قط.",
+    "tr": "Alphabet'in otonom araç bölümü Waymo, artık on bir Amerikan şehrinde ticari robotaksi hizmeti sunuyor ve şimdiye kadarki en iddialı genişleme hazırlığındaki; 2026 sonundan önce San Diego, Detroit ve Las Vegas'a, on yılın sonuna kadar ise uluslararası arenada Tokyo ve Londra'ya açılmayı planlıyor.\n\nShirket, Nisan 2026 sonunda Nashville'de bekleme listesi olmaksızın Waymo uygulaması üzerinden anında sürüş talep edilebilen tam ticari hizmeti başlattı. Haziran 2026 itibarıyla şirkete göre on binlerce Nashville sakini hizmete kaydolmuştu.\n\n## Tesla ile Büyüklük Farkı\n\nTesla'nın otonom araç programıyla karşılaştırma çarpıcı. Tesla kendi robotaksi hizmetini Haziran 2025'te Austin, Teksas'ta başlattı ve Ocak 2026'da insan gözetiminden bağımsız operasyona geçti. Ancak Haziran 2026'da yayımlanan bir araştırma, Austin filosunun iki şehirde yaklaşık dört araçtan ibaret olduğunu, kullanıcıların saatlerce bekleme süresi ve alışılmadık güzergah davranışları bildirdiğini ortaya koydu.\n\nWaymo, her yeni lansman öncesinde hazırlanan lidar sensörleri, kameralar, radar ve yüksek çözünürlüklü haritalama kombinasyonunu kullanıyor. Tesla ise yalnızca kameralara ve görme tabanlı bir sinir ağı yaklaşımına dayanıyor.\n\n## Waymo'nun 2026 Genişlemesi Rakamlarla\n\nWaymo, 2025'te yıllık yaklaşık 14 milyon tam otonom sürüş hızına ulaştı ve 2026 başında haftada 500.000 sürüşe erişti; bu rakam 2024'ün üç katı. San Diego, Detroit ve Las Vegas 2026 sonrası için onaylandı; Tokyo ve Londra lansmanları ise önümüzdeki birkaç yıl için planlandı.\n\nAlphabet, Waymo'ya yirmi yılda 16 milyar doların üzerinde yatırım yaptı. Kârlılık yolu hâlâ temel cevapsız soru olmaya devam ediyor; ama Waymo ile diğer tüm oyuncular arasındaki operasyonel mesafe hiç bu kadar açık olmamıştı."
+  },
+  "seo": {
+    "title": {
+      "en": "Waymo Expands to 11+ US Cities in 2026 While Tesla Robotaxi Stalls — MAXGAZINE",
+      "fa": "وِیمو در ۲۰۲۶ به ۱۱+ شهر آمریکا گسترش یافت — MAXGAZINE",
+      "ar": "وايمو تتوسع إلى 11 مدينة أمريكية وأكثر في 2026 بينما تتعثر روبوتاكسي تسلا — MAXGAZINE",
+      "tr": "Waymo 2026'da 11'den Fazla ABD Şehrine Genişlerken Tesla Robotaksisi Takılıp Kaldı — MAXGAZINE"
+    },
+    "description": {
+      "en": "Waymo now operates robotaxis in 11 US cities with Nashville fully open in June 2026 and San Diego, Detroit and Las Vegas next. Tesla's robotaxi fleet remains just four cars in two cities.",
+      "fa": "وِیمو اکنون در ۱۱ شهر آمریکا روبوتاکسی دارد و نَشویل در ژوئن ۲۰۲۶ باز شد؛ سن‌دیگو، دترویت و لاس‌وگاس در راهند. ناوگان تسلا هنوز تنها چهار خودرو در دو شهر است.",
+      "ar": "تشغّل وايمو الآن روبوتاكسي في 11 مدينة أمريكية مع افتتاح ناشفيل بالكامل في يونيو 2026 وسان دييغو وديترويت ولاس فيغاس التالية. أسطول روبوتاكسي تسلا لا يزال أربع سيارات في مدينتين.",
+      "tr": "Waymo artık 11 ABD şehrinde robotaksi işletiyor; Nashville Haziran 2026'da tam açıldı, sırada San Diego, Detroit ve Las Vegas var. Tesla'nın robotaksi filosu hâlâ iki şehirde dört araçtan ibaret."
+    },
+    "keywords": {
+      "en": [
+        "Waymo",
+        "Tesla robotaxi",
+        "autonomous vehicles",
+        "self-driving car 2026",
+        "Alphabet EV"
+      ],
+      "fa": [
+        "وِیمو",
+        "روبوتاکسی تسلا",
+        "خودروهای خودران",
+        "ماشین بدون راننده ۲۰۲۶",
+        "EV"
+      ],
+      "ar": [
+        "وايمو",
+        "روبوتاكسي تسلا",
+        "مركبات ذاتية القيادة",
+        "سيارات ذاتية القيادة 2026",
+        "Waymo"
+      ],
+      "tr": [
+        "Waymo",
+        "Tesla robotaksi",
+        "otonom araçlar",
+        "sürücüsüz araba 2026",
+        "electric vehicles"
+      ]
+    }
+  },
+  "tags": [
+    "Waymo",
+    "Tesla",
+    "EV",
+    "Automotive",
+    "electric vehicles",
+    "AI"
+  ],
+  "sources": [
+    {
+      "title": "Waymo continues expansion of robotaxis in Nashville — Axios Nashville",
+      "url": "https://www.axios.com/local/nashville/2026/06/25/waymo-expansion-robotaxis-nashville"
+    },
+    {
+      "title": "Waymo Expanding to 20+ Cities in 2026, Including Tokyo and London — eWeek",
+      "url": "https://www.eweek.com/news/waymo-16-billion-robotaxi-expansion-2026/"
+    },
+    {
+      "title": "Waymo's Expansion Is Leaving Tesla In The Dust — InsideEVs",
+      "url": "https://insideevs.com/news/788284/waymo-expansion-tesla-cities-2026/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

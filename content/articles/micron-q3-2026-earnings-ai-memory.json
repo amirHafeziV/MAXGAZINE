@@ -1,0 +1,96 @@
+{
+  "slug": "micron-q3-2026-earnings-ai-memory",
+  "category": "tech",
+  "date": "2026-06-24",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Micron Posts $41 Billion Quarter as AI Memory Demand Makes Its Financials Unrecognizable",
+    "fa": "میکرون ۴۱ میلیارد دلار درآمد فصلی ثبت کرد؛ تقاضای حافظه هوش مصنوعی صورت‌های مالی این شرکت را دگرگون کرده",
+    "ar": "مايكرون تسجّل إيرادات فصلية بـ41 مليار دولار مع تحوّل جذري في أعمالها بفعل الطلب على ذاكرة الذكاء الاصطناعي",
+    "tr": "Micron 41 Milyar Dolarlık Çeyrek Açıkladı: Yapay Zeka Bellek Talebi Şirketin Mali Görünümünü Kökten Değiştirdi"
+  },
+  "dek": {
+    "en": "Micron Technology reported Q3 fiscal 2026 revenue of $41.46 billion — a figure that is four times higher than a year ago — with gross margins at 85% and earnings per share of $24.67. Customers have committed $22 billion in fixed-price contracts to secure future supply, and Q4 guidance points to $50 billion. The AI memory supercycle is no longer a prediction.",
+    "fa": "میکرون تکنولوژی درآمد فصل سوم مالی ۲۰۲۶ خود را ۴۱.۴۶ میلیارد دلار گزارش داد — رقمی که چهار برابر سال گذشته است — با حاشیه سود ناخالص ۸۵ درصد و سود هر سهم ۲۴.۶۷ دلار. مشتریان ۲۲ میلیارد دلار در قراردادهای قیمت ثابت متعهد شده‌اند و راهنمایی فصل چهارم به ۵۰ میلیارد دلار اشاره می‌کند.",
+    "ar": "أعلنت مايكرون تكنولوجي عن إيرادات بلغت 41.46 مليار دولار للربع الثالث من السنة المالية 2026 — أي أربعة أضعاف ما كانت عليه قبل عام — بهامش ربح إجمالي بلغ 85% وعائد سهمي قدره 24.67 دولار. وبلغت الالتزامات التعاقدية للعملاء 22 مليار دولار لتأمين الإمدادات المستقبلية، فيما تتجه توقعات الربع الرابع نحو 50 مليار دولار.",
+    "tr": "Micron Technology, 2026 mali yılının üçüncü çeyreğinde 41,46 milyar dolar gelir açıkladı — bu rakam bir yıl öncesinin dört katı — yüzde 85 brüt marj ve hisse başına 24,67 dolar kazanç ile. Müşteriler gelecekteki arzı güvence altına almak için 22 milyar dolarlık sabit fiyatlı sözleşme yaptı; dördüncü çeyrek yönlendirmesi 50 milyar dolara işaret ediyor."
+  },
+  "body": {
+    "en": "Micron Technology reported fiscal third-quarter 2026 results after market close on June 24 that exceeded every analyst forecast by a dramatic margin. Revenue came in at $41.46 billion — against analyst consensus expectations of approximately $35.9 billion — representing roughly fourfold growth year over year from what had been, just twelve months ago, a deeply depressed memory chip market.\n\nGross margins expanded to 85%, lifting net income to $28.24 billion compared with $1.88 billion in the same quarter of 2025. Diluted earnings per share reached $24.67, compared with $1.68 a year earlier. Micron shares jumped approximately 14.6% in after-hours trading on the results.\n\n## The AI Memory Supercycle in Hard Numbers\n\nThe figures are a direct measure of what AI infrastructure spending has done to the memory chip market. Data center revenue exceeded $25 billion in the quarter — equivalent to an annualized run rate above $100 billion — driven primarily by High Bandwidth Memory (HBM) modules that are integral components of the AI accelerators made by Nvidia, AMD, and Google's custom TPUs.\n\nMicron also disclosed that customers have committed approximately $22 billion in fixed-price supply contracts to secure memory allocations, a figure that indicates large hyperscalers are not treating AI memory access as a spot market but as critical infrastructure that must be locked in at the source.\n\nData center SSD revenue exceeded $5 billion in the quarter and more than doubled sequentially, reflecting the parallel expansion in AI storage infrastructure alongside compute.\n\n## Guidance That Rewrites the Scale of Expectations\n\nMicron guided Q4 fiscal 2026 revenue to approximately $50 billion, against analyst estimates of roughly $44 billion and a year-ago figure of just over $11 billion. If achieved, that would make Micron's fiscal year 2026 the most profitable in the company's four-decade history by a significant margin, and would place annual memory chip revenue in territory that seemed implausible to most semiconductor analysts as recently as 2024.\n\nThe company also secured 16 multi-year strategic supply agreements with data center operators and automotive companies during the quarter, representing an estimated $100 billion in lifetime value — a figure that provides unusually long forward visibility for what has historically been a highly cyclical commodity business.\n\n## What This Means for the Broader AI Infrastructure Race\n\nMicron's results are a benchmark for understanding how deep and durable the current AI capital expenditure cycle actually is. The company competes against Samsung Electronics and SK hynix, both of which have recently announced their own AI-memory partnership agreements. Nvidia itself disclosed a multiyear co-development agreement with SK hynix during the same week, aimed at aligning next-generation memory specifications directly with Nvidia's roadmap.\n\nFor the technology sector broadly, Micron's quarter is a reminder that the economic value being created by AI is not concentrated only in model companies and applications — it is flowing heavily into foundational silicon, and the companies that make the hardware enabling AI inference and training are seeing the financial effects of that at a scale that has no precedent in the industry's history.",
+    "fa": "میکرون تکنولوژی نتایج سه‌ماهه سوم مالی ۲۰۲۶ خود را در ۲۴ ژوئن پس از بسته شدن بازار اعلام کرد که با فاصله‌ای چشمگیر از تمام پیش‌بینی‌های تحلیلگران فراتر رفت. درآمد به ۴۱.۴۶ میلیارد دلار رسید — در برابر انتظار اجماعی تحلیلگران در حدود ۳۵.۹ میلیارد دلار — که نشان‌دهنده رشد چهار برابری نسبت به سال قبل از آن چیزی است که دوازده ماه پیش یک بازار تراشه حافظه به شدت افسرده بود.\n\nحاشیه سود ناخالص به ۸۵ درصد رسید و درآمد خالص را به ۲۸.۲۴ میلیارد دلار در مقایسه با ۱.۸۸ میلیارد دلار در همین فصل ۲۰۲۵ رساند. سود رقیق هر سهم به ۲۴.۶۷ دلار در مقایسه با ۱.۶۸ دلار سال قبل رسید. سهام میکرون در معاملات پس از ساعت بازار حدود ۱۴.۶ درصد افزایش یافت.\n\n## چرخه اَبَر تقاضای حافظه هوش مصنوعی در اعداد واقعی\n\nاین ارقام مستقیماً نشان می‌دهد که هزینه‌گذاری در زیرساخت هوش مصنوعی چه بر سر بازار تراشه حافظه آورده است. درآمد مراکز داده در این فصل از ۲۵ میلیارد دلار فراتر رفت — معادل نرخ سالانه‌ای بالای ۱۰۰ میلیارد دلار — که عمدتاً توسط ماژول‌های حافظه پهن‌باند بالا (HBM) هدایت می‌شود که اجزای اساسی شتاب‌دهنده‌های هوش مصنوعی ساخته‌شده توسط Nvidia، AMD و TPUهای سفارشی گوگل هستند.\n\nمیکرون همچنین اعلام کرد مشتریان حدود ۲۲ میلیارد دلار در قراردادهای عرضه با قیمت ثابت برای تأمین تخصیص حافظه متعهد شده‌اند — رقمی که نشان می‌دهد ابَرشرکت‌های بزرگ دسترسی به حافظه هوش مصنوعی را به عنوان یک بازار لحظه‌ای تلقی نمی‌کنند بلکه آن را زیرساخت حیاتی می‌دانند که باید از مبدأ تضمین شود.\n\n## راهنمایی که مقیاس انتظارات را بازنویسی می‌کند\n\nمیکرون درآمد فصل چهارم مالی ۲۰۲۶ را به حدود ۵۰ میلیارد دلار پیش‌بینی کرد، در برابر برآورد تحلیلگران در حدود ۴۴ میلیارد دلار و رقم سال قبل اندکی بالاتر از ۱۱ میلیارد دلار. این پیش‌بینی سال مالی ۲۰۲۶ میکرون را به احتمال زیاد سودآورترین سال در تاریخ چهار دهه‌ای این شرکت خواهد کرد.\n\nنتایج میکرون یادآوری است که ارزش اقتصادی ایجادشده توسط هوش مصنوعی تنها در شرکت‌های مدل و اپلیکیشن متمرکز نیست — بلکه به شدت در سیلیکون بنیادی جاری است و شرکت‌هایی که سخت‌افزار امکان‌پذیر کردن استنتاج و آموزش هوش مصنوعی را می‌سازند آثار مالی این موج را در مقیاسی می‌بینند که در تاریخ صنعت بی‌سابقه است.",
+    "ar": "أعلنت مايكرون تكنولوجي عن نتائج الربع الثالث من السنة المالية 2026 بعد إغلاق الأسواق في 24 يونيو، متخطّيةً كل توقعات المحللين بفارق لافت. جاءت الإيرادات عند 41.46 مليار دولار — مقابل توقعات الإجماع البالغة نحو 35.9 مليار دولار — لتمثّل نمواً يبلغ أربعة أضعاف مقارنةً بالعام الماضي، حين كان سوق رقائق الذاكرة يرزح في أعماق الركود.\n\nتوسّعت هوامش الربح الإجمالية إلى 85 بالمئة، رافعةً صافي الدخل إلى 28.24 مليار دولار مقابل 1.88 مليار دولار في الربع ذاته من 2025. وبلغ عائد السهم المخفَّف 24.67 دولاراً مقابل 1.68 دولار قبل عام. وقفزت أسهم مايكرون بنحو 14.6 بالمئة في تداولات ما بعد ساعات السوق.\n\n## الدورة الفائقة لذاكرة الذكاء الاصطناعي في أرقام صريحة\n\nتعكس هذه الأرقام مباشرةً ما أحدثه الإنفاق على البنية التحتية للذكاء الاصطناعي في سوق الذاكرة. تجاوزت إيرادات مراكز البيانات 25 مليار دولار في الربع — ما يعادل معدل سنوياً يتجاوز 100 مليار دولار — مدفوعةً في المقام الأول بوحدات الذاكرة عالية النطاق الترددي (HBM) المكوّن الأساسي في معجّلات الذكاء الاصطناعي التي تنتجها إنفيديا وAMD ووحدات TPU المخصصة من جوجل.\n\nكشفت مايكرون أيضاً أن العملاء التزموا بنحو 22 مليار دولار في عقود عرض بأسعار ثابتة لتأمين حصصهم من الذاكرة — مؤشر على أن المشغّلين الكبار لا يتعاملون مع الذاكرة كسلعة آنية بل كبنية تحتية حيوية يجب تأمينها من المصدر.\n\n## توجيهات تعيد رسم مقاييس التوقعات\n\nوجّهت مايكرون إيرادات الربع الرابع من السنة المالية 2026 نحو 50 مليار دولار تقريباً، في مقابل توقعات المحللين البالغة نحو 44 مليار دولار ورقم العام الماضي الذي لم يتجاوز قليلاً 11 مليار دولار.\n\nنتائج مايكرون تذكّرنا بأن القيمة الاقتصادية التي يخلقها الذكاء الاصطناعي لا تتركّز في شركات النماذج والتطبيقات وحدها — بل تتدفق بكثافة إلى الرقائق الأساسية، والشركات المصنّعة للمعدات التي تُتيح الاستدلال والتدريب على الذكاء الاصطناعي تشهد تأثيرات مالية بمقياس لا سابقة له في تاريخ الصناعة.",
+    "tr": "Micron Technology, 24 Haziran'da piyasalar kapandıktan sonra 2026 mali yılı üçüncü çeyrek sonuçlarını açıkladı ve tüm analist tahminlerini çarpıcı bir farkla geride bıraktı. Gelir, analistlerin yaklaşık 35,9 milyar dolarlık konsensüs beklentisine karşın 41,46 milyar dolar oldu; bu rakam, on iki ay önce derin bir durgunlukta olan bellek çipi piyasasına kıyasla yaklaşık dört katlık bir büyümeyi temsil ediyor.\n\nBrüt marjlar yüzde 85'e genişleyerek net geliri 2025'in aynı çeyreğindeki 1,88 milyar dolara kıyasla 28,24 milyar dolara taşıdı. Seyreltilmiş hisse başına kazanç, bir önceki yılın 1,68 dolarından 24,67 dolara yükseldi. Micron hisseleri, sonuçların açıklanmasının ardından seans dışı işlemlerde yaklaşık yüzde 14,6 değer kazandı.\n\n## Yapay Zeka Bellek Süper Döngüsü Rakamlarla Ortaya Çıktı\n\nBu rakamlar, yapay zeka altyapı harcamalarının bellek çipi piyasasında ne yarattığının doğrudan ölçümü. Veri merkezi gelirleri çeyrekte 25 milyar doları aştı — yıllıklandırılmış 100 milyar dolar üzeri bir hıza eşdeğer — büyük ölçüde Nvidia, AMD ve Google'ın özel TPU'larındaki yapay zeka hızlandırıcılarının ayrılmaz bileşeni olan Yüksek Bant Genişliğine Sahip Bellek (HBM) modülleri tarafından yönlendiriliyor.\n\nMicron ayrıca müşterilerin gelecekteki bellek tahsisatlarını güvence altına almak için yaklaşık 22 milyar dolarlık sabit fiyatlı tedarik sözleşmesi yaptığını açıkladı; bu, büyük hiper ölçekli bulut şirketlerinin yapay zeka belleğine spot piyasa gibi değil, kaynağında kilitlenmesi gereken kritik altyapı gibi baktığını gösteriyor.\n\n## Beklentilerin Ölçeğini Yeniden Yazan Yönlendirme\n\nMicron, mali yılın dördüncü çeyreği için yaklaşık 50 milyar dolarlık gelir yönlendirmesi yaptı; bu rakam, analistlerin 44 milyar dolarlık tahminine ve bir önceki yılın 11 milyar dolar üzerindeki rakamına kıyasla oldukça yüksek. Micron'un sonuçları, yapay zekanın yarattığı ekonomik değerin yalnızca model şirketleri ve uygulamalarda yoğunlaşmadığını hatırlatıyor — bu değer temel silikon katmanına da yoğun biçimde akıyor."
+  },
+  "seo": {
+    "title": {
+      "en": "Micron Q3 2026: $41.46B Revenue, 4x Growth Driven by AI Memory — MAXGAZINE",
+      "fa": "میکرون فصل سوم ۲۰۲۶؛ درآمد ۴۱ میلیارد دلار — MAXGAZINE",
+      "ar": "مايكرون Q3 2026: إيرادات 41.46 مليار دولار ونمو 4 أضعاف بفعل ذاكرة الذكاء الاصطناعي — MAXGAZINE",
+      "tr": "Micron Q3 2026: Yapay Zeka Belleğiyle 41,46 Milyar Dolar Gelir, 4 Kat Büyüme — MAXGAZINE"
+    },
+    "description": {
+      "en": "Micron Technology's Q3 FY2026 revenue hit $41.46B — 4x year-over-year — with 85% gross margins and $22B in customer contracts locked in, as AI memory demand rewrites the semiconductor industry's records.",
+      "fa": "درآمد فصل سوم مالی ۲۰۲۶ میکرون به ۴۱.۴۶ میلیارد دلار رسید — ۴ برابر سال قبل — با حاشیه سود ناخالص ۸۵٪ و تقاضای رکوردشکن حافظه هوش مصنوعی.",
+      "ar": "بلغت إيرادات مايكرون تكنولوجي للربع الثالث من السنة المالية 2026 نحو 41.46 مليار دولار — أي 4 أضعاف مقارنةً بالعام الماضي — بهامش ربح إجمالي 85% وعقود عملاء بقيمة 22 مليار دولار، في ظل طلب على ذاكرة الذكاء الاصطناعي يعيد كتابة أرقام صناعة أشباه الموصلات.",
+      "tr": "Micron Technology'nin 2026 mali yılı Q3 geliri 41,46 milyar dolara ulaştı — yıllık yüzde 400 büyüme — yüzde 85 brüt marj ve 22 milyar dolarlık müşteri sözleşmesiyle, yapay zeka bellek talebi yarı iletken sektörünün rekorlarını yeniden yazıyor."
+    },
+    "keywords": {
+      "en": [
+        "Micron",
+        "MU",
+        "AI memory",
+        "HBM",
+        "semiconductor earnings 2026",
+        "Nvidia AI chips"
+      ],
+      "fa": [
+        "میکرون",
+        "MU",
+        "حافظه هوش مصنوعی",
+        "HBM",
+        "تراشه نیمه‌رسانا",
+        "Nvidia"
+      ],
+      "ar": [
+        "مايكرون",
+        "MU",
+        "ذاكرة الذكاء الاصطناعي",
+        "HBM",
+        "رقائق أشباه الموصلات 2026",
+        "Nvidia"
+      ],
+      "tr": [
+        "Micron",
+        "MU",
+        "yapay zeka belleği",
+        "HBM",
+        "yarı iletken 2026",
+        "Nvidia"
+      ]
+    }
+  },
+  "tags": [
+    "Micron",
+    "AI",
+    "tech",
+    "Technology",
+    "Nvidia",
+    "markets"
+  ],
+  "sources": [
+    {
+      "title": "Micron Q3 2026 Earnings: $100B in Contracts Signals AI Memory Cycle Break — TechTimes",
+      "url": "https://www.techtimes.com/articles/319032/20260625/micron-q3-2026-earnings-100b-contracts-signals-ai-memory-cycle-break.htm"
+    },
+    {
+      "title": "Micron's revenue quadrupled as AI memory demand pushes gross margins above 81% — The Next Web",
+      "url": "https://thenextweb.com/news/micron-q3-fy2026-earnings-revenue-hbm-ai-memory"
+    },
+    {
+      "title": "Earnings call transcript: Micron tops Q3 2026 estimates, shares jump 14.6% — Investing.com",
+      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-micron-tops-q3-2026-estimates-shares-jump-146-93CH-4759504"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

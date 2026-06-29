@@ -1,0 +1,96 @@
+{
+  "slug": "google-deepmind-talent-exodus-2026",
+  "category": "tech",
+  "date": "2026-06-20",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Google DeepMind Lost the Transformer Co-Inventor and a Nobel Laureate in Two Consecutive Days",
+    "fa": "گوگل دیپ‌مایند در دو روز متوالی هم مخترع Transformer و هم یک برنده جایزه نوبل را از دست داد",
+    "ar": "جوجل ديب مايند تفقد مشارك اختراع المحوّل وعالماً حاصلاً على نوبل في يومين متتاليين",
+    "tr": "Google DeepMind İki Arka Arkaya Günde Transformer'ın Eş-Mucidini ve Bir Nobel Ödüllüsünü Kaybetti"
+  },
+  "dek": {
+    "en": "Noam Shazeer, the engineer whose 2017 paper gave the world the architecture running nearly every large AI model today, joined OpenAI on June 18. The following day, Nobel chemistry laureate and AlphaFold creator John Jumper announced he is heading to Anthropic. It is the most concentrated top-tier talent loss in AI industry history.",
+    "fa": "نوآم شازیر، مهندسی که مقاله ۲۰۱۷ او معماری زیربنایی تقریباً تمام مدل‌های بزرگ هوش مصنوعی امروز را به جهان داد، در ۱۸ ژوئن به OpenAI پیوست. روز بعد، جان جامپر — برنده جایزه نوبل شیمی و خالق AlphaFold — اعلام کرد به Anthropic می‌رود. این تمرکزیافته‌ترین خروج استعدادهای برتر در تاریخ صنعت هوش مصنوعی است.",
+    "ar": "انضمّ نعوم شازير، المهندس الذي قدّمت ورقته البحثية عام 2017 معمارية تشغّل كل نموذج ذكاء اصطناعي كبير اليوم تقريباً، إلى أوبن إيه آي في الثامن عشر من يونيو. وفي اليوم التالي، أعلن جون جامبر — الحاصل على نوبل الكيمياء وخالق ألفافولد — توجّهه إلى أنثروبيك. وتُعدّ هذه الخسارة الأعلى تركّزاً في الكفاءات المتقدمة في تاريخ صناعة الذكاء الاصطناعي.",
+    "tr": "2017'deki makalesiyle bugün neredeyse her büyük yapay zeka modelinin çalıştığı mimariyi dünyaya kazandıran mühendis Noam Shazeer, 18 Haziran'da OpenAI'ye katıldı. Ertesi gün, Nobel Kimya ödüllüsü ve AlphaFold'un yaratıcısı John Jumper, Anthropic'e geçeceğini duyurdu. Bu, yapay zeka sektörü tarihinde en yoğun üst düzey yetenek kaybıdır."
+  },
+  "body": {
+    "en": "On June 18, 2026, Noam Shazeer posted to X that he was leaving Google DeepMind to join OpenAI as Lead for Architecture Research. The announcement landed with particular weight: Shazeer is the co-author of the 2017 paper \"Attention Is All You Need,\" which introduced the Transformer architecture — the design underlying virtually every large language model deployed at scale today, including the systems powering OpenAI's own products.\n\nOne day later, John Jumper, the computational chemist who led the development of AlphaFold at DeepMind and shared the 2024 Nobel Prize in Chemistry for that work, announced his departure to join Anthropic. Jumper spent nearly nine years at Google DeepMind and his model has mapped more than 200 million protein structures, fundamentally reshaping how drug discovery and biological research are conducted.\n\nThe two announcements within 48 hours represent what several prominent AI researchers have described as an unprecedented concentration of high-level talent movement. Taken together, the departures mark the loss of both the architect of modern deep learning infrastructure and the scientist behind what many consider the most important applied AI achievement of the last decade.\n\n## Context: A Longer Exodus From Google DeepMind\n\nShazeer's and Jumper's exits did not happen in isolation. Since early 2026, Google DeepMind has experienced an unusually high rate of senior researcher departures. Shazeer himself had already left Google once before — in 2021, along with fellow researcher Daniel De Freitas — to co-found Character.AI. Google brought him back in August 2024 as part of a $2.7 billion arrangement that gave Google an exclusive licensing deal with Character.AI. Shazeer's decision to leave again, less than two years after that arrangement, signals that financial retention packages alone cannot hold talent indefinitely when rival labs are offering leadership roles in shaping next-generation models.\n\nThe departures raise pointed questions about Google's long-term ability to compete at the frontier of AI development. Google DeepMind remains an enormous and technically sophisticated organization, home to several of the most capable foundation models in production — including the Gemini series — and benefits from computational scale that few can match. But the loss of individuals of Shazeer's and Jumper's standing is qualitatively different from typical researcher churn.\n\n## What It Means for OpenAI and Anthropic\n\nFor OpenAI, Shazeer's arrival reinforces an already-dominant position in language model research. His architectural expertise is directly applicable to the next generation of model design, and his presence gives OpenAI a researcher whose foundational contributions to the field are impossible to replicate by credential-matching.\n\nFor Anthropic, Jumper's joining is strategically significant in a different way. Anthropic has been methodically building out an AI-for-science capability throughout 2026: the company opened wet labs, published research on biological AI workflows, and formed partnerships with the Allen Institute and the Howard Hughes Medical Institute. Jumper brings what no benchmark performance metric can supply — a Nobel Prize in Chemistry, deep scientific legitimacy, and a track record of producing tools that are now standard instruments in academic and pharmaceutical research.",
+    "fa": "در ۱۸ ژوئن ۲۰۲۶، نوآم شازیر در X اعلام کرد که گوگل دیپ‌مایند را ترک می‌کند تا به عنوان سرپرست پژوهش معماری به OpenAI بپیوندد. این اعلان از نظر تاریخی اهمیت ویژه‌ای داشت: شازیر یکی از نویسندگان مقاله ۲۰۱۷ «توجه تمام چیزی است که نیاز دارید» است — مقاله‌ای که معماری Transformer را معرفی کرد. این معماری، بنیان طراحی تقریباً تمام مدل‌های زبانی بزرگ امروز، از جمله سیستم‌های OpenAI، است.\n\nیک روز بعد، جان جامپر — شیمیدان محاسباتی که توسعه AlphaFold در دیپ‌مایند را رهبری کرد و برای این کار جایزه نوبل شیمی ۲۰۲۴ را دریافت کرد — اعلام خروج از گوگل و پیوستن به Anthropic را داد. جامپر نزدیک به نُه سال در گوگل دیپ‌مایند کار کرد و مدل او بیش از ۲۰۰ میلیون ساختار پروتئینی را نقشه‌برداری کرده که کشف دارو و تحقیقات بیولوژیکی را دگرگون ساخته است.\n\nدو اعلان در فاصله ۴۸ ساعت، آنچه بسیاری از پژوهشگران برجسته هوش مصنوعی آن را بی‌سابقه‌ترین تمرکز حرکت استعدادهای برتر توصیف کرده‌اند را رقم زد.\n\n## زمینه: موج خروج طولانی‌تر از گوگل دیپ‌مایند\n\nخروج شازیر و جامپر در خلأ نبود. از اوایل ۲۰۲۶، گوگل دیپ‌مایند نرخ غیرمعمول بالایی از خروج پژوهشگران ارشد را تجربه کرده است. خود شازیر قبلاً هم گوگل را ترک کرده بود — در ۲۰۲۱ برای تأسیس Character.AI. گوگل در آگوست ۲۰۲۴ با یک قرارداد ۲.۷ میلیارد دلاری او را بازگرداند. تصمیم شازیر برای خروج مجدد، کمتر از دو سال پس از آن قرارداد، نشان می‌دهد که بسته‌های مالی نگهداری به تنهایی نمی‌توانند استعدادها را برای همیشه نگه دارند.\n\nاین خروج‌ها سؤالات جدی درباره توانایی بلندمدت گوگل برای رقابت در مرز هوش مصنوعی مطرح می‌کند. گوگل دیپ‌مایند همچنان سازمانی عظیم و پیشرفته فناورانه است، اما از دست دادن افرادی با جایگاه شازیر و جامپر کیفیتاً متفاوت از ریزش معمول پژوهشگران است.\n\n## چه معنایی برای OpenAI و Anthropic دارد؟\n\nبرای OpenAI، ورود شازیر موقعیت تسلط‌طلبانه آن را در پژوهش مدل‌های زبانی تقویت می‌کند. برای Anthropic، پیوستن جامپر از نظر استراتژیک به شکل متفاوتی اهمیت دارد — یک جایزه نوبل شیمی، اعتبار علمی عمیق، و سابقه‌ای که ابزارهایش اکنون ابزارهای استاندارد در تحقیقات دانشگاهی و داروسازی شده‌اند.",
+    "ar": "في الثامن عشر من يونيو 2026، نشر نعوم شازير على منصة X إعلانه مغادرة جوجل ديب مايند للانضمام إلى أوبن إيه آي بوصفه قائداً لأبحاث المعمارية. وجاء هذا الإعلان محمّلاً بثقل تاريخي استثنائي: إذ يُعدّ شازير أحد مؤلفي ورقة بحثية عام 2017 بعنوان «الانتباه هو كل ما تحتاجه» (Attention Is All You Need)، التي قدّمت معمارية المحوّل (Transformer) — التصميم الذي يُشكّل الأساس الذي تقوم عليه جميع نماذج اللغة الكبيرة تقريباً المنتشرة على نطاق واسع اليوم.\n\nفي اليوم التالي، أعلن جون جامبر، الكيميائي الحسابي الذي قاد تطوير ألفافولد في ديب مايند وتقاسم جائزة نوبل في الكيمياء لعام 2024 بفضل هذا العمل، انضمامه إلى أنثروبيك. أمضى جامبر قرابة تسع سنوات في جوجل ديب مايند، ورسم نموذجه ما يزيد على 200 مليون بنية بروتينية، محدثاً ثورة في كيفية اكتشاف الأدوية وإجراء البحوث البيولوجية.\n\nكثّف إعلانان في غضون 48 ساعة ما وصفه كثير من الباحثين البارزين في الذكاء الاصطناعي بالحركة غير المسبوقة للكفاءات الرفيعة.\n\n## السياق: موجة أطول من المغادرات من جوجل ديب مايند\n\nلم يكن خروج شازير وجامبر في معزل عن السياق. فمنذ مطلع 2026، رصد جوجل ديب مايند معدلاً غير مألوف من مغادرات الباحثين الكبار. كان شازير قد غادر جوجل من قبل — عام 2021 لتأسيس كاراكتر دوت إيه آي — قبل أن تُعيده جوجل في أغسطس 2024 بترتيب بقيمة 2.7 مليار دولار. قرار شازير بالمغادرة مجدداً بعد أقل من عامين من ذلك الترتيب يُشير إلى أن حزم الاحتفاظ المالية وحدها لا تستطيع الإبقاء على المواهب إلى الأبد.\n\nتُثير هذه المغادرات تساؤلات جدية حول قدرة جوجل على طويل المدى في المنافسة على خطوط جبهة تطوير الذكاء الاصطناعي. أما خسارة أمثال شازير وجامبر فنوعياً مختلفة عن الدوران المعتاد للباحثين.\n\n## ما الذي يعنيه ذلك لأوبن إيه آي وأنثروبيك؟\n\nبالنسبة لأوبن إيه آي، يُعزّز انضمام شازير موقعاً سائداً مسبقاً في أبحاث نماذج اللغة. أما لأنثروبيك، فانضمام جامبر ذو أهمية استراتيجية مختلفة: شركة كانت تبني بمنهجية قدرة للذكاء الاصطناعي في العلوم طوال 2026 — جائزة نوبل في الكيمياء، مصداقية علمية راسخة، وسجل حافل بأدوات باتت معيارية في البحوث الأكاديمية والصيدلانية.",
+    "tr": "18 Haziran 2026'da Noam Shazeer, X platformunda Google DeepMind'dan ayrılarak OpenAI'ye Mimari Araştırma Lideri olarak katılacağını duyurdu. Bu duyuru özellikle ağır bir anlam taşıyordu: Shazeer, 2017'de «Dikkat İhtiyacınız Olan Her Şeydir» (Attention Is All You Need) başlıklı çığır açan makalenin ortak yazarıdır; bu makale Transformer mimarisini tanıttı ve bugün neredeyse tüm büyük dil modellerinin temelini oluşturuyor.\n\nErtesi gün, DeepMind'da AlphaFold'un gelişimini yöneten ve bu çalışmayla 2024 Nobel Kimya Ödülü'ne ortak olan John Jumper, Anthropic'e geçeceğini açıkladı. Jumper, Google DeepMind'da yaklaşık dokuz yıl geçirdi; modeli 200 milyondan fazla protein yapısını haritalayarak ilaç keşfini ve biyolojik araştırmaları köklü biçimde dönüştürdü.\n\n48 saat içinde gelen bu iki duyuru, pek çok önde gelen yapay zeka araştırmacısının eşi görülmemiş olarak nitelendirdiği üst düzey yetenek hareketini temsil ediyor.\n\n## Bağlam: Google DeepMind'dan Uzun Süredir Devam Eden Ayrılışlar\n\nShazeer ve Jumper'ın çıkışları tek başına değerlendirilmemeli. 2026 başından bu yana Google DeepMind, alışılmadık derecede yüksek bir kıdemli araştırmacı çıkış oranıyla karşı karşıya. Shazeer, 2021'de Daniel De Freitas ile birlikte Google'ı bir kez önce terk ederek Character.AI'yi kurmuştu. Google, onu Ağustos 2024'te 2,7 milyar dolarlık bir düzenlemeyle geri döndürdü. Shazeer'ın bu düzenlemeden iki yıldan az sonra yeniden ayrılma kararı, mali tutma paketlerinin tek başına yetenekleri sonsuza dek tutamayacağını ortaya koyuyor.\n\nBu ayrılışlar, Google'ın yapay zekanın sınır çizgisinde rekabet etme kapasitesi konusunda ciddi soru işaretleri doğuruyor. Shazeer ve Jumper kalibrasyonundaki isimlerin kaybı, sıradan araştırmacı sirkülasyonundan niteliksel olarak farklı.\n\n## OpenAI ve Anthropic İçin Anlamı\n\nOpenAI için Shazeer'ın katılımı, dil modeli araştırmalarındaki hâkim konumu pekiştiriyor. Anthropic içinse Jumper'ın gelişi farklı bir stratejik anlam taşıyor: Nobel Kimya Ödülü, derin bilimsel itibar ve akademik ile farmasötik araştırmalarda standart araçlara dönüşmüş çalışmaların mimarı."
+  },
+  "seo": {
+    "title": {
+      "en": "Google Loses Transformer Inventor Shazeer and Nobel Laureate Jumper in 48 Hours — MAXGAZINE",
+      "fa": "گوگل در ۴۸ ساعت شازیر و جامپر را از دست داد — MAXGAZINE",
+      "ar": "جوجل تخسر مخترع المحوّل شازير وصاحب نوبل جامبر في 48 ساعة — MAXGAZINE",
+      "tr": "Google 48 Saatte Transformer Mucidi Shazeer'ı ve Nobel Ödüllü Jumper'ı Kaybetti — MAXGAZINE"
+    },
+    "description": {
+      "en": "Noam Shazeer joined OpenAI and John Jumper joined Anthropic in two consecutive days in June 2026, marking the biggest AI talent loss from Google DeepMind in its history.",
+      "fa": "نوآم شازیر به OpenAI و جان جامپر به Anthropic پیوست — دو روز متوالی در ژوئن ۲۰۲۶ که بزرگ‌ترین خروج استعداد هوش مصنوعی در تاریخ گوگل دیپ‌مایند را رقم زد.",
+      "ar": "انضم شازير إلى أوبن إيه آي وجامبر إلى أنثروبيك في يومين متتاليين يونيو 2026، في أكبر خسارة للكفاءات في تاريخ جوجل ديب مايند.",
+      "tr": "Shazeer OpenAI'ye, Jumper Anthropic'e katıldı — Haziran 2026'da arka arkaya iki gün, Google DeepMind tarihindeki en büyük yapay zeka yeteneği kaybını simgeliyor."
+    },
+    "keywords": {
+      "en": [
+        "Noam Shazeer",
+        "John Jumper",
+        "Google DeepMind",
+        "OpenAI",
+        "Anthropic",
+        "AI talent 2026"
+      ],
+      "fa": [
+        "نوآم شازیر",
+        "جان جامپر",
+        "گوگل دیپ‌مایند",
+        "OpenAI",
+        "Anthropic",
+        "هوش مصنوعی"
+      ],
+      "ar": [
+        "نعوم شازير",
+        "جون جامبر",
+        "جوجل ديب مايند",
+        "أوبن إيه آي",
+        "أنثروبيك",
+        "ذكاء اصطناعي 2026"
+      ],
+      "tr": [
+        "Noam Shazeer",
+        "John Jumper",
+        "Google DeepMind",
+        "OpenAI",
+        "Anthropic",
+        "yapay zeka 2026"
+      ]
+    }
+  },
+  "tags": [
+    "AI",
+    "Google",
+    "OpenAI",
+    "Anthropic",
+    "tech",
+    "Technology"
+  ],
+  "sources": [
+    {
+      "title": "Google Gemini co-lead Noam Shazeer leaves for OpenAI — CNBC",
+      "url": "https://www.cnbc.com/2026/06/18/google-gemini-co-lead-noam-shazeer-leaves-for-openai.html"
+    },
+    {
+      "title": "Nobel laureate John Jumper is leaving DeepMind for rival Anthropic — TechCrunch",
+      "url": "https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/"
+    },
+    {
+      "title": "As top talent leaves Google DeepMind, some question if the lab can remain at the forefront — Fortune",
+      "url": "https://fortune.com/2026/06/23/google-deepmind-ai-researcher-departures-raise-doubts-about-ability-to-win-the-ai-race-shazeer-jumper-eye-on-ai/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

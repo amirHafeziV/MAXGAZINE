@@ -1,0 +1,94 @@
+{
+  "slug": "openai-gpt56-sol-limited-preview-june-2026",
+  "category": "tech",
+  "date": "2026-06-26",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "OpenAI Unveils GPT-5.6 Sol, Terra, and Luna in Government-Gated Preview",
+    "fa": "اوپن‌ای‌آی مدل‌های GPT-5.6 سول، ترا و لونا را در پیش‌نمایش محدود رونمایی کرد",
+    "ar": "OpenAI تكشف عن نماذج GPT-5.6 Sol وTerra وLuna في معاينة مقيّدة حكوميًا",
+    "tr": "OpenAI, Hükümet Onaylı Sınırlı Önizlemede GPT-5.6 Sol, Terra ve Luna'yı Tanıttı"
+  },
+  "dek": {
+    "en": "OpenAI's new GPT-5.6 family introduces three tiered models—Sol for frontier reasoning, Terra for everyday work, and Luna for speed—currently accessible only to roughly 20 government-vetted organizations, with general availability expected around mid-July.",
+    "fa": "خانواده جدید GPT-5.6 اوپن‌ای‌آی سه مدل لایه‌بندی‌شده معرفی می‌کند: سول برای استدلال پیشرفته، ترا برای کار روزانه و لونا برای سرعت. این مدل‌ها فعلاً فقط برای حدود ۲۰ سازمان تأییدشده توسط دولت در دسترس هستند و دسترسی عمومی اواسط جولای انتظار می‌رود.",
+    "ar": "تُقدّم عائلة GPT-5.6 الجديدة من OpenAI ثلاثة نماذج متدرجة: Sol للاستدلال المتقدم، وTerra للعمل اليومي، وLuna للسرعة؛ ولا يزال الوصول إليها مقصورًا على نحو 20 منظمة معتمدة حكوميًا، مع توقع إتاحة عامة في منتصف يوليو.",
+    "tr": "OpenAI'nın yeni GPT-5.6 ailesi üç katmanlı model sunuyor: ileri düzey akıl yürütme için Sol, günlük iş için Terra ve hız için Luna. Modeller şu an yalnızca hükümet onaylı yaklaşık 20 kuruluş tarafından kullanılabiliyor; genel erişimin Temmuz ortasında açılması bekleniyor."
+  },
+  "body": {
+    "en": "OpenAI began a limited preview of its GPT-5.6 model family on June 26, 2026, introducing three distinct models optimized for different cost and capability trade-offs. The launch continues the company's practice of tiered releases, with general availability expected within two to three weeks.\n\nThe flagship model, Sol, is designed for frontier reasoning, long-horizon agentic workflows, and demanding scientific tasks. Pricing is set at $5 per million input tokens and $30 per million output tokens. Terra, the mid-tier offering, delivers performance comparable to GPT-5.5 at half the cost—$2.50 input and $15 output per million tokens—targeting everyday enterprise use cases. Luna, the entry-level model, is priced at $1 input and $6 output, emphasizing speed and affordability for high-volume applications.\n\n## Government-Gated Access\n\nIn an unusual distribution move, OpenAI has limited initial access to approximately 20 companies whose participation was approved by the U.S. government. Axios reported the arrangement, noting that it reflects a broader pattern in which frontier AI capabilities are being managed under national security considerations before general commercial release.\n\nOpenAI benchmarks show Sol reaching top scores on Terminal-Bench 2.1, the leading coding evaluation, and competitive results on ExploitBench for cybersecurity—using roughly one-third fewer output tokens than comparable systems. Sol also scored 53.5% on the Virology Capabilities Test and 68.4% on Human Pathogen Capabilities in SecureBio evaluations, figures that likely contributed to the government approval requirement before public release.\n\nThe GPT-5.6 family represents OpenAI's third major model-series launch in 2026, following GPT-5 in early spring and GPT-5.5 in May. The company's new ChatGPT Business interface is simultaneously introducing a simplified model picker that lets enterprise users select between Sol's deeper reasoning and Luna's faster throughput within the same subscription tier. General availability for all three models is expected by mid-July 2026.",
+    "fa": "اوپن‌ای‌آی در ۲۶ ژوئن ۲۰۲۶ پیش‌نمایش محدودی از خانواده مدل GPT-5.6 خود را آغاز کرد و سه مدل متمایز برای مبادلات مختلف هزینه و توانایی معرفی کرد. این عرضه ادامه رویه شرکت در انتشار لایه‌بندی‌شده است و دسترسی عمومی طی دو تا سه هفته آینده انتظار می‌رود.\n\nمدل اصلی، سول (Sol)، برای استدلال پیشرفته، گردش‌های کاری عاملی بلندمدت و وظایف علمی سنگین طراحی شده است. قیمت‌گذاری: ۵ دلار برای هر میلیون توکن ورودی و ۳۰ دلار برای هر میلیون توکن خروجی. ترا (Terra)، پیشنهاد میانی، عملکردی برابر با GPT-5.5 را با نصف هزینه ارائه می‌دهد: ۲.۵ دلار ورودی و ۱۵ دلار خروجی برای هر میلیون توکن، هدف آن کاربردهای روزمره سازمانی است. لونا (Luna)، مدل پایه‌ای، با ۱ دلار ورودی و ۶ دلار خروجی قیمت‌گذاری شده و بر سرعت و مقرون‌به‌صرفه بودن برای کاربردهای پرحجم تأکید دارد.\n\n## دسترسی محدود با مجوز دولتی\n\nدر اقدامی غیرمعمول در توزیع، اوپن‌ای‌آی دسترسی اولیه را به حدود ۲۰ شرکت محدود کرده که مشارکت آن‌ها توسط دولت آمریکا تأیید شده است. آکسیوس این ترتیب را گزارش کرد و اشاره کرد که این الگویی گسترده‌تر را نشان می‌دهد که در آن قابلیت‌های هوش مصنوعی مرزی پیش از انتشار تجاری عمومی تحت ملاحظات امنیت ملی مدیریت می‌شوند.\n\nمعیارهای اوپن‌ای‌آی نشان می‌دهد سول به بالاترین نمرات در Terminal-Bench 2.1، ارزیابی برتر کدنویسی، رسیده و نتایج رقابتی در ExploitBench برای امنیت سایبری کسب کرده؛ با استفاده از یک سوم کمتر توکن خروجی نسبت به سیستم‌های مشابه. سول همچنین ۵۳.۵ درصد در آزمون توانایی‌های ویروس‌شناسی و ۶۸.۴ درصد در توانایی‌های پاتوژن انسانی در ارزیابی‌های SecureBio کسب کرد؛ اعدادی که احتمالاً به الزام تأیید دولت پیش از انتشار عمومی کمک کردند.\n\nخانواده GPT-5.6 سومین عرضه مدل عمده اوپن‌ای‌آی در ۲۰۲۶ است که پس از GPT-5 در اوایل بهار و GPT-5.5 در ماه می منتشر شده. رابط ChatGPT Business شرکت همزمان یک انتخابگر مدل ساده‌شده را معرفی می‌کند که به کاربران سازمانی اجازه می‌دهد بین استدلال عمیق‌تر سول و خروجی سریع‌تر لونا در همان سطح اشتراک انتخاب کنند. دسترسی عمومی به هر سه مدل تا اواسط جولای ۲۰۲۶ انتظار می‌رود.",
+    "ar": "بدأت OpenAI في 26 يونيو 2026 معاينةً محدودة لعائلة النماذج GPT-5.6، مُقدِّمةً ثلاثة نماذج متمايزة مُحسَّنة لتوازنات مختلفة بين التكلفة والقدرات. يواصل هذا الإطلاق نهج الشركة في الإصدارات المتدرجة، مع توقع إتاحة عامة خلال أسبوعين إلى ثلاثة أسابيع.\n\nيستهدف النموذج الرائد Sol الاستدلالَ المتقدم، وسير العمل العاملي طويل الأمد، والمهام العلمية الصعبة، بسعر 5 دولارات لكل مليون رمز مُدخَل و30 دولارًا لكل مليون رمز مُخرَج. أما Terra في المستوى المتوسط، فيُقدّم أداءً مماثلاً لـ GPT-5.5 بنصف التكلفة (2.50 دولار مُدخَل و15 دولارًا مُخرَجًا) ويستهدف حالات الاستخدام اليومية المؤسسية. ويأتي Luna، نموذج المستوى الأساسي، بسعر 1 دولار مُدخَلاً و6 دولارات مُخرَجًا، محققًا السرعة والتوفير للتطبيقات عالية الحجم.\n\n## وصول مقيّد بموافقة حكومية\n\nفي خطوة توزيع غير اعتيادية، قيّدت OpenAI الوصول الأولي على نحو 20 شركة وافقت على مشاركتها الحكومة الأمريكية. ونقلت وكالة Axios هذا الترتيب، مُشيرةً إلى أنه يعكس نمطًا أشمل تُدار فيه قدرات الذكاء الاصطناعي الأمامية تحت اعتبارات الأمن القومي قبل الطرح التجاري العام.\n\nتُظهر معايير OpenAI أن Sol حقق أعلى الدرجات في Terminal-Bench 2.1، أبرز تقييمات البرمجة، ونتائج تنافسية في ExploitBench للأمن السيبراني باستخدام ثلث الرموز المُخرَجة مقارنةً بالأنظمة المماثلة. وحقق Sol أيضًا 53.5% في اختبار القدرات الفيروسية و68.4% في قدرات مسببات الأمراض البشرية ضمن تقييمات SecureBio، وهي أرقام أسهمت على الأرجح في اشتراط الموافقة الحكومية قبل الطرح العام.\n\nتُمثّل عائلة GPT-5.6 الإطلاق الثالث الرئيسي لسلسلة النماذج من OpenAI في 2026، إثر GPT-5 في مطلع الربيع وGPT-5.5 في مايو. وتُطلق الشركة في الوقت ذاته واجهة ChatGPT Business مع أداة اختيار نماذج مُبسَّطة تُمكّن المستخدمين المؤسسيين من الاختيار بين استدلال Sol الأعمق وإنتاجية Luna الأسرع ضمن مستوى الاشتراك ذاته. ومن المتوقع إتاحة الثلاثة نماذج للجمهور بحلول منتصف يوليو 2026.",
+    "tr": "OpenAI, 26 Haziran 2026'da GPT-5.6 model ailesinin sınırlı önizlemesine başladı; farklı maliyet-kapasite dengelerine göre optimize edilmiş üç farklı model tanıtıldı. Lansman şirketin kademeli sürüm alışkanlığını sürdürüyor; genel erişimin iki ila üç hafta içinde açılması bekleniyor.\n\nAmiral gemi model Sol, ileri düzey akıl yürütme, uzun vadeli otonom iş akışları ve zorlu bilimsel görevler için tasarlandı. Fiyatlandırma: girdi için milyon token başına 5 dolar, çıktı için 30 dolar. Orta katman olan Terra, GPT-5.5 ile kıyaslanabilir performansı yarı fiyata sunuyor: milyon token başına 2,50 dolar girdi ve 15 dolar çıktı; kurumsal günlük kullanım senaryolarını hedefliyor. Giriş seviyesi model Luna ise milyon token başına 1 dolar girdi ve 6 dolar çıktı ile fiyatlandırılmış; yüksek hacimli uygulamalar için hız ve uygun fiyatı ön plana çıkarıyor.\n\n## Hükümet Onaylı Sınırlı Erişim\n\nAlışılmışın dışında bir dağıtım hamlesiyle OpenAI, ilk erişimi ABD hükümetinin katılımına onay verdiği yaklaşık 20 şirketle sınırlandırdı. Axios bu düzenlemeyi haberleştirerek bunun sınır AI yeteneklerinin genel ticari sürümden önce ulusal güvenlik gözetimiyle yönetildiği daha kapsamlı bir örüntüyü yansıttığını belirtti.\n\nOpenAI'nın kıyaslamaları Sol'un önde gelen kodlama değerlendirmesi Terminal-Bench 2.1'de zirve puanı aldığını ve siber güvenlik için ExploitBench'te benzer sistemlerden yaklaşık üçte bir daha az çıktı token'ı kullanarak rekabetçi sonuçlar elde ettiğini gösteriyor. Sol ayrıca SecureBio değerlendirmelerinde Viroloji Yetenekleri Testi'nde %53,5 ve İnsan Patojeni Yetenekleri'nde %68,4 aldı; bu rakamlar büyük olasılıkla genel sürümden önce hükümet onayı şartının konulmasına katkıda bulundu.\n\nGPT-5.6 ailesi, GPT-5'in ilkbaharda ve GPT-5.5'in Mayıs ayında piyasaya sürülmesinin ardından OpenAI'nın 2026'daki üçüncü büyük model serisi lansmanını temsil ediyor. Şirketin yeni ChatGPT Business arayüzü, kurumsal kullanıcıların aynı abonelik kademesinde Sol'un daha derin akıl yürütmesi ile Luna'nın daha hızlı işlem kapasitesi arasında seçim yapmasını sağlayan basitleştirilmiş bir model seçici sunuyor. Üç modelin tümüne genel erişimin Temmuz 2026 ortasına kadar açılması bekleniyor."
+  },
+  "seo": {
+    "title": {
+      "en": "OpenAI GPT-5.6 Sol Terra Luna Preview June 2026 — MAXGAZINE",
+      "fa": "پیش‌نمایش GPT-5.6 سول ترا لونا اوپن‌ای‌آی ژوئن ۲۰۲۶ — MAXGAZINE",
+      "ar": "معاينة OpenAI لنماذج GPT-5.6 Sol وTerra وLuna يونيو 2026 — MAXGAZINE",
+      "tr": "OpenAI GPT-5.6 Sol Terra Luna Önizlemesi Haziran 2026 — MAXGAZINE"
+    },
+    "description": {
+      "en": "OpenAI previews GPT-5.6 Sol, Terra, and Luna to 20 government-approved firms. Sol tops coding benchmarks; general availability expected mid-July 2026.",
+      "fa": "اوپن‌ای‌آی مدل‌های GPT-5.6 سول، ترا و لونا را برای ۲۰ شرکت تأییدشده دولتی پیش‌نمایش می‌دهد. سول در معیارهای کدنویسی برتر است؛ دسترسی عمومی اواسط جولای ۲۰۲۶.",
+      "ar": "تُقدّم OpenAI معاينة نماذج GPT-5.6 Sol وTerra وLuna لـ20 شركة معتمدة حكوميًا. يتصدر Sol معايير البرمجة؛ والإتاحة العامة متوقعة منتصف يوليو 2026.",
+      "tr": "OpenAI, GPT-5.6 Sol, Terra ve Luna'yı hükümet onaylı 20 firmaya önizliyor. Sol kodlama kıyaslamalarında zirveye oturuyor; genel erişim Temmuz 2026 ortasında bekleniyor."
+    },
+    "keywords": {
+      "en": [
+        "OpenAI",
+        "GPT-5.6",
+        "Sol",
+        "AI model",
+        "ChatGPT",
+        "artificial intelligence"
+      ],
+      "fa": [
+        "OpenAI",
+        "GPT-5.6",
+        "هوش مصنوعی",
+        "مدل زبانی",
+        "ChatGPT",
+        "AI"
+      ],
+      "ar": [
+        "OpenAI",
+        "GPT-5.6",
+        "Sol",
+        "الذكاء الاصطناعي",
+        "ChatGPT",
+        "AI"
+      ],
+      "tr": [
+        "OpenAI",
+        "GPT-5.6",
+        "Sol",
+        "yapay zeka",
+        "ChatGPT",
+        "AI"
+      ]
+    }
+  },
+  "tags": [
+    "AI",
+    "OpenAI",
+    "Technology",
+    "tech"
+  ],
+  "sources": [
+    {
+      "title": "OpenAI releases powerful new GPT-5.6 model under restrictions",
+      "url": "https://www.axios.com/2026/06/26/openai-gpt-sol-terra-luna-trump"
+    },
+    {
+      "title": "Previewing GPT-5.6 Sol: a next-generation model",
+      "url": "https://openai.com/index/previewing-gpt-5-6-sol/"
+    },
+    {
+      "title": "OpenAI unveils GPT-5.6 Sol, Terra and Luna models — but only accessible to limited preview partners",
+      "url": "https://venturebeat.com/technology/openai-unveils-gpt-5-6-sol-terra-and-luna-models-but-only-accessible-to-limited-preview-partners-for-now-per-us-gov"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

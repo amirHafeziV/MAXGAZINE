@@ -1,0 +1,91 @@
+{
+  "slug": "ethereum-foundation-restructuring-june-2026",
+  "category": "crypto",
+  "date": "2026-06-23",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Ethereum Foundation Cuts 54 Jobs and 40% of Its Budget in a Sweeping Institutional Reset",
+    "fa": "بنیاد اتریوم ۵۴ نفر را اخراج کرد و بودجه خود را ۴۰ درصد کاهش داد",
+    "ar": "مؤسسة إيثيريوم تُسرّح 54 موظفاً وتخفض ميزانيتها 40 بالمئة في إعادة هيكلة شاملة",
+    "tr": "Ethereum Vakfı 54 Çalışanını İşten Çıkardı ve Bütçesini Yüzde 40 Kesti"
+  },
+  "dek": {
+    "en": "The nonprofit that steers Ethereum's development is shedding a fifth of its workforce and shifting to an endowment model — changes accelerated by a wave of nine senior departures since January and a steep decline in the value of its ETH treasury.",
+    "fa": "بنیاد غیرانتفاعی که توسعه اتریوم را هدایت می‌کند، یک پنجم نیروی کار خود را کاهش می‌دهد و به سمت مدل صندوق دائمی حرکت می‌کند — تصمیمی که خروج نُه مدیر ارشد از ابتدای سال و کاهش ارزش خزانه ETH آن را تسریع کرد.",
+    "ar": "المؤسسة غير الربحية التي ترعى تطوير إيثيريوم تُقلّص خُمس كوادرها وتتبنّى نموذج الصندوق الدائم، في خطوة تسارعت بسبب تسعة استقالات في المناصب الرفيعة منذ يناير وتراجع حاد في قيمة خزينة ETH.",
+    "tr": "Ethereum'un gelişimini yönlendiren kar amacı gütmeyen vakıf, çalışanlarının beşte birini işten çıkarıyor ve kalıcı fon modeline geçiyor; bu karar, Ocak'tan bu yana dokuz üst düzey ayrılışla ve ETH hazinesinin değerindeki sert düşüşle hız kazandı."
+  },
+  "body": {
+    "en": "The Ethereum Foundation confirmed on June 23 that it is laying off 54 employees — roughly one in five of its approximately 270-person workforce — while reducing its annual budget by approximately 40%. The move marks one of the most sweeping institutional changes in the foundation's decade-long history.\n\nThe restructuring follows months of leadership turbulence. Since January 2026, nine senior figures have departed the foundation, most recently Co-Executive Director Hsiao-Wei Wang, who resigned in early June. That turnover has added pressure on the remaining leadership to demonstrate a credible path forward at a time when Ethereum's competitive position is under scrutiny from faster-moving rivals.\n\n## A Shift to an Endowment Model\n\nUnder the new operating approach, the foundation intends to cut its annual spending rate from roughly 15% of its treasury to around 5% by 2030. That shift — from active institutional spending to an endowment-style model — is designed to extend the organization's financial runway indefinitely, rather than relying on periodic ETH sales to fund operations. Severance packages for departing employees include at least one month's salary per year of service, a retirement payment, and access to a support fund that includes career coaching and ecosystem placement assistance.\n\nThe foundation is also reorganizing its remaining work around five new clusters: protocol, access, user, community, and institutional layers. Several existing programs are being wound down, including the Privacy and Scaling Explorations (PSE) unit, which had been responsible for applied zero-knowledge research. Devcon — Ethereum's flagship annual conference — is expected to run in a smaller format going forward. Research work will rely more heavily on AI-assisted formal verification tooling to reduce costs.\n\n## The Financial Pressure Behind the Cuts\n\nThe cost pressures are partly driven by asset prices. ETH has been trading near $1,580 in June 2026 — a steep decline from highs above $4,000 in late 2024. Since the foundation holds the bulk of its treasury in ETH, that depreciation has materially shrunk the real size of its endowment, making the previous spending pace difficult to sustain without accelerating token sales.\n\nWhether this restructuring strengthens or weakens Ethereum's development capacity remains actively debated within the community. Supporters argue that a leaner, more focused foundation is better positioned to coordinate protocol work without unnecessary overhead. Critics warn that shrinking the team responsible for coordinating client development, research funding, and ecosystem grants during a competitive moment — when rivals such as Solana are rolling out major protocol upgrades aimed at sub-second finality — could slow Ethereum's ability to respond to new technical and market challenges.",
+    "fa": "بنیاد اتریوم در تاریخ ۲۳ ژوئن تأیید کرد که ۵۴ نفر از کارمندانش — حدود یک پنجم از نیروی کار ۲۷۰ نفری این سازمان — اخراج می‌شوند و بودجه سالانه آن نیز ۴۰ درصد کاهش می‌یابد. این تصمیم، یکی از جامع‌ترین تغییرات سازمانی در تاریخ ده‌ساله این بنیاد به شمار می‌رود.\n\nاین تغییر ساختاری در پی ماه‌ها تلاطم در سطح رهبری رخ داده است. از ژانویه ۲۰۲۶ تاکنون، نُه مدیر ارشد بنیاد را ترک کرده‌اند؛ آخرین آن‌ها هسیائو-وِی وانگ، مدیر اجرایی مشترک، بود که در اوایل ژوئن استعفا داد. این موج خروج‌ها فشار زیادی بر رهبری باقی‌مانده وارد کرده تا در لحظه‌ای که موقعیت رقابتی اتریوم زیر ذره‌بین قرار دارد، مسیری قابل اعتماد ارائه دهد.\n\n## گذار به مدل صندوق دائمی\n\nدر قالب رویکرد عملیاتی جدید، بنیاد قصد دارد نرخ هزینه‌کرد سالانه خود را از حدود ۱۵ درصد خزانه به حدود ۵ درصد تا سال ۲۰۳۰ کاهش دهد. این تغییر — از الگوی هزینه‌کرد فعال نهادی به مدلی شبیه صندوق‌های دائمی — طراحی شده تا عمر مالی سازمان را به‌طور نامحدود تمدید کند، به‌جای آنکه به فروش دوره‌ای ETH برای تأمین هزینه‌ها متکی باشد. بسته جبرانی کارکنانی که شرکت را ترک می‌کنند شامل حداقل یک ماه حقوق به ازای هر سال سابقه، پرداخت بازنشستگی و دسترسی به صندوق حمایتی با امکانات مشاوره شغلی است.\n\nبنیاد همچنین فعالیت‌های باقی‌مانده خود را در پنج خوشه سازماندهی می‌کند: لایه پروتکل، دسترسی، کاربر، جامعه و نهادی. برخی برنامه‌های موجود تعطیل می‌شوند، از جمله واحد «محرمانگی و مقیاس‌پذیری» (PSE) که پیش از این مسئول تحقیقات کاربردی Zero-Knowledge بود. کنفرانس سالانه Devcon نیز قرار است در قالبی کوچک‌تر برگزار شود و فعالیت‌های پژوهشی بیشتر به ابزارهای تأیید صوری مبتنی بر هوش مصنوعی تکیه خواهند کرد.\n\n## فشار مالی پشت این کاهش‌ها\n\nبخشی از فشار هزینه‌ای ناشی از نوسانات بازار دارایی‌هاست. ارز دیجیتال ETH در ژوئن ۲۰۲۶ حدود ۱،۵۸۰ دلار معامله می‌شود — کاهشی چشمگیر نسبت به اوج‌های بالای ۴،۰۰۰ دلار در اواخر ۲۰۲۴. از آنجا که بنیاد بخش عمده‌ای از خزانه خود را به ETH نگهداری می‌کند، این افت ارزش، منابع واقعی این سازمان را به‌طور قابل توجهی کاهش داده است.\n\nتأثیر این تغییر ساختاری بر ظرفیت توسعه اتریوم همچنان در میان جامعه محل بحث است. موافقان معتقدند یک بنیاد کوچک‌تر و متمرکزتر بهتر می‌تواند کارهای پروتکل را بدون بار سربار اداری هدایت کند. منتقدان هشدار می‌دهند که کاهش تیمی که مسئول هماهنگی توسعه کلاینت‌ها، تأمین مالی تحقیقات و کمک‌های اکوسیستم است — در لحظه‌ای که رقبایی مثل Solana ارتقاءهای بزرگ پروتکلی با هدف نهایی‌سازی زیر یک ثانیه را اجرا می‌کنند — می‌تواند توانایی پاسخگویی اتریوم به چالش‌های فنی و بازاری را کند کند.",
+    "ar": "أكّدت مؤسسة إيثيريوم في الثالث والعشرين من يونيو أنها ستُسرّح 54 موظفاً — ما يمثّل نحو خُمس قوّتها العاملة البالغة حوالي 270 شخصاً — مع خفض ميزانيتها السنوية بنسبة 40 بالمئة. ويُعدّ هذا القرار من أشمل التحولات المؤسسية في تاريخ المؤسسة الذي يمتد لعقد كامل.\n\nجاء هذا التغيير الهيكلي في أعقاب أشهر من الاضطراب القيادي. فمنذ يناير 2026، غادر المؤسسة تسعة من كبار القيادات، كان آخرهم المدير التنفيذي المشترك هسياو-ويي وانغ الذي استقال في مطلع يونيو. أضاف هذا التقلّب ضغطاً متزايداً على القيادة المتبقية لتقديم مسار موثوق في وقت تتصاعد فيه المنافسة.\n\n## التحوّل نحو نموذج الصندوق الدائم\n\nبموجب النهج التشغيلي الجديد، تعتزم المؤسسة خفض معدل الإنفاق السنوي من نحو 15 بالمئة من خزينتها إلى حوالي 5 بالمئة بحلول عام 2030. ويهدف هذا التحوّل — من الإنفاق المؤسسي النشط إلى نموذج مشابه للصناديق الوقفية الدائمة — إلى إطالة عمر المؤسسة مالياً إلى أجل غير مسمى. وتشمل مكافآت المغادرة للموظفين ما لا يقل عن شهر راتب عن كل سنة خدمة، فضلاً عن دعم مهني واسع النطاق.\n\nتعيد المؤسسة كذلك تنظيم عملها في خمسة مجموعات: طبقة البروتوكول، والوصول، والمستخدم، والمجتمع، والطبقة المؤسسية. وستُوقَف عدة برامج قائمة، من بينها وحدة \"الخصوصية والتوسع\" (PSE)، فيما سيُعقد مؤتمر ديفكون في صيغة أصغر حجماً، مع الاعتماد المتزايد على أدوات التحقق الرسمي المدعومة بالذكاء الاصطناعي.\n\n## الضغوط المالية وراء التخفيضات\n\nتتضمن ضغوط التكلفة جانباً مرتبطاً بتقلبات الأسواق. إذ يتراوح سعر ETH قرب 1,580 دولاراً في يونيو 2026، بانخفاض حاد عن قممه التي تجاوزت 4,000 دولار في أواخر 2024. ولأن المؤسسة تحتفظ بجزء وافر من خزينتها بالإيثر، أدى هذا الانخفاض إلى تقلّص ملموس في حجم مواردها الفعلية.\n\nلا يزال الجدل قائماً داخل مجتمع إيثيريوم حول ما إذا كانت هذه الإعادة الهيكلية ستعزز أم تُضعف قدرات التطوير. يرى المؤيدون أن مؤسسة أصغر وأكثر تركيزاً أقدر على تنسيق العمل البروتوكولي. في المقابل، يحذّر المنتقدون من أن تقليص الفريق المسؤول عن تنسيق تطوير العملاء وتمويل الأبحاث في لحظة تنافسية — حين تطلق منافسات كسولانا ترقيات بروتوكولية كبرى — قد يُبطئ قدرة الشبكة على التكيّف مع التحديات التقنية.",
+    "tr": "Ethereum Vakfı, 23 Haziran'da yaklaşık 270 kişilik kadrosunun beşte birine karşılık gelen 54 çalışanını işten çıkaracağını ve yıllık bütçesini yaklaşık yüzde 40 oranında düşüreceğini açıkladı. Bu adım, vakfın on yıllık tarihindeki en kapsamlı kurumsal değişikliklerden birini temsil ediyor.\n\nYeniden yapılanma, aylarca süren liderlik çalkantısının ardından geldi. Ocak 2026'dan bu yana vakfın dokuz üst düzey yöneticisi ayrıldı; bunların en sonuncusu, Haziran başında istifa eden Ortak İcra Direktörü Hsiao-Wei Wang oldu. Bu çıkış dalgası, kalan liderlik üzerinde rekabet baskısının arttığı bir dönemde güvenilir bir yön belirleme yükümlülüğü yarattı.\n\n## Kalıcı Fon Modeline Geçiş\n\nYeni operasyonel yaklaşım çerçevesinde vakıf, yıllık harcama oranını 2030'a kadar hazinesinin yaklaşık yüzde 15'inden yaklaşık yüzde 5'e indirmeyi hedefliyor. Bu geçiş — aktif kurumsal harcamadan kalıcı vakıf benzeri bir modele — organizasyonun finansal ömrünü süresiz olarak uzatmayı amaçlıyor. İşten ayrılan çalışanlara her hizmet yılı için en az bir aylık maaş, emeklilik ödemesi ve kariyer koçluğu ile ekosistem yerleştirme desteği içeren bir destek fonu sunuluyor.\n\nVakıf ayrıca çalışmalarını beş yeni küme etrafında yeniden düzenliyor: protokol, erişim, kullanıcı, topluluk ve kurumsal katmanlar. Sıfır-bilgi araştırmalarından sorumlu Gizlilik ve Ölçekleme Araştırmaları (PSE) birimi dahil bazı programlar kapatılıyor. Vakfın yıllık amiral gemisi konferansı Devcon'ın daha küçük bir formatta düzenlenmesi planlanırken, araştırma çalışmalarında maliyetleri düşürmek için yapay zeka destekli resmi doğrulama araçlarına daha çok yer verilecek.\n\n## Kesintilerin Arkasındaki Mali Baskı\n\nMaliyet baskılarının bir kısmı varlık fiyatlarından kaynaklanıyor. ETH, Haziran 2026'da yaklaşık 1.580 dolar seviyesinde işlem görüyor — 2024 sonundaki 4.000 dolar üzerindeki zirvelere kıyasla sert bir düşüş. Vakfın hazinesinin büyük bölümünü ETH olarak tuttuğu göz önüne alındığında, bu değer kaybı kuruluşun gerçek kaynaklarını önemli ölçüde azalttı.\n\nBu yeniden yapılanmanın Ethereum'un geliştirme kapasitesini güçlendirip güçlendirmeyeceği topluluğun gündemindeki tartışmalı konulardan biri olmaya devam ediyor. Destekçiler, daha küçük ve odaklı bir vakfın protokol koordinasyonunu gereksiz ek yük olmadan daha verimli yürütebileceğini savunuyor. Eleştirmenler ise Solana gibi rakiplerin önemli protokol yükseltmeleri sunduğu kritik bir dönemde müşteri geliştirme koordinasyonu, araştırma finansmanı ve ekosistem desteklerinden sorumlu ekibin küçültülmesinin Ethereum'un teknik zorluklara yanıt verme hızını yavaşlatabileceği konusunda uyarıda bulunuyor."
+  },
+  "seo": {
+    "title": {
+      "en": "Ethereum Foundation Cuts 54 Jobs and 40% Budget — MAXGAZINE",
+      "fa": "بنیاد اتریوم ۵۴ نفر را اخراج کرد — MAXGAZINE",
+      "ar": "مؤسسة إيثيريوم تُسرّح 54 موظفاً وتخفض ميزانيتها 40% — MAXGAZINE",
+      "tr": "Ethereum Vakfı 54 Çalışanı İşten Çıkardı, Bütçeyi %40 Kesti — MAXGAZINE"
+    },
+    "description": {
+      "en": "Ethereum Foundation is laying off 54 staff and cutting its budget 40%, shifting to an endowment model after nine senior departures and a steep drop in ETH price in 2026.",
+      "fa": "بنیاد اتریوم ۵۴ کارمند را اخراج و بودجه را ۴۰ درصد کاهش می‌دهد و پس از خروج نُه مدیر ارشد و افت شدید قیمت ETH به مدل صندوق دائمی روی می‌آورد.",
+      "ar": "تُسرّح مؤسسة إيثيريوم 54 موظفاً وتخفض ميزانيتها 40% وتتبنّى نموذج الصندوق الدائم، في أعقاب موجة استقالات واسعة وتراجع حاد في سعر ETH عام 2026.",
+      "tr": "Ethereum Vakfı, 54 çalışanını işten çıkarıyor ve bütçesini yüzde 40 kesiyor; dokuz üst düzey ayrılış ve ETH fiyatının sert düşüşünün ardından kalıcı fon modeline geçiyor."
+    },
+    "keywords": {
+      "en": [
+        "Ethereum Foundation",
+        "ETH",
+        "crypto layoffs",
+        "blockchain restructuring",
+        "Ethereum 2026"
+      ],
+      "fa": [
+        "بنیاد اتریوم",
+        "ETH",
+        "اخراج کریپتو",
+        "اتریوم ۲۰۲۶",
+        "ارز دیجیتال"
+      ],
+      "ar": [
+        "مؤسسة إيثيريوم",
+        "ETH",
+        "تسريح موظفين",
+        "إيثيريوم 2026",
+        "العملات المشفرة"
+      ],
+      "tr": [
+        "Ethereum Vakfı",
+        "ETH",
+        "kripto işten çıkarma",
+        "Ethereum 2026",
+        "blok zinciri"
+      ]
+    }
+  },
+  "tags": [
+    "Ethereum",
+    "ETH",
+    "crypto",
+    "blockchain",
+    "regulation"
+  ],
+  "sources": [
+    {
+      "title": "Ethereum Foundation Cuts 20% of Staff and 40% of Budget in Sweeping Reset",
+      "url": "https://unchainedcrypto.com/ethereum-foundation-cuts-20-of-staff-and-40-of-budget-in-sweeping-reset/"
+    },
+    {
+      "title": "Ethereum Foundation cuts 20% of staff amid leadership exodus — CoinDesk",
+      "url": "https://www.coindesk.com/tech/2026/06/23/ethereum-foundation-cuts-20-of-staff-amid-leadership-exodus"
+    },
+    {
+      "title": "Ethereum Foundation To Cut Budget 40%, Slash 54 Jobs — CoinMarketCap",
+      "url": "https://coinmarketcap.com/academy/en/article/ethereum-foundation-cuts-budget-jobs-2026"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}
