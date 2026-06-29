@@ -3,7 +3,7 @@
   "topic": "crypto",
   "type": "news",
   "placement": {
-    "hero": false,
+    "hero": true,
     "editorsPick": false,
     "pinned": false,
     "hideFromLatest": false,
@@ -90,7 +90,7 @@
     "markets",
     "institutional"
   ],
-  "status": "draft",
+  "status": "published",
   "banner": "https://maxgazine.com/assets/uploads/1782731536575-banner.jpg",
-  "featured": false
+  "featured": true
 }
