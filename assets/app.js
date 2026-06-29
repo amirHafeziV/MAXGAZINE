@@ -163,6 +163,9 @@ async function loadTicker(){
     if(items.length){
       const half=items.join('');
       el.innerHTML=half+half;
+      el.style.animation='none';
+      void el.offsetWidth;
+      el.style.animation='';
     }
   }catch(e){/* keep static fallback */}
 }
@@ -1752,11 +1755,11 @@ function initStoriesPage(feed, lang, prefix){
     const dek = esc(pickLoc(a.dek, lang));
     const author = esc(a.author || 'MAXGAZINE DESK');
     const date = esc(a.date || '');
-    const imgStyle = a.banner
-      ? `background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')`
-      : 'background:#111';
+    const imgHtml = a.banner
+      ? `<div class="feature-img" style="background-image:url('${prefix}${esc(String(a.banner).replace(/^\/+/,''))}')"></div>`
+      : '';
     featureEl.innerHTML = `<div class="wrap">
-      <div class="feature-img" style="${imgStyle}"></div>
+      ${imgHtml}
       <div class="feature-body">
         <div class="feature-cat">${cat}</div>
         <h2 class="feature-hed"><a href="${href}">${headline}</a></h2>

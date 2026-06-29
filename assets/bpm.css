@@ -284,6 +284,7 @@ html[lang="fa"] .list-filters a{font-family:var(--fa);text-transform:none;letter
 .feature-row .wrap{display:grid;grid-template-columns:1.3fr 1fr;min-height:380px}
 .feature-img{background-size:cover;background-position:center;border-inline-end:3px solid var(--k)}
 .feature-body{padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
+.feature-body:only-child{grid-column:1/-1;padding:60px 80px;max-width:760px}
 .feature-cat{font-family:var(--body);font-size:12px;font-weight:700;color:var(--red);margin-bottom:14px}
 html[lang="en"] .feature-cat{font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px}
 .feature-hed{font-family:var(--display);font-size:42px;font-weight:900;line-height:1.0;letter-spacing:-.025em;margin-bottom:16px}
