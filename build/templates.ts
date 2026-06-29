@@ -191,7 +191,8 @@ ${alts}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${FONTS}" rel="stylesheet">
-<link rel="stylesheet" href="${o.prefix}assets/styles.css">
+<link rel="stylesheet" href="${o.prefix}assets/bpm.css">
+<link rel="stylesheet" href="${o.prefix}assets/site.css">
 <script type="application/ld+json">
 ${JSON.stringify(o.jsonLd)}
 </script>
@@ -199,80 +200,101 @@ ${JSON.stringify(o.jsonLd)}
 }
 
 function chromeHeader(lang: Lang, prefix: string): string {
+  const isRtl = RTL_LANGS.includes(lang);
+  const NAV_HOME: Record<Lang, string> = { en: "Home", fa: "خانه", ar: "الرئيسية", tr: "Ana Sayfa" };
+  const SUB_LABEL: Record<Lang, string> = { en: "Subscribe", fa: "عضویت", ar: "اشترك", tr: "Abone ol" };
   const c = CHROME[lang];
-  const s = langSuffix(lang);
-  const p = (href: string) => `${prefix}${href}${s}`;
-  const langItems = LANGS.map(
-    (l) => `<button data-lang="${l}"${l === lang ? ' class="active"' : ""} lang="${l}" role="menuitem"><span class="bs-lang-code">${l.toUpperCase()}</span><span class="bs-lang-name">${LANG_NAMES[l]}</span></button>`,
-  ).join("");
-  const langBtns = `<button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">${lang.toUpperCase()}</span></button><div class="bs-lang-menu" role="menu">${langItems}</div>`;
-  return `<body dir="${RTL_LANGS.includes(lang) ? "rtl" : "ltr"}" class="bs-page theme-dark">
-<script>try{var t=localStorage.getItem('mg_theme');var d=t==='dark'||((!t||t==='system')&&matchMedia('(prefers-color-scheme:dark)').matches);if(!d)document.body.classList.remove('theme-dark');}catch(e){}</script>
-<div class="bs-frame">
-<header class="bsheet">
-  <div class="bs-top">
-    <div class="bs-date" id="bs-date"></div>
-    <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
-    <div class="bs-top-right">
-      <button class="bs-search-btn mono" id="bs-search-btn" type="button" aria-label="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
-      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
-      <button class="theme-toggle mono" id="theme-toggle" aria-label="Toggle theme">LIGHT</button>
-      <div class="bs-lang" role="group" aria-label="Select language">${langBtns}</div>
+  return `<body dir="${isRtl ? "rtl" : "ltr"}" lang="${lang}">
+<div class="ticker" aria-label="Live prices">
+  <span class="ticker-live">LIVE</span>
+  <div class="ticker-clip">
+    <div class="ticker-track" id="ticker" data-ticker></div>
+  </div>
+</div>
+<div class="nameplate">
+  <div class="wrap">
+    <a href="${prefix}index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
+    <div class="np-tools">
+      <span class="np-date ltr" id="bs-date"></span>
+      <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      </button>
+      <button class="tool tool-lang bs-lang-toggle" data-open="lang" aria-label="Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+        <b id="cur-lang-label">${lang.toUpperCase()}</b>
+      </button>
+      <button class="tool tool-sub" id="bs-subscribe-btn" data-open="sub">${esc(SUB_LABEL[lang])}</button>
+      <button class="tool tool-burger" data-open="menu" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
     </div>
   </div>
-  <div class="bs-logo-row"><div class="bs-motion" aria-hidden="true"></div><a class="bs-logo" href="${p("index.html")}" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a></div>
-  <nav class="bs-nav" aria-label="Primary">
-    <a href="${p("stories.html")}" data-i="nav_stories">${esc(c.nav_stories!)}</a>
-    <a href="${p("stories.html")}?cat=crypto" data-nav="crypto" data-i="nav_crypto">${esc(c.nav_crypto!)}</a>
-    <a href="${p("exchanges.html")}" data-i="nav_topmarkets">${esc(c.nav_topmarkets!)}</a>
-    <a href="${p("prices.html")}" data-i="nav_prices">${esc(c.nav_prices!)}</a>
-    <a href="${p("stories.html")}?cat=ai" data-nav="ai">AI<span class="nav-badge-new">NEW</span></a>
-    <a href="${p("stories.html")}?cat=cars" data-nav="cars" data-i="nav_cars">${esc(c.nav_cars!)}</a>
-    <a href="${p("chart.html")}" data-i="nav_chart">${esc(c.f_chart!)}</a>
-    <a href="${p("about.html")}" data-i="nav_about">${esc(c.nav_about!)}</a>
-    <a href="${p("contact.html")}" data-i="nav_contact">${esc(c.nav_contact!)}</a>
-  </nav>
-</header>
-<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span>
-</div></div>`;
+</div>
+<nav class="mainnav" aria-label="Primary">
+  <div class="wrap">
+    <a href="${prefix}index.html">${esc(NAV_HOME[lang])}</a>
+    <a href="${prefix}stories.html">${esc(c.nav_stories!)}</a>
+    <a href="${prefix}exchanges.html">${esc(c.nav_topmarkets!)}</a>
+    <a href="${prefix}prices.html">${esc(c.nav_prices!)}</a>
+    <a href="${prefix}stories.html?cat=crypto">${esc(c.nav_crypto!)}</a>
+    <a href="${prefix}stories.html?cat=tech">${esc(c.nav_tech!)}</a>
+    <a href="${prefix}stories.html?cat=ai">AI</a>
+    <a href="${prefix}stories.html?cat=cars">${esc(c.nav_cars!)}</a>
+    <a href="${prefix}about.html">${esc(c.nav_about!)}</a>
+    <a href="${prefix}contact.html">${esc(c.nav_contact!)}</a>
+  </div>
+</nav>`;
 }
 
 function chromeFooter(lang: Lang, prefix: string): string {
   const c = CHROME[lang];
-  const s = langSuffix(lang);
-  const langLinks = LANGS.map(
-    (l) => `<a href="#" data-lang="${l}">${LANG_NAMES[l]}</a>`,
-  ).join("");
-  return `<footer class="foot-rich"><div class="wrap">
-  <div class="foot-lead">
-    <div class="foot-brand">
-      <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
-      <p class="foot-desc">${esc(c.foot_desc!)}</p>
-      <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Telegram">TG</a></div>
-    </div>
-    <div class="foot-news">
-      <div class="foot-news-eyebrow mono">${esc(c.foot_intel!)}</div>
-      <h4>${esc(c.foot_news_head!)}</h4>
-      <form class="foot-news-form" onsubmit="return false">
-        <input class="foot-news-input" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Email">
-        <button class="foot-news-btn mono" type="submit">Subscribe →</button>
-      </form>
+  const BRIEF: Record<Lang, string> = { en: "The Brief — daily newsletter", fa: "خلاصهٔ روزانه", ar: "الملخص اليومي", tr: "Günlük Bülten" };
+  const JOIN: Record<Lang, string> = { en: "Join →", fa: "عضویت →", ar: "اشترك →", tr: "Katıl →" };
+  return `<footer class="footer">
+  <div class="footer-top">
+    <div class="wrap">
+      <div class="foot-brand">
+        <a href="${prefix}index.html" class="logo md on-dark">Maxgazine<span class="dot"></span></a>
+        <p class="foot-desc">${esc(c.foot_desc!)}</p>
+        <div class="foot-sub">
+          <h5>${esc(BRIEF[lang])}</h5>
+          <form class="foot-sub-form" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit">${esc(JOIN[lang])}</button>
+          </form>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>${esc(c.foot_explore!)}</h5>
+        <a href="${prefix}stories.html">${esc(c.f_stories!)}</a>
+        <a href="${prefix}exchanges.html">${esc(c.f_exchanges!)}</a>
+        <a href="${prefix}prices.html">${esc(c.f_prices!)}</a>
+        <a href="${prefix}chart.html">${esc(c.f_chart!)}</a>
+      </div>
+      <div class="foot-col">
+        <h5>${esc(c.foot_topics!)}</h5>
+        <a href="${prefix}stories.html?cat=crypto">${esc(c.nav_crypto!)}</a>
+        <a href="${prefix}stories.html?cat=tech">${esc(c.nav_tech!)}</a>
+        <a href="${prefix}stories.html?cat=cars">${esc(c.nav_cars!)}</a>
+        <a href="${prefix}stories.html?cat=forex">${esc(c.nav_forex!)}</a>
+      </div>
+      <div class="foot-col">
+        <h5>${esc(c.foot_company!)}</h5>
+        <a href="${prefix}about.html">${esc(c.f_about!)}</a>
+        <a href="${prefix}contact.html">${esc(c.f_contact!)}</a>
+        <a href="${prefix}contact.html">${esc(c.foot_advertise!)}</a>
+      </div>
     </div>
   </div>
-  <div class="foot-cols">
-    <div class="foot-col"><h5>${esc(c.foot_explore!)}</h5><a href="${prefix}stories.html${s}">${esc(c.f_stories!)}</a><a href="${prefix}chart.html${s}">${esc(c.f_chart!)}</a><a href="${prefix}prices.html${s}">${esc(c.f_prices!)}</a></div>
-    <div class="foot-col"><h5>${esc(c.foot_markets!)}</h5><a href="${prefix}exchanges.html${s}">${esc(c.f_exchanges!)}</a><a href="${prefix}brokers.html${s}">${esc(c.f_brokers!)}</a></div>
-    <div class="foot-col"><h5>${esc(c.foot_topics!)}</h5><a href="${prefix}stories.html?cat=crypto${s.replace("?","&")}">${esc(c.nav_crypto!)}</a><a href="${prefix}stories.html?cat=forex${s.replace("?","&")}">${esc(c.nav_forex!)}</a><a href="${prefix}stories.html?cat=tech${s.replace("?","&")}">${esc(c.nav_tech!)}</a><a href="${prefix}stories.html?cat=cars${s.replace("?","&")}">${esc(c.nav_cars!)}</a></div>
-    <div class="foot-col"><h5>${esc(c.foot_company!)}</h5><a href="${prefix}about.html${s}">${esc(c.f_about!)}</a><a href="${prefix}contact.html${s}">${esc(c.f_contact!)}</a></div>
-    <div class="foot-col"><h5>${esc(c.foot_lang!)}</h5>${langLinks}</div>
+  <div class="footer-bottom">
+    <div class="wrap">
+      <span class="foot-copy">${esc(c.f_copy!)}</span>
+      <span style="font-family:var(--mono);font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.08em">${esc(c.f_built!)}</span>
+    </div>
   </div>
-  <div class="foot-bottom mono"><span>${esc(c.f_copy!)}</span><div class="foot-legal"><a href="${prefix}about.html${s}">${esc(c.foot_privacy!)}</a><a href="${prefix}about.html${s}">${esc(c.foot_terms!)}</a><a href="${prefix}contact.html${s}">${esc(c.foot_advertise!)}</a></div><span>${esc(c.f_built!)}</span></div>
-</div></footer>
-</div><!-- /.bs-frame -->
-
+</footer>
 <script src="${prefix}assets/i18n.js"></script>
+<script src="${prefix}assets/bpm.js"></script>
 <script src="${prefix}assets/app.js"></script>
 </body>
 </html>`;

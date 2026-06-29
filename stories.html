@@ -32,17 +32,12 @@
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="wrap">
-    <span class="tb-date ltr" id="bs-date">SUN · 28 JUN 2026</span>
-    <span class="tb-break" id="tb-break-txt">Latest market intelligence — Maxgazine</span>
-  </div>
-</div>
-
 <!-- LIVE TICKER -->
 <div class="ticker" aria-label="Live prices">
-  <div class="ticker-track" id="ticker" data-ticker></div>
+  <span class="ticker-live">LIVE</span>
+  <div class="ticker-clip">
+    <div class="ticker-track" id="ticker" data-ticker></div>
+  </div>
 </div>
 
 <!-- NAMEPLATE -->
@@ -50,6 +45,7 @@
   <div class="wrap">
     <a href="index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
     <div class="np-tools">
+      <span class="np-date ltr" id="bs-date"></span>
       <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
       </button>

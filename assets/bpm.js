@@ -42,6 +42,26 @@
     { c: "ar", n: "العربية" }, { c: "tr", n: "Türkçe" }
   ];
 
+  /* Root URL — works on both root pages and /en/ /fa/ subdirectory pages */
+  var ROOT_URL = location.origin + '/';
+
+  /* Navigate to equivalent page in target language. For /en/slug.html → /fa/slug.html.
+     For root pages (index, stories) → save lang + reload. */
+  function switchLang(code) {
+    var path = location.pathname;
+    var isLangPage = false;
+    ["en","fa","ar","tr"].forEach(function(lc) {
+      if (!isLangPage && path.indexOf("/" + lc + "/") >= 0) {
+        isLangPage = true;
+        location.href = location.origin + path.replace("/" + lc + "/", "/" + code + "/");
+      }
+    });
+    if (!isLangPage) {
+      localStorage.setItem("mg_lang", code);
+      location.reload();
+    }
+  }
+
   var IC = {
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>',
     globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>',
@@ -99,7 +119,7 @@
     var cbar = el("div", "cbar");
     cbar.setAttribute("dir", "ltr");
     var clogo = el("a", "cbar-logo", 'Maxgazine<span class="dot"></span>');
-    clogo.href = "index.html";
+    clogo.href = ROOT_URL + "index.html";
     var cnav = el("nav", "cbar-nav");
     navLinks.forEach(function (a) {
       if (a.classList.contains("sub")) return;
@@ -117,7 +137,7 @@
     /* mobile drawer */
     var drawer = el("aside", "drawer");
     var dhead = el("div", "drawer-head");
-    var dlogo = el("a", "logo on-dark", 'Maxgazine<span class="dot"></span>'); dlogo.href = "index.html";
+    var dlogo = el("a", "logo on-dark", 'Maxgazine<span class="dot"></span>'); dlogo.href = ROOT_URL + "index.html";
     var dclose = el("button", "drawer-close", "✕"); dclose.setAttribute("aria-label", T.close); dclose.addEventListener("click", closeAll);
     dhead.appendChild(dlogo); dhead.appendChild(dclose);
     var dnav = el("nav", "drawer-nav");
@@ -130,10 +150,7 @@
     LANGS.forEach(function (lg) {
       var x = el("button", "lang-btn" + (lg.c === L ? " on" : ""), lg.n);
       x.setAttribute("data-lang", lg.c);
-      x.addEventListener("click", function () {
-        localStorage.setItem("mg_lang", lg.c);
-        location.reload();
-      });
+      x.addEventListener("click", function () { switchLang(lg.c); });
       dlangs.appendChild(x);
     });
     drawer.appendChild(dhead); drawer.appendChild(dnav); drawer.appendChild(dlangs);
@@ -150,7 +167,7 @@
     var sbody = el("div", "search-body");
     sbody.appendChild(el("div", "search-hint", T.sHint));
     var stags = el("div", "search-tags");
-    T.tags.forEach(function (t) { var a = el("a", "", t); a.href = "stories.html"; stags.appendChild(a); });
+    T.tags.forEach(function (t) { var a = el("a", "", t); a.href = ROOT_URL + "stories.html"; stags.appendChild(a); });
     sbody.appendChild(stags);
     so.appendChild(sbar); so.appendChild(sbody);
     document.body.appendChild(so);
@@ -183,10 +200,7 @@
       var btn = el("button", lg.c === L ? "on" : "", lg.n + '<span class="code">' + lg.c.toUpperCase() + "</span>");
       btn.setAttribute("data-lang", lg.c);
       btn.style.cssText = "display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 20px;border:none;border-bottom:1px solid var(--hair);font-family:var(--body);font-weight:700;color:var(--k);cursor:pointer;background:var(--w);text-align:start";
-      btn.addEventListener("click", function () {
-        localStorage.setItem("mg_lang", lg.c);
-        location.reload();
-      });
+      btn.addEventListener("click", function () { switchLang(lg.c); });
       lcard.appendChild(btn);
     });
     lm.appendChild(lcard);
