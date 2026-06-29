@@ -2190,19 +2190,23 @@ function initBroadsheetChrome(){
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 }
 
-/* ---------- theme: light / dark / system (follows OS) ---------- */
-function currentThemeMode(){ try{ return localStorage.getItem('mg_theme') || 'system'; }catch(e){ return 'system'; } }
-function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+/* ---------- theme: always light — dark only on explicit user toggle ---------- */
+function currentThemeMode(){
+  try{
+    const m = localStorage.getItem('mg_theme');
+    // 'system' and null are legacy values — treat as light and reset
+    if(!m || m === 'system'){ localStorage.setItem('mg_theme','light'); return 'light'; }
+    return m; // 'light' or 'dark'
+  }catch(e){ return 'light'; }
+}
 function applyTheme(mode){
   const dark = mode === 'dark';
   document.body.classList.toggle('theme-dark', dark);
-  try{ localStorage.setItem('mg_theme', mode); }catch(e){}
-  // reflect on the menu's 3-way segmented control
+  try{ localStorage.setItem('mg_theme', dark ? 'dark' : 'light'); }catch(e){}
   document.querySelectorAll('[data-theme-set]').forEach(b=>{
     const on = b.getAttribute('data-theme-set') === mode;
     b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on));
   });
-  // reflect on the masthead single toggle
   const btn = document.getElementById('theme-toggle');
   if(btn){
     const ti = btn.querySelector('.tt-icon'), tl = btn.querySelector('.tt-label');
@@ -2216,13 +2220,6 @@ function initTheme(){
   const btn = document.getElementById('theme-toggle');
   if(btn) btn.addEventListener('click', ()=> applyTheme(document.body.classList.contains('theme-dark') ? 'light' : 'dark'));
   document.querySelectorAll('[data-theme-set]').forEach(b=>b.addEventListener('click', ()=> applyTheme(b.getAttribute('data-theme-set'))));
-  // when in "system" mode, track OS theme changes live
-  if(window.matchMedia){
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = ()=>{ if(currentThemeMode() === 'system') applyTheme('system'); };
-    if(mq.addEventListener) mq.addEventListener('change', onChange);
-    else if(mq.addListener) mq.addListener(onChange);
-  }
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
