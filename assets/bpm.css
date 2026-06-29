@@ -34,6 +34,7 @@ img{max-width:100%;display:block}
 .logo{font-family:var(--serif);font-weight:700;font-variation-settings:'opsz' 144;
   font-size:42px;letter-spacing:-.02em;color:var(--k);line-height:.9;
   display:inline-flex;align-items:baseline;gap:0;direction:ltr}
+.logo:hover{text-decoration:none}
 .logo .dot{color:var(--red)}
 .logo .dot::before{content:"."}
 .logo.lg{font-size:80px}

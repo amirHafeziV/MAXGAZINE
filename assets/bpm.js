@@ -197,10 +197,10 @@
     var lcard = el("div", "langmenu-card");
     lcard.appendChild(el("h4", "", T.langTitle));
     LANGS.forEach(function (lg) {
-      var btn = el("button", lg.c === L ? "on" : "", lg.n + '<span class="code">' + lg.c.toUpperCase() + "</span>");
+      var btn = el("a", lg.c === L ? "on" : "", lg.n + '<span class="code">' + lg.c.toUpperCase() + "</span>");
       btn.setAttribute("data-lang", lg.c);
-      btn.style.cssText = "display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 20px;border:none;border-bottom:1px solid var(--hair);font-family:var(--body);font-weight:700;color:var(--k);cursor:pointer;background:var(--w);text-align:start";
-      btn.addEventListener("click", function () { switchLang(lg.c); });
+      btn.href = "javascript:void(0)";
+      btn.addEventListener("click", function (e) { e.preventDefault(); switchLang(lg.c); });
       lcard.appendChild(btn);
     });
     lm.appendChild(lcard);

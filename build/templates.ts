@@ -66,7 +66,7 @@ const CHROME: Record<Lang, Record<string, string>> = {
 };
 
 const FONTS =
-  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Vazirmatn:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap';
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap';
 
 /**
  * Pick a localized value with fallback (manual panel articles may only be
@@ -300,18 +300,14 @@ function chromeFooter(lang: Lang, prefix: string): string {
 </html>`;
 }
 
-/** Render one story card (used by the stories index and the related-stories section). */
-function articleCard(a: Article, lang: Lang, prefix: string, readMore: string): string {
-  const img = a.banner
-    ? `<span class="card-img"><img src="${esc(a.banner.startsWith("http") ? a.banner : `${prefix}${a.banner.replace(/^\/+/, "")}`)}" alt="" loading="lazy"></span>
-      `
-    : "";
-  return `    <a class="card${a.banner ? " has-img" : ""}" href="${prefix}${lang}/${a.slug}.html">
-      ${img}<div class="cat mono">${esc((a.category||"").toUpperCase())} · ${esc(a.date)}</div>
-      <h3>${esc(pick(a.headline, lang))}</h3>
-      <p>${esc(pick(a.dek, lang))}</p>
-      <span class="mono">${esc(readMore)}</span>
-    </a>`;
+/** Render one story card (used by the related-stories section). */
+function articleCard(a: Article, lang: Lang, prefix: string, _readMore: string): string {
+  return `<div class="ditem">
+  <div class="si-cat">${esc((a.category||"").toUpperCase())}</div>
+  <h3 class="si-hed"><a href="${prefix}${lang}/${a.slug}.html">${esc(pick(a.headline, lang))}</a></h3>
+  <p class="si-dek">${esc(pick(a.dek, lang))}</p>
+  <div class="si-meta">${esc(a.date)}</div>
+</div>`;
 }
 
 /** Full article page for one language. */
@@ -354,18 +350,14 @@ export function renderArticle(
   };
 
   const sourcesHtml = article.sources.length
-    ? `<div class="section"><h2>${esc(c.sources!)}</h2><ul>${article.sources
-        .map((src) => `<li><a href="${esc(src.url)}" rel="noopener nofollow">${esc(src.title)}</a></li>`)
-        .join("")}</ul></div>`
+    ? `<div class="art-sources" style="margin-top:28px;padding-top:20px;border-top:1px solid var(--hair)"><h4 style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">${esc(c.sources!)}</h4><ul style="font-size:14px;line-height:1.8;padding-inline-start:18px">${article.sources.map((src) => `<li><a href="${esc(src.url)}" rel="noopener nofollow">${esc(src.title)}</a></li>`).join("")}</ul></div>`
     : "";
 
-  const bannerHtml = article.banner
-    ? `<figure class="lead-figure"><div class="lead-frame"><img src="${esc(article.banner.startsWith("http") ? article.banner : `${prefix}${article.banner.replace(/^\/+/, "")}`)}" alt="${esc(pick(article.headline, lang))}"></div></figure>`
+  const heroImgHtml = article.banner
+    ? `<div class="art-hero-img" style="background-image:url('${esc(article.banner.startsWith("http") ? article.banner : `${prefix}${article.banner.replace(/^\/+/, "")}`)}')" role="img" aria-label="${esc(pick(article.headline, lang))}"></div>`
     : "";
   const tagsHtml = article.tags?.length
-    ? `<div class="read-tags">${article.tags
-        .map((t) => `<span class="chip">${esc(t)}</span>`)
-        .join("")}</div>`
+    ? `<div class="art-tags">${article.tags.map((t) => `<span class="art-tag">${esc(t)}</span>`).join("")}</div>`
     : "";
   // Per language: rich HTML wins over Markdown; fall back across languages.
   const richHtml = article.bodyHtml?.[lang] ?? (article.body?.[lang] ? undefined : pick(article.bodyHtml, lang) || undefined);
@@ -384,32 +376,40 @@ export function renderArticle(
     .map((r) => r.article);
 
   const relatedHtml = related.length
-    ? `<div class="section-head"><h2>${esc(c.related!)}</h2></div>
-<div class="feed-grid bs-grid">
+    ? `<div class="sec-mix related">
+  <div class="wrap">
+    <div class="sec-mix-title"><span class="sm-big"><span class="sm-num">+</span> ${esc(c.related!)}</span></div>
+    <a href="${prefix}stories.html" class="sec-mix-all">${esc(c.f_stories!)} →</a>
+  </div>
+</div>
+<div class="desk"><div class="desk-inner"><div class="wrap">
 ${related.map((a) => articleCard(a, lang, prefix, c.read_more!)).join("\n")}
-</div>`
+</div></div></div>`
     : "";
 
-  const body = `<main>
-<article class="article-read bs-section">
-  <div class="read-kicker">${esc((article.category||"").toUpperCase())}</div>
-  <h1>${esc(pick(article.headline, lang))}</h1>
-  <p class="read-dek">${esc(pick(article.dek, lang))}</p>
-  <div class="read-byline">
-    <span class="read-avatar" aria-hidden="true"></span>
-    <span class="by-meta">${esc(c.published!)} <b>${esc(article.author)}</b> · ${esc(article.date)}</span>
+  const body = `
+<div class="art-wrap">
+  <div class="art-head">
+    <div class="art-kicker">${esc((article.category||"").toUpperCase())}${article.tags?.slice(0,2).map(t => ` · ${esc(t)}`).join("") || ""}</div>
+    <h1 class="art-title">${esc(pick(article.headline, lang))}</h1>
+    <p class="art-standfirst">${esc(pick(article.dek, lang))}</p>
+    <div class="art-byline">
+      <span class="author">${esc(c.published!)} ${esc(article.author)}</span>
+      <span>${esc(article.date)}</span>
+    </div>
   </div>
-  ${bannerHtml}
-  <a class="ad-banner ad-inline" data-ad-slot="article-top" href="${prefix}contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-article banner</span><span class="ad-cta mono">Book this spot →</span></a>
-  <div class="article-prose">
+</div>
+<div class="ad-wrap"><a class="ad-banner" data-ad-slot="article-top" href="${prefix}contact.html"><span class="ad-tag">Ad space</span><span class="ad-banner-title">Sponsored placement.</span><span class="ad-cta">Book this spot →</span></a></div>
+${heroImgHtml}
+<div class="art-wrap">
+  <div class="art-body">
 ${richHtml ? sanitizeHtml(richHtml) : md(pick(article.body, lang), prefix)}
+${tagsHtml}
+${sourcesHtml}
   </div>
-  <a class="ad-banner ad-inline" data-ad-slot="article-end" href="${prefix}contact.html"><span class="ad-tag mono">AD SPACE</span><span class="ad-banner-title">In-article banner</span><span class="ad-cta mono">Book this spot →</span></a>
-  ${tagsHtml}
-  ${sourcesHtml}
-</article>
-${relatedHtml ? `<div class="bs-section" style="padding-top:0">${relatedHtml}</div>` : ""}
-</main>`;
+</div>
+<div class="ad-wrap"><a class="ad-banner" data-ad-slot="article-end" href="${prefix}contact.html"><span class="ad-tag">Ad space</span><span class="ad-banner-title">Sponsored placement.</span><span class="ad-cta">Book this spot →</span></a></div>
+${relatedHtml}`;
 
   return [
     head({

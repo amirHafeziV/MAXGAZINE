@@ -6,7 +6,7 @@
 <title>Top Forex Brokers 2026 — Ranked & Rated — MAXGAZINE</title>
 <meta name="description" content="The best forex and CFD brokers of 2026, ranked by regulation, spreads, execution and platforms. Independent ratings and scores from MAXGAZINE.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://maxgazine.com/brokers.html">
 <link rel="alternate" hreflang="en" href="https://maxgazine.com/brokers.html">
 <link rel="alternate" hreflang="x-default" href="https://maxgazine.com/brokers.html">
@@ -19,8 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Estedad:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/bpm.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"CollectionPage","name":"Top Forex Brokers 2026","url":"https://maxgazine.com/brokers.html","isPartOf":{"@id":"https://maxgazine.com/#website"},"inLanguage":"en"},
@@ -37,63 +37,71 @@
 ]}
 </script>
 </head>
-<body dir="ltr" class="bs-page">
-<div class="bs-frame">
+<body>
 
-  <header class="bsheet">
-    <div class="bs-top">
-      <div class="bs-date" id="bs-date"></div>
-      <div class="bs-cats" data-i="kicker">CRYPTO · FOREX · TECH · CARS</div>
-      <div class="bs-top-right">
-      <button class="bs-search-btn" id="bs-search-btn" type="button" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg><span class="mono tt-label">SEARCH</span></button>
-      <button class="bs-subscribe-btn mono" id="bs-subscribe-btn" type="button">SUBSCRIBE</button>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"><span class="tt-icon">☀</span><span class="mono tt-label">LIGHT</span></button>
-      <div class="bs-lang" role="group" aria-label="Select language">
-        <button type="button" class="bs-lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg class="bs-lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"/></svg><span class="bs-lang-cur">EN</span></button>
-        <div class="bs-lang-menu" role="menu">
-          <button data-lang="en" class="active" lang="en" role="menuitem"><span class="bs-lang-code">EN</span><span class="bs-lang-name">English</span></button>
-          <button data-lang="fa" lang="fa" role="menuitem"><span class="bs-lang-code">FA</span><span class="bs-lang-name">فارسی</span></button>
-          <button data-lang="ar" lang="ar" role="menuitem"><span class="bs-lang-code">AR</span><span class="bs-lang-name">العربية</span></button>
-          <button data-lang="tr" lang="tr" role="menuitem"><span class="bs-lang-code">TR</span><span class="bs-lang-name">Türkçe</span></button>
-        </div>
-      </div>
-      </div><!-- /.bs-top-right -->
+<!-- LIVE TICKER -->
+<div class="ticker" aria-label="Live prices">
+  <span class="ticker-live">LIVE</span>
+  <div class="ticker-clip">
+    <div class="ticker-track" id="ticker" data-ticker></div>
+  </div>
+</div>
+
+<!-- NAMEPLATE -->
+<div class="nameplate">
+  <div class="wrap">
+    <a href="index.html" class="logo lg" aria-label="Maxgazine — home">Maxgazine<span class="dot"></span></a>
+    <div class="np-tools">
+      <span class="np-date ltr" id="bs-date"></span>
+      <button class="tool" id="bs-search-btn" data-open="search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      </button>
+      <button class="tool tool-lang bs-lang-toggle" data-open="lang" aria-label="Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+        <b id="cur-lang-label">EN</b>
+      </button>
+      <button class="tool tool-sub" id="bs-subscribe-btn" data-open="sub">Subscribe</button>
+      <button class="tool tool-burger" data-open="menu" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
     </div>
-    <div class="bs-logo-row">
-      <div class="bs-motion" aria-hidden="true"></div>
-      <a class="bs-logo" href="index.html" aria-label="MAXGAZINE — home">MAXGAZINE<span class="dot">.</span></a>
-    </div>
-    <nav class="bs-nav" aria-label="Primary">
-      <a href="stories.html" data-i="nav_stories">Stories</a>
-      <a href="stories.html?cat=crypto" data-nav="crypto" data-i="nav_crypto">Crypto</a>
-      <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
-      <a href="prices.html" data-i="nav_prices">Prices</a>
-      <a href="stories.html?cat=ai" data-nav="ai">AI<span class="nav-badge-new">NEW</span></a>
-      <a href="stories.html?cat=cars" data-nav="cars" data-i="nav_cars">Cars</a>
-      <a href="chart.html" data-i="nav_chart">Charts</a>
-      <a href="about.html" data-i="nav_about">About</a>
-      <a href="contact.html" data-i="nav_contact">Contact</a>
-    </nav>
-  </header>
-<div class="ticker" aria-label="Live prices"><div class="ticker-track" id="ticker">
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>SOL <span class="down">$142 ▼ 0.80%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span><span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
-  <span>BTC <span class="up">$94,210 ▲ 2.40%</span></span><span>ETH <span class="up">$3,180 ▲ 1.10%</span></span><span>SOL <span class="down">$142 ▼ 0.80%</span></span><span>EUR/USD <span class="up">1.0850 ▲ 0.12%</span></span><span>USD/JPY <span class="down">157.20 ▼ 0.20%</span></span>
-</div></div>
+  </div>
+</div>
 
-<main>
-<div class="page-head"><div class="wrap">
-  <h1 data-i="ph_title">Top Forex Brokers</h1>
-  <p data-i="ph_sub">Ranked by regulation, spreads, execution speed and platforms — independently scored.</p>
-</div></div>
+<!-- NAV -->
+<nav class="mainnav" aria-label="Primary">
+  <div class="wrap">
+    <a href="index.html" data-i="nav_home">Home</a>
+    <a href="stories.html" data-i="nav_stories">Stories</a>
+    <a href="exchanges.html" data-i="nav_topmarkets">Markets</a>
+    <a href="prices.html" data-i="nav_prices">Prices</a>
+    <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
+    <a href="stories.html?cat=tech">Tech</a>
+    <a href="stories.html?cat=ai">AI</a>
+    <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
+    <a href="about.html" data-i="nav_about">About</a>
+    <a href="contact.html" data-i="nav_contact">Contact</a>
+  </div>
+</nav>
 
-<div class="wrap">
-  <div class="section-head"><h2 data-i="h_ranked">The 2026 Ranking</h2><span class="mono" style="color:#777;font-size:12px" data-i="rank_src">METHODOLOGY · INDEPENDENTLY SCORED</span></div>
+<div class="page-head" data-ghost="BROKERS">
+  <div class="wrap">
+    <div class="ph-title"><span class="ph-big" data-i="ph_title">Top Forex Brokers</span></div>
+    <p class="ph-sub" data-i="ph_sub">Ranked by regulation, spreads, execution speed and platforms — independently scored.</p>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:32px;padding-bottom:8px">
+  <div style="display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--k);padding-bottom:10px">
+    <h2 style="font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0" data-i="h_ranked">The 2026 Ranking</h2>
+    <span style="font-family:var(--mono);font-size:11px;color:#777;letter-spacing:.06em;text-transform:uppercase" data-i="rank_src">METHODOLOGY · INDEPENDENTLY SCORED</span>
+  </div>
 </div>
 
 <div class="table-wrap"><div class="wrap"><table class="data rankings">
   <thead><tr><th>#</th><th data-i="th_broker">Broker</th><th data-i="th_score">Score</th><th data-i="th_rating">Rating</th><th data-i="th_spread">EUR/USD Spread</th><th data-i="th_act"></th></tr></thead>
   <tbody>
-    <tr class="reveal">
+    <tr>
       <td class="rank">01</td>
       <td><span class="sym">IC Markets</span> <span class="muted" data-i="b1n">ASIC/CySEC · raw spreads</span></td>
       <td class="num"><span data-count="9.5" data-decimals="1"></span></td>
@@ -101,7 +109,7 @@
       <td class="num">0.0 pips</td>
       <td class="num"><a class="btn" href="#" rel="sponsored nofollow" data-i="cta_visit">Visit</a></td>
     </tr>
-    <tr class="reveal">
+    <tr>
       <td class="rank">02</td>
       <td><span class="sym">Pepperstone</span> <span class="muted" data-i="b2n">FCA/ASIC · fast execution</span></td>
       <td class="num"><span data-count="9.3" data-decimals="1"></span></td>
@@ -109,7 +117,7 @@
       <td class="num">0.1 pips</td>
       <td class="num"><a class="btn" href="#" rel="sponsored nofollow" data-i="cta_visit">Visit</a></td>
     </tr>
-    <tr class="reveal">
+    <tr>
       <td class="rank">03</td>
       <td><span class="sym">Interactive Brokers</span> <span class="muted" data-i="b3n">SEC/FCA · pro-grade</span></td>
       <td class="num"><span data-count="9.2" data-decimals="1"></span></td>
@@ -117,7 +125,7 @@
       <td class="num">0.1 pips</td>
       <td class="num"><a class="btn" href="#" rel="sponsored nofollow" data-i="cta_visit">Visit</a></td>
     </tr>
-    <tr class="reveal">
+    <tr>
       <td class="rank">04</td>
       <td><span class="sym">OANDA</span> <span class="muted" data-i="b4n">FCA/NFA · no minimum</span></td>
       <td class="num"><span data-count="8.9" data-decimals="1"></span></td>
@@ -125,7 +133,7 @@
       <td class="num">0.8 pips</td>
       <td class="num"><a class="btn" href="#" rel="sponsored nofollow" data-i="cta_visit">Visit</a></td>
     </tr>
-    <tr class="reveal">
+    <tr>
       <td class="rank">05</td>
       <td><span class="sym">Saxo Bank</span> <span class="muted" data-i="b5n">Licensed bank · 70k+ instruments</span></td>
       <td class="num"><span data-count="8.8" data-decimals="1"></span></td>
@@ -133,7 +141,7 @@
       <td class="num">0.6 pips</td>
       <td class="num"><a class="btn" href="#" rel="sponsored nofollow" data-i="cta_visit">Visit</a></td>
     </tr>
-    <tr class="reveal">
+    <tr>
       <td class="rank">06</td>
       <td><span class="sym">XM</span> <span class="muted" data-i="b6n">CySEC/ASIC · low entry</span></td>
       <td class="num"><span data-count="8.6" data-decimals="1"></span></td>
@@ -144,43 +152,86 @@
   </tbody>
 </table></div></div>
 
-<div class="wrap section">
-  <div class="section-head"><h2 data-i="h_how">How we score</h2></div>
-  <div class="grid">
-    <div class="card reveal"><div class="cat mono" data-i="m1k">40%</div><h3 data-i="m1t">Regulation &amp; safety</h3><p data-i="m1d">Tier-1 licences, segregated client funds and negative-balance protection.</p></div>
-    <div class="card reveal"><div class="cat mono" data-i="m2k">30%</div><h3 data-i="m2t">Spreads &amp; costs</h3><p data-i="m2d">Raw spreads, commissions, swaps and overnight financing.</p></div>
-    <div class="card reveal"><div class="cat mono" data-i="m3k">20%</div><h3 data-i="m3t">Execution &amp; platforms</h3><p data-i="m3d">Fill speed, slippage, MT4/MT5/cTrader and mobile quality.</p></div>
-  </div>
-</div>
-
-<div class="ad">
-  <div><div class="label mono" data-i="ad_label">SPONSORED</div><h3 data-i="ad_title">Want your brokerage featured at the top?</h3></div>
-  <a class="btn" href="contact.html" data-i="cta_advertise">Advertise with us →</a>
-</div>
-
-<div class="wrap section">
-  <p class="mono" style="font-size:12px;color:#888;line-height:1.7" data-i="disclaimer">Rankings reflect MAXGAZINE's independent methodology and may include sponsored placements, which are labelled. CFDs and leveraged forex carry a high risk of losing money rapidly. This is information, not financial advice — verify regulation in your jurisdiction.</p>
-</div>
-</main>
-
-<footer><div class="wrap">
-  <div class="foot-top">
-    <div class="foot-brand">
-        <div class="foot-logo">MAXGAZINE<span class="dot">.</span></div>
-      <p class="foot-desc" data-i="foot_desc">MAXGAZINE is a multilingual market media outlet covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
-        <div class="foot-socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="X">X</a><a href="#" aria-label="YouTube">YT</a></div>
-      </div>
-    <div class="foot-cols">
-      <div class="foot-col"><h5 data-i="foot_explore">Explore</h5><a href="stories.html" data-i="f_stories">Stories</a><a href="chart.html" data-i="f_chart">Chart</a><a href="prices.html" data-i="f_prices">Prices</a></div>
-      <div class="foot-col"><h5 data-i="foot_markets">Markets</h5><a href="exchanges.html" data-i="f_exchanges">Top Exchanges</a><a href="brokers.html" data-i="f_brokers">Top Brokers</a></div>
-      <div class="foot-col"><h5 data-i="foot_company">Company</h5><a href="about.html" data-i="f_about">About Us</a><a href="contact.html" data-i="f_contact">Contact Us</a></div>
-      <div class="foot-col"><h5 data-i="foot_lang">Languages</h5><a href="#" data-lang="en">English</a><a href="#" data-lang="fa">فارسی</a><a href="#" data-lang="ar">العربية</a><a href="#" data-lang="tr">Türkçe</a></div>
+<div class="wrap" style="padding-top:48px;padding-bottom:48px">
+  <h2 style="font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;border-bottom:2px solid var(--k);padding-bottom:10px" data-i="h_how">How we score</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">
+    <div style="border:1.5px solid #e0e0e0;padding:24px">
+      <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--red);margin-bottom:8px" data-i="m1k">40%</div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:8px" data-i="m1t">Regulation &amp; safety</h3>
+      <p style="font-size:14px;color:#555;line-height:1.6" data-i="m1d">Tier-1 licences, segregated client funds and negative-balance protection.</p>
+    </div>
+    <div style="border:1.5px solid #e0e0e0;padding:24px">
+      <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--red);margin-bottom:8px" data-i="m2k">30%</div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:8px" data-i="m2t">Spreads &amp; costs</h3>
+      <p style="font-size:14px;color:#555;line-height:1.6" data-i="m2d">Raw spreads, commissions, swaps and overnight financing.</p>
+    </div>
+    <div style="border:1.5px solid #e0e0e0;padding:24px">
+      <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--red);margin-bottom:8px" data-i="m3k">20%</div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:8px" data-i="m3t">Execution &amp; platforms</h3>
+      <p style="font-size:14px;color:#555;line-height:1.6" data-i="m3d">Fill speed, slippage, MT4/MT5/cTrader and mobile quality.</p>
     </div>
   </div>
-  <div class="foot-bottom mono"><span data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECH · CARS</span><span data-i="f_built">MULTILINGUAL MARKET MEDIA</span></div>
-</div></footer>
+</div>
 
-</div><!-- /.bs-frame -->
+<div class="wrap" style="padding-bottom:24px">
+  <div style="background:var(--k);color:var(--w);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:8px" data-i="ad_label">SPONSORED</div>
+      <h3 style="font-size:18px;font-weight:700;margin:0" data-i="ad_title">Want your brokerage featured at the top?</h3>
+    </div>
+    <a style="background:var(--red);color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;text-decoration:none;flex-shrink:0" href="contact.html" data-i="cta_advertise">Advertise with us →</a>
+  </div>
+</div>
+
+<div class="wrap" style="padding-bottom:48px">
+  <p style="font-family:var(--mono);font-size:11px;color:#888;line-height:1.7" data-i="disclaimer">Rankings reflect MAXGAZINE's independent methodology and may include sponsored placements, which are labelled. CFDs and leveraged forex carry a high risk of losing money rapidly. This is information, not financial advice — verify regulation in your jurisdiction.</p>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="wrap">
+      <div class="foot-brand">
+        <a href="index.html" class="logo md on-dark">Maxgazine<span class="dot"></span></a>
+        <p class="foot-desc" data-i="foot_desc">Multilingual market media covering crypto, forex, tech and cars — fast, raw, and without the noise.</p>
+        <div class="foot-sub">
+          <h5 data-i="foot_brief">The Brief — daily newsletter</h5>
+          <form class="foot-sub-form" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit" data-i="foot_news_cta">Join →</button>
+          </form>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5 data-i="foot_explore">Explore</h5>
+        <a href="stories.html" data-i="f_stories">Stories</a>
+        <a href="exchanges.html" data-i="f_exchanges">Markets</a>
+        <a href="prices.html" data-i="f_prices">Prices</a>
+        <a href="chart.html" data-i="f_chart">Chart</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-i="foot_topics">Topics</h5>
+        <a href="stories.html?cat=crypto" data-i="nav_crypto">Crypto</a>
+        <a href="stories.html?cat=tech">Tech</a>
+        <a href="stories.html?cat=ai">AI</a>
+        <a href="stories.html?cat=cars" data-i="nav_cars">Cars</a>
+        <a href="stories.html?cat=forex">Forex</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-i="foot_company">Company</h5>
+        <a href="about.html" data-i="f_about">About</a>
+        <a href="contact.html" data-i="f_contact">Contact</a>
+        <a href="contact.html" data-i="f_advertise">Advertise</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap">
+      <span class="foot-copy" data-i="f_copy">© 2026 MAXGAZINE — CRYPTO · FOREX · TECHNOLOGY · AUTOMOBILES</span>
+      <span style="font-family:var(--mono);font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.08em" data-i="f_built">MULTILINGUAL MARKET MEDIA</span>
+    </div>
+  </div>
+</footer>
+
 <script src="assets/i18n.js"></script>
 <script>
 window.PAGE_I = {
@@ -190,6 +241,7 @@ window.PAGE_I = {
   tr:{pm_title:"En İyi Forex Brokerları 2026 — Sıralı & Puanlı — MAXGAZINE",pm_desc:"2026'nın en iyi forex ve CFD brokerları; düzenleme, spread, yürütme ve platformlara göre sıralandı.",ph_title:"En İyi Forex Brokerları",ph_sub:"Düzenleme, spread, yürütme hızı ve platformlara göre sıralandı — bağımsız puanlandı.",h_ranked:"2026 Sıralaması",rank_src:"METODOLOJİ · BAĞIMSIZ PUANLI",th_broker:"Broker",th_score:"Puan",th_rating:"Değerlendirme",th_spread:"EUR/USD Spread",th_act:"",cta_visit:"Ziyaret",b1n:"ASIC/CySEC · ham spread",b2n:"FCA/ASIC · hızlı yürütme",b3n:"SEC/FCA · profesyonel",b4n:"FCA/NFA · minimum yok",b5n:"Lisanslı banka · 70k+ enstrüman",b6n:"CySEC/ASIC · düşük giriş",h_how:"Nasıl puanlıyoruz",m1k:"%40",m1t:"Düzenleme & güvenlik",m1d:"Tier-1 lisanslar, ayrıştırılmış müşteri fonları ve negatif bakiye koruması.",m2k:"%30",m2t:"Spreadler & maliyetler",m2d:"Ham spreadler, komisyonlar, swaplar ve gecelik finansman.",m3k:"%20",m3t:"Yürütme & platformlar",m3d:"Dolum hızı, kayma, MT4/MT5/cTrader ve mobil kalitesi.",ad_label:"SPONSORLU",ad_title:"Brokerınızı en üstte öne çıkarmak ister misiniz?",cta_advertise:"Bizimle reklam verin →",disclaimer:"Sıralamalar MAXGAZINE'in bağımsız metodolojisini yansıtır ve etiketlenen sponsorlu yerleşimler içerebilir. CFD ve kaldıraçlı forex, parayı hızla kaybetme açısından yüksek risk taşır. Bu bilgidir, yatırım tavsiyesi değildir — kendi ülkenizdeki düzenlemeyi doğrulayın."}
 };
 </script>
+<script src="assets/bpm.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
