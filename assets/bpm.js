@@ -70,30 +70,8 @@
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
 
-  /* =============== TICKER (reads [data-ticker-src] items or uses live prices from page) =============== */
-  function fillTicker() {
-    var host = document.querySelector("[data-ticker]");
-    if (!host) return;
-    /* If app.js already filled the ticker (id="ticker"), skip */
-    if (host.children.length > 0) return;
-    /* Fallback static data so the ticker is never empty */
-    var TICK = [
-      ["BTC/USD", "—", "—", 1], ["ETH/USD", "—", "—", 1],
-      ["SOL/USD", "—", "—", 1], ["XRP/USD", "—", "—", 1],
-      ["BNB/USD", "—", "—", 1], ["EUR/USD", "—", "—", 1]
-    ];
-    function items() {
-      var frag = document.createDocumentFragment();
-      TICK.forEach(function (r) {
-        var it = el("span", "ticker-item");
-        it.innerHTML = '<span class="ticker-sym">' + r[0] + '</span><span class="ticker-val">' + r[1] +
-          '</span><span class="ticker-chg ' + (r[3] ? "up" : "dn") + '">' + r[2] + "</span>";
-        frag.appendChild(it);
-      });
-      return frag;
-    }
-    host.appendChild(items()); host.appendChild(items());
-  }
+  /* =============== TICKER — filled exclusively by app.js loadTicker() =============== */
+  function fillTicker() { /* no-op: app.js owns the ticker to avoid content-swap jump */ }
 
   /* =============== OVERLAYS =============== */
   function lock(on) { document.documentElement.style.overflow = on ? "hidden" : ""; }

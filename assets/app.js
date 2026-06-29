@@ -2194,7 +2194,7 @@ function initBroadsheetChrome(){
 function currentThemeMode(){ try{ return localStorage.getItem('mg_theme') || 'system'; }catch(e){ return 'system'; } }
 function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
 function applyTheme(mode){
-  const dark = mode === 'dark' ? true : mode === 'light' ? false : systemPrefersDark();
+  const dark = mode === 'dark';
   document.body.classList.toggle('theme-dark', dark);
   try{ localStorage.setItem('mg_theme', mode); }catch(e){}
   // reflect on the menu's 3-way segmented control
