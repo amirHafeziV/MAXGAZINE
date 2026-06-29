@@ -646,7 +646,7 @@ html[lang="en"] .foot-copy{font-family:var(--mono);text-transform:uppercase;lett
 .ticker-live{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;flex-shrink:0}
 .ticker-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
 .ticker-clip{flex:1;overflow:hidden;white-space:nowrap}
-.ticker-track{display:inline-flex;align-items:stretch;will-change:transform;animation:tick 48s linear infinite}
+.ticker-track{display:inline-flex;align-items:stretch;will-change:transform;animation:tick 110s linear infinite}
 .ticker-clip:hover .ticker-track{animation-play-state:paused}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{display:inline-flex;align-items:baseline;gap:8px;padding:9px 20px;border-inline-end:1px solid #1d1d1d;font-family:var(--mono);direction:ltr;flex-shrink:0}
@@ -656,11 +656,11 @@ html[lang="en"] .foot-copy{font-family:var(--mono);text-transform:uppercase;lett
 .ticker-chg.up{color:#27d127}.ticker-chg.dn{color:#ff5a5a}
 
 /* header tools cluster (search / lang / subscribe / hamburger) */
-.np-tools{display:flex;align-items:center;gap:8px}
+.np-tools{display:flex;align-items:center;gap:6px}
 .tool{font-family:var(--mono);font-size:13px;background:none;border:2px solid var(--k);color:var(--k);cursor:pointer;
-  height:42px;min-width:42px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;line-height:1}
+  height:44px;min-width:44px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;line-height:1}
 .tool:hover{background:var(--k);color:var(--w);text-decoration:none}
-.tool svg{width:18px;height:18px;display:block}
+.tool svg{width:18px;height:18px;display:block;flex-shrink:0}
 .tool-sub{background:var(--k);color:var(--w);font-weight:800;padding:0 18px}
 html[lang="en"] .tool-sub{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px}
 .tool-sub:hover{background:var(--red);border-color:var(--red)}
