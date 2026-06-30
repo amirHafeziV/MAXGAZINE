@@ -1695,13 +1695,7 @@ async function loadFeed(){
   if(window.__refreshMenuPanel) window.__refreshMenuPanel();
   const lang = feedLang();
 
-  // Always lead the carousel with the freshest content: prepend the top-3
-  // newest articles that have a banner so the hero stays current even when
-  // old explicit heroes still carry their featured flag.
-  const heroExplicit = feed.filter(a=>(plc(a).hero || a.featured) && a.banner);
-  const heroSlugs = new Set(heroExplicit.map(a=>a.slug));
-  const autoHeroes = feed.filter(a=>a.banner && !plc(a).hideFromLatest && !heroSlugs.has(a.slug)).slice(0,3);
-  featuredList = [...autoHeroes, ...heroExplicit].filter((a,i,arr)=>arr.findIndex(b=>b.slug===a.slug)===i).sort(byPriorityDate);
+  featuredList = feed.filter(a=>(plc(a).hero || a.featured) && a.banner).sort(byPriorityDate);
   if(featuredList.length){
     ['hero-kicker','hero-sub'].forEach(id=>{
       const el = document.getElementById(id);
