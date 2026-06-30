@@ -5,7 +5,7 @@
   "placement": {
     "hero": false,
     "editorsPick": false,
-    "pinned": false,
+    "pinned": true,
     "hideFromLatest": false,
     "priority": 0
   },
