@@ -60,6 +60,7 @@ const state = {
   filters: { search: '', status: 'all', banner: 'all', category: 'all', type: 'all', sort: 'newest' },
   articlesLoaded: false,
   saving: false,
+  indexSha: null,       // current SHA of articles-index.json for direct in-panel updates
 };
 
 /* ---------------- GitHub API (proxied through api.php) ---------------- */
@@ -109,6 +110,52 @@ async function triggerBuild(){
   }catch(e){ console.warn('build dispatch failed', e); return false; }
 }
 
+/* Update articles-index.json on GitHub directly so the panel reflects the real
+   state immediately — without waiting for the CI build (~2 min). Called after
+   every article save or delete. Always fetches the fresh index from GitHub to
+   avoid lost-update collisions with concurrent writers or the build bot. */
+async function updateArticleInIndex(article, fileName, remove){
+  const INDEX_PATH = 'content/data/articles-index.json';
+  const entry = remove ? null : {
+    file: fileName,
+    slug: article.slug,
+    status: article.status ?? null,
+    date: article.date,
+    publishAt: article.publishAt ?? null,
+    category: article.category ?? null,
+    topic: article.topic ?? null,
+    type: article.type ?? null,
+    author: article.author ?? null,
+    headline: article.headline,
+    banner: article.banner ?? null,
+    featured: article.placement?.hero === true || article.featured === true,
+  };
+  async function doUpdate(){
+    const got = await getFile(INDEX_PATH);
+    let entries = [];
+    let sha = null;
+    if(got){
+      sha = got.sha;
+      try{ entries = JSON.parse(got.text); }catch{ entries = []; }
+    }
+    if(remove){
+      entries = entries.filter(e=>e.file !== fileName);
+    } else {
+      const i = entries.findIndex(e=>e.file === fileName);
+      if(i >= 0) entries[i] = entry; else entries.unshift(entry);
+    }
+    entries.sort((a,b)=>(String(a.date)<String(b.date)?1:-1));
+    const result = await putFile(INDEX_PATH, JSON.stringify(entries),
+      `panel: update index (${fileName})`, sha);
+    state.indexSha = result?.content?.sha || sha;
+  }
+  try{
+    await doUpdate();
+  }catch(e){
+    console.warn('index update failed', e);
+  }
+}
+
 /* ---------------- auth ---------------- */
 // The PHP session (lib.php/guard.php) already gates access to this page —
 // just load the repo config and enter the panel.
@@ -147,6 +194,7 @@ async function loadArticles(){
     try{
       const entries = JSON.parse(idx.text);
       if(Array.isArray(entries)){
+        state.indexSha = idx.sha;
         state.articles = entries.map(e=>({
           path: 'content/articles/' + e.file,
           sha: null,
@@ -413,17 +461,32 @@ function pickImage(accept){
     inp.click();
   });
 }
-/** Resolve a possibly-relative repo path (legacy articles) to an absolute, browser-loadable URL. */
+/** Resolve a possibly-relative repo path (legacy articles) to a browser-loadable URL.
+ *  Uploaded images (assets/uploads/*) are served through the panel's own img.php
+ *  proxy instead of the live origin: a just-committed banner is on GitHub instantly
+ *  but doesn't reach maxgazine.com until the build+deploy finishes (~2-4 min), which
+ *  made fresh covers 404 in the editor and look "not saved" until a later refresh. */
 function resolveAssetUrl(src){
-  if(!src || src.startsWith('data:') || /^https?:\/\//i.test(src)) return src;
+  if(!src || src.startsWith('data:')) return src;
+  const m = src.match(/(?:^|\/)(assets\/uploads\/[A-Za-z0-9._-]+)$/);
+  if(m) return `img.php?p=${encodeURIComponent(m[1])}`;
+  if(/^https?:\/\//i.test(src)) return src;
   return `${state.cfg.origin}/${src.replace(/^\/+/,'')}`;
 }
+/** Produce a safe ASCII slug for upload filenames (img.php only allows [A-Za-z0-9._-]). */
+function slugifyAscii(s){
+  return (s||'').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40) || 'img';
+}
+
 /** Upload a data: URL image to assets/uploads/, return the absolute site URL. */
 async function uploadDataUrl(dataUrl, nameHint){
   const m = dataUrl.match(/^data:image\/([a-z+]+);base64,(.+)$/is);
   if(!m) throw new Error('unsupported image');
   const ext = m[1] === 'jpeg' ? 'jpg' : m[1].replace('svg+xml','svg');
-  const name = `${Date.now()}-${slugify(nameHint||'img').slice(0,40)}.${ext}`;
+  const name = `${Date.now()}-${slugifyAscii(nameHint)}.${ext}`;
   const path = `assets/uploads/${name}`;
   await putBinary(path, m[2], `panel: upload ${name}`);
   return `${state.cfg.origin}/${path}`;
@@ -434,7 +497,7 @@ async function uploadMediaDataUrl(dataUrl, nameHint){
   if(!m) throw new Error('unsupported media — upload an image, GIF or MP4');
   const sub = m[2].toLowerCase();
   const ext = sub === 'jpeg' ? 'jpg' : sub === 'quicktime' ? 'mov' : sub.replace('svg+xml','svg');
-  const name = `${Date.now()}-${slugify(nameHint||'ad').slice(0,40)}.${ext}`;
+  const name = `${Date.now()}-${slugifyAscii(nameHint)}.${ext}`;
   const path = `assets/uploads/${name}`;
   await putBinary(path, m[3], `panel: upload ${name}`);
   return `${state.cfg.origin}/${path}`;
@@ -828,16 +891,19 @@ async function saveArticle(){
     const newSha = result?.content?.sha;
     state.editing = { path, sha: newSha || state.editing?.sha };
 
-    // 4) kick the site build (unless it's a draft or scheduled for later)
+    // 4) show success immediately, then update the panel index and kick the
+    //    build in the background — keeps the save button responsive.
     const willGoLive = statusSel === 'published' || (statusSel==='scheduled' && publishAtLocal && Date.parse(publishAtLocal) <= Date.now());
-    if(willGoLive) await triggerBuild();
     msg.textContent = statusSel==='draft' ? 'Draft saved.' :
       statusSel==='scheduled' ? `Scheduled — goes live ${publishAtLocal.replace('T',' ')}.` :
       'Saved & deploying — live in ~2 minutes.';
-    // Optimistic in-memory update — reflect the save locally instead of reloading
-    // the panel index, which only refreshes on the next build (so a just-saved
-    // draft, which triggers no build, wouldn't be in it yet). Also avoids the
-    // full list re-fetch after every save.
+    const fileName = path.replace('content/articles/','');
+    // Fire-and-forget — keep the UI unblocked; errors are console-warned inside.
+    Promise.all([
+      updateArticleInIndex(article, fileName, false),
+      willGoLive ? triggerBuild() : Promise.resolve(),
+    ]);
+    // Optimistic in-memory update — reflect the save locally without re-fetching.
     const entry = state.articles.find(a=>a.path===path);
     if(entry){ entry.data = article; entry.sha = newSha || entry.sha; entry._summary = false; }
     else { state.articles.unshift({ path, sha: newSha || null, data: article, _summary: false }); }
@@ -857,8 +923,11 @@ async function removeArticle(){
   try{
     const delPath = state.editing.path;
     await deleteFile(delPath, state.editing.sha, `panel: delete ${delPath}`);
-    await triggerBuild();
-    // Optimistic in-memory removal (the index file refreshes on the next build).
+    const delFileName = delPath.replace('content/articles/','');
+    await Promise.all([
+      updateArticleInIndex({}, delFileName, true),
+      triggerBuild(),
+    ]);
     state.articles = state.articles.filter(a=>a.path!==delPath);
     renderDashboard(); renderArticles();
     show('articles');
