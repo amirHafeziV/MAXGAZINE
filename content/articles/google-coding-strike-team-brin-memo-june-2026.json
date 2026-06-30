@@ -1,0 +1,61 @@
+{
+  "slug": "google-coding-strike-team-brin-memo-june-2026",
+  "category": "tech",
+  "date": "2026-06-28",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Sergey Brin's Memo and Six Lost Researchers: Inside Google's Emergency AI Coding Pivot",
+    "fa": "یادداشت برین و شش محقق از‌دست‌رفته: پشت پرده تحول اضطراری گوگل در هوش مصنوعی برنامه‌نویسی",
+    "ar": "مذكرة برين والباحثون الستة المفقودون: داخل تحول جوجل الطارئ في الذكاء الاصطناعي للبرمجة",
+    "tr": "Brin'in Notu ve Altı Kaybedilen Araştırmacı: Google'ın Acil AI Kodlama Pivotunun İçinden"
+  },
+  "dek": {
+    "en": "Google DeepMind has lost six senior researchers to rivals in five months, triggering a co-founder intervention: Sergey Brin wrote an internal memo calling for urgently closing the gap in agentic AI coding, while the company restructured its coding strike team to include midtraining and raised $84.75 billion to fund the response.",
+    "fa": "گوگل دیپ‌مایند در پنج ماه شش محقق ارشد را به رقبا از دست داده است. این بحران یک مداخله هم‌بنیان‌گذار را برانگیخت: سرگئی برین یادداشتی داخلی نوشت که خواستار پر کردن اضطراری شکاف در کدنویسی هوش مصنوعی عاملانه شد.",
+    "ar": "فقدت جوجل ديبمايند ستة باحثين كبار لصالح المنافسين في خمسة أشهر، مما استدعى تدخل أحد المؤسسين: كتب سيرغي برين مذكرة داخلية يدعو فيها إلى سد الفجوة عاجلاً في مجال الترميز بالذكاء الاصطناعي العاملي.",
+    "tr": "Google DeepMind, beş ay içinde rakiplerine altı kıdemli araştırmacı kaptırdı. Bu kriz, bir kurucu müdahalesini tetikledi: Sergey Brin, ajansal AI kodlama konusundaki boşluğu acilen kapatmayı talep eden bir iç not yazdı."
+  },
+  "body": {
+    "en": "By June 28, 2026, Google DeepMind had confirmed the loss of six senior researchers to competitors within a five-month window: Denny Zhou to Meta's Superintelligence Lab in February; Noam Shazeer — co-designer of the Transformer architecture — to OpenAI on June 18; AlphaFold lead and Nobel laureate John Jumper to Anthropic on June 20; and Jonas Adler, Alexander Pritzel, and one additional unnamed researcher to Anthropic between June 20 and June 25. Together these six departures covered the foundational layers of a frontier AI lab: reasoning research (Zhou), training architecture (Shazeer), scientific AI and biological computing (Jumper), AI coding products (Adler), and pretraining (Pritzel).\n\n## Sergey Brin's Internal Memo\n\nReporting from The Information, published June 25, confirmed that Sergey Brin — Google's co-founder, who has become increasingly hands-on at the company since late 2024 — wrote an internal memo directing that Google must 'urgently bridge the gap in agentic execution and turn our models into primary developers of final code.' The language is a direct response to competitive pressure from Anthropic. Google CFO Anat Ashkenazi acknowledged at a recent investor event that Anthropic codes close to 100% of its own work using AI, while Google currently sits at approximately 50%. Brin is defining closing that internal adoption gap as the company's strategic imperative, not merely a product improvement.\n\n## The Coding Strike Team Pivot\n\nGoogle formed its AI Coding Strike Team in April 2026 as an emergency response to Anthropic's dominance in developer tools, initially led by Sebastian Borgeaud and overseen by both Brin and DeepMind CTO Koray Kavukcuoglu. As of late June, the strike team has expanded its mandate to include midtraining — the phase of model development between initial broad pretraining and instruction tuning that allows engineers to expose a model to specialized data to improve specific capabilities. The coding strike team's midtraining work reportedly involves training on Google's proprietary codebase, which would complicate direct public release of any resulting improvements.\n\n## Market Consequences\n\nThe talent departures triggered an Alphabet market-cap wipe of approximately $269 billion in the week of June 18-24, as analysts revised their estimates of Gemini's competitive trajectory. The selloff created the entry point for Berkshire Hathaway's $10 billion private placement in Alphabet on June 2 — a bet, in Berkshire's framing, that the talent loss does not change Alphabet's fundamental earnings trajectory. Meanwhile, Alphabet's $84.75 billion equity raise — the largest AI infrastructure financing in corporate history — closed June 30, with proceeds designated for compute, data centers, and global AI capacity. The 2026 capital expenditure guidance is $180 to $190 billion, with 2027 expected to increase further. On benchmarks, Gemini 2.5 Pro with Deep Think launched June 22 with the strongest publicly published science and reasoning scores yet recorded (82.4% GPQA Diamond, 94.1% HumanEval Plus). The competitive assessment for the back half of 2026 will turn on whether the coding strike team's midtraining intervention, combined with the capital infusion, is sufficient to close the agentic execution gap Brin identified.",
+    "fa": "تا ۲۸ ژوئن ۲۰۲۶، گوگل دیپ‌مایند از دست دادن شش محقق ارشد در بازه پنج ماهه را تأیید کرده بود: دنی ژو به آزمایشگاه فوق‌هوش متا (فوریه)؛ نوآم شزیر — طراح مشترک معماری ترنسفورمر — به اوپن‌ای‌آی (۱۸ ژوئن)؛ جان جامپر، سرپرست آلفافولد و برنده جایزه نوبل، به آنتروپیک (۲۰ ژوئن)؛ و یوناس آدلر، الکساندر پریتزل و یک محقق ناشناس دیگر به آنتروپیک بین ۲۰ تا ۲۵ ژوئن. این شش خروج لایه‌های بنیادی یک آزمایشگاه هوش مصنوعی مرزی را پوشش می‌دادند: پژوهش استدلال (ژو)، معماری آموزش (شزیر)، هوش مصنوعی علمی (جامپر)، محصولات کدنویسی هوش مصنوعی (آدلر) و پیش‌آموزش (پریتزل).\n\n## یادداشت داخلی سرگئی برین\n\nگزارش The Information در ۲۵ ژوئن تأیید کرد که سرگئی برین — هم‌بنیان‌گذار گوگل — یادداشتی داخلی نوشته که دستور می‌دهد گوگل باید «به‌طور اضطراری شکاف در اجرای عاملانه را پر کند و مدل‌های ما را به توسعه‌دهندگان اصلی کد نهایی تبدیل کند.» مدیر مالی گوگل آنات اشکنازی اعتراف کرده که آنتروپیک نزدیک به ۱۰۰٪ کارهای خود را با هوش مصنوعی کدنویسی می‌کند، در حالی که گوگل در حدود ۵۰٪ است.\n\n## تیم ضربت کدنویسی\n\nگوگل در آوریل ۲۰۲۶ تیم ضربت کدنویسی هوش مصنوعی را تشکیل داد. تا اواخر ژوئن، این تیم مأموریتش را گسترش داده و میان‌آموزش (midtraining) را نیز در برمی‌گیرد — مرحله‌ای بین پیش‌آموزش اولیه و تنظیم دستورالعمل که به مهندسان امکان می‌دهد مدل را با داده‌های تخصصی آموزش دهند.\n\n## پیامدهای بازار\n\nخروج استعدادها منجر به از بین رفتن حدود ۲۶۹ میلیارد دلار از ارزش بازار آلفابت در هفته ۱۸ تا ۲۴ ژوئن شد. این کاهش، نقطه ورود برای سرمایه‌گذاری ۱۰ میلیارد دلاری بِرکشایر هاتاوی در آلفابت را فراهم کرد. افزایش سرمایه ۸۴.۷۵ میلیارد دلاری آلفابت — بزرگ‌ترین تأمین مالی سهام برای زیرساخت هوش مصنوعی در تاریخ — در ۳۰ ژوئن بسته شد. در بنچمارک‌ها، جمینی ۲.۵ پرو با حالت Deep Think در ۲۲ ژوئن با قوی‌ترین نتایج علم و استدلال تاکنون منتشر‌شده عرضه شد.",
+    "ar": "بحلول 28 يونيو 2026، أكدت جوجل ديبمايند خسارة ستة باحثين كبار لصالح المنافسين في غضون خمسة أشهر: دينيس زو إلى Meta في فبراير؛ ونعوم شازير — المصمم المشارك لبنية المحول (Transformer) — إلى OpenAI في 18 يونيو؛ وجون جامبر، رائد AlphaFold والحائز على جائزة نوبل، إلى Anthropic في 20 يونيو؛ ويوناس أدلر وألكسندر بريتزل وباحث آخر مجهول الهوية إلى Anthropic بين 20 و25 يونيو. وقد غطت هذه الخسائر الستة الطبقات الأساسية لأي مختبر ذكاء اصطناعي حدودي: أبحاث الاستدلال والبنية والبيولوجيا والترميز والتدريب المسبق.\n\n## مذكرة سيرغي برين الداخلية\n\nكشف تقرير The Information في 25 يونيو أن برين كتب مذكرة داخلية يُلزم فيها جوجل بـ «سد الفجوة عاجلاً في التنفيذ الوكيل وتحويل نماذجنا إلى مطورين رئيسيين للكود النهائي». والواقع أن Anthropic يُبرمج ما يقارب 100% من أعماله بالذكاء الاصطناعي، فيما لا تتجاوز نسبة جوجل 50%.\n\n## فريق الضربة البرمجي\n\nشكّلت جوجل فريق ضربة الترميز بالذكاء الاصطناعي في أبريل 2026، ووسّعت مهمته بحلول أواخر يونيو ليشمل مرحلة التدريب المتوسط (midtraining)، التي تقع بين مرحلة التدريب المسبق الواسع وضبط التعليمات.\n\n## تداعيات السوق\n\nأسفرت موجة المغادرات عن محو ما يقارب 269 مليار دولار من قيمة Alphabet السوقية خلال أسبوع واحد. غير أن إغلاق Alphabet لعملية جمع الأموال البالغة 84.75 مليار دولار — أكبر تمويل بحقوق ملكية للبنية التحتية للذكاء الاصطناعي في التاريخ — في 30 يونيو يُجسّد المراهنة على أن الخسائر لن تُغيّر المسار الجوهري للشركة.",
+    "tr": "28 Haziran 2026 itibarıyla Google DeepMind, beş aylık bir süre içinde altı kıdemli araştırmacısını rakiplerine kaptırdığını doğrulamıştı: Şubat ayında Denny Zhou Meta'ya geçti; 18 Haziran'da Transformer mimarisinin ortak tasarımcısı Noam Shazeer OpenAI'ye katıldı; 20 Haziran'da Nobel ödüllü AlphaFold lideri John Jumper Anthropic'e geçti; ve Jonas Adler, Alexander Pritzel ile isimsiz bir araştırmacı daha Anthropic'e gitti.\n\n## Sergey Brin'in İç Notu\n\nThe Information'ın 25 Haziran'da yayımladığı haber, Brin'in Google'ı 'ajansal yürütmedeki boşluğu acilen kapatmaya ve modellerimizi nihai kodun birincil geliştiricileri haline getirmeye' yönlendiren bir iç not yazdığını doğruladı. Anthropic, kendi çalışmalarının yaklaşık %100'ünü yapay zeka ile kodlarken Google bu oranın yaklaşık %50'sinde bulunuyor.\n\n## Kodlama Saldırı Timinin Pivotu\n\nGoogle, Nisan 2026'da AI Kodlama Saldırı Timini kurdu. Haziran sonunda ekibin görevi midtraining'i de kapsayacak şekilde genişletildi — bu aşama, geniş ön eğitim ile talimat ince ayarı arasında yer alarak mühendislerin modeli özel verilerle eğitmesine olanak tanıyor.\n\n## Piyasa Sonuçları\n\nYetenek kaçışı, Alphabet'in piyasa değerinden 18-24 Haziran haftasında yaklaşık 269 milyar dolar silindi. Bu düşüş, Berkshire Hathaway'in 10 milyar dolarlık yatırımı için giriş noktası oluşturdu. Alphabet'in 84,75 milyar dolarlık sermaye artırımı ise 30 Haziran'da kapandı; bu, kurumsal tarihinin en büyük AI altyapı finansmanıydı."
+  },
+  "seo": {
+    "title": {
+      "en": "Google Coding Strike Team and Sergey Brin Memo June 2026 — MAXGAZINE",
+      "fa": "تیم ضربت کدنویسی گوگل و یادداشت برین ژوئن ۲۰۲۶ — MAXGAZINE",
+      "ar": "فريق ضربة جوجل البرمجي ومذكرة برين يونيو 2026 — MAXGAZINE",
+      "tr": "Google Kodlama Saldırı Timi ve Brin'in Notu Haziran 2026 — MAXGAZINE"
+    },
+    "description": {
+      "en": "Google lost 6 senior DeepMind researchers to Meta, OpenAI and Anthropic in 5 months. Sergey Brin's memo calls to urgently bridge the AI coding gap as Alphabet closes its $84.75B equity raise.",
+      "fa": "گوگل در ۵ ماه ۶ محقق ارشد را از دست داد. یادداشت برین خواستار پر کردن اضطراری شکاف کدنویسی هوش مصنوعی شد در حالی که آلفابت افزایش سرمایه ۸۴.۷۵ میلیارد دلاری خود را بست.",
+      "ar": "فقدت جوجل 6 باحثين كبار من ديبمايند لصالح Meta وOpenAI وAnthropic في 5 أشهر. تطالب مذكرة برين بسد فجوة الترميز بالذكاء الاصطناعي عاجلاً مع إغلاق Alphabet عملية جمع الأموال البالغة 84.75 مليار دولار.",
+      "tr": "Google, 5 ayda 6 kıdemli DeepMind araştırmacısını kaybetti. Brin'in notu acilen AI kodlama boşluğunu kapatmayı talep ederken Alphabet 84,75 milyar dolarlık sermaye artırımını kapattı."
+    },
+    "keywords": {
+      "en": ["Google", "DeepMind", "Sergey Brin", "AI coding", "Anthropic", "Alphabet"],
+      "fa": ["گوگل", "دیپ‌مایند", "برین", "هوش مصنوعی", "آنتروپیک", "کدنویسی"],
+      "ar": ["Google", "DeepMind", "Alphabet", "Anthropic", "ذكاء اصطناعي", "برين"],
+      "tr": ["Google", "DeepMind", "Brin", "Anthropic", "AI kodlama", "Alphabet"]
+    }
+  },
+  "tags": ["Google", "AI", "DeepMind", "Anthropic", "Technology", "tech"],
+  "sources": [
+    {
+      "title": "Google Reshuffles Its AI Coding Team as It Struggles to Catch Anthropic",
+      "url": "https://www.neowin.net/news/google-reshuffles-its-ai-coding-team-as-it-struggles-to-catch-anthropic/"
+    },
+    {
+      "title": "AI News Today June 30 2026: 15 Biggest Stories",
+      "url": "https://www.buildfastwithai.com/blogs/ai-news-today-june-30-2026"
+    },
+    {
+      "title": "Google DeepMind's Coding Pivot Lost Six Researchers to Meta, OpenAI, and Anthropic",
+      "url": "https://www.techtimes.com/articles/319219/20260628/google-deepminds-coding-pivot-lost-six-researchers-meta-openai-anthropic.htm"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

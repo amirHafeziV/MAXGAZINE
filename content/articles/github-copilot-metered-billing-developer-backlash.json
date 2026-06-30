@@ -1,0 +1,61 @@
+{
+  "slug": "github-copilot-metered-billing-developer-backlash",
+  "category": "tech",
+  "date": "2026-06-30",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "GitHub Copilot's First Metered Billing Cycle Closes With Bills Up 10x to 50x for Power Users",
+    "fa": "اولین چرخه صورت‌حساب کارمزدی گیت‌هاب کوپایلت با افزایش ۱۰ تا ۵۰ برابری هزینه برای کاربران حرفه‌ای بسته شد",
+    "ar": "يُغلق أول دورة فوترة مقننة لـ GitHub Copilot بارتفاع الفواتير من 10 إلى 50 ضعفاً للمستخدمين المتقدمين",
+    "tr": "GitHub Copilot'un İlk Sayaçlı Fatura Döngüsü Güçlü Kullanıcılarda 10-50x Artışla Kapandı"
+  },
+  "dek": {
+    "en": "June 30 marks the close of GitHub Copilot's first full monthly billing cycle since the platform shifted from flat-rate subscriptions to usage-based AI Credits on June 1. Developers using agentic features are reporting monthly bills that jumped from $29 to $750 and higher, ending the flat-rate AI era that defined developer tools since 2022.",
+    "fa": "۳۰ ژوئن پایان اولین چرخه کامل صورت‌حساب ماهانه گیت‌هاب کوپایلت است — از زمانی که این پلتفرم در اول ژوئن از اشتراک نرخ ثابت به اعتبارات هوش مصنوعی مبتنی بر مصرف تغییر داد. توسعه‌دهندگانی که از ویژگی‌های عاملانه استفاده می‌کنند گزارش می‌دهند که صورت‌حساب‌هایشان از ۲۹ دلار به ۷۵۰ دلار و بیشتر رسیده است.",
+    "ar": "يمثّل 30 يونيو نهاية أول دورة فوترة شهرية كاملة لـ GitHub Copilot منذ انتقال المنصة في 1 يونيو من الاشتراكات ذات السعر الثابت إلى بنية GitHub AI Credits المستندة إلى الاستهلاك. يُبلِّغ المطورون المستخدمون للميزات الوكيلية عن فواتير شهرية قفزت من 29 دولاراً إلى 750 دولاراً أو أكثر.",
+    "tr": "30 Haziran, GitHub Copilot'un 1 Haziran'da sabit ücretli aboneliklerden kullanım tabanlı AI Credits sistemine geçişinin ardından ilk tam aylık fatura döngüsünün kapandığı tarihtir. Ajansal özellikleri kullanan geliştiriciler, aylık faturalarının 29 dolardan 750 dolara ve daha yükseğe çıktığını bildiriyor."
+  },
+  "body": {
+    "en": "On June 1, 2026, GitHub switched Copilot from a flat-rate subscription model — $19 per month for individuals, $39 for business — to usage-based billing built around GitHub AI Credits, where one credit equals $0.01. Code completions and the Next Edit suggestion feature remained free on all paid plans. But agentic sessions, premium frontier model access, multi-step autonomous tasks, and automated code review are now metered. June 30 marks the close of the first full billing cycle under the new structure.\n\n## The Billing Reality\n\nGitHub's Chief Product Officer Mario Rodriguez acknowledged before the transition that a single extended agentic session can cost the company as much as a month of standard chat queries. For users, that translates directly to invoice shock. On Reddit, X, and GitHub's own discussion forum — which drew more than 400 comments and nearly 900 downvotes on the billing announcement thread — developers are sharing screenshots of projected monthly costs rising from $29 to $750 and from $50 to $3,000. A single codebase-wide refactoring session using a premium model such as Claude Opus 4.8 or GPT-5.6 can consume $30 to $40 in AI Credits in a single session. Under the old system, this would have been absorbed within the flat monthly fee. Under the new system, it comes out of the user's credit balance.\n\n## The Structural End of Flat-Rate AI\n\nGitHub's shift is the clearest signal yet that the flat-rate AI era that began in late 2022 is over at the product layer. The underlying economics have been moving in this direction for years: the marginal cost of AI inference does not approach zero the way traditional software does, and every frontier model generation is both more capable and more expensive to run. Flat-rate subscriptions lose money on every power user who runs agentic tasks extensively. GitHub's metered model mirrors moves by Cursor (June 2025), Windsurf (March 2026), and enterprise API pricing across every major AI provider.\n\nThe transition's most disruptive effect for individual developers is the elimination of the safety net: previously, exhausting premium request allocations caused Copilot to fall back to a cheaper model so work could continue. Now, running out of credits stops premium features entirely until additional credits are purchased or the billing cycle resets. Annual plan holders are also being moved to monthly billing as their current terms expire.\n\nThe backlash has accelerated migration to competing tools. Claude Code, Anthropic's command-line AI coding tool, operates on a Pro subscription with no per-token metering for standard usage, making it a predictable-cost alternative for developers running agentic workflows. The first month of metered billing will determine how many developers adjust their workflows versus how many switch providers.",
+    "fa": "در اول ژوئن ۲۰۲۶، گیت‌هاب کوپایلت را از مدل اشتراک نرخ ثابت — ۱۹ دلار در ماه برای افراد، ۳۹ دلار برای کسب‌وکارها — به صورت‌حساب‌دهی مبتنی بر مصرف با GitHub AI Credits تغییر داد. تکمیل کد و ویژگی Next Edit در تمام طرح‌های پولی رایگان ماندند، اما جلسات عاملانه، دسترسی به مدل‌های مرزی پرمیوم، وظایف خودکار چندمرحله‌ای و بررسی کد خودکار اکنون کارمزدی هستند. ۳۰ ژوئن پایان اولین چرخه کامل صورت‌حساب‌دهی تحت ساختار جدید است.\n\n## واقعیت صورت‌حساب‌ها\n\nمدیر ارشد محصول گیت‌هاب ماریو رودریگز پیش از گذار اعتراف کرد که یک جلسه عاملانه گسترده ممکن است به اندازه یک ماه پرس‌وجوی استاندارد هزینه داشته باشد. در انجمن‌های آنلاین، توسعه‌دهندگان از صورت‌حساب‌هایی می‌نویسند که از ۲۹ دلار به ۷۵۰ دلار و از ۵۰ دلار به ۳ هزار دلار رسیده‌اند. یک جلسه بازسازی کدبیس با مدل پرمیوم مثل Claude Opus 4.8 یا GPT-5.6 می‌تواند ۳۰ تا ۴۰ دلار اعتبار هوش مصنوعی مصرف کند.\n\n## پایان دوران نرخ ثابت\n\nگذار گیت‌هاب روشن‌ترین نشانه است که دوران هوش مصنوعی با نرخ ثابت که در اواخر ۲۰۲۲ آغاز شد در حال پایان است. Cursor در ژوئن ۲۰۲۵ و Windsurf در مارس ۲۰۲۶ نیز قبلاً به مدل‌های مبتنی بر مصرف رفته بودند. مخل‌کننده‌ترین تأثیر برای توسعه‌دهندگان فردی از بین رفتن شبکه ایمنی است: قبلاً اتمام تخصیص درخواست‌های پرمیوم باعث می‌شد کوپایلت به مدل ارزان‌تر سقوط کند. اکنون با اتمام اعتبار، ویژگی‌های پرمیوم متوقف می‌شوند. این واکنش مهاجرت به ابزارهای رقیب را تسریع کرده است.",
+    "ar": "في 1 يونيو 2026، حوّلت جوجل GitHub Copilot من نموذج الاشتراك بسعر ثابت إلى نظام الفوترة المستندة إلى الاستهلاك عبر GitHub AI Credits. ظلت إكمالات الكود ومقترحات Next Edit مجانيةً في جميع الخطط المدفوعة، غير أن الجلسات الوكيلية والوصول إلى النماذج الحدودية المتميزة والمهام المتعددة الخطوات ومراجعات الكود باتت مقننة.\n\n## واقع الفواتير\n\nاعترف المسؤول الرئيسي عن المنتج ماريو رودريغيز بأن جلسةً وكيليةً واحدة موسّعة قد تكلّف الشركة بقدر ما تكلفه شهر كامل من الاستفسارات الاعتيادية. يتشارك المطورون على Reddit وX ومنتدى جوجل لقطات شاشة تُظهر فواتير قفزت من 29 دولاراً إلى 750 دولاراً، بل تجاوزت الـ 3,000 دولار في بعض الحالات. جلسة إعادة بناء شاملة لقاعدة أكواد باستخدام Claude Opus 4.8 أو GPT-5.6 قد تستهلك من 30 إلى 40 دولاراً في جلسة واحدة.\n\n## نهاية عصر السعر الثابت\n\nيُعدّ انتقال GitHub أوضح إشارة حتى الآن على نهاية عصر الذكاء الاصطناعي بسعر ثابت الذي بدأ في أواخر 2022. سبق هذه الخطوة Cursor في يونيو 2025 وWindsurf في مارس 2026. الأثر الأكثر إرباكاً للمطورين هو إلغاء شبكة الأمان: إذ أوقف نفاد الرصيد الميزات المتميزة كلياً بدلاً من التراجع إلى نموذج أرخص. أدى ذلك إلى تسريع وتيرة الهجرة نحو بدائل مثل Claude Code من Anthropic.",
+    "tr": "1 Haziran 2026'da GitHub, Copilot'u sabit ücretli abonelik modelinden — bireyler için aylık 19 dolar, işletmeler için 39 dolar — kullanım tabanlı GitHub AI Credits sistemine geçirdi. Kod tamamlama ve Next Edit önerileri tüm ücretli planlarda ücretsiz kaldı; ancak ajansal oturumlar, premium sınır model erişimi, çok adımlı otonom görevler ve otomatik kod incelemesi artık sayaçlı hale geldi.\n\n## Fatura Gerçekliği\n\nGitHub CPO Mario Rodriguez, tek bir uzun ajansal oturumun şirkete standart bir aylık sohbet sorgusunun maliyeti kadar yük bindirebildiğini önceden kabul etmişti. Platformlarda paylaşılan ekran görüntüleri, 29 dolardan 750 dolara ve 50 dolardan 3.000 dolara fırlayan faturaları gösteriyor. Tek bir kod tabanı yeniden yapılandırma oturumu Claude Opus 4.8 veya GPT-5.6 kullanılarak 30-40 dolarlık AI Kredisi tüketebiliyor.\n\n## Sabit Ücretli AI Çağının Sonu\n\nGitHub'ın değişimi, 2022 sonunda başlayan sabit ücretli AI çağının ürün katmanında sona erdiğinin en net sinyalidir. Cursor Haziran 2025'te, Windsurf ise Mart 2026'da benzer adımları atmıştı. En rahatsız edici etki, güvenlik ağının ortadan kalkmasıdır: Kredi bitince premium özellikler tamamen durur. Bu durum Claude Code gibi rakip araçlara göçü hızlandırdı."
+  },
+  "seo": {
+    "title": {
+      "en": "GitHub Copilot Metered Billing: Developer Bills Jump 10x to 50x — MAXGAZINE",
+      "fa": "صورت‌حساب کارمزدی گیت‌هاب کوپایلت: هزینه‌ها ۱۰ تا ۵۰ برابر شدند — MAXGAZINE",
+      "ar": "فوترة GitHub Copilot المقننة: الفواتير ترتفع 10-50 ضعفاً — MAXGAZINE",
+      "tr": "GitHub Copilot Sayaçlı Faturalama: Faturalar 10-50x Arttı — MAXGAZINE"
+    },
+    "description": {
+      "en": "GitHub Copilot's first metered billing cycle closes June 30 with developers reporting 10x-50x cost spikes. Usage-based AI Credits replaced flat-rate plans on June 1, ending the era of unlimited AI for developers.",
+      "fa": "اولین چرخه کارمزدی گیت‌هاب کوپایلت در ۳۰ ژوئن بسته شد و توسعه‌دهندگان از افزایش ۱۰ تا ۵۰ برابری هزینه‌ها خبر می‌دهند. AI Credits مبتنی بر مصرف در اول ژوئن جایگزین طرح‌های نرخ ثابت شد.",
+      "ar": "تُغلق دورة الفوترة المقننة الأولى لـ GitHub Copilot في 30 يونيو وسط تقارير بارتفاع التكاليف 10-50 ضعفاً. حلّت AI Credits المستندة إلى الاستهلاك محل الخطط بسعر ثابت في 1 يونيو.",
+      "tr": "GitHub Copilot'un ilk sayaçlı fatura döngüsü, geliştiricilerin %10-50 maliyet artışı bildirmesiyle 30 Haziran'da kapandı. Kullanım tabanlı AI Credits, 1 Haziran'da sabit ücretli planların yerini aldı."
+    },
+    "keywords": {
+      "en": ["GitHub Copilot", "AI coding", "metered billing", "AI Credits", "developer tools", "Claude Code"],
+      "fa": ["گیت‌هاب کوپایلت", "کدنویسی هوش مصنوعی", "صورت‌حساب کارمزدی", "ابزارهای توسعه‌دهنده"],
+      "ar": ["GitHub Copilot", "فوترة الذكاء الاصطناعي", "Claude Code", "أدوات المطورين", "AI Credits"],
+      "tr": ["GitHub Copilot", "AI kodlama", "sayaçlı faturalama", "Claude Code", "geliştirici araçları"]
+    }
+  },
+  "tags": ["GitHub", "AI", "Technology", "tech", "developer tools"],
+  "sources": [
+    {
+      "title": "GitHub Copilot Pricing Change Drives Backlash: Agentic Bills Jump 10x to 50x",
+      "url": "https://www.techtimes.com/articles/317536/20260601/github-copilot-pricing-change-drives-backlash-agentic-bills-jump-10x-50x-power-users.htm"
+    },
+    {
+      "title": "GitHub Copilot Pricing & Billing 2026: Plans, AI Credits & Overages",
+      "url": "https://usagebox.com/articles/github-copilot-usage-based-billing-2026"
+    },
+    {
+      "title": "GitHub Blog — GitHub Copilot Is Moving to Usage-Based Billing",
+      "url": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}

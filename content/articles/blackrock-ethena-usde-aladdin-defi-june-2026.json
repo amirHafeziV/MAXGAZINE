@@ -1,0 +1,61 @@
+{
+  "slug": "blackrock-ethena-usde-aladdin-defi-june-2026",
+  "category": "defi",
+  "date": "2026-06-29",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "BlackRock Brings Ethena's Synthetic Dollar Into Its $20 Trillion Risk Platform",
+    "fa": "بلک‌راک استیبل‌کوین مصنوعی اتنا را به پلتفرم ۲۰ تریلیون دلاری خود افزود",
+    "ar": "بلاك روك تدمج الدولار الاصطناعي لـ Ethena في منصة إدارة المخاطر البالغة 20 تريليون دولار",
+    "tr": "BlackRock, Ethena'nın Sentetik Dolarını 20 Trilyon Dolarlık Risk Platformuna Entegre Etti"
+  },
+  "dek": {
+    "en": "BlackRock has integrated Ethena's USDe synthetic stablecoin into its Aladdin investment platform, which manages assets for the world's largest institutions, and created a $100 million liquidity facility linking BUIDL to crypto markets outside traditional market hours.",
+    "fa": "بلک‌راک توکن USDe اتنا را در پلتفرم آلادین خود ادغام کرده و یک تسهیلات نقدینگی ۱۰۰ میلیون دلاری برای صندوق توکنیزه‌شده BUIDL ایجاد کرده که خارج از ساعات معاملاتی سنتی کار می‌کند.",
+    "ar": "أدمجت بلاك روك عملة USDe الاصطناعية من Ethena في منصة Aladdin لإدارة الاستثمارات، وأنشأت تسهيلاً للسيولة بقيمة 100 مليون دولار يربط صندوق BUIDL بأسواق الكريبتو خارج ساعات التداول التقليدية.",
+    "tr": "BlackRock, Ethena'nın USDe sentetik stablecoin'ini Aladdin yatırım platformuna entegre etti ve geleneksel piyasa saatleri dışında kripto piyasalarını BUIDL'a bağlayan 100 milyon dolarlık likidite kolaylığı oluşturdu."
+  },
+  "body": {
+    "en": "BlackRock, the world's largest asset manager with roughly $11 trillion in assets under management, has taken its most concrete step into decentralized finance by integrating Ethena's synthetic dollar USDe into its Aladdin risk management platform. Aladdin serves as the operational backbone for many of the world's largest pension funds, sovereign wealth funds, and insurance companies, processing over $20 trillion in assets. The June 29 announcement marks the first time a synthetic crypto-native stablecoin has been embedded directly into Wall Street's most widely used risk and portfolio management system.\n\n## The Aladdin Integration and What It Means\n\nAladdin's portfolio managers and risk officers can now hold USDe alongside traditional fixed-income instruments in their risk models. Ethena's USDe generates yield through a delta-neutral strategy: it holds spot Ethereum as collateral while simultaneously holding a short perpetual futures position of equivalent value. The result is a synthetic dollar that stays pegged to $1.00 while generating yields that have ranged between 8% and 25% annually, depending on the cost of carry in crypto futures markets. For institutional users of Aladdin, this integration makes USDe a legitimate alternative to cash or money-market instruments in certain risk allocation frameworks.\n\n## The $100 Million BUIDL Facility\n\nAlongside the Aladdin integration, BlackRock and Ethena created a $100 million liquidity facility connecting BlackRock's tokenized US Treasury money market fund BUIDL with USDe, USDC, and USDtb. Eligible BUIDL holders can now convert their Treasury holdings into crypto stablecoins — and back — at any hour, including weekends and periods when traditional settlement rails are closed. BUIDL will also serve as Ethena's primary reserve asset for its white-label stablecoin product. The facility resolves one of the persistent friction points in tokenized finance: the mismatch between 24/7 crypto settlement and banking-hours-only redemption windows for tokenized Treasuries.\n\nEthena's governance token ENA gained approximately 8% in the 24 hours following the announcement, as the market priced in the reputational and liquidity implications of the partnership. ENA's reaction was measured rather than explosive, with some analysts noting that the tokenization-of-real-world-assets thesis had been widely expected to play out through platforms like Aladdin and that the announcement confirmed the direction without dramatically accelerating the timeline.\n\nThe deeper significance of the BlackRock-Ethena integration is institutional legitimacy. Aladdin is not a crypto-native product. It is the system that risk officers at the world's largest pension funds use to monitor their exposures. When USDe appears in Aladdin's risk models alongside Treasury bills and corporate bonds, it signals that regulators, risk committees, and compliance teams at those institutions have decided that Ethena's synthetic dollar meets their threshold for inclusion. That threshold is considerably higher than anything crypto-native platforms have historically required.",
+    "fa": "بلک‌راک، بزرگ‌ترین مدیر دارایی جهان با حدود ۱۱ تریلیون دلار دارایی تحت مدیریت، در تاریخ ۲۹ ژوئن ۲۰۲۶ تصمیم تاریخی‌ای اتخاذ کرد: ادغام USDe اتنا — یک استیبل‌کوین دلاری مصنوعی مبتنی بر رمزارز — در پلتفرم مدیریت ریسک آلادین. آلادین ستون عملیاتی بسیاری از بزرگ‌ترین صندوق‌های بازنشستگی، صندوق‌های ثروت حاکمیتی و شرکت‌های بیمه جهان است که بیش از ۲۰ تریلیون دلار دارایی را پردازش می‌کند.\n\n## ادغام در آلادین و پیامدهای آن\n\nمدیران پرتفوی و افسران ریسک آلادین اکنون می‌توانند USDe را در کنار ابزارهای درآمد ثابت سنتی در مدل‌های ریسک خود نگه دارند. USDe اتنا از طریق یک استراتژی دلتا-نوترال بازدهی ایجاد می‌کند: اتریوم نقدی به‌عنوان وثیقه نگه داشته می‌شود و همزمان یک موضع فروش آتی به ارزش معادل در بازارهای فیوچرز دائمی حفظ می‌شود. نتیجه یک دلار مصنوعی است که ارزش آن به ۱.۰۰ دلار پایدار می‌ماند و سالانه بین ۸ تا ۲۵ درصد بازدهی ایجاد می‌کند.\n\n## تسهیلات ۱۰۰ میلیون دلاری BUIDL\n\nهمزمان با ادغام آلادین، بلک‌راک و اتنا یک تسهیلات نقدینگی ۱۰۰ میلیون دلاری ایجاد کردند که صندوق بازار پول توکنیزه‌شده خزانه‌داری ایالات متحده BUIDL را به USDe، USDC و USDtb متصل می‌کند. دارندگان واجد شرایط BUIDL اکنون می‌توانند دارایی‌های خزانه‌داری خود را در هر ساعتی — از جمله آخر هفته‌ها — به استیبل‌کوین‌های رمزارزی تبدیل کنند.\n\nتوکن حاکمیتی ENA اتنا در ۲۴ ساعت پس از اعلام این خبر حدود ۸ درصد افزایش یافت. اهمیت عمیق‌تر این یکپارچه‌سازی، مشروعیت نهادی است: وقتی USDe در کنار اوراق قرضه دولتی و اوراق قرضه شرکتی در مدل‌های ریسک آلادین ظاهر می‌شود، این به معنای پذیرش این استیبل‌کوین در بالاترین سطح نهادهای مالی دنیاست.",
+    "ar": "أعلنت بلاك روك، أكبر مدير أصول في العالم بأصول تحت الإدارة تبلغ نحو 11 تريليون دولار، في 29 يونيو 2026 عن دمج عملة USDe الاصطناعية من بروتوكول Ethena في منصة Aladdin لإدارة المخاطر. تُعدّ Aladdin العمود الفقري التشغيلي لكثير من أكبر صناديق التقاعد وصناديق الثروة السيادية وشركات التأمين في العالم، إذ تُعالج ما يزيد على 20 تريليون دولار من الأصول.\n\n## الدمج في Aladdin وما يعنيه\n\nبات بإمكان مديري المحافظ الاستثمارية ومسؤولي المخاطر في Aladdin الاحتفاظ بـ USDe جنباً إلى جنب مع أدوات الدخل الثابت التقليدية. تُولّد عملة USDe عائداً عبر استراتيجية محايدة لدلتا، بالجمع بين الاحتفاظ بالإيثيريوم الفوري ضماناً ومراكز قصيرة في العقود الآجلة الدائمة. وقد يتراوح العائد السنوي بين 8% و25% تبعاً لتكاليف الحمل في أسواق العقود الآجلة.\n\n## تسهيل السيولة البالغ 100 مليون دولار\n\nأنشأت بلاك روك وEthena تسهيلاً للسيولة بقيمة 100 مليون دولار يربط صندوق BUIDL لسوق المال المُرمَّز بالخزينة الأمريكية بعملات USDe وUSDC وUSDtb. يمكن لحاملي BUIDL المؤهلين الآن تحويل حيازاتهم من أذون الخزانة إلى عملات مشفرة مستقرة في أي وقت، بما في ذلك عطلات نهاية الأسبوع. وارتفع توكن الحوكمة ENA بنحو 8% خلال الـ 24 ساعة التالية للإعلان، فيما ستكون BUIDL الأصل الاحتياطي الرئيسي لمنتج الـ stablecoin White-Label الخاص بـ Ethena.",
+    "tr": "Dünyanın en büyük varlık yöneticisi BlackRock, yönetimindeki yaklaşık 11 trilyon dolarlık varlıkla 29 Haziran 2026'da DeFi alanındaki en somut adımını attı: Ethena'nın sentetik dolar stablecoin'i USDe'yi Aladdin risk yönetim platformuna entegre etti. Aladdin, dünyanın en büyük emeklilik fonlarının, egemenlik varlık fonlarının ve sigorta şirketlerinin operasyonel omurgasını oluşturmakta olup 20 trilyon doların üzerinde varlığı işliyor.\n\n## Aladdin Entegrasyonu ve Anlamı\n\nAladdin'in portföy yöneticileri ve risk yetkilileri artık USDe'yi geleneksel sabit getirili araçların yanı sıra risk modellerinde tutabilecek. Ethena'nın USDe'si, delta-nötr bir strateji aracılığıyla getiri üretiyor: spot Ethereum teminat olarak tutulurken eşdeğer değerde kısa vadeli sürekli vadeli işlem pozisyonu açık tutuluyor. Yıllık getiri %8 ile %25 arasında değişiyor.\n\n## 100 Milyon Dolarlık BUIDL Likidite Kolaylığı\n\nBlackRock ve Ethena, BlackRock'ın tokenize ABD Hazine para piyasası fonu BUIDL'ı USDe, USDC ve USDtb'ye bağlayan 100 milyon dolarlık bir likidite kolaylığı oluşturdu. Uygun BUIDL sahipleri artık hafta sonları dahil Hazine varlıklarını kripto stablecoin'lere dönüştürebilecek. ENA, duyurunun ardından yaklaşık %8 yükseldi. Entegrasyonun derin anlamı kurumsal meşruiyettir: USDe'nin Aladdin'in risk modellerinde hazine bonoları ve şirket tahvilleriyle aynı kategoride yer alması, kurumsal finans dünyasının bu sentetik doları kabul ettiğinin işaretidir."
+  },
+  "seo": {
+    "title": {
+      "en": "BlackRock Integrates Ethena USDe Into Aladdin — MAXGAZINE",
+      "fa": "بلک‌راک USDe اتنا را در آلادین ادغام کرد — MAXGAZINE",
+      "ar": "بلاك روك تدمج USDe من Ethena في Aladdin — MAXGAZINE",
+      "tr": "BlackRock, Ethena USDe'yi Aladdin'e Entegre Etti — MAXGAZINE"
+    },
+    "description": {
+      "en": "BlackRock integrated Ethena's USDe synthetic stablecoin into its Aladdin platform managing $20T in assets, with a $100M BUIDL liquidity facility and ENA up 8%.",
+      "fa": "بلک‌راک USDe اتنا را در پلتفرم آلادین با ۲۰ تریلیون دلار دارایی ادغام کرد و یک تسهیلات نقدینگی ۱۰۰ میلیون دلاری BUIDL ایجاد کرد. توکن ENA ۸٪ رشد کرد.",
+      "ar": "دمجت بلاك روك عملة USDe الاصطناعية من Ethena في منصة Aladdin التي تدير 20 تريليون دولاراً، وأنشأت تسهيلاً للسيولة بـ 100 مليون دولار. وارتفع ENA 8%.",
+      "tr": "BlackRock, Ethena'nın USDe sentetik stablecoin'ini 20 trilyon dolarlık Aladdin platformuna entegre etti; 100 milyon dolarlık BUIDL likidite kolaylığı oluşturuldu, ENA %8 yükseldi."
+    },
+    "keywords": {
+      "en": ["BlackRock", "Ethena", "USDe", "Aladdin", "DeFi", "stablecoin"],
+      "fa": ["بلک‌راک", "اتنا", "USDe", "ENA", "دیفای", "استیبل‌کوین"],
+      "ar": ["BlackRock", "Ethena", "USDe", "ENA", "دیفای", "عملة مستقرة"],
+      "tr": ["BlackRock", "Ethena", "USDe", "Aladdin", "DeFi", "stablecoin"]
+    }
+  },
+  "tags": ["BlackRock", "DeFi", "stablecoin", "institutional", "Ethena"],
+  "sources": [
+    {
+      "title": "BlackRock Pushes Deeper Into DeFi With Ethena Integration, Sending ENA Up 8%",
+      "url": "https://www.coindesk.com/business/2026/06/29/blackrock-pushes-deeper-into-defi-with-ethena-integration-sending-ena-up-8"
+    },
+    {
+      "title": "Ethena Unlocks BlackRock's $20T Aladdin Network for USDe",
+      "url": "https://www.cryptotimes.io/2026/06/29/ethena-unlocks-blackrocks-20t-aladdin-network-for-usde/"
+    },
+    {
+      "title": "BlackRock Integrates Ethena's USDe Into $25T Investment Platform",
+      "url": "https://cryptobriefing.com/blackrock-ethena-usde-aladdin-integration/"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}
