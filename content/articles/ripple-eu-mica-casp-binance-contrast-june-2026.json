@@ -1,6 +1,15 @@
 {
   "slug": "ripple-eu-mica-casp-binance-contrast-june-2026",
-  "category": "analysis",
+  "topic": "crypto",
+  "type": "analysis",
+  "placement": {
+    "hero": false,
+    "editorsPick": false,
+    "pinned": false,
+    "hideFromLatest": false,
+    "priority": 0
+  },
+  "category": "crypto",
   "date": "2026-06-23",
   "author": "MAXGAZINE Desk",
   "headline": {
@@ -16,10 +25,16 @@
     "tr": "Binance, MiCA lisans başvurusunu Yunanistan'dan çekmeden bir hafta önce Ripple, Lüksemburg'dan tüm 30 AEA ülkesini kapsayan CASP lisansı için ön onay aldı. Bu zıtlık, AB kripto düzenlemesine yönelik iki farklı yaklaşımı gözler önüne seriyor."
   },
   "body": {
-    "en": "On June 23, 2026, Ripple announced it had received preliminary approval for a Crypto Asset Service Provider (CASP) license from Luxembourg's Commission de Surveillance du Secteur Financier, eight days before the EU's hard July 1 deadline under the Markets in Crypto Assets regulation. The approval, structured as a formal Green Light Letter, allows Ripple to scale regulated crypto asset services across all 30 countries of the European Economic Area through a single authorization. It builds on Ripple's existing Electronic Money Institution license, obtained in Luxembourg in February 2026, giving institutional clients a complete payments infrastructure — collection, exchange, and payout — regulated under both EMI and CASP frameworks.\n\n## Ripple's Patient Strategy\n\nRipple's path to MiCA compliance was methodical and multi-year. The company chose Luxembourg as its European regulatory base years before MiCA took full effect, submitted full documentation to the CSSF, and built its institutional payments business in a way that mapped cleanly onto MiCA's definitions. The Luxembourg CSSF's due-diligence process focuses heavily on the 'fit and proper' character assessment of the company and its ultimate beneficial owners — a test Ripple passed without apparent complications, despite its history of protracted US SEC litigation, which was settled in 2024.\n\n## Why Binance Failed the Same Test\n\nThe contrast with Binance is instructive. Binance bet heavily on Greece as its European regulatory entry point, filing its MiCA application with the Hellenic Capital Market Commission and investing months in dialogue. On June 24, one day after Ripple's Luxembourg announcement, Binance withdrew its Greek application entirely — one week after reports emerged that the HCMC was preparing to reject it. The reported reason: the 'fit and proper' assessment of Binance's owners and managers, specifically the shadow of co-founder Changpeng Zhao's November 2023 guilty plea to US anti-money-laundering violations and his November 2024 prison sentence. MiCA's fit and proper test is designed precisely to exclude firms with this kind of regulatory history. From July 1, 2026, Binance is suspending most services for EU users — approximately 10 million accounts — including new registrations, deposits, and staking products. User funds remain withdrawable, and Binance says it will seek authorization in France and intends to return to the EU market.\n\n## What This Means for the EU Crypto Market\n\nThe divergent outcomes on the same July 1 deadline produce a competitive map that favors companies with clean regulatory histories and patient multi-year licensing strategies. Coinbase, OKX, and Crypto.com have MiCA licenses or are in advanced compliance processes. Ripple now joins them with the broadest institutional-grade authorization in the payments sector. The 10 million EU users losing Binance access represent a significant migration opportunity for licensed platforms. The deeper lesson from the Ripple-Binance contrast is that MiCA is functioning exactly as designed: as a market-structure filter that distinguishes between firms that adapted to European regulatory norms and those that tried to force a jurisdiction to overlook their regulatory track record.",
-    "fa": "در ۲۳ ژوئن ۲۰۲۶، ریپل اعلام کرد که تأییدیه اولیه مجوز ارائه‌دهنده خدمات دارایی رمزنگاری‌شده (CASP) را از کمیسیون نظارت بر بخش مالی لوکزامبورگ دریافت کرده است — هشت روز قبل از مهلت اجباری اول ژوئیه مقررات MiCA اتحادیه اروپا. این تأییدیه به ریپل امکان می‌دهد خدمات رمزارزی تنظیم‌شده خود را در تمام ۳۰ کشور منطقه اقتصادی اروپا ارائه دهد.\n\n## استراتژی صبورانه ریپل\n\nمسیر ریپل به سوی انطباق با MiCA روش‌مند و چندساله بود. این شرکت لوکزامبورگ را سال‌ها قبل از اجرایی شدن کامل MiCA به‌عنوان پایگاه نظارتی اروپایی خود انتخاب کرد. ریپل پیش‌تر در فوریه ۲۰۲۶ مجوز مؤسسه پول الکترونیکی (EMI) از لوکزامبورگ دریافت کرده بود و اکنون CASP به آن اضافه شده است.\n\n## چرا بایننس در همان آزمون شکست خورد\n\nتضاد با بایننس آموزنده است. بایننس روی یونان به‌عنوان نقطه ورود نظارتی اروپایی خود شرط‌بندی کرد، اما در ۲۴ ژوئن، یک روز پس از اعلام لوکزامبورگ ریپل، درخواست یونانی خود را پس گرفت. دلیل گزارش‌شده: آزمون «صلاحیت و شایستگی» برای مالکان و مدیران بایننس، به‌ویژه سایه اعتراف به جرم هم‌بنیان‌گذار چانگ‌پنگ ژائو در نوامبر ۲۰۲۳ به نقض قوانین مبارزه با پول‌شویی آمریکا و محکومیت زندانش در نوامبر ۲۰۲۴.\n\n## پیامدها برای بازار رمزارزی اروپا\n\nاز اول ژوئیه ۲۰۲۶، بایننس اکثر خدمات خود را برای کاربران اتحادیه اروپا — حدود ۱۰ میلیون حساب — تعلیق می‌کند. ریپل اکنون در کنار کوین‌بیس، OKX و کریپتو دات‌کام به جمع پلتفرم‌های دارای مجوز می‌پیوندد. درس عمیق‌تر این است که MiCA دقیقاً همانطور که طراحی شده عمل می‌کند: به‌عنوان فیلتری که شرکت‌های سازگار با هنجارهای نظارتی اروپا را از شرکت‌هایی که سابقه نظارتی مشکل‌دار دارند تفکیک می‌کند.",
-    "ar": "في 23 يونيو 2026، أعلنت ريبل حصولها على موافقة مبدئية لترخيص مزود خدمات الأصول المشفرة (CASP) من هيئة الرقابة على القطاع المالي في لوكسمبورغ (CSSF)، وذلك قبل ثمانية أيام من الموعد النهائي الإلزامي لـ MiCA في أول يوليو. يتيح هذا الترخيص لريبل توسيع خدماتها المنظمة للأصول المشفرة في جميع دول المنطقة الاقتصادية الأوروبية الثلاثين.\n\n## استراتيجية ريبل الصبورة\n\nاختارت ريبل لوكسمبورغ قاعدةً تنظيميةً أوروبيةً لها قبل سنوات من دخول MiCA حيز التنفيذ الكامل، وكانت قد حصلت على ترخيص مؤسسة النقد الإلكتروني (EMI) من لوكسمبورغ في فبراير 2026. وقد اجتاز مالكو ريبل ومديروها اختبار الصلاحية والنزاهة دون تعقيدات ظاهرة.\n\n## لماذا فشلت بينانس في الاختبار ذاته\n\nعلى النقيض من ذلك، راهنت بينانس على اليونان نقطةً للدخول التنظيمي الأوروبي. وفي 24 يونيو، سحبت طلبها اليوناني، بعد يوم واحد من إعلان ريبل في لوكسمبورغ. السبب المُبلَّغ عنه: اختبار الصلاحية والنزاهة لمالكي بينانس ومديريها، ولا سيما إدانة المؤسس المشارك تشانغبنغ تشاو عام 2023 بانتهاك قوانين مكافحة غسل الأموال الأمريكية، وسجنه عام 2024.\n\n## تداعيات السوق\n\nاعتباراً من أول يوليو 2026، علّقت بينانس معظم خدماتها لمستخدمي الاتحاد الأوروبي البالغ عددهم نحو 10 ملايين حساب. تنضم ريبل الآن إلى Coinbase وOKX وCrypto.com في صفوف المنصات المرخصة، في حين تُشكّل قاعدة مستخدمي بينانس فرصةً كبيرة للهجرة نحو المنصات المنظمة.",
-    "tr": "23 Haziran 2026'da Ripple, Lüksemburg Finansal Sektör Denetim Komisyonu'ndan (CSSF) Kripto Varlık Hizmet Sağlayıcısı (CASP) lisansı için ön onay aldığını duyurdu; bu, MiCA kapsamındaki 1 Temmuz zorunlu tarihinden sekiz gün önceydi. Bu onay, Ripple'ın tüm 30 AEA ülkesinde düzenlenmiş kripto varlık hizmetleri sunmasına imkân tanıyor.\n\n## Ripple'ın Sabırlı Stratejisi\n\nRipple, MiCA tam yürürlüğe girmeden yıllar önce Lüksemburg'u Avrupa düzenleyici üssü olarak seçti ve Şubat 2026'da zaten EMI lisansı almıştı. CSSF'nin denetim süreci, şirketin ve nihai gerçek faydalanıcıların 'uygunluk ve dürüstlük' değerlendirmesini esas alıyor — Ripple bu testi sorunsuz geçti.\n\n## Binance Neden Aynı Testi Geçemedi\n\nBinance ise Yunanistan'a yatırım yaptı. Ancak 24 Haziran'da, Ripple'ın Lüksemburg duyurusundan bir gün sonra, Yunan başvurusunu geri çekti. Gerekçe: kurucu ortak Changpeng Zhao'nun Kasım 2023'teki suç itirafı ve Kasım 2024'teki hapis cezasının şirketi 'uygunluk ve dürüstlük' testinden geçiremeyeceği endişesiydi.\n\n## Piyasaya Etkileri\n\n1 Temmuz 2026 itibarıyla Binance, yaklaşık 10 milyon AB kullanıcısı için çoğu hizmetini askıya aldı. Ripple artık Coinbase, OKX ve Crypto.com ile birlikte lisanslı platformlar arasına katılıyor. MiCA, tam da tasarlandığı gibi işliyor: düzenleyici geçmişleri temiz şirketleri, sorunlu sicilleri olan şirketlerden ayırt eden bir piyasa yapısı filtresi."
+    "en": "",
+    "fa": "",
+    "ar": "",
+    "tr": ""
+  },
+  "bodyHtml": {
+    "en": "<p>On June 23, 2026, Ripple announced it had received preliminary approval for a Crypto Asset Service Provider (CASP) license from Luxembourg's Commission de Surveillance du Secteur Financier, eight days before the EU's hard July 1 deadline under the Markets in Crypto Assets regulation. The approval, structured as a formal Green Light Letter, allows Ripple to scale regulated crypto asset services across all 30 countries of the European Economic Area through a single authorization. It builds on Ripple's existing Electronic Money Institution license, obtained in Luxembourg in February 2026, giving institutional clients a complete payments infrastructure — collection, exchange, and payout — regulated under both EMI and CASP frameworks.</p>\n<h2>Ripple's Patient Strategy</h2>\n<p>Ripple's path to MiCA compliance was methodical and multi-year. The company chose Luxembourg as its European regulatory base years before MiCA took full effect, submitted full documentation to the CSSF, and built its institutional payments business in a way that mapped cleanly onto MiCA's definitions. The Luxembourg CSSF's due-diligence process focuses heavily on the 'fit and proper' character assessment of the company and its ultimate beneficial owners — a test Ripple passed without apparent complications, despite its history of protracted US SEC litigation, which was settled in 2024.</p>\n<h2>Why Binance Failed the Same Test</h2>\n<p>The contrast with Binance is instructive. Binance bet heavily on Greece as its European regulatory entry point, filing its MiCA application with the Hellenic Capital Market Commission and investing months in dialogue. On June 24, one day after Ripple's Luxembourg announcement, Binance withdrew its Greek application entirely — one week after reports emerged that the HCMC was preparing to reject it. The reported reason: the 'fit and proper' assessment of Binance's owners and managers, specifically the shadow of co-founder Changpeng Zhao's November 2023 guilty plea to US anti-money-laundering violations and his November 2024 prison sentence. MiCA's fit and proper test is designed precisely to exclude firms with this kind of regulatory history. From July 1, 2026, Binance is suspending most services for EU users — approximately 10 million accounts — including new registrations, deposits, and staking products. User funds remain withdrawable, and Binance says it will seek authorization in France and intends to return to the EU market.</p>\n<h2>What This Means for the EU Crypto Market</h2>\n<p>The divergent outcomes on the same July 1 deadline produce a competitive map that favors companies with clean regulatory histories and patient multi-year licensing strategies. Coinbase, OKX, and Crypto.com have MiCA licenses or are in advanced compliance processes. Ripple now joins them with the broadest institutional-grade authorization in the payments sector. The 10 million EU users losing Binance access represent a significant migration opportunity for licensed platforms. The deeper lesson from the Ripple-Binance contrast is that MiCA is functioning exactly as designed: as a market-structure filter that distinguishes between firms that adapted to European regulatory norms and those that tried to force a jurisdiction to overlook their regulatory track record.</p>",
+    "fa": "<p>در ۲۳ ژوئن ۲۰۲۶، ریپل اعلام کرد که تأییدیه اولیه مجوز ارائه‌دهنده خدمات دارایی رمزنگاری‌شده (CASP) را از کمیسیون نظارت بر بخش مالی لوکزامبورگ دریافت کرده است — هشت روز قبل از مهلت اجباری اول ژوئیه مقررات MiCA اتحادیه اروپا. این تأییدیه به ریپل امکان می‌دهد خدمات رمزارزی تنظیم‌شده خود را در تمام ۳۰ کشور منطقه اقتصادی اروپا ارائه دهد.</p>\n<h2>استراتژی صبورانه ریپل</h2>\n<p>مسیر ریپل به سوی انطباق با MiCA روش‌مند و چندساله بود. این شرکت لوکزامبورگ را سال‌ها قبل از اجرایی شدن کامل MiCA به‌عنوان پایگاه نظارتی اروپایی خود انتخاب کرد. ریپل پیش‌تر در فوریه ۲۰۲۶ مجوز مؤسسه پول الکترونیکی (EMI) از لوکزامبورگ دریافت کرده بود و اکنون CASP به آن اضافه شده است.</p>\n<h2>چرا بایننس در همان آزمون شکست خورد</h2>\n<p>تضاد با بایننس آموزنده است. بایننس روی یونان به‌عنوان نقطه ورود نظارتی اروپایی خود شرط‌بندی کرد، اما در ۲۴ ژوئن، یک روز پس از اعلام لوکزامبورگ ریپل، درخواست یونانی خود را پس گرفت. دلیل گزارش‌شده: آزمون «صلاحیت و شایستگی» برای مالکان و مدیران بایننس، به‌ویژه سایه اعتراف به جرم هم‌بنیان‌گذار چانگ‌پنگ ژائو در نوامبر ۲۰۲۳ به نقض قوانین مبارزه با پول‌شویی آمریکا و محکومیت زندانش در نوامبر ۲۰۲۴.</p>\n<h2>پیامدها برای بازار رمزارزی اروپا</h2>\n<p>از اول ژوئیه ۲۰۲۶، بایننس اکثر خدمات خود را برای کاربران اتحادیه اروپا — حدود ۱۰ میلیون حساب — تعلیق می‌کند. ریپل اکنون در کنار کوین‌بیس، OKX و کریپتو دات‌کام به جمع پلتفرم‌های دارای مجوز می‌پیوندد. درس عمیق‌تر این است که MiCA دقیقاً همانطور که طراحی شده عمل می‌کند: به‌عنوان فیلتری که شرکت‌های سازگار با هنجارهای نظارتی اروپا را از شرکت‌هایی که سابقه نظارتی مشکل‌دار دارند تفکیک می‌کند.</p>",
+    "ar": "<p>في 23 يونيو 2026، أعلنت ريبل حصولها على موافقة مبدئية لترخيص مزود خدمات الأصول المشفرة (CASP) من هيئة الرقابة على القطاع المالي في لوكسمبورغ (CSSF)، وذلك قبل ثمانية أيام من الموعد النهائي الإلزامي لـ MiCA في أول يوليو. يتيح هذا الترخيص لريبل توسيع خدماتها المنظمة للأصول المشفرة في جميع دول المنطقة الاقتصادية الأوروبية الثلاثين.</p>\n<h2>استراتيجية ريبل الصبورة</h2>\n<p>اختارت ريبل لوكسمبورغ قاعدةً تنظيميةً أوروبيةً لها قبل سنوات من دخول MiCA حيز التنفيذ الكامل، وكانت قد حصلت على ترخيص مؤسسة النقد الإلكتروني (EMI) من لوكسمبورغ في فبراير 2026. وقد اجتاز مالكو ريبل ومديروها اختبار الصلاحية والنزاهة دون تعقيدات ظاهرة.</p>\n<h2>لماذا فشلت بينانس في الاختبار ذاته</h2>\n<p>على النقيض من ذلك، راهنت بينانس على اليونان نقطةً للدخول التنظيمي الأوروبي. وفي 24 يونيو، سحبت طلبها اليوناني، بعد يوم واحد من إعلان ريبل في لوكسمبورغ. السبب المُبلَّغ عنه: اختبار الصلاحية والنزاهة لمالكي بينانس ومديريها، ولا سيما إدانة المؤسس المشارك تشانغبنغ تشاو عام 2023 بانتهاك قوانين مكافحة غسل الأموال الأمريكية، وسجنه عام 2024.</p>\n<h2>تداعيات السوق</h2>\n<p>اعتباراً من أول يوليو 2026، علّقت بينانس معظم خدماتها لمستخدمي الاتحاد الأوروبي البالغ عددهم نحو 10 ملايين حساب. تنضم ريبل الآن إلى Coinbase وOKX وCrypto.com في صفوف المنصات المرخصة، في حين تُشكّل قاعدة مستخدمي بينانس فرصةً كبيرة للهجرة نحو المنصات المنظمة.</p>",
+    "tr": "<p>23 Haziran 2026'da Ripple, Lüksemburg Finansal Sektör Denetim Komisyonu'ndan (CSSF) Kripto Varlık Hizmet Sağlayıcısı (CASP) lisansı için ön onay aldığını duyurdu; bu, MiCA kapsamındaki 1 Temmuz zorunlu tarihinden sekiz gün önceydi. Bu onay, Ripple'ın tüm 30 AEA ülkesinde düzenlenmiş kripto varlık hizmetleri sunmasına imkân tanıyor.</p>\n<h2>Ripple'ın Sabırlı Stratejisi</h2>\n<p>Ripple, MiCA tam yürürlüğe girmeden yıllar önce Lüksemburg'u Avrupa düzenleyici üssü olarak seçti ve Şubat 2026'da zaten EMI lisansı almıştı. CSSF'nin denetim süreci, şirketin ve nihai gerçek faydalanıcıların 'uygunluk ve dürüstlük' değerlendirmesini esas alıyor — Ripple bu testi sorunsuz geçti.</p>\n<h2>Binance Neden Aynı Testi Geçemedi</h2>\n<p>Binance ise Yunanistan'a yatırım yaptı. Ancak 24 Haziran'da, Ripple'ın Lüksemburg duyurusundan bir gün sonra, Yunan başvurusunu geri çekti. Gerekçe: kurucu ortak Changpeng Zhao'nun Kasım 2023'teki suç itirafı ve Kasım 2024'teki hapis cezasının şirketi 'uygunluk ve dürüstlük' testinden geçiremeyeceği endişesiydi.</p>\n<h2>Piyasaya Etkileri</h2>\n<p>1 Temmuz 2026 itibarıyla Binance, yaklaşık 10 milyon AB kullanıcısı için çoğu hizmetini askıya aldı. Ripple artık Coinbase, OKX ve Crypto.com ile birlikte lisanslı platformlar arasına katılıyor. MiCA, tam da tasarlandığı gibi işliyor: düzenleyici geçmişleri temiz şirketleri, sorunlu sicilleri olan şirketlerden ayırt eden bir piyasa yapısı filtresi.</p>"
   },
   "seo": {
     "title": {
@@ -35,27 +50,49 @@
       "tr": "Ripple, tüm 30 AEA ülkesini kapsayan Lüksemburg MiCA CASP ön onayını aldı; Binance ise Yunan başvurusunu geri çekti. İki farklı AB düzenleyici stratejisinin analizi."
     },
     "keywords": {
-      "en": ["Ripple", "XRP", "MiCA", "CASP", "Binance", "EU crypto regulation"],
-      "fa": ["ریپل", "XRP", "MiCA", "بایننس", "مجوز اروپا", "CASP"],
-      "ar": ["Ripple", "XRP", "MiCA", "CASP", "بینانس", "تنظيم العملات المشفرة في أوروبا"],
-      "tr": ["Ripple", "XRP", "MiCA", "CASP", "Binance", "AB kripto düzenlemesi"]
+      "en": [
+        "Ripple",
+        "XRP",
+        "MiCA",
+        "CASP",
+        "Binance",
+        "EU crypto regulation"
+      ],
+      "fa": [
+        "ریپل",
+        "XRP",
+        "MiCA",
+        "بایننس",
+        "مجوز اروپا",
+        "CASP"
+      ],
+      "ar": [
+        "Ripple",
+        "XRP",
+        "MiCA",
+        "CASP",
+        "بینانس",
+        "تنظيم العملات المشفرة في أوروبا"
+      ],
+      "tr": [
+        "Ripple",
+        "XRP",
+        "MiCA",
+        "CASP",
+        "Binance",
+        "AB kripto düzenlemesi"
+      ]
     }
   },
-  "tags": ["Ripple", "XRP", "MiCA", "Binance", "regulation", "EU"],
-  "sources": [
-    {
-      "title": "Ripple Secures Preliminary MiCA CASP License",
-      "url": "https://ripple.com/ripple-press/ripple-secures-preliminary-MiCA-CASP-license/"
-    },
-    {
-      "title": "Ripple Secures Preliminary Approval in EU Through Luxembourg MiCA License",
-      "url": "https://www.coindesk.com/policy/2026/06/23/ripple-targets-eu-wins-preliminary-mica-approval-from-luxembourg-financial-regulator"
-    },
-    {
-      "title": "Binance Is Locked Out of Europe on July 1. Here Is What Actually Happened",
-      "url": "https://crypto.news/binance-eu-mica-license-lockout-july-2026-explained/"
-    }
+  "sources": [],
+  "tags": [
+    "Ripple",
+    "XRP",
+    "MiCA",
+    "Binance",
+    "regulation",
+    "EU"
   ],
-  "status": "draft",
+  "status": "published",
   "featured": false
 }
