@@ -1,5 +1,14 @@
 {
   "slug": "uniswap-uni-price-prediction-standard-chartered-100",
+  "topic": "crypto",
+  "type": "news",
+  "placement": {
+    "hero": false,
+    "editorsPick": false,
+    "pinned": false,
+    "hideFromLatest": false,
+    "priority": 0
+  },
   "category": "crypto",
   "date": "2026-06-23",
   "author": "MAXGAZINE SEO Desk",
@@ -86,5 +95,5 @@
   ],
   "status": "published",
   "banner": "https://maxgazine.com/assets/uploads/1782208605972-banner.webp",
-  "featured": true
+  "featured": false
 }
