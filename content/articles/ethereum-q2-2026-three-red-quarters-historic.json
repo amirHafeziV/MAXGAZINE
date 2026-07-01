@@ -1,0 +1,61 @@
+{
+  "slug": "ethereum-q2-2026-three-red-quarters-historic",
+  "category": "analysis",
+  "date": "2026-06-30",
+  "author": "MAXGAZINE Desk",
+  "headline": {
+    "en": "Ethereum Closes Q2 With Historic Third Consecutive Red Quarter — A First Since 2015",
+    "fa": "اتریوم سه‌مین کوارتر منفی پیاپی را پشت سر گذاشت — رکوردی که از سال ۲۰۱۵ بی‌سابقه بود",
+    "ar": "إيثريوم يُسجل ربعه السلبي الثالث على التوالي — الأول في تاريخه منذ ٢٠١٥",
+    "tr": "Ethereum Üst Üste Üçüncü Negatif Çeyreği Kapadı — 2015'ten Bu Yana Bir İlk"
+  },
+  "dek": {
+    "en": "ETH closed Q2 2026 down 24.77%, completing a run of three straight negative quarters for the first time in the asset's history. The streak spans a total decline of roughly 65% from Q3 2025 levels.",
+    "fa": "اتریوم فصل دوم ۲۰۲۶ را با افت ۲۴.۷۷ درصدی بست و برای نخستین بار در تاریخ خود، سه‌مین کوارتر منفی متوالی را ثبت کرد. این دوره نزولی در مجموع از سطوح فصل سوم ۲۰۲۵ حدود ۶۵ درصد کاهش داشته است.",
+    "ar": "أغلق إيثريوم الربع الثاني من ٢٠٢٦ بتراجع ٢٤.٧٧٪، مُسجلاً بذلك ثلاثة أرباع سلبية متتالية لأول مرة في تاريخه. يمتد هذا الانخفاض ليمثل تراجعاً إجمالياً يقارب ٦٥٪ مقارنةً بمستويات الربع الثالث ٢٠٢٥.",
+    "tr": "ETH, 2026 ikinci çeyreğini yüzde 24,77 düşüşle kapattı ve tarihinde ilk kez üst üste üç negatif çeyrek kaydetti. Bu gerileme dönemi, 2025 üçüncü çeyrek seviyelerinden toplam yaklaşık yüzde 65'lik bir düşüşe karşılık geliyor."
+  },
+  "body": {
+    "en": "Ethereum (ETH) closed the second quarter of 2026 at approximately $1,570, marking a decline of 24.77% for the period. Combined with Q4 2025's 28.28% drop and Q1 2026's 29.26% fall, it completes a run of three consecutive negative quarters — the first such streak in the asset's history, which dates to its launch in 2015.\n\nThe dataset going back to 2016 shows that the longest previous negative run for Ethereum was two quarters, recorded in 2018 and again in 2019. Those downturns were sharper but shorter. The 2022 crypto bear market, for example, produced a single quarter with a 67% collapse in Q2 of that year. What makes the current period structurally different is the sustained, almost metronomic nature of the losses: three roughly equal quarterly declines that together represent a total drawdown of approximately 65% from Q3 2025 levels.\n\n## What Is Driving the Decline?\n\nNo single catalyst explains the three-quarter bleed. Several converging forces have been at work. Macroeconomic pressure has been the dominant backdrop: US PCE inflation reached 4.1% in May 2026, its highest reading in three years, leading markets to price in Federal Reserve rate hikes later in 2026. Risk assets under pressure from tighter monetary policy have weighed on Ethereum alongside equities.\n\nEthereum-specific headwinds have also accumulated. The transition to a proof-of-stake model and the EIP-4844 upgrade improved fee economics but did not generate a new wave of retail demand. Layer-2 networks — Arbitrum, Optimism, Base — have succeeded in driving transaction volumes but also absorbed fee revenue that historically accrued to ETH holders. DeFi protocol revenue on Ethereum mainnet has declined relative to peak 2021 levels, reducing the economic pull of holding ETH.\n\n## What History Says About Q3\n\nHistorically, Ethereum has not closed four consecutive negative quarters. Following the two-quarter downturns of 2018 and 2019, ETH staged meaningful recoveries in the subsequent periods. However, the macro environment in mid-2026 is materially more hostile than those prior recoveries: inflation is well above target, the Federal Reserve is signaling potential rate increases, and institutional flows into crypto ETFs — which powered Ethereum's rally through 2025 — have slowed significantly.\n\nEthereum enters July 2026 near multi-month lows, with the broader crypto market also under pressure. Bitcoin (BTC) is trading near $60,000, having lost the $65,000 level it held through much of late 2025. The question for Q3 is whether the convergence of any policy reversal, a Glamsterdam upgrade catalyst or a renewed DeFi cycle can interrupt the streak — or whether Ethereum breaks the mold and logs a fourth.",
+    "fa": "اتریوم (ETH) فصل دوم ۲۰۲۶ را در سطح حدود ۱,۵۷۰ دلار بست و این بدان معناست که این دارایی دیجیتال با ثبت افت ۲۴.۷۷ درصدی در طول این فصل، برای نخستین بار در تاریخ خود — که به عرضه اولیه آن در سال ۲۰۱۵ بازمی‌گردد — سه کوارتر منفی متوالی را پشت سر گذاشت.\n\nبررسی داده‌های تاریخی از سال ۲۰۱۶ نشان می‌دهد که طولانی‌ترین دوره نزولی پیشین اتریوم دو کوارتر متوالی بود که یک بار در سال ۲۰۱۸ و بار دیگر در ۲۰۱۹ رخ داد. بازار خرسی ۲۰۲۲ نیز یک سقوط ۶۷ درصدی در یک فصل واحد به ثبت رساند. اما آنچه دوره کنونی را از نظر ساختاری متمایز می‌کند، ماهیت تدریجی و تقریباً منظم این افت‌هاست: سه کوارتر با کاهش‌های تقریباً برابر که در مجموع از سطوح فصل سوم ۲۰۲۵ حدود ۶۵ درصد کاهش داشته‌اند.\n\n## عوامل ایجادکننده این روند نزولی\n\nهیچ محرک واحدی این سه‌فصل خونریزی را توضیح نمی‌دهد. فشارهای کلان اقتصادی زمینه اصلی بوده‌اند: شاخص PCE آمریکا در مه ۲۰۲۶ به ۴.۱ درصد رسید — بالاترین سطح در سه سال — که بازارها را به قیمت‌گذاری افزایش نرخ بهره فدرال رزرو در نیمه دوم ۲۰۲۶ واداشت. فشار بر دارایی‌های ریسکی ناشی از سیاست پولی سخت‌گیرانه‌تر، اتریوم و بورس سهام را به طور همزمان تحت فشار قرار داده است.\n\nعوامل اختصاصی اتریوم نیز در این میان نقش داشته‌اند. ارتقاهای Glamsterdam و EIP-4844 اقتصاد کارمزدها را بهبود بخشیدند اما موج جدیدی از تقاضای خرده‌فروشی ایجاد نکردند. شبکه‌های لایه دوم — Arbitrum، Optimism، Base — موفق به جذب حجم تراکنش شدند اما در عین حال درآمد کارمزدی را که تاریخاً به دارندگان ETH تعلق می‌گرفت، جذب کردند.\n\n## پیشینه تاریخی در مورد فصل سوم\n\nدر تاریخ اتریوم، هیچ‌گاه چهار کوارتر منفی متوالی رخ نداده است. پس از دوره‌های دو‌فصلی نزولی ۲۰۱۸ و ۲۰۱۹، ETH بازیابی‌های معناداری داشت. با این حال، محیط کلان اقتصادی در اواسط ۲۰۲۶ به مراتب خصمانه‌تر از آن دوران است. سوال اصلی فصل سوم این است که آیا تغییر سیاست‌های پولی، محرک ارتقای Glamsterdam یا احیای چرخه DeFi می‌تواند این روند را قطع کند — یا اتریوم تاریخ را می‌شکند و چهارمین کوارتر منفی را رقم می‌زند.",
+    "ar": "أغلق إيثريوم (ETH) الربع الثاني من ٢٠٢٦ عند نحو ١٫٥٧٠ دولاراً، مُسجلاً تراجعاً بنسبة ٢٤.٧٧٪ خلال هذه الفترة. ويُضاف ذلك إلى انخفاض الربع الرابع ٢٠٢٥ البالغ ٢٨.٢٨٪ وتراجع الربع الأول ٢٠٢٦ البالغ ٢٩.٢٦٪، ليكتمل بذلك ثلاثة أرباع سلبية متتالية — وهو الأول من نوعه في تاريخ الأصل منذ إطلاقه عام ٢٠١٥.\n\nتُظهر البيانات التاريخية الممتدة إلى ٢٠١٦ أن أطول سلسلة سلبية سابقة لإيثريوم كانت ربعين متتاليين، سُجِّلت في عامَي ٢٠١٨ و٢٠١٩. وفي الفترة الحالية، تتسم الخسائر بطابعها التراكمي المتوازن: ثلاثة أرباع بتراجعات متقاربة تُمثل انخفاضاً إجمالياً يقارب ٦٥٪ مقارنةً بمستويات الربع الثالث ٢٠٢٥.\n\n## أسباب التراجع\n\nلا يمكن إرجاع هذا التدهور الممتد ثلاثة أرباع إلى محرك واحد. فضغوط الاقتصاد الكلي شكّلت الخلفية الرئيسية: إذ وصل مؤشر PCE الأمريكي في مايو ٢٠٢٦ إلى ٤.١٪ — أعلى قراءة في ثلاث سنوات — مما دفع الأسواق إلى تسعير رفع الفيدرالي الأمريكي لأسعار الفائدة في الفترة المتبقية من ٢٠٢٦. كما تراكمت عوامل خاصة بإيثريوم: فشبكات الطبقة الثانية — Arbitrum وOptimism وBase — نجحت في استقطاب حجم المعاملات لكنها في الوقت ذاته استوعبت عائدات الرسوم التي كانت تصب تاريخياً في صالح حاملي ETH.\n\n## ماذا تقول السوابق التاريخية عن الربع الثالث؟\n\nتاريخياً، لم يُسجل إيثريوم أربعة أرباع سلبية متتالية. فعقب انخفاضَي ربعَين في ٢٠١٨ و٢٠١٩، شهد العملة انتعاشاً ملموساً. غير أن البيئة الكلية في منتصف ٢٠٢٦ أشد قسوة مما كانت عليه آنذاك. السؤال الجوهري للربع الثالث: هل ستُفضي أي انعطافة في السياسة النقدية، أو تحفيز ترقية Glamsterdam، أو دورة DeFi متجددة إلى قطع هذه السلسلة — أم يُحقق إيثريوم سابقة غير مسبوقة برابع ربع سلبي على التوالي؟",
+    "tr": "Ethereum (ETH), 2026 ikinci çeyreğini yaklaşık 1.570 dolara kadar gerileyerek kapattı; bu rakam söz konusu dönem için yüzde 24,77'lik bir düşüşe karşılık geliyor. 2025 dördüncü çeyreğindeki yüzde 28,28'lik ve 2026 birinci çeyreğindeki yüzde 29,26'lık düşüşle birleşince varlığın 2015'teki lansmanından bu yana ilk kez üst üste üç negatif çeyrek kaydedilmiş oldu.\n\n2016'ya uzanan tarihsel veriler incelendiğinde, Ethereum'un daha önce en fazla iki çeyrek arka arkaya negatif kapandığı görülüyor; bu durumlar 2018 ve 2019'da yaşanmıştı. 2022 kripto ayı piyasasında ise tek bir çeyrekte yüzde 67'lik çöküş yaşandı. Mevcut dönemi yapısal olarak farklı kılan, kayıpların tüm çeyreklere birbirine yakın miktarlarda yayılmış olması ve toplamda 2025 üçüncü çeyrek seviyelerinden yaklaşık yüzde 65 gerilemeyi temsil etmesidir.\n\n## Düşüşü Tetikleyen Faktörler\n\nBu üç çeyreklik erozyonu tek bir nedene bağlamak mümkün değil. Makroekonomik baskı belirleyici arka plan oldu: ABD PCE enflasyonu Mayıs 2026'da üç yılın en yükseği olan yüzde 4,1'e ulaştı ve piyasalar Fed'in 2026'nın kalan döneminde faiz artışına gidebileceğini fiyatlamaya başladı. Ethereum'a özgü başlık rüzgarları da birikmektedir: Layer-2 ağları işlem hacmini çekmeyi başardı; ancak tarihsel olarak ETH sahiplerine tahakkuk eden komisyon gelirini de bünyesine aldı.\n\n## Tarihsel Emsaller Üçüncü Çeyrek İçin Ne Söylüyor?\n\nTarihsel olarak Ethereum hiç dört çeyrek arka arkaya negatif kapanmadı. 2018 ve 2019'daki iki çeyreklik düşüşlerin ardından ETH kayda değer toparlanmalar sergiledi. Ne var ki 2026 ortasındaki makro ortam o dönemlerden çok daha sert. Üçüncü çeyrek için temel soru şu: Fed politikasındaki herhangi bir dönüş, Glamsterdam yükseltmesinin katalizörü ya da yenilenen bir DeFi döngüsü bu seriyi kırabilir mi — yoksa Ethereum tarihe geçip dördüncü negatif çeyreği kayıt altına alır mı?"
+  },
+  "seo": {
+    "title": {
+      "en": "Ethereum Q2 2026: Three Red Quarters, First in History — MAXGAZINE",
+      "fa": "اتریوم Q2 2026: سه کوارتر منفی پیاپی، اول در تاریخ — MAXGAZINE",
+      "ar": "إيثريوم Q2 2026: ثلاثة أرباع سلبية متتالية الأولى في التاريخ — MAXGAZINE",
+      "tr": "Ethereum Q2 2026: Tarihte İlk Kez Üç Negatif Çeyrek — MAXGAZINE"
+    },
+    "description": {
+      "en": "Ethereum closed Q2 2026 down 24.77%, completing its first-ever streak of three consecutive negative quarters. ETH sits near $1,570 with macro headwinds still dominant.",
+      "fa": "اتریوم در Q2 2026 با افت ۲۴.۷۷٪ بسته شد و اولین سری سه‌کوارتره منفی در تاریخ خود را تکمیل کرد. ETH در حدود ۱,۵۷۰ دلار با فشارهای کلان اقتصادی درگیر است.",
+      "ar": "أغلق إيثريوم الربع الثاني ٢٠٢٦ بانخفاض ٢٤.٧٧٪، مُكملاً أولى سلاسل الأرباع السلبية الثلاثة في تاريخه. ETH يتحرك قرب ١٫٥٧٠ دولاراً وسط ضغوط اقتصادية مستمرة.",
+      "tr": "Ethereum, Q2 2026'yı yüzde 24,77 düşüşle kapattı ve tarihindeki ilk üç çeyreklik negatif serisini tamamladı. ETH, makro baskılar sürerken 1.570 dolar civarında seyrediyor."
+    },
+    "keywords": {
+      "en": ["Ethereum", "ETH", "Q2 2026", "crypto bear market", "quarterly performance", "analysis"],
+      "fa": ["Ethereum", "ETH", "اتریوم", "بازار خرسی", "تحلیل", "رمزارز"],
+      "ar": ["Ethereum", "ETH", "إيثريوم", "ربع سلبي", "تحليل", "سوق الدببة"],
+      "tr": ["Ethereum", "ETH", "Q2 2026", "kripto ayı piyasası", "çeyreklik performans", "analiz"]
+    }
+  },
+  "tags": ["Ethereum", "ETH", "crypto", "markets", "analysis"],
+  "sources": [
+    {
+      "title": "BeInCrypto: What to Expect From Ethereum in July 2026",
+      "url": "https://beincrypto.com/what-to-expect-from-ethereum-eth-in-july-2026/"
+    },
+    {
+      "title": "MEXC News: Ethereum Faces Historic Third Consecutive Quarterly Loss as Q2 Decline Deepens",
+      "url": "https://www.mexc.com/news/1146771"
+    },
+    {
+      "title": "Yahoo Finance: Ethereum Nears First-Ever 3 Straight Red Quarters as Bullish Signs Emerge",
+      "url": "https://finance.yahoo.com/markets/crypto/articles/ethereum-nears-first-ever-3-073813656.html"
+    }
+  ],
+  "status": "draft",
+  "featured": false
+}
